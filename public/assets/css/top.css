@@ -1,0 +1,125 @@
+/* =========================================
+   Top Page CSS - Bento Grid & Category Cards
+   ========================================= */
+
+/* Hero Section */
+.hero-text {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    letter-spacing: -2px;
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-heading);
+}
+
+.hero-text p {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+}
+
+/* Category Grid Container */
+.category-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Mobile: 1 column (Vertical Stack) */
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-md) var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Desktop Grid (Bento Style) */
+@media (min-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 300px);
+    }
+}
+
+/* Card Style */
+.category-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--spacing-lg);
+    min-height: 200px;
+    /* Mobile minimum height */
+    text-decoration: none;
+}
+
+.category-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--theme-accent, var(--color-primary));
+    background: var(--color-surface-hover);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8),
+        0 0 20px -5px var(--theme-accent, --color-primary);
+    /* Glow */
+}
+
+/* Card Content */
+.category-card h2 {
+    font-size: 2rem;
+    z-index: 2;
+    position: relative;
+}
+
+.category-card p {
+    color: var(--color-text-muted);
+    z-index: 2;
+    position: relative;
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+}
+
+/* Background Image/Gradient Placeholder */
+.category-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    z-index: 1;
+}
+
+/* Dynamic Colors per Card (injected via JS usually, but defaults here) */
+.category-card:hover h2 {
+    color: var(--card-color, var(--color-primary));
+}
+
+/* Bento Grid Spans (PC) */
+@media (min-width: 768px) {
+
+    /* Main Feature Category (e.g. Business) */
+    .category-card:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    /* Secondary Categories */
+    .category-card:nth-child(2) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .category-card:nth-child(3) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .category-card:nth-child(4) {
+        grid-column: span 3;
+        /* Wide bottom card */
+        grid-row: span 1;
+        min-height: 200px;
+    }
+}

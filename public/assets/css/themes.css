@@ -1,0 +1,114 @@
+/* =========================================
+   Theme Definitions
+   Applies to both Top Page Cards and List Pages
+   ========================================= */
+
+/* Default / Streamer (Cyber Base) */
+:root {
+    --theme-bg: #0a0a0a;
+    --theme-text: #ffffff;
+    --theme-accent: #00f2ff;
+    --theme-surface: rgba(255, 255, 255, 0.05);
+    --theme-border: rgba(255, 255, 255, 0.1);
+    --theme-font-head: 'Outfit', sans-serif;
+}
+
+/* Business Theme: Trustworthy, Clean, Navy */
+.theme-business {
+    --theme-bg: #0f172a;
+    /* Slate 900 */
+    --theme-text: #e2e8f0;
+    /* Slate 200 */
+    --theme-accent: #38bdf8;
+    /* Sky 400 */
+    --theme-surface: rgba(30, 41, 59, 0.6);
+    /* Slate 800 */
+    --theme-border: rgba(148, 163, 184, 0.2);
+    --theme-font-head: 'Inter', sans-serif;
+    /* More standard */
+
+    /* Background Gradient override */
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-end: #1e293b;
+}
+
+/* Streamer Theme: Dark, Neon, Exciting */
+.theme-streamer {
+    --theme-bg: #050505;
+    --theme-text: #ffffff;
+    --theme-accent: #d946ef;
+    /* Fuchsia 500 */
+    --theme-surface: rgba(20, 20, 20, 0.8);
+    --theme-border: rgba(217, 70, 239, 0.3);
+    --theme-font-head: 'Outfit', sans-serif;
+
+    --bg-gradient-start: #000000;
+    --bg-gradient-end: #2a0a2e;
+}
+
+/* LP Theme: High Impact, Red/Orange */
+.theme-lp {
+    --theme-bg: #1a0505;
+    --theme-text: #fff0f0;
+    --theme-accent: #f43f5e;
+    /* Rose 500 */
+    --theme-surface: rgba(50, 10, 20, 0.6);
+    --theme-border: rgba(244, 63, 94, 0.3);
+
+    --bg-gradient-start: #1a0505;
+    --bg-gradient-end: #3f0e16;
+}
+
+/* Portfolio Theme: Minimal, Monochrome */
+.theme-portfolio {
+    --theme-bg: #111111;
+    --theme-text: #f0f0f0;
+    --theme-accent: #fbbf24;
+    /* Amber 400 */
+    --theme-surface: rgba(255, 255, 255, 0.03);
+    --theme-border: rgba(255, 255, 255, 0.05);
+
+    --bg-gradient-start: #111111;
+    --bg-gradient-end: #222222;
+}
+
+
+/* Utility: Apply Theme Variables */
+body.theme-business,
+.category-card.theme-business {
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    font-family: var(--theme-font-head);
+    /* For headings */
+}
+
+/* For Cards specifics */
+.category-card {
+    border-color: var(--theme-border);
+    background: linear-gradient(135deg, var(--theme-surface), transparent);
+}
+
+.category-card:hover {
+    border-color: var(--theme-accent);
+    box-shadow: 0 10px 30px -10px var(--theme-accent);
+}
+
+.category-card h2 {
+    font-family: var(--theme-font-head);
+    color: var(--theme-text);
+    /* Base text color, hover changes this */
+}
+
+.category-card:hover h2 {
+    color: var(--theme-accent);
+    /* Override base css */
+}
+
+/* For List Page Body */
+body.theme-business {
+    background: radial-gradient(circle at top right, var(--bg-gradient-end), var(--bg-gradient-start));
+}
+
+body.theme-streamer {
+    background: radial-gradient(circle at center, var(--bg-gradient-end), var(--bg-gradient-start));
+}

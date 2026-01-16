@@ -1,0 +1,127 @@
+/* =========================================
+   Base CSS - Design System & Reset
+   Theme: Cyber-Elegant
+   ========================================= */
+
+:root {
+    /* Colors */
+    --color-bg: #0a0a0a;
+    --color-surface: rgba(255, 255, 255, 0.05);
+    --color-surface-hover: rgba(255, 255, 255, 0.1);
+    --color-border: rgba(255, 255, 255, 0.1);
+
+    --color-primary: #00f2ff;
+    /* Neon Cyan */
+    --color-secondary: #7000ff;
+    /* Neon Purple */
+    --color-accent: #ff0055;
+    /* Neon Pink */
+
+    --color-text-main: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.6);
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 48px;
+
+    /* Effects */
+    --backdrop-blur: blur(20px);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Utilities */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s var(--transition-smooth) forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Footer (Global) */
+.portal-footer {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-top: auto;
+    border-top: 1px solid var(--color-border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Background Ambient Effect (Subtle Gradient Orb) */
+.bg-ambient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% -20%, rgba(0, 242, 255, 0.1), transparent 70%);
+    pointer-events: none;
+}
+
+/* Different ambient colors per theme */
+body.theme-streamer .bg-ambient {
+    background: radial-gradient(circle at 50% -20%, rgba(112, 0, 255, 0.15), transparent 70%);
+}
+
+body.theme-business .bg-ambient {
+    background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.1), transparent 60%);
+}
