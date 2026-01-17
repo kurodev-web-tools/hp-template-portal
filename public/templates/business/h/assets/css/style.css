@@ -1,0 +1,503 @@
+/* =========================================
+   Template H (High-end) - Style Definition
+   Theme: Luxury / Hotel / Piano Black & Gold
+   ========================================= */
+
+:root {
+    /* Theme Colors */
+    --color-bg-luxury: #0a0a0a;
+    /* Piano Black */
+    --color-bg-secondary: #111111;
+    /* Dark Gray */
+    --color-text-luxury: #f0f0f0;
+    /* Off White */
+    --color-text-muted: #888888;
+    --color-gold: #C5A059;
+    /* Champagne Gold */
+    --color-gold-light: #E6D2A0;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Lato', sans-serif;
+
+    /* Layout */
+    --container-width: 1100px;
+}
+
+/* Reset / Base Overrides */
+body {
+    background-color: var(--color-bg-luxury);
+    color: var(--color-text-luxury);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+.subtitle,
+.section-label,
+.quote {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-luxury);
+}
+
+p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+/* Utilities */
+.text-gold {
+    color: var(--color-gold);
+}
+
+/* Header */
+.luxury-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    transition: background 0.4s, padding 0.4s;
+}
+
+.luxury-header.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    padding: 1rem 3rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.luxury-header .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-text-luxury);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo .material-icons-outlined {
+    color: var(--color-gold);
+    font-size: 1.8rem;
+}
+
+.luxury-header nav ul {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    list-style: none;
+}
+
+.luxury-header nav a {
+    color: var(--color-text-luxury);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    opacity: 0.8;
+}
+
+.luxury-header nav a:hover,
+.luxury-header nav a.active {
+    opacity: 1;
+    color: var(--color-gold);
+}
+
+.btn-luxury {
+    border: 1px solid var(--color-gold);
+    padding: 0.8rem 2rem;
+    color: var(--color-gold) !important;
+    transition: all 0.4s;
+}
+
+.btn-luxury:hover {
+    background: var(--color-gold);
+    color: var(--color-bg-luxury) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    /* For parallax */
+    /* Placeholder Gradient until Image */
+    background: linear-gradient(45deg, #111, #222);
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+}
+
+.subtitle {
+    display: block;
+    color: var(--color-gold);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-luxury);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    border-bottom: 1px solid transparent;
+}
+
+.btn-text:hover {
+    gap: 1rem;
+    border-bottom-color: var(--color-gold);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+}
+
+.scroll-indicator span {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: var(--color-text-luxury);
+    animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+    0% {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+
+    51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+
+    100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+}
+
+/* Concept Section */
+.concept-section {
+    padding: 10rem 0;
+    background: var(--color-bg-luxury);
+}
+
+.concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.section-label {
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.signature {
+    margin-top: 3rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-text-luxury);
+}
+
+.img-wrapper {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.placeholder-img {
+    transition: transform 0.8s ease-out;
+}
+
+.img-wrapper:hover .placeholder-img {
+    transform: scale(1.05);
+}
+
+.col-text {
+    padding: 0 4rem;
+}
+
+@media (max-width: 900px) {
+    .col-text {
+        padding: 0;
+        text-align: center;
+    }
+}
+
+/* Split Section */
+.split-section {
+    display: flex;
+    min-height: 80vh;
+}
+
+.split-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.split-img {
+    flex: 1;
+    height: 80vh;
+    /* Sticky feeling */
+    background-color: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Using CSS placeholder for demo - would be real images */
+.split-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    opacity: 0.5;
+}
+
+.split-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-secondary);
+    padding: 4rem;
+}
+
+.content-inner {
+    max-width: 500px;
+}
+
+.amenities {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+    margin: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 0;
+}
+
+.amenities li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-luxury);
+}
+
+.amenities .material-icons-outlined {
+    color: var(--color-gold);
+}
+
+.btn-luxury-outline {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-text-luxury);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.btn-luxury-outline:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+/* Gallery / Quote */
+.gallery-quote-section {
+    padding: 8rem 0;
+    text-align: center;
+    background: var(--color-bg-luxury);
+}
+
+blockquote.quote {
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--color-text-luxury);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+blockquote.quote cite {
+    display: block;
+    font-size: 1rem;
+    margin-top: 2rem;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-style: normal;
+}
+
+/* Footer */
+.luxury-footer {
+    padding: 5rem 0 2rem;
+    background: #050505;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-logo {
+    margin-bottom: 3rem;
+    color: var(--color-gold);
+}
+
+.footer-logo .material-icons-outlined {
+    font-size: 3rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.footer-links a {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.footer-links a:hover {
+    color: var(--color-gold);
+}
+
+.footer-bottom {
+    font-size: 0.8rem;
+    color: #444;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    .concept-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .col-img {
+        order: -1;
+        /* Image first on mobile */
+    }
+
+    .split-section {
+        flex-direction: column !important;
+    }
+
+    .split-img {
+        height: 50vh;
+    }
+
+    .split-content {
+        padding: 3rem 1.5rem;
+    }
+
+    .luxury-header {
+        padding: 1rem;
+    }
+
+    .luxury-header nav {
+        display: none;
+        /* Mobile menu implementation needed if robust */
+    }
+}
