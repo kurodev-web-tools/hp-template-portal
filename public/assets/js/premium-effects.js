@@ -345,6 +345,72 @@ class PremiumEffects {
         resize();
         animate();
     }
+
+    /**
+     * Magnetic Button Effect
+     * Buttons that magnetically stick to the cursor movement.
+     */
+    static MagneticButton(selector, options = {}) {
+        const buttons = document.querySelectorAll(selector);
+        const sensitivity = options.sensitivity || 0.4; // movement strength
+
+        buttons.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                btn.style.transform = `translate(${x * sensitivity}px, ${y * sensitivity}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0px, 0px)';
+            });
+        });
+    }
+
+    /**
+     * CountUp Animation
+     * Animates numbers from 0 to target value.
+     */
+    static CountUp(selector, options = {}) {
+        const elements = document.querySelectorAll(selector);
+        const duration = options.duration || 2000;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const targetText = el.innerText;
+                    const target = parseInt(targetText.replace(/[^0-9]/g, ''), 10);
+
+                    // If not a number, skip
+                    if (isNaN(target)) return;
+
+                    let start = 0;
+                    const stepTime = Math.abs(Math.floor(duration / target));
+
+                    // Simple interval for now, can be RAF for smoother high numbers
+                    const timer = setInterval(() => {
+                        start += Math.ceil(target / (duration / 16)); // approx 60fps
+                        if (start > target) start = target;
+
+                        // Preserve non-numeric suffix if any (e.g. "200+")
+                        const suffix = targetText.replace(/[0-9]/g, '');
+                        el.innerText = start + suffix;
+
+                        if (start === target) {
+                            clearInterval(timer);
+                        }
+                    }, 16);
+
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        elements.forEach(el => observer.observe(el));
+    }
 }
 
 // Export to global scope
