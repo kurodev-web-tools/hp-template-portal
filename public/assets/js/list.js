@@ -140,11 +140,21 @@ function renderAllCategorySections() {
         templates.forEach(t => {
             const card = document.createElement('div');
             card.className = 'mini-card';
+            card.tabIndex = 0;
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
             card.innerHTML = `
                 <div class="big-char">${t.tag}</div>
                 <div class="theme-label">${t.themeLabel || ''}</div>
             `;
             card.addEventListener('click', () => { if (shouldBlockClick()) return; Haptics.select(); openModal(t.id); });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    Haptics.select();
+                    openModal(t.id);
+                }
+            });
             gallery.appendChild(card);
         });
 
@@ -338,6 +348,9 @@ function renderGallery(templates) {
         const card = document.createElement('div');
         card.className = 'gallery-item';
         card.id = `card-${t.tag}`;
+        card.tabIndex = 0; // Make focusable with keyboard
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
 
         // Background Image Logic
         if (t.image) {
@@ -357,13 +370,20 @@ function renderGallery(templates) {
             </div>
         `;
 
-        // Make the whole card clickable for modal? 
-        // Or just the button. The prompt said "Click card".
-        // Let's attach click event to card, but avoid double trigger if button clicked.
+        // Click event
         card.addEventListener('click', (e) => {
-            if (shouldBlockClick()) return; // Prevent click after drag
-            Haptics.select(); // Haptic feedback
+            if (shouldBlockClick()) return;
+            Haptics.select();
             openModal(t.id);
+        });
+
+        // Keyboard event (Enter/Space)
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                Haptics.select();
+                openModal(t.id);
+            }
         });
 
         container.appendChild(card);
