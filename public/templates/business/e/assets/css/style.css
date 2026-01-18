@@ -365,4 +365,92 @@ h3 {
     .contact-card {
         padding: 2rem;
     }
+
+    /* Increase header z-index to be above backdrop */
+    .eco-header {
+        z-index: 10000;
+    }
+
+    /* ===== Mobile Menu - Eco Theme ===== */
+    .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--color-primary-eco) !important;
+        border: none !important;
+        border-radius: 50%;
+        padding: 12px;
+        gap: 4px;
+        box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+    }
+
+    .mobile-menu-toggle .bar {
+        display: block !important;
+        width: 18px;
+        height: 2px;
+        background: white !important;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+
+    .mobile-menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
+
+    .mobile-menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
+    }
+
+    .mobile-menu-backdrop {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .eco-header nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--color-bg-eco);
+        border-left: 3px solid var(--color-primary-eco);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 100px 30px 30px;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 10000;
+        border-radius: 20px 0 0 20px;
+    }
+
+    .eco-header nav.mobile-open {
+        right: 0;
+    }
+
+    .eco-header nav ul {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+
+    .eco-header nav li {
+        width: 100%;
+        border-bottom: 1px solid rgba(34, 139, 34, 0.1);
+    }
+
+    .eco-header nav a {
+        display: block;
+        padding: 16px 0;
+        font-size: 1rem;
+        color: var(--color-text-dark);
+    }
+
+    .eco-header nav .btn-rounded {
+        margin-top: 20px;
+        text-align: center;
+    }
 }

@@ -4,37 +4,45 @@
    This script is included in ALL templates.
    It handles:
    1. The "Back to Portal" navigation button.
-   2. Common utility functions (optional).
+   2. Mobile menu toggle functionality.
+   3. Common utility functions (optional).
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
+    clearHashOnLoad();
     injectPortalNav();
+    initMobileMenu();
 });
+
+// Prevent auto-scroll to anchor on page load/refresh
+function clearHashOnLoad() {
+    if (window.location.hash) {
+        // Scroll to top first
+        window.scrollTo(0, 0);
+        // Remove the hash without triggering scroll
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+}
 
 function injectPortalNav() {
     // Create the navigation container
     const nav = document.createElement('a');
-    nav.href = '../../../list.html?category=business'; // Default fallback, logic can improve
+    nav.href = '../../../list.html?category=business';
     nav.className = 'portal-nav-back';
     nav.innerHTML = `
         <span class="material-icons">arrow_back</span>
         <span class="nav-text">PORTAL</span>
     `;
 
-    // Dynamic Link Logic: Try to return to the specific category if known, else root
-    // Since we don't track history across domains easily without session storage, 
-    // a simple relative link is safest. 
-    // ../../../index.html goes to Top. 
-    // ../../../list.html goes to List.
-
-    // Style injection (to avoid needing a separate common.css file just for this)
+    // Style injection - Portal nav only + minimal mobile menu structure
     const style = document.createElement('style');
     style.textContent = `
+        /* Portal Back Button */
         .portal-nav-back {
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 9999;
+            z-index: 10002;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -60,7 +68,6 @@ function injectPortalNav() {
         .portal-nav-back .material-icons {
             font-size: 1.2rem;
         }
-        /* Mobile adjustment */
         @media (max-width: 768px) {
             .portal-nav-back {
                 top: 15px;
@@ -68,10 +75,108 @@ function injectPortalNav() {
                 padding: 8px 14px;
             }
             .portal-nav-back .nav-text {
-                display: none; /* Icon only on mobile to save space */
+                display: none;
+            }
+        }
+        
+        /* Mobile Menu - Minimal Functional Styles Only */
+        /* Visual styling should be done in each template's style.css */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 10001;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            padding: 0;
+        }
+        .mobile-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
         }
     `;
     document.head.appendChild(style);
     document.body.appendChild(nav);
+}
+
+function initMobileMenu() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    const nav = header.querySelector('nav');
+    if (!nav) return;
+
+    // Create hamburger button
+    const toggle = document.createElement('button');
+    toggle.className = 'mobile-menu-toggle';
+    toggle.setAttribute('aria-label', 'メニューを開く');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = `
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    `;
+
+    // Create backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'mobile-menu-backdrop';
+
+    document.body.appendChild(toggle);
+    document.body.appendChild(backdrop);
+
+    // Toggle function
+    function toggleMenu() {
+        const isOpen = toggle.classList.toggle('active');
+        nav.classList.toggle('mobile-open');
+        backdrop.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        toggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+
+        // Prevent body scroll when menu open
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    function closeMenu() {
+        toggle.classList.remove('active');
+        nav.classList.remove('mobile-open');
+        backdrop.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'メニューを開く');
+        document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', closeMenu);
+
+    // Close menu on link click
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && toggle.classList.contains('active')) {
+            closeMenu();
+        }
+    });
 }

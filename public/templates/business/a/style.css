@@ -280,11 +280,8 @@ a:hover {
         grid-template-columns: 1fr;
     }
 
-    /* Works */
     .works-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+        grid-template-columns: 1fr;
     }
 
     /* Contact Form */
@@ -295,10 +292,77 @@ a:hover {
         border-radius: 2px;
     }
 
-    /* Responsive adjustment for works */
-    @media (max-width: 768px) {
-        .works-grid {
-            grid-template-columns: 1fr;
-        }
+    /* ===== Mobile Menu - Authentic Theme ===== */
+    .mobile-menu-toggle {
+        background: var(--col-main);
+        border: 2px solid var(--col-accent);
+        border-radius: 0;
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .mobile-menu-toggle .bar {
+        width: 20px;
+        height: 2px;
+        background: var(--col-accent);
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-menu-backdrop {
+        background: rgba(10, 36, 99, 0.5);
+    }
+
+    .auth-header nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--col-bg);
+        border-left: 3px solid var(--col-accent);
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 30px;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 10000;
+    }
+
+    .auth-header nav.mobile-open {
+        right: 0;
+    }
+
+    .auth-header nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .auth-header nav li {
+        width: 100%;
+        border-bottom: 1px solid rgba(10, 36, 99, 0.1);
+    }
+
+    .auth-header nav a {
+        display: block;
+        padding: 18px 0;
+        font-size: 1.1rem;
+        color: var(--col-main);
+    }
+
+    .auth-header nav .btn-inquiry {
+        margin-top: 20px;
+        text-align: center;
     }
 }
