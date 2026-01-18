@@ -480,9 +480,75 @@ function setupScrollSync() {
 
     // Button Controls (PC)
     document.getElementById('scrollLeft').addEventListener('click', () => {
+        Haptics.tap();
         container.scrollBy({ left: -300, behavior: 'smooth' });
     });
     document.getElementById('scrollRight').addEventListener('click', () => {
+        Haptics.tap();
         container.scrollBy({ left: 300, behavior: 'smooth' });
     });
+
+    // Drag-to-Scroll (PC)
+    setupDragScroll(container);
+}
+
+/**
+ * Setup drag-to-scroll for a container
+ * Implements click/drag threshold to avoid conflicting with card clicks
+ */
+function setupDragScroll(container) {
+    let isDown = false;
+    let isDragging = false;
+    let startX;
+    let scrollLeft;
+    const DRAG_THRESHOLD = 5; // Pixels before considered a drag
+
+    container.addEventListener('mousedown', (e) => {
+        // Don't trigger on buttons or interactive elements
+        if (e.target.closest('button') || e.target.closest('a')) return;
+
+        isDown = true;
+        isDragging = false;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        container.style.cursor = 'grabbing';
+    });
+
+    container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.style.cursor = '';
+    });
+
+    container.addEventListener('mouseup', (e) => {
+        isDown = false;
+        container.style.cursor = '';
+
+        // If was dragging, prevent the click event from firing
+        if (isDragging) {
+            e.preventDefault();
+            // Block click events briefly
+            container.style.pointerEvents = 'none';
+            setTimeout(() => {
+                container.style.pointerEvents = '';
+            }, 50);
+        }
+        isDragging = false;
+    });
+
+    container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+
+        const x = e.pageX - container.offsetLeft;
+        const walk = x - startX;
+
+        // Only start dragging after threshold
+        if (Math.abs(walk) > DRAG_THRESHOLD) {
+            isDragging = true;
+            e.preventDefault();
+            container.scrollLeft = scrollLeft - walk;
+        }
+    });
+
+    // Add grab cursor on hover (PC only)
+    container.style.cursor = 'grab';
 }
