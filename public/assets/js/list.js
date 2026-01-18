@@ -339,20 +339,46 @@ function renderIndexBar(templates) {
 function renderGallery(templates) {
     const container = document.getElementById('galleryContainer');
 
-    if (templates.length === 0) {
-        container.innerHTML = '<p style="margin:auto;">Coming Soon...</p>';
-        return;
-    }
+    // Show skeleton loading first
+    container.innerHTML = `
+        <div class="gallery-item skeleton-card">
+            <div class="skeleton-content">
+                <div class="skeleton skeleton-char"></div>
+                <div class="skeleton skeleton-label"></div>
+                <div class="skeleton skeleton-btn"></div>
+            </div>
+        </div>
+        <div class="gallery-item skeleton-card">
+            <div class="skeleton-content">
+                <div class="skeleton skeleton-char"></div>
+                <div class="skeleton skeleton-label"></div>
+                <div class="skeleton skeleton-btn"></div>
+            </div>
+        </div>
+    `;
 
+    // Simulate brief loading for smooth transition
+    setTimeout(() => {
+        container.innerHTML = '';
+
+        if (templates.length === 0) {
+            container.innerHTML = '<p style="margin:auto;">Coming Soon...</p>';
+            return;
+        }
+
+        renderGalleryCards(templates, container);
+    }, 300);
+}
+
+function renderGalleryCards(templates, container) {
     templates.forEach(t => {
         const card = document.createElement('div');
         card.className = 'gallery-item';
         card.id = `card-${t.tag}`;
-        card.tabIndex = 0; // Make focusable with keyboard
+        card.tabIndex = 0;
         card.setAttribute('role', 'button');
         card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
 
-        // Background Image Logic
         if (t.image) {
             card.style.backgroundImage = `url(${t.image})`;
             card.classList.add('has-image');
@@ -370,14 +396,12 @@ function renderGallery(templates) {
             </div>
         `;
 
-        // Click event
         card.addEventListener('click', (e) => {
             if (shouldBlockClick()) return;
             Haptics.select();
             openModal(t.id);
         });
 
-        // Keyboard event (Enter/Space)
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -388,6 +412,10 @@ function renderGallery(templates) {
 
         container.appendChild(card);
     });
+
+    // Re-init effects after cards are rendered
+    setupScrollSync();
+    initTilt();
 }
 
 // Modal Logic
