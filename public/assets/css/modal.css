@@ -2,13 +2,16 @@
    Modal Styles - Ultimate Premium
    ========================================= */
 
+/* Darker but more transparent overlay to show depth */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
+    /* Reduced from 0.6 */
     /* Deep Radial Gradient for Focus */
-    background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
-    backdrop-filter: blur(12px);
+    background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+    backdrop-filter: blur(8px);
+    /* Slightly less blur to see Aurora */
     z-index: 200;
     display: flex;
     justify-content: center;
@@ -24,7 +27,8 @@
 }
 
 .modal-content {
-    background: rgba(20, 20, 20, 0.85);
+    background: rgba(20, 20, 20, 0.15);
+    /* Significantly reduced from 0.85 for Glassmorphism */
     /* Dark Glass */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -43,7 +47,13 @@
         0 0 0 1px rgba(255, 255, 255, 0.05);
     /* Inner stroke effect */
     overflow: hidden;
+    backdrop-filter: blur(16px);
+    /* Strong blur inside content */
 }
+
+/* ... existing code ... */
+
+
 
 /* Glass Shine Effect on Top */
 .modal-content::before {
@@ -201,7 +211,6 @@
 .modal-footer {
     margin-top: var(--spacing-xl);
     text-align: right;
-    /* Right align for cleaner look */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: var(--spacing-md);
 }
@@ -211,8 +220,12 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: #fff;
-    color: #000;
+
+    /* Ghost Button Style to match List Page */
+    background: transparent;
+    color: var(--btn-color, #fff);
+    border: 1px solid var(--btn-color, #fff);
+
     font-weight: 900;
     padding: 14px 40px;
     border-radius: 50px;
@@ -220,15 +233,16 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: all var(--transition-smooth);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-decoration: none;
 }
 
 .btn-demo:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+    background: var(--btn-color, #fff);
+    color: #000;
+    box-shadow: 0 0 30px var(--btn-color, rgba(255, 255, 255, 0.5));
     letter-spacing: 2px;
-    /* Expand effect */
 }
 
 /* Mobile Tweak */

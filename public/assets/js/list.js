@@ -222,12 +222,14 @@ function openModal(templateId) {
     modalLink.href = `${template.path}/index.html`;
 
     // Use White Background with Brand Color text for better contrast/premium look
-    modalLink.style.background = '#ffffff';
-    modalLink.style.color = primaryColor;
-    modalLink.style.border = `1px solid ${primaryColor}`; // Add border to define edge if light color
+    // Updated: Use pure CSS class control for outline style (Ghost Button)
+    modalLink.style.background = '';
+    modalLink.style.color = '';
+    modalLink.style.border = '';
+    modalLink.style.boxShadow = '';
 
-    // Add glow to button
-    modalLink.style.boxShadow = `0 5px 20px ${primaryColor}40`;
+    // We can inject the color as a CSS variable for the button to use on hover
+    modalLink.style.setProperty('--btn-color', primaryColor);
 
     // Show
     document.getElementById('detailModal').classList.add('open');
