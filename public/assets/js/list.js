@@ -201,13 +201,24 @@ function initGallery(categoryId) {
     const categoryData = PORTAL_DATA.categories.find(c => c.id === categoryId);
     const templates = PORTAL_DATA.templates[categoryId];
 
+    // Category accent colors (matching top page)
+    const CATEGORY_ACCENT_COLORS = {
+        'business': '#38bdf8',  // Sky blue
+        'streamer': '#d946ef',  // Fuchsia
+        'lp': '#f43f5e',        // Rose
+        'portfolio': '#fbbf24'   // Amber
+    };
+
+    // Set accent color CSS variable on body
+    const accentColor = CATEGORY_ACCENT_COLORS[categoryId] || '#00f2ff';
+    document.body.style.setProperty('--category-accent', accentColor);
+
     // Set Header Info & Theme
     const titleEl = document.getElementById('categoryTitle');
     if (categoryData) {
         if (titleEl) {
             titleEl.textContent = categoryData.name;
-            // Provide fallback if var isn't set yet, but CSS should handle it
-            titleEl.style.color = 'var(--theme-accent)';
+            titleEl.style.color = accentColor;
         }
 
         // Apply Theme Class to Body
