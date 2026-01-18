@@ -144,13 +144,16 @@ function renderAllCategorySections() {
                 <div class="big-char">${t.tag}</div>
                 <div class="theme-label">${t.themeLabel || ''}</div>
             `;
-            card.addEventListener('click', () => { Haptics.select(); openModal(t.id); });
+            card.addEventListener('click', () => { if (shouldBlockClick()) return; Haptics.select(); openModal(t.id); });
             gallery.appendChild(card);
         });
 
         section.appendChild(header);
         section.appendChild(gallery);
         container.appendChild(section);
+
+        // Enable drag scroll for mini gallery
+        setupDragScroll(gallery);
     });
 
     // Setup scroll observer for sidebar active state
@@ -347,6 +350,7 @@ function renderGallery(templates) {
         // Or just the button. The prompt said "Click card".
         // Let's attach click event to card, but avoid double trigger if button clicked.
         card.addEventListener('click', (e) => {
+            if (shouldBlockClick()) return; // Prevent click after drag
             Haptics.select(); // Haptic feedback
             openModal(t.id);
         });
@@ -496,6 +500,8 @@ function setupScrollSync() {
  * Setup drag-to-scroll for a container
  * Implements click/drag threshold to avoid conflicting with card clicks
  */
+let wasDragging = false; // Global flag to prevent clicks after drag
+
 function setupDragScroll(container) {
     let isDown = false;
     let isDragging = false;
@@ -523,14 +529,15 @@ function setupDragScroll(container) {
         isDown = false;
         container.style.cursor = '';
 
-        // If was dragging, prevent the click event from firing
+        // If was dragging, set global flag to block clicks
         if (isDragging) {
+            wasDragging = true;
             e.preventDefault();
-            // Block click events briefly
-            container.style.pointerEvents = 'none';
+            e.stopPropagation();
+            // Reset flag after a delay
             setTimeout(() => {
-                container.style.pointerEvents = '';
-            }, 50);
+                wasDragging = false;
+            }, 150); // Longer timeout for reliability
         }
         isDragging = false;
     });
@@ -551,4 +558,11 @@ function setupDragScroll(container) {
 
     // Add grab cursor on hover (PC only)
     container.style.cursor = 'grab';
+}
+
+/**
+ * Check if a click should be blocked (after drag)
+ */
+function shouldBlockClick() {
+    return wasDragging;
 }
