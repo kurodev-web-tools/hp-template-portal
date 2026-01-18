@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initPortal() {
     renderCategories();
+    initHyperspeed();
+}
+
+function initHyperspeed() {
+    if (window.PremiumEffects) {
+        PremiumEffects.Hyperspeed('#hyperspeed-container', {
+            count: 400,
+            speed: 5, // Slower warp for ambient feel
+            starColor: '#ffffff',
+            bgColor: '5, 5, 10' // Specific deep space bg
+        });
+    }
 }
 
 /**
