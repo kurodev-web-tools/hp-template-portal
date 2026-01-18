@@ -8,12 +8,143 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryId = urlParams.get('category');
 
     if (categoryId) {
+        // Single Category View
         initGallery(categoryId);
     } else {
-        // Fallback or Redirect
-        document.getElementById('categoryTitle').textContent = 'All Templates';
+        // All Categories View
+        initAllCategories();
     }
 });
+
+/**
+ * Initialize All Categories View
+ * Shows all categories with sidebar navigation
+ */
+function initAllCategories() {
+    const titleEl = document.getElementById('categoryTitle');
+    titleEl.textContent = 'All Templates';
+
+    // Hide single-category elements
+    document.getElementById('indexBar').style.display = 'none';
+    document.getElementById('galleryContainer').style.display = 'none';
+    document.getElementById('galleryControls').style.display = 'none';
+
+    // Show all-categories elements
+    document.getElementById('sidebarNav').classList.add('visible');
+    document.getElementById('allCategoriesContainer').classList.add('visible');
+
+    // Render sidebar and sections
+    renderSidebar();
+    renderAllCategorySections();
+
+    // Init Aurora with default colors
+    initAuroraDefault();
+}
+
+function renderSidebar() {
+    const sidebar = document.getElementById('sidebarNav');
+
+    PORTAL_DATA.categories.forEach((cat, index) => {
+        const link = document.createElement('div');
+        link.className = 'sidebar-link';
+        if (index === 0) link.classList.add('active');
+        link.textContent = cat.name;
+        link.dataset.categoryId = cat.id;
+
+        link.addEventListener('click', () => {
+            // Scroll to section
+            const section = document.getElementById(`section-${cat.id}`);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Update active state
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+
+        sidebar.appendChild(link);
+    });
+}
+
+function renderAllCategorySections() {
+    const container = document.getElementById('allCategoriesContainer');
+
+    PORTAL_DATA.categories.forEach(cat => {
+        const templates = PORTAL_DATA.templates[cat.id] || [];
+
+        // Section wrapper
+        const section = document.createElement('section');
+        section.className = 'category-section';
+        section.id = `section-${cat.id}`;
+
+        // Header
+        const header = document.createElement('div');
+        header.className = 'category-section-header';
+        header.innerHTML = `
+            <h2>${cat.name}</h2>
+            <span class="template-count">${templates.length} templates</span>
+        `;
+
+        // Mini gallery
+        const gallery = document.createElement('div');
+        gallery.className = 'mini-gallery';
+
+        templates.forEach(t => {
+            const card = document.createElement('div');
+            card.className = 'mini-card';
+            card.innerHTML = `
+                <div class="big-char">${t.tag}</div>
+                <div class="theme-label">${t.themeLabel || ''}</div>
+            `;
+            card.addEventListener('click', () => openModal(t.id));
+            gallery.appendChild(card);
+        });
+
+        section.appendChild(header);
+        section.appendChild(gallery);
+        container.appendChild(section);
+    });
+
+    // Setup scroll observer for sidebar active state
+    setupSidebarScrollObserver();
+}
+
+function setupSidebarScrollObserver() {
+    const container = document.getElementById('allCategoriesContainer');
+    const sections = document.querySelectorAll('.category-section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const catId = entry.target.id.replace('section-', '');
+                const link = document.querySelector(`.sidebar-link[data-category-id="${catId}"]`);
+                if (link) {
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
+        });
+    }, {
+        root: container,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
+}
+
+function initAuroraDefault() {
+    if (!window.PremiumEffects) return;
+
+    const container = document.getElementById('auroraBg');
+    if (!container) return;
+
+    container.innerHTML = '';
+    PremiumEffects.Aurora('#auroraBg', {
+        colors: ['#00f2ff', '#7000ff', '#ff0055'],
+        bg: 'transparent'
+    });
+}
 
 function initGallery(categoryId) {
     const categoryData = PORTAL_DATA.categories.find(c => c.id === categoryId);
@@ -103,10 +234,21 @@ function renderIndexBar(templates) {
     // Get unique starting letters
     const letters = [...new Set(templates.map(t => t.tag))].sort();
 
+    // Determine which templates are implemented (have actual content)
+    // For now, A-H are implemented, I-Z are placeholders
+    const implementedTags = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
     letters.forEach((letter, index) => {
         const link = document.createElement('div');
         link.className = 'index-link';
         if (index === 0) link.classList.add('active');
+
+        // Gray out unimplemented templates
+        const isImplemented = implementedTags.includes(letter);
+        if (!isImplemented) {
+            link.classList.add('disabled');
+        }
+
         link.textContent = letter;
         link.dataset.target = `card-${letter}`;
 
