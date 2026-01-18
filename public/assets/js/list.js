@@ -40,6 +40,47 @@ function initGallery(categoryId) {
 
     // Init Scroll Listeners
     setupScrollSync();
+
+    // Init Aurora Background
+    initAurora(categoryData);
+}
+
+function initAurora(categoryData) {
+    if (!window.PremiumEffects) return;
+
+    const container = document.getElementById('auroraBg');
+    if (!container) return;
+
+    // Define colors based on category ID or Theme
+    // Default: Business Blue/Gold
+    let colors = ['#003366', '#d4af37', '#ffffff'];
+
+    if (categoryData) {
+        switch (categoryData.id) {
+            case 'business':
+                colors = ['#003366', '#1e90ff', '#d4af37']; // Deep Blue, Azure, Gold
+                break;
+            case 'streamer':
+                colors = ['#7000ff', '#bc13fe', '#00ff00']; // Purple, Neon Pink, Green
+                break;
+            case 'lp':
+                colors = ['#ff0055', '#ff9900', '#ffffff']; // Red, Orange, White
+                break;
+            case 'portfolio':
+                colors = ['#ffcc00', '#333333', '#f0f0f0']; // Yellow, Dark, Light
+                break;
+        }
+    }
+
+    // Clear previous if any (simple innerHTML clear or reuse?)
+    // PremiumEffects.Aurora appends to container. If we re-run, it might duplicate.
+    // Ideally we should clear container first.
+    container.innerHTML = '';
+
+    PremiumEffects.Aurora('#auroraBg', {
+        colors: colors,
+        bg: 'transparent' // Let ambient bg show through if needed, or set base color
+    });
 }
 
 function renderIndexBar(templates) {
