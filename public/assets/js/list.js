@@ -43,6 +43,21 @@ function initGallery(categoryId) {
 
     // Init Aurora Background
     initAurora(categoryData);
+
+    // Init 3D Tilt
+    initTilt();
+}
+
+function initTilt() {
+    if (!window.PremiumEffects) return;
+
+    // Apply 3D Tilt to Gallery Cards
+    // Subtle tilt, slight scale
+    PremiumEffects.Tilt('.gallery-item', {
+        max: 8,
+        perspective: 1200,
+        scale: 1.02
+    });
 }
 
 function initAurora(categoryData) {
