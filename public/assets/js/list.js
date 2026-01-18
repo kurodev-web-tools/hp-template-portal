@@ -3,6 +3,53 @@
  * Handles Gallery Rendering, Filtering, and Scroll Synchronization.
  */
 
+// =========================================
+// Haptic Feedback Utility (Vibration API)
+// =========================================
+
+const Haptics = {
+    /**
+     * Check if Vibration API is supported
+     */
+    isSupported: () => 'vibrate' in navigator,
+
+    /**
+     * Light tap - for button clicks, card selections
+     */
+    tap: () => {
+        if (Haptics.isSupported()) {
+            navigator.vibrate(10);
+        }
+    },
+
+    /**
+     * Success feedback - double pulse
+     */
+    success: () => {
+        if (Haptics.isSupported()) {
+            navigator.vibrate([10, 50, 10]);
+        }
+    },
+
+    /**
+     * Error feedback - longer single pulse
+     */
+    error: () => {
+        if (Haptics.isSupported()) {
+            navigator.vibrate(50);
+        }
+    },
+
+    /**
+     * Selection feedback - medium pulse
+     */
+    select: () => {
+        if (Haptics.isSupported()) {
+            navigator.vibrate(15);
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const categoryId = urlParams.get('category');
@@ -52,6 +99,7 @@ function renderSidebar() {
         link.dataset.categoryId = cat.id;
 
         link.addEventListener('click', () => {
+            Haptics.tap(); // Haptic feedback
             // Scroll to section
             const section = document.getElementById(`section-${cat.id}`);
             if (section) {
@@ -96,7 +144,7 @@ function renderAllCategorySections() {
                 <div class="big-char">${t.tag}</div>
                 <div class="theme-label">${t.themeLabel || ''}</div>
             `;
-            card.addEventListener('click', () => openModal(t.id));
+            card.addEventListener('click', () => { Haptics.select(); openModal(t.id); });
             gallery.appendChild(card);
         });
 
@@ -299,7 +347,7 @@ function renderGallery(templates) {
         // Or just the button. The prompt said "Click card".
         // Let's attach click event to card, but avoid double trigger if button clicked.
         card.addEventListener('click', (e) => {
-            // If user simply clicks the card (and not some interactive element if any)
+            Haptics.select(); // Haptic feedback
             openModal(t.id);
         });
 
@@ -309,6 +357,8 @@ function renderGallery(templates) {
 
 // Modal Logic
 function openModal(templateId) {
+    Haptics.tap(); // Haptic feedback on modal open
+
     // Find template data
     let template;
     for (const cat in PORTAL_DATA.templates) {
