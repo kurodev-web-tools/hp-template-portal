@@ -3,6 +3,17 @@
  * Handles Category Rendering and Navigation logic.
  */
 
+// Global Hyperspeed instance for dynamic color control
+let hyperspeedInstance = null;
+
+// Category accent colors
+const CATEGORY_COLORS = {
+    'business': '#38bdf8',  // Sky blue
+    'streamer': '#d946ef',  // Fuchsia
+    'lp': '#f43f5e',        // Rose
+    'portfolio': '#fbbf24'   // Amber
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initPortal();
 });
@@ -14,7 +25,7 @@ function initPortal() {
 
 function initHyperspeed() {
     if (window.PremiumEffects) {
-        PremiumEffects.Hyperspeed('#hyperspeed-container', {
+        hyperspeedInstance = PremiumEffects.Hyperspeed('#hyperspeed-container', {
             count: 400,
             speed: 5, // Slower warp for ambient feel
             starColor: '#ffffff',
@@ -36,12 +47,24 @@ function renderCategories() {
         const card = document.createElement('a');
         card.href = `list.html?category=${cat.id}`;
         card.className = `category-card fade-in ${cat.theme || ''}`; // Apply theme class
-        // card.style.setProperty('--card-color', cat.color); // Handled by CSS vars now
 
         card.innerHTML = `
             <h2>${cat.name}</h2>
             <p>${cat.description}</p>
         `;
+
+        // Add hover events for Hyperspeed color change (PC only)
+        card.addEventListener('mouseenter', () => {
+            if (hyperspeedInstance && CATEGORY_COLORS[cat.id]) {
+                hyperspeedInstance.setColor(CATEGORY_COLORS[cat.id]);
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            if (hyperspeedInstance) {
+                hyperspeedInstance.resetColor();
+            }
+        });
 
         grid.appendChild(card);
     });

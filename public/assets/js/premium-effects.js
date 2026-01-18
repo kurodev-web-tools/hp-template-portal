@@ -67,10 +67,11 @@ class PremiumEffects {
     /**
      * Hyperspeed (Starfield Warp) Effect (Canvas)
      * Inspired by React Bits "Hyperspeed"
+     * Returns an instance with setColor() for dynamic color changes.
      */
     static Hyperspeed(containerSelector, options = {}) {
         const container = document.querySelector(containerSelector);
-        if (!container) return;
+        if (!container) return null;
 
         const canvas = document.createElement('canvas');
         container.appendChild(canvas);
@@ -90,6 +91,10 @@ class PremiumEffects {
         const STAR_COUNT = options.count || 300;
         const SPEED = options.speed || 15; // Z-speed
 
+        // Dynamic color state
+        let currentColor = options.starColor || '#FFFFFF';
+        const DEFAULT_COLOR = options.starColor || '#FFFFFF';
+
         function resize() {
             width = container.clientWidth;
             height = container.clientHeight;
@@ -103,7 +108,7 @@ class PremiumEffects {
         function initStars() {
             for (let i = 0; i < STAR_COUNT; i++) {
                 stars.push({
-                    x: (Math.random() - 0.5) * width * 2, // Spread wider than screen
+                    x: (Math.random() - 0.5) * width * 2,
                     y: (Math.random() - 0.5) * height * 2,
                     z: Math.random() * 2000
                 });
@@ -112,30 +117,27 @@ class PremiumEffects {
 
         function animate() {
             // Dark trail effect for "warp" feel
-            ctx.fillStyle = `rgba(${options.bgColor || '26, 26, 26'}, 0.5)`; // Semi-transparent clear
+            ctx.fillStyle = `rgba(${options.bgColor || '10, 10, 10'}, 0.3)`;
             ctx.fillRect(0, 0, width, height);
 
-            ctx.fillStyle = options.starColor || '#FF4500'; // Theme primary
+            ctx.fillStyle = currentColor;
 
             const cx = width / 2;
             const cy = height / 2;
 
             stars.forEach(star => {
-                // Move towards camera
                 star.z -= SPEED;
 
-                // Reset if passed camera
                 if (star.z <= 0) {
                     star.z = 2000;
                     star.x = (Math.random() - 0.5) * width * 2;
                     star.y = (Math.random() - 0.5) * height * 2;
                 }
 
-                // Project 3D to 2D
-                const scale = 500 / star.z; // FOV
+                const scale = 500 / star.z;
                 const sx = cx + star.x * scale;
                 const sy = cy + star.y * scale;
-                const r = (1 - star.z / 2000) * 4; // Size based on proximity
+                const r = (1 - star.z / 2000) * 4;
 
                 ctx.beginPath();
                 ctx.arc(sx, sy, Math.max(0, r), 0, Math.PI * 2);
@@ -148,6 +150,13 @@ class PremiumEffects {
         window.addEventListener('resize', resize);
         resize();
         animate();
+
+        // Return instance with public methods
+        return {
+            setColor: (color) => { currentColor = color; },
+            resetColor: () => { currentColor = DEFAULT_COLOR; },
+            getColor: () => currentColor
+        };
     }
     /**
      * Aurora Background Effect
