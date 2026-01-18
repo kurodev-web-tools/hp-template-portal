@@ -93,7 +93,6 @@ function renderGallery(templates) {
             <div class="placeholder-content">
                 <div class="big-char">${t.tag}</div>
                 ${labelHtml}
-                <h3>${t.name}</h3>
                 <button class="btn-view" onclick="openModal('${t.id}')">DETAILS</button>
             </div>
         `;
@@ -114,9 +113,6 @@ function renderGallery(templates) {
 function openModal(templateId) {
     // Find template data
     let template;
-    // Search across all categories or just current? 
-    // Ideally we know the current category.
-    // For simplicity, let's search all.
     for (const cat in PORTAL_DATA.templates) {
         const found = PORTAL_DATA.templates[cat].find(t => t.id === templateId);
         if (found) {
@@ -129,8 +125,16 @@ function openModal(templateId) {
 
     // Populate Modal
     document.getElementById('modalTag').textContent = template.tag;
-    document.getElementById('modalTitle').textContent = template.name;
-    document.getElementById('modalTitle').style.color = getCategoryColor(template.id) || 'var(--color-primary)';
+    // Use Theme Label for Title (e.g. "Authentic", "Bold") if available, else Name
+    document.getElementById('modalTitle').textContent = template.themeLabel || template.name;
+
+    // Dynamic Color for Title
+    const primaryColor = (template.colors && template.colors.length > 0) ? template.colors[0] : 'var(--color-primary)';
+    document.getElementById('modalTitle').style.color = primaryColor;
+
+    // Also style the Tag watermark with this color (optional, but looks nice)
+    document.getElementById('modalTag').style.webkitTextStrokeColor = primaryColor;
+    document.getElementById('modalTag').style.opacity = '0.15';
 
     document.getElementById('modalDesc').textContent = template.description || 'No description available.';
 
@@ -141,6 +145,8 @@ function openModal(templateId) {
         const span = document.createElement('span');
         span.className = 'feature-tag';
         span.textContent = f;
+        span.style.borderColor = 'rgba(255,255,255,0.1)';
+        // Hover effect is handled by CSS, but we could inject var
         featContainer.appendChild(span);
     });
 
@@ -151,29 +157,28 @@ function openModal(templateId) {
         const div = document.createElement('div');
         div.className = 'color-dot';
         div.style.backgroundColor = c;
+        div.style.boxShadow = `0 0 10px ${c}40`; // Add glow
         colorContainer.appendChild(div);
     });
 
     // Link
-    // Note: Adjusting path logic. 
-    // If we are in public/list.html, and path is 'templates/business/a', 
-    // then href should be 'templates/business/a/index.html' (relative) or '/templates/business/a/index.html' (root).
-    // The previous implementation used `../../${t.path}/index.html`.
-    // Let's adhere to that or check. 
-    // If t.path is 'templates/business/a', and we are in public/, then just 'templates/business/a/index.html' works?
-    // Wait, public/list.html is in public. 
-    // templates is in public/templates.
-    // So 'templates/business/a/index.html' is correct relative path.
-    document.getElementById('modalLink').href = `${template.path}/index.html`;
+    const modalLink = document.getElementById('modalLink');
+    modalLink.href = `${template.path}/index.html`;
+
+    // Use White Background with Brand Color text for better contrast/premium look
+    modalLink.style.background = '#ffffff';
+    modalLink.style.color = primaryColor;
+    modalLink.style.border = `1px solid ${primaryColor}`; // Add border to define edge if light color
+
+    // Add glow to button
+    modalLink.style.boxShadow = `0 5px 20px ${primaryColor}40`;
 
     // Show
     document.getElementById('detailModal').classList.add('open');
 }
 
-// Helper to get color (quick fix)
+// Helper to get color (Deprecated/Fallback)
 function getCategoryColor(id) {
-    if (id.startsWith('bus')) return '#00f2ff';
-    if (id.startsWith('st')) return '#7000ff';
     return null;
 }
 
