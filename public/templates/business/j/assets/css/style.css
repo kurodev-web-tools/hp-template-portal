@@ -60,6 +60,7 @@ h3,
     text-orientation: mixed;
     letter-spacing: 0.2em;
     line-height: 1.5;
+    font-feature-settings: "palt";
 }
 
 /* Text Parts (Keep Together) */
@@ -163,6 +164,7 @@ nav ul li a.active::after {
     position: relative;
     width: 500px;
     height: 600px;
+    overflow: visible;
 }
 
 .hero-image {
@@ -364,22 +366,39 @@ footer {
 
     .hero-content {
         flex-direction: column-reverse;
-        gap: 40px;
+        gap: 30px;
         text-align: center;
     }
 
     .hero-main-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .hero {
+        overflow: visible;
     }
 
     .hero-image-wrap {
-        width: 280px;
-        height: 380px;
+        width: 80%;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 3/4;
+        position: relative;
+        overflow: visible;
     }
 
-    .vertical-text {
-        writing-mode: horizontal-tb;
+    .hero-image-wrap .vertical-text {
+        /* Keep vertical text visible on mobile - positioned at top right */
+        position: absolute !important;
+        top: 10px !important;
+        right: -40px !important;
+        transform: none;
+        font-size: 1.1rem !important;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
         letter-spacing: 0.1em;
+        opacity: 0.9;
+        white-space: nowrap;
     }
 
     section {

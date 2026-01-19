@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeSidebar() {
         sidebar.classList.remove('open');
         overlay.classList.remove('active');
-        menuToggle.querySelector('i').textContent = 'menu';
+        menuToggle.querySelector('i').textContent = 'terminal';
     }
 
     if (menuToggle && sidebar) {
@@ -62,13 +62,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add some "pulse" effect to flow nodes occasionally
     const nodes = document.querySelectorAll('.flow-node');
-    setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * nodes.length);
-        const node = nodes[randomIndex];
-        node.style.boxShadow = '0 0 15px var(--color-primary)';
-        node.style.transition = 'box-shadow 0.5s';
-        setTimeout(() => {
-            node.style.boxShadow = 'none';
-        }, 1000);
-    }, 3000);
+    if (nodes.length > 0) {
+        setInterval(() => {
+            const randomIndex = Math.floor(Math.random() * nodes.length);
+            const node = nodes[randomIndex];
+            if (node) {
+                node.style.boxShadow = '0 0 15px var(--color-primary)';
+                node.style.transition = 'box-shadow 0.5s';
+                setTimeout(() => {
+                    node.style.boxShadow = 'none';
+                }, 1000);
+            }
+        }, 3000);
+    }
+
+    // --- Flow Icon Swap Logic (horizontal → downward on mobile) ---
+    const updateFlowIcons = () => {
+        const isMobile = window.innerWidth <= 768;
+        const arrows = document.querySelectorAll('.flow-diagram .material-icons');
+
+        arrows.forEach(icon => {
+            if (icon.textContent === 'arrow_forward' || icon.textContent === 'arrow_downward') {
+                icon.textContent = isMobile ? 'arrow_downward' : 'arrow_forward';
+            }
+        });
+    };
+
+    updateFlowIcons();
+    window.addEventListener('resize', updateFlowIcons);
 });

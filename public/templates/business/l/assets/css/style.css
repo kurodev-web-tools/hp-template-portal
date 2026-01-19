@@ -411,7 +411,8 @@ main {
 
     /* Rotate horizontal arrows on mobile, but not vertical flow-arrows */
     .flow-diagram .material-icons:not(.flow-arrow) {
-        transform: rotate(90deg);
+        /* Reset rotation, handled by JS swap now */
+        transform: none;
     }
 
     .flow-arrow {
@@ -441,11 +442,71 @@ main {
         padding: 1rem;
     }
 
-    /* Table scroll */
-    table {
+    /* Card View for Mobile Table */
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
         display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid var(--color-border);
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.5rem 0;
+        border-radius: 8px;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        text-align: right;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    td::before {
+        content: "";
+        font-weight: bold;
+        color: var(--color-primary);
+        text-align: left;
+        margin-right: 1rem;
+    }
+
+    /* Column Labels */
+    td:nth-of-type(1)::before {
+        content: "Node ID";
+    }
+
+    td:nth-of-type(2)::before {
+        content: "Type";
+    }
+
+    td:nth-of-type(3)::before {
+        content: "Status";
+    }
+
+    td:nth-of-type(4)::before {
+        content: "Utilization";
+    }
+
+    td:nth-of-type(5)::before {
+        content: "Uptime";
     }
 }
 

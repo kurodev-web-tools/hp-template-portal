@@ -118,6 +118,9 @@ function initCountUp() {
 
                     if (progress < 1) {
                         requestAnimationFrame(animate);
+                    } else {
+                        // Animation Complete: Check thresholds for color
+                        updateStatColor(el, target);
                     }
                 };
 
@@ -128,6 +131,43 @@ function initCountUp() {
     }, { threshold: 0.5 });
 
     elements.forEach(el => observer.observe(el));
+}
+
+/**
+ * Intelligent Color Coding based on values
+ */
+function updateStatColor(element, value) {
+    const card = element.closest('.stat-card');
+    if (!card) return;
+
+    // Logic based on label
+    const label = card.querySelector('.stat-label')?.innerText;
+
+    if (label === 'Efficiency') {
+        if (value >= 98) card.style.borderColor = '#00f2ff'; // Cyan (High)
+        else if (value >= 90) card.style.borderColor = '#ffa500'; // Orange (Warn)
+        else card.style.borderColor = '#ff0055'; // Red (Alert)
+    }
+
+    if (label === 'Response Time') {
+        // Lower is better
+        if (value <= 150) card.style.borderColor = '#00f2ff';
+        else if (value <= 300) card.style.borderColor = '#ffa500';
+        else card.style.borderColor = '#ff0055';
+    }
+
+    if (label === 'Security Score') {
+        if (value >= 98) card.style.borderColor = '#00f2ff';
+        else if (value >= 90) card.style.borderColor = '#ffa500';
+        else card.style.borderColor = '#ff0055';
+    }
+
+    if (label === 'Active Users') {
+        // More is better
+        if (value >= 10000) card.style.borderColor = '#00f2ff';
+        else if (value >= 5000) card.style.borderColor = '#ffa500';
+        else card.style.borderColor = '#ff0055';
+    }
 }
 
 /**

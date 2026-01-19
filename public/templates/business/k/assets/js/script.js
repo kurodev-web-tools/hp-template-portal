@@ -79,4 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Smooth Page Transition ---
     document.body.classList.add('fade-in');
+
+    // --- Smart Hide Portal Button ---
+    let lastScroll = 0;
+    const portalBtn = document.querySelector('.portal-nav-back');
+    if (portalBtn) {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                portalBtn.classList.add('hidden');
+            } else {
+                portalBtn.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+        });
+    }
 });

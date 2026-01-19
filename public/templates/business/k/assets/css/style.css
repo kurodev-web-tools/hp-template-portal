@@ -157,12 +157,17 @@ body {
 /* Mobile Toggle */
 .mobile-menu-toggle {
     display: none;
-    background: none;
-    border: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
     cursor: pointer;
     color: var(--color-primary);
-    z-index: 1100;
+    z-index: 99999;
     padding: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-menu-toggle i {
@@ -269,9 +274,15 @@ section {
     column-rule: 1px solid var(--color-border);
 }
 
+/* Portal Back Button Smart Hide */
+.portal-nav-back.hidden {
+    transform: translateY(-200%);
+}
+
 .knowledge-text p {
     margin-bottom: 20px;
     text-align: justify;
+    word-break: break-all;
 }
 
 /* Cards */
@@ -405,9 +416,10 @@ section {
         display: block;
     }
 
-    /* Mobile nav is already styled in base, just override sizes if needed */
+    /* Lower mobile-nav z-index to stay below toggle button */
     .mobile-nav {
         padding-top: 80px;
+        z-index: 1000;
     }
 
     .mobile-nav a {
