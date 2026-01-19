@@ -20,11 +20,21 @@ class PremiumEffects {
         const defaults = {
             delay: 50,
             duration: 1000,
-            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            baseDelay: 0
         };
         const settings = { ...defaults, ...options };
 
-        const elements = document.querySelectorAll(selector);
+        let elements;
+        if (typeof selector === 'string') {
+            elements = document.querySelectorAll(selector);
+        } else if (selector instanceof Element) {
+            elements = [selector];
+        } else if (selector instanceof NodeList || Array.isArray(selector)) {
+            elements = selector;
+        } else {
+            return;
+        }
 
         elements.forEach(el => {
             const text = el.innerText;
@@ -40,7 +50,7 @@ class PremiumEffects {
                 span.style.filter = 'blur(10px)';
                 span.style.transform = 'translateY(20px)';
                 span.style.transition = `all ${settings.duration}ms ${settings.easing}`;
-                span.style.transitionDelay = `${index * settings.delay}ms`;
+                span.style.transitionDelay = `${settings.baseDelay + index * settings.delay}ms`;
                 if (char === ' ') span.style.width = '0.3em'; // Space preservation
                 el.appendChild(span);
             });

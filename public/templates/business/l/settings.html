@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Logical</title>
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .settings-group {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .settings-group:last-child {
+            border-bottom: none;
+        }
+
+        .settings-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .setting-info h4 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .setting-info p {
+            margin: 0.25rem 0 0;
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-border);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--color-primary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+
+<body class="fade-in">
+    <button class="mobile-menu-toggle" id="menuToggle">
+        <i class="material-icons">menu</i>
+    </button>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <i class="material-icons logo-icon">blur_on</i>
+            <span>LOGICAL</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="material-icons">dashboard</i>
+                <span>Overview</span>
+            </a>
+            <a href="workflows.html" class="nav-item">
+                <i class="material-icons">account_tree</i>
+                <span>Workflows</span>
+            </a>
+            <a href="analysis.html" class="nav-item">
+                <i class="material-icons">insights</i>
+                <span>Analysis</span>
+            </a>
+            <div style="flex: 1;"></div>
+            <a href="settings.html" class="nav-item active">
+                <i class="material-icons">settings</i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main>
+        <header class="dashboard-header">
+            <div class="page-title">
+                <h1 class="blur-text">System Settings</h1>
+                <p>Configure logic engine parameters and node behavior.</p>
+            </div>
+        </header>
+
+        <div class="panel">
+            <div class="settings-group">
+                <div class="settings-header">
+                    <h3>General</h3>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h4>Real-time Monitoring</h4>
+                        <p>Stream system metrics continuously to the dashboard.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h4>Auto-Optimization</h4>
+                        <p>Allow the engine to re-route flows during high latency.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <div class="settings-header">
+                    <h3>Security</h3>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h4>Encryption Layer</h4>
+                        <p>Apply AES-256 encryption to all inter-node traffic.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h4>Public API Access</h4>
+                        <p>Enable external requests via secure gateway.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+                <button class="btn-primary"
+                    style="background: transparent; color: var(--color-text-dim); border: 1px solid var(--color-border);">Discard</button>
+                <button class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </main>
+    <script src="../../../assets/js/template-common.js"></script>
+    <script src="../../../assets/js/premium-effects.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

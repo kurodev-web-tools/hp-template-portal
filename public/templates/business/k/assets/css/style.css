@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+:root {
+    --color-primary: #800000;
+    /* Maroon */
+    --color-primary-light: #A52A2A;
+    --color-accent: #AF944F;
+    /* Gold */
+    --color-bg: #F9F7F2;
+    /* Paper White */
+    --color-text: #2C2C2C;
+    --color-text-muted: #5F5F5F;
+    --color-border: #D1CEC7;
+    --font-main: 'Noto Serif JP', serif;
+    --container-width: 1100px;
+    --header-height: 80px;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Portal Back Button (since template-common.js is not used) */
+.portal-nav-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.portal-nav-back:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(2px);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.portal-nav-back .material-icons {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .portal-nav-back {
+        top: 15px;
+        left: 15px;
+        padding: 8px 14px;
+    }
+
+    .portal-nav-back .nav-text {
+        display: none;
+    }
+}
+
+/* Base Adjustments */
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    line-height: 1.8;
+    background-image: radial-gradient(var(--color-border) 0.5px, transparent 0.5px);
+    background-size: 30px 30px;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header & Navigation */
+.main-header {
+    height: var(--header-height);
+    background: rgba(249, 247, 242, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px double var(--color-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-inner {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+.desktop-nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 400;
+    font-size: 1rem;
+    transition: var(--transition);
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.desktop-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary);
+    transition: var(--transition);
+}
+
+.desktop-nav a:hover {
+    color: var(--color-primary);
+}
+
+.desktop-nav a:hover::after {
+    width: 100%;
+}
+
+.desktop-nav a.active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* Mobile Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    z-index: 1100;
+    padding: 8px;
+}
+
+.mobile-menu-toggle i {
+    font-size: 28px;
+}
+
+/* Mobile Nav - Base (hidden by default) */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--color-bg);
+    z-index: 1050;
+    transition: var(--transition);
+    padding: 100px 40px 60px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav a {
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.mobile-nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Hero Section */
+.hero {
+    padding: calc(var(--header-height) + 80px) 0 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.hero-subtitle {
+    display: block;
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* Sections */
+section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.2rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.section-title .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--color-primary);
+    margin: 0 auto;
+}
+
+/* Knowledge Columns (2-column layout) */
+.knowledge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.knowledge-text {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid var(--color-border);
+}
+
+.knowledge-text p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Cards */
+.book-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    background: white;
+    padding: 30px;
+    border: 1px solid var(--color-border);
+    position: relative;
+    transition: var(--transition);
+}
+
+.book-card:hover {
+    box-shadow: 0 10px 30px rgba(128, 0, 0, 0.05);
+    border-color: var(--color-primary);
+}
+
+.book-card .category {
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.book-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+}
+
+.book-card p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* Counter Wrapper */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item .count {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.stat-item .label {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+}
+
+/* Footer */
+.main-footer {
+    padding: 60px 0 30px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 60px;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-info p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-nav h4 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.footer-nav ul {
+    list-style: none;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-nav a:hover {
+    color: var(--color-primary);
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    padding-top: 30px;
+    border-top: 1px solid var(--color-border);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    /* Mobile nav is already styled in base, just override sizes if needed */
+    .mobile-nav {
+        padding-top: 80px;
+    }
+
+    .mobile-nav a {
+        font-size: 1.4rem;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .knowledge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .knowledge-text {
+        column-count: 1;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+}

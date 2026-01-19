@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記録 - Knowledge</title>
+    <!-- Common Assets -->
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Template Specific -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .archive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        .archive-table th,
+        .archive-table td {
+            text-align: left;
+            padding: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .archive-table th {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .archive-table tr:hover {
+            background: rgba(128, 0, 0, 0.02);
+        }
+
+        .download-btn {
+            color: var(--color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Table - Mobile Card Layout */
+        @media (max-width: 768px) {
+            .archive-table {
+                display: block;
+            }
+
+            .archive-table thead {
+                display: none;
+            }
+
+            .archive-table tbody {
+                display: block;
+            }
+
+            .archive-table tr {
+                display: block;
+                margin-bottom: 20px;
+                padding: 20px;
+                background: white;
+                border: 1px solid var(--color-border);
+            }
+
+            .archive-table td {
+                display: block;
+                text-align: left;
+                padding: 8px 0;
+                border: none;
+            }
+
+            .archive-table td:first-child {
+                font-size: 0.8rem;
+                color: var(--color-text-muted);
+            }
+
+            .archive-table td:nth-child(2) {
+                font-weight: 700;
+                font-size: 1.1rem;
+                padding-bottom: 12px;
+                border-bottom: 1px solid var(--color-border);
+                margin-bottom: 8px;
+            }
+
+            .archive-table td:nth-child(3) {
+                font-size: 0.85rem;
+                color: var(--color-primary);
+            }
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .pagination button {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 10px 16px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination button.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .pagination-info {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-left: 16px;
+        }
+    </style>
+</head>
+
+<body class="fade-in-body">
+
+    <!-- Portal Nav -->
+    <a href="../../../list.html?category=business" class="portal-nav-back">
+        <span class="material-icons">arrow_back</span>
+        <span class="nav-text">PORTAL</span>
+    </a>
+
+    <header class="main-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <i class="material-icons">menu_book</i>
+                <span>Knowledge</span>
+            </a>
+
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="about.html">学会について</a></li>
+                    <li><a href="library.html">蔵書・研究</a></li>
+                    <li><a href="archive.html" class="active">記録</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle">
+                <i class="material-icons">menu</i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">学会について</a>
+        <a href="library.html">蔵書・研究</a>
+        <a href="archive.html">記録</a>
+    </nav>
+
+    <main>
+        <section class="hero hero-small" style="padding: calc(var(--header-height) + 60px) 0 60px;">
+            <div class="container">
+                <h1 class="blur-text">記録</h1>
+                <p>過去の活動報告、年次アーカイブ、および重要文書の目録を公開しています。</p>
+            </div>
+        </section>
+
+        <section class="archive-list">
+            <div class="container">
+                <table class="archive-table">
+                    <thead>
+                        <tr>
+                            <th>日付</th>
+                            <th>項目</th>
+                            <th>カテゴリー</th>
+                            <th>資料</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025.12.15</td>
+                            <td>第34回 年次活動報告書</td>
+                            <td>Reports</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.10.02</td>
+                            <td>秋季学術シンポジウム 議事録</td>
+                            <td>Symposium</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.06.20</td>
+                            <td>希少書デジタルアーカイブ：新規追加目録</td>
+                            <td>Library</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2025.04.01</td>
+                            <td>2025年度 組織運営方針について</td>
+                            <td>Management</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024.12.10</td>
+                            <td>第33回 年次活動報告書</td>
+                            <td>Reports</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <!-- Page 2 -->
+                        <tr>
+                            <td>2024.10.05</td>
+                            <td>秋季学術シンポジウム 議事録</td>
+                            <td>Symposium</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024.07.15</td>
+                            <td>国際研究ネットワーク協定書</td>
+                            <td>Partnership</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024.04.01</td>
+                            <td>2024年度 組織運営方針について</td>
+                            <td>Management</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024.02.20</td>
+                            <td>特別講演会：AI時代における知識の価値</td>
+                            <td>Event</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2023.12.08</td>
+                            <td>第32回 年次活動報告書</td>
+                            <td>Reports</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <!-- Page 3 -->
+                        <tr>
+                            <td>2023.09.12</td>
+                            <td>秋季学術シンポジウム 議事録</td>
+                            <td>Symposium</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                        <tr>
+                            <td>2023.04.01</td>
+                            <td>2023年度 組織運営方針について</td>
+                            <td>Management</td>
+                            <td><a href="#" class="download-btn"><i class="material-icons">description</i> PDF</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination Controls -->
+                <div class="pagination" id="pagination">
+                    <button id="prevBtn" disabled>
+                        <i class="material-icons">chevron_left</i>
+                    </button>
+                    <div id="pageNumbers"></div>
+                    <button id="nextBtn">
+                        <i class="material-icons">chevron_right</i>
+                    </button>
+                    <span class="pagination-info" id="pageInfo"></span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; 2026 Society for the Inheritance of Knowledge.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../../assets/js/premium-effects.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Pagination Logic
+        (function () {
+            const ITEMS_PER_PAGE = 5;
+            const tbody = document.querySelector('.archive-table tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const totalItems = rows.length;
+            const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+            let currentPage = 1;
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const pageNumbers = document.getElementById('pageNumbers');
+            const pageInfo = document.getElementById('pageInfo');
+
+            function renderPage(page) {
+                currentPage = page;
+                const start = (page - 1) * ITEMS_PER_PAGE;
+                const end = start + ITEMS_PER_PAGE;
+
+                rows.forEach((row, index) => {
+                    row.style.display = (index >= start && index < end) ? '' : 'none';
+                });
+
+                prevBtn.disabled = page === 1;
+                nextBtn.disabled = page === totalPages;
+
+                pageInfo.textContent = `${start + 1}-${Math.min(end, totalItems)} / ${totalItems}件`;
+                renderPageNumbers();
+            }
+
+            function renderPageNumbers() {
+                pageNumbers.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.textContent = i;
+                    btn.className = i === currentPage ? 'active' : '';
+                    btn.addEventListener('click', () => renderPage(i));
+                    pageNumbers.appendChild(btn);
+                }
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) renderPage(currentPage - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) renderPage(currentPage + 1);
+            });
+
+            // Initialize
+            if (totalPages <= 1) {
+                document.getElementById('pagination').style.display = 'none';
+            } else {
+                renderPage(1);
+            }
+        })();
+    </script>
+</body>
+
+</html>
