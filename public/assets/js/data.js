@@ -108,9 +108,49 @@ const PORTAL_DATA = {
                 image: '',
                 themeLabel: 'High-end'
             },
-            // Validating I-Z (Placeholders)
-            ...Array.from({ length: 18 }, (_, i) => {
-                const char = String.fromCharCode(73 + i); // I (73) to Z
+            {
+                id: 'bus_i', name: 'Business I', tag: 'I', path: 'templates/business/i',
+                description: '信頼と知性を象徴するインテリジェント・デザイン。分析ツールやダッシュボードに最適です。',
+                features: ['Monitoring', 'Intelligent', 'Dashboard'],
+                colors: ['#0a192f', '#64ffda', '#ccd6f6'],
+                image: '',
+                themeLabel: 'Intelligent'
+            },
+            {
+                id: 'bus_j', name: 'Business J', tag: 'J', path: 'templates/business/j',
+                description: '伝統と革新が融合する和モダン・デザイン。京都の老舗や和テイストのブランドに。',
+                features: ['Modern Japanese', 'Vertical Text', 'Mincho'],
+                colors: ['#2d3436', '#00b894', '#dfe6e9'],
+                image: '',
+                themeLabel: 'Modern'
+            },
+            {
+                id: 'bus_k', name: 'Business K', tag: 'K', path: 'templates/business/k',
+                description: '理性と知性を重んじるアカデミックなデザイン。研究所や学会、教育機関向け。',
+                features: ['Academic', 'Rational', 'Serif'],
+                colors: ['#1a202c', '#edf2f7', '#2d3748'],
+                image: '',
+                themeLabel: 'Knowledge'
+            },
+            {
+                id: 'bus_l', name: 'Business L', tag: 'L', path: 'templates/business/l',
+                description: '論理的思考とシステム美を体現するロジカル・デザイン。エンジニアリングやシステム開発に。',
+                features: ['Systemic', 'Terminal', 'Logic Flow'],
+                colors: ['#0f172a', '#38bdf8', '#1e293b'],
+                image: '',
+                themeLabel: 'Logical'
+            },
+            {
+                id: 'bus_m', name: 'Business M', tag: 'M', path: 'templates/business/m',
+                description: '本質のみを抽出した究極のミニマル・デザイン。プロダクトギャラリーや建築事務所に。',
+                features: ['Minimalist', 'Whitespace', 'Typography'],
+                colors: ['#ffffff', '#000000', '#333333'],
+                image: '',
+                themeLabel: 'Minimal'
+            },
+            // Validating N-Z (Placeholders)
+            ...Array.from({ length: 13 }, (_, i) => {
+                const char = String.fromCharCode(78 + i); // N (78) to Z
                 return {
                     id: `bus_${char.toLowerCase()}`,
                     name: `Business ${char}`,
