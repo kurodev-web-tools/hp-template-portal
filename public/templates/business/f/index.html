@@ -28,6 +28,26 @@
 
 <body class="theme-future fade-in">
 
+    <!-- Custom Mobile Menu Toggle -->
+    <button class="future-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <!-- Hologram Menu -->
+    <div class="future-mobile-menu">
+        <div class="holo-bg"></div>
+        <div class="menu-content">
+            <ul>
+                <li><a href="#hero">[01] TOP</a></li>
+                <li><a href="#features">[02] SYSTEM</a></li>
+                <li><a href="#roadmap">[03] ROADMAP</a></li>
+                <li><a href="#contact" class="btn-neon">CONNECT</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="future-header glass-surface">
         <div class="container">
@@ -36,14 +56,14 @@
                 <span>FUTURE_INC</span>
                 <span class="cursor">_</span>
             </div>
-            <nav>
+            <div class="nav">
                 <ul>
                     <li><a href="#hero">[01] TOP</a></li>
                     <li><a href="#features">[02] SYSTEM</a></li>
                     <li><a href="#roadmap">[03] ROADMAP</a></li>
                     <li><a href="#contact" class="btn-neon">CONNECT</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -206,6 +226,43 @@
         });
     </script>
     <script src="assets/js/script.js" defer></script>
+    <script>
+        // ===== Future Hologram Menu Control =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.future-mobile-toggle');
+            const menu = document.querySelector('.future-mobile-menu');
+
+            if (toggle && menu) {
+                function openMenu() {
+                    toggle.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+
+                toggle.addEventListener('click', () => {
+                    toggle.classList.contains('active') ? closeMenu() : openMenu();
+                });
+
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -25,14 +25,30 @@
 
 <body class="fade-in">
 
+    <!-- Custom Mobile Menu Toggle -->
+    <button class="bold-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <!-- Fullscreen Typography Menu -->
+    <div class="bold-mobile-menu">
+        <div class="menu-content">
+            <a href="#about" class="menu-link">ABOUT</a>
+            <a href="#works" class="menu-link">WORKS</a>
+            <a href="#contact" class="menu-link contact-btn">GET IN TOUCH</a>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="bold-header">
         <div class="logo">BOLD<span class="highlight">.</span>AGENCY</div>
-        <nav>
+        <div class="nav">
             <a href="#about">ABOUT</a>
             <a href="#works">WORKS</a>
             <a href="#contact" class="contact-btn">GET IN TOUCH</a>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero -->
@@ -123,6 +139,54 @@
     <!-- Common Script -->
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ===== Bold Fullscreen Menu Control =====
+            const toggle = document.querySelector('.bold-mobile-toggle');
+            const menu = document.querySelector('.bold-mobile-menu');
+
+            if (toggle && menu) {
+                function openMenu() {
+                    toggle.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+
+                    // Staggered animation for links
+                    const links = menu.querySelectorAll('.menu-link');
+                    links.forEach((link, i) => {
+                        setTimeout(() => link.classList.add('visible'), 100 * (i + 1));
+                    });
+                }
+
+                function closeMenu() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+
+                    // Reset link animation
+                    menu.querySelectorAll('.menu-link').forEach(link => {
+                        link.classList.remove('visible');
+                    });
+                }
+
+                toggle.addEventListener('click', () => {
+                    toggle.classList.contains('active') ? closeMenu() : openMenu();
+                });
+
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

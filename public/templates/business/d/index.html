@@ -28,6 +28,26 @@
 
 <body class="theme-dynamic">
 
+    <!-- Custom Mobile Menu Toggle -->
+    <button class="dynamic-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <!-- Skewed Slit Menu -->
+    <div class="dynamic-mobile-menu">
+        <div class="menu-skew-bg"></div>
+        <div class="menu-content">
+            <ul>
+                <li><a href="#hero">Top</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact" class="btn-action">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="dynamic-header glass-surface">
         <div class="container">
@@ -35,14 +55,14 @@
                 <span class="material-icons">flash_on</span>
                 <span>DYNAMIC</span>
             </div>
-            <nav>
+            <div class="nav">
                 <ul>
                     <li><a href="#hero" class="active">Top</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#contact" class="btn-action">Contact</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -187,6 +207,43 @@
         });
     </script>
     <script src="assets/js/script.js" defer></script>
+    <script>
+        // ===== Dynamic Skewed Menu Control =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.dynamic-mobile-toggle');
+            const menu = document.querySelector('.dynamic-mobile-menu');
+
+            if (toggle && menu) {
+                function openMenu() {
+                    toggle.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+
+                toggle.addEventListener('click', () => {
+                    toggle.classList.contains('active') ? closeMenu() : openMenu();
+                });
+
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -25,18 +25,36 @@
 
 <body>
 
+    <!-- Custom Mobile Menu Toggle (outside header to avoid stacking context issues) -->
+    <button class="auth-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <div class="auth-menu-backdrop"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div class="auth-mobile-menu">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#contact" class="btn-inquiry">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Header -->
     <header class="auth-header">
         <div class="container">
             <h1 class="logo">AUTHENTIC.<span class="dot"></span></h1>
-            <nav>
+            <div class="nav">
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#service">Service</a></li>
                     <li><a href="#works">Works</a></li>
                     <li><a href="#contact" class="btn-inquiry">Contact</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -177,6 +195,53 @@
                 const p = document.querySelector('.hero-content p');
                 if (p) p.classList.add('animate-fade-up');
                 p.style.animationDelay = '1s'; // Wait for title
+            }
+
+            // ===== Custom Mobile Menu Control =====
+            const toggle = document.querySelector('.auth-mobile-toggle');
+            const backdrop = document.querySelector('.auth-menu-backdrop');
+            const menu = document.querySelector('.auth-mobile-menu');
+
+            if (toggle && backdrop && menu) {
+                function openMenu() {
+                    toggle.classList.add('active');
+                    backdrop.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    toggle.setAttribute('aria-label', 'メニューを閉じる');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    toggle.classList.remove('active');
+                    backdrop.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.setAttribute('aria-label', 'メニューを開く');
+                    document.body.style.overflow = '';
+                }
+
+                toggle.addEventListener('click', () => {
+                    if (toggle.classList.contains('active')) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+
+                backdrop.addEventListener('click', closeMenu);
+
+                // Close on link click
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+
+                // Close on Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
             }
         });
     </script>

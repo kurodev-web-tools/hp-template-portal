@@ -79,20 +79,23 @@ h3 {
     }
 }
 
-.future-header nav ul {
+.future-header nav ul,
+.future-header .nav ul {
     display: flex;
     gap: 2rem;
     align-items: center;
 }
 
-.future-header nav a {
+.future-header nav a,
+.future-header .nav a {
     color: var(--color-text-future);
     font-size: 0.9rem;
     position: relative;
     transition: color 0.3s;
 }
 
-.future-header nav a:hover {
+.future-header nav a:hover,
+.future-header .nav a:hover {
     color: var(--color-primary-future);
 }
 
@@ -490,8 +493,20 @@ h3 {
     border-top: 1px solid #222;
 }
 
+/* ===== Custom Mobile Menu Elements - Default Hidden ===== */
+.future-mobile-toggle,
+.future-mobile-menu {
+    display: none;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
+
+    /* Show mobile menu elements on mobile */
+    .future-mobile-toggle {
+        display: flex;
+    }
+
     .glitch {
         font-size: 3rem;
     }
@@ -530,88 +545,165 @@ h3 {
         left: -47px;
     }
 
-    /* Increase header z-index to be above backdrop */
-    .future-header {
-        z-index: 10000;
+    /* ===== Custom Mobile Menu - Future "Hologram Fade" ===== */
+
+    /* Hide desktop nav on mobile */
+    .future-header .nav {
+        display: none;
     }
 
-    /* ===== Mobile Menu - Future Theme ===== */
-    .mobile-menu-toggle {
+    /* Custom Toggle Button */
+    .future-mobile-toggle {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 10001;
+        width: 48px;
+        height: 48px;
         background: transparent;
         border: 1px solid var(--color-primary-future);
         border-radius: 4px;
-        padding: 10px;
-        gap: 4px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
         box-shadow: var(--glow-primary);
+        transition: all 0.3s ease;
     }
 
-    .mobile-menu-toggle .bar {
+    .future-mobile-toggle .bar {
         width: 20px;
         height: 2px;
         background: var(--color-primary-future);
-        transition: all 0.3s ease;
         box-shadow: 0 0 5px var(--color-primary-future);
+        transition: all 0.3s ease;
     }
 
-    .mobile-menu-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+    .future-mobile-toggle.active {
+        border-color: var(--color-secondary-future);
+        box-shadow: var(--glow-secondary);
+    }
+
+    .future-mobile-toggle.active .bar {
         background: var(--color-secondary-future);
+        box-shadow: 0 0 5px var(--color-secondary-future);
     }
 
-    .mobile-menu-toggle.active .bar:nth-child(2) {
+    .future-mobile-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .future-mobile-toggle.active .bar:nth-child(2) {
         opacity: 0;
     }
 
-    .mobile-menu-toggle.active .bar:nth-child(3) {
+    .future-mobile-toggle.active .bar:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
-        background: var(--color-secondary-future);
+    }
+
+    /* Hologram Menu Panel */
+    .future-mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .future-mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Holographic Background */
+    .future-mobile-menu .holo-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg,
+                rgba(5, 5, 5, 0.95) 0%,
+                rgba(0, 255, 255, 0.1) 50%,
+                rgba(157, 0, 255, 0.1) 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Menu Content */
+    .future-mobile-menu .menu-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .future-mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .future-mobile-menu li {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+    }
+
+    .future-mobile-menu.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .future-mobile-menu.active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .future-mobile-menu.active li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .future-mobile-menu.active li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .future-mobile-menu.active li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .future-mobile-menu a {
+        display: block;
+        padding: 20px 40px;
+        font-family: var(--font-mono);
+        font-size: 1.3rem;
+        color: var(--color-text-future);
+        text-decoration: none;
+        border-left: 2px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .future-mobile-menu a:hover {
+        color: var(--color-primary-future);
+        border-left-color: var(--color-primary-future);
+        text-shadow: var(--glow-primary);
+    }
+
+    .future-mobile-menu .btn-neon {
+        margin-top: 30px;
+        display: inline-block;
+    }
+
+    /* Hide template-common.js generated elements */
+    body>.mobile-menu-toggle {
+        display: none !important;
     }
 
     .mobile-menu-backdrop {
-        background: rgba(0, 0, 0, 0.7);
-    }
-
-    .future-header nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 320px;
-        height: 100vh;
-        background: rgba(5, 5, 5, 0.98);
-        border-left: 1px solid var(--color-primary-future);
-        flex-direction: column;
-        justify-content: center;
-        padding: 80px 30px;
-        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 10000;
-        box-shadow: -5px 0 30px rgba(0, 255, 255, 0.1);
-    }
-
-    .future-header nav.mobile-open {
-        right: 0;
-    }
-
-    .future-header nav ul {
-        flex-direction: column;
-        gap: 0;
-        width: 100%;
-    }
-
-    .future-header nav li {
-        width: 100%;
-        border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-    }
-
-    .future-header nav a {
-        display: block;
-        padding: 16px 0;
-        font-size: 1rem;
-        font-family: var(--font-mono);
-    }
-
-    .future-header nav .btn-neon {
-        margin-top: 20px;
-        text-align: center;
+        display: none !important;
     }
 }

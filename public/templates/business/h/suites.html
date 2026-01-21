@@ -17,25 +17,39 @@
 
 <body class="theme-luxury fade-in">
 
+    <!-- Custom Mobile Menu Toggle -->
+    <button class="luxury-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <div class="luxury-menu-backdrop"></div>
+
+    <!-- Staggered Reveal Menu -->
+    <div class="luxury-mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="suites.html">Suites</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="spa.html">Spa &amp; Wellness</a></li>
+            <li><a href="contact.html" class="btn-luxury">Reserve</a></li>
+        </ul>
+    </div>
+
     <!-- Header -->
     <header class="luxury-header">
         <div class="container-fluid">
             <div class="logo">
                 <span class="material-icons-outlined">diamond</span>
-                <span>Luxe & Co.</span>
+                <span>Luxe &amp; Co.</span>
             </div>
-            <nav>
+            <div class="nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="suites.html" class="active">Suites</a></li>
                     <li><a href="dining.html">Dining</a></li>
-                    <li><a href="spa.html">Spa & Wellness</a></li>
+                    <li><a href="spa.html">Spa &amp; Wellness</a></li>
                     <li><a href="contact.html" class="btn-luxury">Reserve</a></li>
                 </ul>
-            </nav>
-            <div class="menu-toggle">
-                <span class="line"></span>
-                <span class="line"></span>
             </div>
         </div>
     </header>
@@ -98,7 +112,7 @@
                 <span class="material-icons-outlined">diamond</span>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Luxe & Co. Hotel Group. All Rights Reserved.</p>
+                <p>&copy; 2026 Luxe &amp; Co. Hotel Group. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -114,7 +128,48 @@
         });
     </script>
     <script src="assets/js/script.js"></script>
+    <script>
+        // ===== Luxury Staggered Menu Control =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.luxury-mobile-toggle');
+            const backdrop = document.querySelector('.luxury-menu-backdrop');
+            const menu = document.querySelector('.luxury-mobile-menu');
+
+            if (toggle && backdrop && menu) {
+                function openMenu() {
+                    toggle.classList.add('active');
+                    backdrop.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    toggle.classList.remove('active');
+                    backdrop.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+
+                toggle.addEventListener('click', () => {
+                    toggle.classList.contains('active') ? closeMenu() : openMenu();
+                });
+
+                backdrop.addEventListener('click', closeMenu);
+
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
-

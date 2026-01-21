@@ -85,13 +85,15 @@ a:hover {
     color: var(--col-accent);
 }
 
-.auth-header nav ul {
+.auth-header nav ul,
+.auth-header .nav ul {
     display: flex;
     gap: 30px;
     list-style: none;
 }
 
-.auth-header nav a {
+.auth-header nav a,
+.auth-header .nav a {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--col-main);
@@ -260,8 +262,21 @@ a:hover {
     font-size: 0.8rem;
 }
 
+/* ===== Custom Mobile Menu Elements - Default Hidden ===== */
+.auth-mobile-toggle,
+.auth-menu-backdrop,
+.auth-mobile-menu {
+    display: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+
+    /* Show mobile menu elements on mobile */
+    .auth-mobile-toggle {
+        display: flex;
+    }
+
     .hero-content h2 {
         font-size: 2.5rem;
     }
@@ -292,77 +307,167 @@ a:hover {
         border-radius: 2px;
     }
 
-    /* ===== Mobile Menu - Authentic Theme ===== */
-    .mobile-menu-toggle {
+    /* ===== Custom Mobile Menu - Authentic "Serene Fade" ===== */
+
+    /* Hide desktop nav on mobile */
+    .auth-header .nav {
+        display: none;
+    }
+
+    /* Custom Toggle Button */
+    .auth-mobile-toggle {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 10001;
+        width: 50px;
+        height: 50px;
         background: var(--col-main);
         border: 2px solid var(--col-accent);
         border-radius: 0;
-        padding: 10px;
-        gap: 5px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.4s ease;
     }
 
-    .mobile-menu-toggle .bar {
-        width: 20px;
+    .auth-mobile-toggle .bar {
+        width: 22px;
         height: 2px;
         background: var(--col-accent);
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .mobile-menu-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+    .auth-mobile-toggle.active {
+        background: var(--col-accent);
     }
 
-    .mobile-menu-toggle.active .bar:nth-child(2) {
+    .auth-mobile-toggle.active .bar {
+        background: var(--col-main);
+    }
+
+    .auth-mobile-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .auth-mobile-toggle.active .bar:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
     }
 
-    .mobile-menu-toggle.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
+    .auth-mobile-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* Backdrop with elegant dimming */
+    .auth-menu-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        background: rgba(10, 36, 99, 0);
+        backdrop-filter: blur(0);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+    }
+
+    .auth-menu-backdrop.active {
+        background: rgba(10, 36, 99, 0.6);
+        backdrop-filter: blur(4px);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Full-screen Menu Panel with Serene Fade */
+    .auth-mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        background: var(--col-bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .auth-mobile-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .auth-mobile-menu ul {
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .auth-mobile-menu li {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+    }
+
+    .auth-mobile-menu.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Staggered animation delays */
+    .auth-mobile-menu.active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .auth-mobile-menu.active li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .auth-mobile-menu.active li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .auth-mobile-menu.active li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .auth-mobile-menu a {
+        display: block;
+        padding: 20px 40px;
+        font-family: var(--font-en);
+        font-size: 1.4rem;
+        color: var(--col-main);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+
+    .auth-mobile-menu a:hover {
+        border-bottom-color: var(--col-accent);
+    }
+
+    .auth-mobile-menu .btn-inquiry {
+        margin-top: 30px;
+        padding: 15px 40px;
+        background: var(--col-main);
+        color: white !important;
+    }
+
+    /* Hide template-common.js generated elements */
+    body>.mobile-menu-toggle {
+        display: none !important;
     }
 
     .mobile-menu-backdrop {
-        background: rgba(10, 36, 99, 0.5);
-    }
-
-    .auth-header nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 320px;
-        height: 100vh;
-        background: var(--col-bg);
-        border-left: 3px solid var(--col-accent);
-        flex-direction: column;
-        justify-content: center;
-        padding: 80px 30px;
-        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 10000;
-    }
-
-    .auth-header nav.mobile-open {
-        right: 0;
-    }
-
-    .auth-header nav ul {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .auth-header nav li {
-        width: 100%;
-        border-bottom: 1px solid rgba(10, 36, 99, 0.1);
-    }
-
-    .auth-header nav a {
-        display: block;
-        padding: 18px 0;
-        font-size: 1.1rem;
-        color: var(--col-main);
-    }
-
-    .auth-header nav .btn-inquiry {
-        margin-top: 20px;
-        text-align: center;
+        display: none !important;
     }
 }

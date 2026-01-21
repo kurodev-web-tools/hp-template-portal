@@ -26,6 +26,27 @@
 
 <body class="theme-global fade-in">
 
+    <!-- Custom Mobile Menu Toggle -->
+    <button class="global-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <!-- Split Panel Menu -->
+    <div class="global-mobile-menu">
+        <div class="split-left"></div>
+        <div class="split-right"></div>
+        <div class="menu-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="network.html">Network</a></li>
+                <li><a href="contact.html" class="btn-primary">Get Quote</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="global-header">
         <div class="container">
@@ -33,14 +54,14 @@
                 <span class="material-icons">public</span>
                 <span>GlobalLine</span>
             </div>
-            <nav>
+            <div class="nav">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="service.html">Services</a></li>
                     <li><a href="network.html">Network</a></li>
                     <li><a href="contact.html" class="btn-primary">Get Quote</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -201,6 +222,43 @@
         });
     </script>
     <script src="assets/js/script.js" defer></script>
+    <script>
+        // ===== Global Split Panel Menu Control =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.global-mobile-toggle');
+            const menu = document.querySelector('.global-mobile-menu');
+
+            if (toggle && menu) {
+                function openMenu() {
+                    toggle.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeMenu() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+
+                toggle.addEventListener('click', () => {
+                    toggle.classList.contains('active') ? closeMenu() : openMenu();
+                });
+
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
