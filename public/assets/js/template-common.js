@@ -11,7 +11,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     clearHashOnLoad();
     injectPortalNav();
-    initMobileMenu();
+    if (!document.body.classList.contains('custom-menu-only')) {
+        initMobileMenu();
+    }
 });
 
 // Prevent auto-scroll to anchor on page load/refresh

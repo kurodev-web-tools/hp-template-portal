@@ -308,7 +308,7 @@ function renderIndexBar(templates) {
 
     // Determine which templates are implemented (have actual content)
     // For now, A-H are implemented, I-Z are placeholders
-    const implementedTags = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'];
+    const implementedTags = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     letters.forEach((letter, index) => {
         const link = document.createElement('div');

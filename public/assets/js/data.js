@@ -148,20 +148,110 @@ const PORTAL_DATA = {
                 image: '',
                 themeLabel: 'Minimal'
             },
-            // Validating N-Z (Placeholders)
-            ...Array.from({ length: 13 }, (_, i) => {
-                const char = String.fromCharCode(78 + i); // N (78) to Z
-                return {
-                    id: `bus_${char.toLowerCase()}`,
-                    name: `Business ${char}`,
-                    tag: char,
-                    path: `templates/business/${char.toLowerCase()}`,
-                    description: `Standard business template variant ${char}.`,
-                    features: ['Responsive', 'Fast Load'],
-                    colors: ['#cccccc', '#000000', '#ffffff'],
-                    themeLabel: 'Standard'
-                };
-            })
+            {
+                id: 'bus_n', name: 'Business N', tag: 'N', path: 'templates/business/n',
+                description: 'ネオンの鼓動を感じるサイバーパンク・デザイン。ナイトクラブやエキサイティングなイベントに。',
+                features: ['Neon', 'Cyber', 'Night-life'],
+                colors: ['#ff00ff', '#00ffff', '#000000'],
+                image: '',
+                themeLabel: 'Neon Night'
+            },
+            {
+                id: 'bus_o', name: 'Business O', tag: 'O', path: 'templates/business/o',
+                description: '自然のリズムと調和する流体デザイン。スパやウェルビーイング、オーガニックブランドに。',
+                features: ['Organic', 'Fluid Shape', 'Healing'],
+                colors: ['#ff7f50', '#ffdced', '#ffffff'],
+                image: '',
+                themeLabel: 'Organic Flow'
+            },
+            {
+                id: 'bus_p', name: 'Business P', tag: 'P', path: 'templates/business/p',
+                description: '元気を届けるポップで弾けるデザイン。エンターテインメントや親しみやすいブランドに。',
+                features: ['Pop', 'Vibrant', 'Comic Style'],
+                colors: ['#ff6600', '#ffea00', '#ff007f'],
+                image: '',
+                themeLabel: 'Pop Vibrant'
+            },
+            {
+                id: 'bus_q', name: 'Business Q', tag: 'Q', path: 'templates/business/q',
+                description: '究極の精度と品質を象徴する、引き算の美学。高級プロダクトや精密機器ブランドに。',
+                features: ['Quality', 'Precision', 'Minimal Luxury'],
+                colors: ['#000000', '#ffffff', '#e5e5e5'],
+                image: '',
+                themeLabel: 'Quality First'
+            },
+            {
+                id: 'bus_r', name: 'Business R', tag: 'R', path: 'templates/business/r',
+                description: '格式高い伝統と権威を継承するマルチページ。歴史ある組織や高級ブランドのアーカイブに。',
+                features: ['Multi-page', 'Tradition', 'Decorative'],
+                colors: ['#8b0000', '#d4af37', '#0d0d0d'],
+                image: '',
+                themeLabel: 'Royal Legacy'
+            },
+            {
+                id: 'bus_s', name: 'Business S', tag: 'S', path: 'templates/business/s',
+                description: '次世代の効率を追求したモダンなSaaS UI。テックツールやWebサービスの紹介に。',
+                features: ['Modern SaaS', 'Isometric', 'High Efficiency'],
+                colors: ['#8a2be2', '#f8f9fe', '#1a1a1a'],
+                image: '',
+                themeLabel: 'Smart SaaS'
+            },
+            {
+                id: 'bus_t', name: 'Business T', tag: 'T', path: 'templates/business/t',
+                description: '堅牢なセキュリティと信頼を誓うマルチページ。金融・インフラ・セキュリティ企業向け。',
+                features: ['Multi-page', 'Security', 'Robust'],
+                colors: ['#434b4d', '#1e3a8a', '#f0f2f5'],
+                image: '',
+                themeLabel: 'Trust Guard'
+            },
+            {
+                id: 'bus_u', name: 'Business U', tag: 'U', path: 'templates/business/u',
+                description: '都市のエネルギーをステンシルで刻んだストリート・デザイン。クリエイティブ集団やカルチャー拠点に。',
+                features: ['Urban', 'Stencil', 'Raw Energy'],
+                colors: ['#ff3e00', '#444444', '#eaeaea'],
+                image: '',
+                themeLabel: 'Urban Street'
+            },
+            {
+                id: 'bus_v', name: 'Business V', tag: 'V', path: 'templates/business/v',
+                description: '記憶に焼き付く補色配色のインパクト・デザイン。広告・プロモーションや先鋭的なアートプロジェクトに。',
+                features: ['Vivid', 'Contrast', 'Impact'],
+                colors: ['#ffff00', '#ff00ff', '#000000'],
+                image: '',
+                themeLabel: 'Vivid Impact'
+            },
+            {
+                id: 'bus_w', name: 'Business W', tag: 'W', path: 'templates/business/w',
+                description: 'パノラマ的な広がりを見せる横スクロール・デザイン。写真・建築・風景を愛するブランドに。',
+                features: ['Horizontal Scroll', 'Panorama', 'Minimal'],
+                colors: ['#ffffff', '#000000', '#f0f0f0'],
+                image: '',
+                themeLabel: 'Wide Horizon'
+            },
+            {
+                id: 'bus_x', name: 'Business X', tag: 'X', path: 'templates/business/x',
+                description: '極限のボルテージを全画面スナップで表現。エクストリームスポーツや熱狂的なプロジェクトに。',
+                features: ['Snap Scroll', 'Action', 'Xtreme'],
+                colors: ['#ff0000', '#000000', '#ffffff'],
+                image: '',
+                themeLabel: 'Xtreme Snap'
+            },
+            {
+                id: 'bus_y', name: 'Business Y', tag: 'Y', path: 'templates/business/y',
+                description: '着実な成長と収益をイメージした洗練のマルチページ。コンサルティングや投資関連ビジネスに。',
+                features: ['Multi-page', 'Investment', 'Sophisticated'],
+                colors: ['#d4af37', '#3a4d39', '#ffffff'],
+                image: '',
+                themeLabel: 'Yield Growth'
+            },
+            {
+                id: 'bus_z', name: 'Business Z', tag: 'Z', path: 'templates/business/z',
+                description: '究極の静寂と和の精神を形にした禅デザイン。茶室・スパ・哲学的なブランドに。',
+                features: ['Zen', 'Vertical', 'Silence'],
+                colors: ['#ffffff', '#1a1a1a', '#f5f5f5'],
+                image: '',
+                themeLabel: 'Zen Garden'
+            }
         ],
         'streamer': [
             {

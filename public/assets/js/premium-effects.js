@@ -37,25 +37,64 @@ class PremiumEffects {
         }
 
         elements.forEach(el => {
-            const text = el.innerText;
+            el.style.overflow = 'hidden';
+            el.style.wordBreak = 'keep-all'; // Ensure words stay together unless broken by wbr/br
+
+            // 1. Capture original nodes before we empty the container
+            // We clone the childNodes to avoid issues when we empty el
+            const originalNodes = Array.from(el.childNodes).map(node => node.cloneNode(true));
+
+            // 2. Clear container
             el.innerHTML = '';
-            el.style.overflow = 'hidden'; // Prevent scrollbars during transform
 
-            // Wrap each letter
-            [...text].forEach((char, index) => {
-                const span = document.createElement('span');
-                span.innerText = char;
-                span.style.display = 'inline-block';
-                span.style.opacity = '0';
-                span.style.filter = 'blur(10px)';
-                span.style.transform = 'translateY(20px)';
-                span.style.transition = `all ${settings.duration}ms ${settings.easing}`;
-                span.style.transitionDelay = `${settings.baseDelay + index * settings.delay}ms`;
-                if (char === ' ') span.style.width = '0.3em'; // Space preservation
-                el.appendChild(span);
-            });
+            // 3. Recursive walker
+            let globalCharIndex = 0;
 
-            // Trigger animation on scroll or immediately
+            function processNode(node, parent) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    // It's text, blast it apart
+                    const text = node.textContent;
+                    // Skip if empty or just whitespace (unless it's a significant space?)
+                    // For now, we process all chars, assuming CSS white-space handles layout
+                    [...text].forEach(char => {
+                        if (char === '\n') return; // Ignore raw newlines
+
+                        const span = document.createElement('span');
+                        span.innerText = char;
+                        span.style.display = 'inline-block';
+                        span.style.opacity = '0';
+                        span.style.filter = 'blur(10px)';
+                        span.style.transform = 'translateY(20px)';
+                        span.style.transition = `all ${settings.duration}ms ${settings.easing}`;
+                        span.style.transitionDelay = `${settings.baseDelay + globalCharIndex * settings.delay}ms`;
+
+                        if (char === ' ') span.style.width = '0.25em';
+
+                        parent.appendChild(span);
+                        globalCharIndex++;
+                    });
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    // It's an element (like <br>, <wbr>, <span>)
+                    const tagName = node.tagName.toLowerCase();
+
+                    if (tagName === 'br' || tagName === 'wbr') {
+                        // Void elements: just append the clone
+                        parent.appendChild(node.cloneNode(true));
+                    } else {
+                        // Container elements: clone structure, recurse children
+                        const newContainer = node.cloneNode(false); // shallow clone (attributes only)
+                        parent.appendChild(newContainer);
+
+                        // Process children of this node
+                        Array.from(node.childNodes).forEach(child => processNode(child, newContainer));
+                    }
+                }
+            }
+
+            // 4. Start processing
+            originalNodes.forEach(node => processNode(node, el));
+
+            // 5. Trigger animation on scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {

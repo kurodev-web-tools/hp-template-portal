@@ -1,0 +1,543 @@
+:root {
+    --color-royal-red: #8B0000;
+    --color-gold: #D4AF37;
+    --color-bg: #0D0D0D;
+    --color-text: #E5E5E5;
+    --font-royal: 'Cinzel Decorative', cursive;
+    --font-serif: 'Noto Serif JP', serif;
+}
+
+body.theme-royal {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    margin: 0;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* Ornate Frame Overlay */
+.royal-frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 30px solid transparent;
+    border-image: url('https://www.transparenttextures.com/patterns/dark-leather.png') 30 stretch;
+    box-shadow: inset 0 0 50px rgba(212, 175, 55, 0.2);
+    pointer-events: none;
+    z-index: 2000;
+}
+
+/* Header */
+.royal-header {
+    padding: 4rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    transition: background 0.5s, padding 0.5s;
+}
+
+.royal-header.is-scrolled {
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-gold);
+}
+
+.emblem {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--color-gold);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+}
+
+.royal-font {
+    font-family: var(--font-royal);
+}
+
+.emblem-font {
+    font-family: var(--font-royal);
+    transform: rotate(-45deg);
+    font-size: 2rem;
+    color: var(--color-gold);
+    display: inline-block;
+}
+
+.royal-nav {
+    margin-top: 3rem;
+}
+
+.royal-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    list-style: none;
+}
+
+.royal-nav a {
+    text-decoration: none;
+    color: inherit;
+    font-family: var(--font-royal);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    transition: 0.3s;
+}
+
+.royal-nav a:hover {
+    color: var(--color-gold);
+    text-shadow: 0 0 10px var(--color-gold);
+}
+
+/* Hero */
+.royal-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 10% 5rem;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.ornament-top,
+.ornament-bottom {
+    width: 200px;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='20' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q 25 20, 50 10 T 100 10' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.royal-hero h1 {
+    font-family: var(--font-royal);
+    font-size: min(8vw, 6rem);
+    line-height: 1.1;
+    color: var(--color-gold);
+    margin: 2rem 0;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    letter-spacing: 0.1em;
+}
+
+.royal-hero p {
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Signature (Overlapping Frame) */
+.royal-signature {
+    padding: 12rem 0;
+}
+
+.signature-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.sig-image-frame {
+    flex: 1;
+    border: 1px solid var(--color-gold);
+    padding: 15px;
+    position: relative;
+    background: #1a1a1a;
+    /* Fallback gray */
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sig-image-frame::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    z-index: -1;
+}
+
+.sig-image-frame img {
+    width: 100%;
+    display: block;
+    filter: sepia(0.3) contrast(1.1);
+}
+
+.sig-content {
+    flex: 1;
+    border-left: 5px solid var(--color-royal-red);
+    padding-left: 4rem;
+}
+
+.sig-label {
+    font-family: var(--font-royal);
+    font-size: 0.7rem;
+    color: var(--color-gold);
+    letter-spacing: 0.5em;
+}
+
+.sig-content h2 {
+    font-family: var(--font-royal);
+    font-size: 3rem;
+    margin: 2rem 0;
+    color: var(--color-gold);
+}
+
+/* Grid Cards */
+.royal-grid-section {
+    padding: 8rem 0;
+}
+
+.royal-grid {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+}
+
+.royal-card {
+    border-top: 1px solid var(--color-gold);
+    border-bottom: 1px solid var(--color-gold);
+    padding: 4rem 2rem;
+    text-align: center;
+    width: 350px;
+    background: #111;
+    /* Slight lift */
+}
+
+.card-ornament {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    margin-bottom: 2rem;
+}
+
+.royal-card h3 {
+    font-family: var(--font-royal);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--color-gold);
+}
+
+/* Subpage Utilities */
+.subpage-hero {
+    padding: 15rem 2rem 5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.subpage-hero h1 {
+    font-family: var(--font-royal);
+    font-size: 4rem;
+    margin: 2rem 0;
+    color: var(--color-gold);
+}
+
+.heritage-grid {
+    padding: 8rem 2rem;
+}
+
+.exclusive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    justify-content: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+}
+
+/* Contact Form */
+.royal-contact {
+    padding: 12rem 0;
+}
+
+.contact-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-header {
+    margin-bottom: 5rem;
+}
+
+.royal-form {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 3rem;
+}
+
+.input-group label {
+    display: block;
+    font-family: var(--font-royal);
+    font-size: 0.6rem;
+    color: var(--color-gold);
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+}
+
+.royal-form input,
+.royal-select,
+.royal-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    outline: none;
+    padding: 10px 0;
+}
+
+.royal-select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.royal-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+.btn-royal-submit {
+    width: 100%;
+    background: var(--color-gold);
+    color: #000;
+    border: none;
+    padding: 1.5rem;
+    font-family: var(--font-royal);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 2rem;
+}
+
+.btn-royal-submit:hover {
+    background: #fff;
+    box-shadow: 0 0 20px var(--color-gold);
+}
+
+/* Footer */
+.royal-footer {
+    padding: 8rem 0;
+    text-align: center;
+    background: #080808;
+}
+
+.footer-ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--color-gold);
+    margin: 0 auto 3rem;
+    position: relative;
+}
+
+.footer-ornament::after {
+    content: '✥';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: var(--color-gold);
+}
+
+/* Mobile Menu */
+.royal-mobile-toggle {
+    display: none;
+}
+
+.royal-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0D0D0D;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+.royal-mobile-menu.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.royal-mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.royal-mobile-menu li {
+    margin: 2.5rem 0;
+    transform: scale(0.9);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.royal-mobile-menu.active li {
+    transform: scale(1);
+}
+
+.royal-mobile-menu a {
+    text-decoration: none;
+    color: var(--color-gold);
+    font-family: var(--font-royal);
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+}
+
+.menu-ornament-top,
+.menu-ornament-bottom {
+    width: 150px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='20' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q 25 20, 50 10 T 100 10' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 2rem 0;
+}
+
+/* Mobile Adaptations */
+@media (max-width: 768px) {
+    .royal-header {
+        padding: 1.5rem 0;
+        background: rgba(13, 13, 13, 0.9);
+        backdrop-filter: blur(10px);
+    }
+
+    .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .emblem {
+        width: 40px;
+        height: 40px;
+        margin: 0;
+    }
+
+    .royal-font {
+        font-size: 1.2rem;
+    }
+
+    .royal-nav {
+        display: none;
+    }
+
+    .royal-mobile-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--color-gold);
+        cursor: pointer;
+    }
+
+    .royal-mobile-toggle span {
+        font-size: 2rem;
+    }
+
+    .royal-frame {
+        display: none;
+    }
+
+    .royal-hero h1 {
+        font-size: 3rem;
+    }
+
+    .signature-wrap {
+        flex-direction: column;
+        padding: 0 2rem;
+        text-align: center;
+    }
+
+    .sig-content {
+        margin-top: 4rem;
+        padding: 2rem 1.5rem 0;
+        border-left: none;
+        border-top: 3px solid var(--color-royal-red);
+    }
+
+    .royal-hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .subpage-hero {
+        padding: 8rem 1rem 3rem;
+    }
+
+    .subpage-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .sig-image-frame {
+        min-height: 200px;
+    }
+
+    .sig-content h2,
+    .sig-content .royal-font {
+        font-size: 1.8rem;
+        word-break: break-all;
+    }
+
+    .exclusive-grid {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem;
+        justify-items: center;
+    }
+
+    .royal-card {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .royal-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .royal-contact {
+        padding: 6rem 1.5rem;
+    }
+
+    .contact-wrap {
+        width: 100%;
+    }
+
+    .royal-form {
+        width: 100%;
+    }
+}
