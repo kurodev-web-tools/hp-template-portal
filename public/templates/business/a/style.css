@@ -9,8 +9,9 @@
     --col-main: #0A2463;
     --col-accent: #C5A059;
     --col-bg: #F5F5F0;
-    --col-text: #333333;
-    --font-en: 'Cinzel', serif;
+    --col-text: #2B2B2B;
+    --font-en: 'Playfair Display', serif;
+    /* Changed to Playfair */
     --font-jp: 'Noto Serif JP', serif;
 }
 
@@ -25,6 +26,12 @@ body {
     color: var(--col-text);
     font-family: var(--font-jp);
     line-height: 1.8;
+    overflow-x: hidden;
+    /* Mobile Fix */
+    position: relative;
+
+    /* Paper Texture effect via CSS */
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
 h1,
@@ -33,6 +40,7 @@ h3,
 h4 {
     font-family: var(--font-en);
     letter-spacing: 0.05em;
+    font-weight: 600;
 }
 
 a {
@@ -65,7 +73,8 @@ a:hover {
 
 /* Header */
 .auth-header {
-    padding: 30px 0;
+    padding: 30px 80px 30px 120px;
+    /* Space for Portal button on left */
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -287,24 +296,61 @@ a:hover {
         width: 90%;
     }
 
-    .two-col {
+    .service-grid {
+        display: flex;
         flex-direction: column;
+        gap: 20px;
+        width: 100%;
     }
 
-    .service-grid {
-        grid-template-columns: 1fr;
+    .service-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 25px;
+        /* Reduce padding from 40px */
+        box-sizing: border-box;
     }
 
     .works-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
     }
 
-    /* Contact Form */
+    .two-col {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .col-img {
+        width: 100%;
+        margin-top: 20px;
+        padding: 0;
+        /* Remove padding constraint */
+    }
+
+    /* Contact Form Force Fix */
+    .col-img form {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: 20px;
+        display: block;
+    }
+
+    .col-img form div {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
     .col-img form input,
     .col-img form textarea {
-        width: 100%;
-        font-family: inherit;
-        border-radius: 2px;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 15px;
+        box-sizing: border-box !important;
+        font-size: 16px;
+        /* Prevent IOS zoom */
     }
 
     /* ===== Custom Mobile Menu - Authentic "Serene Fade" ===== */

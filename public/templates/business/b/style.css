@@ -5,10 +5,10 @@
    ========================================= */
 
 :root {
-    --col-bg: #111111;
+    --col-bg: #000000;
     --col-text: #ffffff;
-    --col-accent: #FFD700;
-    /* Gold/Yellow */
+    --col-accent: #E1FF00;
+    /* Neon/Safety Yellow */
     --col-gray: #333333;
 
     --font-heading: 'Oswald', sans-serif;
@@ -21,41 +21,18 @@
     box-sizing: border-box;
 }
 
+html,
 body {
-    background-color: var(--col-bg);
+    overflow-x: hidden !important;
+    width: 100vw;
+    position: relative;
+}
+
+body {
+    background-color: #000000;
     color: var(--col-text);
     font-family: var(--font-body);
-    font-size: 16px;
-    letter-spacing: 0.05em;
-    overflow-x: hidden;
-}
-
-/* Utilities */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-.highlight {
-    color: var(--col-accent);
-}
-
-.highlight-bg {
-    background-color: var(--col-accent);
-    color: var(--col-bg);
-    padding: 0 20px;
-    display: inline-block;
-}
-
-.img-placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    border: 2px solid var(--col-gray);
+    line-height: 1.6;
 }
 
 /* Header */
@@ -64,45 +41,47 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 50px;
+    padding: 30px 80px 30px 120px;
+    /* Space for Portal button on left */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
     mix-blend-mode: difference;
-    /* Cool effect on white/black backgrounds */
+    color: white;
 }
 
-.logo {
+.bold-header .logo {
     font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 700;
-    color: white;
-    /* Always white due to mix-blend */
     text-transform: uppercase;
 }
 
-.bold-header nav,
 .bold-header .nav {
     display: flex;
     gap: 40px;
     align-items: center;
 }
 
-.bold-header nav a,
 .bold-header .nav a {
     color: white;
     text-decoration: none;
     font-family: var(--font-heading);
-    font-weight: 700;
     font-size: 1.1rem;
-    position: relative;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.bold-header .nav a:hover {
+    color: var(--col-accent);
 }
 
 .contact-btn {
     border: 2px solid white;
-    padding: 10px 20px;
-    transition: all 0.3s;
+    padding: 8px 25px;
+    transition: 0.3s;
 }
 
 .contact-btn:hover {
@@ -115,8 +94,9 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
+    padding: 0 100px;
     position: relative;
-    padding: 0 50px;
+    overflow: hidden;
 }
 
 .hero-text {
@@ -126,16 +106,22 @@ body {
 
 .hero-text h1 {
     font-family: var(--font-heading);
-    font-size: 8vw;
-    /* Responsive massive text */
+    font-size: 8rem;
     line-height: 0.9;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    margin-bottom: 30px;
+}
+
+.highlight-bg {
+    background: var(--col-accent);
+    color: black;
+    padding: 0 10px;
 }
 
 .hero-text p {
-    font-size: 1.2rem;
-    max-width: 500px;
+    font-size: 1.5rem;
+    max-width: 600px;
+    line-height: 1.4;
 }
 
 .hero-visual {
@@ -150,31 +136,59 @@ body {
 
 .scroll-down {
     position: absolute;
-    bottom: 40px;
-    left: 50px;
+    bottom: 150px;
+    /* Higher up to avoid clipping */
+    left: 40px;
+    /* Closer to edge for better look */
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
     transform: rotate(-90deg);
-    transform-origin: left bottom;
+    /* Points UPWARD */
+    transform-origin: center;
+    white-space: nowrap;
 }
 
-/* Marquee */
+@media (max-width: 1024px) {
+    .scroll-down {
+        display: none;
+        /* Hide on mobile to prevent overlap */
+    }
+}
+
+/* Utilities */
+
+/* Marquee / Caution Tape */
+/* Wrap marquee to prevent tilt overflow */
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0;
+    margin: 50px 0;
+}
+
 .marquee-strip {
     background: var(--col-accent);
-    color: var(--col-bg);
-    padding: 20px 0;
+    color: black;
+    padding: 15px 0;
     overflow: hidden;
     white-space: nowrap;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    transform: rotate(-2deg) scale(1.1);
+    /* Slighly larger scale to ensure edges are hidden */
+    /* Dynamic Tilt */
 }
 
 .marquee-content {
     display: inline-block;
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
-    animation: marquee 20s linear infinite;
+    text-transform: uppercase;
+    animation: marquee 15s linear infinite;
+    padding-right: 50px;
+    /* Gap for loop */
 }
 
 @keyframes marquee {
@@ -282,7 +296,10 @@ body {
     color: #666;
 }
 
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 1024px) {
+
+    /* Trigger mobile layout earlier to prevent header collision */
     .hero-text h1 {
         font-size: 15vw;
     }
@@ -331,23 +348,104 @@ body {
     display: none;
 }
 
-@media (max-width: 768px) {
+/* Responsive Header Fix */
+@media (max-width: 1024px) {
 
-    /* Show mobile menu elements on mobile */
-    .bold-mobile-toggle {
-        display: flex;
-    }
-
-    .bold-works-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* ===== Custom Mobile Menu - Bold "Fullscreen Typography" ===== */
-
-    /* Hide desktop nav on mobile */
+    /* 1. HIDE DESKTOP NAV FORCEFULLY */
+    .bold-header nav,
     .bold-header .nav {
+        display: none !important;
+    }
+
+    /* 2. SHOW MOBILE TOGGLE FORCEFULLY */
+    .bold-mobile-toggle {
+        display: flex !important;
+        z-index: 10005;
+        /* Verify high z-index */
+    }
+
+    /* 3. Adjust Layout */
+    .bold-header {
+        display: grid;
+        grid-template-columns: 60px 1fr 60px;
+        /* Space for Back button, Logo, and Menu Toggle */
+        align-items: center;
+        text-align: center;
+        padding: 5px 10px;
+        height: 70px;
+        background: black;
+        mix-blend-mode: normal;
+        border-bottom: 1px solid #333;
+    }
+
+    .bold-header .logo {
+        grid-column: 2;
+        /* Explicitly place in the center column */
+        justify-self: center;
+        font-size: 1.1rem;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        width: auto;
+    }
+
+    /* Hero Fixes */
+    .bold-hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 140px 20px 70px 20px;
+        /* Asymmetrical padding to offset for the 70px fixed header */
+        height: auto;
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .hero-text {
+        position: relative;
+        z-index: 2;
+        flex: none;
+        /* Disable expansion to allow justify-content to center the block */
+    }
+
+    .scroll-down {
         display: none;
     }
+
+    .hero-text h1 {
+        font-size: clamp(2rem, 11vw, 4rem);
+        /* Slightly tighter for mobile */
+        line-height: 1.1;
+        margin-top: 20px;
+        word-break: normal;
+        overflow-wrap: break-word;
+        text-transform: uppercase;
+    }
+
+    .hero-visual {
+        position: absolute;
+        /* Act as background layer */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        /* Subtle atmosphere */
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .hero-text p {
+        font-size: clamp(0.85rem, 4.2vw, 1.2rem);
+        /* Scale to fit single line */
+        white-space: nowrap;
+        max-width: none;
+        margin-top: 15px;
+    }
+
+
+
+    /* ===== Custom Mobile Menu - Bold "Fullscreen Typography" ===== */
 
     /* Custom Toggle Button */
     .bold-mobile-toggle {

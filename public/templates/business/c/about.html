@@ -17,6 +17,24 @@
 
 <body class="fade-in">
 
+    <!-- Custom Mobile Menu Toggle (Direct OnClick) -->
+    <button class="clean-mobile-toggle" onclick="toggleCleanMenu()" style="z-index: 999999;" aria-label="メニューを開く">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <div class="clean-menu-backdrop" onclick="toggleCleanMenu()"></div>
+
+    <!-- Slide-up Menu Panel -->
+    <div class="clean-mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html" class="btn-outline">Contact</a></li>
+        </ul>
+    </div>
+
     <header class="clean-header">
         <div class="container">
             <div class="logo">
@@ -102,6 +120,34 @@
 
     <script src="../../../assets/js/template-common.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+        // GLOBAL FUNCTION for maximum reliability
+        function toggleCleanMenu() {
+            const toggle = document.querySelector('.clean-mobile-toggle');
+            const backdrop = document.querySelector('.clean-menu-backdrop');
+            const menu = document.querySelector('.clean-mobile-menu');
+
+            if (toggle && backdrop && menu) {
+                toggle.classList.toggle('active');
+                backdrop.classList.toggle('active');
+                menu.classList.toggle('active');
+
+                // Toggle Overflow
+                if (toggle.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        }
+
+        // Close on link click
+        document.querySelectorAll('.clean-mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleCleanMenu();
+            });
+        });
+    </script>
 </body>
 
 </html>

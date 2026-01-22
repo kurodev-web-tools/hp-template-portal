@@ -42,13 +42,13 @@
 
 <body class="fade-in">
 
-    <!-- Custom Mobile Menu Toggle -->
-    <button class="clean-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
+    <!-- Custom Mobile Menu Toggle (Direct OnClick) -->
+    <button class="clean-mobile-toggle" onclick="toggleCleanMenu()" style="z-index: 999999;" aria-label="メニューを開く">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
-    <div class="clean-menu-backdrop"></div>
+    <div class="clean-menu-backdrop" onclick="toggleCleanMenu()"></div>
 
     <!-- Slide-up Menu Panel -->
     <div class="clean-mobile-menu">
@@ -168,45 +168,33 @@
     </script>
     <script src="assets/js/script.js" defer></script>
     <script>
-        // ===== Clean Slide-up Menu Control =====
-        document.addEventListener('DOMContentLoaded', () => {
+        // GLOBAL FUNCTION for maximum reliability
+        function toggleCleanMenu() {
             const toggle = document.querySelector('.clean-mobile-toggle');
             const backdrop = document.querySelector('.clean-menu-backdrop');
             const menu = document.querySelector('.clean-mobile-menu');
 
             if (toggle && backdrop && menu) {
-                function openMenu() {
-                    toggle.classList.add('active');
-                    backdrop.classList.add('active');
-                    menu.classList.add('active');
-                    toggle.setAttribute('aria-expanded', 'true');
-                    document.body.style.overflow = 'hidden';
-                }
+                toggle.classList.toggle('active');
+                backdrop.classList.toggle('active');
+                menu.classList.toggle('active');
 
-                function closeMenu() {
-                    toggle.classList.remove('active');
-                    backdrop.classList.remove('active');
-                    menu.classList.remove('active');
-                    toggle.setAttribute('aria-expanded', 'false');
+                // Toggle Overflow
+                if (toggle.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
                     document.body.style.overflow = '';
                 }
-
-                toggle.addEventListener('click', () => {
-                    toggle.classList.contains('active') ? closeMenu() : openMenu();
-                });
-
-                backdrop.addEventListener('click', closeMenu);
-
-                menu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
-                        closeMenu();
-                    }
-                });
+            } else {
+                console.error("Menu elements not found");
             }
+        }
+
+        // Close on link click
+        document.querySelectorAll('.clean-mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleCleanMenu(); // Reuse toggle to close
+            });
         });
     </script>
 </body>
