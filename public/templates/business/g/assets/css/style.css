@@ -25,6 +25,9 @@ body {
     background-color: var(--color-bg-global);
     color: var(--color-text-global);
     font-family: var(--font-ui);
+    overflow-x: hidden;
+    /* Deep Fix */
+    width: 100%;
 }
 
 h1,
@@ -90,6 +93,11 @@ h4 {
     color: var(--color-primary-global);
 }
 
+.global-header nav a.active.btn-primary {
+    color: white;
+    /* Ensure text is visible on button background */
+}
+
 .btn-primary {
     background: var(--color-primary-global);
     color: white;
@@ -133,6 +141,11 @@ h4 {
     display: flex;
     align-items: center;
     overflow: hidden;
+}
+
+.page-header.hero-section {
+    height: 40vh;
+    min-height: 300px;
 }
 
 .globe-container {
@@ -188,14 +201,20 @@ h4 {
     font-size: 3.5rem;
     line-height: 1.1;
     margin-bottom: 1.5rem;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
+
 
 .hero-content p {
     color: rgba(255, 255, 255, 0.8);
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 2.5rem;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
+
 
 .hero-actions {
     display: flex;
@@ -419,17 +438,26 @@ h4 {
 
     .hero-section {
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        /* Move content up from bottom */
     }
+
 
     /* Subpage Hero Adjustment */
     .page-header.hero-section {
-        justify-content: center;
-        padding-top: 120px;
-        padding-bottom: 40px;
+        justify-content: center !important;
+        /* Centered as requested */
+        padding-top: 60px !important;
+        /* Minimal top padding for header */
+        padding-bottom: 20px !important;
         height: auto !important;
-        /* Override inline height if needed for content */
         min-height: 45vh !important;
+    }
+
+    .page-header.hero-section .hero-content {
+        padding-top: 0 !important;
+        /* Clear user's manual 300px for subpages */
+        margin-bottom: 0;
     }
 
     .hero-overlay {
@@ -438,10 +466,19 @@ h4 {
 
     .hero-content {
         padding: 0 1rem;
+        padding-top: 300px;
+        /* Space for the 70px fixed header + 30px gap */
         text-align: center;
         margin-bottom: 4rem;
         width: 100%;
         max-width: none;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+        /* Reduced to ensure "Connecting the World," fits on one line */
+        line-height: 1.2;
+        margin-bottom: 1rem;
     }
 
     .hero-actions {
@@ -461,8 +498,10 @@ h4 {
     /* ===== Custom Mobile Menu - Global "Split Panel" ===== */
 
     /* Hide desktop nav on mobile */
-    .global-header .nav {
-        display: none;
+    /* Hide desktop nav on mobile */
+    .global-header .nav,
+    .global-header nav {
+        display: none !important;
     }
 
     /* Custom Toggle Button */
@@ -470,7 +509,8 @@ h4 {
         position: fixed;
         top: 15px;
         right: 15px;
-        z-index: 10001;
+        z-index: 2147483647;
+        /* DEEP FIX: Maximus Z-Index */
         width: 48px;
         height: 48px;
         background: var(--color-secondary-global);
@@ -518,11 +558,20 @@ h4 {
         bottom: 0;
         z-index: 10000;
         pointer-events: none;
+        display: flex;
+        /* Deep Fix: Ensure flex layout is ready */
+        visibility: hidden;
+        /* Hide by default */
+        opacity: 0;
+        transition: all 0.3s ease;
     }
 
     .global-mobile-menu.active {
         pointer-events: auto;
+        visibility: visible;
+        opacity: 1;
     }
+
 
     /* Left Split */
     .global-mobile-menu .split-left {

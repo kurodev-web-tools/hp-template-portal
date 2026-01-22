@@ -31,6 +31,9 @@ body {
     background-color: var(--color-bg-eco);
     color: var(--color-text-dark);
     font-family: var(--font-body);
+    overflow-x: hidden;
+    /* Deep Fix: Prevent horizontal scroll */
+    width: 100%;
 }
 
 h1,
@@ -120,6 +123,8 @@ h3 {
     z-index: -1;
     /* Will be handled by JS or CSS fallback */
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    pointer-events: none;
+    /* Prevent blocking clicks */
 }
 
 .hero-content {
@@ -137,9 +142,16 @@ h3 {
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     margin-bottom: 3rem;
     color: var(--color-text-dark);
+    letter-spacing: -0.05em;
+    /* Tighten to prevent middle-of-sentence wrap */
+    line-height: 1.8;
+    width: 100%;
+    word-break: keep-all;
+    /* Prevent awkward mid-word breaks */
+    overflow-wrap: break-word;
 }
 
 .btn-primary {
@@ -352,10 +364,26 @@ h3 {
 }
 
 /* ===== Custom Mobile Menu Elements - Default Hidden ===== */
-.eco-mobile-toggle,
+.eco-mobile-toggle {
+    display: none;
+}
+
+/* Logic Inversion: Default to BLOCK (exists in DOM), hidden by Opacity.
+   Hidden completely on Desktop via Media Query. */
 .eco-menu-backdrop,
 .eco-mobile-menu {
-    display: none;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@media (min-width: 769px) {
+
+    .eco-menu-backdrop,
+    .eco-mobile-menu {
+        display: none !important;
+    }
 }
 
 /* Responsive */
@@ -385,29 +413,36 @@ h3 {
     /* ===== Custom Mobile Menu - Eco "Frost Glass Curtain" ===== */
 
     /* Hide desktop nav on mobile */
-    .eco-header .nav {
-        display: none;
+    /* Hide desktop nav on mobile */
+    .eco-header .nav,
+    .eco-header nav {
+        display: none !important;
     }
 
     /* Custom Toggle Button */
+    /* Custom Toggle Button */
     .eco-mobile-toggle {
         position: fixed;
-        top: 15px;
-        right: 15px;
-        z-index: 10001;
-        width: 48px;
-        height: 48px;
+        top: 20px;
+        right: 20px;
+        /* Slight adjustment */
+        z-index: 2147483647 !important;
+        /* Max Z-Index to prevent blocking */
+        width: 50px;
+        height: 50px;
         background: var(--color-primary-eco);
         border: none;
         border-radius: 50%;
-        cursor: pointer;
-        display: flex;
+        cursor: pointer !important;
+        display: flex !important;
+        /* Force display */
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 4px;
-        box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
+        gap: 5px;
+        box-shadow: 0 4px 15px rgba(34, 139, 34, 0.4);
         transition: all 0.3s ease;
+        pointer-events: auto !important;
     }
 
     .eco-mobile-toggle .bar {
@@ -428,7 +463,8 @@ h3 {
     }
 
     .eco-mobile-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(4px, 4px);
+        transform: translateY(7px) rotate(45deg);
+        /* Move down by gap(5px)+height(2px) */
     }
 
     .eco-mobile-toggle.active .bar:nth-child(2) {
@@ -436,11 +472,14 @@ h3 {
     }
 
     .eco-mobile-toggle.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(4px, -4px);
+        transform: translateY(-7px) rotate(-45deg);
+        /* Move up by gap(5px)+height(2px) */
     }
 
     /* Frosted Backdrop */
     .eco-menu-backdrop {
+        display: block;
+        /* Override global display: none */
         position: fixed;
         inset: 0;
         z-index: 9998;
@@ -459,26 +498,38 @@ h3 {
 
     /* Frost Glass Menu Panel */
     .eco-mobile-menu {
+        display: block;
+        /* Override global display: none */
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(0.9);
+        transform: translate(-50%, -50%) scale(1.0);
+        /* Full Scale */
+        width: 85%;
+        /* Wider */
+        max-width: 400px;
         z-index: 9999;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.95);
+        /* More opaque for readability */
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-radius: 30px;
-        padding: 50px 40px;
+        padding: 60px 20px;
+        /* More vertical padding */
         box-shadow: 0 20px 60px rgba(34, 139, 34, 0.15);
         opacity: 0;
         visibility: hidden;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+        /* Prevent clicks when hidden */
     }
 
     .eco-mobile-menu.active {
         opacity: 1;
         visibility: visible;
         transform: translate(-50%, -50%) scale(1);
+        pointer-events: auto;
+        /* Ensure clickable */
     }
 
     .eco-mobile-menu ul {
@@ -489,14 +540,16 @@ h3 {
     }
 
     .eco-mobile-menu li {
-        opacity: 0;
-        transform: translateY(15px);
-        transition: all 0.4s ease;
+        /* REMOVED ANIMATION FOR STABILITY */
+        opacity: 1;
+        transform: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        /* Add separator */
     }
 
     .eco-mobile-menu.active li {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 
     .eco-mobile-menu.active li:nth-child(1) {
@@ -523,7 +576,8 @@ h3 {
         color: var(--color-text-dark);
         text-decoration: none;
         border-radius: 15px;
-        transition: all 0.3s ease;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        /* Prevent 'all' causing flash */
     }
 
     .eco-mobile-menu a:hover {

@@ -27,6 +27,9 @@ body {
     background-color: var(--color-bg-future);
     color: var(--color-text-future);
     font-family: var(--font-mono);
+    overflow-x: hidden;
+    /* Deep Fix */
+    width: 100%;
 }
 
 h1,
@@ -104,8 +107,13 @@ h3 {
     color: var(--color-primary-future) !important;
     padding: 0.5rem 1.5rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    /* Changed from hidden to prevent border clipping */
     transition: all 0.3s;
+    display: inline-flex;
+    /* Ensure proper box calculation */
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-neon:hover {
@@ -160,6 +168,80 @@ h3 {
     color: white;
     position: relative;
     mix-blend-mode: lighten;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: var(--color-bg-future);
+    clip: rect(0, 0, 0, 0);
+}
+
+.glitch::before {
+    left: -2px;
+    text-shadow: 2px 0 var(--color-secondary-future);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: 2px;
+    text-shadow: -2px 0 var(--color-primary-future);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip: rect(20px, 9999px, 15px, 0);
+    }
+
+    20% {
+        clip: rect(60px, 9999px, 80px, 0);
+    }
+
+    40% {
+        clip: rect(10px, 9999px, 85px, 0);
+    }
+
+    60% {
+        clip: rect(45px, 9999px, 5px, 0);
+    }
+
+    80% {
+        clip: rect(90px, 9999px, 35px, 0);
+    }
+
+    100% {
+        clip: rect(25px, 9999px, 100px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(10px, 9999px, 90px, 0);
+    }
+
+    20% {
+        clip: rect(45px, 9999px, 15px, 0);
+    }
+
+    40% {
+        clip: rect(80px, 9999px, 5px, 0);
+    }
+
+    60% {
+        clip: rect(20px, 9999px, 55px, 0);
+    }
+
+    80% {
+        clip: rect(65px, 9999px, 20px, 0);
+    }
+
+    100% {
+        clip: rect(35px, 9999px, 70px, 0);
+    }
 }
 
 .hero-sub {
@@ -525,7 +607,7 @@ h3 {
     .timeline::after {
         left: 31px;
         transform: translateX(-50%);
-        background-size: 100% 400%;
+        background-size: 100% 800px;
     }
 
     .timeline-item {
@@ -548,8 +630,10 @@ h3 {
     /* ===== Custom Mobile Menu - Future "Hologram Fade" ===== */
 
     /* Hide desktop nav on mobile */
-    .future-header .nav {
-        display: none;
+    /* Hide desktop nav on mobile */
+    .future-header .nav,
+    .future-header nav {
+        display: none !important;
     }
 
     /* Custom Toggle Button */
@@ -557,7 +641,7 @@ h3 {
         position: fixed;
         top: 15px;
         right: 15px;
-        z-index: 10001;
+        z-index: 2147483647;
         width: 48px;
         height: 48px;
         background: transparent;
@@ -601,6 +685,15 @@ h3 {
 
     .future-mobile-toggle.active .bar:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Fixed Border Clipping and Layout */
+    .future-mobile-menu .btn-neon {
+        margin-top: 30px;
+        display: inline-flex;
+        border: 1px solid var(--color-primary-future) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+        /* Subtle aura to make it pop */
     }
 
     /* Hologram Menu Panel */
@@ -650,8 +743,8 @@ h3 {
     }
 
     .future-mobile-menu li {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity: 1;
+        transform: translateY(0);
         transition: all 0.4s ease;
     }
 

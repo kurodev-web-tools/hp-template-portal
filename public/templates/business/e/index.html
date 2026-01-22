@@ -41,16 +41,11 @@
 
 <body class="theme-eco fade-in">
 
-    <!-- Custom Mobile Menu Toggle -->
-    <button class="eco-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <div class="eco-menu-backdrop"></div>
+    <!-- Custom Mobile Menu Toggle (Moved to bottom for Z-Index safety) -->
+    <div id="eco-menu-backdrop" class="eco-menu-backdrop"></div>
 
     <!-- Frost Glass Menu -->
-    <div class="eco-mobile-menu">
+    <div id="eco-mobile-menu" class="eco-mobile-menu">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#mission">Mission</a></li>
@@ -210,45 +205,79 @@
         });
     </script>
     <script src="assets/js/script.js" defer></script>
+    <!-- Duplicate Logic Removed -->
+    <!-- Moved Toggle Button Here -->
+    <button id="eco-mobile-toggle" class="eco-mobile-toggle" aria-label="メニューを開く" aria-expanded="false"
+        onclick="toggleEcoMenu()" style="position: fixed; top: 20px; right: 20px; z-index: 2147483647; display: flex;">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
     <script>
-        // ===== Eco Frost Glass Menu Control =====
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggle = document.querySelector('.eco-mobile-toggle');
-            const backdrop = document.querySelector('.eco-menu-backdrop');
-            const menu = document.querySelector('.eco-mobile-menu');
+        // Explicit Global Toggle Function - Force Inline Styles
+        function toggleEcoMenu() {
+            console.log('Eco Menu Toggled Details');
+            const toggle = document.getElementById('eco-mobile-toggle');
+            const menu = document.getElementById('eco-mobile-menu');
+            const backdrop = document.getElementById('eco-menu-backdrop');
 
-            if (toggle && backdrop && menu) {
-                function openMenu() {
-                    toggle.classList.add('active');
-                    backdrop.classList.add('active');
+            if (toggle && menu && backdrop) {
+                toggle.classList.toggle('active');
+
+                if (toggle.classList.contains('active')) {
+                    // ACTIVATE
                     menu.classList.add('active');
-                    toggle.setAttribute('aria-expanded', 'true');
-                    document.body.style.overflow = 'hidden';
-                }
+                    backdrop.classList.add('active');
 
-                function closeMenu() {
-                    toggle.classList.remove('active');
-                    backdrop.classList.remove('active');
+                    // Force Inline Visibility (The "Hammer")
+                    menu.style.setProperty('display', 'block', 'important');
+                    menu.style.setProperty('visibility', 'visible', 'important');
+                    menu.style.setProperty('opacity', '1', 'important');
+                    menu.style.setProperty('pointer-events', 'auto', 'important');
+
+                    backdrop.style.setProperty('display', 'block', 'important');
+                    backdrop.style.setProperty('visibility', 'visible', 'important');
+                    backdrop.style.setProperty('opacity', '1', 'important');
+                    backdrop.style.setProperty('pointer-events', 'auto', 'important');
+
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    // DEACTIVATE
                     menu.classList.remove('active');
-                    toggle.setAttribute('aria-expanded', 'false');
+                    backdrop.classList.remove('active');
+
+                    // Reset Inline Styles (allow CSS transition to handle fade out if desired)
+                    // But to ensure it goes away, let's delay the display:none slightly or just clear styles
+
+                    // Clearing styles to revert to CSS class control (opacity 0)
+                    menu.style.removeProperty('display');
+                    menu.style.removeProperty('visibility');
+                    menu.style.removeProperty('opacity');
+                    menu.style.removeProperty('pointer-events');
+
+                    backdrop.style.removeProperty('display');
+                    backdrop.style.removeProperty('visibility');
+                    backdrop.style.removeProperty('opacity');
+                    backdrop.style.removeProperty('pointer-events');
+
                     document.body.style.overflow = '';
                 }
+            } else {
+                console.error('Eco Menu elements not found');
+            }
+        }
 
-                toggle.addEventListener('click', () => {
-                    toggle.classList.contains('active') ? closeMenu() : openMenu();
-                });
-
-                backdrop.addEventListener('click', closeMenu);
-
-                menu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
-                        closeMenu();
-                    }
-                });
+        // Auto-Close Logic on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Attach toggle to links
+            document.querySelectorAll('#eco-mobile-menu a').forEach(link => {
+                link.addEventListener('click', toggleEcoMenu);
+            });
+            // Attach toggle to backdrop
+            const backdrop = document.getElementById('eco-menu-backdrop');
+            if (backdrop) {
+                backdrop.addEventListener('click', toggleEcoMenu);
             }
         });
     </script>

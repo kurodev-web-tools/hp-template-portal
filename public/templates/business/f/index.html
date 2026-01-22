@@ -42,15 +42,8 @@
 
 <body class="theme-future fade-in">
 
-    <!-- Custom Mobile Menu Toggle -->
-    <button class="future-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
     <!-- Hologram Menu -->
-    <div class="future-mobile-menu">
+    <div class="future-mobile-menu" id="future-mobile-menu">
         <div class="holo-bg"></div>
         <div class="menu-content">
             <ul>
@@ -223,6 +216,29 @@
         </div>
     </footer>
 
+    <!-- Custom Mobile Menu Toggle (Moved to end of body for z-index safety) -->
+    <button class="future-mobile-toggle" id="future-mobile-toggle" aria-label="メニューを開く" aria-expanded="false" onclick="
+                const toggle = this;
+                const menu = document.getElementById('future-mobile-menu');
+                const isActive = toggle.classList.contains('active');
+                
+                if (isActive) {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                } else {
+                    toggle.classList.add('active');
+                    menu.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+            ">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
     <!-- Scripts -->
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
@@ -237,46 +253,43 @@
                     count: 400
                 });
             }
-        });
-    </script>
-    <script src="assets/js/script.js" defer></script>
-    <script>
-        // ===== Future Hologram Menu Control =====
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggle = document.querySelector('.future-mobile-toggle');
-            const menu = document.querySelector('.future-mobile-menu');
 
-            if (toggle && menu) {
-                function openMenu() {
-                    toggle.classList.add('active');
-                    menu.classList.add('active');
-                    toggle.setAttribute('aria-expanded', 'true');
-                    document.body.style.overflow = 'hidden';
-                }
+            // Auto-close menu when clicking links
+            const menu = document.getElementById('future-mobile-menu');
+            const toggle = document.getElementById('future-mobile-toggle');
 
-                function closeMenu() {
+            if (menu && toggle) {
+                // Define a function to close the menu
+                const closeMenu = () => {
                     toggle.classList.remove('active');
                     menu.classList.remove('active');
                     toggle.setAttribute('aria-expanded', 'false');
                     document.body.style.overflow = '';
-                }
-
-                toggle.addEventListener('click', () => {
-                    toggle.classList.contains('active') ? closeMenu() : openMenu();
-                });
+                };
 
                 menu.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', closeMenu);
                 });
 
+                // Backdrop close (Optional but recommended for UX)
+                const holoBg = menu.querySelector('.holo-bg');
+                if (holoBg) {
+                    holoBg.addEventListener('click', closeMenu);
+                }
+
+                // Close on Escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && toggle.classList.contains('active')) {
-                        closeMenu();
+                        toggle.classList.remove('active');
+                        menu.classList.remove('active');
+                        toggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
                     }
                 });
             }
         });
     </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 
 </html>

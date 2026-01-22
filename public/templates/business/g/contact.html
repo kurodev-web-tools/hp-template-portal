@@ -26,8 +26,8 @@
             border-radius: 8px;
             box-shadow: var(--shadow-soft);
             max-width: 800px;
-            margin: -5rem auto 0;
-            /* Overlap hero */
+            margin: 4rem auto 0;
+            /* Separated from hero (was -5rem) */
             position: relative;
             z-index: 10;
         }
@@ -82,6 +82,28 @@
 
 <body class="theme-global fade-in">
 
+    <!-- Custom Mobile Menu Toggle -->
+    <button id="global-mobile-toggle" class="global-mobile-toggle" aria-label="メニューを開く" aria-expanded="false"
+        onclick="toggleGlobalMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <!-- Split Panel Menu -->
+    <div id="global-mobile-menu" class="global-mobile-menu">
+        <div class="split-left" onclick="toggleGlobalMenu()"></div>
+        <div class="split-right" onclick="toggleGlobalMenu()"></div>
+        <div class="menu-content">
+            <ul>
+                <li><a href="index.html" onclick="toggleGlobalMenu()">Home</a></li>
+                <li><a href="service.html" onclick="toggleGlobalMenu()">Services</a></li>
+                <li><a href="network.html" onclick="toggleGlobalMenu()">Network</a></li>
+                <li><a href="contact.html" class="btn-primary" onclick="toggleGlobalMenu()">Get Quote</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="global-header">
         <div class="container">
@@ -101,11 +123,10 @@
     </header>
 
     <!-- Page Header -->
-    <section class="page-header hero-section"
-        style="height: 50vh; min-height: 400px; background: var(--color-secondary-global); display:flex; align-items:flex-start; padding-top: 8rem;">
+    <section class="page-header hero-section">
         <div class="hero-overlay"></div>
         <div class="globe-container"></div>
-        <div class="container hero-content" style="text-align: center; width: 100%;">
+        <div class="container hero-content">
             <h1>Contact Us</h1>
             <p>Get in touch for a customized logistics solution.</p>
         </div>
@@ -203,6 +224,19 @@
         });
     </script>
     <script src="assets/js/script.js"></script>
+    <script>
+        // GLOBAL MENU CONTROL (DEEP FIX)
+        function toggleGlobalMenu() {
+            const toggle = document.getElementById('global-mobile-toggle');
+            const menu = document.getElementById('global-mobile-menu');
+            if (toggle && menu) {
+                const isActive = toggle.classList.toggle('active');
+                menu.classList.toggle('active');
+                toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            }
+        }
+    </script>
 </body>
 
 </html>

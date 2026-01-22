@@ -52,26 +52,63 @@ class PremiumEffects {
 
             function processNode(node, parent) {
                 if (node.nodeType === Node.TEXT_NODE) {
-                    // It's text, blast it apart
+                    // It's text, blast it apart by words first
                     const text = node.textContent;
-                    // Skip if empty or just whitespace (unless it's a significant space?)
-                    // For now, we process all chars, assuming CSS white-space handles layout
-                    [...text].forEach(char => {
-                        if (char === '\n') return; // Ignore raw newlines
 
-                        const span = document.createElement('span');
-                        span.innerText = char;
-                        span.style.display = 'inline-block';
-                        span.style.opacity = '0';
-                        span.style.filter = 'blur(10px)';
-                        span.style.transform = 'translateY(20px)';
-                        span.style.transition = `all ${settings.duration}ms ${settings.easing}`;
-                        span.style.transitionDelay = `${settings.baseDelay + globalCharIndex * settings.delay}ms`;
+                    // Split by whitespace but keep delimiters to handle spaces
+                    // This allows us to wrap "words" in nowrap containers
+                    const parts = text.split(/(\s+)/);
 
-                        if (char === ' ') span.style.width = '0.25em';
+                    parts.forEach(part => {
+                        // Skip empty
+                        if (!part) return;
 
-                        parent.appendChild(span);
-                        globalCharIndex++;
+                        // Check if it's whitespace
+                        if (part.match(/^\s+$/)) {
+                            // It's space/newline. 
+                            // Render spaces individually as breakable inline-blocks (same as before)
+                            // We don't wrap these in a nowrap container so line breaks can happen here.
+                            [...part].forEach(char => {
+                                if (char === '\n') return;
+
+                                const span = document.createElement('span');
+                                span.innerText = char;
+                                span.style.display = 'inline-block';
+                                span.style.opacity = '0';
+                                span.style.filter = 'blur(10px)';
+                                span.style.transform = 'translateY(20px)';
+                                span.style.transition = `all ${settings.duration}ms ${settings.easing}`;
+                                span.style.transitionDelay = `${settings.baseDelay + globalCharIndex * settings.delay}ms`;
+
+                                // Explicit width for spaces
+                                span.style.width = '0.25em';
+
+                                parent.appendChild(span);
+                                globalCharIndex++;
+                            });
+                        } else {
+                            // It's a word! Wrap it to prevent breaking inside.
+                            const wordWrapper = document.createElement('span');
+                            wordWrapper.style.display = 'inline-block';
+                            wordWrapper.style.whiteSpace = 'nowrap';
+                            // wordWrapper.style.verticalAlign = 'top'; // Optional: ensure alignment
+
+                            [...part].forEach(char => {
+                                const span = document.createElement('span');
+                                span.innerText = char;
+                                span.style.display = 'inline-block';
+                                span.style.opacity = '0';
+                                span.style.filter = 'blur(10px)';
+                                span.style.transform = 'translateY(20px)';
+                                span.style.transition = `all ${settings.duration}ms ${settings.easing}`;
+                                span.style.transitionDelay = `${settings.baseDelay + globalCharIndex * settings.delay}ms`;
+
+                                wordWrapper.appendChild(span);
+                                globalCharIndex++;
+                            });
+
+                            parent.appendChild(wordWrapper);
+                        }
                     });
                 } else if (node.nodeType === Node.ELEMENT_NODE) {
                     // It's an element (like <br>, <wbr>, <span>)
