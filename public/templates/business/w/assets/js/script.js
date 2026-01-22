@@ -19,12 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== Horizontal Scroll Logic (Desktop Only) =====
     if (window.innerWidth > 768) {
         window.addEventListener('wheel', (e) => {
-            if (e.deltaX !== 0) return; // Allow natural horizontal scroll if present
-            e.preventDefault();
-            window.scrollBy({
-                left: e.deltaY,
-                behavior: 'auto'
-            });
+            // If primarily vertical scroll, map to horizontal
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
+
+                // Standardize scroll speed across browsers
+                const scrollSpeed = 4.0;
+
+                window.scrollBy({
+                    left: e.deltaY * scrollSpeed,
+                    behavior: 'auto'
+                });
+
+                updateProgress();
+                syncNav();
+            }
         }, { passive: false });
     }
 
@@ -33,9 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxScroll = (window.innerWidth > 768)
             ? document.documentElement.scrollWidth - window.innerWidth
             : document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = (window.innerWidth > 768)
-            ? (window.pageXOffset / maxScroll) * 100
-            : (window.scrollY / maxScroll) * 100;
+
+        const scrollPos = (window.innerWidth > 768) ? window.scrollX : window.scrollY;
+        const scrolled = (maxScroll > 0) ? (scrollPos / maxScroll) * 100 : 0;
+
         progressLine.style.width = `${scrolled}%`;
     }
 
@@ -43,8 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let current = '';
         sections.forEach(section => {
             const sectionPos = (window.innerWidth > 768) ? section.offsetLeft : section.offsetTop;
-            const scrollPos = (window.innerWidth > 768) ? window.pageXOffset : window.scrollY;
-            if (scrollPos >= sectionPos - window.innerHeight / 2) {
+            const scrollPos = (window.innerWidth > 768) ? window.scrollX : window.scrollY;
+            const threshold = (window.innerWidth > 768) ? window.innerWidth / 3 : window.innerHeight / 2;
+
+            if (scrollPos >= sectionPos - threshold) {
                 current = section.getAttribute('id');
             }
         });
@@ -86,8 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.getElementById(id);
             if (target) {
                 if (window.innerWidth > 768) {
-                    // Mobile navigation should use standard vertical scroll behavior if it's not a truly horizontal layout on mobile
-                    // But Wide theme is horizontal-scrolling body. 
                     window.scrollTo({
                         left: target.offsetLeft,
                         behavior: 'smooth'

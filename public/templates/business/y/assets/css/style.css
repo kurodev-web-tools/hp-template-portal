@@ -1,477 +1,484 @@
+/* =========================================
+   Yield Growth Template V2 (Rebuild)
+   Theme: "Yield" - Wealth, Stability, Growth
+   Philosophy: CSS-First, Robust Alignment, Zen Minimal
+   ========================================= */
+
 :root {
+    /* --- 1. Design Tokens --- */
+
+    /* Colors */
     --color-gold: #D4AF37;
+    /* Identity Color */
     --color-moss: #3A4D39;
-    --color-bg-yield: #FCFAF7;
-    --color-text: #222222;
-    --font-heading: 'Tenor Sans', sans-serif;
-    --font-serif: 'Bodoni Moda', serif;
+    /* Accent Color (Growth) */
+    --color-bg-base: #FCFAF7;
+    /* Warm/Paper White */
+    --color-text-main: #222222;
+    /* Charcoal Black */
+    --color-text-muted: #666666;
+    /* Muted Grey */
+    --color-border: rgba(212, 175, 55, 0.2);
+
+    /* Typography */
+    /* UNIFIED FONT STACK */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+
+    /* Sizing */
+    --header-height: 80px;
+    --container-width: 1200px;
+    --spacing-section: 120px;
 }
 
-body.theme-yield {
-    background-color: var(--color-bg-yield);
-    color: var(--color-text);
-    font-family: 'Noto Serif JP', serif;
+/* --- 2. Base Reset & Setup --- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
-    line-height: 2;
+    padding: 0;
 }
 
-/* Pattern */
-.yield-pattern {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: radial-gradient(var(--color-gold) 0.5px, transparent 0.5px);
-    background-size: 50px 50px;
-    opacity: 0.1;
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
 }
 
-/* Header */
+body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    /* Elegant, not bold */
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- 3. Utilities --- */
+
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.gold-text {
+    color: var(--color-gold);
+}
+
+.moss-text {
+    color: var(--color-moss);
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 4. Component: Header --- */
+
 .yield-header {
-    padding: 2rem 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
     z-index: 1000;
-    transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
-}
-
-.yield-header.is-scrolled {
     background: rgba(252, 250, 247, 0.95);
     backdrop-filter: blur(10px);
-    padding: 1rem 0;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
 }
 
-.header-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 4rem;
+.yield-header.scrolled {
+    background: rgba(252, 250, 247, 0.98);
+    border-bottom: 1px solid var(--color-gold);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
-.logo-y {
-    font-family: var(--font-serif);
-    font-size: 2rem;
+.logo span {
+    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
+}
+
+.logo .y-mark {
     color: var(--color-gold);
-    font-style: italic;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
-.logo-text {
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    letter-spacing: 0.3em;
-}
-
-.yield-nav ul {
-    display: flex;
-    gap: 4rem;
-    list-style: none;
-}
-
-.yield-nav a {
-    text-decoration: none;
-    color: inherit;
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    transition: 0.3s;
-}
-
-.yield-nav a:hover {
-    color: var(--color-gold);
-}
-
-.link-yield {
-    border-bottom: 1px solid var(--color-gold);
-    padding-bottom: 5px;
-}
-
-/* Hero */
-.yield-hero {
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    padding: 0 10%;
-    position: relative;
-}
-
-.hero-text-area {
-    flex: 0 0 500px;
-    z-index: 10;
-}
-
-.hero-tag {
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    color: var(--color-gold);
-    letter-spacing: 0.5em;
-    display: block;
-    margin-bottom: 2.5rem;
-}
-
-.yield-hero h1 {
-    font-family: var(--font-heading);
-    font-size: 5rem;
-    line-height: 1;
-    margin-bottom: 3rem;
-}
-
-.yield-hero i {
-    font-family: var(--font-serif);
-    font-size: 5.5rem;
-}
-
-.hero-panel-area {
-    flex: 1;
-    height: 100%;
-    position: relative;
-}
-
-.panel {
-    position: absolute;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
-}
-
-.p-top {
-    top: 15%;
-    right: 10%;
-    width: 500px;
-    height: 600px;
-    z-index: 5;
-    overflow: hidden;
-}
-
-.p-top img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.p-bottom {
-    top: 40%;
-    left: 10%;
-    width: 400px;
-    height: 500px;
-    background: var(--color-moss);
-    z-index: 2;
-    opacity: 0.9;
-}
-
-/* Values */
-.yield-values {
-    padding: 12rem 10%;
-    display: flex;
-    gap: 8rem;
-}
-
-.value-block {
-    flex: 1;
-    border-top: 1px solid var(--color-gold);
-    padding-top: 3rem;
-}
-
-.v-num {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--color-gold);
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.value-block h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-    margin-bottom: 2rem;
-}
-
-/* Stats Panel */
-.yield-stats-panel {
-    padding: 10rem 10%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.stats-card {
-    background: #fff;
-    padding: 5rem;
-    width: 600px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.03);
-    border-radius: 4px;
-    position: relative;
-}
-
-.stats-label {
-    font-family: var(--font-heading);
-    font-size: 0.6rem;
-    color: var(--color-gold);
-    letter-spacing: 0.4em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 2rem;
-    margin-bottom: 3rem;
-}
-
-.stats-flex {
-    display: flex;
-    gap: 4rem;
-}
-
-.stat-item {
-    flex: 1;
-}
-
-.s-label {
-    display: block;
-    font-size: 0.7rem;
-    color: #999;
-    margin-bottom: 1rem;
-}
-
-.s-val {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--color-moss);
-}
-
-.asc-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    background: var(--color-gold);
-    clip-path: polygon(0 100%, 100% 0, 100% 100%);
-}
-
-/* CTA */
-.yield-cta {
-    padding: 12rem 0;
-    background: var(--color-moss);
-    color: #fff;
-    text-align: center;
-}
-
-.cta-inner h2 {
-    font-family: var(--font-heading);
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-}
-
-.yield-form {
-    text-align: left;
-    margin-top: 4rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.yield-group {
-    margin-bottom: 2rem;
-}
-
-.yield-group label {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
-}
-
-.yield-form input,
-.yield-form select,
-.yield-form textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 0;
-    color: #fff;
-    font-family: inherit;
-    font-size: 1rem;
-    outline: none;
-}
-
-.yield-form textarea {
-    height: 80px;
-    resize: none;
-}
-
-.yield-form button {
-    background: var(--color-gold);
-    color: #fff;
-    border: none;
-    padding: 1.2rem 3rem;
-    width: 100%;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 0.2em;
-    margin-top: 2rem;
-    transition: 0.3s;
-}
-
-.yield-form button:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* Mobile Menu */
-.yield-mobile-toggle {
+.nav-desktop {
     display: none;
 }
 
-.yield-mobile-menu {
+@media (min-width: 768px) {
+    .nav-desktop {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .nav-desktop a {
+        font-family: var(--font-heading);
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .nav-desktop a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        /* Thicker accent */
+        background: linear-gradient(90deg, var(--color-gold), var(--color-moss));
+        /* Growth Gradient */
+        transition: width 0.3s ease;
+    }
+
+    .nav-desktop a:hover::after,
+    .nav-desktop a.active::after {
+        width: 100%;
+    }
+}
+
+/* --- Mobile Menu --- */
+.mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    .mobile-toggle {
+        display: none;
+    }
+}
+
+.mobile-toggle span {
+    width: 24px;
+    height: 1px;
+    background-color: var(--color-text-main);
+    transition: all 0.3s;
+}
+
+/* Hamburger Animation */
+.mobile-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background-color: var(--color-gold);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: var(--color-gold);
+}
+
+.mobile-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background: rgba(252, 250, 247, 0.98);
-    backdrop-filter: blur(20px);
-    z-index: 900;
+    backdrop-filter: blur(15px);
+    z-index: 1001;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateY(-100%);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
-.yield-mobile-menu.active {
-    transform: translateY(0);
+.mobile-menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.menu-strat-tag {
-    position: absolute;
-    top: 2rem;
-    font-family: var(--font-heading);
-    font-size: 0.6rem;
-    color: var(--color-gold);
-    letter-spacing: 0.5em;
-    opacity: 0.6;
-}
-
-.yield-mobile-menu ul {
-    list-style: none;
-    padding: 0;
+.mobile-menu-overlay nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     text-align: center;
 }
 
-.yield-mobile-menu li {
-    margin: 2.5rem 0;
-}
-
-.yield-mobile-menu a {
-    text-decoration: none;
-    color: var(--color-text);
+.mobile-menu-overlay a {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    letter-spacing: 0.2em;
-    font-weight: 300;
+    color: var(--color-text-main);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
 }
 
-/* Mobile Adaptations */
-@media (max-width: 1024px) {
-    .header-inner {
-        padding: 0 1.5rem;
-    }
+.mobile-menu-overlay.active a {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-    .yield-nav {
-        display: none;
-    }
+.mobile-menu-overlay.active a:nth-child(1) {
+    transition-delay: 0.1s;
+}
 
-    .yield-mobile-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: var(--color-moss);
-        cursor: pointer;
-    }
+.mobile-menu-overlay.active a:nth-child(2) {
+    transition-delay: 0.2s;
+}
 
-    .yield-mobile-toggle span {
-        font-size: 2rem;
-    }
+.mobile-menu-overlay.active a:nth-child(3) {
+    transition-delay: 0.3s;
+}
 
-    .yield-container {
-        padding-top: 80px;
-    }
+.mobile-menu-overlay.active a:nth-child(4) {
+    transition-delay: 0.4s;
+}
 
-    .yield-hero {
-        flex-direction: column;
-        height: auto;
-        padding: 8rem 2rem;
-    }
+.mobile-menu-overlay a.active,
+.mobile-menu-overlay a:hover {
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+}
 
-    .hero-text-area {
-        flex: none;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5rem;
-    }
+/* --- 5. Component: Standard Subpage Layout (The Fix) --- */
 
-    .yield-hero h1 {
-        font-size: 3.5rem;
-    }
+/* Wrapper for consistency */
+.subpage-wrapper {
+    padding-top: calc(var(--header-height) + 60px);
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
 
-    .hero-panel-area {
-        width: 100%;
-        height: 400px;
-    }
+/* Grid Layout for Desktop */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
 
-    .p-top {
-        width: 100%;
-        height: 100%;
-        right: 0;
-        top: 0;
-    }
-
-    .p-bottom {
-        display: none;
-    }
-
-    .yield-values {
-        flex-direction: column;
-        gap: 4rem;
-    }
-
-    .yield-stats-panel {
-        padding: 4rem 2rem;
-        justify-content: center;
-    }
-
-    .stats-card {
-        width: 100%;
-        padding: 3rem 1.5rem;
-    }
-
-    .s-val {
-        font-size: 2.5rem;
-    }
-
-    .yield-form {
-        flex-direction: column;
+@media (min-width: 992px) {
+    .split-layout {
+        grid-template-columns: 4fr 6fr;
+        /* 40% Text, 60% Content */
         align-items: center;
+        gap: 6rem;
+    }
+}
+
+/* Left Column: Typography */
+.page-header {
+    text-align: left;
+    /* FORCE LEFT ALIGNMENT */
+}
+
+.page-tag {
+    display: block;
+    font-family: var(--font-heading);
+    color: var(--color-gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    /* Reset */
+    padding-left: 0;
+    /* Reset */
+    color: var(--color-text-main);
+    /* Pure CSS fade */
+    opacity: 0;
+    animation: slideRightFade 1s 0.2s forwards;
+}
+
+.page-desc {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    max-width: 480px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeInUp 1s 0.4s forwards;
+}
+
+@keyframes slideRightFade {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
     }
 
-    .yield-form input {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Right Column: Content Area */
+.page-content-area {
+    width: 100%;
+    opacity: 0;
+    animation: fadeIn 1s 0.6s forwards;
+}
+
+/* Specific: Stats Card (Performance) */
+.stats-card {
+    background: #fff;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+}
+
+.stats-row {
+    display: flex;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.big-stat {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--color-moss);
+    font-style: italic;
+}
+
+/* --- 7. Responsive Fixes (Mobile) --- */
+
+@media (max-width: 768px) {
+
+    /* Prevent horizontal scroll */
+    html,
+    body {
+        overflow-x: hidden;
         width: 100%;
     }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* Subpage adjustments */
+    .subpage-wrapper {
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 60px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        /* Smaller title */
+        word-break: break-word;
+        /* Prevent overflow */
+    }
+
+    /* Stats Card Mobile */
+    .stats-card {
+        padding: 1.5rem;
+        /* Reduced padding */
+    }
+
+    .stats-row {
+        flex-direction: column;
+        /* Stack stats */
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .big-stat {
+        font-size: 2.8rem;
+        /* Smaller numbers */
+    }
+
+    /* Contact Form Mobile */
+    .stats-card form div {
+        margin-bottom: 1rem;
+    }
+}
+
+/* --- 6. Component: Footer --- */
+.yield-footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
 }
