@@ -1,3 +1,33 @@
+
+// Global Toggle Function
+window.toggleMenu = function(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const menu = document.querySelector('.vivid-mobile-menu');
+    const toggle = document.querySelector('.vivid-mobile-toggle');
+    
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        // Scroll Lock
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        // Icon Toggle
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Vivid Theme Effects =====
     if (window.PremiumEffects) {
@@ -18,27 +48,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.vivid-mobile-toggle');
+    // ===== RGB Shift on Scroll (Wow Factor) =====
+    // Apply slight RGB shift filter or transform on scroll
+    let isScrolling;
+    window.addEventListener('scroll', () => {
+        document.body.style.textShadow = '2px 0 var(--color-magenta), -2px 0 var(--color-yellow)';
+        
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+            document.body.style.textShadow = 'none';
+        }, 100);
+    });
+
+    // ===== Mobile Menu Logic (Robust) =====
+    const toggleBtn = document.querySelector('.vivid-mobile-toggle');
     const menu = document.querySelector('.vivid-mobile-menu');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            // No icon change requested for V, but let's keep it consistent
-            const btnText = toggle.textContent.trim();
-            // toggle.textContent = menu.classList.contains('active') ? 'CLOSE' : 'MENU'; 
-            // Actually Template V uses Material Icons if I added it... Let's check my HTML.
-            // Oh, I added <span class="material-icons">menu</span>.
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
+    if (toggleBtn) {
+        toggleBtn.removeAttribute('onclick');
+        toggleBtn.addEventListener('click', window.toggleMenu);
+    }
 
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+                if (toggleBtn) {
+                    const icon = toggleBtn.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

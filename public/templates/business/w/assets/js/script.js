@@ -1,3 +1,33 @@
+
+// Global Toggle Function
+window.toggleMenu = function(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const menu = document.querySelector('.wide-mobile-menu');
+    const toggle = document.querySelector('.wide-mobile-toggle');
+    
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        // Scroll Lock
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        // Icon Toggle
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.horizontal-scroll-container');
     const sections = document.querySelectorAll('.wide-section');
@@ -18,21 +48,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== Horizontal Scroll Logic (Desktop Only) =====
     if (window.innerWidth > 768) {
+        // Simple smoothing for mouse wheel
         window.addEventListener('wheel', (e) => {
-            // If primarily vertical scroll, map to horizontal
+            // Check if vertical scrolling is dominant
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
                 e.preventDefault();
-
-                // Standardize scroll speed across browsers
-                const scrollSpeed = 4.0;
-
+                // Add inertia class for smoothness
+                if(container) container.classList.add('inertia-active');
+                
+                const scrollSpeed = 3.0; // Adjusted for better feel
                 window.scrollBy({
                     left: e.deltaY * scrollSpeed,
-                    behavior: 'auto'
+                    behavior: 'auto' 
                 });
 
                 updateProgress();
                 syncNav();
+                
+                // Remove inertia class after scroll
+                clearTimeout(window.scrollTimeout);
+                window.scrollTimeout = setTimeout(() => {
+                    if(container) container.classList.remove('inertia-active');
+                }, 100);
             }
         }, { passive: false });
     }
@@ -69,22 +106,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.wide-mobile-toggle');
+    // ===== Mobile Menu Logic (Robust) =====
+    const toggleBtn = document.querySelector('.wide-mobile-toggle');
     const menu = document.querySelector('.wide-mobile-menu');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
+    if (toggleBtn) {
+        toggleBtn.removeAttribute('onclick');
+        toggleBtn.addEventListener('click', window.toggleMenu);
+    }
 
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+                if (toggleBtn) {
+                    const icon = toggleBtn.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

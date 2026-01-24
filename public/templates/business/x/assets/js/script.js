@@ -1,3 +1,33 @@
+
+// Global Toggle Function
+window.toggleMenu = function(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const menu = document.querySelector('.xtreme-mobile-menu');
+    const toggle = document.querySelector('.xtreme-mobile-toggle');
+    
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        // Scroll Lock
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        // Icon Toggle
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.xtreme-snap-container');
     const sections = document.querySelectorAll('.snap-section');
@@ -23,13 +53,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scroll to section on link click
-    navLinks.forEach(link => {
+    // Scroll to section on link click (Unified)
+    const allLinks = document.querySelectorAll('.nav-id, .xtreme-mobile-menu a');
+    allLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const id = link.getAttribute('href').substring(1);
             const target = document.getElementById(id);
-            if (target) {
+            
+            // Close menu if open
+            const menu = document.querySelector('.xtreme-mobile-menu');
+            const toggle = document.querySelector('.xtreme-mobile-toggle');
+            if(menu && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                document.body.style.overflow = '';
+                if(toggle) {
+                    const icon = toggle.querySelector('.material-icons');
+                    if(icon) icon.textContent = 'menu';
+                }
+            }
+
+            if (target && container) {
                 container.scrollTo({
                     top: target.offsetTop,
                     behavior: 'smooth'
@@ -50,33 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.xtreme-mobile-toggle');
+    // ===== Mobile Menu Logic (Robust) =====
+    const toggleBtn = document.querySelector('.xtreme-mobile-toggle');
     const menu = document.querySelector('.xtreme-mobile-menu');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
-
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const id = link.getAttribute('href').substring(1);
-                const target = document.getElementById(id);
-                if (target && container) {
-                    container.scrollTo({
-                        top: target.offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-                menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
-            });
-        });
+    if (toggleBtn) {
+        toggleBtn.removeAttribute('onclick');
+        toggleBtn.addEventListener('click', window.toggleMenu);
     }
 
     // ===== Xtreme Theme Effects =====

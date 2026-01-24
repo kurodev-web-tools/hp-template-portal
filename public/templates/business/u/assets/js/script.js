@@ -1,3 +1,33 @@
+
+// Global Toggle Function
+window.toggleMenu = function(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const menu = document.querySelector('.urban-mobile-menu');
+    const toggle = document.querySelector('.urban-mobile-toggle');
+    
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        // Scroll Lock
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        // Icon Toggle
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Urban Theme Effects =====
     if (window.PremiumEffects) {
@@ -27,22 +57,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.urban-mobile-toggle');
+    // ===== Mobile Menu Logic (Robust) =====
+    const toggleBtn = document.querySelector('.urban-mobile-toggle');
     const menu = document.querySelector('.urban-mobile-menu');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
+    if (toggleBtn) {
+        // Remove inline handler just in case
+        toggleBtn.removeAttribute('onclick');
+        // Add listener
+        toggleBtn.addEventListener('click', window.toggleMenu);
+    }
 
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
+                // Use the global function logic or manually close
                 menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+                if (toggleBtn) {
+                    const icon = toggleBtn.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

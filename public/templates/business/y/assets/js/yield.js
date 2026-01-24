@@ -1,3 +1,22 @@
+
+// Global Toggle Function
+window.toggleMenu = function(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    const toggle = document.querySelector('.mobile-toggle');
+    
+    if (overlay) {
+        const isActive = overlay.classList.toggle('active');
+        if(toggle) toggle.classList.toggle('active');
+        
+        // Scroll Lock
+        document.body.style.overflow = isActive ? 'hidden' : '';
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.yield-header');
 
@@ -20,21 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Mobile Menu Logic
-    const toggle = document.querySelector('.mobile-toggle');
+    // ===== Mobile Menu Logic (Robust) =====
+    const toggleBtn = document.querySelector('.mobile-toggle');
     const overlay = document.querySelector('.mobile-menu-overlay');
 
-    if (toggle && overlay) {
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
+    if (toggleBtn) {
+        // Use global toggle
+        toggleBtn.removeAttribute('onclick'); // Ensure clean state
+        toggleBtn.addEventListener('click', window.toggleMenu);
+    }
 
+    if (overlay) {
         // Close when clicking a link
         overlay.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                toggle.classList.remove('active');
                 overlay.classList.remove('active');
+                if(toggleBtn) toggleBtn.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
     }

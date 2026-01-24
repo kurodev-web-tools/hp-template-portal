@@ -1,9 +1,38 @@
+
+// Global Toggle Function
+window.toggleMenu = function(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const menu = document.querySelector('.zen-mobile-menu');
+    const toggle = document.querySelector('.zen-mobile-toggle');
+    
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        // Scroll Lock
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        // Icon Toggle
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Zen Theme Effects =====
     if (window.PremiumEffects) {
         // Serene slow reveal
         PremiumEffects.BlurText('h1', { delay: 500, duration: 4000 });
-
         // No tilt for Zen (maintain stillness)
     }
 
@@ -40,22 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.zen-mobile-toggle');
+    // ===== Mobile Menu Logic (Robust) =====
+    const toggleBtn = document.querySelector('.zen-mobile-toggle');
     const menu = document.querySelector('.zen-mobile-menu');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
+    if (toggleBtn) {
+        toggleBtn.removeAttribute('onclick');
+        toggleBtn.addEventListener('click', window.toggleMenu);
+    }
 
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+                if (toggleBtn) {
+                    const icon = toggleBtn.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }
