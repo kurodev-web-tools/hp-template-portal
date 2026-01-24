@@ -21,6 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPortal() {
     renderCategories();
     initHyperspeed();
+    initLiquidGlass();
+}
+
+function initLiquidGlass() {
+    if (window.PremiumEffects) {
+        // Apply Liquid Metal Background
+        if (document.querySelector('.bg-ambient')) {
+            PremiumEffects.LiquidMetal('.bg-ambient', {
+                colors: ['#00f2ff', '#7000ff', '#ff0055', '#4b0082'],
+                count: 8
+            });
+        }
+    }
 }
 
 function initHyperspeed() {
@@ -53,7 +66,10 @@ function renderCategories() {
             <p>${cat.description}</p>
         `;
 
-        // Add hover events for Hyperspeed color change (PC only)
+        // Unified Glow Effect (CSS-based)
+        card.style.setProperty('--card-color', CATEGORY_COLORS[cat.id]);
+
+        // Hyperspeed color change (PC only)
         card.addEventListener('mouseenter', () => {
             if (hyperspeedInstance && CATEGORY_COLORS[cat.id]) {
                 hyperspeedInstance.setColor(CATEGORY_COLORS[cat.id]);

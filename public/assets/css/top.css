@@ -1,46 +1,107 @@
 /* =========================================
-   Top Page CSS - Bento Grid & Category Cards
+   Top Page CSS - Gateway Architecture
    ========================================= */
 
 /* Mesh Background for Premium Feel */
 body {
     background-color: var(--color-bg);
-    background-image:
+    /* Subtle noise texture */
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png'),
         radial-gradient(at 0% 0%, rgba(0, 242, 255, 0.08) 0px, transparent 50%),
         radial-gradient(at 100% 0%, rgba(112, 0, 255, 0.06) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(255, 0, 85, 0.04) 0px, transparent 50%);
     background-attachment: fixed;
+    overflow-x: hidden;
 }
 
-/* Hero Section */
-.hero-text {
-    text-align: center;
+/* --- Hero Section ("The Gateway") --- */
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: var(--spacing-xl) var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
 }
 
-.hero-text h1 {
-    font-size: 3rem;
-    letter-spacing: -2px;
-    margin-bottom: var(--spacing-sm);
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 4rem;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Typography: Massive Glass Title */
+.glass-title {
     font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--spacing-md);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.2) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.2));
+    animation: titleFloat 6s ease-in-out infinite alternate;
 }
 
-.hero-text p {
+@media (min-width: 768px) {
+    .glass-title {
+        font-size: 7rem;
+    }
+}
+
+@keyframes titleFloat {
+    0% { transform: translateY(0); filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.2)); }
+    100% { transform: translateY(-10px); filter: drop-shadow(0 0 50px rgba(112, 0, 255, 0.3)); }
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #00f2ff, #7000ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 0;
+    color: transparent;
+}
+
+.hero-subtitle {
     color: var(--color-text-muted);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+    border-left: 2px solid var(--color-primary);
+    padding-left: 1rem;
 }
 
 /* CTA Button */
 .cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-top: var(--spacing-lg);
-    padding: 14px 32px;
-    background: transparent;
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
+    gap: 12px;
+    padding: 16px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
     font-family: var(--font-heading);
     font-weight: 700;
@@ -48,140 +109,175 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
-    transition: all var(--transition-smooth);
+    transition: all 0.3s ease;
     cursor: pointer;
+    backdrop-filter: blur(10px);
 }
 
 .cta-btn:hover {
     background: var(--color-primary);
     color: #000;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+    border-color: var(--color-primary);
+    transform: translateX(10px);
+    box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
 }
 
-.cta-btn .material-icons {
-    font-size: 1.2rem;
-    transition: transform var(--transition-fast);
+/* Visual: Dynamic Montage */
+.hero-visual {
+    position: relative;
+    height: 400px;
+    perspective: 1000px;
 }
 
-.cta-btn:hover .material-icons {
-    transform: translateX(4px);
+.montage-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-10deg) rotateX(5deg);
+    transition: transform 0.5s ease-out;
 }
 
-/* Category Grid Container */
+.hero-visual:hover .montage-container {
+    transform: rotateY(0) rotateX(0);
+}
+
+.montage-item {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.montage-item.active {
+    opacity: 1;
+}
+
+/* Placeholder gradient until images load */
+.montage-item:nth-child(1) { background: linear-gradient(45deg, #111, #333); }
+.montage-item:nth-child(2) { background: linear-gradient(45deg, #003366, #111); }
+.montage-item:nth-child(3) { background: linear-gradient(45deg, #4b0082, #111); }
+
+.montage-overlay {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.montage-label {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    letter-spacing: 1px;
+}
+
+/* --- Category Grid (Bento Layout) --- */
 .category-grid {
     display: grid;
     grid-template-columns: 1fr;
-    /* Mobile: 1 column (Vertical Stack) */
     gap: var(--spacing-md);
     padding: 0 var(--spacing-md) var(--spacing-xl);
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Desktop Grid (Bento Style) */
 @media (min-width: 768px) {
     .category-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 300px);
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 250px;
+        gap: 1.5rem;
     }
+    
+    /* Bento Spans */
+    .category-card:nth-child(1) { grid-column: span 2; grid-row: span 2; } /* Feature */
+    .category-card:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+    .category-card:nth-child(3) { grid-column: span 1; grid-row: span 2; } /* Tall */
+    .category-card:nth-child(4) { grid-column: span 2; grid-row: span 1; } /* Wide */
 }
 
-/* Card Style */
+/* Card Style - Unified Glow */
 .category-card {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    cursor: pointer;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    background: rgba(255, 255, 255, 0.03); /* Extremely subtle */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Thin & Elegant */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: var(--spacing-lg);
-    min-height: 200px;
-    /* Mobile minimum height */
+    padding: 2.5rem;
     text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Minimal backdrop filter for readability without heavy cost */
+    backdrop-filter: blur(10px); 
+}
+
+/* Remove old liquid/grid pseudo elements */
+.category-card::before {
+    display: none;
 }
 
 .category-card:hover {
-    transform: translateY(-5px) scale(1.01);
-    border-color: var(--theme-accent, var(--color-primary));
-    background: var(--color-surface-hover);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8),
-        0 0 20px -5px var(--theme-accent, --color-primary);
-    /* Glow */
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.4); /* Darken for readability */
+    border-color: var(--card-color, #fff); /* Unified Glow Border */
+    box-shadow: 
+        0 10px 40px rgba(0,0,0,0.5),
+        0 0 30px var(--card-color, rgba(255,255,255,0.2)); /* Unified Glow Shadow */
+    z-index: 10;
 }
 
-/* Card Content */
+/* Typography in Card */
 .category-card h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 800;
     z-index: 2;
-    position: relative;
+    margin-bottom: 0.8rem;
+    color: #fff;
+    /* Clean text, minimal shadow */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+    letter-spacing: -0.02em;
+    transition: color 0.3s;
 }
 
 .category-card p {
-    color: var(--color-text-muted);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
     z-index: 2;
-    position: relative;
-    font-size: 0.9rem;
-    margin-top: var(--spacing-xs);
+    font-weight: 500;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
 }
 
-/* Background Image/Gradient Placeholder */
-.category-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Grid texture matching list page */
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    /* Gradient overlay for readability */
-    background-color: transparent;
-    z-index: 1;
-}
-
-/* Text overlay gradient (on top of grid) */
-.category-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    z-index: 1;
-}
-
-/* Dynamic Colors per Card (injected via JS usually, but defaults here) */
 .category-card:hover h2 {
-    color: var(--card-color, var(--color-primary));
+    color: var(--card-color, #fff);
 }
 
-/* Bento Grid Spans (PC) */
-@media (min-width: 768px) {
+.category-card:hover p {
+    transform: translateY(0);
+    opacity: 1;
+    color: #fff;
+}
 
-    /* Main Feature Category (e.g. Business) */
-    .category-card:nth-child(1) {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
+/* Theme Accents (Injected by JS usually, but defaults) */
+.theme-business { --theme-accent: #38bdf8; }
+.theme-streamer { --theme-accent: #d946ef; }
+.theme-lp { --theme-accent: #f43f5e; }
+.theme-portfolio { --theme-accent: #fbbf24; }
 
-    /* Secondary Categories */
-    .category-card:nth-child(2) {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .category-card:nth-child(3) {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
-
-    .category-card:nth-child(4) {
-        grid-column: span 3;
-        /* Wide bottom card */
-        grid-row: span 1;
-        min-height: 200px;
-    }
+/* View Transition API Fallback Fade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
 }

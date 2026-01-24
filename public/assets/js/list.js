@@ -143,9 +143,21 @@ function renderAllCategorySections() {
             card.tabIndex = 0;
             card.setAttribute('role', 'button');
             card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
+            
+            // Unified Glow: Set Color Variable
+            const cardColor = (t.colors && t.colors.length > 0) ? t.colors[0] : '#00f2ff';
+            card.style.setProperty('--card-color', cardColor);
+
+            if (t.image) {
+                card.style.backgroundImage = `url(${t.image})`;
+                card.classList.add('has-image');
+            }
+
             card.innerHTML = `
-                <div class="big-char">${t.tag}</div>
-                <div class="theme-label">${t.themeLabel || ''}</div>
+                <div class="placeholder-content">
+                    <div class="big-char">${t.tag}</div>
+                    <div class="theme-label">${t.themeLabel || ''}</div>
+                </div>
             `;
             card.addEventListener('click', () => { if (shouldBlockClick()) return; Haptics.select(); openModal(t.id); });
             card.addEventListener('keydown', (e) => {
@@ -201,8 +213,9 @@ function initAuroraDefault() {
     if (!container) return;
 
     container.innerHTML = '';
+    // Deep Space Tuning: Darker colors, high contrast
     PremiumEffects.Aurora('#auroraBg', {
-        colors: ['#00f2ff', '#7000ff', '#ff0055'],
+        colors: ['#050a14', '#0f172a', '#1e1b4b'], // Very Dark Blue/Purple
         bg: 'transparent'
     });
 }
@@ -241,14 +254,34 @@ function initGallery(categoryId) {
     renderIndexBar(templates);
     renderGallery(templates);
 
+
     // Init Scroll Listeners
     setupScrollSync();
 
-    // Init Aurora Background
+    // Init Aurora Background (Deep Space Tuned)
     initAurora(categoryData);
 
     // Init 3D Tilt
     initTilt();
+
+    // Init View Transitions
+    initViewTransitions();
+}
+
+function initViewTransitions() {
+    // Intercept internal links for View Transitions
+    document.querySelectorAll('a').forEach(link => {
+        if (link.origin === location.origin && link.target !== '_blank') {
+            link.addEventListener('click', e => {
+                if (document.startViewTransition) {
+                    e.preventDefault();
+                    document.startViewTransition(() => {
+                        window.location.href = link.href;
+                    });
+                }
+            });
+        }
+    });
 }
 
 function initTilt() {
@@ -256,7 +289,7 @@ function initTilt() {
 
     // Apply 3D Tilt to Gallery Cards
     // Subtle tilt, slight scale
-    PremiumEffects.Tilt('.gallery-item', {
+    PremiumEffects.Tilt('.gallery-item, .mini-card', { // Apply to mini-card too
         max: 8,
         perspective: 1200,
         scale: 1.02
@@ -270,22 +303,22 @@ function initAurora(categoryData) {
     if (!container) return;
 
     // Define colors based on category ID or Theme
-    // Default: Business Blue/Gold
-    let colors = ['#003366', '#d4af37', '#ffffff'];
+    // Deep Space Tuning: Darker base, subtle highlights
+    let colors = ['#050a14', '#0f172a', '#1e1b4b'];
 
     if (categoryData) {
         switch (categoryData.id) {
             case 'business':
-                colors = ['#003366', '#1e90ff', '#d4af37']; // Deep Blue, Azure, Gold
+                colors = ['#020617', '#0c4a6e', '#1e3a8a']; // Deepest Blue
                 break;
             case 'streamer':
-                colors = ['#7000ff', '#bc13fe', '#00ff00']; // Purple, Neon Pink, Green
+                colors = ['#1a0524', '#4a044e', '#3b0764']; // Deep Purple
                 break;
             case 'lp':
-                colors = ['#ff0055', '#ff9900', '#ffffff']; // Red, Orange, White
+                colors = ['#2b0808', '#450a0a', '#4c0519']; // Deep Red
                 break;
             case 'portfolio':
-                colors = ['#ffcc00', '#333333', '#f0f0f0']; // Yellow, Dark, Light
+                colors = ['#1c1917', '#292524', '#451a03']; // Deep Amber/Brown
                 break;
         }
     }
@@ -301,13 +334,44 @@ function initAurora(categoryData) {
     });
 }
 
+// === Filtering Logic ===
+let activeTag = null;
+
 function renderIndexBar(templates) {
     const bar = document.getElementById('indexBar');
+    bar.innerHTML = ''; // Clear existing
+
+    // 1. Tag Filter Buttons
+    const allTags = [...new Set(templates.flatMap(t => t.features))];
+    
+    // Create Tag Container if not exists
+    let tagContainer = document.getElementById('tagFilterContainer');
+    if (!tagContainer) {
+        tagContainer = document.createElement('div');
+        tagContainer.id = 'tagFilterContainer';
+        tagContainer.className = 'tag-filter-container';
+        // Insert before index bar or inside it? Let's put it above.
+        bar.parentElement.insertBefore(tagContainer, bar);
+    }
+    tagContainer.innerHTML = '';
+
+    const allBtn = document.createElement('button');
+    allBtn.className = 'tag-btn active';
+    allBtn.textContent = 'All';
+    allBtn.onclick = () => filterByTag(null, templates, allBtn);
+    tagContainer.appendChild(allBtn);
+
+    allTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'tag-btn';
+        btn.textContent = `#${tag}`;
+        btn.onclick = () => filterByTag(tag, templates, btn);
+        tagContainer.appendChild(btn);
+    });
+
+    // 2. Alphabet Index (Original)
     // Get unique starting letters
     const letters = [...new Set(templates.map(t => t.tag))].sort();
-
-    // Determine which templates are implemented (have actual content)
-    // For now, A-H are implemented, I-Z are placeholders
     const implementedTags = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     letters.forEach((letter, index) => {
@@ -315,7 +379,6 @@ function renderIndexBar(templates) {
         link.className = 'index-link';
         if (index === 0) link.classList.add('active');
 
-        // Gray out unimplemented templates
         const isImplemented = implementedTags.includes(letter);
         if (!isImplemented) {
             link.classList.add('disabled');
@@ -334,6 +397,21 @@ function renderIndexBar(templates) {
 
         bar.appendChild(link);
     });
+}
+
+function filterByTag(tag, templates, btn) {
+    activeTag = tag;
+    // Update Active Button
+    document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Filter Templates
+    const filtered = tag ? templates.filter(t => t.features.includes(tag)) : templates;
+    
+    // Re-render Gallery
+    const container = document.getElementById('galleryContainer');
+    container.innerHTML = '';
+    renderGalleryCards(filtered, container);
 }
 
 function renderGallery(templates) {
@@ -384,6 +462,10 @@ function renderGalleryCards(templates, container) {
             card.classList.add('has-image');
         }
 
+        // Set Card Color for Unified Glow
+        const cardColor = (t.colors && t.colors.length > 0) ? t.colors[0] : '#00f2ff';
+        card.style.setProperty('--card-color', cardColor);
+
         const labelHtml = t.themeLabel
             ? `<div class="theme-label">${t.themeLabel}</div>`
             : '';
@@ -392,11 +474,18 @@ function renderGalleryCards(templates, container) {
             <div class="placeholder-content">
                 <div class="big-char">${t.tag}</div>
                 ${labelHtml}
-                <button class="btn-view" onclick="openModal('${t.id}')">DETAILS</button>
+                <div class="card-actions">
+                    <button class="btn-view" onclick="openModal('${t.id}')">DETAILS</button>
+                    <button class="btn-copy" onclick="copyCommand('${t.id}', event)" title="Copy Command">
+                        <span class="material-icons">content_copy</span>
+                    </button>
+                </div>
             </div>
         `;
 
         card.addEventListener('click', (e) => {
+            // Prevent if clicked on buttons
+            if (e.target.closest('button')) return;
             if (shouldBlockClick()) return;
             Haptics.select();
             openModal(t.id);
@@ -417,6 +506,24 @@ function renderGalleryCards(templates, container) {
     setupScrollSync();
     initTilt();
 }
+
+// Copy Command Function
+window.copyCommand = function(id, e) {
+    e.stopPropagation(); // Prevent card click
+    const command = `opencode run ${id}`;
+    navigator.clipboard.writeText(command).then(() => {
+        Haptics.success();
+        // Show tooltip or toast? For now simple alert or console
+        // Better: Change icon temporarily
+        const btn = e.currentTarget;
+        const icon = btn.querySelector('.material-icons');
+        const original = icon.textContent;
+        icon.textContent = 'check';
+        setTimeout(() => icon.textContent = original, 2000);
+    }).catch(() => {
+        Haptics.error();
+    });
+};
 
 // Modal Logic
 function openModal(templateId) {
