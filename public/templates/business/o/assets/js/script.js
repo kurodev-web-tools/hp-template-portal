@@ -1,3 +1,20 @@
+
+// Custom Toggle Logic
+window.toggleMenu = function() {
+    const menu = document.querySelector('.organic-mobile-menu');
+    const toggle = document.querySelector('.organic-mobile-toggle');
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu_open';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Organic Theme Effects =====
     if (window.PremiumEffects) {
@@ -8,22 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
         PremiumEffects.Tilt('.session-item', { max: 5, scale: 1.05 });
     }
 
-    // ===== Mobile Menu Toggle =====
-    const toggle = document.querySelector('.organic-mobile-toggle');
+    // ===== Mobile Menu Auto-Close =====
     const menu = document.querySelector('.organic-mobile-menu');
-
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            toggle.querySelector('.material-icons').textContent =
-                menu.classList.contains('active') ? 'close' : 'menu_open';
-        });
-
-        // Close menu on link click
+    const toggle = document.querySelector('.organic-mobile-toggle');
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                toggle.querySelector('.material-icons').textContent = 'menu_open';
+                if (toggle) {
+                     const icon = toggle.querySelector('.material-icons');
+                     if (icon) icon.textContent = 'menu_open';
+                }
             });
         });
     }

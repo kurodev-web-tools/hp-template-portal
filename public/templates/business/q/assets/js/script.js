@@ -1,3 +1,20 @@
+
+// Global Toggle Function
+window.toggleMenu = function() {
+    const menu = document.querySelector('.precision-mobile-menu');
+    const toggle = document.querySelector('.precision-mobile-toggle');
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Quality Theme Effects =====
     if (window.PremiumEffects) {
@@ -18,25 +35,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        document.querySelector('.top-loader').style.width = `${scrolled}%`;
+        const loader = document.querySelector('.top-loader');
+        if(loader) loader.style.width = `${scrolled}%`;
     });
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.precision-mobile-toggle');
+    // ===== Mobile Menu Auto-Close =====
     const menu = document.querySelector('.precision-mobile-menu');
+    const toggle = document.querySelector('.precision-mobile-toggle');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
-
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (toggle) {
+                     const icon = toggle.querySelector('.material-icons');
+                     if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

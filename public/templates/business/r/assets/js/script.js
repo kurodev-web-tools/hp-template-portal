@@ -1,3 +1,20 @@
+
+// Global Toggle Function
+window.toggleMenu = function() {
+    const menu = document.querySelector('.royal-mobile-menu');
+    const toggle = document.querySelector('.royal-mobile-toggle');
+    if (menu) {
+        menu.classList.toggle('active');
+        
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Royal Theme Effects =====
     if (window.PremiumEffects) {
@@ -18,22 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.royal-mobile-toggle');
+    // ===== Mobile Menu Auto-Close =====
     const menu = document.querySelector('.royal-mobile-menu');
+    const toggle = document.querySelector('.royal-mobile-toggle');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-        });
-
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (toggle) {
+                     const icon = toggle.querySelector('.material-icons');
+                     if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

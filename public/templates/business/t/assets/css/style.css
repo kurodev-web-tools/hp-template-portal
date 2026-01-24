@@ -17,6 +17,11 @@ body.theme-trust {
     overflow-x: hidden;
 }
 
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 /* Response Break Utility */
 .mobile-break {
     display: none;
@@ -474,7 +479,8 @@ body.theme-trust {
     align-items: center;
     justify-content: center;
     transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    /* Wow Factor: Robust slide */
+    transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1);
     border-left: 20px solid var(--color-trust-blue);
 }
 
@@ -487,10 +493,13 @@ body.theme-trust {
     top: 2rem;
     left: 4rem;
     font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: var(--color-trust-blue);
     letter-spacing: 0.3em;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .trust-mobile-menu ul {
@@ -514,7 +523,6 @@ body.theme-trust {
     letter-spacing: 0.1em;
 }
 
-/* Mobile Adaptations */
 @media (max-width: 1024px) {
     .trust-header {
         padding: 1.5rem 0;
@@ -525,16 +533,35 @@ body.theme-trust {
     }
 
     .trust-mobile-toggle {
-        display: block;
-        background: none;
-        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 20px !important;
+        right: 20px !important;
+        top: auto !important;
+        z-index: 9999;
+        background: var(--color-steel);
+        border: 2px solid #fff;
+        color: #fff;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         cursor: pointer;
-        padding: 5px;
+    }
+
+    .trust-mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh;
+        max-width: 100vw;
+        overflow: hidden;
     }
 
     .trust-mobile-toggle span {
-        font-size: 2.22rem;
-        color: var(--color-steel);
+        font-size: 2rem;
     }
 
     .contact-card {
@@ -624,5 +651,26 @@ body.theme-trust {
 
     .subpage-hero p {
         font-size: 1rem;
+    }
+
+    /* Overflow Fix for "GLOBAL_STANDARDS" - V3 */
+    .text-area h2 {
+        font-size: 1.5rem !important; /* さらに小さくして収める */
+        overflow-wrap: normal !important; /* 単語途中での改行を禁止 */
+        word-break: normal !important;
+        white-space: normal;
+        line-height: 1.2;
+    }
+    
+    /* 念のため全体的なH2サイズも調整 */
+    .section-header h2 {
+         font-size: 2.5rem;
+         overflow-wrap: break-word;
+    }
+    
+    /* Body/HTMLの横スクロール防止（再確認） */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100%;
     }
 }

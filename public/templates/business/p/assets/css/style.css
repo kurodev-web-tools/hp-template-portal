@@ -349,8 +349,30 @@ body.theme-pop {
     border-bottom: 8px solid var(--color-black);
 }
 
+/* Wow Factor: Halftone Background */
+.pop-mobile-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--color-pop-pink) 20%, transparent 20%);
+    background-size: 20px 20px;
+    opacity: 0.1;
+    z-index: -1;
+}
+
 .pop-mobile-menu.is-active {
     transform: translateY(0);
+    animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: translateY(-100%); }
+    60% { transform: translateY(10%); }
+    80% { transform: translateY(-5%); }
+    100% { transform: translateY(0); }
 }
 
 .pop-mobile-menu ul {
@@ -397,12 +419,23 @@ body.theme-pop {
         display: flex;
         align-items: center;
         justify-content: center;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1100;
         background: var(--color-pop-cyan);
-        border: 3px solid var(--color-black);
-        width: 45px;
-        height: 45px;
-        box-shadow: 4px 4px 0 var(--color-black);
+        border: 4px solid var(--color-black);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 6px 6px 0 var(--color-black);
         cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    .pop-mobile-toggle:active {
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0 var(--color-black);
     }
 
     .pop-stroke {

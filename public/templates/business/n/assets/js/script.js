@@ -1,3 +1,21 @@
+
+// Define toggleMenu globally for the onclick attribute
+window.toggleMenu = function() {
+    const menu = document.querySelector('.neon-mobile-menu');
+    const toggle = document.querySelector('.neon-mobile-toggle');
+    if (menu) {
+        menu.classList.toggle('is-active');
+        
+        // Toggle icon
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('is-active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Neon Theme Effects =====
     if (window.PremiumEffects) {
@@ -8,33 +26,25 @@ document.addEventListener('DOMContentLoaded', () => {
         PremiumEffects.Tilt('.terminal-window, .vibe-card', { max: 10, scale: 1.02, speed: 1000 });
     }
 
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.neon-mobile-toggle');
+    // ===== Mobile Menu Auto-Close =====
     const menu = document.querySelector('.neon-mobile-menu');
+    const toggle = document.querySelector('.neon-mobile-toggle');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('is-active');
-
-            // Toggle icon
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('is-active') ? 'close' : 'menu';
-            }
-        });
-
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('is-active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (toggle) {
+                    const icon = toggle.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }
 
     // ===== Scrolling Sidebar Highlight =====
     const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.side-nav a');
+    const navLinks = document.querySelectorAll('.side-nav a'); // Updated selector to match .nav class or wrapper
 
     window.addEventListener('scroll', () => {
         let current = '';

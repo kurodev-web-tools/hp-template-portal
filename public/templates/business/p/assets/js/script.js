@@ -1,3 +1,20 @@
+
+// Global Toggle Function
+window.toggleMenu = function() {
+    const menu = document.querySelector('.pop-mobile-menu');
+    const toggle = document.querySelector('.pop-mobile-toggle');
+    if (menu) {
+        menu.classList.toggle('is-active');
+        
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = menu.classList.contains('is-active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Pop Theme Effects =====
     if (window.PremiumEffects) {
@@ -18,22 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
             sticker.style.animation = '';
         });
     });
-    // ===== Mobile Menu Logic =====
-    const toggle = document.querySelector('.pop-mobile-toggle');
+
+    // ===== Mobile Menu Auto-Close =====
     const menu = document.querySelector('.pop-mobile-menu');
+    const toggle = document.querySelector('.pop-mobile-toggle');
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('is-active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = menu.classList.contains('is-active') ? 'close' : 'menu';
-        });
-
+    if (menu) {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('is-active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (toggle) {
+                     const icon = toggle.querySelector('.material-icons');
+                     if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

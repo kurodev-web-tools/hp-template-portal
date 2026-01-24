@@ -397,6 +397,8 @@ body.theme-royal {
     list-style: none;
     padding: 0;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .royal-mobile-menu li {
@@ -425,7 +427,34 @@ body.theme-royal {
     background-repeat: no-repeat;
     background-position: center;
     margin: 2rem 0;
+    position: relative;
+    z-index: 2;
 }
+
+/* Wow Factor: SVG Border Animation */
+.royal-menu-border-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.border-rect {
+    fill: none;
+    stroke: var(--color-gold);
+    stroke-width: 2;
+    stroke-dasharray: 4000;
+    stroke-dashoffset: 4000;
+    transition: stroke-dashoffset 2.5s ease-in-out;
+}
+
+.royal-mobile-menu.active .border-rect {
+    stroke-dashoffset: 0;
+}
+
 
 /* Mobile Adaptations */
 @media (max-width: 768px) {
@@ -457,11 +486,25 @@ body.theme-royal {
     }
 
     .royal-mobile-toggle {
-        display: block;
-        background: none;
-        border: none;
+        display: flex;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1100;
+        background: rgba(13, 13, 13, 0.9);
+        border: 2px solid var(--color-gold);
         color: var(--color-gold);
+        width: 50px;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .royal-mobile-toggle:hover {
+        background: var(--color-gold);
+        color: #000;
     }
 
     .royal-mobile-toggle span {

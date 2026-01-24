@@ -1,3 +1,20 @@
+
+// Global Toggle Function
+window.toggleMenu = function() {
+    const sidebar = document.querySelector('.saas-sidebar');
+    const toggle = document.querySelector('.saas-mobile-toggle');
+    if (sidebar) {
+        sidebar.classList.toggle('active');
+        
+        if (toggle) {
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) {
+                icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
+            }
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===== Smart SaaS Theme Effects =====
     if (window.PremiumEffects) {
@@ -28,22 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
     // ===== Mobile Sidebar Logic =====
-    const toggle = document.querySelector('.saas-mobile-toggle');
     const sidebar = document.querySelector('.saas-sidebar');
+    const toggle = document.querySelector('.saas-mobile-toggle');
 
-    if (toggle && sidebar) {
-        toggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
-        });
-
+    if (sidebar) {
         sidebar.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 sidebar.classList.remove('active');
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (toggle) {
+                    const icon = toggle.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'menu';
+                }
             });
         });
     }

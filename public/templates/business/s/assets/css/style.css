@@ -486,6 +486,8 @@ body.theme-smart {
         transform: translateX(-100%);
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
+        /* Wow Factor: 3D Isometric */
+        perspective: 1000px;
     }
 
     .saas-sidebar.active {
@@ -494,12 +496,38 @@ body.theme-smart {
     }
 
     .saas-mobile-toggle {
-        display: block;
-        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1100;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--color-violet);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
         border: none;
         cursor: pointer;
-        padding: 0;
-        margin-right: 1.5rem;
+    }
+
+    /* Isometric Menu Items */
+    .saas-sidebar.active .sidebar-nav a {
+        background: rgba(255, 255, 255, 0.1);
+        margin-bottom: 1rem;
+        transform: rotateX(10deg) rotateY(-10deg) translateZ(0);
+        transition: transform 0.4s, background 0.3s;
+        box-shadow: -5px 5px 10px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .saas-sidebar.active .sidebar-nav a:hover {
+        transform: rotateX(0) rotateY(0) translateZ(20px);
+        background: var(--color-violet);
+        box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .saas-main {
