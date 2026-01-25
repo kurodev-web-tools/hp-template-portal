@@ -79,7 +79,7 @@ function initAllCategories() {
     // Show all-categories elements
     document.getElementById('sidebarNav').classList.add('visible');
     document.getElementById('allCategoriesContainer').classList.add('visible');
-    
+
     // Show Mobile Nav
     const mobileNav = document.getElementById('mobileCategoryNav');
     if (mobileNav) mobileNav.style.display = ''; // Reset to CSS default (flex on mobile)
@@ -90,12 +90,50 @@ function initAllCategories() {
     // Render sidebar and sections
     renderSidebar();
     renderAllCategorySections();
-    renderMobileNav(); // Added mobile nav rendering
+    renderMobileNav();
+    setupMobileNavObserver(); // Added Scroll-Sync
+
+    // Dynamic Meta (SEO)
+    updateDynamicMeta(null);
 
     // Init Aurora with default colors
     initAuroraDefault();
     // Init Particles
     initParticles();
+}
+
+/**
+ * Mobile Nav Scroll-Sync
+ * Automatically updates active state of mobile nav as user scrolls
+ */
+function setupMobileNavObserver() {
+    const sections = document.querySelectorAll('.category-section');
+    const navLinks = document.querySelectorAll('.mobile-cat-link');
+    const mobileNav = document.getElementById('mobileCategoryNav');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const catId = entry.target.id.replace('section-', '');
+
+                navLinks.forEach(link => {
+                    if (link.dataset.id === catId) {
+                        link.classList.add('active');
+                        // Bonus: Scroll link into view horizontally
+                        link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, {
+        root: document.querySelector('.gallery-content.scrollable-y'),
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
 }
 
 function renderSidebar() {
@@ -277,6 +315,9 @@ function initGallery(categoryId) {
     // Render Index Bar and Gallery
     renderIndexBar(templates);
     renderGallery(templates);
+
+    // Dynamic Meta (SEO)
+    updateDynamicMeta(categoryData);
 
 
     // Init Scroll Listeners
@@ -545,6 +586,7 @@ function renderGalleryCards(templates, container) {
 // Modal Logic
 function openModal(templateId) {
     Haptics.tap(); // Haptic feedback on modal open
+    document.body.classList.add('modal-open');
 
     // Find template data
     let template;
@@ -558,19 +600,17 @@ function openModal(templateId) {
 
     if (!template) return;
 
+    // Set Category Color for Background Glow
+    const primaryColor = (template.colors && template.colors.length > 0) ? template.colors[0] : 'var(--color-primary)';
+    const modalOverlay = document.getElementById('detailModal');
+    modalOverlay.style.setProperty('--card-color', primaryColor);
+
     // Populate Modal
     document.getElementById('modalTag').textContent = template.tag;
-    // Use Theme Label for Title (e.g. "Authentic", "Bold") if available, else Name
     document.getElementById('modalTitle').textContent = template.themeLabel || template.name;
-
-    // Dynamic Color for Title
-    const primaryColor = (template.colors && template.colors.length > 0) ? template.colors[0] : 'var(--color-primary)';
     document.getElementById('modalTitle').style.color = primaryColor;
-
-    // Also style the Tag watermark with this color (optional, but looks nice)
     document.getElementById('modalTag').style.webkitTextStrokeColor = primaryColor;
     document.getElementById('modalTag').style.opacity = '0.15';
-
     document.getElementById('modalDesc').textContent = template.description || 'No description available.';
 
     // Features
@@ -581,7 +621,6 @@ function openModal(templateId) {
         span.className = 'feature-tag';
         span.textContent = f;
         span.style.borderColor = 'rgba(255,255,255,0.1)';
-        // Hover effect is handled by CSS, but we could inject var
         featContainer.appendChild(span);
     });
 
@@ -592,40 +631,34 @@ function openModal(templateId) {
         const div = document.createElement('div');
         div.className = 'color-dot';
         div.style.backgroundColor = c;
-        div.style.boxShadow = `0 0 10px ${c}40`; // Add glow
+        div.style.boxShadow = `0 0 10px ${c}40`;
         colorContainer.appendChild(div);
     });
 
     // Link
     const modalLink = document.getElementById('modalLink');
     modalLink.href = `${template.path}/index.html`;
-
-    // Use White Background with Brand Color text for better contrast/premium look
-    // Updated: Use pure CSS class control for outline style (Ghost Button)
-    modalLink.style.background = '';
-    modalLink.style.color = '';
-    modalLink.style.border = '';
-    modalLink.style.boxShadow = '';
-
-    // We can inject the color as a CSS variable for the button to use on hover
     modalLink.style.setProperty('--btn-color', primaryColor);
+
+    // Enhance View Transition on Demo Click
+    modalLink.onclick = (e) => {
+        // Assign view-transition-name dynamically to the modal for a smooth exit
+        document.querySelector('.modal-content').style.viewTransitionName = 'hero-card';
+    };
 
     // Show
     document.getElementById('detailModal').classList.add('open');
 }
 
-// Helper to get color (Deprecated/Fallback)
-function getCategoryColor(id) {
-    return null;
-}
-
 // Close Logic
 document.getElementById('modalClose').addEventListener('click', () => {
     document.getElementById('detailModal').classList.remove('open');
+    document.body.classList.remove('modal-open');
 });
 document.getElementById('detailModal').addEventListener('click', (e) => {
     if (e.target.id === 'detailModal') {
         document.getElementById('detailModal').classList.remove('open');
+        document.body.classList.remove('modal-open');
     }
 });
 
@@ -685,6 +718,10 @@ function setupScrollSync() {
  * Implements click/drag threshold to avoid conflicting with card clicks
  */
 let wasDragging = false; // Global flag to prevent clicks after drag
+
+function shouldBlockClick() {
+    return wasDragging;
+}
 
 function setupDragScroll(container) {
     let isDown = false;
@@ -783,16 +820,16 @@ function initParticles() {
 function renderMobileNav() {
     const container = document.getElementById('mobileCategoryNav');
     if (!container) return;
-    
+
     container.innerHTML = '';
-    
+
     PORTAL_DATA.categories.forEach((cat, index) => {
         const btn = document.createElement('div');
         btn.className = 'mobile-cat-link';
         if (index === 0) btn.classList.add('active'); // Default active
         btn.textContent = cat.name;
         btn.dataset.id = cat.id;
-        
+
         btn.addEventListener('click', () => {
             Haptics.tap();
             // In All Categories view, scroll to section
@@ -801,7 +838,7 @@ function renderMobileNav() {
                 // Determine the scrollable container. 
                 // Based on layout fix, it's .gallery-content.scrollable-y
                 const scroller = document.querySelector('.gallery-content.scrollable-y');
-                
+
                 if (scroller) {
                     // Using scrollIntoView with scroll-margin-top is cleanest if defined
                     // list.css defines .category-section { scroll-margin-top: var(--spacing-xl); }
@@ -809,18 +846,49 @@ function renderMobileNav() {
                     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
                     // Fallback to window scroll if not locked
-                    const offset = 120; 
+                    const offset = 120;
                     const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({ top, behavior: 'smooth' });
                 }
             }
-            
+
             // Update Active State UI
             document.querySelectorAll('.mobile-cat-link').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         });
-        
+
         container.appendChild(btn);
     });
+}
+
+/**
+ * Dynamic Meta (SEO) Update
+ * Updates Document Title and Meta Tags based on Category
+ */
+function updateDynamicMeta(categoryData) {
+    const siteName = 'HP Portal';
+    let title = 'Home Templates Gallery';
+    let description = '高品質なホームページテンプレートを一覧表示。プレビューと詳細を確認できます。';
+
+    if (categoryData) {
+        title = `${categoryData.name} Template Gallery`;
+        description = categoryData.description;
+    } else {
+        title = 'All Templates Gallery';
+    }
+
+    // Update Document Title
+    document.title = `${title} - ${siteName}`;
+
+    // Update Meta Description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', description);
+
+    // Update OG Tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', `${title} - ${siteName}`);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
 }
 

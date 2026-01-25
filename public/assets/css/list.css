@@ -49,6 +49,33 @@
     overflow: hidden; /* Default for single view */
     height: 100%;
     position: relative;
+    transition: transform 0.5s var(--transition-smooth), filter 0.5s var(--transition-smooth);
+}
+
+/* ALL Categories View Override: Main Vertical Scroll */
+.gallery-content.scrollable-y {
+    overflow-y: auto !important; 
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; /* Smooth mobile scroll */
+}
+
+/* Ensure Footer sits nicely in flex container */
+.gallery-content .site-footer {
+    margin-top: auto;
+    padding-bottom: 2rem;
+    flex-shrink: 0;
+}
+
+/* Background push-back effect when modal is open */
+body.modal-open .gallery-content {
+    transform: scale(0.98);
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+.all-categories-container.visible {
+    display: flex !important;
+    width: 100%;
 }
 
 /* ALL Categories View Override: Main Vertical Scroll */
