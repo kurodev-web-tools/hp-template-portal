@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STATS // ESPORTS_PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Stats specific styles */
+        .chart-container {
+            margin-top: 40px;
+            padding: 20px;
+        }
+        .stat-bar-group {
+            margin-bottom: 20px;
+        }
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            color: #a0aec0;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .stat-track {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .stat-fill {
+            height: 100%;
+            background: var(--pro-blue);
+            width: 0;
+            transition: width 1s ease-out;
+        }
+        .grid-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .mini-stat {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .mini-stat h4 { color: #718096; font-size: 0.8rem; margin-bottom: 5px; }
+        .mini-stat .val { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    </style>
+</head>
+<body class="theme-streamer custom-menu-only">
+    <header class="pro-header">
+        <div class="header-inner">
+            <div class="brand"><a href="index.html" style="color:inherit;">E-SPORTS_PRO</a></div>
+            <div class="nav">
+                <ul>
+                    <li><a href="stats.html" class="active">STATS</a></li>
+                    <li><a href="achievements.html">TITLES</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <button class="mobile-toggle">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="stats.html">STATS</a></li>
+            <li><a href="achievements.html">TITLES</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="hero" style="padding: 80px 20px; min-height: 40vh;">
+            <div class="hero-content animate-fade-up">
+                <span class="pro-label">ANALYTICS</span>
+                <h1 class="hero-title" style="font-size: 3rem;">PLAYER STATISTICS</h1>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="section-inner">
+                <div class="scoreboard glass-surface animate-fade-up">
+                    <div class="score-header">SEASON 2025 - OVERVIEW</div>
+                    <div class="score-grid">
+                        <div class="score-item">
+                            <span class="label">MATCHES</span>
+                            <span class="value count-up">1,240</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">WIN RATE</span>
+                            <span class="value count-up">78%</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">HEADSHOT %</span>
+                            <span class="value count-up">42%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3 style="color: #fff; margin-bottom: 20px; font-size: 1.2rem;">WEAPON MASTERY</h3>
+                        
+                        <div class="stat-bar-group">
+                            <div class="stat-label"><span>Sniper Rifle</span><span>92%</span></div>
+                            <div class="stat-track"><div class="stat-fill" style="width: 92%"></div></div>
+                        </div>
+                        <div class="stat-bar-group">
+                            <div class="stat-label"><span>Assault Rifle</span><span>85%</span></div>
+                            <div class="stat-track"><div class="stat-fill" style="width: 85%"></div></div>
+                        </div>
+                        <div class="stat-bar-group">
+                            <div class="stat-label"><span>Handgun</span><span>64%</span></div>
+                            <div class="stat-track"><div class="stat-fill" style="width: 64%"></div></div>
+                        </div>
+
+                        <div class="grid-stats">
+                            <div class="mini-stat">
+                                <h4>AVG DAMAGE</h4>
+                                <div class="val count-up">8,450</div>
+                            </div>
+                            <div class="mini-stat">
+                                <h4>PLAYTIME</h4>
+                                <div class="val">4,200H</div>
+                            </div>
+                            <div class="mini-stat">
+                                <h4>RANK</h4>
+                                <div class="val" style="color: var(--pro-blue);">#1 GLOBAL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <span class="brand-name">E-SPORTS_PRO</span>
+            <p class="copyright">&copy; 2026 E-SPORTS_PRO. PLAY TO WIN.</p>
+        </div>
+    </footer>
+
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+    <script>
+        // Simple animation for bars
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.stat-fill').forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => bar.style.width = width, 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

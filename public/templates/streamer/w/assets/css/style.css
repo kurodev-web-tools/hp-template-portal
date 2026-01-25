@@ -1,0 +1,118 @@
+/* Wide Pan Custom Styles */
+:root {
+    --wide-bg: #fff;
+    --wide-text: #222;
+}
+
+body {
+    margin: 0;
+    overflow: hidden; /* Main scroll hidden, we use custom horizontal scroll */
+    font-family: 'Montserrat', sans-serif;
+    background: var(--wide-bg);
+}
+
+.parallax-container {
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    perspective: 1px; /* Key for 3D parallax if used, but we'll use JS for horiz parallax */
+    display: flex;
+    /* Hide scrollbar */
+    scrollbar-width: none; 
+}
+.parallax-container::-webkit-scrollbar { display: none; }
+
+.layer {
+    position: fixed;
+    top: 0; left: 0; height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+}
+
+.layer-bg {
+    width: 300%;
+    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000'); /* Mountains */
+    opacity: 0.5;
+    background-size: cover;
+}
+
+.layer-mid {
+    width: 400%;
+    /* Add shapes or clouds here */
+}
+
+.content-track {
+    display: flex;
+    width: 300vw; /* 3 Sections */
+}
+
+.h-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Header */
+.wide-header {
+    position: fixed;
+    top: 30px; left: 30px;
+    z-index: 1000;
+}
+
+.brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    color: #000;
+}
+
+.scroll-hint {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+}
+
+/* Content */
+.text-block {
+    padding: 60px;
+    max-width: 600px;
+}
+
+h1 { font-size: 6rem; font-weight: 800; letter-spacing: -5px; line-height: 0.9; margin: 0; }
+h2 { font-size: 4rem; margin-bottom: 20px; }
+p { font-size: 1.2rem; line-height: 1.8; color: #555; }
+
+.glass-panel {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+}
+
+.photo-strip {
+    display: flex;
+    gap: 20px;
+}
+
+.photo {
+    width: 300px; height: 400px;
+    background: #ccc;
+    transition: transform 0.3s;
+}
+.photo:hover { transform: scale(1.05); }
+.photo:nth-child(1) { background: #333; }
+.photo:nth-child(2) { background: #666; margin-top: 50px; }
+.photo:nth-child(3) { background: #999; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .content-track { width: 300vw; }
+    h1 { font-size: 4rem; }
+}

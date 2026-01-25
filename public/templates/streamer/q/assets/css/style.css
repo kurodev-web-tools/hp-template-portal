@@ -1,0 +1,200 @@
+/* Quest Log Custom Styles */
+:root {
+    --parchment-bg: #f3e5ab;
+    --wood-border: #8b4513;
+    --rpg-blue: #00008b;
+    --text-color: #3e2723;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    overflow: hidden; /* Like a game screen */
+    margin: 0;
+    font-size: 24px;
+}
+
+.wood-texture {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: 
+        repeating-linear-gradient(90deg, transparent 0, transparent 50px, rgba(0,0,0,0.1) 50px, rgba(0,0,0,0.1) 52px),
+        linear-gradient(to bottom, #5d4037, #3e2723);
+}
+
+.quest-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Main Menu */
+.main-menu-panel {
+    background: var(--rpg-blue);
+    border: 4px solid #fff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 10;
+}
+
+.game-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 3rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-list li {
+    font-size: 2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    position: relative;
+}
+
+.menu-list li:hover {
+    color: #ffd700;
+}
+
+.menu-list li .cursor {
+    display: none;
+    margin-right: 10px;
+}
+
+.menu-list li:hover .cursor {
+    display: inline-block;
+}
+
+/* Content Panels (Popups) */
+.content-panel {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background: var(--parchment-bg);
+    color: var(--text-color);
+    border: 8px solid var(--wood-border);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    z-index: 20;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-panel.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.content-panel.hidden {
+    display: none;
+}
+
+.panel-header {
+    background: var(--wood-border);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 { margin: 0; font-size: 1.5rem; }
+
+.close-btn {
+    background: #d32f2f;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.panel-body {
+    padding: 30px;
+    min-height: 200px;
+}
+
+/* Status Screen */
+.stats-grid {
+    display: grid;
+    gap: 10px;
+    font-size: 1.5rem;
+}
+.stat-row { display: flex; justify-content: space-between; border-bottom: 1px dotted var(--wood-border); }
+
+/* Quest List */
+.quest-list { list-style: none; padding: 0; }
+.quest-item {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.badge {
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    background: #555;
+    color: #fff;
+    border-radius: 4px;
+}
+.quest-item.completed .badge { background: #2e7d32; }
+.quest-item.active .badge { background: #1976d2; }
+.quest-item.locked { color: #888; }
+
+/* Buttons */
+.btn-group {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.rpg-btn {
+    display: inline-block;
+    background: var(--rpg-blue);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 30px;
+    border: 2px solid #fff;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+    transition: transform 0.1s;
+}
+
+.rpg-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.rpg-btn.primary {
+    background: #d32f2f;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .game-title { font-size: 2rem; }
+    .menu-list li { font-size: 1.5rem; }
+    .content-panel { width: 95%; }
+}

@@ -1,0 +1,182 @@
+/* Vivid Glitch Custom Styles */
+:root {
+    --vivid-cyan: #00ffff;
+    --vivid-magenta: #ff00ff;
+    --vivid-yellow: #ffff00;
+    --vivid-bg: #050505;
+}
+
+body {
+    background-color: var(--vivid-bg);
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Header */
+.vivid-header {
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    padding: 20px 0;
+    mix-blend-mode: difference;
+}
+
+.header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.brand {
+    font-family: 'Rubik Glitch', cursive;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.nav ul { display: flex; gap: 30px; }
+.nav a { font-size: 1.2rem; transition: color 0.3s; }
+.nav a:hover { color: var(--vivid-magenta); }
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-size: clamp(5rem, 15vw, 10rem);
+    line-height: 0.9;
+    margin: 0;
+    position: relative;
+}
+
+.hero-title.outline {
+    color: transparent;
+    -webkit-text-stroke: 2px #fff;
+}
+
+.hero-sub {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    letter-spacing: 5px;
+    opacity: 0.8;
+}
+
+/* RGB Split Effect Classes (Handled by JS) */
+.rgb-target {
+    position: relative;
+    display: inline-block;
+}
+
+.rgb-target::before, .rgb-target::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.rgb-target::before {
+    color: var(--vivid-cyan);
+    transform: translateX(var(--shift-x, 0));
+}
+
+.rgb-target::after {
+    color: var(--vivid-magenta);
+    transform: translateX(calc(var(--shift-x, 0) * -1));
+}
+
+/* Sections */
+.content-section {
+    padding: 120px 20px;
+    position: relative;
+}
+
+.content-section.inverted {
+    background: #fff;
+    color: #000;
+}
+
+.content-section.inverted .hero-title.outline {
+    -webkit-text-stroke: 2px #000;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.vivid-card {
+    border: 2px solid #fff;
+    padding: 40px;
+    transition: transform 0.2s;
+}
+
+.vivid-card:hover {
+    background: var(--vivid-yellow);
+    color: #000;
+    border-color: var(--vivid-yellow);
+    transform: scale(1.05);
+}
+
+.vivid-card h3 { font-size: 2rem; margin-bottom: 10px; }
+
+/* Noise Box */
+.noise-box {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    border: 4px solid #000;
+    padding: 60px;
+}
+
+.vivid-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: #000;
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.vivid-btn:hover {
+    background: var(--vivid-magenta);
+    color: #fff;
+    box-shadow: 10px 10px 0 var(--vivid-cyan);
+}
+
+/* Mobile */
+.mobile-toggle { display: none; background: none; border: none; color: #fff; }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--vivid-bg); z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: #fff; font-family: 'Anton', sans-serif; }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+    .hero-title { font-size: 3.5rem; }
+}

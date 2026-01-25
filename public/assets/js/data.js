@@ -255,27 +255,213 @@ const PORTAL_DATA = {
         ],
         'streamer': [
             {
-                id: 'st_a', name: 'Streamer A', tag: 'A', path: 'templates/streamer/a',
-                description: 'High energy design for streamers and content creators.',
-                features: ['Gaming', 'Twitch Integration', 'Neon'],
-                colors: ['#7000ff', '#00ff00', '#000000'],
+                id: 'st_a', name: 'Abyss Neon', tag: 'A', path: 'templates/streamer/a',
+                description: '深海ネオン、グリッチ、中毒性のある青とピンク。没入感溢れるサイバーパンク・デザイン。',
+                features: ['Cyberpunk', 'Glitch Effect', 'Neon'],
+                colors: ['#00f2ff', '#ff0055', '#05050a'],
                 image: '',
-                themeLabel: 'Gaming'
+                themeLabel: 'Abyss Neon'
             },
-            ...Array.from({ length: 25 }, (_, i) => {
-                const char = String.fromCharCode(66 + i); // B to Z
-                return {
-                    id: `st_${char.toLowerCase()}`,
-                    name: `Streamer ${char}`,
-                    tag: char,
-                    path: `templates/streamer/${char.toLowerCase()}`,
-                    description: `Vibrant streaming overlay style ${char}.`,
-                    features: ['OBS Ready', 'Responsive', 'Neon'],
-                    colors: ['#7000ff', '#00ff00', '#111111'],
-                    image: '',
-                    themeLabel: 'V-Tuber'
-                };
-            })
+            {
+                id: 'st_b', name: 'Boss Room', tag: 'B', path: 'templates/streamer/b',
+                description: 'RPGのボス戦を彷彿とさせる重厚なデザイン。ダークゴールドと視差効果で圧倒的な存在感を。',
+                features: ['RPG Boss', 'Parallax', 'Dark Gold'],
+                colors: ['#d4af37', '#8a6d3b', '#121212'],
+                image: '',
+                themeLabel: 'Boss Room'
+            },
+            {
+                id: 'st_c', name: 'Crystal Prism', tag: 'C', path: 'templates/streamer/c',
+                description: '宝石のような透明感と虹色の輝き。パステルカラーのガラスモーフィズム・デザイン。',
+                features: ['Glassmorphism', 'Prism', 'Pastel'],
+                colors: ['#ffd6ff', '#e7ffff', '#c8b6ff'],
+                image: '',
+                themeLabel: 'Crystal Prism'
+            },
+            {
+                id: 'st_d', name: 'Digital Ghost', tag: 'D', path: 'templates/streamer/d',
+                description: 'デジタルノイズと匿名性の深淵。スポットライト演出がミステリアスな雰囲気を醸成。',
+                features: ['Matrix', 'Spotlight', 'Mysterious'],
+                colors: ['#00ff41', '#003b00', '#000000'],
+                image: '',
+                themeLabel: 'Digital Ghost'
+            },
+            {
+                id: 'st_e', name: 'E-Sports Pro', tag: 'E', path: 'templates/streamer/e',
+                description: 'プロ大会の熱狂と信頼を形に。清潔感のあるブルーと白のグリッドレイアウト。',
+                features: ['Competitive', 'Scoreboard', 'Official'],
+                colors: ['#0055ff', '#ffffff', '#0a0e1a'],
+                image: '',
+                themeLabel: 'E-Sports Pro'
+            },
+            {
+                id: 'st_f', name: 'Future Tech', tag: 'F', path: 'templates/streamer/f',
+                description: '宇宙船のコンソールをイメージした未来志向のデザイン。独立したウィジェットが浮遊感を演出。',
+                features: ['Sci-Fi', 'Dashboard', 'Widget'],
+                colors: ['#00f2ff', '#030a10', '#00f2ff'],
+                image: '',
+                themeLabel: 'Future Tech'
+            },
+            {
+                id: 'st_g', name: 'Glitch Core', tag: 'G', path: 'templates/streamer/g',
+                description: 'RGBズレとカオスなエネルギー。過激な演出が視聴者の視線を釘付けにする衝撃的デザイン。',
+                features: ['Glitch', 'Noise', 'Chaos'],
+                colors: ['#ff0000', '#00ffff', '#000000'],
+                image: '',
+                themeLabel: 'Glitch Core'
+            },
+            {
+                id: 'st_h', name: 'Horror Mansion', tag: 'H', path: 'templates/streamer/h',
+                description: 'ホラーゲーム実況に特化した、没入感溢れるダークデザイン。懐中電灯演出が恐怖を誘う。',
+                features: ['Horror', 'Spotlight', 'Dark'],
+                colors: ['#991b1b', '#1a1a1b', '#000000'],
+                image: '',
+                themeLabel: 'Horror Mansion'
+            },
+            {
+                id: 'st_i', name: 'Idol Stage', tag: 'I', path: 'templates/streamer/i',
+                description: 'キラキラと輝くライブステージを再現。歌枠やアイドル系ストリーマーに最適。',
+                features: ['Idol', 'Particles', 'Sparkle'],
+                colors: ['#f472b6', '#ffffff', '#ffebf5'],
+                image: '',
+                themeLabel: 'Idol Stage'
+            },
+            {
+                id: 'st_j', name: 'Jazz Lounge', tag: 'J', path: 'templates/streamer/j',
+                description: '大人の余裕を感じさせる横スクロールデザイン。深夜の雑談やチルな配信に。',
+                features: ['Side Scroll', 'Jazz', 'Chill'],
+                colors: ['#b45309', '#2d1b0d', '#1a0f08'],
+                image: '',
+                themeLabel: 'Jazz Lounge'
+            },
+            {
+                id: 'st_k', name: 'Knight Honor', tag: 'K', path: 'templates/streamer/k',
+                description: '騎士の誇りと格式を。羊皮紙テクスチャとロイヤルブルーが織りなすマルチページ構成。',
+                features: ['Knight', 'Multi-page', 'Classic'],
+                colors: ['#2563eb', '#f3f4f6', '#d1d5db'],
+                image: '',
+                themeLabel: 'Knight Honor'
+            },
+            {
+                id: 'st_l', name: 'Lunar Phase', tag: 'L', path: 'templates/streamer/l',
+                description: '月の満ち欠けと幻想的な夜空。情緒的な配信スタイルを美しく演出。',
+                features: ['Lunar', 'Fantasy', 'Calm'],
+                colors: ['#fef3c7', '#4c1d95', '#1e1b4b'],
+                image: '',
+                themeLabel: 'Lunar Phase'
+            },
+            {
+                id: 'st_m', name: 'Metallic Chrome', tag: 'M', path: 'templates/streamer/m',
+                description: '無機質で鋭利なクロームデザイン。液体金属のような高度なビジュアル表現。',
+                features: ['Metallic', 'Liquid', 'Pro'],
+                colors: ['#9ca3af', '#111827', '#000000'],
+                image: '',
+                themeLabel: 'Metallic Chrome'
+            },
+            {
+                id: 'st_n', name: 'Neon Night', tag: 'N', path: 'templates/streamer/n',
+                description: '眠らない街のネオンサイン。都会的でストリート感のあるパープルスタイル。',
+                features: ['Neon', 'Urban', 'Street'],
+                colors: ['#7000ff', '#1e1b4b', '#020617'],
+                image: '',
+                themeLabel: 'Neon Night'
+            },
+            {
+                id: 'st_o', name: 'Orbit Space', tag: 'O', path: 'templates/streamer/o',
+                description: '宇宙の壮大さと浮遊感を表現した全画面スクロールデザイン。銀河を旅するような体験を。',
+                features: ['Full-page', 'Snap Scroll', 'Space'],
+                colors: ['#00d2ff', '#3a7bd5', '#000222'],
+                image: '',
+                themeLabel: 'Orbit Space'
+            },
+            {
+                id: 'st_p', name: 'Pixel Retro', tag: 'P', path: 'templates/streamer/p',
+                description: '懐かしの8-bitスタイル。ドット絵とPress Start 2Pフォントが織りなすレトロな世界観。',
+                features: ['8-bit', 'Pixel Art', 'Retro'],
+                colors: ['#22c55e', '#795548', '#000000'],
+                image: '',
+                themeLabel: 'Pixel Retro'
+            },
+            {
+                id: 'st_q', name: 'Quest Log', tag: 'Q', path: 'templates/streamer/q',
+                description: '王道RPGのメニュー画面をWebサイトに。冒険の記録（配信内容）を美しく整理。',
+                features: ['RPG UI', 'Log Style', 'Fantasy'],
+                colors: ['#f5e6be', '#5d4037', '#2b1d0e'],
+                image: '',
+                themeLabel: 'Quest Log'
+            },
+            {
+                id: 'st_r', name: 'Rogue Stealth', tag: 'R', path: 'templates/streamer/r',
+                description: '暗闇に紛れるアウトロースタイル。スモーク演出とヴィネット効果が緊張感を醸成。',
+                features: ['Stealth', 'Smoke Effect', 'Dark Red'],
+                colors: ['#991b1b', '#000000', '#1a1a1a'],
+                image: '',
+                themeLabel: 'Rogue Stealth'
+            },
+            {
+                id: 'st_s', name: 'Steampunk Gear', tag: 'S', path: 'templates/streamer/s',
+                description: '蒸気と歯車の重厚なマルチページ。産業革命時代のレトロフューチャリスティックなデザイン。',
+                features: ['Steampunk', 'Multi-page', 'Gear'],
+                colors: ['#b87333', '#262626', '#1a1a1a'],
+                image: '',
+                themeLabel: 'Steampunk Gear'
+            },
+            {
+                id: 'st_t', name: 'Tech Logic', tag: 'T', path: 'templates/streamer/t',
+                description: '論理的で戦略的なダッシュボード。回路基板のような幾何学的な美しさを。',
+                features: ['Tech', 'Logic', 'Circuit'],
+                colors: ['#06b6d4', '#1f2937', '#111827'],
+                image: '',
+                themeLabel: 'Tech Logic'
+            },
+            {
+                id: 'st_u', name: 'Urban Graffiti', tag: 'U', path: 'templates/streamer/u',
+                description: '自由なストリート文化を体現。スプレーアートと全画面スクロールの躍動感。',
+                features: ['Graffiti', 'Street', 'Vivid'],
+                colors: ['#fbbf24', '#262626', '#181818'],
+                image: '',
+                themeLabel: 'Urban Graffiti'
+            },
+            {
+                id: 'st_v', name: 'Vivid Glitch', tag: 'V', path: 'templates/streamer/v',
+                description: '色彩が弾け、視覚が震える。スクロール連動型のRGBズレ演出が強烈な個性を放つ。',
+                features: ['Vivid', 'RGB Shift', 'Glitch'],
+                colors: ['#ff00ff', '#00ffff', '#000000'],
+                image: '',
+                themeLabel: 'Vivid Glitch'
+            },
+            {
+                id: 'st_w', name: 'Wide Pan', tag: 'W', path: 'templates/streamer/w',
+                description: '地平線まで続くかのような圧倒的スケール。横スクロールと視差効果によるパノラマ体験。',
+                features: ['Side Scroll', 'Parallax', 'Scenic'],
+                colors: ['#10b981', '#064e3b', '#000000'],
+                image: '',
+                themeLabel: 'Wide Pan'
+            },
+            {
+                id: 'st_x', name: 'Xtreme Action', tag: 'X', path: 'templates/streamer/x',
+                description: '爆発的なエネルギーと躍動感。衝撃波エフェクトがセクション切り替えに劇的な緊迫感を。',
+                features: ['Xtreme', 'Shockwave', 'Snap Scroll'],
+                colors: ['#fbbf24', '#000000', '#78350f'],
+                image: '',
+                themeLabel: 'Xtreme Action'
+            },
+            {
+                id: 'st_y', name: 'Yield Chart', tag: 'Y', path: 'templates/streamer/y',
+                description: '上昇し続ける数値とリアルタイムチャート。成長を可視化するトレーディング風デザイン。',
+                features: ['Trading', 'Counter', 'Chart'],
+                colors: ['#22c55e', '#1a2e05', '#ffffff'],
+                image: '',
+                themeLabel: 'Yield Chart'
+            },
+            {
+                id: 'st_z', name: 'Zen Brush', tag: 'Z', path: 'templates/streamer/z',
+                description: '静寂の中の力強さ。一筆書きのアニメーションと和の精神が宿るマルチページ。',
+                features: ['Zen', 'Brush Stroke', 'Multi-page'],
+                colors: ['#171717', '#fafafa', '#404040'],
+                image: '',
+                themeLabel: 'Zen Brush'
+            }
         ],
         'lp': [
             ...Array.from({ length: 26 }, (_, i) => {
@@ -289,7 +475,7 @@ const PORTAL_DATA = {
                     features: ['Impact', 'Sales', 'Marketing'],
                     colors: ['#ff0055', '#ffffff', '#000000'],
                     image: '',
-                    themeLabel: 'Campaign'
+                    themeLabel: `${char}: Landing Page`
                 };
             })
         ],
@@ -305,7 +491,7 @@ const PORTAL_DATA = {
                     features: ['Gallery', 'Minimal', 'Creative'],
                     colors: ['#ffcc00', '#111111', '#eeeeee'],
                     image: '',
-                    themeLabel: 'Creative'
+                    themeLabel: `${char}: Portfolio`
                 };
             })
         ]

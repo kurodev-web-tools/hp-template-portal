@@ -1,0 +1,239 @@
+/* Knight Honor Custom Styles */
+:root {
+    --royal-blue: #1e3a8a;
+    --silver: #e2e8f0;
+    --parchment: #fdf6e3;
+    --ink: #2c2c2c;
+    --gold-trim: #b8860b;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* Backgrounds */
+.parchment-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2;
+    background-color: #f4e4bc;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+    background-blend-mode: multiply;
+}
+
+.emblem-bg {
+    position: fixed;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 80vh; height: 80vh;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L90 30 L80 80 L50 95 L20 80 L10 30 Z" fill="none" stroke="%23b8860b" stroke-width="1" opacity="0.1"/></svg>') no-repeat center center;
+    background-size: contain;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header */
+.knight-header {
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    padding: 20px 0;
+    background: rgba(30, 58, 138, 0.95);
+    border-bottom: 2px solid var(--gold-trim);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.brand {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--silver);
+    letter-spacing: 2px;
+}
+.brand a { text-decoration: none; color: inherit; }
+
+.nav ul { display: flex; gap: 30px; }
+.nav a { 
+    color: #a5b4fc; 
+    font-family: 'Cinzel', serif; 
+    transition: all 0.3s;
+    position: relative;
+}
+.nav a:hover, .nav a.active { color: var(--gold-trim); }
+.nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; left: 0; width: 100%; height: 1px;
+    background: var(--gold-trim);
+}
+
+/* Main Content */
+.page-content {
+    padding-top: 100px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Hero */
+.hero { text-align: center; padding: 60px 20px; }
+.crest-icon { font-size: 4rem; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(184,134,11,0.5)); }
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+.hero-sub { font-size: 1.5rem; color: #555; margin-bottom: 40px; }
+
+/* Wax Seal */
+.wax-seal {
+    width: 100px; height: 100px;
+    margin: 0 auto;
+    background: #800000;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2);
+    border: 4px solid #600000;
+    font-family: 'Cinzel', serif;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    transform: rotate(15deg);
+}
+
+/* Paper Sheet Style */
+.paper-sheet {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 60px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+}
+.paper-sheet::before {
+    content: '';
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border: 1px solid var(--gold-trim);
+    pointer-events: none;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--royal-blue);
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--gold-trim);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.drop-cap::first-letter {
+    float: left;
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    margin-right: 10px;
+    color: var(--royal-blue);
+}
+
+.divider-ornament {
+    text-align: center;
+    font-size: 2rem;
+    margin: 40px 0;
+    color: var(--gold-trim);
+}
+
+.rule-list {
+    list-style: none;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.rule-list li { margin: 15px 0; font-weight: 600; }
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.artifact-card {
+    background: #fff;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    transition: transform 0.3s;
+}
+.artifact-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.card-frame {
+    width: 80px; height: 80px;
+    margin: 0 auto 20px;
+    border: 2px solid var(--gold-trim);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+}
+
+/* Form */
+.scroll-form .form-group { margin-bottom: 20px; }
+.scroll-form label { display: block; font-family: 'Cinzel', serif; margin-bottom: 5px; color: var(--royal-blue); }
+.scroll-form input, .scroll-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fdfdfd;
+    font-family: inherit;
+    font-size: 1.1rem;
+}
+.btn-royal {
+    background: var(--royal-blue);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+.btn-royal:hover { background: #152c6b; }
+
+/* Animations */
+.animate-slide-in {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideIn 0.8s forwards ease-out;
+}
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Mobile */
+.mobile-toggle { display: none; background: none; border: none; color: #fff; }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--royal-blue); z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: #fff; font-family: 'Cinzel', serif; }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+    .hero-title { font-size: 3rem; }
+    .paper-sheet { padding: 30px; }
+}

@@ -1,0 +1,245 @@
+/* Boss Room Custom Styles */
+:root {
+    --gold: #d4af37;
+    --dark-gold: #8a6d3b;
+    --boss-bg: #121212;
+}
+
+body {
+    background-color: var(--boss-bg);
+    color: #e0e0e0;
+    font-family: 'Marcellus', serif;
+}
+
+.parallax-bg {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, #2a2a2a 0%, #000 70%);
+    z-index: -2;
+    background-image: 
+        radial-gradient(var(--dark-gold) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.1;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 200px rgba(0,0,0,0.9);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header */
+.boss-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--dark-gold);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.nav ul {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--gold);
+    transform: scale(1.1);
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.boss-title {
+    display: block;
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+    color: var(--dark-gold);
+    margin-bottom: 10px;
+    animation: fade-in-up 1s ease-out;
+}
+
+.hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 12vw, 8rem);
+    color: var(--gold);
+    line-height: 0.9;
+    margin-bottom: 40px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* HP Bar */
+.hp-bar-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hp-label {
+    font-weight: 700;
+    color: #ff4d4d;
+}
+
+.hp-bar {
+    flex: 1;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--dark-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.hp-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 85%;
+    background: linear-gradient(90deg, #ff4d4d, #b30000);
+    box-shadow: 0 0 10px #ff4d4d;
+    transition: width 2s ease-in-out;
+}
+
+/* Lore */
+.lore-section {
+    padding: 150px 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+
+.lore-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #bbb;
+}
+
+/* Loot */
+.loot-section {
+    padding: 100px 20px;
+}
+
+.grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.loot-item {
+    padding: 60px 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid var(--dark-gold);
+    text-align: center;
+}
+
+.loot-item .icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.loot-item h3 {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.loot-item p {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Mobile */
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu ul {
+    text-align: center;
+}
+
+.mobile-menu li { margin: 40px 0; }
+.mobile-menu a { font-size: 2rem; color: var(--gold); }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+    .header-inner { padding: 0 20px; }
+    .hero-title { font-size: 4rem; }
+    .hp-bar-wrap { padding: 0 20px; }
+}

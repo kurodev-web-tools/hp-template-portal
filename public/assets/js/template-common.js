@@ -14,7 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!document.body.classList.contains('custom-menu-only')) {
         initMobileMenu();
     }
+    initHaptics();
 });
+
+function initHaptics() {
+    // Simple Haptics
+    window.Haptics = {
+        tap: () => {
+            if (navigator.vibrate) navigator.vibrate(5);
+        }
+    };
+
+    // Attach to all interactive elements
+    document.querySelectorAll('a, button, input[type="submit"], input[type="button"]').forEach(el => {
+        el.addEventListener('click', () => {
+            if (window.Haptics) window.Haptics.tap();
+        });
+    });
+}
 
 // Prevent auto-scroll to anchor on page load/refresh
 function clearHashOnLoad() {

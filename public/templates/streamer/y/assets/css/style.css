@@ -1,0 +1,166 @@
+/* Yield Chart Custom Styles */
+:root {
+    --yield-gold: #d4af37;
+    --yield-green: #3a4d39;
+    --yield-white: #ffffff;
+    --chart-line: #4caf50;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+#chart-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* Header */
+.yield-header {
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    padding: 20px 0;
+    background: #fff;
+    border-bottom: 2px solid var(--yield-gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.brand {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    color: var(--yield-green);
+    letter-spacing: 1px;
+}
+
+.nav ul { display: flex; gap: 30px; }
+.nav a { font-weight: 700; color: #555; transition: color 0.3s; }
+.nav a:hover { color: var(--yield-gold); }
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1;
+    color: var(--yield-green);
+    margin-bottom: 20px;
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.ticker-tape {
+    background: var(--yield-green);
+    color: #fff;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.ticker-tape span {
+    margin: 0 20px;
+    font-weight: 700;
+    display: inline-block;
+    color: #81c784;
+}
+
+/* Sections */
+.content-section { padding: 100px 20px; }
+.section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--yield-gold);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 40px;
+    text-align: center;
+    border-top: 5px solid var(--yield-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.stat-card:hover { transform: translateY(-10px); }
+
+.stat-card .label { display: block; font-size: 0.9rem; color: #999; margin-bottom: 10px; }
+.stat-card .value { font-size: 3rem; font-weight: 700; color: var(--yield-green); }
+.stat-card .unit { font-size: 1.5rem; color: #999; }
+
+.invest-box {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.btn-yield {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 50px;
+    background: var(--yield-gold);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.btn-yield:hover {
+    background: var(--yield-green);
+    box-shadow: 0 5px 15px rgba(58, 77, 57, 0.3);
+}
+
+/* Mobile */
+.mobile-toggle { display: none; background: none; border: none; color: #555; }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.98); z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: var(--yield-green); font-family: 'Fredoka One', cursive; }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+}

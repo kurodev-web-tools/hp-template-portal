@@ -1,0 +1,181 @@
+/* Orbit Space Custom Styles */
+:root {
+    --galaxy-blue: #0f172a;
+    --stardust: #e2e8f0;
+    --nebula-purple: #6366f1;
+    --orbit-cyan: #22d3ee;
+}
+
+body {
+    background-color: var(--galaxy-blue);
+    color: var(--stardust);
+    font-family: 'Syne', sans-serif;
+    overflow: hidden; /* Main scroll handled by snap container */
+    margin: 0;
+}
+
+/* Starfield */
+#starfield {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1e293b 0%, #000 100%);
+}
+
+/* Header */
+.orbit-header {
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    padding: 30px;
+    pointer-events: none; /* Let clicks pass to snap container unless on interactive elements */
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    background: linear-gradient(to right, #fff, var(--orbit-cyan));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Snap Container */
+.orbit-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.orbit-container::-webkit-scrollbar { display: none; }
+
+.snap-section {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Content */
+.content-wrapper {
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.snap-section.active .content-wrapper {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.coord {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--orbit-cyan);
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 15vw, 8rem);
+    line-height: 0.9;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+}
+
+/* Glass Orbs / Cards */
+.glass-orb {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 60px;
+    transition: transform 0.5s;
+}
+
+.glass-orb:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 50px rgba(34, 211, 238, 0.1);
+}
+
+.planet-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+}
+
+.planet-visual {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orbit-cyan), var(--nebula-purple));
+    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5);
+}
+
+.btn-orbit {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    border: 1px solid var(--orbit-cyan);
+    color: var(--orbit-cyan);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    transition: all 0.3s;
+}
+
+.btn-orbit:hover {
+    background: var(--orbit-cyan);
+    color: #000;
+    box-shadow: 0 0 30px var(--orbit-cyan);
+}
+
+/* Mobile Menu */
+.mobile-toggle { display: none; background: none; border: none; color: #fff; pointer-events: auto; }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.95); z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: #fff; font-weight: 800; }
+
+@media (max-width: 768px) {
+    .mobile-toggle { display: block; }
+    .snap-section { padding: 0 20px; }
+    .planet-card { flex-direction: column; text-align: center; gap: 20px; }
+    .glass-orb { padding: 40px 20px; }
+}

@@ -1,0 +1,219 @@
+/* Horror Mansion Custom Styles */
+:root {
+    --blood-red: #991b1b;
+    --soot-black: #0a0a0a;
+    --ghost-white: #e5e5e5;
+}
+
+body {
+    background-color: var(--soot-black);
+    color: var(--ghost-white);
+    font-family: 'Noto Serif JP', serif;
+    overflow-x: hidden;
+    cursor: none; /* Custom cursor */
+}
+
+/* Flashlight Effect */
+.flashlight-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Below header/menu but above content */
+    pointer-events: none;
+}
+
+.darkness-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    /* The flashlight hole */
+    mask-image: radial-gradient(
+        circle 200px at var(--x, 50%) var(--y, 50%),
+        transparent 0%,
+        black 100%
+    );
+    -webkit-mask-image: radial-gradient(
+        circle 200px at var(--x, 50%) var(--y, 50%),
+        transparent 0%,
+        black 100%
+    );
+}
+
+/* Header */
+.horror-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+    padding: 20px 0;
+    background: rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid #333;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    color: var(--blood-red);
+    letter-spacing: 2px;
+}
+
+.nav ul { display: flex; gap: 30px; }
+.nav a { font-weight: 700; transition: color 0.3s; cursor: pointer; }
+.nav a:hover { color: var(--blood-red); }
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-family: 'Creepster', cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.blood {
+    color: var(--blood-red);
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.scroll-hint {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    opacity: 0.5;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.3; }
+}
+
+/* Sections */
+.content-section {
+    padding: 100px 20px;
+    background: #111;
+    position: relative;
+}
+
+.section-title {
+    font-family: 'Creepster', cursive;
+    font-size: 2.5rem;
+    color: var(--blood-red);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.scare-card {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+
+.scare-card:hover {
+    transform: scale(1.02);
+    border-color: var(--blood-red);
+    box-shadow: 0 0 30px rgba(153, 27, 27, 0.2);
+}
+
+.scare-card h3 {
+    font-family: 'Creepster', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.secret-box {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 60px;
+    background: #000;
+    border: 1px dashed #555;
+}
+
+.blood-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 40px;
+    background: var(--blood-red);
+    color: #fff;
+    font-family: 'Creepster', cursive;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.blood-btn:hover {
+    background: #fff;
+    color: var(--blood-red);
+}
+
+/* Mobile */
+.mobile-toggle { display: none; background: none; border: none; color: #fff; z-index: 10002; cursor: pointer; }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: var(--blood-red); font-family: 'Creepster', cursive; cursor: pointer; }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+    .flashlight-layer { display: none; } /* Disable effect on mobile for performance/usability */
+    body { cursor: auto; }
+}

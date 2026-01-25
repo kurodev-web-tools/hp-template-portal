@@ -1,0 +1,224 @@
+/* Idol Stage Custom Styles */
+:root {
+    --sakura-pink: #ff9ecd;
+    --idol-white: #ffffff;
+    --stage-bg: #fff0f5;
+    --accent-blue: #87cefa;
+}
+
+body {
+    background-color: var(--stage-bg);
+    color: #555;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Particles Container */
+#particles {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Spotlight Beam */
+.spotlight-beam {
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    width: 200px;
+    height: 150vh;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+    transform: translateX(-50%) rotate(-15deg);
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.5;
+    animation: spotlight-sway 10s infinite ease-in-out;
+}
+
+@keyframes spotlight-sway {
+    0%, 100% { transform: translateX(-50%) rotate(-15deg); }
+    50% { transform: translateX(-50%) rotate(15deg); }
+}
+
+/* Header */
+.idol-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--sakura-pink);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: var(--sakura-pink);
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 0 #fff, 4px 4px 0 #eee;
+}
+
+.nav ul { display: flex; gap: 30px; }
+.nav a { color: #555; font-weight: 800; transition: color 0.3s; }
+.nav a:hover { color: var(--sakura-pink); }
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 10%;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 500px;
+    z-index: 1;
+}
+
+.catchphrase {
+    display: inline-block;
+    background: var(--accent-blue);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    transform: rotate(-2deg);
+}
+
+.bounce { animation: bounce 2s infinite; }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(-2deg);}
+    40% {transform: translateY(-10px) rotate(-2deg);}
+    60% {transform: translateY(-5px) rotate(-2deg);}
+}
+
+.hero-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--sakura-pink);
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 0 #fff;
+}
+
+.btn-idol {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--sakura-pink);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 158, 205, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-idol:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 158, 205, 0.6);
+}
+
+.btn-idol.secondary {
+    background: #fff;
+    color: var(--sakura-pink);
+    border: 2px solid var(--sakura-pink);
+    margin-left: 15px;
+}
+
+.idol-visual {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sections */
+.profile-section, .fan-section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5rem;
+    color: var(--sakura-pink);
+    margin-bottom: 50px;
+    display: inline-block;
+    border-bottom: 3px dotted var(--accent-blue);
+}
+
+.profile-card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 30px;
+    border: 2px solid #fff;
+    box-shadow: 0 10px 30px rgba(255, 158, 205, 0.2);
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-item .label { font-size: 0.8rem; color: #999; font-weight: 800; }
+.info-item .value { font-size: 1.2rem; font-weight: 800; color: #555; }
+
+/* Fanclub */
+.fan-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    background: linear-gradient(135deg, #fff, #fff0f5);
+    border-radius: 30px;
+    border: 2px dashed var(--sakura-pink);
+}
+
+.fan-card h3 { color: var(--accent-blue); margin-bottom: 15px; font-size: 1.8rem; }
+.fan-card p { margin-bottom: 30px; color: #777; }
+
+/* Mobile */
+.mobile-toggle { display: none; background: none; border: none; color: var(--sakura-pink); }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,240,245,0.98); z-index: 10001;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: var(--sakura-pink); font-family: 'Quicksand', sans-serif; font-weight: 800; }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+    .hero { flex-direction: column; text-align: center; padding: 120px 20px; }
+    .hero-actions { display: flex; flex-direction: column; gap: 15px; }
+    .btn-idol.secondary { margin-left: 0; }
+    .profile-grid { grid-template-columns: 1fr; }
+}

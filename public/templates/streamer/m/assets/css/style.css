@@ -1,0 +1,168 @@
+/* Metallic Chrome Custom Styles */
+:root {
+    --chrome-silver: #e0e0e0;
+    --chrome-dark: #000000;
+    --chrome-accent: #ffffff;
+}
+
+body {
+    background-color: var(--chrome-dark);
+    color: var(--chrome-silver);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Liquid Canvas */
+#liquid-canvas {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    /* Canvas injected by JS */
+}
+
+/* Header */
+.chrome-header {
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.header-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.brand { font-family: 'Michroma', sans-serif; font-size: 1.5rem; letter-spacing: 2px; }
+
+.nav ul { display: flex; gap: 30px; }
+.nav a { font-weight: 700; transition: color 0.3s; letter-spacing: 2px; }
+.nav a:hover { color: #fff; text-shadow: 0 0 10px #fff; }
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    mix-blend-mode: exclusion;
+}
+
+.hero-title {
+    font-family: 'Michroma', sans-serif;
+    font-size: clamp(3rem, 12vw, 8rem);
+    line-height: 0.9;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    opacity: 0.8;
+}
+
+/* Marquee Section */
+.flow-section {
+    padding: 50px 0;
+    background: #111;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    overflow: hidden;
+}
+
+.marquee-container {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: inline-block;
+    font-family: 'Michroma', sans-serif;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.1);
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Reflection Cards */
+.reflect-section { padding: 100px 20px; }
+.grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+
+.metal-card {
+    height: 300px;
+    background: linear-gradient(135deg, #1a1a1a, #000);
+    border: 1px solid #333;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.metal-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(255,255,255,0.1) 50%,
+        transparent 55%
+    );
+    transform: rotate(45deg);
+    transition: top 0.5s, left 0.5s;
+}
+
+.metal-card:hover::before {
+    top: 50%; left: 50%;
+}
+
+.metal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+}
+
+.card-inner {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 30px;
+    background: rgba(0,0,0,0.8);
+    border-top: 1px solid #333;
+}
+
+.card-inner h3 { font-family: 'Michroma', sans-serif; margin-bottom: 5px; color: #fff; }
+.card-inner p { font-size: 0.8rem; color: #888; letter-spacing: 2px; }
+
+/* Mobile */
+.mobile-toggle { display: none; background: none; border: none; color: #fff; }
+.mobile-menu {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+}
+.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu ul { text-align: center; }
+.mobile-menu li { margin: 30px 0; }
+.mobile-menu a { font-size: 2rem; color: #fff; font-family: 'Michroma', sans-serif; }
+
+@media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: block; }
+    .hero-title { font-size: 3.5rem; }
+}
