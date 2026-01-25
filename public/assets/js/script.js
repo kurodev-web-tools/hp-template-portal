@@ -22,6 +22,39 @@ function initPortal() {
     renderCategories();
     initHyperspeed();
     initLiquidGlass();
+    initMontage();
+    initViewTransitions();
+}
+
+function initViewTransitions() {
+    // Intercept internal links for View Transitions
+    document.querySelectorAll('a').forEach(link => {
+        if (link.origin === location.origin && link.target !== '_blank') {
+            link.addEventListener('click', e => {
+                if (document.startViewTransition) {
+                    e.preventDefault();
+                    document.startViewTransition(() => {
+                        window.location.href = link.href;
+                    });
+                }
+            });
+        }
+    });
+}
+
+function initMontage() {
+    const items = document.querySelectorAll('.montage-item');
+    if (items.length === 0) return;
+    
+    let activeIndex = 0;
+    // Auto-rotate every 4 seconds
+    setInterval(() => {
+        items[activeIndex].classList.remove('active');
+        activeIndex = (activeIndex + 1) % items.length;
+        items[activeIndex].classList.add('active');
+        
+        // Optional: Update label if needed (e.g. data-label attribute)
+    }, 4000);
 }
 
 function initLiquidGlass() {

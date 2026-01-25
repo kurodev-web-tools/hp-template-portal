@@ -143,7 +143,7 @@ function renderAllCategorySections() {
             card.tabIndex = 0;
             card.setAttribute('role', 'button');
             card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
-            
+
             // Unified Glow: Set Color Variable
             const cardColor = (t.colors && t.colors.length > 0) ? t.colors[0] : '#00f2ff';
             card.style.setProperty('--card-color', cardColor);
@@ -343,7 +343,7 @@ function renderIndexBar(templates) {
 
     // 1. Tag Filter Buttons
     const allTags = [...new Set(templates.flatMap(t => t.features))];
-    
+
     // Create Tag Container if not exists
     let tagContainer = document.getElementById('tagFilterContainer');
     if (!tagContainer) {
@@ -407,7 +407,7 @@ function filterByTag(tag, templates, btn) {
 
     // Filter Templates
     const filtered = tag ? templates.filter(t => t.features.includes(tag)) : templates;
-    
+
     // Re-render Gallery
     const container = document.getElementById('galleryContainer');
     container.innerHTML = '';
@@ -476,9 +476,6 @@ function renderGalleryCards(templates, container) {
                 ${labelHtml}
                 <div class="card-actions">
                     <button class="btn-view" onclick="openModal('${t.id}')">DETAILS</button>
-                    <button class="btn-copy" onclick="copyCommand('${t.id}', event)" title="Copy Command">
-                        <span class="material-icons">content_copy</span>
-                    </button>
                 </div>
             </div>
         `;
@@ -507,23 +504,7 @@ function renderGalleryCards(templates, container) {
     initTilt();
 }
 
-// Copy Command Function
-window.copyCommand = function(id, e) {
-    e.stopPropagation(); // Prevent card click
-    const command = `opencode run ${id}`;
-    navigator.clipboard.writeText(command).then(() => {
-        Haptics.success();
-        // Show tooltip or toast? For now simple alert or console
-        // Better: Change icon temporarily
-        const btn = e.currentTarget;
-        const icon = btn.querySelector('.material-icons');
-        const original = icon.textContent;
-        icon.textContent = 'check';
-        setTimeout(() => icon.textContent = original, 2000);
-    }).catch(() => {
-        Haptics.error();
-    });
-};
+// Copy Command Function (Removed)
 
 // Modal Logic
 function openModal(templateId) {
