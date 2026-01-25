@@ -667,6 +667,224 @@ class PremiumEffects {
             }
         };
     }
+
+    /**
+     * Shooting Stars Effect
+     * Spawns falling stars occasionally for ambient wonder.
+     * Lightweight DOM-based implementation.
+     */
+    static ShootingStars(selector, options = {}) {
+        const container = document.querySelector(selector);
+        if (!container) return;
+
+        const defaults = {
+            frequency: 3000, // ms
+            color: 'rgba(200, 240, 255, 0.8)',
+            trailLength: 150
+        };
+        const settings = { ...defaults, ...options };
+
+        // Ensure container relative/absolute for positioning
+        const computedStyle = window.getComputedStyle(container);
+        if (computedStyle.position === 'static') {
+            container.style.position = 'relative';
+        }
+
+        // Add CSS styles dynamically if not present
+        if (!document.getElementById('shooting-star-style')) {
+            const style = document.createElement('style');
+            style.id = 'shooting-star-style';
+            style.textContent = `
+                .shooting-star {
+                    position: absolute;
+                    height: 2px;
+                    background: linear-gradient(-45deg, rgba(255,255,255,1), rgba(0,0,255,0));
+                    border-radius: 999px;
+                    filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+                    animation: tail 3s ease-in-out infinite, shooting 3s ease-in-out infinite;
+                    opacity: 0;
+                    pointer-events: none;
+                    z-index: 0;
+                }
+                @keyframes tail {
+                    0% { width: 0; }
+                    30% { width: 100px; }
+                    100% { width: 0; }
+                }
+                @keyframes shooting {
+                    0% { transform: translateX(0); opacity: 0; }
+                    10% { opacity: 1; }
+                    100% { transform: translateX(-300px) translateY(300px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function spawnStar() {
+            const star = document.createElement('div');
+            star.classList.add('shooting-star');
+            
+            // Random start position (top-right focused)
+            // We want them to fall from top right to bottom left mostly
+            const startX = Math.random() * container.clientWidth;
+            const startY = Math.random() * (container.clientHeight / 2); // Top half
+            
+            star.style.left = `${startX}px`;
+            star.style.top = `${startY}px`;
+            
+            // Randomize animation duration slightly
+            const duration = 2000 + Math.random() * 2000;
+            star.style.animationDuration = `${duration}ms`;
+            star.style.animationDelay = '0ms'; // Start immediately
+
+            container.appendChild(star);
+
+            // Cleanup
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
+            
+            // Fallback cleanup
+            setTimeout(() => {
+                if(container.contains(star)) star.remove();
+            }, duration + 100);
+        }
+
+        // Loop
+        const interval = setInterval(spawnStar, settings.frequency);
+
+        // Immediate spawn
+        spawnStar();
+
+        return {
+            destroy: () => clearInterval(interval)
+        };
+    }
+
+    /**
+     * Particles (Star Field) Effect
+     * Deep space ambience with mouse interaction.
+     */
+    static Particles(selector, options = {}) {
+        const container = document.querySelector(selector);
+        if (!container) return;
+
+        const canvas = document.createElement('canvas');
+        container.appendChild(canvas);
+
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none'; // Allow clicks through
+        canvas.style.zIndex = options.zIndex || '0';
+
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let animationId;
+
+        const particles = [];
+        // Density based count or fixed limit
+        const limit = options.limit || 150; 
+        const mouse = { x: null, y: null };
+
+        class Particle {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * (options.speed || 0.2);
+                this.vy = (Math.random() - 0.5) * (options.speed || 0.2);
+                this.size = Math.random() * 1.5 + 0.5; // 0.5 - 2.0
+                this.baseColor = options.color || 'rgba(255, 255, 255, 0.5)';
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Wrap around
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+
+                // Mouse Repulse
+                if (mouse.x != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    const forceDistance = 100;
+                    
+                    if (distance < forceDistance) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (forceDistance - distance) / forceDistance;
+                        const directionX = forceDirectionX * force * 0.5; // Repulse strength
+                        const directionY = forceDirectionY * force * 0.5;
+
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.baseColor;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            width = container.clientWidth;
+            height = container.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            particles.length = 0;
+            const count = Math.min(limit, Math.floor(width / 10)); // Responsive count
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            animationId = requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        init();
+        animate();
+
+        return {
+            destroy: () => {
+                window.removeEventListener('resize', init);
+                cancelAnimationFrame(animationId);
+                if (container.contains(canvas)) container.removeChild(canvas);
+            }
+        };
+    }
 }
 
 // Export to global scope

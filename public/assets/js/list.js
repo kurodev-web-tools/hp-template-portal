@@ -86,6 +86,8 @@ function initAllCategories() {
 
     // Init Aurora with default colors
     initAuroraDefault();
+    // Init Particles
+    initParticles();
 }
 
 function renderSidebar() {
@@ -260,6 +262,8 @@ function initGallery(categoryId) {
 
     // Init Aurora Background (Deep Space Tuned)
     initAurora(categoryData);
+    // Init Particles
+    initParticles();
 
     // Init 3D Tilt
     initTilt();
@@ -332,6 +336,16 @@ function initAurora(categoryData) {
         colors: colors,
         bg: 'transparent' // Let ambient bg show through if needed, or set base color
     });
+
+    // Init Particles (Star Field) - Layered on top of Aurora
+    if (PremiumEffects.Particles) {
+        PremiumEffects.Particles('#auroraBg', {
+            color: 'rgba(255, 255, 255, 0.4)',
+            limit: 100,
+            speed: 0.2,
+            zIndex: 1 // Ensure it sits above aurora gradient but below content
+        });
+    }
 }
 
 // === Filtering Logic ===
@@ -707,9 +721,34 @@ function setupDragScroll(container) {
     container.style.cursor = 'grab';
 }
 
-/**
- * Check if a click should be blocked (after drag)
- */
-function shouldBlockClick() {
-    return wasDragging;
+// Particles Logic
+let particlesInstance = null;
+
+function initParticles() {
+    if (particlesInstance) {
+        particlesInstance.destroy();
+        particlesInstance = null;
+    }
+
+    if (window.PremiumEffects && window.PremiumEffects.Particles) {
+        let starContainer = document.getElementById('star-container');
+        if (!starContainer) {
+            starContainer = document.createElement('div');
+            starContainer.id = 'star-container';
+            starContainer.style.position = 'fixed';
+            starContainer.style.top = '0';
+            starContainer.style.left = '0';
+            starContainer.style.width = '100%';
+            starContainer.style.height = '100%';
+            starContainer.style.zIndex = '-10'; 
+            starContainer.style.pointerEvents = 'none';
+            document.body.appendChild(starContainer);
+        }
+
+        particlesInstance = PremiumEffects.Particles('#star-container', {
+            color: 'rgba(255, 255, 255, 0.6)',
+            limit: 200,
+            speed: 0.2
+        });
+    }
 }
