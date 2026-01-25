@@ -610,7 +610,8 @@ document.getElementById('detailModal').addEventListener('click', (e) => {
 function updateActiveIndex(activeLink) {
     document.querySelectorAll('.index-link').forEach(l => l.classList.remove('active'));
     activeLink.classList.add('active');
-    activeLink.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+    // Fix: Use block: 'nearest' to prevent vertical page jump on load
+    activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 function setupScrollSync() {

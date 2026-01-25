@@ -35,7 +35,19 @@
 
 .gallery-main {
     display: flex;
-    min-height: calc(100vh - 60px);
+    flex: 1;
+    overflow: hidden;
+    height: calc(100vh - 60px); /* Keep base constraint */
+    min-height: 0; /* Important for Firefox */
+}
+
+.gallery-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Critical */
+    height: 100%;
+    position: relative;
 }
 
 .gallery-content {
@@ -249,18 +261,20 @@
 
 /* Tag Filter Container */
 .tag-filter-container {
+    flex-shrink: 0;
     display: flex;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-lg);
     overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: none;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
     /* Align with index bar */
     position: sticky;
     top: 60px;
     z-index: 95;
-    background: transparent; /* Polish: Transparent blend */
+    background: transparent; /* Clean look */
+    /* Optional: Mask to fade edges if needed, but transparent is safer for blending */
     backdrop-filter: blur(10px);
 }
 
@@ -292,6 +306,7 @@
 
 /* Index Bar (A-Z) - Adjusted top to sit below if needed, or just keep as is */
 .index-bar {
+    flex-shrink: 0;
     top: 110px; /* Adjusted to accomodate tag filter if both present, roughly */
     /* ... existing styles ... */
     display: flex;
@@ -302,7 +317,7 @@
     border-bottom: 1px solid var(--color-border);
     backdrop-filter: var(--backdrop-blur);
     position: sticky;
-    z-index: 90;
+    z-index: 50; /* Adjusted for stacking context */
     scrollbar-width: none;
 }
 
@@ -341,20 +356,26 @@
 
 /* Gallery Container (The Swipe Area) */
 .gallery-container {
+    /* Flexbox layout fix: Fill remaining space */
+    height: auto; 
+    flex: 1;
+    min-height: 0; /* Allow shrinking */
+    
     display: flex;
+    align-items: center;
     gap: var(--spacing-lg);
-    /* Top/Bottom padding: xl, Left/Right: calculated to center the first item */
-    padding: var(--spacing-xl) 7.5vw;
-    padding-right: 10vw; /* Extra padding to prevent right-edge hover clipping/flash */
+    
+    /* Padding adjustments */
+    padding: 0 7.5vw;
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    padding-right: 10vw;
 
     overflow-x: auto;
     overflow-y: hidden; /* Prevent vertical drift */
     touch-action: pan-x; /* Explicitly allow only horizontal pan */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    height: calc(100vh - 140px);
-    /* Adjust based on header+nav */
-    align-items: center;
 
     /* Prevent text selection during drag */
     user-select: none;
@@ -674,4 +695,33 @@
     height: 100%;
     z-index: -15;
     background: #000;
+}
+
+/* Custom Scrollbar for Gallery & Lists */
+.gallery-container::-webkit-scrollbar,
+.all-categories-container::-webkit-scrollbar,
+.mini-gallery::-webkit-scrollbar {
+    height: 6px; /* Horizontal */
+    width: 6px; /* Vertical */
+    display: block; /* Force display if hidden by default settings elsewhere */
+}
+
+.gallery-container::-webkit-scrollbar-track,
+.all-categories-container::-webkit-scrollbar-track,
+.mini-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 3px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb,
+.all-categories-container::-webkit-scrollbar-thumb,
+.mini-gallery::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb:hover,
+.all-categories-container::-webkit-scrollbar-thumb:hover,
+.mini-gallery::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
 }
