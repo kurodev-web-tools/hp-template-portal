@@ -258,15 +258,9 @@
     margin-bottom: var(--spacing-xs);
     /* Align with index bar */
     position: sticky;
-    top: 60px; /* Same as index bar initially, JS might adjust or they stack? They stack in DOM. */
-    /* Actually index bar is sticky at 60px. Tag filter is above it in DOM (inserted before). 
-       If tag filter is sticky, index bar needs to be sticky below it. 
-       For now let's just make tag filter scrolling but not sticky-fixed to keep layout simple, 
-       or sticky at top. 
-       Let's keep it simple: scrollable horizontal list.
-    */
+    top: 60px;
     z-index: 95;
-    background: rgba(0,0,0,0.3);
+    background: transparent; /* Polish: Transparent blend */
     backdrop-filter: blur(10px);
 }
 
@@ -350,12 +344,12 @@
     display: flex;
     gap: var(--spacing-lg);
     /* Top/Bottom padding: xl, Left/Right: calculated to center the first item */
-    /* Mobile: Card is 85vw. Gap is ignored for padding calc usually or just spacing. 
-       Center calculation: (100vw - 85vw) / 2 = 7.5vw padding. 
-    */
     padding: var(--spacing-xl) 7.5vw;
+    padding-right: 10vw; /* Extra padding to prevent right-edge hover clipping/flash */
 
     overflow-x: auto;
+    overflow-y: hidden; /* Prevent vertical drift */
+    touch-action: pan-x; /* Explicitly allow only horizontal pan */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     height: calc(100vh - 140px);
@@ -365,6 +359,35 @@
     /* Prevent text selection during drag */
     user-select: none;
     -webkit-user-select: none;
+}
+
+/* Custom Scrollbar for Gallery & Lists */
+.gallery-container::-webkit-scrollbar,
+.all-categories-container::-webkit-scrollbar,
+.mini-gallery::-webkit-scrollbar {
+    height: 6px; /* Horizontal */
+    width: 6px; /* Vertical */
+    display: block; /* Force display if hidden by default settings elsewhere */
+}
+
+.gallery-container::-webkit-scrollbar-track,
+.all-categories-container::-webkit-scrollbar-track,
+.mini-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 3px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb,
+.all-categories-container::-webkit-scrollbar-thumb,
+.mini-gallery::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb:hover,
+.all-categories-container::-webkit-scrollbar-thumb:hover,
+.mini-gallery::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* Gallery Item (The Card) - Unified Glow */
