@@ -25,7 +25,7 @@ const PORTAL_DATA = {
         },
         {
             id: 'lp',
-            name: 'Landing Page',
+            name: 'LP',
             description: 'Sales, Marketing, Impact',
             // Vibrant Pink/Red
             color: '#ff0055',

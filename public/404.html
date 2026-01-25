@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Signal Lost | HP Portal</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .error-container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+        }
+        
+        .glitch-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            position: relative;
+            color: #fff;
+            text-shadow: 2px 2px var(--color-accent);
+            animation: glitch 1s infinite;
+        }
+        
+        .error-sub {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .error-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            max-width: 400px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+        
+        .btn-return {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-return:hover {
+            background: var(--color-primary);
+            color: #000;
+            box-shadow: 0 0 30px var(--color-primary);
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        /* Noise Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-ambient"></div>
+    <div class="noise"></div>
+    
+    <div class="error-container">
+        <h1 class="glitch-text">404</h1>
+        <div class="error-sub">SIGNAL LOST</div>
+        <p class="error-desc">The coordinates you are looking for do not exist in this sector. Return to base immediately.</p>
+        
+        <a href="index.html" class="btn-return">RETURN TO BASE</a>
+    </div>
+
+    <!-- Re-use Premium Effects for consistency if needed, but keeping lightweight -->
+    <script src="assets/js/premium-effects.js"></script>
+    <script>
+        // Simple particle init if available
+        if (window.PremiumEffects && PremiumEffects.Particles) {
+            PremiumEffects.Particles('body', { color: 'rgba(255,0,0,0.5)', limit: 50 });
+        }
+    </script>
+</body>
+</html>

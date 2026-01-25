@@ -79,10 +79,18 @@ function initAllCategories() {
     // Show all-categories elements
     document.getElementById('sidebarNav').classList.add('visible');
     document.getElementById('allCategoriesContainer').classList.add('visible');
+    
+    // Show Mobile Nav
+    const mobileNav = document.getElementById('mobileCategoryNav');
+    if (mobileNav) mobileNav.style.display = ''; // Reset to CSS default (flex on mobile)
+
+    // Enable Vertical Scroll on Main Content
+    document.querySelector('.gallery-content').classList.add('scrollable-y');
 
     // Render sidebar and sections
     renderSidebar();
     renderAllCategorySections();
+    renderMobileNav(); // Added mobile nav rendering
 
     // Init Aurora with default colors
     initAuroraDefault();
@@ -224,6 +232,12 @@ function initAuroraDefault() {
 
 function initGallery(categoryId) {
     const categoryData = PORTAL_DATA.categories.find(c => c.id === categoryId);
+
+    // Error Guard: Redirect if category not found
+    if (!categoryData) {
+        window.location.href = '404.html';
+        return;
+    }
     const templates = PORTAL_DATA.templates[categoryId];
 
     // Category accent colors (matching top page)
@@ -237,6 +251,14 @@ function initGallery(categoryId) {
     // Set accent color CSS variable on body
     const accentColor = CATEGORY_ACCENT_COLORS[categoryId] || '#00f2ff';
     document.body.style.setProperty('--category-accent', accentColor);
+
+    // Disable Vertical Scroll (Horizontal only)
+    const galleryContent = document.querySelector('.gallery-content');
+    if (galleryContent) galleryContent.classList.remove('scrollable-y');
+
+    // Hide Mobile Nav (Only for all-categories)
+    const mobileNav = document.getElementById('mobileCategoryNav');
+    if (mobileNav) mobileNav.style.display = 'none';
 
     // Set Header Info & Theme
     const titleEl = document.getElementById('categoryTitle');
@@ -741,7 +763,7 @@ function initParticles() {
             starContainer.style.left = '0';
             starContainer.style.width = '100%';
             starContainer.style.height = '100%';
-            starContainer.style.zIndex = '-10'; 
+            starContainer.style.zIndex = '-10';
             starContainer.style.pointerEvents = 'none';
             document.body.appendChild(starContainer);
         }
@@ -753,3 +775,52 @@ function initParticles() {
         });
     }
 }
+
+/**
+ * Mobile Category Navigation
+ * Renders horizontal scroll links for categories on mobile
+ */
+function renderMobileNav() {
+    const container = document.getElementById('mobileCategoryNav');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    PORTAL_DATA.categories.forEach((cat, index) => {
+        const btn = document.createElement('div');
+        btn.className = 'mobile-cat-link';
+        if (index === 0) btn.classList.add('active'); // Default active
+        btn.textContent = cat.name;
+        btn.dataset.id = cat.id;
+        
+        btn.addEventListener('click', () => {
+            Haptics.tap();
+            // In All Categories view, scroll to section
+            const section = document.getElementById(`section-${cat.id}`);
+            if (section) {
+                // Determine the scrollable container. 
+                // Based on layout fix, it's .gallery-content.scrollable-y
+                const scroller = document.querySelector('.gallery-content.scrollable-y');
+                
+                if (scroller) {
+                    // Using scrollIntoView with scroll-margin-top is cleanest if defined
+                    // list.css defines .category-section { scroll-margin-top: var(--spacing-xl); }
+                    // We should ensure it's enough to clear sticky nav
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // Fallback to window scroll if not locked
+                    const offset = 120; 
+                    const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            }
+            
+            // Update Active State UI
+            document.querySelectorAll('.mobile-cat-link').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+        
+        container.appendChild(btn);
+    });
+}
+
