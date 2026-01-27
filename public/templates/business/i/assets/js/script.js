@@ -4,6 +4,47 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Mobile Side Menu Toggle (Moved to top for priority)
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (mobileToggle && sidebar) {
+        mobileToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = document.body.classList.toggle('mobile-open');
+            mobileToggle.classList.toggle('active');
+            mobileToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Use Event Delegation for robustness
+        sidebar.addEventListener('click', (e) => {
+            // Find the closest anchor tag
+            const link = e.target.closest('a');
+
+            // If a link was clicked
+            if (link) {
+                // Close the menu
+                document.body.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = ''; // Ensure scroll is restored
+            }
+        });
+
+        // Close on outside click is handled below...
+
+        // Close on outside click (optional but good for UX)
+        document.addEventListener('click', (e) => {
+            if (document.body.classList.contains('mobile-open') &&
+                !sidebar.contains(e.target) &&
+                !mobileToggle.contains(e.target)) {
+                document.body.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
     // 1. Initialize Blur Text Animation for Header
     if (window.PremiumEffects && window.PremiumEffects.BlurText) {
         window.PremiumEffects.BlurText('.blur-text', {
@@ -51,26 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 7. Tab Switching for Analysis Charts
     initChartTabs();
-
-    // 8. Mobile Side Menu Toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-
-    if (mobileToggle && sidebar) {
-        mobileToggle.addEventListener('click', () => {
-            const isOpen = document.body.classList.toggle('mobile-open');
-            mobileToggle.classList.toggle('active');
-            mobileToggle.setAttribute('aria-expanded', isOpen);
-        });
-
-        const navLinks = sidebar.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                document.body.classList.remove('mobile-open');
-                mobileToggle.classList.remove('active');
-            });
-        });
-    }
 });
 
 /**

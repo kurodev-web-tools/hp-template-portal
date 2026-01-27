@@ -1,24 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Flashlight Effect
     const overlay = document.querySelector('.darkness-overlay');
-    
-    if (window.matchMedia("(min-width: 769px)").matches) {
-        window.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            overlay.style.setProperty('--x', `${x}px`);
-            overlay.style.setProperty('--y', `${y}px`);
+
+
+    // Update variables on body to ensure inheritance works with @property
+    window.addEventListener('mousemove', (e) => {
+        document.body.style.setProperty('--x', `${e.clientX}px`);
+        document.body.style.setProperty('--y', `${e.clientY}px`);
+    });
+
+    // Lights Toggle
+    const lightBtn = document.querySelector('.lights-toggle');
+    if (lightBtn) {
+        lightBtn.addEventListener('click', () => {
+            document.body.classList.toggle('lights-on');
+            if (window.Haptics) window.Haptics.tap();
+
+            const icon = lightBtn.querySelector('.material-icons');
+            if (document.body.classList.contains('lights-on')) {
+                icon.textContent = 'flashlight_off';
+            } else {
+                icon.textContent = 'highlight';
+            }
         });
     }
 
     // Mobile Menu
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    
+
     toggle.addEventListener('click', () => {
         const isActive = menu.classList.toggle('active');
         toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
         document.body.style.overflow = isActive ? 'hidden' : '';
+    });
+
+    // Fix: Close menu when link is clicked
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            toggle.querySelector('.material-icons').textContent = 'menu';
+            document.body.style.overflow = '';
+        });
     });
 
     // Random Creepy Sound or Effect (Visual only for now)

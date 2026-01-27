@@ -10,7 +10,22 @@ body {
     color: var(--ghost-white);
     font-family: 'Noto Serif JP', serif;
     overflow-x: hidden;
-    cursor: none; /* Custom cursor */
+    cursor: none;
+    /* Custom cursor */
+}
+
+/* Flashlight Effect */
+/* Property definitions for smooth animation */
+@property --x {
+    syntax: '<length-percentage>';
+    inherits: true;
+    initial-value: 50%;
+}
+
+@property --y {
+    syntax: '<length-percentage>';
+    inherits: true;
+    initial-value: 50%;
 }
 
 /* Flashlight Effect */
@@ -20,25 +35,61 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999; /* Below header/menu but above content */
+    z-index: 9999;
     pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+/* Lights On State */
+body.lights-on .flashlight-layer {
+    opacity: 0;
+}
+
+body.lights-on {
+    cursor: auto !important;
+}
+
+body.lights-on .lights-toggle {
+    background: var(--blood-red);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(153, 27, 27, 0.5);
+}
+
+.lights-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10002;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--blood-red);
+    color: var(--blood-red);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(153, 27, 27, 0.2);
+}
+
+.lights-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--blood-red);
 }
 
 .darkness-overlay {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.92);
-    /* The flashlight hole */
-    mask-image: radial-gradient(
-        circle 200px at var(--x, 50%) var(--y, 50%),
-        transparent 0%,
-        black 100%
-    );
-    -webkit-mask-image: radial-gradient(
-        circle 200px at var(--x, 50%) var(--y, 50%),
-        transparent 0%,
-        black 100%
-    );
+    background: rgba(0, 0, 0, 0.96);
+    /* Darker for horror */
+    mask-image: radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%),
+            transparent 0%,
+            black 100%);
+    -webkit-mask-image: radial-gradient(circle 200px at var(--x, 50%) var(--y, 50%),
+            transparent 0%,
+            black 100%);
 }
 
 /* Header */
@@ -68,9 +119,20 @@ body {
     letter-spacing: 2px;
 }
 
-.nav ul { display: flex; gap: 30px; }
-.nav a { font-weight: 700; transition: color 0.3s; cursor: pointer; }
-.nav a:hover { color: var(--blood-red); }
+.nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    font-weight: 700;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.nav a:hover {
+    color: var(--blood-red);
+}
 
 /* Hero */
 .hero {
@@ -87,7 +149,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 0;
 }
 
@@ -101,7 +163,7 @@ body {
     font-size: clamp(3rem, 10vw, 6rem);
     line-height: 1.1;
     margin-bottom: 20px;
-    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
 .blood {
@@ -123,9 +185,17 @@ body {
 }
 
 @keyframes pulse {
-    0% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.3; }
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
 }
 
 /* Sections */
@@ -199,21 +269,118 @@ body {
 }
 
 /* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: #fff; z-index: 10002; cursor: pointer; }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; z-index: 10000;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    z-index: 10002;
+    cursor: pointer;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
-.mobile-menu ul { text-align: center; }
-.mobile-menu li { margin: 30px 0; }
-.mobile-menu a { font-size: 2rem; color: var(--blood-red); font-family: 'Creepster', cursive; cursor: pointer; }
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu ul {
+    text-align: center;
+}
+
+.mobile-menu li {
+    margin: 30px 0;
+}
+
+.mobile-menu a {
+    font-size: 2rem;
+    color: var(--blood-red);
+    font-family: 'Creepster', cursive;
+    cursor: pointer;
+}
 
 @media (max-width: 768px) {
-    .nav { display: none; }
-    .mobile-toggle { display: block; }
-    .flashlight-layer { display: none; } /* Disable effect on mobile for performance/usability */
-    body { cursor: auto; }
+    .nav {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    body {
+        cursor: auto;
+    }
+
+    .flashlight-layer {
+        display: block;
+        /* Enable on mobile */
+    }
+
+    .darkness-overlay {
+        mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%),
+                transparent 0%,
+                black 100%);
+        -webkit-mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%),
+                transparent 0%,
+                black 100%);
+        animation: search-sweep 16s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+
+    @keyframes search-sweep {
+        0% {
+            --x: 10%;
+            --y: 10%;
+        }
+
+        15% {
+            --x: 80%;
+            --y: 20%;
+        }
+
+        30% {
+            --x: 20%;
+            --y: 80%;
+        }
+
+        45% {
+            --x: 90%;
+            --y: 60%;
+        }
+
+        60% {
+            --x: 50%;
+            --y: 90%;
+        }
+
+        75% {
+            --x: 10%;
+            --y: 50%;
+        }
+
+        90% {
+            --x: 70%;
+            --y: 30%;
+        }
+
+        100% {
+            --x: 10%;
+            --y: 10%;
+        }
+    }
 }
