@@ -1,21 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Premium Effects
     if (window.PremiumEffects) {
-        new PremiumEffects.BlurText('.hero-title', {
+        // Fix: Call as static method
+        PremiumEffects.BlurText('.hero-title', {
             delay: 60,
             duration: 1500
         });
     }
 
     // Mobile Menu
+    // Fix: Robust toggle logic
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
+
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isActive = menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        });
+
+        // Close when link clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+            });
+        });
+    }
 
     // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
