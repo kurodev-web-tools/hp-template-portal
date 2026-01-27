@@ -30,7 +30,8 @@ const PORTAL_DATA = {
             // Vibrant Pink/Red
             color: '#ff0055',
             theme: 'theme-lp',
-            image: ''
+            image: '',
+            isComingSoon: true
         },
         {
             id: 'portfolio',
@@ -39,7 +40,8 @@ const PORTAL_DATA = {
             // Yellow/White
             color: '#ffcc00',
             theme: 'theme-portfolio',
-            image: ''
+            image: '',
+            isComingSoon: true
         }
     ],
     templates: {

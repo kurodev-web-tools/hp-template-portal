@@ -146,6 +146,11 @@ function renderSidebar() {
         link.textContent = cat.name;
         link.dataset.categoryId = cat.id;
 
+        if (cat.isComingSoon) {
+            link.style.opacity = '0.5';
+            link.innerHTML += ' <span class="material-icons" style="font-size:0.8em; vertical-align:middle; margin-left:4px;">lock</span>';
+        }
+
         link.addEventListener('click', () => {
             Haptics.tap(); // Haptic feedback
             // Scroll to section
@@ -185,38 +190,48 @@ function renderAllCategorySections() {
         const gallery = document.createElement('div');
         gallery.className = 'mini-gallery';
 
-        templates.forEach(t => {
-            const card = document.createElement('div');
-            card.className = 'mini-card';
-            card.tabIndex = 0;
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
+        if (cat.isComingSoon) {
+            const banner = document.createElement('div');
+            banner.className = 'coming-soon-banner';
+            banner.textContent = 'Coming Soon - New Designs Under Development';
+            gallery.appendChild(banner);
+            // We can skip rendering cards if we want, or just append this.
+            // The instructions say: "SKIP rendering the loop of 26 templates."
+            // So we will just append banner and not loop.
+        } else {
+            templates.forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'mini-card';
+                card.tabIndex = 0;
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', `${t.themeLabel || t.name} template`);
 
-            // Unified Glow: Set Color Variable
-            const cardColor = (t.colors && t.colors.length > 0) ? t.colors[0] : '#00f2ff';
-            card.style.setProperty('--card-color', cardColor);
+                // Unified Glow: Set Color Variable
+                const cardColor = (t.colors && t.colors.length > 0) ? t.colors[0] : '#00f2ff';
+                card.style.setProperty('--card-color', cardColor);
 
-            if (t.image) {
-                card.style.backgroundImage = `url(${t.image})`;
-                card.classList.add('has-image');
-            }
-
-            card.innerHTML = `
-                <div class="placeholder-content">
-                    <div class="big-char">${t.tag}</div>
-                    <div class="theme-label">${t.themeLabel || ''}</div>
-                </div>
-            `;
-            card.addEventListener('click', () => { if (shouldBlockClick()) return; Haptics.select(); openModal(t.id); });
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    Haptics.select();
-                    openModal(t.id);
+                if (t.image) {
+                    card.style.backgroundImage = `url(${t.image})`;
+                    card.classList.add('has-image');
                 }
+
+                card.innerHTML = `
+                    <div class="placeholder-content">
+                        <div class="big-char">${t.tag}</div>
+                        <div class="theme-label">${t.themeLabel || ''}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => { if (shouldBlockClick()) return; Haptics.select(); openModal(t.id); });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        Haptics.select();
+                        openModal(t.id);
+                    }
+                });
+                gallery.appendChild(card);
             });
-            gallery.appendChild(card);
-        });
+        }
 
         section.appendChild(header);
         section.appendChild(gallery);
@@ -310,6 +325,33 @@ function initGallery(categoryId) {
         if (categoryData.theme) {
             document.body.classList.add(categoryData.theme);
         }
+    }
+
+    // Check Coming Soon for Single Category Page
+    if (categoryData.isComingSoon) {
+        const container = document.getElementById('galleryContainer');
+        container.innerHTML = ''; // Clear skeleton or anything else
+
+        const banner = document.createElement('div');
+        banner.className = 'coming-soon-banner';
+        banner.style.marginTop = '4rem';
+        banner.textContent = 'Coming Soon - This collection is under development';
+
+        // Append banner directly
+        container.appendChild(banner);
+
+        // Hide Index Bar as it's not needed
+        const indexBar = document.getElementById('indexBar');
+        if (indexBar) indexBar.style.display = 'none';
+
+        // Dynamic Meta
+        updateDynamicMeta(categoryData);
+
+        // Init Backgrounds
+        initAurora(categoryData);
+        initParticles();
+
+        return; // Stop further rendering
     }
 
     // Render Index Bar and Gallery

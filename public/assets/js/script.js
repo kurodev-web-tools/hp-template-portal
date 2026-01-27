@@ -102,6 +102,18 @@ function renderCategories() {
         // Unified Glow Effect (CSS-based)
         card.style.setProperty('--card-color', CATEGORY_COLORS[cat.id]);
 
+        // Coming Soon Logic
+        if (cat.isComingSoon) {
+            card.classList.add('is-coming-soon');
+            card.removeAttribute('href'); // Remove link
+            card.onclick = (e) => e.preventDefault(); // Extra safety
+
+            const badge = document.createElement('div');
+            badge.className = 'badge-coming-soon';
+            badge.textContent = 'COMING SOON';
+            card.appendChild(badge);
+        }
+
         // Hyperspeed color change (PC only)
         card.addEventListener('mouseenter', () => {
             if (hyperspeedInstance && CATEGORY_COLORS[cat.id]) {
