@@ -162,48 +162,139 @@ body {
     }
 }
 
-/* Mobile Menu */
+/* Mobile Toggle */
+.menu-btn {
+    background: #fff;
+    border: none;
+    padding: 10px;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 10002;
+    position: relative; /* Ensure z-index works */
+}
+
+/* Mobile Menu Container */
 .mobile-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--xtreme-black);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
+    z-index: 10001;
     pointer-events: none;
-    transition: opacity 0.3s;
+    overflow: hidden;
 }
 
 .mobile-menu.active {
-    opacity: 1;
     pointer-events: auto;
 }
 
-.mobile-menu ul {
+/* Slash Panels */
+.slash-panel {
+    position: absolute;
+    top: 0;
+    width: 65%; /* Overlap slightly */
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+}
+
+.slash-panel.left {
+    left: 0;
+    background: #000;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+    transform: translateX(-100%);
+    border-right: 5px solid var(--xtreme-yellow);
+}
+
+.slash-panel.right {
+    right: 0;
+    background: var(--xtreme-yellow);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateX(100%);
+    border-left: 5px solid #000; /* Contrast line */
+}
+
+.mobile-menu.active .slash-panel.left,
+.mobile-menu.active .slash-panel.right {
+    transform: translateX(0);
+}
+
+/* Menu Content */
+.menu-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.menu-content ul {
     list-style: none;
     padding: 0;
     text-align: center;
+    transform: skew(-10deg); /* Match the sporty vibe */
 }
 
-.mobile-menu li {
-    margin: 30px 0;
+.menu-content li {
+    margin: 20px 0;
+    overflow: hidden; /* For reveal effect */
 }
 
-.mobile-menu a {
-    color: #fff;
-    font-size: 3rem;
+.menu-content a {
+    display: block;
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fff; /* Default for left side (black bg) */
     text-decoration: none;
-    font-weight: bold;
     text-transform: uppercase;
+    line-height: 1;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+    opacity: 0; /* Hide initially */
+    position: relative;
+    /* Mix blend mode to ensure visibility across both panels? 
+       Actually, since text is centered, it might cross the slash line.
+       Let's use a smart text color strategy or text-shadow. */
+    text-shadow: 2px 2px 0 #000;
+    /* Since right panel is yellow, white text needs shadow or black color.
+       Let's stick to white with heavy black shadow/stroke for visibility on yellow. */
+    -webkit-text-stroke: 2px #000;
 }
 
-.mobile-menu a:hover {
+.mobile-menu.active .menu-content a {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Staggered Delay */
+.mobile-menu.active li:nth-child(1) a { transition-delay: 0.4s; }
+.mobile-menu.active li:nth-child(2) a { transition-delay: 0.5s; }
+.mobile-menu.active li:nth-child(3) a { transition-delay: 0.6s; }
+
+/* Hover Effect */
+.menu-content a:hover {
     color: var(--xtreme-yellow);
+    -webkit-text-stroke: 0;
+    text-shadow: 4px 4px 0 #000;
+    transform: scale(1.1) translateY(0); /* Ensure translate stays 0 */
+}
+
+/* Data Text for Glitch/Duplicate effect (Optional, keeping simple slash for now) */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block; /* Ensure visible */
+    }
+    
+    .menu-content a {
+        font-size: 3rem;
+    }
 }
 
 /* Mobile */

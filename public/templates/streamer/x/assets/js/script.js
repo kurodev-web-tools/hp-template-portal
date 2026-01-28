@@ -7,20 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     const toggle = document.querySelector('.menu-btn');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
-    // Toggle Menu
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-    });
-
-    // Close on Link Click
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
-    });
+
+        // Close when clicking a link
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
 
     // Detect section change
     let currentSection = 0;

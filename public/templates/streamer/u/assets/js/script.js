@@ -32,20 +32,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mobile Menu
+    // Mobile Menu (Spray Tag)
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    const links = menu.querySelectorAll('a');
+    const links = menu ? menu.querySelectorAll('a') : [];
     
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-    });
-
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
-    });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+            });
+        });
+    }
 });

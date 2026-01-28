@@ -60,22 +60,47 @@ document.addEventListener('DOMContentLoaded', () => {
         PremiumEffects.CountUp('.count-up', { duration: 2500 });
     }
 
-    // Mobile Menu
+    // Mobile Menu (Stock Ticker)
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-    });
-
-    // Close on Link Click
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            
+            // Toggle color for visibility against dark/light bg
+            toggle.style.color = isActive ? '#fff' : '#555';
+            
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
-    });
+
+        // Close menu when clicking outside sidebar (on the ticker bg)
+        menu.addEventListener('click', (e) => {
+            if (e.target === menu || e.target.classList.contains('ticker-bg') || e.target.closest('.ticker-content')) {
+                menu.classList.remove('active');
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                toggle.style.color = '#555';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                toggle.style.color = '#555';
+                document.body.style.overflow = '';
+            });
+        });
+    }
 
     // Reveal
     const observer = new IntersectionObserver((entries) => {

@@ -162,18 +162,163 @@ body {
     box-shadow: 10px 10px 0 var(--vivid-cyan);
 }
 
-/* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: #fff; }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--vivid-bg); z-index: 999;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: opacity 0.3s;
+/* Mobile Toggle */
+.mobile-toggle { 
+    display: none; 
+    background: none; 
+    border: none; 
+    color: #fff;
+    z-index: 10002;
+    cursor: pointer;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
+
+/* Mobile Menu Container */
+.mobile-menu {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: #000; 
+    z-index: 10001;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.1s; /* Fast toggle */
+    overflow: hidden;
+}
+
+.mobile-menu.active { 
+    opacity: 1; 
+    visibility: visible;
+    /* Shake animation on container */
+    animation: screen-shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Scanlines Background */
+.scanlines {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+    background-size: 100% 4px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* RGB Split Layers (for full screen glitch) */
+.rgb-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: screen;
+    display: none;
+}
+
+.rgb-layer.red {
+    background: rgba(255, 0, 0, 0.1);
+    transform: translateX(-5px);
+}
+
+.rgb-layer.blue {
+    background: rgba(0, 0, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.mobile-menu.active .rgb-layer {
+    display: block;
+    animation: rgb-flash 0.4s ease-out forwards;
+}
+
+@keyframes rgb-flash {
+    0% { opacity: 1; transform: translateX(10px); }
+    50% { opacity: 0.5; transform: translateX(-5px); }
+    100% { opacity: 0; transform: translateX(0); }
+}
+
+@keyframes screen-shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Menu Content */
+.menu-content {
+    position: relative;
+    z-index: 10;
+}
+
 .mobile-menu ul { text-align: center; }
 .mobile-menu li { margin: 30px 0; }
-.mobile-menu a { font-size: 2rem; color: #fff; font-family: 'Anton', sans-serif; }
+
+.mobile-menu a { 
+    font-size: 3rem; 
+    color: #fff; 
+    font-family: 'Rubik Glitch', cursive; 
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+}
+
+/* RGB Text Glitch Effect */
+.mobile-menu a::before,
+.mobile-menu a::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.mobile-menu a::before {
+    color: #0ff;
+    z-index: -1;
+    transform: translate(-2px, 0);
+    clip-path: inset(0 0 0 0);
+}
+
+.mobile-menu a::after {
+    color: #f0f;
+    z-index: -2;
+    transform: translate(2px, 0);
+    clip-path: inset(0 0 0 0);
+}
+
+.mobile-menu.active a {
+    animation: glitch-text-anim 0.3s infinite;
+}
+
+.mobile-menu.active a::before {
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.mobile-menu.active a::after {
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+/* Glitch Keyframes */
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+    40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+    80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+    100% { clip-path: inset(30% 0 30% 0); transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+    20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+    40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 1px); }
+    60% { clip-path: inset(10% 0 80% 0); transform: translate(-1px, -2px); }
+    80% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 2px); }
+    100% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 1px); }
+}
 
 @media (max-width: 768px) {
     .nav { display: none; }

@@ -149,74 +149,129 @@ p {
     background: #999;
 }
 
-/* Mobile */
+/* Mobile Toggle */
+.mobile-toggle {
+    display: none; /* Hidden by default, shown on mobile via media query */
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    z-index: 10002;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
+
+/* Cinema Scope Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-menu.active {
+    pointer-events: auto;
+}
+
+/* Shutters (Letterbox) */
+.shutter {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0; /* Start open */
+    background-color: #000;
+    transition: height 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 1;
+}
+
+.shutter.top {
+    top: 0;
+}
+
+.shutter.bottom {
+    bottom: 0;
+}
+
+.mobile-menu.active .shutter {
+    height: 50vh; /* Close to center */
+}
+
+/* Menu Content */
+.menu-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.6s; /* Delay fade in until shutters close */
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-menu.active .menu-content {
+    opacity: 1;
+}
+
+/* Film Strip / Horizontal List */
+.film-strip {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 20px 40px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+    justify-content: center; /* Center if few items */
+    width: 100%;
+}
+
+.film-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.frame {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.frame a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #888;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    transition: all 0.3s ease;
+}
+
+.frame a:hover,
+.frame a.active {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
-
-    /* Force horizontal scroll with snap */
-    .parallax-container {
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+    .mobile-toggle {
+        display: block;
     }
-
-    .content-track {
-        width: 300vw;
+    
+    .film-strip {
+        flex-direction: column; /* Vertical for mobile usability or keep horizontal? */
+        /* Requirement says "horizontal scroll or center". Let's stick to centered list for classic cinema cast feel */
+        align-items: center;
+        gap: 30px;
+        overflow-y: auto;
+        max-height: 80vh;
     }
-
-    .h-section {
-        width: 100vw;
-        height: 100vh;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-    }
-
-    /* Adjust Content for Mobile Screen */
-    .text-block {
-        padding: 30px;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center;
-        /* Center text for better balance on mobile */
-    }
-
-    h1 {
-        font-size: 3.5rem;
-    }
-
-    h2 {
-        font-size: 2.5rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
-    /* Gallery Adjustments */
-    .photo-strip {
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .photo {
-        width: 25vw;
-        /* Make smaller to fit 3 */
-        height: 35vw;
-        background-size: cover;
-    }
-
-    .photo:nth-child(2) {
-        margin-top: 20px;
-    }
-
-    /* Reduce offset */
-
-    /* Ensure Scroll Hint is visible/adjusted */
-    .scroll-hint {
-        bottom: 20px;
-        right: 20px;
-        font-size: 0.8rem;
-        background: rgba(255, 255, 255, 0.8);
-        padding: 5px 10px;
-        border-radius: 20px;
+    
+    .frame a {
+        font-size: 1.5rem;
     }
 }
