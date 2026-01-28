@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Chart Background (Simple Line Chart Animation)
     const canvas = document.getElementById('chart-bg');
-    if(canvas) {
+    if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         const points = [];
@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             points.length = 0;
             let x = 0;
             let y = height / 2;
-            while(x < width + 100) {
-                points.push({x, y});
+            while (x < width + 100) {
+                points.push({ x, y });
                 x += 20;
                 y += (Math.random() - 0.4) * 50; // Tend upwards
-                if(y < 0) y = height / 2;
-                if(y > height) y = height / 2;
+                if (y < 0) y = height / 2;
+                if (y > height) y = height / 2;
             }
         }
 
@@ -26,24 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
             ctx.beginPath();
             ctx.moveTo(points[0].x, points[0].y);
-            
-            for(let i=0; i<points.length; i++) {
+
+            for (let i = 0; i < points.length; i++) {
                 points[i].x -= speed;
                 if (i > 0) ctx.lineTo(points[i].x, points[i].y);
             }
-            
+
             ctx.strokeStyle = '#4caf50';
             ctx.lineWidth = 2;
             ctx.stroke();
 
             // Recycle points
-            if(points[0].x < -50) {
+            if (points[0].x < -50) {
                 points.shift();
-                const last = points[points.length-1];
+                const last = points[points.length - 1];
                 let nextY = last.y - (Math.random() - 0.4) * 50; // Upward bias
                 // Keep within bounds somewhat
-                if(nextY < height * 0.2) nextY = height * 0.5;
-                if(nextY > height * 0.8) nextY = height * 0.5;
+                if (nextY < height * 0.2) nextY = height * 0.5;
+                if (nextY > height * 0.8) nextY = height * 0.5;
                 points.push({ x: last.x + 20, y: nextY });
             }
 
@@ -63,10 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    
+
     toggle.addEventListener('click', () => {
         const isActive = menu.classList.toggle('active');
         toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
+    });
+
+    // Close on Link Click
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            toggle.querySelector('.material-icons').textContent = 'menu';
+        });
     });
 
     // Reveal

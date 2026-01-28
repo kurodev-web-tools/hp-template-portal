@@ -451,31 +451,51 @@ html::-webkit-scrollbar {
 /* Mobile fallback: Normal scroll */
 /* Mobile Vertical Stack Update */
 @media (max-width: 768px) {
-    body.theme-wide {
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 100%;
+
+    /* Enable Horizontal Scroll with Snap */
+    body.theme-wide,
+    html {
+        overflow-y: hidden;
+        overflow-x: auto;
+        /* Revert vertical flow logic */
+    }
+
+    /* Force horizontal layout */
+    .wide-wrapper {
+        height: 100vh;
+        width: max-content;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        /* Snap enabled */
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        /* Ensure horizontal flow */
     }
 
     .horizontal-scroll-container {
-        display: block;
-        /* Switch to vertical block layout */
-        width: 100%;
-        height: auto;
+        display: flex;
+        width: max-content;
+        height: 100vh;
     }
 
+    /* Reset sections to horizontal full screen */
     .wide-section {
-        width: 100% !important;
-        /* Force full width */
-        height: auto;
-        min-height: 80vh;
+        width: 100vw !important;
+        /* Force screen width for snap */
+        height: 100vh;
+        min-height: auto;
         padding: 80px 1.5rem;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        /* Left align for readable mobile text */
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        justify-content: center;
+        align-items: center;
+        /* Center content like Streamer W */
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: none;
+        scroll-snap-align: start;
+        /* Snap point */
+        scroll-snap-stop: always;
+        box-sizing: border-box;
     }
 
     .wide-header {
@@ -505,9 +525,9 @@ html::-webkit-scrollbar {
         right: 20px !important;
         top: auto !important;
         z-index: 9999;
-        background: rgba(10,10,10,0.8);
+        background: rgba(10, 10, 10, 0.8);
         border-radius: 50%;
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     /* Menu Container Fix */
@@ -516,6 +536,10 @@ html::-webkit-scrollbar {
         height: 100dvh;
         max-width: 100vw;
         overflow-x: hidden;
+        position: fixed;
+        /* Fix for horizontal scroll context */
+        left: 0;
+        top: 0;
     }
 
     /* SCENE 01 Mobile */
@@ -524,73 +548,74 @@ html::-webkit-scrollbar {
         max-width: 100%;
         margin-right: 0;
         margin-bottom: 2rem;
+        text-align: center;
     }
 
     .intro-content h1 {
-        font-size: 2.2rem;
-        /* Reduced from 2.8rem */
+        font-size: clamp(2rem, 8vw, 2.5rem);
         white-space: normal;
-        /* Allow natural wrap on small screens */
-        line-height: 1.2;
+        line-height: 1.1;
+        word-break: keep-all;
+        overflow-wrap: break-word;
     }
 
     .intro-content br {
-        display: block;
-        /* Re-enable breaks if needed for rhythm on mobile */
+        display: none;
+        /* Hide manual breaks on mobile to let flex/wrap handle it */
     }
 
     .panorama-img {
         width: 100%;
         height: 250px;
         margin-top: 1rem;
+        flex: none;
+        /* Prevent shrink */
     }
 
     /* SCENE 02 Mobile */
     .projects {
-        padding-top: 60px;
+        padding-top: 80px;
+        justify-content: flex-start;
+        /* Align top for scrollable content if needed */
+        overflow-y: auto;
+        /* Allow vertical scroll within slide if content overflows */
     }
 
     .section-title-wrap {
         width: 100%;
         min-width: 0;
         margin-right: 0;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         text-align: center;
-        /* Fix mobile alignment */
     }
 
     .section-title-wrap h2 {
-        font-size: 1.15rem;
-        /* Reduced significantly to prevent any clipping */
-        line-height: 1.2;
-        letter-spacing: 0.05em;
-        word-break: break-word;
-        /* Ensure wrapping if screen is extremely narrow */
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
         overflow-wrap: break-word;
+        /* Wrap long words only if necessary */
+        word-break: normal;
+        /* Don't force break mid-word */
+        line-height: 1.2;
     }
 
     .project-items {
         flex-direction: column;
         width: 100%;
-        gap: 3rem;
+        gap: 2rem;
+        padding-bottom: 40px;
+        /* Space for scroll */
     }
 
     .p-item {
         width: 100%;
-        height: 60vh;
-        min-height: 400px;
-    }
-
-    .p-info h3 {
-        font-size: 1.2rem;
+        height: 250px;
+        min-height: auto;
     }
 
     /* SCENE 03 Mobile */
     .process {
         align-items: center;
-        /* Center philosophy on mobile too */
         text-align: center;
-        min-height: 60vh;
     }
 
     .process-text {
@@ -598,32 +623,39 @@ html::-webkit-scrollbar {
     }
 
     .process-text h2 {
-        font-size: 1.15rem;
-        /* Consistent size for all H2s */
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        /* Responsive sizing */
         white-space: normal;
-        margin-bottom: 2rem;
         letter-spacing: 0.05em;
-        word-break: break-word;
+        overflow-wrap: break-word;
+        word-break: normal;
+        /* Keep words intact */
+        max-width: 90vw;
+        /* Safety constraint */
+        line-height: 1.2;
     }
 
     /* SCENE 04 Mobile */
     .contact-box {
         width: 100%;
         text-align: center;
-        /* Fix mobile alignment */
     }
 
     .contact-box h2 {
-        font-size: 1.15rem;
+        font-size: clamp(1.5rem, 5vw, 2rem);
         margin-bottom: 2rem;
         letter-spacing: 0.05em;
         word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.2;
     }
 
     /* Footer / Sign */
     .footer-sign {
         writing-mode: horizontal-tb;
-        margin-top: 3rem;
+        margin-top: 2rem;
         opacity: 0.2;
+        width: 100%;
+        text-align: center;
     }
 }

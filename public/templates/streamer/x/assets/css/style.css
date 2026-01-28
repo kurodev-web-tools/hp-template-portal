@@ -15,7 +15,9 @@ body {
 /* Header */
 .xtreme-header {
     position: fixed;
-    top: 0; width: 100%; z-index: 1000;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     padding: 30px;
     display: flex;
     justify-content: space-between;
@@ -44,7 +46,10 @@ body {
     scroll-behavior: smooth;
     scrollbar-width: none;
 }
-.snap-container::-webkit-scrollbar { display: none; }
+
+.snap-container::-webkit-scrollbar {
+    display: none;
+}
 
 .snap-section {
     height: 100vh;
@@ -87,7 +92,8 @@ body {
 }
 
 .action-card {
-    width: 200px; height: 300px;
+    width: 200px;
+    height: 300px;
     background: #000;
     color: #fff;
     display: flex;
@@ -96,8 +102,16 @@ body {
     font-size: 2rem;
     transition: transform 0.2s;
 }
-.snap-section:nth-child(even) .action-card { border: 5px solid #000; }
-.action-card:hover { transform: scale(1.1) skew(-5deg); background: var(--xtreme-yellow); color: #000; }
+
+.snap-section:nth-child(even) .action-card {
+    border: 5px solid #000;
+}
+
+.action-card:hover {
+    transform: scale(1.1) skew(-5deg);
+    background: var(--xtreme-yellow);
+    color: #000;
+}
 
 .btn-xtreme {
     display: inline-block;
@@ -109,13 +123,18 @@ body {
     clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
     transition: transform 0.2s;
 }
-.btn-xtreme:hover { transform: scale(1.1); }
+
+.btn-xtreme:hover {
+    transform: scale(1.1);
+}
 
 /* Shockwave Overlay */
 .shockwave-overlay {
     position: fixed;
-    top: 50%; left: 50%;
-    width: 0; height: 0;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
     border-radius: 50%;
     border: 50px solid rgba(250, 204, 21, 0.5);
     transform: translate(-50%, -50%);
@@ -128,12 +147,86 @@ body {
 }
 
 @keyframes shockwave {
-    0% { width: 0; height: 0; opacity: 1; border-width: 100px; }
-    100% { width: 200vw; height: 200vw; opacity: 0; border-width: 0px; }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        border-width: 100px;
+    }
+
+    100% {
+        width: 200vw;
+        height: 200vw;
+        opacity: 0;
+        border-width: 0px;
+    }
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--xtreme-black);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-menu li {
+    margin: 30px 0;
+}
+
+.mobile-menu a {
+    color: #fff;
+    font-size: 3rem;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mobile-menu a:hover {
+    color: var(--xtreme-yellow);
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-    .x-title { font-size: 5rem; }
-    .action-grid { flex-direction: column; }
+    .x-title {
+        font-size: 15vw;
+        /* Responsive scaling instead of fixed large rem */
+    }
+
+    .x-subtitle {
+        font-size: 12vw;
+        /* Ensure it fits within screen width */
+        word-break: break-word;
+        /* Wrap if absolutely necessary */
+    }
+
+    .action-grid {
+        flex-direction: column;
+        align-items: center;
+        /* Center items horizontally */
+        gap: 30px;
+        /* Add some breathing room */
+        width: 100%;
+        /* Ensure container takes full width */
+    }
 }

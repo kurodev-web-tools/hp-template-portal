@@ -490,9 +490,10 @@ class PremiumEffects {
                         start += Math.ceil(target / (duration / 16)); // approx 60fps
                         if (start > target) start = target;
 
-                        // Preserve non-numeric suffix if any (e.g. "200+")
-                        const suffix = targetText.replace(/[0-9]/g, '');
-                        el.innerText = start + suffix;
+                        // Preserve non-numeric suffix but ignore commas (formatting)
+                        const suffix = targetText.replace(/[0-9,]/g, '');
+                        // Format number with commas
+                        el.innerText = start.toLocaleString() + suffix;
 
                         if (start === target) {
                             clearInterval(timer);
@@ -560,7 +561,7 @@ class PremiumEffects {
 
         const canvas = document.createElement('canvas');
         container.appendChild(canvas);
-        
+
         // Full fill
         canvas.style.position = 'absolute';
         canvas.style.inset = '0';
@@ -568,11 +569,11 @@ class PremiumEffects {
         canvas.style.height = '100%';
         canvas.style.zIndex = options.zIndex || '-1';
         canvas.style.pointerEvents = 'none'; // Ensure clicks pass through
-        
+
         const ctx = canvas.getContext('2d');
         let width, height;
         let animationId;
-        
+
         const blobs = [];
         const COUNT = options.count || 6;
         const colors = options.colors || ['#00f2ff', '#7000ff', '#ff0055']; // Neon
@@ -621,14 +622,14 @@ class PremiumEffects {
         }
 
         function init() {
-            for(let i=0; i<COUNT; i++) {
+            for (let i = 0; i < COUNT; i++) {
                 blobs.push(new Blob());
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            
+
             // Draw blobs
             blobs.forEach(blob => {
                 blob.update();
@@ -640,7 +641,7 @@ class PremiumEffects {
             blobs.forEach(blob => {
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
                 ctx.beginPath();
-                ctx.arc(blob.x - blob.vx*10, blob.y - blob.vy*10, blob.r * 0.5, 0, Math.PI * 2);
+                ctx.arc(blob.x - blob.vx * 10, blob.y - blob.vy * 10, blob.r * 0.5, 0, Math.PI * 2);
                 ctx.fill();
             });
 
@@ -723,15 +724,15 @@ class PremiumEffects {
         function spawnStar() {
             const star = document.createElement('div');
             star.classList.add('shooting-star');
-            
+
             // Random start position (top-right focused)
             // We want them to fall from top right to bottom left mostly
             const startX = Math.random() * container.clientWidth;
             const startY = Math.random() * (container.clientHeight / 2); // Top half
-            
+
             star.style.left = `${startX}px`;
             star.style.top = `${startY}px`;
-            
+
             // Randomize animation duration slightly
             const duration = 2000 + Math.random() * 2000;
             star.style.animationDuration = `${duration}ms`;
@@ -743,10 +744,10 @@ class PremiumEffects {
             star.addEventListener('animationend', () => {
                 star.remove();
             });
-            
+
             // Fallback cleanup
             setTimeout(() => {
-                if(container.contains(star)) star.remove();
+                if (container.contains(star)) star.remove();
             }, duration + 100);
         }
 
@@ -786,7 +787,7 @@ class PremiumEffects {
 
         const particles = [];
         // Density based count or fixed limit
-        const limit = options.limit || 150; 
+        const limit = options.limit || 150;
         const mouse = { x: null, y: null };
 
         class Particle {
@@ -817,9 +818,9 @@ class PremiumEffects {
                 if (mouse.x != null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    let distance = Math.sqrt(dx * dx + dy * dy);
                     const forceDistance = 100;
-                    
+
                     if (distance < forceDistance) {
                         const forceDirectionX = dx / distance;
                         const forceDirectionY = dy / distance;

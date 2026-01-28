@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Calculate shift based on speed, max cap
         const targetShift = Math.min(speed * 0.5, 20);
-        
+
         // Smoothly decay or ramp up (simplified)
         rgbShift = targetShift;
 
         document.body.style.setProperty('--shift-x', `${rgbShift}px`);
-        
+
         document.querySelectorAll('.rgb-target').forEach(el => {
             if (rgbShift > 1) {
                 el.classList.add('glitching');
@@ -27,13 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.classList.remove('glitching');
             }
         });
-        
+
         // Use requestAnimationFrame for smoother opacity on pseudo-elements if needed
         // For now, CSS transition handles it if we modify a var.
         // Actually, CSS variables in before/after are tricky without re-render.
         // Let's just update the --shift-x variable which is used in transform.
         // We also need to set opacity of pseudo elements to make them visible.
-        
+
         // Hack: update style tag to force opacity on pseudo elements based on speed
         const opacity = Math.min(speed * 0.1, 0.8);
         document.querySelectorAll('.rgb-target').forEach(el => {
@@ -49,10 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    
+
     toggle.addEventListener('click', () => {
         const isActive = menu.classList.toggle('active');
         toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
+    });
+
+    // Close menu when a link is clicked
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            toggle.querySelector('.material-icons').textContent = 'menu';
+        });
     });
 });
 
