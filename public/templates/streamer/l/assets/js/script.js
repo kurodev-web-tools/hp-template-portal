@@ -27,6 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
+    // Close menu when a link is clicked
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            toggle.querySelector('.material-icons').textContent = 'menu';
+            document.body.style.overflow = '';
+        });
+    });
+
     // Reveal Animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
