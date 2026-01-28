@@ -2,23 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-    });
-
-    // Close menu when a link is clicked
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
+            
+            // Retro sound effect simulation (vibration)
+            if (isActive && navigator.vibrate) navigator.vibrate(20);
+            
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
-    });
+
+        // Close menu when a link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.querySelector('.material-icons').textContent = 'menu';
+                document.body.style.overflow = '';
+            });
+        });
+    }
 
     // Hover sound effect (Optional if we want pure CSS vibe, but adds retro feel)
     // We won't load audio files to keep it simple, but we can vibrate
-    document.querySelectorAll('a, button, .pixel-card').forEach(el => {
+    document.querySelectorAll('a, button, .pixel-card, .inventory-list li').forEach(el => {
         el.addEventListener('mouseenter', () => {
             if (navigator.vibrate) navigator.vibrate(5);
         });

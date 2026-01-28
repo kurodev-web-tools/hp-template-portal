@@ -186,21 +186,140 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: #fff; }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(15, 23, 42, 0.98); z-index: 999;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+/* Mobile Toggle - Hide default header toggle */
+.mobile-toggle { display: none; }
+
+/* Orbital Menu Container */
+.orbital-menu {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
-.mobile-menu ul { text-align: center; }
-.mobile-menu li { margin: 30px 0; }
-.mobile-menu a { font-size: 1.5rem; color: var(--moonlight); font-family: 'Cinzel', serif; }
+
+/* Toggle Button (FAB) */
+.orbital-toggle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--deep-purple);
+    border: 2px solid var(--moonlight);
+    color: var(--moonlight);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(254, 243, 199, 0.3);
+    transition: all 0.3s ease;
+}
+
+.orbital-toggle:hover {
+    box-shadow: 0 0 30px rgba(254, 243, 199, 0.6);
+    transform: scale(1.1);
+}
+
+.orbital-menu.active .orbital-toggle {
+    transform: rotate(180deg);
+    background: var(--moonlight);
+    color: var(--deep-purple);
+}
+
+/* Menu Items */
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.orbital-menu.active .menu-items {
+    pointer-events: auto;
+}
+
+.menu-items li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+}
+
+.orbital-menu.active .menu-items li {
+    opacity: 1;
+    /* Calculate rotation based on index. --i is set in HTML */
+    /* Arc range: -90deg (top) to -180deg (left) or similar fan shape */
+    /* Let's distribute them in a quarter circle to the top-left */
+    transform: rotate(calc(270deg + (var(--i) * 35deg))) translateX(100px) rotate(calc(-270deg - (var(--i) * 35deg)));
+}
+
+.menu-items a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--midnight-blue);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: var(--moonlight);
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.menu-items a:hover {
+    background: var(--moonlight);
+    color: var(--midnight-blue);
+    box-shadow: 0 0 20px var(--moonlight);
+}
+
+.menu-items .material-icons {
+    font-size: 20px;
+}
+
+.menu-items .label {
+    position: absolute;
+    right: 60px;
+    background: rgba(15, 23, 42, 0.9);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+    color: var(--moonlight);
+}
+
+.menu-items a:hover .label {
+    opacity: 1;
+}
+
+/* Staggered Delay for Moon Phase Animation */
+.orbital-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+.orbital-menu.active li:nth-child(2) { transition-delay: 0.2s; }
+.orbital-menu.active li:nth-child(3) { transition-delay: 0.3s; }
 
 @media (max-width: 768px) {
     .nav { display: none; }
-    .mobile-toggle { display: block; }
+    /* Mobile toggle is handled by .orbital-menu now */
     .moon-bg { width: 150px; height: 150px; top: 15%; right: 5%; }
 }

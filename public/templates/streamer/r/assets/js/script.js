@@ -1,12 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu
+    // Mobile Menu (Night Vision)
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-    });
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            
+            // Icon switch
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            
+            // Play High-pitch Glitch Sound (Visual Metaphor)
+            if (isActive) {
+                // Flash body for impact
+                document.body.style.filter = 'brightness(2) contrast(2)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 100);
+            }
+
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        });
+
+        // Close menu when link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.querySelector('.material-icons').textContent = 'menu';
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
 
     // Close menu when a link is clicked
     menu.querySelectorAll('a').forEach(link => {

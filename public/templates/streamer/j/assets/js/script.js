@@ -52,11 +52,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
     
     function toggleMenu() {
         const isActive = menu.classList.toggle('active');
         toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
+        
+        // Ensure links are interactive
+        if (isActive) {
+            menu.style.pointerEvents = 'auto';
+        } else {
+            // Delay disabling pointer events to allow closing animation
+            setTimeout(() => {
+                if (!menu.classList.contains('active')) {
+                    menu.style.pointerEvents = 'none';
+                }
+            }, 1200);
+        }
     }
 
-    toggle.addEventListener('click', toggleMenu);
+    if (toggle) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+    }
+
+    // Close menu when clicking outside links (optional, for UX)
+    // But since it covers screen, maybe not needed.
+    // Close when link clicked is handled in link generation.
 });

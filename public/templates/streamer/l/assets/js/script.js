@@ -17,24 +17,39 @@ document.addEventListener('DOMContentLoaded', () => {
         moon.style.boxShadow = `inset ${shadowX}px 0px 60px rgba(0,0,0,0.9)`;
     });
 
-    // Mobile Menu
-    const toggle = document.querySelector('.mobile-toggle');
-    const menu = document.querySelector('.mobile-menu');
-    
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
+    // Orbital Menu
+    const orbitalToggle = document.querySelector('.orbital-toggle');
+    const orbitalMenu = document.querySelector('.orbital-menu');
+    const orbitalLinks = orbitalMenu ? orbitalMenu.querySelectorAll('a') : [];
 
-    // Close menu when a link is clicked
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
-            document.body.style.overflow = '';
+    if (orbitalToggle && orbitalMenu) {
+        orbitalToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = orbitalMenu.classList.toggle('active');
+            
+            // Icon Switch
+            const icon = orbitalToggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
         });
-    });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!orbitalMenu.contains(e.target) && orbitalMenu.classList.contains('active')) {
+                orbitalMenu.classList.remove('active');
+                const icon = orbitalToggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+            }
+        });
+
+        // Close when link clicked
+        orbitalLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                orbitalMenu.classList.remove('active');
+                const icon = orbitalToggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+            });
+        });
+    }
 
     // Reveal Animation
     const observer = new IntersectionObserver((entries) => {

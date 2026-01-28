@@ -235,18 +235,130 @@ body {
     pointer-events: none;
 }
 
-/* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: var(--amber-gold); pointer-events: auto; }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(10,5,0,0.95); z-index: 999;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+/* Mobile Toggle */
+.mobile-toggle { 
+    display: none; 
+    background: none; 
+    border: none; 
+    color: var(--amber-gold); 
+    pointer-events: auto; 
+    z-index: 10002;
+    cursor: pointer;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
-.mobile-nav-list { text-align: center; }
-.mobile-nav-list li { margin: 30px 0; }
-.mobile-nav-list a { font-size: 1.5rem; color: var(--amber-gold); font-family: 'Playfair Display', serif; }
+
+/* Velvet Curtain Menu */
+.mobile-menu {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 10001;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden; /* Hide container when not active so it doesn't block clicks */
+    transition: visibility 0s 0.8s; /* Delay visibility hidden until animation ends */
+}
+
+.mobile-menu.active {
+    pointer-events: auto;
+    visibility: visible;
+    transition: visibility 0s 0s;
+}
+
+/* Curtain Panels */
+.curtain-panel {
+    position: absolute;
+    top: 0;
+    width: 50%; /* Each panel takes half width */
+    height: 100%;
+    background-color: #4a0404; /* Deep Crimson */
+    /* Velvet Texture: Gradient for folds */
+    background-image: 
+        repeating-linear-gradient(90deg, 
+            rgba(0,0,0,0.5) 0%, 
+            rgba(255,255,255,0.05) 5%, 
+            rgba(0,0,0,0.5) 10%, 
+            rgba(0,0,0,0.8) 15%
+        ),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    background-blend-mode: multiply, overlay;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); /* Heavy damping */
+    z-index: 1;
+}
+
+.curtain-panel.left {
+    left: 0;
+    transform: translateX(-100%);
+    border-right: 2px solid rgba(0,0,0,0.5);
+}
+
+.curtain-panel.right {
+    right: 0;
+    transform: translateX(100%);
+    border-left: 2px solid rgba(0,0,0,0.5);
+}
+
+.mobile-menu.active .curtain-panel.left,
+.mobile-menu.active .curtain-panel.right {
+    transform: translateX(0);
+}
+
+/* Menu Content */
+.menu-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: 0.1s; /* Wait for curtains */
+}
+
+.mobile-menu.active .menu-content {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.6s; /* Reveal after curtains close */
+}
+
+.menu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 5px;
+    color: rgba(255, 215, 0, 0.5); /* Gold leaf style */
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.mobile-nav-list { 
+    text-align: center; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-list li { 
+    margin: 20px 0; 
+}
+
+.mobile-nav-list a { 
+    font-size: 2rem; 
+    color: #e5c100; /* Gold */
+    font-family: 'Playfair Display', serif; 
+    text-decoration: none;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: color 0.3s;
+}
+
+.mobile-nav-list a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #e5c100;
+}
 
 @media (max-width: 768px) {
     .mobile-toggle { display: block; }

@@ -148,21 +148,130 @@ body {
 .card-inner h3 { font-family: 'Michroma', sans-serif; margin-bottom: 5px; color: #fff; }
 .card-inner p { font-size: 0.8rem; color: #888; letter-spacing: 2px; }
 
-/* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: #fff; }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; z-index: 999;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+/* Mobile Toggle */
+.mobile-toggle {
+    display: none;
+    background: #fff;
+    border: none;
+    color: #000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10002;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
-.mobile-menu ul { text-align: center; }
-.mobile-menu li { margin: 30px 0; }
-.mobile-menu a { font-size: 2rem; color: #fff; font-family: 'Michroma', sans-serif; }
+
+.mobile-toggle:active {
+    transform: scale(0.9);
+}
+
+/* Mercury Menu Container */
+.mobile-menu-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    z-index: 10001;
+    filter: url('#goo'); /* SVG Filter */
+    pointer-events: none; /* Let clicks pass through when closed */
+}
+
+/* Liquid Overlay (The expanding blob) */
+.mercury-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #e0e0e0, #a0a0a0, #ffffff);
+    border-radius: 50%;
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+    transform: scale(1);
+    z-index: -1;
+    pointer-events: auto;
+}
+
+.mobile-menu-container.active .mercury-overlay {
+    transform: scale(60); /* Expand to cover screen */
+    transition-duration: 0.8s;
+}
+
+.mobile-menu-container.active {
+    pointer-events: auto;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+/* Menu Content */
+.mobile-menu-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10003;
+    pointer-events: none;
+}
+
+.mobile-menu-container.active .mobile-menu-content {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.4s; /* Wait for expansion */
+    pointer-events: auto;
+}
+
+.mobile-menu-content ul {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-menu-content li {
+    margin: 30px 0;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.mobile-menu-container.active li {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Stagger items */
+.mobile-menu-container.active li:nth-child(1) { transition-delay: 0.5s; }
+.mobile-menu-container.active li:nth-child(2) { transition-delay: 0.6s; }
+.mobile-menu-container.active li:nth-child(3) { transition-delay: 0.7s; }
+
+.mobile-menu-content a {
+    font-size: 3rem;
+    color: #000;
+    font-family: 'Michroma', sans-serif;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    font-weight: 700;
+    letter-spacing: -2px;
+}
+
+.mobile-menu-content a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
 
 @media (max-width: 768px) {
     .nav { display: none; }
-    .mobile-toggle { display: block; }
-    .hero-title { font-size: 3.5rem; }
+    .mobile-toggle { display: block; pointer-events: auto; }
+    .header-inner { padding: 0 20px; }
 }

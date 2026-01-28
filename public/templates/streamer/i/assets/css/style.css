@@ -201,18 +201,158 @@ body {
 .fan-card h3 { color: var(--accent-blue); margin-bottom: 15px; font-size: 1.8rem; }
 .fan-card p { margin-bottom: 30px; color: #777; }
 
-/* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: var(--sakura-pink); }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255,240,245,0.98); z-index: 10001;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+/* Mobile Toggle */
+.mobile-toggle { 
+    display: none; 
+    background: none; 
+    border: none; 
+    color: var(--sakura-pink); 
+    z-index: 10002; /* Ensure toggle is above menu overlay */
+    cursor: pointer;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
-.mobile-menu ul { text-align: center; }
-.mobile-menu li { margin: 30px 0; }
-.mobile-menu a { font-size: 2rem; color: var(--sakura-pink); font-family: 'Quicksand', sans-serif; font-weight: 800; }
+
+/* Mobile Menu Container */
+.mobile-menu {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 10001;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.mobile-menu.active { 
+    opacity: 1; 
+    visibility: visible; 
+}
+
+/* Dark Overlay */
+.spotlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a0b1a; /* Dark purple/black */
+    opacity: 0.95;
+    z-index: 0;
+}
+
+/* Spotlight Effect */
+.menu-spotlight {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 100vw;
+    height: 200vh;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 182, 193, 0.2), transparent 40%);
+    transform: translateX(-50%) rotate(0deg);
+    pointer-events: none;
+    z-index: 1;
+    animation: menu-spotlight-move 6s ease-in-out infinite alternate;
+}
+
+@keyframes menu-spotlight-move {
+    0% { transform: translateX(-60%) rotate(-5deg); opacity: 0.6; }
+    100% { transform: translateX(-40%) rotate(5deg); opacity: 0.8; }
+}
+
+/* Sparkles */
+.sparkles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff, 0 0 20px var(--sakura-pink);
+    opacity: 0;
+}
+
+.mobile-menu.active .sparkle {
+    animation: sparkle-float 3s infinite linear;
+}
+
+.s1 { top: 20%; left: 20%; animation-delay: 0s; }
+.s2 { top: 70%; left: 80%; animation-delay: 0.5s; width: 6px; height: 6px; }
+.s3 { top: 40%; left: 60%; animation-delay: 1s; }
+.s4 { top: 80%; left: 30%; animation-delay: 1.5s; width: 5px; height: 5px; }
+.s5 { top: 10%; left: 90%; animation-delay: 2s; }
+
+@keyframes sparkle-float {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
+
+/* Menu List */
+.mobile-menu ul { 
+    text-align: center; 
+    position: relative;
+    z-index: 10;
+}
+
+.mobile-menu li { 
+    margin: 40px 0; 
+}
+
+.mobile-menu a { 
+    font-size: 2.5rem; 
+    color: rgba(255, 255, 255, 0.3); /* Dimmed initially */
+    font-family: 'Quicksand', sans-serif; 
+    font-weight: 800;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* "Spotlight" hitting the text */
+.mobile-menu a::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    color: #fff;
+    overflow: hidden;
+    transition: width 0.5s ease;
+    text-shadow: 0 0 20px var(--sakura-pink), 0 0 40px var(--sakura-pink);
+    white-space: nowrap;
+}
+
+.mobile-menu.active a {
+    animation: text-shine 2s infinite alternate; /* Subtle breathing effect */
+}
+
+.mobile-menu.active a::before {
+    width: 100%; /* Reveal full text when active */
+    transition-delay: 0.3s; /* Delay for drama */
+}
+
+/* Hover effect */
+.mobile-menu a:hover {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 30px var(--sakura-pink), 0 0 60px var(--accent-blue);
+}
 
 @media (max-width: 768px) {
     .nav { display: none; }

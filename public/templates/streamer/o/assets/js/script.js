@@ -24,20 +24,57 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // Mobile Menu
+    // Mobile Menu (Planetary Ring)
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    const links = menu.querySelectorAll('a');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
     
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-    });
-
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+    // Parallax Effect Variables
+    const systemContainer = document.querySelector('.system-container');
+    let mouseX = 0, mouseY = 0;
+    
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
+            
+            // Add/Remove Parallax Listeners
+            if (isActive) {
+                document.addEventListener('mousemove', handleParallax);
+                document.addEventListener('touchmove', handleTouchParallax, { passive: false });
+            } else {
+                document.removeEventListener('mousemove', handleParallax);
+                document.removeEventListener('touchmove', handleTouchParallax);
+                // Reset transform
+                if(systemContainer) systemContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            }
         });
-    });
+
+        // Close menu when link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.querySelector('.material-icons').textContent = 'menu';
+                document.removeEventListener('mousemove', handleParallax);
+                document.removeEventListener('touchmove', handleTouchParallax);
+            });
+        });
+    }
+
+    function handleParallax(e) {
+        if (!systemContainer) return;
+        const x = (window.innerWidth / 2 - e.clientX) / 20;
+        const y = (window.innerHeight / 2 - e.clientY) / 20;
+        systemContainer.style.transform = `rotateX(${y}deg) rotateY(${-x}deg)`;
+    }
+
+    function handleTouchParallax(e) {
+        if (!systemContainer) return;
+        // e.preventDefault(); // Prevent scroll while interacting? Maybe not necessary if menu covers all
+        const touch = e.touches[0];
+        const x = (window.innerWidth / 2 - touch.clientX) / 20;
+        const y = (window.innerHeight / 2 - touch.clientY) / 20;
+        systemContainer.style.transform = `rotateX(${y}deg) rotateY(${-x}deg)`;
+    }
 });
