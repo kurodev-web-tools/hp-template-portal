@@ -289,6 +289,29 @@ body.lights-on .lights-toggle {
     position: fixed;
     top: 25px;
     right: 25px;
+    opacity: 0.5;
+    /* Fade out to blend with darkness */
+    transition: all 0.3s;
+    animation: ghost-pulse 3s infinite alternate;
+}
+
+.mobile-toggle:hover,
+.mobile-toggle:active {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--ghost-green);
+    transform: scale(1.1);
+}
+
+@keyframes ghost-pulse {
+    0% {
+        opacity: 0.3;
+        text-shadow: none;
+    }
+
+    100% {
+        opacity: 0.8;
+        text-shadow: 0 0 5px var(--ghost-green);
+    }
 }
 
 html {
