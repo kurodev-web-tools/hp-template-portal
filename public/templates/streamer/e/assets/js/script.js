@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
-                
+
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = 'menu';
-                
+
                 document.body.style.overflow = '';
             });
         });

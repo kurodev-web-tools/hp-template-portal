@@ -301,7 +301,8 @@ section[id] {
     /* Approximation for path length. 3000px should cover most mobile screens */
     stroke-dasharray: 3000;
     stroke-dashoffset: 3000;
-    transition: stroke-dashoffset 0s; /* Reset immediately when closed */
+    transition: stroke-dashoffset 0s;
+    /* Reset immediately when closed */
 }
 
 .mobile-menu.active .hud-rect {
@@ -309,7 +310,9 @@ section[id] {
 }
 
 @keyframes draw-hud {
-    to { stroke-dashoffset: 0; }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 /* Decorations */
@@ -326,10 +329,25 @@ section[id] {
     animation: flash-in 0.5s steps(3) forwards 0.5s;
 }
 
-.hud-deco.top-left { top: -20px; left: 0; }
-.hud-deco.top-right { top: -20px; right: 0; }
-.hud-deco.bottom-left { bottom: -20px; left: 0; }
-.hud-deco.bottom-right { bottom: -20px; right: 0; }
+.hud-deco.top-left {
+    top: -20px;
+    left: 0;
+}
+
+.hud-deco.top-right {
+    top: -20px;
+    right: 0;
+}
+
+.hud-deco.bottom-left {
+    bottom: -20px;
+    left: 0;
+}
+
+.hud-deco.bottom-right {
+    bottom: -20px;
+    right: 0;
+}
 
 /* Corner Crosshairs */
 .hud-container::before,
@@ -345,7 +363,7 @@ section[id] {
 
 /* Add corner marks using gradients */
 .hud-container::before {
-    background: 
+    background:
         linear-gradient(to right, var(--tech-cyan) 2px, transparent 2px) 0 0,
         linear-gradient(to bottom, var(--tech-cyan) 2px, transparent 2px) 0 0,
         linear-gradient(to left, var(--tech-cyan) 2px, transparent 2px) 100% 0,
@@ -378,12 +396,29 @@ section[id] {
 }
 
 @keyframes content-flash {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    40% { opacity: 0; }
-    60% { opacity: 1; }
-    80% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .menu-content ul {
@@ -432,17 +467,39 @@ section[id] {
 }
 
 @keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
 
 @keyframes flash-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 768px) {
