@@ -285,7 +285,16 @@ body.lights-on .lights-toggle {
     border: none;
     color: var(--ghost-green);
     cursor: pointer;
-    z-index: 10002;
+    z-index: 99999;
+    position: fixed;
+    top: 25px;
+    right: 25px;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    /* Offset for sticky header */
 }
 
 .mobile-menu {
@@ -334,9 +343,20 @@ body.lights-on .lights-toggle {
 }
 
 /* Staggered delays for "floating out" effect */
-.mobile-menu.active li:nth-child(1) { transition-delay: 0.1s; animation-delay: 0.1s; }
-.mobile-menu.active li:nth-child(2) { transition-delay: 0.4s; animation-delay: 0.6s; }
-.mobile-menu.active li:nth-child(3) { transition-delay: 0.2s; animation-delay: 1.1s; }
+.mobile-menu.active li:nth-child(1) {
+    transition-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+.mobile-menu.active li:nth-child(2) {
+    transition-delay: 0.4s;
+    animation-delay: 0.6s;
+}
+
+.mobile-menu.active li:nth-child(3) {
+    transition-delay: 0.2s;
+    animation-delay: 1.1s;
+}
 
 @keyframes ghost-float {
     0% {
@@ -344,16 +364,19 @@ body.lights-on .lights-toggle {
         text-shadow: 0 0 5px var(--ghost-green);
         opacity: 0.8;
     }
+
     33% {
         transform: translate(3px, -5px);
         text-shadow: 2px 0 15px var(--ghost-green);
         opacity: 1;
     }
+
     66% {
         transform: translate(-3px, 5px);
         text-shadow: -2px 0 10px var(--ghost-dim);
         opacity: 0.7;
     }
+
     100% {
         transform: translate(0, 0);
         text-shadow: 0 0 5px var(--ghost-green);
