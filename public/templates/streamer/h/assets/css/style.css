@@ -268,50 +268,155 @@ body.lights-on .lights-toggle {
     color: var(--blood-red);
 }
 
-/* Mobile */
+/* Mobile Toggle */
 .mobile-toggle {
     display: none;
     background: none;
     border: none;
     color: #fff;
-    z-index: 10002;
     cursor: pointer;
+    z-index: 10003;
 }
 
+/* Mobile Menu Container */
 .mobile-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
-    z-index: 10000;
+    z-index: 10002;
+    pointer-events: none;
+}
+
+.mobile-menu.active {
+    pointer-events: auto;
+}
+
+.drip-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Drip Layers */
+.drip-layer {
+    position: absolute;
+    top: -120%; /* Hide initially above screen */
+    left: 0;
+    width: 100%;
+    height: 120%; /* Extra height for the wave */
+    transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.drip-layer::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; /* Attach wave to bottom */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-repeat: repeat-x;
+    background-size: 1440px 100%;
+}
+
+/* Layer 1: Dark Shadow (Fastest) */
+.drip-layer.layer-1 {
+    background: #2a0404;
+    z-index: 1;
+    transition-duration: 0.8s;
+}
+.drip-layer.layer-1::after {
+    background-color: #2a0404;
+    /* Simple wave via clip-path or SVG url - using SVG url for smoothness */
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    background-color: #2a0404; /* Fallback */
+}
+
+/* Layer 2: Medium Red (Medium) */
+.drip-layer.layer-2 {
+    background: #600a0a;
+    z-index: 2;
+    transition-duration: 1.2s;
+    transition-delay: 0.1s;
+}
+.drip-layer.layer-2::after {
+    background-color: #600a0a;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,122.7C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,122.7C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+}
+
+/* Layer 3: Main Blood Red (Slowest) */
+.drip-layer.layer-3 {
+    background: var(--blood-red);
+    z-index: 3;
+    transition-duration: 1.6s;
+    transition-delay: 0.2s;
+}
+.drip-layer.layer-3::after {
+    background-color: var(--blood-red);
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+}
+
+/* Active State: Drip Down */
+.mobile-menu.active .drip-layer {
+    transform: translateY(0%);
+}
+
+/* Menu Content */
+.menu-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
+    transition: opacity 0.5s ease 1s; /* Wait for blood to drip */
 }
 
-.mobile-menu.active {
+.mobile-menu.active .menu-content {
     opacity: 1;
-    visibility: visible;
 }
 
 .mobile-menu ul {
     text-align: center;
+    list-style: none;
+    padding: 0;
 }
 
 .mobile-menu li {
-    margin: 30px 0;
+    margin: 40px 0;
+    transform: translateY(20px);
+    transition: transform 0.5s ease;
+}
+
+.mobile-menu.active li {
+    transform: translateY(0);
 }
 
 .mobile-menu a {
-    font-size: 2rem;
-    color: var(--blood-red);
+    font-size: 2.5rem;
+    color: #fff;
     font-family: 'Creepster', cursive;
-    cursor: pointer;
+    text-decoration: none;
+    text-shadow: 0 0 10px #000;
+    transition: color 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: #000;
+    text-shadow: 0 0 10px #fff;
 }
 
 @media (max-width: 768px) {

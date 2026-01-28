@@ -16,24 +16,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
 
-    // Mobile Menu
+    // Mobile Menu (System Crash)
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // If already active, just close it
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                document.body.style.overflow = '';
+                return;
+            }
 
-    // Fix: Close menu when link is clicked
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
-            document.body.style.overflow = '';
+            // Trigger Crash Sequence
+            document.body.classList.add('crashing');
+            
+            // Audio glitch effect placeholder (optional)
+            // if (window.AudioContext) { ... }
+
+            setTimeout(() => {
+                document.body.classList.remove('crashing');
+                menu.classList.add('active');
+                toggle.classList.add('active');
+                
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'close';
+                
+                document.body.style.overflow = 'hidden';
+            }, 300); // 300ms crash duration
         });
-    });
+
+        // Close menu when link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+                
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
 
     // Random RGB split intensification on scroll
     window.addEventListener('scroll', () => {

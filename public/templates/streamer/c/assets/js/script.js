@@ -9,14 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Mobile Menu
-    // Fix: Robust toggle logic
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
     const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
     if (toggle && menu) {
         toggle.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.stopPropagation(); // Stop propagation
             const isActive = menu.classList.toggle('active');
             toggle.classList.toggle('active');
 

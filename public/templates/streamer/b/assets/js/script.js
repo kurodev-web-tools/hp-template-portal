@@ -12,24 +12,49 @@ document.addEventListener('DOMContentLoaded', () => {
         hpFill.style.width = '85%';
     }, 500);
 
-    // Mobile Menu
+    // Mobile Menu (Pause Screen)
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
 
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.contains('active');
 
-    // Fix: Close menu when a link is clicked
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
-            document.body.style.overflow = '';
+            if (!isActive) {
+                // Open with glitch
+                menu.classList.add('animate-open');
+                // Small delay to let the glitch start before showing the menu container
+                requestAnimationFrame(() => {
+                    menu.classList.add('active');
+                });
+                
+                document.body.style.overflow = 'hidden';
+                toggle.querySelector('.material-icons').textContent = 'close';
+
+                // Cleanup animation class
+                setTimeout(() => {
+                    menu.classList.remove('animate-open');
+                }, 500);
+
+            } else {
+                // Close immediately
+                menu.classList.remove('active');
+                document.body.style.overflow = '';
+                toggle.querySelector('.material-icons').textContent = 'menu';
+            }
         });
-    });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                document.body.style.overflow = '';
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+            });
+        });
+    }
 
     // Smooth reveal for sections
     const observer = new IntersectionObserver((entries) => {

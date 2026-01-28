@@ -200,18 +200,124 @@ body {
     font-weight: 600;
 }
 
-/* Mobile */
-.mobile-toggle { display: none; background: none; border: none; color: #333; }
-.mobile-menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255,255,255,0.95); z-index: 10001;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+/* Mobile Toggle */
+.mobile-toggle { 
+    display: none; 
+    background: none; 
+    border: none; 
+    color: #333; 
+    z-index: 10002;
+    cursor: pointer;
 }
-.mobile-menu.active { opacity: 1; visibility: visible; }
-.mobile-menu ul { text-align: center; }
-.mobile-menu li { margin: 30px 0; }
-.mobile-menu a { font-size: 2rem; color: #333; font-family: 'Playfair Display', serif; }
+
+.mobile-menu {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 10001;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    perspective: 1500px;
+    pointer-events: none; /* Allow clicks through when inactive */
+}
+
+.mobile-menu.active {
+    pointer-events: auto;
+}
+
+/* Facet Layers (Crystal Shards) */
+.facet-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(231, 255, 255, 0.7));
+    backdrop-filter: blur(20px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 30px rgba(161, 196, 253, 0.2);
+}
+
+/* Top-Left Triangle */
+.facet-1 {
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    transform-origin: 0% 0%;
+    transform: rotate3d(1, -1, 0, 100deg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(200, 230, 255, 0.8));
+    z-index: 1;
+}
+
+/* Bottom-Right Triangle */
+.facet-2 {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    transform-origin: 100% 100%;
+    transform: rotate3d(-1, 1, 0, 100deg);
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0.95), rgba(255, 214, 255, 0.8));
+    z-index: 2;
+}
+
+/* Center Diamond/Overlay (Optional Shine) */
+.facet-3 {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 3;
+}
+
+.mobile-menu.active .facet-1,
+.mobile-menu.active .facet-2 {
+    transform: rotate3d(0, 0, 0, 0deg);
+}
+
+.mobile-menu.active .facet-3 {
+    opacity: 1;
+}
+
+/* Menu Content */
+.menu-content {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.5s ease 0.2s;
+}
+
+.mobile-menu.active .menu-content {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.mobile-menu ul { 
+    text-align: center; 
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-menu li { 
+    margin: 30px 0; 
+}
+
+.mobile-menu a { 
+    font-size: 2.5rem; 
+    color: #444; 
+    font-family: 'Playfair Display', serif;
+    text-decoration: none;
+    background: linear-gradient(45deg, #444, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s;
+}
+
+.mobile-menu a:hover {
+    background: linear-gradient(45deg, var(--prism-purple), var(--prism-blue));
+    -webkit-background-clip: text;
+    text-shadow: 0 0 20px rgba(200, 182, 255, 0.5);
+}
 
 @media (max-width: 768px) {
     .nav { display: none; }

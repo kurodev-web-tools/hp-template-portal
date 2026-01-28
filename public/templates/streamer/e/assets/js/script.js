@@ -7,12 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
-    
-    toggle.addEventListener('click', () => {
-        const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
+    const menuLinks = menu ? menu.querySelectorAll('a') : [];
+
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        });
+
+        // Close menu when link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+                
+                const icon = toggle.querySelector('.material-icons');
+                if (icon) icon.textContent = 'menu';
+                
+                document.body.style.overflow = '';
+            });
+        });
+    }
 
     // Ranking animation
     const observer = new IntersectionObserver((entries) => {
