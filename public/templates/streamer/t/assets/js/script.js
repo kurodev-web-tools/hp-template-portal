@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = document.querySelector('.mobile-menu');
     const terminalOutput = document.querySelector('.terminal-output');
     const menuSource = document.querySelector('.menu-source');
-    
+
     let isTyping = false;
 
     // Typewriter function
@@ -21,14 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
         terminalOutput.innerHTML = ''; // Clear previous output
 
         const items = menuSource.querySelectorAll('li');
-        
+
         // Initial boot sequence
         const bootText = document.createElement('div');
         bootText.className = 'terminal-line';
         terminalOutput.appendChild(bootText);
         await typeWriter('INITIALIZING MENU SYSTEM...', bootText, 20);
         await new Promise(resolve => setTimeout(resolve, 300));
-        
+
         bootText.innerHTML += '<br>LOADING MODULES... OK';
         await new Promise(resolve => setTimeout(resolve, 300));
 
@@ -38,21 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const line = document.createElement('div');
             line.className = 'terminal-line';
             terminalOutput.appendChild(line);
-            
-            await typeWriter(`> [${i+1}] `, line, 10);
-            
+
+            await typeWriter(`> [${i + 1}] `, line, 10);
+
             const link = document.createElement('a');
             link.href = item.dataset.href;
             link.textContent = ''; // Start empty
             line.appendChild(link);
-            
+
             await typeWriter(item.textContent, link, 50);
-            
+
             // Add click listener to close menu
             link.addEventListener('click', () => {
                 closeMenu();
             });
-            
+
             await new Promise(resolve => setTimeout(resolve, 200));
         }
         isTyping = false;
@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeMenu() {
         menu.classList.remove('active');
+        toggle.classList.remove('active');
         toggle.querySelector('.material-icons').textContent = 'menu';
         document.body.style.overflow = '';
         isTyping = false;
@@ -70,9 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+            toggle.classList.toggle('active');
+
             const icon = toggle.querySelector('.material-icons');
-            
+
             if (isActive) {
                 icon.textContent = 'close';
                 document.body.style.overflow = 'hidden';
@@ -91,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.remove('active');
+            toggle.classList.remove('active');
             toggle.querySelector('.material-icons').textContent = 'menu';
         });
     });

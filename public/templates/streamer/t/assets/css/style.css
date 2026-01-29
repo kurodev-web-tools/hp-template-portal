@@ -200,10 +200,6 @@ body {
     position: absolute;
 }
 
-.node.center {
-    /* center */
-}
-
 .node.left {
     left: 20%;
 }
@@ -217,9 +213,21 @@ body {
     display: none;
     background: none;
     border: none;
-    color: #0f0;
-    z-index: 10002;
+    color: var(--tech-cyan);
+    /* Match titles for open-state */
+    z-index: 20000;
     cursor: pointer;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    text-shadow: 0 0 10px var(--tech-cyan);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.mobile-toggle.active {
+    color: #0f0;
+    /* Terminal Green for close-state */
+    text-shadow: 0 0 10px #0f0;
 }
 
 /* Command Prompt Menu */
@@ -290,8 +298,15 @@ body {
 }
 
 @keyframes cursor-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -301,5 +316,26 @@ body {
 
     .mobile-toggle {
         display: block;
+    }
+
+    .network-map {
+        height: 450px;
+    }
+
+    .node {
+        width: 80px;
+        height: 80px;
+        font-size: 0.8rem;
+        left: 50% !important;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .node.left {
+        top: 20%;
+    }
+
+    .node.right {
+        top: 80%;
     }
 }
