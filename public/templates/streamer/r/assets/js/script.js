@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+
             // Icon switch
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
+            toggle.classList.toggle('active', isActive);
+
+            // Icon stays 'gps_fixed', visual change via CSS
+
             // Play High-pitch Glitch Sound (Visual Metaphor)
             if (isActive) {
                 // Flash body for impact
@@ -29,20 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                toggle.querySelector('.material-icons').textContent = 'menu';
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
                 document.body.style.overflow = '';
             });
         });
     }
 
 
-    // Close menu when a link is clicked
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
-        });
-    });
 
     // Reveal Animation
     const observer = new IntersectionObserver((entries) => {

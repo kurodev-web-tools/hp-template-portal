@@ -15,7 +15,10 @@ body {
 /* Vignette */
 .vignette {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 900;
     pointer-events: none;
     background: radial-gradient(circle, transparent 40%, #000 100%);
@@ -24,7 +27,10 @@ body {
 /* Smoke Layer (Simplified Fog) */
 .smoke-layer {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 800;
     pointer-events: none;
     opacity: 0.3;
@@ -34,22 +40,33 @@ body {
 }
 
 @keyframes fog {
-    0% { background-position: 0 0; }
-    100% { background-position: 100% 0; }
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
 }
 
 /* Header */
 .rogue-header {
     position: fixed;
-    top: 0; width: 100%; z-index: 1000;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     padding: 20px 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.9);
     border-bottom: 1px solid #333;
 }
 
 .header-inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 40px;
-    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .brand {
@@ -59,9 +76,21 @@ body {
     letter-spacing: 2px;
 }
 
-.nav ul { display: flex; gap: 30px; }
-.nav a { font-weight: 700; color: #666; transition: color 0.3s; }
-.nav a:hover { color: #fff; text-shadow: 0 0 5px var(--blood-red); }
+.nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    font-weight: 700;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px var(--blood-red);
+}
 
 /* Hero */
 .hero {
@@ -73,11 +102,12 @@ body {
     background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
     position: relative;
 }
+
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .hero-content {
@@ -93,7 +123,12 @@ body {
     border: 1px solid #333;
     border-radius: 20px;
 }
-.stealth-meter span { color: #00ff00; font-size: 0.8rem; letter-spacing: 2px; }
+
+.stealth-meter span {
+    color: #00ff00;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
 
 .hero-title {
     font-family: 'Metal Mania', cursive;
@@ -103,7 +138,9 @@ body {
     margin-bottom: 20px;
 }
 
-.blood { color: var(--blood-red); }
+.blood {
+    color: var(--blood-red);
+}
 
 .hero-sub {
     font-size: 1.2rem;
@@ -156,7 +193,16 @@ body {
     opacity: 0.5;
     transition: opacity 0.3s;
 }
-.weapon-card:hover .silhouette { opacity: 1; color: var(--blood-red); }
+
+.weapon-card .silhouette .material-icons {
+    font-size: 4rem;
+    /* Larger icon size */
+}
+
+.weapon-card:hover .silhouette {
+    opacity: 1;
+    color: var(--blood-red);
+}
 
 .weapon-card h3 {
     margin-bottom: 15px;
@@ -182,16 +228,48 @@ body {
     font-weight: 700;
     transition: background 0.3s;
 }
-.btn-rogue:hover { background: #b91c1c; }
+
+.btn-rogue:hover {
+    background: #b91c1c;
+}
 
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
     background: none;
-    border: none;
-    color: #666;
-    z-index: 10002;
+    /* Transparent by default */
+    border: 1px solid var(--blood-red);
+    color: var(--blood-red);
+    z-index: 20000;
     cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px;
+    /* Add space for border */
+    border-radius: 4px;
+    /* Slight rounded corners */
+    text-shadow: 0 0 5px var(--blood-red);
+    box-shadow: 0 0 5px rgba(138, 3, 3, 0.3);
+    transition: all 0.3s;
+}
+
+.mobile-toggle.active {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: #0f0;
+    color: #0f0;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    text-shadow: 0 0 10px #0f0;
+}
+
+@media (hover: hover) {
+    .mobile-toggle:hover {
+        background: rgba(0, 255, 0, 0.2);
+        border-color: #0f0;
+        color: #0f0;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+        text-shadow: 0 0 10px #0f0;
+    }
 }
 
 /* Night Vision Menu */
@@ -205,7 +283,8 @@ body {
     z-index: 10001;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.1s ease; /* Quick for snap effect */
+    transition: opacity 0.1s ease;
+    /* Quick for snap effect */
     overflow: hidden;
 }
 
@@ -249,11 +328,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, 
-        rgba(0,255,0,0) 50%, 
-        rgba(0,255,0,0.1) 50%, 
-        rgba(0,255,0,0.1) 51%, 
-        rgba(0,255,0,0) 51%);
+    background: linear-gradient(to bottom,
+            rgba(0, 255, 0, 0) 50%,
+            rgba(0, 255, 0, 0.1) 50%,
+            rgba(0, 255, 0, 0.1) 51%,
+            rgba(0, 255, 0, 0) 51%);
     background-size: 100% 4px;
     z-index: 3;
     pointer-events: none;
@@ -261,8 +340,13 @@ body {
 }
 
 @keyframes scanlines {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 4px; }
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 4px;
+    }
 }
 
 /* Activation Glitch */
@@ -271,12 +355,34 @@ body {
 }
 
 @keyframes nv-boot {
-    0% { filter: brightness(5) contrast(2) sepia(1) hue-rotate(50deg); transform: scale(1.1); }
-    20% { filter: brightness(0.5); transform: scale(0.95); }
-    40% { filter: brightness(2) contrast(1.5) sepia(1) hue-rotate(50deg); transform: skewX(2deg); }
-    60% { filter: brightness(0.8); transform: skewX(-2deg); }
-    80% { filter: brightness(1.5) sepia(1) hue-rotate(50deg); }
-    100% { filter: sepia(1) hue-rotate(50deg) saturate(3); transform: scale(1); }
+    0% {
+        filter: brightness(5) contrast(2) sepia(1) hue-rotate(50deg);
+        transform: scale(1.1);
+    }
+
+    20% {
+        filter: brightness(0.5);
+        transform: scale(0.95);
+    }
+
+    40% {
+        filter: brightness(2) contrast(1.5) sepia(1) hue-rotate(50deg);
+        transform: skewX(2deg);
+    }
+
+    60% {
+        filter: brightness(0.8);
+        transform: skewX(-2deg);
+    }
+
+    80% {
+        filter: brightness(1.5) sepia(1) hue-rotate(50deg);
+    }
+
+    100% {
+        filter: sepia(1) hue-rotate(50deg) saturate(3);
+        transform: scale(1);
+    }
 }
 
 /* Menu Content */
@@ -306,7 +412,8 @@ body {
 .nv-content a {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 2.5rem;
-    color: #0f0; /* Green text */
+    color: #0f0;
+    /* Green text */
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -317,7 +424,8 @@ body {
 .nv-content a::before {
     content: attr(data-text);
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     opacity: 0.5;
     filter: blur(4px);
     z-index: -1;
@@ -338,10 +446,33 @@ body {
     opacity: 0.7;
 }
 
-.nv-crosshair.top-left { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-.nv-crosshair.top-right { top: 20px; right: 20px; border-left: none; border-bottom: none; }
-.nv-crosshair.bottom-left { bottom: 20px; left: 20px; border-right: none; border-top: none; }
-.nv-crosshair.bottom-right { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+.nv-crosshair.top-left {
+    top: 20px;
+    left: 20px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.nv-crosshair.top-right {
+    top: 20px;
+    right: 20px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.nv-crosshair.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    border-right: none;
+    border-top: none;
+}
+
+.nv-crosshair.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    border-left: none;
+    border-top: none;
+}
 
 .nv-data {
     position: absolute;
@@ -353,9 +484,24 @@ body {
     animation: blink 1s infinite;
 }
 
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
 
 @media (max-width: 768px) {
-    .nav { display: none; }
-    .mobile-toggle { display: block; }
+    .nav {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
 }
