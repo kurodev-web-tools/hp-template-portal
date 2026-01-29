@@ -10,14 +10,18 @@ body {
     background-color: var(--galaxy-blue);
     color: var(--stardust);
     font-family: 'Syne', sans-serif;
-    overflow: hidden; /* Main scroll handled by snap container */
+    overflow: hidden;
+    /* Main scroll handled by snap container */
     margin: 0;
 }
 
 /* Starfield */
 #starfield {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
     background: radial-gradient(circle at center, #1e293b 0%, #000 100%);
 }
@@ -25,9 +29,12 @@ body {
 /* Header */
 .orbit-header {
     position: fixed;
-    top: 0; width: 100%; z-index: 1000;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     padding: 30px;
-    pointer-events: none; /* Let clicks pass to snap container unless on interactive elements */
+    pointer-events: none;
+    /* Let clicks pass to snap container unless on interactive elements */
 }
 
 .header-inner {
@@ -43,6 +50,7 @@ body {
     letter-spacing: 5px;
     background: linear-gradient(to right, #fff, var(--orbit-cyan));
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
@@ -56,7 +64,10 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-.orbit-container::-webkit-scrollbar { display: none; }
+
+.orbit-container::-webkit-scrollbar {
+    display: none;
+}
 
 .snap-section {
     height: 100vh;
@@ -136,10 +147,11 @@ body {
 }
 
 .planet-visual {
-    width: 100px; height: 100px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--orbit-cyan), var(--nebula-purple));
-    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5);
+    box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .btn-orbit {
@@ -161,37 +173,63 @@ body {
 }
 
 /* Mobile Toggle */
-.mobile-toggle { 
-    display: none; 
-    background: none; 
-    border: none; 
-    color: #fff; 
-    pointer-events: auto; 
-    z-index: 10002;
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    pointer-events: auto;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 20000;
     cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.mobile-toggle .material-icons {
+    /* Rocket launch icon points diagonally, rotate -45deg to point up */
+    display: inline-block;
+    transform: rotate(-45deg);
+    transition: transform 0.3s;
+}
+
+.mobile-toggle.active .material-icons {
+    transform: rotate(0deg);
+    /* Reset rotation for close icon */
+}
+
+.mobile-toggle:hover .material-icons {
+    transform: rotate(-45deg) scale(1.2);
+    text-shadow: 0 0 10px var(--orbit-cyan);
+}
+
+.mobile-toggle.active:hover .material-icons {
+    transform: rotate(0deg) scale(1.2);
+    /* Keep upright on hover when active */
 }
 
 /* Mobile Menu Overlay */
 .mobile-menu {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.98); 
+    background: rgba(15, 23, 42, 0.98);
     z-index: 10001;
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     justify-content: center;
-    opacity: 0; 
-    visibility: hidden; 
+    opacity: 0;
+    visibility: hidden;
     transition: opacity 0.5s ease;
     overflow: hidden;
 }
 
-.mobile-menu.active { 
-    opacity: 1; 
-    visibility: visible; 
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Solar System Container */
@@ -231,8 +269,13 @@ body {
 }
 
 @keyframes sun-pulse {
-    from { box-shadow: 0 0 30px var(--orbit-cyan); }
-    to { box-shadow: 0 0 60px var(--orbit-cyan), 0 0 10px #fff; }
+    from {
+        box-shadow: 0 0 30px var(--orbit-cyan);
+    }
+
+    to {
+        box-shadow: 0 0 60px var(--orbit-cyan), 0 0 10px #fff;
+    }
 }
 
 /* Orbit Ring */
@@ -269,9 +312,25 @@ body {
 }
 
 /* Positioning Planets on the Ring */
-.p1 { top: -30px; left: 50%; transform: translateX(-50%); } /* Top */
-.p2 { bottom: 20px; left: 10px; } /* Bottom Left */
-.p3 { bottom: 20px; right: 10px; } /* Bottom Right */
+.p1 {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Top */
+.p2 {
+    bottom: 20px;
+    left: 10px;
+}
+
+/* Bottom Left */
+.p3 {
+    bottom: 20px;
+    right: 10px;
+}
+
+/* Bottom Right */
 
 /* Counter-rotate text so it stays upright */
 .planet-link {
@@ -287,7 +346,8 @@ body {
     background: var(--orbit-cyan);
     border-color: #fff;
     box-shadow: 0 0 30px var(--orbit-cyan);
-    transform: scale(1.2); /* Since position is absolute, scale works but might shift slightly if not centered. Let's rely on flex centering or specific transform origin */
+    transform: scale(1.2);
+    /* Since position is absolute, scale works but might shift slightly if not centered. Let's rely on flex centering or specific transform origin */
     z-index: 20;
 }
 
@@ -297,22 +357,48 @@ body {
 }
 
 @keyframes orbit-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes counter-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(-360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
 }
 
 /* Mobile Specific Adjustments */
 @media (max-width: 768px) {
-    .mobile-toggle { display: block; }
-    .snap-section { padding: 0 20px; }
-    .planet-card { flex-direction: column; text-align: center; gap: 20px; }
-    .glass-orb { padding: 40px 20px; }
-    
+    .mobile-toggle {
+        display: block;
+    }
+
+    .snap-section {
+        padding: 0 20px;
+    }
+
+    .planet-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .glass-orb {
+        padding: 40px 20px;
+    }
+
     /* Enhance mobile menu size */
-    .system-container { width: 280px; height: 280px; }
+    .system-container {
+        width: 280px;
+        height: 280px;
+    }
 }

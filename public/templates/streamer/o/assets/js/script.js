@@ -28,17 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
     const menuLinks = menu ? menu.querySelectorAll('a') : [];
-    
+
     // Parallax Effect Variables
     const systemContainer = document.querySelector('.system-container');
     let mouseX = 0, mouseY = 0;
-    
+
     if (toggle && menu) {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-            
+            toggle.classList.toggle('active', isActive);
+            toggle.querySelector('.material-icons').textContent = isActive ? 'close_fullscreen' : 'rocket_launch';
+
+            // Add/Remove Parallax Listeners
+
             // Add/Remove Parallax Listeners
             if (isActive) {
                 document.addEventListener('mousemove', handleParallax);
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.removeEventListener('mousemove', handleParallax);
                 document.removeEventListener('touchmove', handleTouchParallax);
                 // Reset transform
-                if(systemContainer) systemContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                if (systemContainer) systemContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
             }
         });
 
@@ -55,7 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                toggle.querySelector('.material-icons').textContent = 'menu';
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.querySelector('.material-icons').textContent = 'rocket_launch';
+                document.removeEventListener('mousemove', handleParallax);
                 document.removeEventListener('mousemove', handleParallax);
                 document.removeEventListener('touchmove', handleTouchParallax);
             });
