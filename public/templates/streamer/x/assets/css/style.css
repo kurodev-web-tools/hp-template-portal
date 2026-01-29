@@ -30,13 +30,47 @@ body {
     pointer-events: auto;
 }
 
-.menu-btn {
-    background: #fff;
-    border: none;
-    padding: 10px;
+/* Desktop Nav */
+.desktop-nav {
     pointer-events: auto;
-    cursor: pointer;
 }
+
+.desktop-nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.desktop-nav a:hover {
+    color: var(--xtreme-yellow);
+    transform: skew(-10deg) scale(1.1);
+}
+
+/* Header Inversion Strategy */
+.xtreme-header.header-invert .brand {
+    color: #000;
+}
+
+.xtreme-header.header-invert .desktop-nav a {
+    color: #000;
+}
+
+.xtreme-header.header-invert .desktop-nav a:hover {
+    color: var(--xtreme-yellow);
+}
+
+/* Button handled in Mobile Toggle section */
 
 /* Snap Container */
 .snap-container {
@@ -164,13 +198,31 @@ body {
 
 /* Mobile Toggle */
 .menu-btn {
-    background: #fff;
-    border: none;
+    display: none !important;
+    /* Hidden on desktop */
+    background: #000;
+    color: var(--xtreme-yellow);
+    border: 2px solid var(--xtreme-yellow);
     padding: 10px;
     pointer-events: auto;
     cursor: pointer;
-    z-index: 10002;
-    position: relative; /* Ensure z-index works */
+    z-index: 20000;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: skew(-10deg);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 4px 4px 0 rgba(250, 204, 21, 0.2);
+}
+
+.menu-btn.active {
+    background: var(--xtreme-yellow);
+    color: #000;
+    border-color: #000;
+    box-shadow: 4px 4px 0 #000;
 }
 
 /* Mobile Menu Container */
@@ -193,7 +245,8 @@ body {
 .slash-panel {
     position: absolute;
     top: 0;
-    width: 65%; /* Overlap slightly */
+    width: 65%;
+    /* Overlap slightly */
     height: 100%;
     transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     will-change: transform;
@@ -212,7 +265,8 @@ body {
     background: var(--xtreme-yellow);
     clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
     transform: translateX(100%);
-    border-left: 5px solid #000; /* Contrast line */
+    border-left: 5px solid #000;
+    /* Contrast line */
 }
 
 .mobile-menu.active .slash-panel.left,
@@ -237,25 +291,29 @@ body {
     list-style: none;
     padding: 0;
     text-align: center;
-    transform: skew(-10deg); /* Match the sporty vibe */
+    transform: skew(-10deg);
+    /* Match the sporty vibe */
 }
 
 .menu-content li {
     margin: 20px 0;
-    overflow: hidden; /* For reveal effect */
+    overflow: hidden;
+    /* For reveal effect */
 }
 
 .menu-content a {
     display: block;
     font-size: 4rem;
     font-weight: 900;
-    color: #fff; /* Default for left side (black bg) */
+    color: #fff;
+    /* Default for left side (black bg) */
     text-decoration: none;
     text-transform: uppercase;
     line-height: 1;
     transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
-    opacity: 0; /* Hide initially */
+    opacity: 0;
+    /* Hide initially */
     position: relative;
     /* Mix blend mode to ensure visibility across both panels? 
        Actually, since text is centered, it might cross the slash line.
@@ -272,26 +330,40 @@ body {
 }
 
 /* Staggered Delay */
-.mobile-menu.active li:nth-child(1) a { transition-delay: 0.4s; }
-.mobile-menu.active li:nth-child(2) a { transition-delay: 0.5s; }
-.mobile-menu.active li:nth-child(3) a { transition-delay: 0.6s; }
+.mobile-menu.active li:nth-child(1) a {
+    transition-delay: 0.4s;
+}
+
+.mobile-menu.active li:nth-child(2) a {
+    transition-delay: 0.5s;
+}
+
+.mobile-menu.active li:nth-child(3) a {
+    transition-delay: 0.6s;
+}
 
 /* Hover Effect */
 .menu-content a:hover {
     color: var(--xtreme-yellow);
     -webkit-text-stroke: 0;
     text-shadow: 4px 4px 0 #000;
-    transform: scale(1.1) translateY(0); /* Ensure translate stays 0 */
+    transform: scale(1.1) translateY(0);
+    /* Ensure translate stays 0 */
 }
 
 /* Data Text for Glitch/Duplicate effect (Optional, keeping simple slash for now) */
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .menu-btn {
-        display: block; /* Ensure visible */
+    .desktop-nav {
+        display: none;
     }
-    
+
+    .menu-btn {
+        display: flex !important;
+        /* Shown only on mobile */
+    }
+
     .menu-content a {
         font-size: 3rem;
     }

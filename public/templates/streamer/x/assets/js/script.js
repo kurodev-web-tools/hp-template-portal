@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+            toggle.classList.toggle('active'); // Added
+
             const icon = toggle.querySelector('.material-icons');
             if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
+
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
+                toggle.classList.remove('active'); // Added
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = 'menu';
                 document.body.style.overflow = '';
@@ -42,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', enableInteraction, { once: true });
     document.addEventListener('touchstart', enableInteraction, { once: true });
 
+    const header = document.querySelector('.xtreme-header');
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -49,6 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 wave.classList.remove('shockwave-active');
                 void wave.offsetWidth; // Trigger reflow
                 wave.classList.add('shockwave-active');
+
+                // Header Theme Switching (Invert colors on white sections)
+                const sectionIndex = Array.from(sections).indexOf(entry.target);
+                const isEvenSection = sectionIndex % 2 !== 0; // Sections 2, 4... are index 1, 3...
+                if (header) {
+                    header.classList.toggle('header-invert', isEvenSection);
+                }
 
                 // Haptics - only if user has interacted
                 // Double check with userActivation API if available to prevent console noise
