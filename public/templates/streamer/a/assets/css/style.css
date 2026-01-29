@@ -340,24 +340,20 @@ body {
     display: none;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--neon-pink);
     cursor: pointer;
     z-index: 10003;
     /* Ensure above menu */
     position: fixed;
     top: 20px;
     right: 20px;
-}
-
-.mobile-toggle.active {
-    color: var(--neon-blue);
     text-shadow:
-        0 0 10px var(--neon-blue),
-        0 0 20px var(--neon-pink);
-    animation: neon-flicker 2s infinite;
+        0 0 10px var(--neon-pink),
+        0 0 20px var(--neon-blue);
+    animation: neon-flicker-pink 3s infinite;
 }
 
-@keyframes neon-flicker {
+@keyframes neon-flicker-pink {
 
     0%,
     19%,
@@ -368,12 +364,43 @@ body {
     56%,
     100% {
         opacity: 1;
+        filter: drop-shadow(0 0 5px var(--neon-pink));
     }
 
     20%,
     24%,
     55% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 2px var(--neon-pink));
+    }
+}
+
+.mobile-toggle.active {
+    color: var(--neon-blue);
+    text-shadow:
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-pink);
+    animation: neon-flicker-blue 2s infinite;
+}
+
+@keyframes neon-flicker-blue {
+
+    0%,
+    18%,
+    20%,
+    22%,
+    50%,
+    52%,
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 5px var(--neon-blue));
+    }
+
+    19%,
+    21%,
+    51% {
         opacity: 0.7;
+        filter: drop-shadow(0 0 2px var(--neon-blue));
     }
 }
 
