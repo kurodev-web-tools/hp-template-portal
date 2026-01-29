@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu (Mercury Pool)
     const toggle = document.querySelector('.mobile-toggle');
     const menuContainer = document.querySelector('.mobile-menu-container');
-    const menuLinks = menuContainer ? menuContainer.querySelectorAll('a') : [];
+    const menuContent = document.querySelector('.mobile-menu-content');
+    const menuLinks = menuContent ? menuContent.querySelectorAll('a') : [];
 
     if (toggle && menuContainer) {
         toggle.addEventListener('click', (e) => {
