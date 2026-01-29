@@ -55,12 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+            toggle.classList.toggle('active');
+
             const icon = toggle.querySelector('.material-icons');
             if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
+
             // Add noise sound trigger here if needed
-            
+
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
+                toggle.classList.remove('active');
                 toggle.querySelector('.material-icons').textContent = 'menu';
                 document.body.style.overflow = '';
             });

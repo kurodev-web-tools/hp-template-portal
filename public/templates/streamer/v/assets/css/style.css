@@ -16,14 +16,20 @@ body {
 /* Header */
 .vivid-header {
     position: fixed;
-    top: 0; width: 100%; z-index: 1000;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     padding: 20px 0;
     mix-blend-mode: difference;
 }
 
 .header-inner {
-    max-width: 1200px; margin: 0 auto; padding: 0 40px;
-    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .brand {
@@ -32,9 +38,19 @@ body {
     color: #fff;
 }
 
-.nav ul { display: flex; gap: 30px; }
-.nav a { font-size: 1.2rem; transition: color 0.3s; }
-.nav a:hover { color: var(--vivid-magenta); }
+.nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: var(--vivid-magenta);
+}
 
 /* Hero */
 .hero {
@@ -72,10 +88,14 @@ body {
     display: inline-block;
 }
 
-.rgb-target::before, .rgb-target::after {
+.rgb-target::before,
+.rgb-target::after {
     content: attr(data-text);
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     mix-blend-mode: screen;
     pointer-events: none;
@@ -134,7 +154,10 @@ body {
     transform: scale(1.05);
 }
 
-.vivid-card h3 { font-size: 2rem; margin-bottom: 10px; }
+.vivid-card h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
 
 /* Noise Box */
 .noise-box {
@@ -163,45 +186,59 @@ body {
 }
 
 /* Mobile Toggle */
-.mobile-toggle { 
-    display: none; 
-    background: none; 
-    border: none; 
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
     color: #fff;
-    z-index: 10002;
+    z-index: 20000;
     cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: color 0.2s;
+}
+
+.mobile-toggle.active {
+    color: var(--vivid-magenta);
+    text-shadow: 0 0 15px var(--vivid-magenta);
 }
 
 /* Mobile Menu Container */
 .mobile-menu {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: #000; 
+    background: #000;
     z-index: 10001;
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     justify-content: center;
-    opacity: 0; 
-    visibility: hidden; 
-    transition: opacity 0.1s; /* Fast toggle */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s;
+    /* Fast toggle */
     overflow: hidden;
 }
 
-.mobile-menu.active { 
-    opacity: 1; 
+.mobile-menu.active {
+    opacity: 1;
     visibility: visible;
     /* Shake animation on container */
-    animation: screen-shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    animation: screen-shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 /* Scanlines Background */
 .scanlines {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
     background-size: 100% 4px;
     z-index: 1;
     pointer-events: none;
@@ -210,7 +247,10 @@ body {
 /* RGB Split Layers (for full screen glitch) */
 .rgb-layer {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 2;
     mix-blend-mode: screen;
@@ -233,16 +273,44 @@ body {
 }
 
 @keyframes rgb-flash {
-    0% { opacity: 1; transform: translateX(10px); }
-    50% { opacity: 0.5; transform: translateX(-5px); }
-    100% { opacity: 0; transform: translateX(0); }
+    0% {
+        opacity: 1;
+        transform: translateX(10px);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: translateX(-5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
 }
 
 @keyframes screen-shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
 }
 
 /* Menu Content */
@@ -251,13 +319,18 @@ body {
     z-index: 10;
 }
 
-.mobile-menu ul { text-align: center; }
-.mobile-menu li { margin: 30px 0; }
+.mobile-menu ul {
+    text-align: center;
+}
 
-.mobile-menu a { 
-    font-size: 3rem; 
-    color: #fff; 
-    font-family: 'Rubik Glitch', cursive; 
+.mobile-menu li {
+    margin: 30px 0;
+}
+
+.mobile-menu a {
+    font-size: 3rem;
+    color: #fff;
+    font-family: 'Rubik Glitch', cursive;
     text-decoration: none;
     position: relative;
     display: inline-block;
@@ -303,25 +376,79 @@ body {
 
 /* Glitch Keyframes */
 @keyframes glitch-anim-1 {
-    0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
-    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
-    40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
-    80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
-    100% { clip-path: inset(30% 0 30% 0); transform: translate(1px, -1px); }
+    0% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 1px);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(2px, -1px);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, -2px);
+    }
+
+    80% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(-1px, 1px);
+    }
+
+    100% {
+        clip-path: inset(30% 0 30% 0);
+        transform: translate(1px, -1px);
+    }
 }
 
 @keyframes glitch-anim-2 {
-    0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
-    20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
-    40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 1px); }
-    60% { clip-path: inset(10% 0 80% 0); transform: translate(-1px, -2px); }
-    80% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 2px); }
-    100% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 1px); }
+    0% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, -1px);
+    }
+
+    20% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(2px, 1px);
+    }
+
+    60% {
+        clip-path: inset(10% 0 80% 0);
+        transform: translate(-1px, -2px);
+    }
+
+    80% {
+        clip-path: inset(50% 0 30% 0);
+        transform: translate(1px, 2px);
+    }
+
+    100% {
+        clip-path: inset(70% 0 10% 0);
+        transform: translate(-2px, 1px);
+    }
 }
 
 @media (max-width: 768px) {
-    .nav { display: none; }
-    .mobile-toggle { display: block; }
-    .hero-title { font-size: 3.5rem; }
+    .nav {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
 }
