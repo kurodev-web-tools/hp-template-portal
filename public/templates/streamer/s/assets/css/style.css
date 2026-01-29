@@ -92,100 +92,285 @@ body {
     }
 }
 
-/* Hero */
+/* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle, #333 0%, #111 100%);
-}
-
-.steam-container {
-    padding: 60px;
-    border: 2px solid var(--copper);
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.6);
+    background:
+        /* Vignette */
+        radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%),
+        /* Ambient Light */
+        radial-gradient(circle at 50% 40%, rgba(184, 115, 51, 0.1) 0%, transparent 60%),
+        /* Deep Base */
+        #111;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
     position: relative;
-    box-shadow: 0 0 30px rgba(184, 115, 51, 0.2);
+    overflow: hidden;
 }
 
-.steam-container::before,
-.steam-container::after {
+.hero-vessel {
+    width: 92%;
+    max-width: 960px;
+    padding: 100px 60px;
+    border: 1px solid #7d5a50;
+    border-radius: 8px;
+    position: relative;
+    background:
+        /* Hammered Metal / Pitted Texture */
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 30%),
+        /* Brushed finish */
+        repeating-linear-gradient(90deg,
+            rgba(0, 0, 0, 0) 0px,
+            rgba(0, 0, 0, 0.05) 1px,
+            rgba(0, 0, 0, 0) 2px),
+        /* Metal Base */
+        linear-gradient(135deg, #4e342e 0%, #2b1d1a 100%);
+    box-shadow:
+        inset 0 0 100px rgba(0, 0, 0, 0.7),
+        inset 0 2px 2px rgba(255, 255, 255, 0.1),
+        0 30px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 8px #1a1210,
+        0 0 0 10px #5d4037;
+    z-index: 10;
+}
+
+/* Corner Rivets */
+/* 3D Rivets */
+.hero-vessel::before,
+.hero-vessel::after {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: var(--brass);
+    width: 24px;
+    height: 24px;
+    background:
+        radial-gradient(circle at 35% 35%, #9e6b4e 0%, #3e2723 80%);
     border-radius: 50%;
-    box-shadow: 0 0 5px var(--brass);
+    box-shadow:
+        inset -2px -2px 6px rgba(0, 0, 0, 0.6),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.1),
+        2px 5px 15px rgba(0, 0, 0, 0.8);
+    z-index: 5;
 }
 
-.steam-container::before {
-    top: 10px;
-    left: 10px;
+.hero-vessel::before {
+    top: 20px;
+    left: 20px;
 }
 
-.steam-container::after {
-    bottom: 10px;
-    right: 10px;
+.hero-vessel::after {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Side Decorations */
+.side-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pipes {
+    position: absolute;
+    top: 0;
+    width: 140px;
+    height: 100%;
+    background:
+        /* Highlights for 3D Tubular Look */
+        linear-gradient(90deg,
+            rgba(0, 0, 0, 0.6) 0%,
+            rgba(184, 115, 51, 0.8) 20%,
+            rgba(225, 193, 110, 0.9) 30%,
+            rgba(184, 115, 51, 0.8) 45%,
+            rgba(0, 0, 0, 0.7) 60%,
+            transparent 60%),
+        /* Secondary pipe */
+        linear-gradient(90deg,
+            transparent 75%,
+            rgba(0, 0, 0, 0.5) 75%,
+            #5d4037 80%,
+            #8d6e63 83%,
+            #5d4037 86%,
+            rgba(0, 0, 0, 0.5) 90%,
+            transparent 90%);
+    filter: drop-shadow(10px 0 15px rgba(0, 0, 0, 0.8));
+}
+
+.pipes.left {
+    left: 20px;
+}
+
+.pipes.right {
+    right: 20px;
+    transform: scaleX(-1);
+}
+
+/* Horizontal connectors with deep shading */
+.pipes::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: -20px;
+    width: 140%;
+    height: 40px;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.5) 0%,
+            #b87333 30%,
+            #e1c16e 50%,
+            #b87333 70%,
+            rgba(0, 0, 0, 0.6) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #2b1d1a;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.ambient-gears {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bg-gear {
+    position: absolute;
+    color: #000;
+    filter: blur(2px) drop-shadow(0 0 20px rgba(184, 115, 51, 0.1));
+    opacity: 0.15;
+    z-index: 0;
+    animation: gear-spin 60s linear infinite;
+    user-select: none;
+}
+
+.bg-1 {
+    font-size: 25rem;
+    top: -5rem;
+    left: -10rem;
+}
+
+.bg-2 {
+    font-size: 20rem;
+    bottom: -5rem;
+    right: -8rem;
+    animation-direction: reverse;
+    animation-duration: 40s;
+}
+
+/* Main Content Area */
+.page-content {
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
 }
 
 .hero-title {
     font-family: 'Rye', serif;
-    font-size: 4rem;
-    color: var(--brass);
+    font-size: 5rem;
+    color: #ffc107;
+    /* Amber Nixie */
     line-height: 1;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 0 #000;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    filter: drop-shadow(0 0 10px rgba(255, 129, 0, 0.5));
+    animation: nixie-flicker 5s infinite;
 }
 
 .hero-sub {
     font-size: 1.2rem;
-    color: #ccc;
+    color: #a1887f;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes nixie-flicker {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        opacity: 1;
+        text-shadow:
+            0 0 10px #ff8100,
+            0 0 20px #ff8100,
+            0 0 40px rgba(255, 129, 0, 0.4);
+        color: #ffc107;
+    }
+
+    20%,
+    24%,
+    55% {
+        opacity: 0.8;
+        text-shadow: none;
+        color: #4e342e;
+    }
 }
 
 /* Gauge */
 .pressure-gauge {
-    width: 100px;
-    height: 50px;
-    background: #fff;
-    border-radius: 50px 50px 0 0;
+    width: 120px;
+    height: 60px;
+    background:
+        radial-gradient(circle at 50% 100%, #f0ead6 0%, #e1c16e 100%);
+    border-radius: 60px 60px 0 0;
     margin: 30px auto 0;
     position: relative;
-    border: 4px solid var(--copper);
+    border: 4px solid #3e2723;
+    border-bottom: none;
+    box-shadow:
+        inset 0 0 15px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
 .needle {
-    width: 40px;
-    height: 2px;
-    background: red;
+    width: 2px;
+    height: 45px;
+    background: #ff3d00;
     position: absolute;
     bottom: 2px;
-    left: 10px;
-    transform-origin: 100% 50%;
-    transform: rotate(0deg);
-    animation: gauge-twitch 2s infinite ease-in-out;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(-45deg);
+    animation: gauge-vibrate 3s infinite ease-in-out;
+    filter: drop-shadow(0 0 3px rgba(255, 61, 0, 0.5));
 }
 
-@keyframes gauge-twitch {
-    0% {
-        transform: rotate(-45deg);
+@keyframes gauge-vibrate {
+
+    0%,
+    100% {
+        transform: translateX(-50%) rotate(-45deg);
     }
 
     50% {
-        transform: rotate(45deg);
+        transform: translateX(-50%) rotate(30deg);
     }
 
-    100% {
-        transform: rotate(-45deg);
+    70% {
+        transform: translateX(-50%) rotate(25deg);
     }
 }
 
 /* Page Content */
 .page-content {
+    width: 100%;
     min-height: 100vh;
     padding-top: 80px;
     display: flex;
@@ -200,21 +385,30 @@ body {
 }
 
 .copper-frame {
-    border: 8px solid var(--copper);
-    border-image: linear-gradient(to right, var(--copper), var(--brass)) 1;
+    border: 1px solid #7d5a50;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.8);
+    background:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+        linear-gradient(135deg, #3e2723 0%, #1b110f 100%);
+    box-shadow:
+        inset 0 0 50px rgba(0, 0, 0, 0.6),
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 4px #1a1210,
+        0 0 0 6px #5d4037;
     position: relative;
+    z-index: 10;
 }
 
 .section-title {
     font-family: 'Rye', serif;
     font-size: 2.5rem;
-    color: var(--brass);
+    color: #ffc107;
     text-align: center;
     margin-bottom: 40px;
-    border-bottom: 2px dashed var(--copper);
+    border-bottom: 1px solid #5d4037;
     display: inline-block;
+    text-shadow: 0 0 10px rgba(255, 129, 0, 0.5);
+    animation: nixie-flicker 8s infinite ease-in-out;
 }
 
 /* Grid & Cards */
@@ -291,48 +485,65 @@ body {
     background: none;
     border: none;
     color: var(--copper);
-    z-index: 10002;
+    z-index: 20000;
     cursor: pointer;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    text-shadow: 1px 1px 0 #000;
 }
 
 /* Mobile Menu Container */
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: 0; /* Slide from right */
+    right: 0;
+    /* Slide from right */
     width: 100%;
     height: 100%;
     z-index: 10001;
-    pointer-events: none; /* Allow clicks through when closed */
+    pointer-events: none;
+    /* Allow clicks through when closed */
     overflow: hidden;
+    visibility: hidden;
+    /* Ensure hidden when inactive */
+    transition: visibility 0s 0.6s;
+    /* Delay visibility change until after transform */
 }
 
 .mobile-menu.active {
     pointer-events: auto;
+    visibility: visible;
+    transition: visibility 0s 0s;
 }
 
-/* Metal Plate */
+/* Metal Plate (Mobile Menu) */
 .gear-plate {
     position: absolute;
     top: 0;
     right: 0;
-    width: 80%;
+    width: 85%;
     max-width: 400px;
     height: 100%;
-    background: linear-gradient(135deg, #b87333 0%, #8b4513 100%); /* Copper Gradient */
-    border-left: 5px solid #5d4037;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.7);
+    /* Solid Opaque Copper Base */
+    background:
+        /* Hammered Metal / Pitted Texture */
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 30%),
+        /* Noise Overlay for Opaque feel */
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.2'/%3E%3C/svg%3E"),
+        /* Main Copper Gradient (Opaque) */
+        linear-gradient(135deg, #b87333 0%, #5d4037 100%);
+    border-left: 2px solid #e1c16e;
+    box-shadow:
+        inset 0 0 100px rgba(0, 0, 0, 0.5),
+        -15px 0 50px rgba(0, 0, 0, 0.9);
     transform: translateX(100%);
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    /* Noise Texture for Metal */
-    background-image: 
-        linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 50%, rgba(255,255,255,0.1) 100%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
 }
 
 .mobile-menu.active .gear-plate {
@@ -342,7 +553,9 @@ body {
 /* Rivets */
 .rivets-container {
     position: absolute;
-    top: 10px; bottom: 10px; left: 10px;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
     width: 10px;
     background-image: radial-gradient(circle, #e1c16e 30%, transparent 40%);
     background-size: 10px 40px;
@@ -361,28 +574,66 @@ body {
     position: absolute;
     font-size: 4rem;
     color: #3e2723;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
     opacity: 0.8;
     line-height: 1;
 }
 
-.g1 { top: 0; right: 0; font-size: 8rem; animation: gear-spin 12s linear infinite; }
-.g2 { top: 90px; right: 90px; font-size: 5rem; animation: gear-spin-rev 8s linear infinite; }
-.g3 { bottom: 20px; left: -20px; font-size: 6rem; color: #5d4037; animation: gear-spin 15s linear infinite; top: auto; right: auto; }
+.g1 {
+    top: 0;
+    right: 0;
+    font-size: 8rem;
+    animation: gear-spin 12s linear infinite;
+}
+
+.g2 {
+    top: 90px;
+    right: 90px;
+    font-size: 5rem;
+    animation: gear-spin-rev 8s linear infinite;
+}
+
+.g3 {
+    bottom: 20px;
+    left: -20px;
+    font-size: 6rem;
+    color: #5d4037;
+    animation: gear-spin 15s linear infinite;
+    top: auto;
+    right: auto;
+}
 
 /* Control Animation State */
 .mobile-menu:not(.active) .gear {
     animation-play-state: paused;
 }
+
 .mobile-menu.active .gear {
     animation-play-state: running;
 }
 
-@keyframes gear-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes gear-spin-rev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes gear-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gear-spin-rev {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
 
 /* Steam Effect */
-.steam-container {
+.steam-visuals {
     position: absolute;
     bottom: 0;
     left: 20px;
@@ -408,14 +659,41 @@ body {
     animation: steam-rise 3s infinite;
 }
 
-.p1 { animation-delay: 0.2s; left: 20%; width: 40px; height: 40px; }
-.p2 { animation-delay: 1.5s; left: 40%; width: 25px; height: 25px; }
-.p3 { animation-delay: 0.8s; left: 25%; width: 50px; height: 50px; }
+.p1 {
+    animation-delay: 0.2s;
+    left: 20%;
+    width: 40px;
+    height: 40px;
+}
+
+.p2 {
+    animation-delay: 1.5s;
+    left: 40%;
+    width: 25px;
+    height: 25px;
+}
+
+.p3 {
+    animation-delay: 0.8s;
+    left: 25%;
+    width: 50px;
+    height: 50px;
+}
 
 @keyframes steam-rise {
-    0% { transform: translateY(0) scale(1); opacity: 0; }
-    20% { opacity: 0.6; }
-    100% { transform: translateY(-400px) scale(3); opacity: 0; }
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-400px) scale(3);
+        opacity: 0;
+    }
 }
 
 /* Menu List */
@@ -441,25 +719,39 @@ body {
 }
 
 /* Stagger Items */
-.mobile-menu.active li:nth-child(1) { transition-delay: 0.3s; }
-.mobile-menu.active li:nth-child(2) { transition-delay: 0.4s; }
-.mobile-menu.active li:nth-child(3) { transition-delay: 0.5s; }
-.mobile-menu.active li:nth-child(4) { transition-delay: 0.6s; }
+.mobile-menu.active li:nth-child(1) {
+    transition-delay: 0.3s;
+}
+
+.mobile-menu.active li:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.mobile-menu.active li:nth-child(3) {
+    transition-delay: 0.5s;
+}
+
+.mobile-menu.active li:nth-child(4) {
+    transition-delay: 0.6s;
+}
 
 .gear-plate a {
     font-family: 'Rye', serif;
-    font-size: 2rem;
-    color: #3e2723;
+    font-size: 2.2rem;
+    color: #1a1210;
+    /* Dark Iron for contrast on Copper */
     text-decoration: none;
     text-transform: uppercase;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
-    transition: color 0.3s;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s;
     display: block;
+    margin: 15px 0;
 }
 
 .gear-plate a:hover {
-    color: #e1c16e; /* Brass */
-    text-shadow: 0 0 10px #e1c16e;
+    color: #111;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 129, 0, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -497,5 +789,11 @@ body {
 
     .hero-title {
         font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pipes {
+        display: none;
     }
 }
