@@ -69,13 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+            toggle.classList.toggle('active'); // Added
+
             const icon = toggle.querySelector('.material-icons');
             if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
-            // Toggle color for visibility against dark/light bg
-            toggle.style.color = isActive ? '#fff' : '#555';
-            
+
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 
@@ -83,9 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.addEventListener('click', (e) => {
             if (e.target === menu || e.target.classList.contains('ticker-bg') || e.target.closest('.ticker-content')) {
                 menu.classList.remove('active');
+                toggle.classList.remove('active'); // Added
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = 'menu';
-                toggle.style.color = '#555';
                 document.body.style.overflow = '';
             }
         });
@@ -94,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
+                toggle.classList.remove('active'); // Added
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = 'menu';
-                toggle.style.color = '#555';
                 document.body.style.overflow = '';
             });
         });

@@ -221,8 +221,16 @@ body {
     background: none;
     border: none;
     color: #555;
-    z-index: 10002;
+    z-index: 20000;
     cursor: pointer;
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    transition: color 0.3s;
+}
+
+.mobile-toggle.active {
+    color: #fff;
 }
 
 /* Mobile Menu Container */
@@ -233,7 +241,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: 10001;
-    pointer-events: none; /* Let clicks pass when hidden */
+    pointer-events: none;
+    /* Let clicks pass when hidden */
     overflow: hidden;
 }
 
@@ -248,7 +257,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Dark background for visibility */
+    background: rgba(0, 0, 0, 0.85);
+    /* Dark background for visibility */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -264,16 +274,19 @@ body {
 
 .ticker-content {
     white-space: nowrap;
-    font-family: 'Fredoka One', monospace; /* Monospace-ish look */
+    font-family: 'Fredoka One', monospace;
+    /* Monospace-ish look */
     font-size: 4rem;
-    color: rgba(76, 175, 80, 0.2); /* Faint green */
+    color: rgba(76, 175, 80, 0.2);
+    /* Faint green */
     display: flex;
     animation: ticker-slide 20s linear infinite;
 }
 
 .ticker-content.reverse {
     animation-direction: reverse;
-    color: rgba(212, 175, 55, 0.2); /* Faint gold */
+    color: rgba(212, 175, 55, 0.2);
+    /* Faint gold */
 }
 
 .ticker-content span {
@@ -281,8 +294,13 @@ body {
 }
 
 @keyframes ticker-slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Sidebar Glassmorphism */
@@ -293,7 +311,8 @@ body {
     width: 80%;
     max-width: 300px;
     height: 100%;
-    background: rgba(255, 255, 255, 0.2); /* Translucent */
+    background: rgba(255, 255, 255, 0.2);
+    /* Translucent */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-left: 1px solid rgba(255, 255, 255, 0.3);
