@@ -276,12 +276,22 @@ body {
     }
 }
 
-/* Mobile */
+/* Mobile Toggle */
 .mobile-toggle {
     display: none;
     background: none;
     border: none;
     color: #333;
+    z-index: 20000;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transition: color 0.3s;
+}
+
+.mobile-toggle.active {
+    color: var(--sumi-black);
 }
 
 .mobile-menu {
@@ -324,19 +334,22 @@ body {
         display: none;
     }
 
+    .zen-header {
+        padding: 15px 0;
+    }
+
     .mobile-toggle {
         display: block;
     }
 
     /* Adjust content position for mobile */
     .page-content {
-        padding-top: 60px;
-        /* Reduced from 120px */
-        align-items: center;
-        /* Center vertically */
+        padding-top: 100px;
+        /* Increased from 60px to clear fixed header */
+        align-items: flex-start;
+        /* Start from top, not center */
         justify-content: center;
         min-height: 100vh;
-        /* Full viewport height */
     }
 
     .hero {
