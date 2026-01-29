@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menuContainer.classList.toggle('active');
-            
+
             const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
+            if (icon) icon.textContent = isActive ? 'close' : 'short_text';
+
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 

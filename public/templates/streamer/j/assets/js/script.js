@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Horizontal Scroll Logic
     const container = document.querySelector('.horizontal-container');
     const record = document.querySelector('.vinyl-record');
-    
+
     // Sync Record Speed with Scroll
     let isScrolling;
     container.addEventListener('scroll', () => {
         // Speed up rotation on scroll
         record.style.animationDuration = '2s';
-        
+
         window.clearTimeout(isScrolling);
         isScrolling = setTimeout(() => {
             // Return to normal speed
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const panel = entry.target.querySelector('.glass-panel');
-                if(panel) {
+                if (panel) {
                     panel.style.opacity = '1';
                     panel.style.transform = 'translateY(0)';
                 }
@@ -53,11 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
     const menuLinks = menu ? menu.querySelectorAll('a') : [];
-    
+
     function toggleMenu() {
         const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-        
+        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'grid_3x3';
+
         // Ensure links are interactive
         if (isActive) {
             menu.style.pointerEvents = 'auto';

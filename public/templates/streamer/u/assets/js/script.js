@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Letter-by-letter Spray Effect (Simulation)
     const title = document.querySelector('.spray-title');
-    if(title) {
+    if (title) {
         const text = title.textContent;
         title.textContent = '';
         [...text].forEach((char, i) => {
@@ -36,15 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.mobile-menu');
     const links = menu ? menu.querySelectorAll('a') : [];
-    
+
     if (toggle && menu) {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+
             const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
+            if (icon) icon.textContent = isActive ? 'close' : 'format_paint';
+
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 

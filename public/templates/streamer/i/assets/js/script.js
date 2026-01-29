@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggle.classList.toggle('active');
 
             const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            if (icon) icon.textContent = isActive ? 'close' : 'auto_fix_high';
 
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
-                
+
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = 'menu';
-                
+
                 document.body.style.overflow = '';
             });
         });

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggle.classList.toggle('active');
 
             const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            if (icon) icon.textContent = isActive ? 'close' : 'movie_filter';
 
             document.body.style.overflow = isActive ? 'hidden' : '';
         });

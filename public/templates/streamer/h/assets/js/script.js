@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggle.addEventListener('click', () => {
         const isActive = menu.classList.toggle('active');
-        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
+        toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'priority_high';
         document.body.style.overflow = isActive ? 'hidden' : '';
     });
 

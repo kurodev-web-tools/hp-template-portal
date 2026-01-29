@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 requestAnimationFrame(() => {
                     menu.classList.add('active');
                 });
-                
+
                 document.body.style.overflow = 'hidden';
                 toggle.querySelector('.material-icons').textContent = 'close';
 
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Close immediately
                 menu.classList.remove('active');
                 document.body.style.overflow = '';
-                toggle.querySelector('.material-icons').textContent = 'menu';
+                toggle.querySelector('.material-icons').textContent = 'drag_handle';
             }
         });
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menu.classList.remove('active');
                 document.body.style.overflow = '';
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'drag_handle';
             });
         });
     }

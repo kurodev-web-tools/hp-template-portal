@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         orbitalToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = orbitalMenu.classList.toggle('active');
-            
+
             // Icon Switch
             const icon = orbitalToggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            if (icon) icon.textContent = isActive ? 'close' : 'brightness_3';
         });
 
         // Close when clicking outside

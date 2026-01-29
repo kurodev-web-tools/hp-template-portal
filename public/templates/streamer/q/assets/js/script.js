@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            
+
             // Icon switch
             const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
-            
+            if (icon) icon.textContent = isActive ? 'close' : 'book';
+
             // Body scroll lock
             document.body.style.overflow = isActive ? 'hidden' : '';
         });

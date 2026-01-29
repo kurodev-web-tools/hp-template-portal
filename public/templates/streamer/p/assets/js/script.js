@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
-            toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'menu';
-            
+            toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'graphic_eq';
+
             // Retro sound effect simulation (vibration)
             if (isActive && navigator.vibrate) navigator.vibrate(20);
-            
+
             document.body.style.overflow = isActive ? 'hidden' : '';
         });
 

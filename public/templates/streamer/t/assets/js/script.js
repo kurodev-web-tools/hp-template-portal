@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeMenu() {
         menu.classList.remove('active');
         toggle.classList.remove('active');
-        toggle.querySelector('.material-icons').textContent = 'menu';
+        toggle.querySelector('.material-icons').textContent = 'memory';
         document.body.style.overflow = '';
         isTyping = false;
         terminalOutput.innerHTML = '';
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.overflow = 'hidden';
                 runSequence();
             } else {
-                icon.textContent = 'menu';
+                icon.textContent = 'memory';
                 document.body.style.overflow = '';
                 isTyping = false;
                 // Output clears on next open or via closeMenu if needed immediately
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             menu.classList.remove('active');
             toggle.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+            toggle.querySelector('.material-icons').textContent = 'memory';
         });
     });
 

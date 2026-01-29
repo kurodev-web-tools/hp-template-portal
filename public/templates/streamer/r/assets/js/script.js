@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Icon switch
             toggle.classList.toggle('active', isActive);
-
-            // Icon stays 'gps_fixed', visual change via CSS
+            const icon = toggle.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'close' : 'radar';
 
             // Play High-pitch Glitch Sound (Visual Metaphor)
             if (isActive) {

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggle.classList.toggle('active');
 
             const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'menu';
+            if (icon) icon.textContent = isActive ? 'close' : 'bolt';
 
             document.body.style.overflow = isActive ? 'hidden' : '';
         });

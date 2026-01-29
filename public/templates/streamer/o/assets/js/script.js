@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             const isActive = menu.classList.toggle('active');
             toggle.classList.toggle('active', isActive);
-            toggle.querySelector('.material-icons').textContent = isActive ? 'close_fullscreen' : 'rocket_launch';
+            toggle.querySelector('.material-icons').textContent = isActive ? 'close' : 'vibration';
 
             // Add/Remove Parallax Listeners
 
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menu.classList.remove('active');
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
-                toggle.querySelector('.material-icons').textContent = 'rocket_launch';
+                toggle.querySelector('.material-icons').textContent = 'vibration';
                 document.removeEventListener('mousemove', handleParallax);
                 document.removeEventListener('mousemove', handleParallax);
                 document.removeEventListener('touchmove', handleTouchParallax);
