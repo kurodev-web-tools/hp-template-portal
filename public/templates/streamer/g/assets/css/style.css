@@ -283,11 +283,15 @@ body {
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
+    position: fixed;
+    top: 25px;
+    right: 25px;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
-    z-index: 10003;
+    z-index: 30000;
+    transition: all 0.2s;
 }
 
 /* System Crash Menu */
@@ -297,14 +301,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #0078d7; /* BSOD Blue */
+    background: #0078d7;
+    /* BSOD Blue */
     z-index: 10002;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.1s step-end; /* Instant appearance after glitch */
+    transition: opacity 0.1s step-end;
+    /* Instant appearance after glitch */
     overflow: hidden;
 }
 
@@ -406,8 +412,15 @@ body {
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 /* Error Dump */
@@ -427,28 +440,49 @@ body.crashing {
 body.crashing .mobile-menu {
     visibility: visible;
     opacity: 1;
-    background: repeating-linear-gradient(
-        90deg,
-        #000,
-        #000 10px,
-        #ff0000 10px,
-        #ff0000 20px,
-        #00ff00 20px,
-        #00ff00 30px,
-        #0000ff 30px,
-        #0000ff 40px
-    );
+    background: repeating-linear-gradient(90deg,
+            #000,
+            #000 10px,
+            #ff0000 10px,
+            #ff0000 20px,
+            #00ff00 20px,
+            #00ff00 30px,
+            #0000ff 30px,
+            #0000ff 40px);
     filter: invert(1);
     transform: scale(1.1);
 }
 
 @keyframes heavy-glitch {
-    0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
-    20% { transform: translate(-10px, 10px) skew(10deg); filter: hue-rotate(90deg); }
-    40% { transform: translate(10px, -10px) skew(-10deg); filter: hue-rotate(180deg); }
-    60% { transform: translate(-10px, -10px) skew(5deg); filter: hue-rotate(270deg); }
-    80% { transform: translate(10px, 10px) skew(-5deg); filter: hue-rotate(360deg); }
-    100% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+    0% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0deg);
+    }
+
+    20% {
+        transform: translate(-10px, 10px) skew(10deg);
+        filter: hue-rotate(90deg);
+    }
+
+    40% {
+        transform: translate(10px, -10px) skew(-10deg);
+        filter: hue-rotate(180deg);
+    }
+
+    60% {
+        transform: translate(-10px, -10px) skew(5deg);
+        filter: hue-rotate(270deg);
+    }
+
+    80% {
+        transform: translate(10px, 10px) skew(-5deg);
+        filter: hue-rotate(360deg);
+    }
+
+    100% {
+        transform: translate(0) skew(0deg);
+        filter: hue-rotate(0deg);
+    }
 }
 
 @media (max-width: 768px) {
