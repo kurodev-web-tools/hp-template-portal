@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === menu) {
                 menu.classList.remove('active');
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'book';
                 document.body.style.overflow = '';
             }
         });
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'book';
                 document.body.style.overflow = '';
             });
         });

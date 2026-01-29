@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menuContainer.classList.remove('active');
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'short_text';
                 document.body.style.overflow = '';
             });
         });

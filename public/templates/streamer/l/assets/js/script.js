@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!orbitalMenu.contains(e.target) && orbitalMenu.classList.contains('active')) {
                 orbitalMenu.classList.remove('active');
                 const icon = orbitalToggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'brightness_3';
             }
         });
 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 orbitalMenu.classList.remove('active');
                 const icon = orbitalToggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'brightness_3';
             });
         });
     }

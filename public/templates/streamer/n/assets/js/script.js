@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggle.classList.remove('active');
 
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'fluorescent';
 
                 document.body.style.overflow = '';
             });

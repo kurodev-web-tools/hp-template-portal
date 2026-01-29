@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menu.classList.remove('active');
                 toggle.classList.remove('active'); // Added
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'reorder';
                 document.body.style.overflow = '';
             });
         });

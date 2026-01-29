@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
-                toggle.querySelector('.material-icons').textContent = 'menu';
+                toggle.querySelector('.material-icons').textContent = 'graphic_eq';
                 document.body.style.overflow = '';
             });
         });

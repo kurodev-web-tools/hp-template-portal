@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+            toggle.querySelector('.material-icons').textContent = 'priority_high';
             document.body.style.overflow = '';
         });
     });

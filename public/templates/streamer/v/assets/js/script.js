@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
-                toggle.querySelector('.material-icons').textContent = 'menu';
+                toggle.querySelector('.material-icons').textContent = 'rocket';
                 document.body.style.overflow = '';
             });
         });

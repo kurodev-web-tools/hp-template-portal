@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'settings';
                 document.body.style.overflow = '';
             });
         });
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.remove('active');
-            toggle.querySelector('.material-icons').textContent = 'menu';
+            toggle.querySelector('.material-icons').textContent = 'settings';
         });
     });
 

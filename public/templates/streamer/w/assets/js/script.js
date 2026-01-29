@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'waves';
                 document.body.style.overflow = '';
             });
         });

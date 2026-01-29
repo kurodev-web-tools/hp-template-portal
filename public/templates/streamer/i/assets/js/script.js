@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggle.classList.remove('active');
 
                 const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'menu';
+                if (icon) icon.textContent = 'auto_fix_high';
 
                 document.body.style.overflow = '';
             });
