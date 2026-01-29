@@ -236,21 +236,43 @@ body {
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
-    background: none;
-    border: none;
-    color: var(--neon-pink);
-    cursor: pointer;
     position: fixed;
     top: 25px;
     right: 25px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 10px;
+    border-radius: 50%;
     z-index: 20000;
-    text-shadow: 0 0 10px var(--neon-pink);
-    transition: transform 0.3s, text-shadow 0.3s;
+    cursor: pointer;
+    box-shadow: 0 0 15px var(--neon-pink);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: neon-pulse 3s infinite alternate;
 }
 
-.mobile-toggle:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+.mobile-toggle.active {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    box-shadow: 0 0 25px var(--neon-blue);
+    transform: rotate(360deg);
+}
+
+@keyframes neon-pulse {
+    0% {
+        border-color: var(--neon-pink);
+        box-shadow: 0 0 10px var(--neon-pink);
+    }
+
+    50% {
+        border-color: var(--neon-purple);
+        box-shadow: 0 0 20px var(--neon-purple);
+    }
+
+    100% {
+        border-color: var(--neon-blue);
+        box-shadow: 0 0 10px var(--neon-blue);
+    }
 }
 
 /* Mobile Menu Container */

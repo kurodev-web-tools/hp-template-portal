@@ -492,6 +492,49 @@ body.crashing .mobile-menu {
 
     .mobile-toggle {
         display: block;
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid #fff;
+        padding: 8px;
+        box-shadow: 2px 0 0 var(--glitch-red), -2px 0 0 var(--glitch-blue);
+        animation: glitch-pulse 0.5s infinite alternate;
+    }
+
+    .mobile-toggle.active {
+        background: #fff;
+        color: #000;
+        box-shadow: 4px 0 0 var(--glitch-red), -4px 0 0 var(--glitch-blue);
+        animation: heavy-glitch-lite 0.2s infinite;
+    }
+
+    @keyframes glitch-pulse {
+        from {
+            transform: skew(0deg);
+            opacity: 0.8;
+        }
+
+        to {
+            transform: skew(5deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes heavy-glitch-lite {
+        0% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: translate(-2px, 2px);
+        }
+
+        40% {
+            transform: translate(2px, -2px);
+            filter: hue-rotate(90deg);
+        }
+
+        100% {
+            transform: translate(0);
+        }
     }
 
     .header-inner {

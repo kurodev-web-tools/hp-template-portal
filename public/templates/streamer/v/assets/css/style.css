@@ -188,21 +188,49 @@ body {
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    z-index: 20000;
-    cursor: pointer;
     position: fixed;
     top: 20px;
-    right: 40px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: color 0.2s;
+    right: 25px;
+    /* Fixed right alignment */
+    background: #000;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 20000;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.1s;
 }
 
 .mobile-toggle.active {
-    color: var(--vivid-magenta);
-    text-shadow: 0 0 15px var(--vivid-magenta);
+    background: var(--vivid-magenta);
+    color: #fff;
+    border-color: var(--vivid-cyan);
+    box-shadow: 4px 0 0 var(--vivid-cyan), -4px 0 0 var(--vivid-magenta);
+    animation: rapid-shake 0.2s infinite;
+}
+
+@keyframes rapid-shake {
+    0% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translate(-2px, 2px);
+    }
+
+    50% {
+        transform: translate(2px, -2px);
+    }
+
+    75% {
+        transform: translate(-2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
 
 /* Mobile Menu Container */

@@ -279,27 +279,47 @@ body {
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
-    background: none;
-    border: none;
-    color: #333;
-    z-index: 20000;
-    cursor: pointer;
     position: fixed;
     top: 20px;
     right: 20px;
-    transition: color 0.3s;
-}
-
-.mobile-toggle.active {
-    color: var(--washi-white);
-    background: var(--sumi-black);
+    background: var(--washi-white);
+    border: 1px solid var(--sumi-black);
+    color: var(--sumi-black);
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    z-index: 20000;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-toggle.active {
+    background: var(--sumi-black);
+    color: var(--washi-white);
+    box-shadow: 0 0 30px var(--sumi-black);
+    transform: scale(1.1);
+}
+
+.mobile-toggle.active .material-icons {
+    animation: ink-bleed-icon 2s forwards;
+}
+
+@keyframes ink-bleed-icon {
+    0% {
+        filter: blur(0);
+    }
+
+    50% {
+        filter: blur(2px);
+    }
+
+    100% {
+        filter: blur(0);
+    }
 }
 
 .mobile-menu {

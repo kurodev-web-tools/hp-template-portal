@@ -262,12 +262,41 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: none;
-    border: none;
+    background: #fff;
+    border: 2px solid var(--sakura-pink);
     color: var(--sakura-pink);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     z-index: 20000;
     cursor: pointer;
-    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(255, 158, 205, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-toggle.active {
+    background: var(--sakura-pink);
+    color: #fff;
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 0 20px var(--sakura-pink);
+}
+
+.mobile-toggle .material-icons {
+    font-size: 24px;
+    animation: idol-twinkle 2s infinite alternate;
+}
+
+@keyframes idol-twinkle {
+    from {
+        text-shadow: 0 0 2px #fff;
+    }
+
+    to {
+        text-shadow: 0 0 10px var(--sakura-pink), 0 0 20px #fff;
+    }
 }
 
 /* Mobile Menu Container */

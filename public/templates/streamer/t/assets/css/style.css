@@ -211,23 +211,38 @@ body {
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
-    background: none;
-    border: none;
+    background: rgba(0, 10, 20, 0.9);
+    border: 1px solid var(--tech-cyan);
     color: var(--tech-cyan);
-    /* Match titles for open-state */
+    padding: 10px;
+    border-radius: 4px;
     z-index: 20000;
     cursor: pointer;
     position: fixed;
     top: 15px;
     right: 20px;
-    text-shadow: 0 0 10px var(--tech-cyan);
-    transition: color 0.3s, text-shadow 0.3s;
+    box-shadow: 0 0 10px var(--tech-cyan);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: terminal-glow 4s infinite;
 }
 
 .mobile-toggle.active {
-    color: #0f0;
-    /* Terminal Green for close-state */
-    text-shadow: 0 0 10px #0f0;
+    background: #0f0;
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 25px #0f0;
+}
+
+@keyframes terminal-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--tech-cyan);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--tech-cyan);
+    }
 }
 
 /* Command Prompt Menu */
