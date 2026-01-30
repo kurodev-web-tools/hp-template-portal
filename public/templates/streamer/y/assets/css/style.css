@@ -382,3 +382,73 @@ body {
         display: block;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.75rem;
+    padding: 3px 12px;
+    margin-left: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
+
+/* --- LIVE 状態 (ゴールド・グリンツ & レッド・アラート) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #ff4b2b;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3);
+}
+
+/* ロードマップ指定：ロゴに金の輝き（金貨のような反射）を出す */
+body[data-stream-status="live"] .brand {
+    color: #d4af37; /* yield-gold */
+    background: linear-gradient(90deg, #d4af37 0%, #fff 50%, #d4af37 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-glint 3s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
+
+/* --- OFFLINE 状態 (落ち着いたフォレストグリーン) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #e0e0e0;
+    color: #666;
+    border: 1px solid #ccc;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: #3a4d39; /* yield-green */
+    color: #fff;
+    border-color: #3a4d39;
+}
+
+@keyframes gold-glint {
+    to { background-position: 200% center; }
+}
+
+/* モバイルヘッダー調整 */
+@media (max-width: 768px) {
+    .yield-header {
+        padding: 15px 0;
+    }
+    .live-indicator, .channel-indicator {
+        margin-left: 8px;
+        font-size: 0.65rem;
+        padding: 2px 8px;
+    }
+}

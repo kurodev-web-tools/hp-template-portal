@@ -407,3 +407,69 @@ body {
         text-align: center;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.75rem;
+    padding: 2px 12px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Shippori Mincho', serif;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (和の朱色・紅葉グロー) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #e63946; /* vermilion */
+    color: #fff;
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.3);
+    animation: zen-glow 4s infinite ease-in-out;
+}
+
+/* ロードマップ指定：和の世界観に合わせた紅葉のようなグロー */
+body[data-stream-status="live"] .brand a {
+    color: #e63946; /* vermilion */
+    text-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+    transition: all 1s ease;
+}
+
+/* --- OFFLINE 状態 (墨色・静寂) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #999;
+    border: 1px solid #ddd;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    color: #171717; /* sumi-black */
+    border-color: #171717;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+@keyframes zen-glow {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(-1px); }
+}
+
+/* モバイルヘッダー調整 */
+@media (max-width: 768px) {
+    .zen-header {
+        padding: 20px 0;
+    }
+    .live-indicator, .channel-indicator {
+        margin-left: 10px;
+        font-size: 0.65rem;
+        padding: 1px 8px;
+    }
+}

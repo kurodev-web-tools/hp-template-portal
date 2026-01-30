@@ -398,3 +398,78 @@ body {
         /* Ensure container takes full width */
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.8rem;
+    padding: 2px 12px;
+    margin-left: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 2px;
+    border-radius: 0;
+    transform: skew(-10deg);
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 18px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
+
+/* --- LIVE 状態 (衝撃波・バイブレーション) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #ff0000;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    animation: xtreme-hit 0.3s infinite alternate;
+}
+
+/* ロードマップ指定：ロゴを激しく振動させ、赤い衝撃波を出す */
+body[data-stream-status="live"] .brand {
+    animation: xtreme-shake 0.1s infinite;
+    color: #ff0000;
+    text-shadow: 0 0 15px #ff0000, 0 0 30px rgba(255, 0, 0, 0.8);
+    transition: all 0.2s;
+}
+
+/* --- OFFLINE 状態 (ダーク・スタンバイ) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: #666;
+    border: 1px solid #333;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: #facc15; /* xtreme-yellow */
+    color: #000;
+}
+
+@keyframes xtreme-shake {
+    0% { transform: translate(0, 0) rotate(0); }
+    25% { transform: translate(1px, -1px) rotate(-1deg); }
+    50% { transform: translate(-1px, 1px) rotate(1deg); }
+    75% { transform: translate(1px, 1px) rotate(-0.5deg); }
+    100% { transform: translate(0, 0) rotate(0); }
+}
+
+@keyframes xtreme-hit {
+    0% { transform: skew(-10deg) scale(1); filter: brightness(1); }
+    100% { transform: skew(-10deg) scale(1.1); filter: brightness(1.5); }
+}
+
+/* モバイルヘッダー調整 */
+@media (max-width: 768px) {
+    .xtreme-header {
+        padding: 15px 20px;
+    }
+    .live-indicator, .channel-indicator {
+        margin-left: 10px;
+        font-size: 0.7rem;
+    }
+}

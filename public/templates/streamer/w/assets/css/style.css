@@ -357,3 +357,66 @@ p {
         font-size: 1.5rem;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #000;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 14px;
+    vertical-align: -2px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (映画のREC・プロフェッショナルレッド) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #ff0000;
+    color: #fff;
+    border-color: #ff0000;
+    animation: cinematic-blink 1.5s infinite ease-in-out;
+}
+
+/* --- OFFLINE 状態 (ミニマル・アーカイブ) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #000;
+    opacity: 0.6;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    opacity: 1;
+    background: #000;
+    color: #fff;
+}
+
+@keyframes cinematic-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* モバイルヘッダーでの調整 */
+@media (max-width: 768px) {
+    .wide-header {
+        top: 20px;
+        left: 20px;
+    }
+    .live-indicator, .channel-indicator {
+        margin-left: 10px;
+        font-size: 0.6rem;
+        padding: 2px 8px;
+    }
+}

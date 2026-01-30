@@ -480,3 +480,61 @@ body {
         font-size: 3.5rem;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Rubik Glitch', cursive;
+    letter-spacing: 1px;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 18px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
+
+/* --- LIVE 状態 (フラッシュ・オーバーライド) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    color: #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+    animation: vivid-flash 0.2s infinite;
+}
+
+/* ロードマップ指定：ロゴを激しく赤くフラッシュさせる */
+body[data-stream-status="live"] .brand {
+    animation: logo-vivid-flash 0.1s infinite alternate;
+}
+
+/* --- OFFLINE 状態 (シアン・マゼンタの静寂) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    border: 1px solid var(--vivid-magenta);
+    background: rgba(255, 0, 255, 0.1);
+    opacity: 0.6;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    opacity: 1;
+    background: var(--vivid-magenta);
+    color: #000;
+}
+
+@keyframes vivid-flash {
+    0% { background: #fff; color: #ff0000; }
+    50% { background: #ff0000; color: #fff; }
+}
+
+@keyframes logo-vivid-flash {
+    0% { color: #fff; text-shadow: 0 0 5px #fff; }
+    100% { color: #ff0000; text-shadow: 0 0 20px #ff0000, 5px 0 #0ff, -5px 0 #f0f; }
+}

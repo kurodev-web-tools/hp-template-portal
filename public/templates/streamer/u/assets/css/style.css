@@ -420,3 +420,73 @@ body {
         font-size: 2.5rem;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.9rem;
+    padding: 2px 15px;
+    margin-left: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Permanent Marker', cursive;
+    transform: rotate(3deg);
+    transition: all 0.3s;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 18px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
+
+/* --- LIVE 状態 (レッド・スプレー & ドリップ演出) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: #ff0000;
+    color: #fff;
+    box-shadow: 
+        3px 3px 0 #000,
+        0 15px 20px rgba(255, 0, 0, 0.4);
+    animation: spray-drip 3s infinite;
+    position: relative;
+}
+
+/* 滴るペンキの疑似要素 */
+body[data-stream-status="live"] .live-indicator::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20%;
+    width: 4px;
+    height: 15px;
+    background: #ff0000;
+    border-radius: 2px;
+    animation: drip-active 2s infinite ease-in;
+}
+
+/* --- OFFLINE 状態 (コンクリートグレー・チョーク風) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #888;
+    border: 1px dashed #666;
+    opacity: 0.7;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    color: #06b6d4; /* spray-cyan */
+    border-color: #06b6d4;
+    opacity: 1;
+}
+
+@keyframes spray-drip {
+    0%, 100% { transform: rotate(3deg) scale(1); }
+    50% { transform: rotate(1deg) scale(1.05); filter: brightness(1.2); }
+}
+
+@keyframes drip-active {
+    0% { height: 0; opacity: 1; }
+    80% { height: 20px; opacity: 1; }
+    100% { height: 25px; opacity: 0; }
+}
