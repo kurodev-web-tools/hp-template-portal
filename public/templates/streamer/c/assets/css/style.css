@@ -398,3 +398,55 @@ html {
         padding: 40px 20px;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 3px 12px;
+    border-radius: 20px; /* 角を丸くしてクリスタル感を強調 */
+    margin-left: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s ease;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 14px;
+    vertical-align: -2px;
+    margin-right: 4px;
+}
+
+/* --- LIVE 状態 (淡いピンクの発光・呼吸アニメーション) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 214, 255, 0.4); 
+    border: 1px solid var(--prism-pink);
+    color: #ff0055;
+    box-shadow: 0 0 15px var(--prism-pink);
+    animation: breathing-glow 3s infinite ease-in-out;
+}
+
+/* --- OFFLINE 状態 (透明感のあるブルー) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(231, 255, 255, 0.3); 
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #4a5568;
+    backdrop-filter: blur(5px);
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: rgba(231, 255, 255, 0.6);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+@keyframes breathing-glow {
+    0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--prism-pink); }
+    50% { opacity: 0.7; box-shadow: 0 0 20px var(--prism-pink); }
+}
