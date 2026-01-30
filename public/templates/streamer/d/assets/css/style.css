@@ -490,6 +490,38 @@ html {
         flex-direction: column;
         gap: 5px;
     }
+
+    /* --- Template D: Mobile UX Fix --- */
+    /* 1. ロゴ（brand）を縦積みにし、グローを抑えてシャープに */
+    .brand {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 5px !important;
+        text-shadow: 0 0 3px var(--ghost-green) !important;
+    }
+
+    /* 2. インジケーターの視認性向上 (ぼやけ解除 & ハッキリ表示) */
+    .live-indicator, .channel-indicator {
+        margin-left: 0 !important;
+        font-size: 0.65rem !important;
+        padding: 1px 12px !important;
+        width: fit-content !important;
+        filter: blur(0) !important; /* ぼやけを強制解除 */
+        opacity: 1 !important;      /* 透明度を解除 */
+    }
+
+    /* オフライン時もモバイルでは明るいグリーンにする */
+    body[data-stream-status="offline"] .channel-indicator {
+        color: var(--ghost-green) !important;
+        border: 1px solid var(--ghost-green) !important;
+        background: rgba(0, 255, 65, 0.1) !important;
+    }
+
+    /* ヘッダー全体の余白調整 */
+    .ghost-header {
+        padding: 15px 0 !important;
+    }
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
