@@ -214,10 +214,30 @@ function initStatusEngine() {
             params.get('stream_status') === 'live';
 
         document.body.dataset.streamStatus = isLive ? 'live' : 'offline';
+
+        // Set channel URL if provided in params
+        const channelUrl = params.get('channel_url');
+        if (channelUrl) {
+            document.body.dataset.channelUrl = channelUrl;
+        }
     };
 
     // Initial check
     updateFromParams();
+
+    // Global click handler for live indicators/buttons
+    document.addEventListener('click', (e) => {
+        // Elements with [data-action="open-channel"] will trigger the link
+        const target = e.target.closest('[data-action="open-channel"]');
+        if (target && document.body.dataset.streamStatus === 'live') {
+            const url = document.body.dataset.channelUrl;
+            if (url) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+                console.warn('[StatusEngine] Channel URL is not set.');
+            }
+        }
+    });
 
     // Export to global scope for manual/AI control
     window.StreamerPortal = {
@@ -225,7 +245,12 @@ function initStatusEngine() {
             document.body.dataset.streamStatus = status;
             console.log(`[StatusEngine] Status updated to: ${status}`);
         },
-        getStatus: () => document.body.dataset.streamStatus
+        setChannelUrl: (url) => {
+            document.body.dataset.channelUrl = url;
+            console.log(`[StatusEngine] Channel URL set to: ${url}`);
+        },
+        getStatus: () => document.body.dataset.streamStatus,
+        getChannelUrl: () => document.body.dataset.channelUrl
     };
 
     console.log(`[StatusEngine] Initialized. Status: ${document.body.dataset.streamStatus}`);
