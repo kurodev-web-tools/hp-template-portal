@@ -522,3 +522,56 @@ body.lights-on .lights-toggle {
         }
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 2px 12px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (耽美な血の赤・蝋燭の揺らめき) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(139, 0, 0, 0.2);
+    border: 1px solid var(--blood-red);
+    color: var(--blood-red);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+    animation: horror-flicker 4s infinite ease-in-out;
+}
+
+/* --- OFFLINE 状態 (煤けた黒・静寂) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(229, 229, 229, 0.2);
+    color: #888;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--ghost-white);
+    border-color: var(--ghost-white);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes horror-flicker {
+    0%, 100% { opacity: 1; filter: brightness(1); }
+    45% { opacity: 0.8; filter: brightness(0.8); }
+    50% { opacity: 1; filter: brightness(1.2); }
+    55% { opacity: 0.9; filter: brightness(0.9); }
+}

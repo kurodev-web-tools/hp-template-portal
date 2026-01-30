@@ -424,3 +424,54 @@ body {
         font-size: 3rem;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 2px 12px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 14px;
+    vertical-align: -2px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (レトロ・ネオンレッド) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 0, 0, 0.05);
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), inset 0 0 5px rgba(255, 0, 0, 0.2);
+    animation: neon-hum 2s infinite ease-in-out;
+}
+
+/* --- OFFLINE 状態 (落ち着いたアンバーゴールド) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(180, 83, 9, 0.05); 
+    border: 1px solid rgba(180, 83, 9, 0.3);
+    color: var(--amber-gold);
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: rgba(180, 83, 9, 0.15);
+    border-color: var(--amber-gold);
+    box-shadow: 0 0 12px rgba(180, 83, 9, 0.2);
+}
+
+@keyframes neon-hum {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); }
+    50% { opacity: 0.85; text-shadow: 0 0 5px rgba(255, 0, 0, 0.4); }
+}
