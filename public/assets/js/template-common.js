@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initMobileMenu();
     }
     initHaptics();
+    initStatusEngine();
 });
 
 function initHaptics() {
@@ -198,4 +199,34 @@ function initMobileMenu() {
             closeMenu();
         }
     });
+}
+
+/**
+ * AI-Ready Status Engine
+ * Handles live/offline status synchronization via URL parameters or manual control.
+ */
+function initStatusEngine() {
+    const updateFromParams = () => {
+        const params = new URLSearchParams(window.location.search);
+        // Supports ?live=true, ?status=live, or ?stream_status=live
+        const isLive = params.get('live') === 'true' ||
+            params.get('status') === 'live' ||
+            params.get('stream_status') === 'live';
+
+        document.body.dataset.streamStatus = isLive ? 'live' : 'offline';
+    };
+
+    // Initial check
+    updateFromParams();
+
+    // Export to global scope for manual/AI control
+    window.StreamerPortal = {
+        setStatus: (status) => {
+            document.body.dataset.streamStatus = status;
+            console.log(`[StatusEngine] Status updated to: ${status}`);
+        },
+        getStatus: () => document.body.dataset.streamStatus
+    };
+
+    console.log(`[StatusEngine] Initialized. Status: ${document.body.dataset.streamStatus}`);
 }
