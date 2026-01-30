@@ -479,3 +479,51 @@ body {
     border-right: 10px solid #800000;
     border-bottom: 10px solid transparent;
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 1.2rem;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.5);
+    background: #000;
+    transition: all 0.2s;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 20px;
+    vertical-align: -4px;
+    margin-right: 8px;
+}
+
+/* --- LIVE 状態 (炎のゆらぎ・クリティカルレッド) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #ff4444;
+    border-color: #ff4444;
+    text-shadow: 0 0 10px #ff4444;
+    animation: rpg-critical 2s infinite ease-in-out;
+}
+
+/* --- OFFLINE 状態 (宿屋の休息・セピア) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    color: #f3e5ab; 
+    border-color: #8b4513; 
+    opacity: 0.8;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: #8b4513;
+    color: #fff;
+    opacity: 1;
+}
+
+@keyframes rpg-critical {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.05); filter: brightness(1.2); box-shadow: 0 0 15px rgba(255, 68, 68, 0.4); }
+}

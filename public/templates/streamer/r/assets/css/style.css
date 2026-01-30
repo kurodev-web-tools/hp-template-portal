@@ -524,3 +524,54 @@ body {
         display: block;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 2px 12px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (ブラッドレッド・照準の脈動) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: var(--blood-red);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(138, 3, 3, 0.6);
+    animation: strike-pulse 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* --- OFFLINE 状態 (ステルス・低視認性) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--steel-gray);
+    color: var(--steel-gray);
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes strike-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; box-shadow: 0 0 25px rgba(138, 3, 3, 0.9); }
+}
