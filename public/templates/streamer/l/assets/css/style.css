@@ -387,3 +387,63 @@ body {
         white-space: nowrap;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 2px 14px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (皆既月食・神秘的な赤) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(127, 29, 29, 0.3);
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+    animation: lunar-pulse 3s infinite ease-in-out;
+}
+
+/* LIVE時は右下のオービットボタンも赤く発光させる（ロードマップ対応） */
+body[data-stream-status="live"] .orbital-toggle {
+    background: #7f1d1d !important;
+    border-color: #ff4d4d !important;
+    color: #ff4d4d !important;
+    box-shadow: 0 0 20px #ff4d4d !important;
+}
+
+/* --- OFFLINE 状態 (静寂の月明かり・控えめ) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(254, 243, 199, 0.03); 
+    border: 1px solid rgba(254, 243, 199, 0.2);
+    color: rgba(254, 243, 199, 0.6);
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: rgba(254, 243, 199, 0.1);
+    color: var(--moonlight);
+    border-color: var(--moonlight);
+}
+
+@keyframes lunar-pulse {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px #ff4d4d); }
+    50% { opacity: 0.7; filter: drop-shadow(0 0 15px #ff4d4d); }
+}

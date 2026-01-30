@@ -363,3 +363,50 @@ body {
         margin: 20px 0;
     }
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.status-led {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.65rem;
+    padding: 1px 8px;
+    margin-left: 5px;
+    font-family: 'Michroma', sans-serif;
+    letter-spacing: 1px;
+    border: 1px solid transparent;
+}
+
+/* --- LIVE 状態 (ロゴ両端のLEDが赤く激しく点滅) --- */
+body[data-stream-status="live"] .status-led {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    animation: led-blink 0.8s infinite steps(2);
+}
+body[data-stream-status="live"] .live-indicator {
+    display: inline-block;
+    color: #ff0000;
+}
+
+/* --- OFFLINE 状態 (LEDは静かに消灯) --- */
+body[data-stream-status="offline"] .status-led {
+    color: rgba(255, 255, 255, 0.1);
+}
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+body[data-stream-status="offline"] .brand:hover .status-led {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+@keyframes led-blink {
+    0%, 100% { opacity: 1; transform: scale(1.1); }
+    50% { opacity: 0.3; transform: scale(1); }
+}

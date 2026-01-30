@@ -509,3 +509,56 @@ body {
     width: 100%;
     height: 100%;
 }
+
+/* --- Status Engine: Dual-Status Icons Visuals --- */
+.live-indicator, .channel-indicator {
+    display: none;
+    font-size: 0.7rem;
+    padding: 2px 12px;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 6px;
+}
+
+/* --- LIVE 状態 (燃え盛る盾・騎士の情熱) --- */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(153, 27, 27, 0.2);
+    border: 1px solid #ff4400; /* 炎のような鮮やかな赤 */
+    color: #ff4400;
+    box-shadow: 0 0 15px rgba(255, 68, 0, 0.4);
+    animation: knight-fire 2s infinite ease-in-out;
+}
+
+/* --- OFFLINE 状態 (落ち着いたシルバー・静寂) --- */
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(226, 232, 240, 0.05); 
+    border: 1px solid rgba(226, 232, 240, 0.3);
+    color: var(--silver);
+    opacity: 0.8;
+}
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: rgba(226, 232, 240, 0.15);
+    border-color: var(--silver);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(226, 232, 240, 0.2);
+}
+
+@keyframes knight-fire {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1); box-shadow: 0 0 10px rgba(255, 68, 0, 0.4); }
+    50% { filter: hue-rotate(10deg) brightness(1.2); box-shadow: 0 0 20px rgba(255, 68, 0, 0.6); }
+}
