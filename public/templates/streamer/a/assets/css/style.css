@@ -523,3 +523,33 @@ body {
         margin: 0 20px 100px;
     }
 }
+
+/* --- Status Engine: LIVE Visuals --- */
+.live-indicator {
+    display: none; /* 初期状態（オフライン）は非表示 */
+    font-size: 0.7rem;
+    background: var(--neon-pink);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    vertical-align: middle;
+    text-shadow: 0 0 5px #fff, 0 0 10px var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: neon-flicker 2s infinite;
+}
+
+/* 配信中のみ表示 */
+body[data-stream-status="live"] .live-indicator {
+    display: inline-block;
+}
+
+@keyframes neon-flicker {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(-2px); }
+    80% { opacity: 1; }
+}
