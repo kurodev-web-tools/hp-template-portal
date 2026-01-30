@@ -521,6 +521,21 @@ body {
     }
 }
 
+/* --- Template I: Visual Fix (Shadow Reset) --- */
+/* 継承された影を強制リセット */
+.live-indicator, .channel-indicator,
+.live-indicator .material-icons, .channel-indicator .material-icons {
+    text-shadow: none !important;
+}
+
+/* ホバー時の背景変化をよりクッキリさせる */
+body[data-stream-status="offline"] .channel-indicator:hover {
+    background: var(--sakura-pink) !important;
+    color: #fff !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 10px rgba(255, 158, 205, 0.4) !important;
+}
+
 /* --- Status Engine: Dual-Status Icons Visuals --- */
 .live-indicator, .channel-indicator {
     display: none;
