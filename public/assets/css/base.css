@@ -318,17 +318,19 @@ body.theme-business .bg-ambient {
     text-align: center;
 }
 
-/* --- Streamer Theme: Mobile Header UX Optimization --- */
+/* --- Streamer Theme: Mobile Header UX Optimization (v2) --- */
 @media (max-width: 768px) {
     /* 
        全ストリーマーテンプレートのロゴとバッジを縦積みに統一。
-       タイトルが長くてもメニューボタンと重ならず、サブタイトルのような整然とした外観になります。
+       <a>タグがネストされている場合（Template E等）にも対応。
     */
-    body.theme-streamer .brand {
+    body.theme-streamer .brand,
+    body.theme-streamer .brand a {
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 2px !important;
+        gap: 3px !important;
+        text-decoration: none !important;
     }
 
     body.theme-streamer .live-indicator,
@@ -336,11 +338,12 @@ body.theme-business .bg-ambient {
         margin-left: 0 !important;
         margin-top: 2px !important;
         font-size: 0.65rem !important;
-        padding: 1px 10px !important;
+        padding: 2px 10px !important;
         width: fit-content !important;
+        line-height: 1 !important;
     }
 
-    /* ヘッダー全体の高さを内容に合わせて自動調整 */
+    /* ヘッダー全体の余白調整 */
     body.theme-streamer header {
         padding-top: 15px !important;
         padding-bottom: 15px !important;
