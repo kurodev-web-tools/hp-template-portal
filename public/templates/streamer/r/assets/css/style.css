@@ -575,3 +575,272 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.05); opacity: 0.8; box-shadow: 0 0 25px rgba(138, 3, 3, 0.9); }
 }
+
+/* ============================================
+   RADAR SCAN EFFECT - Stealth Game Style
+   ============================================ */
+
+/* Radar Sweep Bar (Mobile) */
+.radar-sweep-bar {
+    position: fixed;
+    top: -5%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        #00ff41 20%, 
+        #00ff41 50%, 
+        #00ff41 80%, 
+        transparent);
+    box-shadow: 
+        0 0 10px #00ff41,
+        0 0 20px #00ff41,
+        0 0 40px rgba(0, 255, 65, 0.5);
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.radar-sweep-bar.scanning {
+    animation: radar-sweep-down 2s ease-in-out;
+}
+
+@keyframes radar-sweep-down {
+    0% {
+        top: -5%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        top: 105%;
+        opacity: 0;
+    }
+}
+
+/* Night Vision Reveal Effect */
+.night-vision-reveal {
+    border-color: #00ff41 !important;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.6),
+        inset 0 0 30px rgba(0, 255, 65, 0.2),
+        0 0 40px rgba(0, 255, 65, 0.3) !important;
+    background: rgba(0, 255, 65, 0.05) !important;
+}
+
+.night-vision-reveal .silhouette {
+    opacity: 1 !important;
+    color: #00ff41 !important;
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+}
+
+.night-vision-reveal h3,
+.night-vision-reveal p {
+    color: #00ff41 !important;
+    text-shadow: 0 0 5px #00ff41;
+}
+
+/* Binary Data Overlay */
+.binary-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(0, 255, 65, 0.03) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.night-vision-reveal .binary-overlay {
+    opacity: 1;
+}
+
+.binary-overlay::before {
+    content: '01001000 01001001 01000100 01000100 01000101 01001110';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: monospace;
+    font-size: 0.6rem;
+    color: rgba(0, 255, 65, 0.3);
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+/* HUD Cursor (PC) */
+.hud-cursor {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #00ff41;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 65, 0.5),
+        inset 0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.hud-cursor.active {
+    opacity: 1;
+}
+
+.hud-cursor::before,
+.hud-cursor::after {
+    content: '';
+    position: absolute;
+    background: #00ff41;
+}
+
+.hud-cursor::before {
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.hud-cursor::after {
+    left: 50%;
+    top: 10%;
+    width: 1px;
+    height: 80%;
+    transform: translateX(-50%);
+}
+
+/* Crosshair segments */
+.hud-crosshair-top,
+.hud-crosshair-bottom,
+.hud-crosshair-left,
+.hud-crosshair-right {
+    position: absolute;
+    background: #00ff41;
+    box-shadow: 0 0 5px #00ff41;
+}
+
+.hud-crosshair-top,
+.hud-crosshair-bottom {
+    left: 50%;
+    width: 1px;
+    height: 15px;
+    transform: translateX(-50%);
+}
+
+.hud-crosshair-top {
+    top: -20px;
+}
+
+.hud-crosshair-bottom {
+    bottom: -20px;
+}
+
+.hud-crosshair-left,
+.hud-crosshair-right {
+    top: 50%;
+    width: 15px;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.hud-crosshair-left {
+    left: -20px;
+}
+
+.hud-crosshair-right {
+    right: -20px;
+}
+
+/* Stealth Meter Fluctuation */
+.stealth-meter.fluctuating {
+    animation: stealth-fluctuate 0.5s ease-in-out;
+}
+
+@keyframes stealth-fluctuate {
+    0%, 100% {
+        transform: scale(1);
+        border-color: #333;
+    }
+    20% {
+        transform: scale(1.05);
+        border-color: #00ff41;
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    }
+    40% {
+        transform: scale(0.98);
+        border-color: #ff0000;
+    }
+    60% {
+        transform: scale(1.02);
+        border-color: #00ff41;
+    }
+    80% {
+        transform: scale(0.99);
+    }
+}
+
+/* Scan Glow Effect */
+.scan-glow {
+    animation: scan-pulse 0.5s ease-out;
+}
+
+@keyframes scan-pulse {
+    0% {
+        box-shadow: 0 0 5px #00ff41;
+    }
+    50% {
+        box-shadow: 
+            0 0 30px #00ff41,
+            0 0 60px rgba(0, 255, 65, 0.5),
+            inset 0 0 20px rgba(0, 255, 65, 0.2);
+        border-color: #00ff41;
+    }
+    100% {
+        box-shadow: 0 0 5px #00ff41;
+    }
+}
+
+/* Weapon Card Binary Data Display */
+.weapon-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.weapon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.03) 2px,
+        rgba(0, 255, 65, 0.03) 4px
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.weapon-card.night-vision-reveal::before {
+    opacity: 1;
+}

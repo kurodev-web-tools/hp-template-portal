@@ -14,7 +14,7 @@ class PageTurnSealEffect {
         this.menuItems = document.querySelectorAll('.menu-list li');
         this.closeBtns = document.querySelectorAll('.close-btn');
         this.completedQuests = document.querySelectorAll('.quest-item.completed');
-        
+
         this.init();
     }
 
@@ -22,7 +22,7 @@ class PageTurnSealEffect {
         this.setupPanelNavigation();
         this.setupMobileMenu();
         this.setupWaxSeals();
-        
+
         if (!this.isMobile) {
             this.setupPageCurlEffect();
         }
@@ -53,14 +53,14 @@ class PageTurnSealEffect {
         const targetPanel = document.getElementById(targetId);
         if (targetPanel) {
             targetPanel.classList.remove('hidden');
-            
+
             // Add page turning animation
             targetPanel.classList.add('page-turning');
-            
+
             setTimeout(() => {
                 targetPanel.classList.add('active');
             }, 10);
-            
+
             // Remove animation class after completion
             setTimeout(() => {
                 targetPanel.classList.remove('page-turning');
@@ -108,7 +108,7 @@ class PageTurnSealEffect {
             const seal = document.createElement('div');
             seal.className = 'wax-seal';
             seal.innerHTML = '✓'; // Checkmark
-            
+
             // Insert seal at the beginning of quest item
             quest.insertBefore(seal, quest.firstChild);
 
@@ -120,7 +120,7 @@ class PageTurnSealEffect {
                         setTimeout(() => {
                             seal.classList.add('stamp-animation');
                         }, 300);
-                        
+
                         observer.unobserve(entry.target);
                     }
                 });
@@ -136,13 +136,20 @@ class PageTurnSealEffect {
         const mobileLinks = menu ? menu.querySelectorAll('a') : [];
 
         if (toggle && menu) {
+            // Enhanced toggle interaction
             toggle.addEventListener('click', (e) => {
+                e.preventDefault();
                 e.stopPropagation();
+
                 const isActive = menu.classList.toggle('active');
+                toggle.classList.toggle('active', isActive);
 
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = isActive ? 'close' : 'book';
                 document.body.style.overflow = isActive ? 'hidden' : '';
+
+                // Haptic feedback for "Book Open/Close"
+                if (navigator.vibrate) navigator.vibrate(isActive ? [15, 10, 15] : 10);
             });
 
             menu.addEventListener('click', (e) => {
@@ -159,10 +166,10 @@ class PageTurnSealEffect {
                 link.addEventListener('click', (e) => {
                     // Add flash effect
                     link.classList.add('menu-flash');
-                    
+
                     // Haptic feedback
                     if (navigator.vibrate) navigator.vibrate(20);
-                    
+
                     setTimeout(() => {
                         link.classList.remove('menu-flash');
                         menu.classList.remove('active');
