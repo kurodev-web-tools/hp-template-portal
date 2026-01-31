@@ -72,17 +72,17 @@ class TypewriterEffect {
         this.deleteSpeed = 30;
         this.pauseDuration = 2000;
         this.activeAnimations = new Map();
-        
+
         this.init();
     }
 
     init() {
         const targets = document.querySelectorAll('.hero-sub, .card-inner p');
-        
+
         targets.forEach(element => {
             const originalText = element.textContent;
             element.setAttribute('data-original-text', originalText);
-            
+
             if (this.isMobile) {
                 // Mobile: IntersectionObserver triggers animation
                 this.setupMobileAnimation(element);
@@ -95,18 +95,26 @@ class TypewriterEffect {
 
     setupPCHover(element) {
         const originalText = element.getAttribute('data-original-text');
-        
+
         element.parentElement.addEventListener('mouseenter', () => {
             if (this.activeAnimations.has(element)) {
                 clearTimeout(this.activeAnimations.get(element));
                 this.activeAnimations.delete(element);
             }
-            
+
+            // Add cursor
+            element.classList.add('typing-cursor');
+
             // Delete current text
             this.deleteText(element, () => {
                 // Type new text after deletion
                 setTimeout(() => {
-                    this.typeText(element, originalText);
+                    this.typeText(element, originalText, () => {
+                        // Remove cursor after typing completes
+                        setTimeout(() => {
+                            element.classList.remove('typing-cursor');
+                        }, 1000);
+                    });
                 }, 100);
             });
         });
@@ -114,14 +122,14 @@ class TypewriterEffect {
 
     setupMobileAnimation(element) {
         const originalText = element.getAttribute('data-original-text');
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     // Clear text first
                     element.textContent = '';
                     element.classList.add('typing-cursor');
-                    
+
                     // Start typing
                     setTimeout(() => {
                         this.typeText(element, originalText, () => {
@@ -131,19 +139,19 @@ class TypewriterEffect {
                             }, 1000);
                         });
                     }, 300);
-                    
+
                     observer.unobserve(element);
                 }
             });
         }, { threshold: 0.5 });
-        
+
         observer.observe(element);
     }
 
     typeText(element, text, callback = null) {
         let index = 0;
         element.textContent = '';
-        
+
         const type = () => {
             if (index < text.length) {
                 element.textContent += text.charAt(index);
@@ -154,14 +162,14 @@ class TypewriterEffect {
                 callback();
             }
         };
-        
+
         type();
     }
 
     deleteText(element, callback = null) {
         const text = element.textContent;
         let index = text.length;
-        
+
         const del = () => {
             if (index > 0) {
                 element.textContent = text.substring(0, index - 1);
@@ -172,7 +180,7 @@ class TypewriterEffect {
                 callback();
             }
         };
-        
+
         del();
     }
 }
