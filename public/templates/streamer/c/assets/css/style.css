@@ -450,3 +450,168 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--prism-pink); }
     50% { opacity: 0.7; box-shadow: 0 0 20px var(--prism-pink); }
 }
+
+/* ============================================
+   COLOR FLOW - Interactive Effects
+   ============================================ */
+
+/* CSS Variables for mouse and scroll tracking */
+body {
+    --mouse-x: 0.5;
+    --mouse-y: 0.5;
+    --scroll-ratio: 0;
+}
+
+/* Enhanced Orb with Mouse Parallax Effect */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+    animation: orb-move 20s infinite alternate ease-in-out;
+    /* Mouse parallax - orbs move slightly away from cursor */
+    transform: translate(
+        calc((var(--mouse-x) - 0.5) * -80px),
+        calc((var(--mouse-y) - 0.5) * -60px)
+    );
+    transition: transform 0.3s ease-out;
+}
+
+/* Different parallax intensity for each orb */
+.orb-1 {
+    transform: translate(
+        calc((var(--mouse-x) - 0.5) * -100px),
+        calc((var(--mouse-y) - 0.5) * -80px)
+    );
+}
+
+.orb-2 {
+    transform: translate(
+        calc((var(--mouse-x) - 0.5) * 60px),
+        calc((var(--mouse-y) - 0.5) * 100px)
+    );
+}
+
+.orb-3 {
+    transform: translate(
+        calc((var(--mouse-x) - 0.5) * -40px),
+        calc((var(--mouse-y) - 0.5) * 40px)
+    );
+}
+
+/* Rainbow Border - Dynamic hue rotation based on scroll */
+.rainbow-border {
+    position: relative;
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        calc(45deg + var(--scroll-ratio) * 360deg),
+        #ff9a9e,
+        #fad0c4,
+        #ffecd2,
+        #a1c4fd,
+        #c2e9fb,
+        #d4fc79,
+        #96e6a1
+    ) 1;
+    /* Additional glow effect that intensifies with scroll */
+    box-shadow: 
+        0 0 calc(10px + var(--scroll-ratio) * 20px) rgba(161, 196, 253, calc(0.2 + var(--scroll-ratio) * 0.3)),
+        inset 0 0 calc(5px + var(--scroll-ratio) * 10px) rgba(255, 214, 255, calc(0.1 + var(--scroll-ratio) * 0.2));
+    transition: border-image 0.1s linear, box-shadow 0.3s ease;
+}
+
+/* Global backdrop effect that intensifies with scroll */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
+        rgba(255, 214, 255, calc(0.15 + var(--scroll-ratio) * 0.15)),
+        transparent 50%
+    );
+    transition: background 0.3s ease-out;
+    opacity: calc(0.6 + var(--scroll-ratio) * 0.4);
+}
+
+/* Crystal background enhanced with mouse tracking */
+.crystal-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
+        rgba(255, 255, 255, 0.1),
+        transparent 30%
+    );
+    pointer-events: none;
+    opacity: calc(0.5 + var(--scroll-ratio) * 0.3);
+    transition: all 0.3s ease-out;
+}
+
+/* Hero content glassmorphism with scroll-based transparency */
+.hero-content {
+    padding: 80px;
+    background: rgba(255, 255, 255, calc(0.4 - var(--scroll-ratio) * 0.1));
+    backdrop-filter: blur(calc(30px - var(--scroll-ratio) * 5px));
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, calc(0.05 + var(--scroll-ratio) * 0.03)),
+        0 0 calc(30px + var(--scroll-ratio) * 20px) rgba(161, 196, 253, calc(0.1 + var(--scroll-ratio) * 0.2));
+    border: 1px solid rgba(255, 255, 255, calc(0.3 + var(--scroll-ratio) * 0.2));
+    transition: all 0.3s ease-out;
+}
+
+/* Prism header with dynamic glow */
+.prism-header {
+    background: rgba(255, 255, 255, calc(0.2 + var(--scroll-ratio) * 0.1));
+    backdrop-filter: blur(calc(20px + var(--scroll-ratio) * 5px));
+    box-shadow: 
+        0 2px 20px rgba(0, 0, 0, calc(0.05 + var(--scroll-ratio) * 0.05)),
+        0 0 calc(20px + var(--scroll-ratio) * 15px) rgba(200, 182, 255, calc(0.1 + var(--scroll-ratio) * 0.15));
+}
+
+/* Vibe cards with mouse proximity effect */
+.vibe-card {
+    transform: translate(
+        calc((var(--mouse-x) - 0.5) * 10px),
+        calc((var(--mouse-y) - 0.5) * 10px)
+    );
+    transition: transform 0.5s ease-out;
+}
+
+/* Gallery items with scroll-based reveal glow */
+.gallery-item {
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 0 calc(20px + var(--scroll-ratio) * 30px) rgba(161, 196, 253, calc(0.1 * var(--scroll-ratio)));
+}
+
+/* Section titles with hue rotation based on scroll position */
+.section-title {
+    filter: hue-rotate(calc(var(--scroll-ratio) * 30deg));
+    transition: filter 0.3s ease;
+}
+
+/* Mobile optimizations - smooth performance */
+@media (max-width: 768px) {
+    .orb {
+        /* Reduce parallax intensity on mobile */
+        transform: translate(
+            calc((var(--mouse-x) - 0.5) * -40px),
+            calc((var(--mouse-y) - 0.5) * -30px)
+        );
+    }
+    
+    .hero-content {
+        /* Simpler effects on mobile for performance */
+        backdrop-filter: blur(20px);
+    }
+}
