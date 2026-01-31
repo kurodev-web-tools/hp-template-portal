@@ -386,7 +386,8 @@ body {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.6rem;
     padding: 6px 12px;
@@ -398,7 +399,8 @@ body {
     box-shadow: 2px 2px 0 #000;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 14px;
     vertical-align: -2px;
     margin-right: 4px;
@@ -422,6 +424,7 @@ body[data-stream-status="offline"] .channel-indicator {
     color: var(--pixel-green);
     opacity: 0.7;
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
     background: #000;
     color: #fff;
@@ -429,8 +432,13 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 }
 
 @keyframes pixel-blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 /* ============================================
@@ -443,11 +451,14 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 }
 
 @keyframes flash-white-anim {
-    0%, 100% { 
+
+    0%,
+    100% {
         filter: brightness(1);
         background-color: inherit;
     }
-    50% { 
+
+    50% {
         filter: brightness(2);
         background-color: #fff;
     }
@@ -459,26 +470,50 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 }
 
 @keyframes shake-pixel-anim {
-    0%, 100% { transform: translate(0, 0); }
-    12.5% { transform: translate(4px, -4px); }
-    25% { transform: translate(-4px, 4px); }
-    37.5% { transform: translate(4px, 4px); }
-    50% { transform: translate(-4px, -4px); }
-    62.5% { transform: translate(4px, 0); }
-    75% { transform: translate(-4px, 0); }
-    87.5% { transform: translate(0, 4px); }
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    12.5% {
+        transform: translate(4px, -4px);
+    }
+
+    25% {
+        transform: translate(-4px, 4px);
+    }
+
+    37.5% {
+        transform: translate(4px, 4px);
+    }
+
+    50% {
+        transform: translate(-4px, -4px);
+    }
+
+    62.5% {
+        transform: translate(4px, 0);
+    }
+
+    75% {
+        transform: translate(-4px, 0);
+    }
+
+    87.5% {
+        transform: translate(0, 4px);
+    }
 }
 
 /* PC Hover - Pop out effect */
 .pixel-card.block-pop,
 .pixel-box.block-pop {
-    transform: scale(1.1) translateY(-8px);
-    box-shadow: 
-        8px 8px 0 #000,
-        -4px -4px 0 var(--pixel-green),
-        4px -4px 0 var(--pixel-green),
-        -4px 4px 0 var(--pixel-green);
-    transition: transform 0.1s steps(3), box-shadow 0.1s steps(3);
+    transform: translate(-4px, -4px);
+    box-shadow:
+        4px 4px 0 #000,
+        8px 8px 0 rgba(0, 0, 0, 0.3),
+        -4px -4px 0 var(--pixel-green);
+    transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
     z-index: 10;
 }
 
@@ -497,26 +532,32 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         opacity: 0;
         transform: translateY(40px);
     }
+
     16.6% {
         opacity: 0.2;
         transform: translateY(32px);
     }
+
     33.3% {
         opacity: 0.4;
         transform: translateY(24px);
     }
+
     50% {
         opacity: 0.6;
         transform: translateY(16px);
     }
+
     66.6% {
         opacity: 0.8;
         transform: translateY(8px);
     }
+
     83.3% {
         opacity: 0.9;
         transform: translateY(4px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -524,12 +565,29 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 }
 
 /* Stagger delays for block build */
-.block-delay-1 { animation-delay: 0s; }
-.block-delay-2 { animation-delay: 0.1s; }
-.block-delay-3 { animation-delay: 0.2s; }
-.block-delay-4 { animation-delay: 0.3s; }
-.block-delay-5 { animation-delay: 0.4s; }
-.block-delay-6 { animation-delay: 0.5s; }
+.block-delay-1 {
+    animation-delay: 0s;
+}
+
+.block-delay-2 {
+    animation-delay: 0.1s;
+}
+
+.block-delay-3 {
+    animation-delay: 0.2s;
+}
+
+.block-delay-4 {
+    animation-delay: 0.3s;
+}
+
+.block-delay-5 {
+    animation-delay: 0.4s;
+}
+
+.block-delay-6 {
+    animation-delay: 0.5s;
+}
 
 /* Step timing for all pixel animations */
 .pixel-perfect-move {
@@ -550,18 +608,22 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         opacity: 0;
         transform: translateX(-20px);
     }
+
     25% {
         opacity: 0.3;
         transform: translateX(-12px);
     }
+
     50% {
         opacity: 0.6;
         transform: translateX(-8px);
     }
+
     75% {
         opacity: 0.8;
         transform: translateX(-4px);
     }
+
     100% {
         opacity: 1;
         transform: translateX(0);
