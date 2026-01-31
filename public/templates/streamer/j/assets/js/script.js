@@ -81,4 +81,100 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu when clicking outside links (optional, for UX)
     // But since it covers screen, maybe not needed.
     // Close when link clicked is handled in link generation.
+
+    // Initialize Rhythmic Effect
+    const rhythmic = new RhythmicEffect();
 });
+
+// ============================================
+// RHYTHMIC EFFECT - Jazz Lounge Ease & Stagger
+// ============================================
+
+class RhythmicEffect {
+    constructor() {
+        this.isMobile = window.innerWidth <= 768;
+        this.init();
+    }
+
+    init() {
+        this.setupHoverEffects();
+        this.setupStaggerReveal();
+    }
+
+    setupHoverEffects() {
+        // PC: Add rhythm-hover class to glass panel elements
+        if (!this.isMobile) {
+            const glassPanels = document.querySelectorAll('.glass-panel');
+            
+            glassPanels.forEach(panel => {
+                // Apply to child elements
+                const elements = panel.querySelectorAll('h1, h2, h3, p, li, .hero-sub, .text-body');
+                elements.forEach((el, index) => {
+                    el.classList.add('rhythm-hover');
+                    // Add staggered delay for multiple elements
+                    el.style.transitionDelay = `${index * 0.05}s`;
+                });
+            });
+
+            // Special handling for track list items
+            const trackItems = document.querySelectorAll('.track-list li');
+            trackItems.forEach((item, index) => {
+                item.classList.add('rhythm-hover');
+                item.style.transitionDelay = `${index * 0.08}s`;
+            });
+        }
+    }
+
+    setupStaggerReveal() {
+        const container = document.querySelector('.horizontal-container');
+        
+        // Enhanced Intersection Observer with Stagger
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const panel = entry.target.querySelector('.glass-panel');
+                    if (panel) {
+                        // Reveal panel first
+                        panel.style.opacity = '1';
+                        panel.style.transform = 'translateY(0)';
+                        
+                        // Then stagger child elements
+                        const children = panel.querySelectorAll('h1, h2, h3, p, li, .hero-sub, .text-body, .section-title, .track-list li');
+                        children.forEach((child, index) => {
+                            child.classList.add('rhythm-reveal');
+                            // Assign stagger delay (max 5 delays)
+                            const delayClass = `rhythm-delay-${(index % 5) + 1}`;
+                            child.classList.add(delayClass);
+                            
+                            // Trigger reveal after panel animation
+                            setTimeout(() => {
+                                child.classList.add('revealed');
+                            }, 100 + (index * 100));
+                        });
+                    }
+                } else {
+                    // Reset for re-animation when scrolling back
+                    const panel = entry.target.querySelector('.glass-panel');
+                    if (panel) {
+                        panel.style.opacity = '0';
+                        panel.style.transform = 'translateY(20px)';
+                        
+                        const children = panel.querySelectorAll('.rhythm-reveal');
+                        children.forEach(child => {
+                            child.classList.remove('revealed');
+                        });
+                    }
+                }
+            });
+        }, { 
+            root: container, 
+            threshold: 0.5,
+            rootMargin: '0px'
+        });
+
+        document.querySelectorAll('.h-section').forEach(section => {
+            observer.observe(section);
+        });
+    }
+}
+
