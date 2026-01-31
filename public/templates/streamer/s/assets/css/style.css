@@ -69,27 +69,50 @@ body {
     text-shadow: 0 0 5px var(--brass);
 }
 
-/* Rotating Gears */
+/* Rotating Gears - JS Controlled */
+:root {
+    --gear-rotation: 0deg;
+    --gear-speed: 1;
+}
+
 .gear-left,
 .gear-right {
     font-size: 2rem;
     color: var(--copper);
     padding: 0 20px;
-    animation: rotate-gear 10s linear infinite;
+    transform: rotate(var(--gear-rotation));
+    transition: none;
+    will-change: transform;
 }
 
 .gear-right {
-    animation-direction: reverse;
+    --gear-rotation: calc(-1 * var(--gear-rotation, 0deg));
 }
 
+.bg-gear {
+    --bg-gear-rotation: 0deg;
+    transform: rotate(var(--bg-gear-rotation));
+    transition: none;
+    will-change: transform;
+}
+
+/* Idle Animation (when JS not active) */
 @keyframes rotate-gear {
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
+}
+
+.gear-left.idling,
+.gear-right.idling {
+    animation: rotate-gear 20s linear infinite;
+}
+
+.gear-right.idling {
+    animation-direction: reverse;
 }
 
 /* Hero Section */
@@ -859,4 +882,122 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 @keyframes steam-hiss {
     0%, 100% { transform: scale(1); filter: brightness(1); }
     50% { transform: scale(1.02); filter: brightness(1.3); text-shadow: 0 0 10px #ff4444; }
+}
+
+/* ============================================
+   GEAR ROTATE & STEAM EFFECT
+   ============================================ */
+
+/* Steam Particle System */
+.steam-particle {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    filter: blur(12px);
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.steam-particle.rising {
+    animation: steam-rise-particle 2s ease-out forwards;
+}
+
+@keyframes steam-rise-particle {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-100px) scale(1.2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-200px) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Mobile Burst Steam */
+.steam-burst {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    filter: blur(15px);
+    opacity: 0;
+}
+
+.steam-burst.bursting {
+    animation: steam-burst-anim 0.8s ease-out forwards;
+}
+
+@keyframes steam-burst-anim {
+    0% {
+        transform: scale(0.3);
+        opacity: 0.9;
+    }
+    30% {
+        transform: scale(1.5);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Pressure Gauge - JS Controlled Needle */
+.needle {
+    --needle-rotation: -45deg;
+    transform: translateX(-50%) rotate(var(--needle-rotation));
+    transition: transform 0.3s ease-out;
+}
+
+/* Overdrive Steam Effect */
+.overdrive .needle {
+    filter: drop-shadow(0 0 8px rgba(255, 61, 0, 0.8));
+}
+
+.overdrive .pressure-gauge {
+    box-shadow:
+        inset 0 0 15px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 61, 0, 0.4);
+}
+
+/* Steam Vent Point */
+.steam-vent {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    filter: blur(4px);
+}
+
+/* Enhanced Mobile Menu Gears */
+.gear.js-controlled {
+    animation: none;
+    transform: rotate(var(--gear-rotation, 0deg));
+}
+
+/* Mechanical vibration effect during high speed */
+.mechanical-vibration {
+    animation: gear-vibration 0.1s infinite;
+}
+
+@keyframes gear-vibration {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(0.5px, 0.5px); }
+    50% { transform: translate(-0.5px, 0.5px); }
+    75% { transform: translate(0.5px, -0.5px); }
 }
