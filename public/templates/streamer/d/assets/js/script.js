@@ -77,4 +77,112 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
         if (Math.random() > 0.95) glitchText();
     }, 2000);
+
+    // ============================================
+    // DECRYPT TEXT EFFECT - Hacker Decryption
+    // ============================================
+
+    class DecryptEffect {
+        constructor(element) {
+            this.element = element;
+            this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+            this.isDecoding = false;
+            
+            // Store original text if not already stored
+            if (!this.element.getAttribute('data-original-text')) {
+                this.element.setAttribute('data-original-text', this.element.innerText);
+            }
+            this.originalText = this.element.getAttribute('data-original-text');
+        }
+
+        decode() {
+            if (this.isDecoding) return;
+            this.isDecoding = true;
+            
+            // Add decoding class
+            this.element.classList.add('decoding');
+            
+            let iterations = 0;
+            const totalIterations = this.originalText.length * 3; // Multiple passes for effect
+            
+            const interval = setInterval(() => {
+                const currentText = this.originalText.split('').map((char, index) => {
+                    // Preserve spaces and special formatting
+                    if (char === ' ') return ' ';
+                    if (char === '\n') return '\n';
+                    
+                    // Calculate progress for this character
+                    const charProgress = (iterations - index * 2) / 4;
+                    
+                    if (charProgress >= 1) {
+                        return this.originalText[index];
+                    } else if (charProgress > 0) {
+                        // Mix of correct and random chars during transition
+                        return Math.random() > 0.3 ? this.originalText[index] : this.getRandomChar();
+                    } else {
+                        // Random chars during early phase
+                        return this.getRandomChar();
+                    }
+                }).join('');
+                
+                this.element.innerText = currentText;
+                iterations += 1;
+                
+                if (iterations >= totalIterations) {
+                    clearInterval(interval);
+                    this.element.innerText = this.originalText;
+                    this.element.classList.remove('decoding');
+                    this.isDecoding = false;
+                }
+            }, 40);
+        }
+
+        getRandomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+    }
+
+    // Initialize DecryptEffect for all decrypt-hover elements
+    const decryptElements = document.querySelectorAll('.decrypt-hover, .hero-title');
+    const decryptEffects = new Map();
+
+    decryptElements.forEach(element => {
+        decryptEffects.set(element, new DecryptEffect(element));
+    });
+
+    // PC: Hover to trigger decryption
+    if (window.innerWidth > 768) {
+        decryptElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                const effect = decryptEffects.get(element);
+                if (effect) effect.decode();
+            });
+        });
+    }
+
+    // Mobile: IntersectionObserver to auto-trigger once when visible
+    if (window.innerWidth <= 768) {
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const decryptObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const effect = decryptEffects.get(element);
+                    if (effect) {
+                        effect.decode();
+                    }
+                    // Unobserve after triggering once
+                    decryptObserver.unobserve(element);
+                }
+            });
+        }, observerOptions);
+
+        decryptElements.forEach(element => {
+            decryptObserver.observe(element);
+        });
+    }
 });

@@ -581,3 +581,67 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     opacity: 1;
     box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
 }
+
+/* ============================================
+   DECRYPT TEXT EFFECT - Hacker Decryption
+   ============================================ */
+
+/* Base styles for decrypt-hover elements */
+.decrypt-hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.decrypt-hover:hover {
+    color: var(--ghost-green);
+}
+
+/* Decoding state - Matrix-style analysis effect */
+.decoding {
+    color: var(--ghost-dim) !important;
+    text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.3),
+        0 0 10px rgba(0, 255, 65, 0.2),
+        0 0 20px rgba(0, 255, 65, 0.1);
+    animation: decode-flicker 0.1s infinite;
+}
+
+/* Flickering text-shadow animation during decoding */
+@keyframes decode-flicker {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px rgba(0, 255, 65, 0.3),
+            0 0 10px rgba(0, 255, 65, 0.2),
+            0 0 20px rgba(0, 255, 65, 0.1);
+    }
+    50% {
+        text-shadow: 
+            0 0 8px rgba(0, 255, 65, 0.5),
+            0 0 15px rgba(0, 255, 65, 0.3),
+            0 0 30px rgba(0, 255, 65, 0.2);
+    }
+}
+
+/* Hero title specific decrypt styles */
+.hero-title.decrypt-hover,
+.hero-title.decoding {
+    user-select: none;
+}
+
+/* Data node decrypt effect */
+.data-node .decrypt-hover {
+    display: inline-block;
+}
+
+/* Mobile: Make decrypt elements more prominent */
+@media (max-width: 768px) {
+    .decrypt-hover {
+        text-decoration: underline;
+        text-decoration-color: var(--ghost-dim);
+        text-underline-offset: 3px;
+    }
+    
+    .decoding {
+        text-decoration: none;
+    }
+}
