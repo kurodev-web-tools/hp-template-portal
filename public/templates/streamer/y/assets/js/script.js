@@ -96,7 +96,101 @@ document.addEventListener('DOMContentLoaded', () => {
                 const icon = toggle.querySelector('.material-icons');
                 if (icon) icon.textContent = 'trending_up';
                 document.body.style.overflow = '';
+});
+
+// ============================================
+// WEALTH GLINT SYSTEM - Gold Light Sweep
+// ============================================
+
+class WealthGlintSystem {
+    constructor() {
+        this.isMobile = window.innerWidth <= 768;
+        this.statCards = document.querySelectorAll('.stat-card');
+        this.heroTitle = document.querySelector('.hero-title');
+        this.btnYield = document.querySelector('.btn-yield');
+        this.glintTargets = [];
+        
+        this.init();
+    }
+
+    init() {
+        // Collect all glint targets
+        this.glintTargets = [
+            ...this.statCards,
+            this.heroTitle,
+            this.btnYield
+        ].filter(el => el); // Remove nulls
+
+        // Add glint-effect class to all targets
+        this.glintTargets.forEach(target => {
+            target.classList.add('glint-effect');
+        });
+
+        if (this.isMobile) {
+            this.setupMobilePeriodicShimmer();
+        } else {
+            this.setupPCHoverGlint();
+        }
+    }
+
+    setupPCHoverGlint() {
+        // PC: Hover triggers light sweep
+        this.glintTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                this.triggerLightSweep(target);
             });
+        });
+    }
+
+    setupMobilePeriodicShimmer() {
+        // Mobile: Random periodic shimmer every 5-8 seconds
+        this.scheduleNextShimmer();
+    }
+
+    scheduleNextShimmer() {
+        const delay = 5000 + Math.random() * 3000; // 5-8 seconds
+        
+        setTimeout(() => {
+            this.triggerRandomShimmer();
+            this.scheduleNextShimmer();
+        }, delay);
+    }
+
+    triggerRandomShimmer() {
+        // Pick 1-2 random targets to shimmer
+        const numTargets = 1 + Math.floor(Math.random() * 2);
+        const shuffled = [...this.glintTargets].sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(0, numTargets);
+
+        selected.forEach((target, index) => {
+            setTimeout(() => {
+                target.classList.add('shimmer-pulse');
+                
+                setTimeout(() => {
+                    target.classList.remove('shimmer-pulse');
+                }, 2000);
+            }, index * 300);
+        });
+    }
+
+    triggerLightSweep(element) {
+        // Add sweeping class
+        element.classList.add('sweeping');
+        element.classList.add('highlighting');
+
+        // Remove after animation completes
+        setTimeout(() => {
+            element.classList.remove('sweeping');
+        }, 600);
+
+        setTimeout(() => {
+            element.classList.remove('highlighting');
+        }, 900);
+    }
+}
+
+// Initialize
+const wealthGlint = new WealthGlintSystem();
         });
     }
 
