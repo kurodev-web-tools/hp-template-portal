@@ -73,4 +73,42 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'all 1s ease-out';
         observer.observe(el);
     });
+
+    // ============================================
+    // BOSS AURA (Pulsing Effect)
+    // ============================================
+    
+    const heroTitle = document.querySelector('.hero-title');
+    const vignette = document.querySelector('.vignette');
+    
+    // Always apply boss-aura by default
+    if (heroTitle) {
+        heroTitle.classList.add('boss-aura');
+    }
+    
+    // PC: Enraged state on hover
+    if (window.innerWidth > 768 && heroTitle) {
+        heroTitle.addEventListener('mouseenter', () => {
+            heroTitle.classList.add('enraged');
+            if (vignette) {
+                vignette.style.animation = 'vignette-enraged 0.8s ease-in-out infinite';
+            }
+        });
+        
+        heroTitle.addEventListener('mouseleave', () => {
+            heroTitle.classList.remove('enraged');
+            if (vignette) {
+                vignette.style.animation = '';
+            }
+        });
+    }
+    
+    // Mobile: Auto apply boss aura (slow continuous pulse)
+    if (window.innerWidth <= 768) {
+        // Boss aura is already applied above
+        // Mobile always shows the slow breathing effect
+        if (vignette && !vignette.style.animation) {
+            vignette.style.animation = 'vignette-pulse 4s ease-in-out infinite';
+        }
+    }
 });

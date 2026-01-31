@@ -447,3 +447,124 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
 }
+
+/* ============================================
+   BOSS AURA (Pulsing Effect)
+   ============================================ */
+
+/* Boss Aura - Breathing/Pulsing Animation */
+@keyframes boss-pulse {
+    0%, 100% {
+        /* Normal state - Dark Gold dominance */
+        text-shadow: 
+            0 0 20px rgba(138, 109, 59, 0.6),
+            0 0 40px rgba(138, 109, 59, 0.4),
+            0 0 60px rgba(80, 0, 0, 0.2);
+    }
+    25% {
+        /* Building intensity */
+        text-shadow: 
+            0 0 30px rgba(138, 109, 59, 0.8),
+            0 0 50px rgba(138, 109, 59, 0.5),
+            0 0 80px rgba(80, 0, 0, 0.3);
+    }
+    50% {
+        /* Peak - Blended heavy color */
+        text-shadow: 
+            0 0 40px rgba(138, 109, 59, 0.9),
+            0 0 70px rgba(80, 0, 0, 0.5),
+            0 0 100px rgba(80, 0, 0, 0.4);
+    }
+    75% {
+        /* Fading back */
+        text-shadow: 
+            0 0 25px rgba(138, 109, 59, 0.7),
+            0 0 45px rgba(138, 109, 59, 0.4),
+            0 0 70px rgba(80, 0, 0, 0.25);
+    }
+}
+
+/* Vignette pulsing shadow */
+@keyframes vignette-pulse {
+    0%, 100% {
+        box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9), 
+                    inset 0 0 250px rgba(80, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.95), 
+                    inset 0 0 350px rgba(80, 0, 0, 0.2),
+                    inset 0 0 50px rgba(138, 109, 59, 0.1);
+    }
+}
+
+/* Boss Aura Class - Applied to elements for pulsing effect */
+.boss-aura {
+    animation: boss-pulse 4s ease-in-out infinite;
+}
+
+/* When boss-aura is applied to body, vignette also pulses */
+body.boss-aura .vignette,
+.boss-aura ~ .vignette,
+.hero-content.boss-aura ~ .vignette {
+    animation: vignette-pulse 4s ease-in-out infinite;
+}
+
+/* Enraged State - Red, faster animation on hover */
+.hero-title.enraged,
+.hero-title:hover.enraged {
+    animation: boss-pulse-enraged 0.8s ease-in-out infinite !important;
+    color: #ff4444 !important;
+    text-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.9),
+        0 0 60px rgba(255, 0, 0, 0.7),
+        0 0 90px rgba(139, 0, 0, 0.5) !important;
+}
+
+/* Enraged vignette effect */
+body:has(.hero-title.enraged) .vignette,
+.hero-title.enraged ~ .vignette {
+    animation: vignette-enraged 0.8s ease-in-out infinite !important;
+}
+
+@keyframes boss-pulse-enraged {
+    0%, 100% {
+        text-shadow: 
+            0 0 30px rgba(255, 0, 0, 0.9),
+            0 0 60px rgba(255, 0, 0, 0.7),
+            0 0 90px rgba(139, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 
+            0 0 50px rgba(255, 0, 0, 1),
+            0 0 80px rgba(255, 0, 0, 0.9),
+            0 0 120px rgba(139, 0, 0, 0.7);
+    }
+}
+
+@keyframes vignette-enraged {
+    0%, 100% {
+        box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.95), 
+                    inset 0 0 300px rgba(139, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: inset 0 0 250px rgba(0, 0, 0, 0.98), 
+                    inset 0 0 400px rgba(139, 0, 0, 0.5),
+                    inset 0 0 80px rgba(255, 0, 0, 0.1);
+    }
+}
+
+/* Hero title hover state (without enraged) - slight acceleration */
+.hero-title:hover {
+    animation-duration: 2s;
+}
+
+/* Mobile: Always show boss aura with slow pulse */
+@media (hover: none) {
+    .hero-title.boss-aura {
+        animation: boss-pulse 4s ease-in-out infinite;
+    }
+    
+    body .vignette {
+        animation: vignette-pulse 4s ease-in-out infinite;
+    }
+}
