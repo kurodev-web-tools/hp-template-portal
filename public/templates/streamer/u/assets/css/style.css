@@ -422,7 +422,8 @@ body {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.9rem;
     padding: 2px 15px;
@@ -434,7 +435,8 @@ body {
     transition: all 0.3s;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 18px;
     vertical-align: -3px;
     margin-right: 5px;
@@ -446,7 +448,7 @@ body[data-stream-status="live"] .live-indicator {
     align-items: center;
     background: #ff0000;
     color: #fff;
-    box-shadow: 
+    box-shadow:
         3px 3px 0 #000,
         0 15px 20px rgba(255, 0, 0, 0.4);
     animation: spray-drip 3s infinite;
@@ -474,19 +476,261 @@ body[data-stream-status="offline"] .channel-indicator {
     border: 1px dashed #666;
     opacity: 0.7;
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
-    color: #06b6d4; /* spray-cyan */
+    color: #06b6d4;
+    /* spray-cyan */
     border-color: #06b6d4;
     opacity: 1;
 }
 
 @keyframes spray-drip {
-    0%, 100% { transform: rotate(3deg) scale(1); }
-    50% { transform: rotate(1deg) scale(1.05); filter: brightness(1.2); }
+
+    0%,
+    100% {
+        transform: rotate(3deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(1deg) scale(1.05);
+        filter: brightness(1.2);
+    }
 }
 
 @keyframes drip-active {
-    0% { height: 0; opacity: 1; }
-    80% { height: 20px; opacity: 1; }
-    100% { height: 25px; opacity: 0; }
+    0% {
+        height: 0;
+        opacity: 1;
+    }
+
+    80% {
+        height: 20px;
+        opacity: 1;
+    }
+
+    100% {
+        height: 25px;
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   SPRAY DISPERSION EFFECT - Urban Graffiti
+   ============================================ */
+
+/* Spray Particle */
+.spray-particle {
+    position: absolute;
+    /* Stick to wall */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    filter: blur(2px);
+    opacity: 0;
+    will-change: transform, opacity;
+    transform: translate(-50%, -50%);
+}
+
+.spray-particle.active {
+    animation: spray-expand 0.6s ease-out forwards;
+}
+
+@keyframes spray-expand {
+    0% {
+        transform: scale(0);
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Spray Mist Effect */
+.spray-mist {
+    position: absolute;
+    /* Stick to wall */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    filter: blur(8px);
+    opacity: 0;
+    mix-blend-mode: screen;
+}
+
+.spray-mist.puffing {
+    animation: mist-puff 1s ease-out forwards;
+}
+
+@keyframes mist-puff {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.4;
+    }
+
+    30% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Paint Splatter Mark */
+.paint-splatter {
+    position: absolute;
+    /* Stick to wall */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.7;
+    filter: blur(1px);
+    transform: scale(0);
+    animation: splatter-appear 0.3s ease-out forwards;
+}
+
+@keyframes splatter-appear {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2) rotate(5deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+}
+
+/* Ink Drip */
+.ink-drip {
+    position: absolute;
+    width: 4px;
+    background: currentColor;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 10;
+    transform-origin: top center;
+    /* Remove translate to avoid offset from coordinates */
+}
+
+.ink-drip.dripping {
+    animation: drip-extend 2s ease-in forwards;
+}
+
+@keyframes drip-extend {
+    0% {
+        height: 0;
+        opacity: 0.9;
+    }
+
+    70% {
+        height: 80px;
+        opacity: 0.7;
+    }
+
+    100% {
+        height: 100px;
+        opacity: 0;
+    }
+}
+
+/* Enhanced Spray Glow */
+.spray-glow {
+    box-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+}
+
+/* Spray Title Animation */
+.spray-title.spraying {
+    animation: title-spray-reveal 0.8s ease-out forwards;
+}
+
+@keyframes title-spray-reveal {
+    0% {
+        opacity: 0;
+        filter: blur(15px);
+        transform: scale(0.9) rotate(-2deg);
+    }
+
+    50% {
+        opacity: 0.5;
+        filter: blur(8px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1) rotate(-2deg);
+    }
+}
+
+/* Sticker Spray Effect */
+.sticker.spray-hover {
+    animation: sticker-spray 0.6s ease-out;
+}
+
+@keyframes sticker-spray {
+    0% {
+        transform: rotate(5deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(8deg) scale(1.05);
+        filter: brightness(1.2);
+    }
+
+    100% {
+        transform: rotate(5deg) scale(1);
+    }
+}
+
+/* Section Spray Overlay */
+.section-spray-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    background: radial-gradient(circle at center,
+            rgba(250, 204, 21, 0.1) 0%,
+            transparent 60%);
+    transition: opacity 0.5s;
+}
+
+.section-spray-overlay.active {
+    opacity: 1;
+}
+
+/* Paint Splatter Colors */
+.splatter-pink {
+    background: radial-gradient(circle, rgba(219, 39, 119, 0.8), rgba(219, 39, 119, 0.4));
+    box-shadow: 0 0 15px rgba(219, 39, 119, 0.5);
+}
+
+.splatter-yellow {
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.8), rgba(250, 204, 21, 0.4));
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+}
+
+.splatter-cyan {
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.8), rgba(6, 182, 212, 0.4));
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
 }

@@ -131,7 +131,7 @@ class CircuitTraceEngine {
         this.networkMap = document.querySelector('.network-map');
         this.circuitGrid = document.querySelector('.circuit-grid');
         this.nodes = document.querySelectorAll('.node');
-        
+
         this.init();
     }
 
@@ -181,7 +181,7 @@ class CircuitTraceEngine {
             dataWave.classList.remove('scanning');
             void dataWave.offsetWidth; // Force reflow
             dataWave.classList.add('scanning');
-            
+
             // Activate elements when wave passes
             setTimeout(() => {
                 this.logicCards.forEach((card, index) => {
@@ -218,30 +218,31 @@ class CircuitTraceEngine {
     createConnectionLine(pos1, pos2) {
         const line = document.createElement('div');
         line.className = 'node-connector';
-        
+
         const length = Math.sqrt(
-            Math.pow(pos2.x - pos1.x, 2) + 
+            Math.pow(pos2.x - pos1.x, 2) +
             Math.pow(pos2.y - pos1.y, 2)
         );
         const angle = Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x) * 180 / Math.PI;
-        
+
         line.style.width = length + 'px';
         line.style.left = pos1.x + 'px';
         line.style.top = pos1.y + 'px';
         line.style.transform = `rotate(${angle}deg)`;
         line.style.transformOrigin = '0 50%';
-        
+
         this.networkMap.appendChild(line);
     }
 
     emitSignalPackets(card, event) {
         const rect = card.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+        // Use scrollX/Y to get absolute coordinates relative to the entry point (body)
+        const centerX = rect.left + rect.width / 2 + window.scrollX;
+        const centerY = rect.top + rect.height / 2 + window.scrollY;
 
         // Emit 4-8 packets in different directions
         const packetCount = 4 + Math.floor(Math.random() * 5);
-        
+
         for (let i = 0; i < packetCount; i++) {
             const packet = document.createElement('div');
             packet.className = 'signal-packet';
@@ -275,7 +276,7 @@ class CircuitTraceEngine {
             this.circuitGrid.classList.remove('pulse-active');
             void this.circuitGrid.offsetWidth;
             this.circuitGrid.classList.add('pulse-active');
-            
+
             setTimeout(() => {
                 this.circuitGrid.classList.remove('pulse-active');
             }, 500);

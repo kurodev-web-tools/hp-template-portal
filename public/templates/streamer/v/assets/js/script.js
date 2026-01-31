@@ -85,3 +85,138 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ============================================
+// COLOR SPLASH RIPPLE - Electric Click Effect
+// ============================================
+
+class ColorSplashRipple {
+    constructor() {
+        this.brand = document.querySelector('.brand');
+        this.rgbTargets = document.querySelectorAll('.rgb-target');
+        this.isTouch = window.matchMedia('(pointer: coarse)').matches;
+        
+        this.init();
+    }
+
+    init() {
+        // Listen for clicks/taps on the entire document
+        document.addEventListener('click', (e) => this.handleInteraction(e));
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                this.handleInteraction(e.touches[0]);
+            }
+        }, { passive: true });
+    }
+
+    handleInteraction(e) {
+        const x = e.clientX || (e.touches && e.touches[0].clientX);
+        const y = e.clientY || (e.touches && e.touches[0].clientY);
+        
+        if (!x || !y) return;
+        
+        // Create main ripple
+        this.createRipple(x, y);
+        
+        // Create secondary ring
+        this.createRing(x, y);
+        
+        // Maximize RGB shift
+        this.maximizeRGBShift();
+        
+        // Flash brand
+        this.flashBrand();
+        
+        // Page flash
+        this.pageFlash();
+    }
+
+    createRipple(x, y) {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple-circle invert-mode';
+        
+        const size = 100 + Math.random() * 100;
+        ripple.style.width = size + 'px';
+        ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        
+        document.body.appendChild(ripple);
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            ripple.classList.add('expanding');
+        });
+        
+        // Remove after animation
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+
+    createRing(x, y) {
+        const ring = document.createElement('div');
+        ring.className = 'ripple-ring';
+        
+        const size = 150 + Math.random() * 50;
+        ring.style.width = size + 'px';
+        ring.style.height = size + 'px';
+        ring.style.left = x + 'px';
+        ring.style.top = y + 'px';
+        
+        document.body.appendChild(ring);
+        
+        // Trigger animation with slight delay
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                ring.classList.add('expanding');
+            });
+        }, 50);
+        
+        // Remove after animation
+        setTimeout(() => {
+            ring.remove();
+        }, 800);
+    }
+
+    maximizeRGBShift() {
+        // Add max shift class to body
+        document.body.classList.add('rgb-max-shift');
+        
+        // Maximize shift-x property
+        document.body.style.setProperty('--shift-x', '30px');
+        
+        // Add glitching to all rgb targets
+        this.rgbTargets.forEach(target => {
+            target.classList.add('active-glitch');
+        });
+        
+        // Reset after a short time
+        setTimeout(() => {
+            document.body.classList.remove('rgb-max-shift');
+            document.body.style.setProperty('--shift-x', '0px');
+            this.rgbTargets.forEach(target => {
+                target.classList.remove('active-glitch');
+            });
+        }, 300);
+    }
+
+    flashBrand() {
+        if (this.brand) {
+            this.brand.classList.add('flash-active');
+            setTimeout(() => {
+                this.brand.classList.remove('flash-active');
+            }, 400);
+        }
+    }
+
+    pageFlash() {
+        document.body.classList.add('page-flash');
+        setTimeout(() => {
+            document.body.classList.remove('page-flash');
+        }, 300);
+    }
+}
+
+// Initialize
+const colorSplash = new ColorSplashRipple();

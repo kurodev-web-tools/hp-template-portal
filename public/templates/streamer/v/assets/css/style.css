@@ -538,3 +538,141 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0% { color: #fff; text-shadow: 0 0 5px #fff; }
     100% { color: #ff0000; text-shadow: 0 0 20px #ff0000, 5px 0 #0ff, -5px 0 #f0f; }
 }
+
+/* ============================================
+   COLOR SPLASH - Electric Ripple Effect
+   ============================================ */
+
+/* Ripple Circle with Color Inversion */
+.ripple-circle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    background: #fff;
+    transform: translate(-50%, -50%) scale(0);
+    will-change: transform, opacity;
+}
+
+.ripple-circle.invert-mode {
+    backdrop-filter: invert(100%);
+    -webkit-backdrop-filter: invert(100%);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.ripple-circle.expanding {
+    animation: ripple-expand 0.6s ease-out forwards;
+}
+
+@keyframes ripple-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+/* RGB Max Glitch on Click */
+.rgb-max-shift {
+    --shift-x: 30px !important;
+}
+
+.rgb-max-shift .rgb-target::before,
+.rgb-max-shift .rgb-target::after {
+    opacity: 0.9 !important;
+}
+
+/* Brand Flash on Click */
+.brand.flash-active {
+    animation: brand-electric-flash 0.4s ease-out;
+}
+
+@keyframes brand-electric-flash {
+    0% {
+        color: #fff;
+        text-shadow: 0 0 10px #fff;
+        filter: brightness(1);
+    }
+    25% {
+        color: var(--vivid-cyan);
+        text-shadow: 
+            0 0 20px var(--vivid-cyan),
+            5px 0 var(--vivid-magenta),
+            -5px 0 var(--vivid-yellow);
+        filter: brightness(2);
+    }
+    50% {
+        color: var(--vivid-magenta);
+        text-shadow: 
+            0 0 30px var(--vivid-magenta),
+            -5px 0 var(--vivid-cyan),
+            5px 0 var(--vivid-yellow);
+        filter: brightness(3);
+    }
+    75% {
+        color: var(--vivid-yellow);
+        text-shadow: 
+            0 0 20px var(--vivid-yellow),
+            5px 0 var(--vivid-cyan),
+            -5px 0 var(--vivid-magenta);
+        filter: brightness(2);
+    }
+    100% {
+        color: #fff;
+        text-shadow: 0 0 10px #fff;
+        filter: brightness(1);
+    }
+}
+
+/* Page Flash Effect */
+.page-flash {
+    animation: page-color-flash 0.3s ease-out;
+}
+
+@keyframes page-color-flash {
+    0% {
+        filter: invert(0);
+    }
+    50% {
+        filter: invert(0.3) saturate(2);
+    }
+    100% {
+        filter: invert(0);
+    }
+}
+
+/* Secondary Ripple Ring */
+.ripple-ring {
+    position: fixed;
+    border-radius: 50%;
+    border: 3px solid var(--vivid-cyan);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%) scale(0);
+    box-shadow: 
+        0 0 20px var(--vivid-cyan),
+        inset 0 0 20px var(--vivid-magenta);
+    will-change: transform, opacity;
+}
+
+.ripple-ring.expanding {
+    animation: ring-expand 0.8s ease-out forwards;
+}
+
+@keyframes ring-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 0;
+    }
+}
