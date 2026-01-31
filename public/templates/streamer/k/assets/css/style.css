@@ -562,3 +562,163 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0%, 100% { filter: hue-rotate(0deg) brightness(1); box-shadow: 0 0 10px rgba(255, 68, 0, 0.4); }
     50% { filter: hue-rotate(10deg) brightness(1.2); box-shadow: 0 0 20px rgba(255, 68, 0, 0.6); }
 }
+
+/* ============================================
+   BANNER BURN - Knight's Flame Effect
+   ============================================ */
+
+/* Base Banner Burn Style */
+.banner-burn {
+    position: relative;
+    animation: banner-flicker 0.4s infinite alternate;
+    box-shadow: 
+        0 0 20px #ffd700,
+        0 0 40px #ff8c00,
+        0 0 60px rgba(255, 69, 0, 0.5),
+        inset 0 0 30px rgba(255, 215, 0, 0.2);
+    border-image: linear-gradient(
+        to bottom,
+        #ffd700 0%,
+        #ff8c00 50%,
+        #ff4500 100%
+    ) 1;
+    border-width: 3px;
+    border-style: solid;
+    transition: all 0.5s ease-out;
+}
+
+/* Flickering Animation */
+@keyframes banner-flicker {
+    0% {
+        box-shadow: 
+            0 0 15px #ffd700,
+            0 0 30px #ff8c00,
+            0 0 45px rgba(255, 69, 0, 0.4);
+        border-image: linear-gradient(
+            to bottom,
+            #ffd700 0%,
+            #ff8c00 50%,
+            #ff4500 100%
+        ) 1;
+    }
+    25% {
+        box-shadow: 
+            0 0 20px #ffd700,
+            0 0 35px #ff8c00,
+            0 0 55px rgba(255, 69, 0, 0.5);
+    }
+    50% {
+        box-shadow: 
+            0 0 25px #ffd700,
+            0 0 50px #ff8c00,
+            0 0 75px rgba(255, 69, 0, 0.6);
+        border-image: linear-gradient(
+            to bottom,
+            #ffff00 0%,
+            #ffd700 50%,
+            #ff8c00 100%
+        ) 1;
+    }
+    75% {
+        box-shadow: 
+            0 0 18px #ffd700,
+            0 0 40px #ff8c00,
+            0 0 60px rgba(255, 69, 0, 0.45);
+    }
+    100% {
+        box-shadow: 
+            0 0 30px #ffd700,
+            0 0 60px #ff8c00,
+            0 0 90px rgba(255, 69, 0, 0.7);
+        border-image: linear-gradient(
+            to bottom,
+            #ffd700 0%,
+            #ff4500 50%,
+            #ff0000 100%
+        ) 1;
+    }
+}
+
+/* Rising Flame Particles */
+.banner-burn::before,
+.banner-burn::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ffff00 0%, #ff8c00 50%, transparent 70%);
+    border-radius: 50%;
+    animation: spark-rise 1.2s ease-out infinite;
+    opacity: 0;
+    filter: blur(1px);
+}
+
+.banner-burn::before {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.banner-burn::after {
+    right: 20%;
+    animation-delay: 0.6s;
+    width: 4px;
+    height: 4px;
+}
+
+/* Additional sparks */
+.banner-burn .spark {
+    position: absolute;
+    bottom: -5px;
+    width: 3px;
+    height: 3px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: spark-rise 0.8s ease-out infinite;
+    opacity: 0;
+}
+
+@keyframes spark-rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-40px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Hero Content Burn Effect */
+.hero-content.banner-burn {
+    border-radius: 4px;
+}
+
+/* Artifact Card Burn Effect */
+.artifact-card.banner-burn {
+    transform: translateY(-5px) scale(1.02);
+    z-index: 10;
+}
+
+/* Calming down animation (lingering effect) */
+.banner-burn.calming {
+    animation: banner-calm 0.8s ease-out forwards;
+}
+
+@keyframes banner-calm {
+    0% {
+        box-shadow: 
+            0 0 20px #ffd700,
+            0 0 40px #ff8c00;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 
+            0 0 5px rgba(255, 215, 0, 0.3),
+            0 0 10px rgba(255, 140, 0, 0.2);
+        opacity: 0.9;
+    }
+}
