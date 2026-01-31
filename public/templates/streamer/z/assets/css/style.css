@@ -409,7 +409,8 @@ body {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.75rem;
     padding: 2px 12px;
@@ -421,7 +422,8 @@ body {
     border-radius: 2px;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 16px;
     vertical-align: -3px;
     margin-right: 6px;
@@ -431,7 +433,8 @@ body {
 body[data-stream-status="live"] .live-indicator {
     display: inline-flex;
     align-items: center;
-    background: #e63946; /* vermilion */
+    background: #e63946;
+    /* vermilion */
     color: #fff;
     box-shadow: 0 0 15px rgba(230, 57, 70, 0.3);
     animation: zen-glow 4s infinite ease-in-out;
@@ -439,7 +442,8 @@ body[data-stream-status="live"] .live-indicator {
 
 /* ロードマップ指定：和の世界観に合わせた紅葉のようなグロー */
 body[data-stream-status="live"] .brand a {
-    color: #e63946; /* vermilion */
+    color: #e63946;
+    /* vermilion */
     text-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
     transition: all 1s ease;
 }
@@ -451,15 +455,92 @@ body[data-stream-status="offline"] .channel-indicator {
     color: #999;
     border: 1px solid #ddd;
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
-    color: #171717; /* sumi-black */
+    color: #171717;
+    /* sumi-black */
     border-color: #171717;
     background: rgba(0, 0, 0, 0.02);
 }
 
 @keyframes zen-glow {
-    0%, 100% { opacity: 1; transform: translateY(0); }
-    50% { opacity: 0.8; transform: translateY(-1px); }
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translateY(-1px);
+    }
+}
+
+/* ============================================
+   INK BLEED EFFECT - Japanese Sumi Art
+   ============================================ */
+
+/* Ink Drop Base (Bleed) */
+.ink-drop {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(23, 23, 23, 0.9) 0%,
+            rgba(23, 23, 23, 0.5) 30%,
+            rgba(23, 23, 23, 0.2) 60%,
+            transparent 100%);
+    pointer-events: none;
+    transform: scale(0);
+    will-change: transform, filter, opacity;
+    filter: contrast(150%) brightness(80%);
+}
+
+.ink-drop.spreading {
+    animation: ink-spread 3.5s cubic-bezier(0.1, 0.5, 0.2, 1) forwards;
+}
+
+@keyframes ink-spread {
+    0% {
+        transform: scale(0);
+        filter: blur(0px) contrast(150%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        filter: blur(30px) contrast(100%);
+        opacity: 0;
+    }
+}
+
+/* Ink Trail Effect (Calligraphic Brush) */
+.ink-trail {
+    position: absolute;
+    width: 20px;
+    /* Adjusted width */
+    height: 10px;
+    /* Adjusted height */
+    background: radial-gradient(ellipse at center,
+            rgba(23, 23, 23, 0.7) 0%,
+            rgba(23, 23, 23, 0.3) 60%,
+            transparent 90%);
+    border-radius: 45% 55% 48% 52%;
+    pointer-events: none;
+    will-change: transform, opacity;
+    filter: blur(1.5px);
+    /* Increased blur for smoother overlap */
+}
+
+.ink-trail.drying {
+    opacity: 0 !important;
+    transition: opacity 1s ease-out;
+}
+
+/* Washi Paper Ink Interaction */
+.washi-bg.ink-active {
+    background-color: rgba(252, 252, 252, 0.98);
+    transition: background-color 2s ease;
 }
 
 /* モバイルヘッダー調整 */
@@ -467,7 +548,9 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     .zen-header {
         padding: 20px 0;
     }
-    .live-indicator, .channel-indicator {
+
+    .live-indicator,
+    .channel-indicator {
         margin-left: 10px;
         font-size: 0.65rem;
         padding: 1px 8px;
