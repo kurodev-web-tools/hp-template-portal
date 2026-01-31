@@ -420,3 +420,97 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         padding: 2px 8px;
     }
 }
+
+/* ============================================
+   WAVEFORM EFFECT - Audio Visualization
+   ============================================ */
+
+/* Wave Container */
+.wave-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 100;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.wave-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Wave Paths */
+.wave-path {
+    transition: d 0.1s linear;
+    will-change: d;
+}
+
+/* Back wave layer */
+.wave-back {
+    filter: blur(8px);
+    animation: wave-glow-back 4s ease-in-out infinite;
+}
+
+/* Mid wave layer */
+.wave-mid {
+    filter: blur(4px);
+    animation: wave-glow-mid 3s ease-in-out infinite;
+}
+
+/* Front wave layer */
+.wave-front {
+    filter: blur(2px) drop-shadow(0 0 10px rgba(79, 172, 254, 0.5));
+    animation: wave-glow-front 2s ease-in-out infinite;
+}
+
+/* Glow Animations */
+@keyframes wave-glow-back {
+    0%, 100% {
+        filter: blur(8px) brightness(1);
+    }
+    50% {
+        filter: blur(8px) brightness(1.2);
+    }
+}
+
+@keyframes wave-glow-mid {
+    0%, 100% {
+        filter: blur(4px) brightness(1);
+    }
+    50% {
+        filter: blur(4px) brightness(1.3);
+    }
+}
+
+@keyframes wave-glow-front {
+    0%, 100% {
+        filter: blur(2px) drop-shadow(0 0 10px rgba(79, 172, 254, 0.5));
+    }
+    50% {
+        filter: blur(2px) drop-shadow(0 0 20px rgba(79, 172, 254, 0.8));
+    }
+}
+
+/* High amplitude state */
+.wave-container.high-amplitude .wave-back {
+    filter: blur(12px) brightness(1.4);
+}
+
+.wave-container.high-amplitude .wave-mid {
+    filter: blur(6px) brightness(1.5);
+}
+
+.wave-container.high-amplitude .wave-front {
+    filter: blur(3px) drop-shadow(0 0 30px rgba(79, 172, 254, 1));
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .wave-container {
+        height: 120px;
+    }
+}
