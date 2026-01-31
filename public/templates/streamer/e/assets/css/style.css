@@ -171,6 +171,106 @@ body {
     background: rgba(0, 85, 255, 0.05);
 }
 
+/* Rank Scan Line Effect */
+.rank-row {
+    position: relative;
+    overflow: hidden;
+}
+
+.rank-row::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 85, 255, 0.2) 50%, 
+        transparent 100%);
+    pointer-events: none;
+    transition: none;
+}
+
+.rank-row:hover::after {
+    animation: rank-scan 0.8s ease-out forwards;
+}
+
+@keyframes rank-scan {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Score Item - Digital Glow & Flicker Effects */
+.score-item {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.score-item:hover {
+    background: rgba(0, 85, 255, 0.1);
+    box-shadow: 
+        inset 0 0 30px rgba(0, 85, 255, 0.2),
+        0 0 20px rgba(0, 85, 255, 0.3);
+}
+
+.score-item .value {
+    transition: all 0.2s ease;
+}
+
+.score-item:hover .value {
+    color: var(--pro-blue);
+    text-shadow: 
+        0 0 10px rgba(0, 85, 255, 0.8),
+        0 0 20px rgba(0, 85, 255, 0.4),
+        0 0 30px rgba(0, 85, 255, 0.2);
+}
+
+/* Live Glitching State */
+.score-item.live-glitching {
+    background: rgba(0, 85, 255, 0.15);
+    box-shadow: 
+        inset 0 0 40px rgba(0, 85, 255, 0.3),
+        0 0 30px rgba(0, 85, 255, 0.4),
+        0 0 60px rgba(0, 85, 255, 0.2);
+    border: 1px solid rgba(0, 85, 255, 0.5);
+}
+
+.score-item.live-glitching .value {
+    color: #fff;
+    text-shadow: 
+        0 0 15px rgba(0, 85, 255, 1),
+        0 0 30px rgba(0, 85, 255, 0.6),
+        0 0 45px rgba(0, 85, 255, 0.3);
+    animation: stat-flicker 0.1s infinite;
+}
+
+.score-item.live-glitching .label {
+    color: var(--pro-blue);
+    text-shadow: 0 0 10px rgba(0, 85, 255, 0.5);
+}
+
+@keyframes stat-flicker {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 
+            0 0 15px rgba(0, 85, 255, 1),
+            0 0 30px rgba(0, 85, 255, 0.6),
+            0 0 45px rgba(0, 85, 255, 0.3);
+    }
+    50% {
+        opacity: 0.95;
+        text-shadow: 
+            0 0 20px rgba(0, 85, 255, 1),
+            0 0 40px rgba(0, 85, 255, 0.8),
+            0 0 60px rgba(0, 85, 255, 0.4);
+    }
+}
+
 .rank {
     width: 80px;
     font-weight: 900;
