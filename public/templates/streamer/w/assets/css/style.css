@@ -359,7 +359,8 @@ p {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.7rem;
     padding: 4px 12px;
@@ -373,7 +374,8 @@ p {
     border: 1px solid #000;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 14px;
     vertical-align: -2px;
     margin-right: 6px;
@@ -397,6 +399,7 @@ body[data-stream-status="offline"] .channel-indicator {
     color: #000;
     opacity: 0.6;
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
     opacity: 1;
     background: #000;
@@ -404,8 +407,15 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 }
 
 @keyframes cinematic-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
 
 /* モバイルヘッダーでの調整 */
@@ -414,7 +424,9 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         top: 20px;
         left: 20px;
     }
-    .live-indicator, .channel-indicator {
+
+    .live-indicator,
+    .channel-indicator {
         margin-left: 10px;
         font-size: 0.6rem;
         padding: 2px 8px;
@@ -447,49 +459,60 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 .wave-path {
     transition: d 0.1s linear;
     will-change: d;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /* Back wave layer */
 .wave-back {
-    filter: blur(8px);
-    animation: wave-glow-back 4s ease-in-out infinite;
+    filter: blur(2px);
+    mix-blend-mode: screen;
 }
 
 /* Mid wave layer */
 .wave-mid {
-    filter: blur(4px);
-    animation: wave-glow-mid 3s ease-in-out infinite;
+    filter: blur(1px);
+    mix-blend-mode: screen;
 }
 
 /* Front wave layer */
 .wave-front {
-    filter: blur(2px) drop-shadow(0 0 10px rgba(79, 172, 254, 0.5));
-    animation: wave-glow-front 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(79, 172, 254, 0.8));
+    mix-blend-mode: screen;
 }
 
 /* Glow Animations */
 @keyframes wave-glow-back {
-    0%, 100% {
+
+    0%,
+    100% {
         filter: blur(8px) brightness(1);
     }
+
     50% {
         filter: blur(8px) brightness(1.2);
     }
 }
 
 @keyframes wave-glow-mid {
-    0%, 100% {
+
+    0%,
+    100% {
         filter: blur(4px) brightness(1);
     }
+
     50% {
         filter: blur(4px) brightness(1.3);
     }
 }
 
 @keyframes wave-glow-front {
-    0%, 100% {
+
+    0%,
+    100% {
         filter: blur(2px) drop-shadow(0 0 10px rgba(79, 172, 254, 0.5));
     }
+
     50% {
         filter: blur(2px) drop-shadow(0 0 20px rgba(79, 172, 254, 0.8));
     }

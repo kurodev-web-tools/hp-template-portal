@@ -463,6 +463,133 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     100% { transform: skew(-10deg) scale(1.1); filter: brightness(1.5); }
 }
 
+/* ============================================
+   GRAVITY & SHOCKWAVE EFFECT - Xtreme Impact
+   ============================================ */
+
+/* Enhanced Shockwave with Distortion */
+.shockwave-overlay.distortion {
+    border: 0;
+    background: radial-gradient(circle, 
+        rgba(250, 204, 21, 0.3) 0%,
+        rgba(255, 0, 0, 0.1) 50%,
+        transparent 70%);
+    backdrop-filter: contrast(200%) brightness(150%) saturate(200%);
+    -webkit-backdrop-filter: contrast(200%) brightness(150%) saturate(200%);
+}
+
+/* X-Title Impact Shake */
+.x-title.impact-shake {
+    animation: x-impact-shake 0.4s ease-out;
+}
+
+@keyframes x-impact-shake {
+    0% {
+        transform: skew(-10deg) translate(0, 0);
+    }
+    10% {
+        transform: skew(-10deg) translate(-15px, 10px);
+    }
+    20% {
+        transform: skew(-10deg) translate(15px, -10px);
+    }
+    30% {
+        transform: skew(-10deg) translate(-10px, 5px);
+    }
+    40% {
+        transform: skew(-10deg) translate(10px, -5px);
+    }
+    50% {
+        transform: skew(-10deg) translate(-5px, 3px);
+    }
+    60% {
+        transform: skew(-10deg) translate(5px, -3px);
+    }
+    70% {
+        transform: skew(-10deg) translate(-2px, 1px);
+    }
+    80% {
+        transform: skew(-10deg) translate(2px, -1px);
+    }
+    90% {
+        transform: skew(-10deg) translate(-1px, 0.5px);
+    }
+    100% {
+        transform: skew(-10deg) translate(0, 0);
+    }
+}
+
+/* Action Card Repulsion Effect */
+.action-card.repulsed {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Click Shockwave Ripple */
+.click-shockwave {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    border: 3px solid var(--xtreme-yellow);
+    box-shadow: 
+        0 0 20px var(--xtreme-yellow),
+        inset 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.click-shockwave.expanding {
+    animation: click-wave-expand 0.5s ease-out forwards;
+}
+
+@keyframes click-wave-expand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+/* Mobile Landing Shockwave */
+.landing-shockwave {
+    animation: land-shockwave 0.8s ease-out;
+}
+
+@keyframes land-shockwave {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        backdrop-filter: contrast(300%) brightness(200%);
+    }
+    50% {
+        backdrop-filter: contrast(200%) brightness(150%);
+    }
+    100% {
+        width: 300vw;
+        height: 300vw;
+        opacity: 0;
+        backdrop-filter: contrast(100%) brightness(100%);
+    }
+}
+
+/* Screen Shake for Mobile Landing */
+.screen-shake {
+    animation: screen-impact 0.3s ease-out;
+}
+
+@keyframes screen-impact {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+
 /* モバイルヘッダー調整 */
 @media (max-width: 768px) {
     .xtreme-header {
