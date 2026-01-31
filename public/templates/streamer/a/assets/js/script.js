@@ -62,4 +62,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.card').forEach(card => {
         observer.observe(card);
     });
+
+    // ============================================
+    // RGB GLITCH MOBILE AUTO-EFFECT
+    // ============================================
+    
+    // Mobile: Auto-trigger glitch effect at random intervals
+    if (window.innerWidth <= 768) {
+        const glitchElements = document.querySelectorAll('.glitch-hover, .btn-neon, .hero-title, .glitch-text');
+        
+        function triggerRandomGlitch() {
+            if (glitchElements.length === 0) return;
+            
+            // Pick a random element
+            const randomIndex = Math.floor(Math.random() * glitchElements.length);
+            const element = glitchElements[randomIndex];
+            
+            // Add glitch-active class
+            element.classList.add('glitch-active');
+            
+            // Ensure data-text attribute exists for pseudo-elements
+            if (!element.getAttribute('data-text')) {
+                element.setAttribute('data-text', element.textContent || '');
+            }
+            
+            // Remove after 200ms
+            setTimeout(() => {
+                element.classList.remove('glitch-active');
+            }, 200);
+            
+            // Schedule next glitch (2000ms ~ 5000ms random interval)
+            const nextInterval = Math.random() * 3000 + 2000;
+            setTimeout(triggerRandomGlitch, nextInterval);
+        }
+        
+        // Start the glitch loop after initial delay
+        setTimeout(triggerRandomGlitch, 3000);
+    }
 });
