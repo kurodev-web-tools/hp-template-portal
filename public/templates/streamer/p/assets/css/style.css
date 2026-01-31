@@ -432,3 +432,138 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0% { opacity: 1; }
     50% { opacity: 0; }
 }
+
+/* ============================================
+   BLOCK BUILD EFFECT - Retro Game Animations
+   ============================================ */
+
+/* White-out flash effect (damage blink) */
+.flash-white {
+    animation: flash-white-anim 0.2s steps(2);
+}
+
+@keyframes flash-white-anim {
+    0%, 100% { 
+        filter: brightness(1);
+        background-color: inherit;
+    }
+    50% { 
+        filter: brightness(2);
+        background-color: #fff;
+    }
+}
+
+/* Pixel shake effect */
+.shake-pixel {
+    animation: shake-pixel-anim 0.4s steps(8);
+}
+
+@keyframes shake-pixel-anim {
+    0%, 100% { transform: translate(0, 0); }
+    12.5% { transform: translate(4px, -4px); }
+    25% { transform: translate(-4px, 4px); }
+    37.5% { transform: translate(4px, 4px); }
+    50% { transform: translate(-4px, -4px); }
+    62.5% { transform: translate(4px, 0); }
+    75% { transform: translate(-4px, 0); }
+    87.5% { transform: translate(0, 4px); }
+}
+
+/* PC Hover - Pop out effect */
+.pixel-card.block-pop,
+.pixel-box.block-pop {
+    transform: scale(1.1) translateY(-8px);
+    box-shadow: 
+        8px 8px 0 #000,
+        -4px -4px 0 var(--pixel-green),
+        4px -4px 0 var(--pixel-green),
+        -4px 4px 0 var(--pixel-green);
+    transition: transform 0.1s steps(3), box-shadow 0.1s steps(3);
+    z-index: 10;
+}
+
+/* Mobile Block Build - Step by step reveal */
+.block-build {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.block-build.building {
+    animation: block-build-anim 0.6s steps(6) forwards;
+}
+
+@keyframes block-build-anim {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    16.6% {
+        opacity: 0.2;
+        transform: translateY(32px);
+    }
+    33.3% {
+        opacity: 0.4;
+        transform: translateY(24px);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateY(16px);
+    }
+    66.6% {
+        opacity: 0.8;
+        transform: translateY(8px);
+    }
+    83.3% {
+        opacity: 0.9;
+        transform: translateY(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger delays for block build */
+.block-delay-1 { animation-delay: 0s; }
+.block-delay-2 { animation-delay: 0.1s; }
+.block-delay-3 { animation-delay: 0.2s; }
+.block-delay-4 { animation-delay: 0.3s; }
+.block-delay-5 { animation-delay: 0.4s; }
+.block-delay-6 { animation-delay: 0.5s; }
+
+/* Step timing for all pixel animations */
+.pixel-perfect-move {
+    transition-timing-function: steps(4);
+}
+
+/* Item row step animation */
+.item-row.block-build {
+    transform: translateX(-20px);
+}
+
+.item-row.block-build.building {
+    animation: item-build-anim 0.5s steps(5) forwards;
+}
+
+@keyframes item-build-anim {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    25% {
+        opacity: 0.3;
+        transform: translateX(-12px);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateX(-8px);
+    }
+    75% {
+        opacity: 0.8;
+        transform: translateX(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
