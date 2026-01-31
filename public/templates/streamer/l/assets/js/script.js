@@ -93,6 +93,9 @@ class BookFlipEffect {
         // Re-query cards after DOM transformation
         this.cards = document.querySelectorAll('.moon-card');
 
+        // Initialize scroll tilt first so UpdateTilt is defined
+        this.setupScrollTilt();
+
         if (this.isMobile) {
             this.setupMobileInteraction();
         } else {
@@ -146,70 +149,86 @@ class BookFlipEffect {
     }
 
     setupPCInteraction() {
-        // PC uses CSS hover, no JS needed
-        // Just add a hint for accessibility
-        this.cards.forEach(card => {
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', 'Flip card to see hidden face');
-        });
-    }
-
-    setupMobileInteraction() {
-        // Mobile: click to toggle
+        // PC: Hover to flip using JS to avoid conflict with CSS transforms
         const containers = document.querySelectorAll('.moon-card-container');
 
         containers.forEach(container => {
             const card = container.querySelector('.moon-card');
 
-            // Use touchstart for better mobile response
-            container.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                card.classList.toggle('flipped');
-            }, { passive: false });
+            // Mouse Enter -> Flip
+            container.addEventListener('mouseenter', () => {
+                card.classList.add('flipped');
+                this.updateTilt(); // Force update immediately
+            });
 
-            // Fallback click for desktop testing
-            container.addEventListener('click', () => {
-                card.classList.toggle('flipped');
+            // Mouse Leave -> Unflip
+            container.addEventListener('mouseleave', () => {
+                card.classList.remove('flipped');
+                this.updateTilt(); // Force update immediately
+            });
+
+            // Accessibility: Enter/Space keys
+            container.setAttribute('tabindex', '0');
+            container.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.classList.toggle('flipped');
+                    this.updateTilt();
+                }
             });
         });
+    }
 
-        // Scroll tilt effect
-        this.setupScrollTilt();
+    setupMobileInteraction() {
+        // Mobile: click to toggle (fixes touchstart event intervention error)
+        const containers = document.querySelectorAll('.moon-card-container');
+
+        containers.forEach(container => {
+            const card = container.querySelector('.moon-card');
+
+            // Use standard click event which handles both touch tap and mouse click correctly
+            // without blocking scrolling
+            container.addEventListener('click', () => {
+                // If the user was scrolling, this click might fire depending on browser implementation,
+                // but usually a tap-scroll-release doesn't fire click.
+                // This is much safer than blocking touchstart.
+                card.classList.toggle('flipped');
+                this.updateTilt(); // Update transform immediately
+            });
+        });
     }
 
     setupScrollTilt() {
-        const containers = document.querySelectorAll('.moon-card-container');
-        let lastScrollY = window.scrollY;
-
-        // Update tilt on scroll
-        const updateTilt = () => {
+        // Bind updateTilt to this instance so it can be called from event handlers
+        this.updateTilt = () => {
+            const containers = document.querySelectorAll('.moon-card-container');
             containers.forEach(container => {
                 const card = container.querySelector('.moon-card');
                 const rect = container.getBoundingClientRect();
-                
+
                 // Only apply tilt if card is not flipped
                 if (!card.classList.contains('flipped')) {
                     const viewportCenter = window.innerHeight / 2;
                     const elementCenter = rect.top + rect.height / 2;
                     const distance = elementCenter - viewportCenter;
 
-                    // Calculate tilt based on position (max 15 degrees)
-                    const maxTilt = 15;
+                    // Calculate tilt based on position (max 10 degrees - reduced for subtlety)
+                    const maxTilt = 10;
                     const tiltAmount = (distance / viewportCenter) * maxTilt;
                     const clampedTilt = Math.max(-maxTilt, Math.min(maxTilt, tiltAmount));
-                    
-                    // Apply tilt with smooth transition
+
                     card.style.transform = `rotateY(${clampedTilt}deg)`;
+                } else {
+                    // If flipped, ensure it stays flipped (180deg) without scroll tilt
+                    card.style.transform = 'rotateY(180deg)';
                 }
             });
-            
-            lastScrollY = window.scrollY;
         };
 
         // Update on scroll
-        window.addEventListener('scroll', updateTilt, { passive: true });
-        
+        window.addEventListener('scroll', this.updateTilt, { passive: true });
+
         // Initial update
-        updateTilt();
+        this.updateTilt();
     }
 }

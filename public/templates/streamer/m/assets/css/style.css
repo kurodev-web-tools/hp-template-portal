@@ -410,3 +410,50 @@ body[data-stream-status="offline"] .brand:hover .status-led {
     0%, 100% { opacity: 1; transform: scale(1.1); }
     50% { opacity: 0.3; transform: scale(1); }
 }
+
+/* ============================================
+   TYPEWRITER EFFECT - Mechanical Text Animation
+   ============================================ */
+
+/* Typing Cursor */
+.typing-cursor::after {
+    content: '|';
+    display: inline-block;
+    margin-left: 2px;
+    color: #fff;
+    font-weight: 100;
+    animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Typewriter Text Container - Fixed height to prevent layout shift */
+.hero-sub,
+.card-inner p {
+    min-height: 1.5em;
+    display: inline-block;
+}
+
+.card-inner p {
+    min-height: 1.2em;
+}
+
+/* Mechanical typing effect */
+.typewriter-text {
+    font-family: 'Michroma', sans-serif;
+    letter-spacing: 0.1em;
+}
+
+/* Cursor visible state */
+.typing-cursor {
+    position: relative;
+}
+
+/* Ensure text doesn't wrap during typing */
+.typewriter-nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+}
