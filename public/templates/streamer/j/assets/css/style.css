@@ -245,6 +245,88 @@ body {
     color: #fff;
 }
 
+/* Hero Actions Container */
+.hero-actions {
+    margin-top: 30px;
+}
+
+/* Art Style CTA Button (Jazz Lounge Theme) */
+.btn-art {
+    display: inline-block;
+    padding: 16px 48px;
+    background: transparent;
+    border: 2px solid var(--amber-gold);
+    color: var(--amber-gold);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    font-style: italic;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+}
+
+.btn-art::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(180, 83, 9, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-art::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--amber-gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+}
+
+.btn-art:hover {
+    color: #fff;
+    border-color: var(--amber-gold);
+    letter-spacing: 5px;
+}
+
+.btn-art:hover::before {
+    left: 100%;
+}
+
+.btn-art:hover::after {
+    width: 300%;
+    height: 300%;
+}
+
+.btn-art:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        margin-top: 25px;
+    }
+    
+    .btn-art {
+        padding: 18px 40px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        letter-spacing: 3px;
+    }
+}
+
 /* Footer (Fixed) */
 .jazz-footer {
     position: fixed;
