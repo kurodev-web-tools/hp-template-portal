@@ -558,6 +558,82 @@ body:has(.hero-title.enraged) .vignette,
     animation-duration: 2s;
 }
 
+/* Hero Subtitle */
+.hero-sub {
+    font-size: 1.2rem;
+    color: var(--dark-gold);
+    margin: 20px 0;
+    letter-spacing: 2px;
+}
+
+/* Hero Actions Container */
+.hero-actions {
+    margin: 30px 0;
+}
+
+/* Boss CTA Button (Gold Theme) */
+.btn-boss-cta {
+    display: inline-block;
+    padding: 16px 48px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(138, 109, 59, 0.2));
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.btn-boss-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-boss-cta:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.2);
+    transform: translateY(-3px);
+}
+
+.btn-boss-cta:hover::before {
+    left: 100%;
+}
+
+.btn-boss-cta:active {
+    transform: translateY(0);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-sub {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+    
+    .hero-actions {
+        margin: 25px 0;
+    }
+    
+    .btn-boss-cta {
+        padding: 18px 40px;
+        font-size: 1rem;
+        min-height: 44px;
+    }
+}
+
 /* Mobile: Always show boss aura with slow pulse */
 @media (hover: none) {
     .hero-title.boss-aura {
