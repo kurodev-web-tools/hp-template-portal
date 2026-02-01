@@ -172,6 +172,73 @@ body {
     box-shadow: 0 0 30px var(--orbit-cyan);
 }
 
+/* Hero Actions Container */
+.hero-actions {
+    margin-top: 40px;
+}
+
+/* Hero CTA Button - Enhanced Orbit Theme */
+.hero-actions .btn-orbit {
+    display: inline-block;
+    padding: 18px 50px;
+    background: transparent;
+    border: 2px solid var(--orbit-cyan);
+    color: var(--orbit-cyan);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), inset 0 0 15px rgba(34, 211, 238, 0.1);
+}
+
+.hero-actions .btn-orbit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.hero-actions .btn-orbit:hover {
+    background: rgba(34, 211, 238, 0.1);
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.6), 0 0 80px rgba(34, 211, 238, 0.3), inset 0 0 20px rgba(34, 211, 238, 0.2);
+    transform: translateY(-3px);
+}
+
+.hero-actions .btn-orbit:hover::before {
+    left: 100%;
+}
+
+.hero-actions .btn-orbit:active {
+    transform: translateY(0);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        margin-top: 30px;
+    }
+    
+    .hero-actions .btn-orbit {
+        padding: 16px 40px;
+        font-size: 0.9rem;
+        min-height: 44px;
+        letter-spacing: 3px;
+    }
+}
+
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
