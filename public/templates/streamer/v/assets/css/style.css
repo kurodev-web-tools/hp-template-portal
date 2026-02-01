@@ -80,6 +80,87 @@ body {
     margin-top: 30px;
     letter-spacing: 5px;
     opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+/* Hero Actions Container */
+.hero-actions {
+    margin-top: 20px;
+}
+
+/* Vaporwave CTA Button */
+.btn-vapor {
+    display: inline-block;
+    padding: 16px 48px;
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    border: 3px solid #fff;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 
+        0 0 20px rgba(255, 0, 255, 0.5),
+        0 0 40px rgba(0, 255, 255, 0.3),
+        4px 4px 0 rgba(0, 0, 0, 0.5);
+    transform: skewX(-5deg);
+}
+
+.btn-vapor span {
+    display: inline-block;
+    transform: skewX(5deg);
+}
+
+.btn-vapor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-vapor:hover {
+    background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 255, 0.8),
+        0 0 60px rgba(0, 255, 255, 0.5),
+        6px 6px 0 rgba(0, 0, 0, 0.5);
+    transform: skewX(-5deg) translateY(-3px);
+}
+
+.btn-vapor:hover::before {
+    left: 100%;
+}
+
+.btn-vapor:active {
+    transform: skewX(-5deg) translateY(0);
+    box-shadow: 
+        0 0 15px rgba(255, 0, 255, 0.5),
+        0 0 30px rgba(0, 255, 255, 0.3),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        margin-top: 15px;
+    }
+    
+    .btn-vapor {
+        padding: 14px 40px;
+        font-size: 1.1rem;
+        min-height: 44px;
+        letter-spacing: 3px;
+    }
 }
 
 /* RGB Split Effect Classes (Handled by JS) */
