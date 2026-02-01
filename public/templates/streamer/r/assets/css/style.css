@@ -233,6 +233,79 @@ body {
     background: #b91c1c;
 }
 
+/* Hero Actions Container */
+.hero-actions {
+    margin-top: 40px;
+}
+
+/* Rogue CTA Button (Stealth Theme) */
+.btn-rogue-cta {
+    display: inline-block;
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #1a3d1a 0%, #0d260d 100%);
+    border: 2px solid #00ff41;
+    color: #00ff41;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-style: italic;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    transform: skewX(-10deg);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+.btn-rogue-cta span {
+    display: inline-block;
+    transform: skewX(10deg);
+}
+
+.btn-rogue-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-rogue-cta:hover {
+    background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+    color: #000;
+    border-color: #00ff41;
+    box-shadow: 0 0 40px rgba(0, 255, 65, 0.6), 0 0 80px rgba(0, 255, 65, 0.3);
+    transform: skewX(-10deg) translateY(-3px);
+}
+
+.btn-rogue-cta:hover::before {
+    left: 100%;
+}
+
+.btn-rogue-cta:active {
+    transform: skewX(-10deg) translateY(0);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        margin-top: 30px;
+    }
+
+    .btn-rogue-cta {
+        padding: 16px 40px;
+        font-size: 1rem;
+        min-height: 44px;
+        letter-spacing: 3px;
+    }
+}
+
 /* Mobile Toggle */
 .mobile-toggle {
     display: none;
