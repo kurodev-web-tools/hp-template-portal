@@ -208,12 +208,15 @@ function initMobileMenu() {
 function initStatusEngine() {
     const updateFromParams = () => {
         const params = new URLSearchParams(window.location.search);
-        // Supports ?live=true, ?status=live, or ?stream_status=live
-        const isLive = params.get('live') === 'true' ||
-            params.get('status') === 'live' ||
-            params.get('stream_status') === 'live';
 
-        document.body.dataset.streamStatus = isLive ? 'live' : 'offline';
+        // Only override if specific parameters are present in the URL
+        if (params.has('live') || params.has('status') || params.has('stream_status')) {
+            const isLive = params.get('live') === 'true' ||
+                params.get('status') === 'live' ||
+                params.get('stream_status') === 'live';
+
+            document.body.dataset.streamStatus = isLive ? 'live' : 'offline';
+        }
 
         // Set channel URL if provided in params
         const channelUrl = params.get('channel_url');
@@ -273,18 +276,18 @@ async function checkYouTubeLiveStatus(apiKey, channelId) {
     try {
         const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`;
         const response = await fetch(url);
-        
+
         if (!response.ok) {
             throw new Error(`API Error: ${response.status}`);
         }
 
         const data = await response.json();
-        
+
         if (data.items && data.items.length > 0) {
             // Live stream found!
             console.log('[StatusEngine] LIVE STREAM DETECTED!');
             document.body.dataset.streamStatus = 'live';
-            
+
             // Optionally update the channel URL to the specific video
             const videoId = data.items[0].id.videoId;
             if (videoId) {
