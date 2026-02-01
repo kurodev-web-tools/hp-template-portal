@@ -51,10 +51,31 @@ body {
 
 .game-title {
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 3rem;
+    margin-bottom: 30px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.8rem;
     color: #ffd700;
+    text-shadow: 3px 3px 0 #000;
+    line-height: 1.5;
+}
+
+.hero-sub {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    text-align: center;
+    color: #fff;
     text-shadow: 2px 2px 0 #000;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.status-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+    z-index: 1000;
 }
 
 .menu-list {
@@ -217,6 +238,72 @@ body {
 
 .rpg-btn.primary {
     background: #d32f2f;
+}
+
+/* Hero Actions Container */
+.hero-actions {
+    margin: 30px 0;
+    text-align: center;
+}
+
+/* Quest CTA Button (RPG Theme) */
+.btn-quest {
+    display: inline-block;
+    padding: 16px 48px;
+    background: linear-gradient(135deg, var(--parchment-bg) 0%, #e8d4a0 100%);
+    border: 4px solid var(--wood-border);
+    color: var(--text-color);
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #5d4037, 0 8px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-quest::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+    transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn-quest:hover {
+    background: linear-gradient(135deg, #ffd700 0%, #e8d4a0 100%);
+    color: var(--wood-border);
+    box-shadow: 0 6px 0 #5d4037, 0 12px 20px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-quest:hover::before {
+    transform: rotate(45deg) translateY(100%);
+}
+
+.btn-quest:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #5d4037, 0 4px 5px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        margin: 20px 0;
+    }
+
+    .btn-quest {
+        padding: 14px 36px;
+        font-size: 1.2rem;
+        min-height: 44px;
+        letter-spacing: 1px;
+    }
 }
 
 /* Mobile */
