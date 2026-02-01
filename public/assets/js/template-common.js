@@ -253,5 +253,51 @@ function initStatusEngine() {
         getChannelUrl: () => document.body.dataset.channelUrl
     };
 
-    console.log(`[StatusEngine] Initialized. Status: ${document.body.dataset.streamStatus}`);
+    // Auto-Fetch Logic (Standalone Mode)
+    const apiKey = document.body.dataset.apiKey;
+    const channelId = document.body.dataset.channelId;
+
+    if (apiKey && channelId) {
+        console.log('[StatusEngine] API Key detected. Checking YouTube status...');
+        checkYouTubeLiveStatus(apiKey, channelId);
+    } else {
+        console.log(`[StatusEngine] Initialized in Passive Mode. Status: ${document.body.dataset.streamStatus}`);
+    }
+}
+
+/**
+ * Fetches the live status from YouTube Data API.
+ * Costs ~3 quota units.
+ */
+async function checkYouTubeLiveStatus(apiKey, channelId) {
+    try {
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.items && data.items.length > 0) {
+            // Live stream found!
+            console.log('[StatusEngine] LIVE STREAM DETECTED!');
+            document.body.dataset.streamStatus = 'live';
+            
+            // Optionally update the channel URL to the specific video
+            const videoId = data.items[0].id.videoId;
+            if (videoId) {
+                const liveUrl = `https://www.youtube.com/watch?v=${videoId}`;
+                document.body.dataset.channelUrl = liveUrl;
+            }
+        } else {
+            console.log('[StatusEngine] Channel is offline.');
+            document.body.dataset.streamStatus = 'offline';
+        }
+
+    } catch (error) {
+        console.warn('[StatusEngine] Failed to check status:', error);
+        // Fallback to default (offline) or whatever is manually set
+    }
 }
