@@ -99,12 +99,19 @@ body {
 }
 
 .paint-drip {
-    font-size: 1.5rem;
-    background: #000;
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
     color: #fff;
     padding: 10px 20px;
     display: inline-block;
-    transform: rotate(2deg);
+    transform: rotate(-2deg);
+    -webkit-text-stroke: 0;
+    text-shadow: 
+        0 0 5px #db2777,
+        0 0 10px #db2777,
+        0 0 20px #db2777,
+        2px 2px 0 #000;
 }
 
 /* Stickers */
@@ -173,6 +180,111 @@ body {
     text-decoration: none;
     font-size: 1.5rem;
     display: inline-block;
+}
+
+/* Hero Actions Container */
+.hero-actions {
+    margin-top: 40px;
+}
+
+/* Graffiti CTA Button (Street Art Theme) */
+.btn-graffiti {
+    display: inline-block;
+    padding: 20px 50px;
+    background: var(--spray-pink);
+    color: #fff;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: visible;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    transform: rotate(-3deg);
+    border: 4px solid #000;
+    box-shadow: 
+        6px 6px 0 #000,
+        0 0 30px rgba(219, 39, 119, 0.6);
+}
+
+/* Paint drip effect - drips down from button */
+.btn-graffiti::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 20%;
+    width: 6px;
+    height: 0;
+    background: var(--spray-pink);
+    border-radius: 0 0 3px 3px;
+    animation: btn-drip-down 2s infinite ease-out;
+}
+
+.btn-graffiti::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 30%;
+    width: 4px;
+    height: 0;
+    background: var(--spray-yellow);
+    border-radius: 0 0 2px 2px;
+    animation: btn-drip-down 2s infinite ease-out 0.7s;
+}
+
+@keyframes btn-drip-down {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        height: 20px;
+        opacity: 1;
+    }
+    100% {
+        height: 25px;
+        opacity: 0;
+    }
+}
+
+.btn-graffiti:hover {
+    background: var(--spray-yellow);
+    color: #000;
+    border-color: #000;
+    box-shadow: 
+        8px 8px 0 #000,
+        0 0 40px rgba(250, 204, 21, 0.8),
+        0 0 80px rgba(250, 204, 21, 0.4);
+    transform: rotate(0deg) scale(1.05);
+}
+
+.btn-graffiti:hover::before {
+    background: var(--spray-yellow);
+}
+
+.btn-graffiti:active {
+    transform: rotate(0deg) scale(0.98);
+    box-shadow: 
+        4px 4px 0 #000,
+        0 0 20px rgba(250, 204, 21, 0.6);
+}
+
+@media (max-width: 768px) {
+    .hero-actions {
+        margin-top: 30px;
+    }
+    
+    .btn-graffiti {
+        padding: 18px 40px;
+        font-size: 1.5rem;
+        min-height: 44px;
+        letter-spacing: 2px;
+    }
 }
 
 /* Mobile Toggle */
