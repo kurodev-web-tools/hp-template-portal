@@ -151,7 +151,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
     max-width: 1000px;
     margin: 0 auto;
@@ -212,7 +212,7 @@ body {
 
 .btn-yield:hover {
     background: linear-gradient(135deg, #e5c100 0%, #b8860b 100%);
-    box-shadow: 
+    box-shadow:
         0 5px 25px rgba(212, 175, 55, 0.5),
         0 0 40px rgba(255, 215, 0, 0.3);
     transform: translateY(-3px);
@@ -241,7 +241,7 @@ body {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     border-radius: 50px;
-    box-shadow: 
+    box-shadow:
         0 4px 15px rgba(212, 175, 55, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -249,7 +249,7 @@ body {
 
 .btn-yield:hover {
     background-position: right center;
-    box-shadow: 
+    box-shadow:
         0 8px 30px rgba(212, 175, 55, 0.6),
         0 0 50px rgba(255, 215, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -258,7 +258,7 @@ body {
 
 .btn-yield:active {
     transform: translateY(-1px) scale(1.01);
-    box-shadow: 
+    box-shadow:
         0 4px 15px rgba(212, 175, 55, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -267,7 +267,7 @@ body {
     .hero-actions {
         margin: 25px 0;
     }
-    
+
     .btn-yield {
         padding: 16px 40px;
         font-size: 1rem;
@@ -445,7 +445,8 @@ body {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.75rem;
     padding: 3px 12px;
@@ -458,7 +459,8 @@ body {
     transition: all 0.3s;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 16px;
     vertical-align: -3px;
     margin-right: 5px;
@@ -475,7 +477,8 @@ body[data-stream-status="live"] .live-indicator {
 
 /* ロードマップ指定：ロゴに金の輝き（金貨のような反射）を出す */
 body[data-stream-status="live"] .brand {
-    color: #d4af37; /* yield-gold */
+    color: #d4af37;
+    /* yield-gold */
     background: linear-gradient(90deg, #d4af37 0%, #fff 50%, #d4af37 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -492,14 +495,18 @@ body[data-stream-status="offline"] .channel-indicator {
     color: #666;
     border: 1px solid #ccc;
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
-    background: #3a4d39; /* yield-green */
+    background: #3a4d39;
+    /* yield-green */
     color: #fff;
     border-color: #3a4d39;
 }
 
 @keyframes gold-glint {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 /* ============================================
@@ -520,14 +527,12 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     left: -100%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.4) 40%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(255, 255, 255, 0.4) 60%,
-        transparent 100%
-    );
+    background: linear-gradient(45deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.4) 40%,
+            rgba(255, 255, 255, 0.8) 50%,
+            rgba(255, 255, 255, 0.4) 60%,
+            transparent 100%);
     pointer-events: none;
     z-index: 10;
 }
@@ -540,6 +545,7 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0% {
         left: -100%;
     }
+
     100% {
         left: 200%;
     }
@@ -560,18 +566,22 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     0% {
         filter: brightness(1);
     }
+
     25% {
         filter: brightness(1.2);
         box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
     }
+
     50% {
         filter: brightness(1.3);
         box-shadow: 0 0 50px rgba(255, 255, 255, 0.6), 0 0 80px rgba(212, 175, 55, 0.3);
     }
+
     75% {
         filter: brightness(1.2);
         box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
     }
+
     100% {
         filter: brightness(1);
     }
@@ -579,7 +589,7 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 
 /* Enhanced Gold Glow */
 .gold-glow {
-    box-shadow: 
+    box-shadow:
         0 0 20px rgba(212, 175, 55, 0.3),
         0 0 40px rgba(212, 175, 55, 0.2),
         0 0 60px rgba(212, 175, 55, 0.1);
@@ -587,39 +597,33 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 
 /* Stat Card Glint Variant */
 .stat-card.glint-effect::after {
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.3) 40%,
-        rgba(255, 255, 255, 0.6) 50%,
-        rgba(255, 255, 255, 0.3) 60%,
-        transparent 100%
-    );
+    background: linear-gradient(45deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.3) 40%,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0.3) 60%,
+            transparent 100%);
 }
 
 /* Button Glint Variant */
 .btn-yield.glint-effect::after {
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.5) 40%,
-        rgba(255, 255, 255, 0.9) 50%,
-        rgba(255, 255, 255, 0.5) 60%,
-        transparent 100%
-    );
+    background: linear-gradient(45deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.5) 40%,
+            rgba(255, 255, 255, 0.9) 50%,
+            rgba(255, 255, 255, 0.5) 60%,
+            transparent 100%);
     width: 30%;
 }
 
 /* Hero Title Glint Variant */
 .hero-title.glint-effect::after {
-    background: linear-gradient(
-        45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.2) 40%,
-        rgba(255, 255, 255, 0.5) 50%,
-        rgba(255, 255, 255, 0.2) 60%,
-        transparent 100%
-    );
+    background: linear-gradient(45deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.2) 40%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.2) 60%,
+            transparent 100%);
 }
 
 /* モバイルヘッダー調整 */
@@ -627,7 +631,9 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     .yield-header {
         padding: 15px 0;
     }
-    .live-indicator, .channel-indicator {
+
+    .live-indicator,
+    .channel-indicator {
         margin-left: 8px;
         font-size: 0.65rem;
         padding: 2px 8px;
@@ -640,8 +646,38 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     overflow-wrap: anywhere;
 }
 
+/* Responsive Text Utilities */
+.text-safe {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+
 .ib {
     display: inline-block;
+    white-space: nowrap;
+}
+
+.pc-only {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .pc-only {
+        display: none;
+    }
+
+    .ticker-tape {
+        white-space: normal;
+        /* Allow wrapping */
+        height: auto;
+        padding: 15px 10px;
+    }
+
+    .ticker-tape span {
+        margin: 5px 8px;
+        /* Add vertical margin for wrapped lines */
+        display: inline-block;
+    }
 }
 
 /* =========================================
@@ -652,13 +688,18 @@ body[data-stream-status="offline"] .channel-indicator:hover {
    "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
    "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
 */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .section-title,
 .hero-title,
 .hero-sub,
 .nav a,
 .mobile-menu a,
-button, 
+button,
 .btn,
 [class*="btn-"] {
     word-break: keep-all;
@@ -666,7 +707,7 @@ button,
 }
 
 /* For paragraph text inside cards/sections, we prefer natural reading */
-.card p, 
+.card p,
 .feature p,
 .about p {
     word-break: keep-all;

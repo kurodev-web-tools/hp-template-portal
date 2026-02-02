@@ -193,7 +193,7 @@ body.lights-on .lights-toggle {
     max-width: 1000px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
 }
 
@@ -333,11 +333,25 @@ body.lights-on .lights-toggle {
     .hero-actions {
         margin: 25px 0;
     }
-    
+
     .btn-cyber {
         padding: 18px 40px;
         font-size: 1rem;
         min-height: 44px;
+    }
+
+    .pc-only {
+        display: none;
+    }
+
+    /* Mobile S Layout Fixes */
+    .data-section,
+    .logs-section {
+        padding: 60px 20px;
+    }
+
+    .data-node {
+        padding: 40px 20px;
     }
 }
 
@@ -565,13 +579,16 @@ html {
     }
 
     /* 2. インジケーターの視認性向上 (ぼやけ解除 & ハッキリ表示) */
-    .live-indicator, .channel-indicator {
+    .live-indicator,
+    .channel-indicator {
         margin-left: 0 !important;
         font-size: 0.65rem !important;
         padding: 1px 12px !important;
         width: fit-content !important;
-        filter: blur(0) !important; /* ぼやけを強制解除 */
-        opacity: 1 !important;      /* 透明度を解除 */
+        filter: blur(0) !important;
+        /* ぼやけを強制解除 */
+        opacity: 1 !important;
+        /* 透明度を解除 */
     }
 
     /* オフライン時もモバイルでは明るいグリーンにする */
@@ -588,7 +605,8 @@ html {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.7rem;
     padding: 2px 8px;
@@ -601,7 +619,8 @@ html {
     border: 1px solid transparent;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 14px;
     vertical-align: -2px;
     margin-right: 4px;
@@ -623,7 +642,10 @@ body[data-stream-status="live"] .live-indicator {
 body[data-stream-status="live"] .live-indicator::after {
     content: "";
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 65, 0.1) 50%);
     background-size: 100% 2px;
     pointer-events: none;
@@ -637,6 +659,7 @@ body[data-stream-status="offline"] .channel-indicator {
     border: 1px dashed var(--ghost-dim);
     opacity: 0.7;
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
     color: var(--ghost-green);
     border: 1px solid var(--ghost-green);
@@ -662,7 +685,7 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 /* Decoding state - Matrix-style analysis effect */
 .decoding {
     color: var(--ghost-dim) !important;
-    text-shadow: 
+    text-shadow:
         0 0 5px rgba(0, 255, 65, 0.3),
         0 0 10px rgba(0, 255, 65, 0.2),
         0 0 20px rgba(0, 255, 65, 0.1);
@@ -671,14 +694,17 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 
 /* Flickering text-shadow animation during decoding */
 @keyframes decode-flicker {
-    0%, 100% {
-        text-shadow: 
+
+    0%,
+    100% {
+        text-shadow:
             0 0 5px rgba(0, 255, 65, 0.3),
             0 0 10px rgba(0, 255, 65, 0.2),
             0 0 20px rgba(0, 255, 65, 0.1);
     }
+
     50% {
-        text-shadow: 
+        text-shadow:
             0 0 8px rgba(0, 255, 65, 0.5),
             0 0 15px rgba(0, 255, 65, 0.3),
             0 0 30px rgba(0, 255, 65, 0.2);
@@ -696,6 +722,11 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     display: inline-block;
 }
 
+.ib {
+    display: inline-block;
+    white-space: nowrap;
+}
+
 /* Mobile: Make decrypt elements more prominent */
 @media (max-width: 768px) {
     .decrypt-hover {
@@ -703,7 +734,7 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         text-decoration-color: var(--ghost-dim);
         text-underline-offset: 3px;
     }
-    
+
     .decoding {
         text-decoration: none;
     }
@@ -717,13 +748,18 @@ body[data-stream-status="offline"] .channel-indicator:hover {
    "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
    "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
 */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .section-title,
 .hero-title,
 .hero-sub,
 .nav a,
 .mobile-menu a,
-button, 
+button,
 .btn,
 [class*="btn-"] {
     word-break: keep-all;
@@ -731,7 +767,7 @@ button,
 }
 
 /* For paragraph text inside cards/sections, we prefer natural reading */
-.card p, 
+.card p,
 .feature p,
 .about p {
     word-break: keep-all;

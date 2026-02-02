@@ -279,11 +279,35 @@ body {
     .hero-actions {
         margin-top: 20px;
     }
-    
+
     .btn-cyber {
         padding: 18px 40px;
         font-size: 1rem;
         min-height: 44px;
+    }
+
+    /* Mobile S Layout Fixes */
+    .about,
+    .schedule-section,
+    .contact-section {
+        padding: 40px 20px;
+        /* Reduce side padding from 60px to 20px */
+        box-sizing: border-box;
+        /* Ensure padding doesn't expand width */
+    }
+
+    .grid {
+        justify-content: center;
+        /* Center the grid column if it doesn't fill width */
+    }
+
+    .card {
+        padding: 25px;
+        /* Reduce card padding from 40px to 25px */
+        box-sizing: border-box;
+        /* Ensure padding fits within width */
+        width: 100%;
+        /* Ensure card tries to fill the track */
     }
 }
 
@@ -306,7 +330,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
 
@@ -728,22 +752,27 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         transform: translate(0);
         text-shadow: none;
     }
+
     20% {
         transform: translate(-3px, 2px);
         text-shadow: 3px 0 var(--neon-pink), -3px 0 var(--neon-blue);
     }
+
     40% {
         transform: translate(3px, -2px);
         text-shadow: -4px 0 var(--neon-blue), 4px 0 var(--neon-pink);
     }
+
     60% {
         transform: translate(-2px, 1px);
         text-shadow: 2px 0 var(--neon-purple), -2px 0 var(--neon-blue);
     }
+
     80% {
         transform: translate(2px, -1px);
         text-shadow: -3px 0 var(--neon-pink), 3px 0 var(--neon-purple);
     }
+
     100% {
         transform: translate(0);
         text-shadow: none;
@@ -756,26 +785,31 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         clip-path: inset(0 0 100% 0);
         transform: translate(0);
     }
+
     20% {
         opacity: 0.8;
         clip-path: inset(10% 0 60% 0);
         transform: translate(-4px, 1px);
     }
+
     40% {
         opacity: 0.9;
         clip-path: inset(40% 0 20% 0);
         transform: translate(4px, -2px);
     }
+
     60% {
         opacity: 0.8;
         clip-path: inset(60% 0 10% 0);
         transform: translate(-3px, 2px);
     }
+
     80% {
         opacity: 0.9;
         clip-path: inset(20% 0 50% 0);
         transform: translate(3px, -1px);
     }
+
     100% {
         opacity: 0;
         clip-path: inset(0 0 100% 0);
@@ -789,26 +823,31 @@ body[data-stream-status="offline"] .channel-indicator:hover {
         clip-path: inset(100% 0 0 0);
         transform: translate(0);
     }
+
     20% {
         opacity: 0.8;
         clip-path: inset(60% 0 10% 0);
         transform: translate(4px, -1px);
     }
+
     40% {
         opacity: 0.9;
         clip-path: inset(20% 0 50% 0);
         transform: translate(-4px, 2px);
     }
+
     60% {
         opacity: 0.8;
         clip-path: inset(10% 0 60% 0);
         transform: translate(3px, -2px);
     }
+
     80% {
         opacity: 0.9;
         clip-path: inset(50% 0 20% 0);
         transform: translate(-3px, 1px);
     }
+
     100% {
         opacity: 0;
         clip-path: inset(100% 0 0 0);
@@ -862,15 +901,7 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     position: relative;
 }
 
-/* Responsive Text Utilities */
-.text-safe {
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-}
 
-.ib {
-    display: inline-block;
-}
 
 .schedule-row.glitch-hover .day::before,
 .schedule-row.glitch-hover .time::before {
@@ -902,15 +933,7 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     display: inline-block;
 }
 
-/* Responsive Text Utilities */
-.text-safe {
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-}
 
-.ib {
-    display: inline-block;
-}
 
 /* =========================================
    Global Text Safety (Japanese Typography)
@@ -920,13 +943,18 @@ body[data-stream-status="offline"] .channel-indicator:hover {
    "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
    "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
 */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .section-title,
 .hero-title,
 .hero-sub,
 .nav a,
 .mobile-menu a,
-button, 
+button,
 .btn,
 [class*="btn-"] {
     word-break: keep-all;
@@ -934,9 +962,14 @@ button,
 }
 
 /* For paragraph text inside cards/sections, we prefer natural reading */
-.card p, 
+.card p,
 .feature p,
 .about p {
     word-break: keep-all;
     overflow-wrap: anywhere;
+}
+
+.ib {
+    display: inline-block;
+    white-space: nowrap;
 }

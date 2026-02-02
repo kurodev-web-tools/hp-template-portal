@@ -191,7 +191,7 @@ body {
     .hero-actions {
         margin-top: 15px;
     }
-    
+
     .btn-lunar {
         padding: 18px 40px;
         font-size: 0.85rem;
@@ -237,7 +237,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
 }
 
@@ -684,8 +684,29 @@ body[data-stream-status="offline"] .channel-indicator:hover {
     overflow-wrap: anywhere;
 }
 
+/* Responsive Text Utilities */
+.text-safe {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+
 .ib {
     display: inline-block;
+    white-space: nowrap;
+}
+
+.pc-only {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .pc-only {
+        display: none;
+    }
+
+    .moon-card {
+        padding: 30px 20px;
+    }
 }
 
 /* =========================================
@@ -696,13 +717,18 @@ body[data-stream-status="offline"] .channel-indicator:hover {
    "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
    "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
 */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .section-title,
 .hero-title,
 .hero-sub,
 .nav a,
 .mobile-menu a,
-button, 
+button,
 .btn,
 [class*="btn-"] {
     word-break: keep-all;
@@ -710,7 +736,7 @@ button,
 }
 
 /* For paragraph text inside cards/sections, we prefer natural reading */
-.card p, 
+.card p,
 .feature p,
 .about p {
     word-break: keep-all;

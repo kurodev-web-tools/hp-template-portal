@@ -201,6 +201,8 @@ class BookFlipEffect {
     setupScrollTilt() {
         // Bind updateTilt to this instance so it can be called from event handlers
         this.updateTilt = () => {
+            if (this.isMobile) return; // Disable tilt on mobile to prevent overflow
+
             const containers = document.querySelectorAll('.moon-card-container');
             containers.forEach(container => {
                 const card = container.querySelector('.moon-card');

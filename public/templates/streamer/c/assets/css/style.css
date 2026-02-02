@@ -174,7 +174,7 @@ body {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
-    box-shadow: 
+    box-shadow:
         0 4px 15px rgba(200, 182, 255, 0.3),
         inset 0 0 20px rgba(255, 255, 255, 0.5);
 }
@@ -186,12 +186,10 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.4) 50%,
-        transparent 70%
-    );
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 70%);
     transform: rotate(45deg) translateY(-100%);
     transition: transform 0.6s ease;
 }
@@ -200,7 +198,7 @@ body {
     background: linear-gradient(135deg, var(--prism-purple), var(--prism-blue));
     color: #fff;
     border-color: var(--prism-purple);
-    box-shadow: 
+    box-shadow:
         0 0 40px rgba(200, 182, 255, 0.6),
         0 0 80px rgba(200, 182, 255, 0.3),
         inset 0 0 30px rgba(255, 255, 255, 0.3);
@@ -220,7 +218,7 @@ body {
     .hero-actions {
         margin-top: 15px;
     }
-    
+
     .btn-rpg {
         padding: 18px 40px;
         font-size: 1rem;
@@ -238,7 +236,7 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
 }
 
@@ -478,11 +476,13 @@ html {
 }
 
 /* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator, .channel-indicator {
+.live-indicator,
+.channel-indicator {
     display: none;
     font-size: 0.7rem;
     padding: 3px 12px;
-    border-radius: 20px; /* 角を丸くしてクリスタル感を強調 */
+    border-radius: 20px;
+    /* 角を丸くしてクリスタル感を強調 */
     margin-left: 15px;
     vertical-align: middle;
     cursor: pointer;
@@ -492,7 +492,8 @@ html {
     transition: all 0.4s ease;
 }
 
-.live-indicator .material-icons, .channel-indicator .material-icons {
+.live-indicator .material-icons,
+.channel-indicator .material-icons {
     font-size: 14px;
     vertical-align: -2px;
     margin-right: 4px;
@@ -502,7 +503,7 @@ html {
 body[data-stream-status="live"] .live-indicator {
     display: inline-flex;
     align-items: center;
-    background: rgba(255, 214, 255, 0.4); 
+    background: rgba(255, 214, 255, 0.4);
     border: 1px solid var(--prism-pink);
     color: #ff0055;
     box-shadow: 0 0 15px var(--prism-pink);
@@ -513,11 +514,12 @@ body[data-stream-status="live"] .live-indicator {
 body[data-stream-status="offline"] .channel-indicator {
     display: inline-flex;
     align-items: center;
-    background: rgba(231, 255, 255, 0.3); 
+    background: rgba(231, 255, 255, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.5);
     color: #4a5568;
     backdrop-filter: blur(5px);
 }
+
 body[data-stream-status="offline"] .channel-indicator:hover {
     background: rgba(231, 255, 255, 0.6);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -525,8 +527,17 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 }
 
 @keyframes breathing-glow {
-    0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--prism-pink); }
-    50% { opacity: 0.7; box-shadow: 0 0 20px var(--prism-pink); }
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--prism-pink);
+    }
+
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 20px var(--prism-pink);
+    }
 }
 
 /* ============================================
@@ -548,51 +559,41 @@ body {
     opacity: 0.5;
     animation: orb-move 20s infinite alternate ease-in-out;
     /* Mouse parallax - orbs move slightly away from cursor */
-    transform: translate(
-        calc((var(--mouse-x) - 0.5) * -80px),
-        calc((var(--mouse-y) - 0.5) * -60px)
-    );
+    transform: translate(calc((var(--mouse-x) - 0.5) * -80px),
+            calc((var(--mouse-y) - 0.5) * -60px));
     transition: transform 0.3s ease-out;
 }
 
 /* Different parallax intensity for each orb */
 .orb-1 {
-    transform: translate(
-        calc((var(--mouse-x) - 0.5) * -100px),
-        calc((var(--mouse-y) - 0.5) * -80px)
-    );
+    transform: translate(calc((var(--mouse-x) - 0.5) * -100px),
+            calc((var(--mouse-y) - 0.5) * -80px));
 }
 
 .orb-2 {
-    transform: translate(
-        calc((var(--mouse-x) - 0.5) * 60px),
-        calc((var(--mouse-y) - 0.5) * 100px)
-    );
+    transform: translate(calc((var(--mouse-x) - 0.5) * 60px),
+            calc((var(--mouse-y) - 0.5) * 100px));
 }
 
 .orb-3 {
-    transform: translate(
-        calc((var(--mouse-x) - 0.5) * -40px),
-        calc((var(--mouse-y) - 0.5) * 40px)
-    );
+    transform: translate(calc((var(--mouse-x) - 0.5) * -40px),
+            calc((var(--mouse-y) - 0.5) * 40px));
 }
 
 /* Rainbow Border - Dynamic hue rotation based on scroll */
 .rainbow-border {
     position: relative;
     border: 2px solid transparent;
-    border-image: linear-gradient(
-        calc(45deg + var(--scroll-ratio) * 360deg),
-        #ff9a9e,
-        #fad0c4,
-        #ffecd2,
-        #a1c4fd,
-        #c2e9fb,
-        #d4fc79,
-        #96e6a1
-    ) 1;
+    border-image: linear-gradient(calc(45deg + var(--scroll-ratio) * 360deg),
+            #ff9a9e,
+            #fad0c4,
+            #ffecd2,
+            #a1c4fd,
+            #c2e9fb,
+            #d4fc79,
+            #96e6a1) 1;
     /* Additional glow effect that intensifies with scroll */
-    box-shadow: 
+    box-shadow:
         0 0 calc(10px + var(--scroll-ratio) * 20px) rgba(161, 196, 253, calc(0.2 + var(--scroll-ratio) * 0.3)),
         inset 0 0 calc(5px + var(--scroll-ratio) * 10px) rgba(255, 214, 255, calc(0.1 + var(--scroll-ratio) * 0.2));
     transition: border-image 0.1s linear, box-shadow 0.3s ease;
@@ -608,11 +609,9 @@ body::before {
     height: 100%;
     z-index: -2;
     pointer-events: none;
-    background: radial-gradient(
-        ellipse at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
-        rgba(255, 214, 255, calc(0.15 + var(--scroll-ratio) * 0.15)),
-        transparent 50%
-    );
+    background: radial-gradient(ellipse at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
+            rgba(255, 214, 255, calc(0.15 + var(--scroll-ratio) * 0.15)),
+            transparent 50%);
     transition: background 0.3s ease-out;
     opacity: calc(0.6 + var(--scroll-ratio) * 0.4);
 }
@@ -625,11 +624,9 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-        circle at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
-        rgba(255, 255, 255, 0.1),
-        transparent 30%
-    );
+    background: radial-gradient(circle at calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%),
+            rgba(255, 255, 255, 0.1),
+            transparent 30%);
     pointer-events: none;
     opacity: calc(0.5 + var(--scroll-ratio) * 0.3);
     transition: all 0.3s ease-out;
@@ -640,7 +637,7 @@ body::before {
     padding: 80px;
     background: rgba(255, 255, 255, calc(0.4 - var(--scroll-ratio) * 0.1));
     backdrop-filter: blur(calc(30px - var(--scroll-ratio) * 5px));
-    box-shadow: 
+    box-shadow:
         0 20px 50px rgba(0, 0, 0, calc(0.05 + var(--scroll-ratio) * 0.03)),
         0 0 calc(30px + var(--scroll-ratio) * 20px) rgba(161, 196, 253, calc(0.1 + var(--scroll-ratio) * 0.2));
     border: 1px solid rgba(255, 255, 255, calc(0.3 + var(--scroll-ratio) * 0.2));
@@ -651,23 +648,21 @@ body::before {
 .prism-header {
     background: rgba(255, 255, 255, calc(0.2 + var(--scroll-ratio) * 0.1));
     backdrop-filter: blur(calc(20px + var(--scroll-ratio) * 5px));
-    box-shadow: 
+    box-shadow:
         0 2px 20px rgba(0, 0, 0, calc(0.05 + var(--scroll-ratio) * 0.05)),
         0 0 calc(20px + var(--scroll-ratio) * 15px) rgba(200, 182, 255, calc(0.1 + var(--scroll-ratio) * 0.15));
 }
 
 /* Vibe cards with mouse proximity effect */
 .vibe-card {
-    transform: translate(
-        calc((var(--mouse-x) - 0.5) * 10px),
-        calc((var(--mouse-y) - 0.5) * 10px)
-    );
+    transform: translate(calc((var(--mouse-x) - 0.5) * 10px),
+            calc((var(--mouse-y) - 0.5) * 10px));
     transition: transform 0.5s ease-out;
 }
 
 /* Gallery items with scroll-based reveal glow */
 .gallery-item {
-    box-shadow: 
+    box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.1),
         0 0 calc(20px + var(--scroll-ratio) * 30px) rgba(161, 196, 253, calc(0.1 * var(--scroll-ratio)));
 }
@@ -682,15 +677,28 @@ body::before {
 @media (max-width: 768px) {
     .orb {
         /* Reduce parallax intensity on mobile */
-        transform: translate(
-            calc((var(--mouse-x) - 0.5) * -40px),
-            calc((var(--mouse-y) - 0.5) * -30px)
-        );
+        transform: translate(calc((var(--mouse-x) - 0.5) * -40px),
+                calc((var(--mouse-y) - 0.5) * -30px));
     }
-    
+
     .hero-content {
         /* Simpler effects on mobile for performance */
         backdrop-filter: blur(20px);
+    }
+
+    .pc-only {
+        display: none;
+    }
+
+    /* Mobile S Layout Fixes */
+    .vibe-section,
+    .gallery-section,
+    .hero-content {
+        padding: 40px 20px;
+    }
+
+    .vibe-card {
+        padding: 30px 20px;
     }
 }
 
@@ -702,6 +710,7 @@ body::before {
 
 .ib {
     display: inline-block;
+    white-space: nowrap;
 }
 
 /* =========================================
@@ -712,13 +721,18 @@ body::before {
    "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
    "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
 */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .section-title,
 .hero-title,
 .hero-sub,
 .nav a,
 .mobile-menu a,
-button, 
+button,
 .btn,
 [class*="btn-"] {
     word-break: keep-all;
@@ -726,7 +740,7 @@ button,
 }
 
 /* For paragraph text inside cards/sections, we prefer natural reading */
-.card p, 
+.card p,
 .feature p,
 .about p {
     word-break: keep-all;
