@@ -927,3 +927,32 @@ body[data-stream-status="offline"] .channel-indicator:hover {
 .ib {
     display: inline-block;
 }
+
+/* =========================================
+   Global Text Safety (Japanese Typography)
+   ========================================= */
+/* 
+   Prevents unnatural line breaks in headers and short text boundaries (Bunsetsu).
+   "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
+   "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
+*/
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.hero-title,
+.hero-sub,
+.nav a,
+.mobile-menu a,
+button, 
+.btn,
+[class*="btn-"] {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+
+/* For paragraph text inside cards/sections, we prefer natural reading */
+.card p, 
+.feature p,
+.about p {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
