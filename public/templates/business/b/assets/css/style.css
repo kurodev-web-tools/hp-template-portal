@@ -41,8 +41,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 80px 30px 120px;
-    /* Space for Portal button on left */
+    max-width: var(--bus-max-width, 1280px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px 40px;
+    /* Aligned with container */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,13 +97,17 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 100px;
+    padding: 0;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
 
 .hero-text {
-    flex: 1;
+    /* Flex: 1 would stretch it, we want constrained width */
+    width: 100%;
+    max-width: var(--bus-max-width, 1280px);
+    padding: 0 40px;
     z-index: 2;
 }
 
@@ -122,6 +129,15 @@ body {
     font-size: 1.5rem;
     max-width: 600px;
     line-height: 1.4;
+    color: white !important;
+    background: transparent;
+    display: block;
+    padding: 0;
+    font-weight: 400;
+    position: relative;
+    z-index: 5;
+    margin-top: 30px;
+    /* Clear the title block */
 }
 
 .hero-visual {
