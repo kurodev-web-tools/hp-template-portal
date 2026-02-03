@@ -114,9 +114,20 @@ body {
 .hero-text h1 {
     font-family: var(--font-heading);
     font-size: 8rem;
+    font-size: 8rem;
     line-height: 0.9;
     margin-bottom: 20px;
     text-transform: uppercase;
+    animation: fadeInUpDynamic 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+@keyframes fadeInUpDynamic {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .highlight-bg {
@@ -466,8 +477,10 @@ body {
     /* Custom Toggle Button */
     .bold-mobile-toggle {
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: 10px;
+        /* Centered in 70px header (10px padding top/bottom) */
+        right: 10px;
+        /* Align with header padding */
         z-index: 10001;
         width: 50px;
         height: 50px;

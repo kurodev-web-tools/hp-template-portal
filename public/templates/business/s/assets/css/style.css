@@ -596,10 +596,27 @@ body.theme-smart {
     }
 
     .search-bar.active input {
-        width: calc(100% - 40px);
+        width: calc(100% - 70px);
+        /* Space for both icons */
         opacity: 1;
         position: relative;
         right: auto;
+    }
+
+    .search-close {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 10px;
+        color: #999;
+        transition: all 0.3s;
+    }
+
+    .search-bar.active .search-close {
+        opacity: 1;
+        pointer-events: auto;
+        transform: rotate(90deg);
+        /* Nice entrance animation */
     }
 
     /* Hide Actions when Search is Active to prevent overflow */

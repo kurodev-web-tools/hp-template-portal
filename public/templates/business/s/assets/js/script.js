@@ -1,11 +1,11 @@
 
 // Global Toggle Function
-window.toggleMenu = function() {
+window.toggleMenu = function () {
     const sidebar = document.querySelector('.saas-sidebar');
     const toggle = document.querySelector('.saas-mobile-toggle');
     if (sidebar) {
         sidebar.classList.toggle('active');
-        
+
         if (toggle) {
             const icon = toggle.querySelector('.material-icons');
             if (icon) {
@@ -91,11 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Scroll/Swipe -> Update Tab
-    // Use IntersectionObserver to tell which card is center
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Find index of intersecting card
                 const index = Array.from(cards).indexOf(entry.target);
                 if (index !== -1) {
                     controls.forEach(b => b.classList.remove('active'));
@@ -105,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         root: container,
-        threshold: 0.6 // Card must be 60% visible to activate tab
+        threshold: 0.6
     });
 
     cards.forEach(card => observer.observe(card));
@@ -119,16 +117,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!searchBar || !searchIcon) return;
 
+    // Inject Close Button dynamically
+    let closeBtn = document.createElement('span');
+    closeBtn.className = 'material-icons search-close';
+    closeBtn.textContent = 'close';
+    searchBar.appendChild(closeBtn);
+
     // Expand on Click (Mobile only)
     searchIcon.addEventListener('click', (e) => {
-        // Only trigger if window is mobile-sized (<= 1024px based on CSS)
         if (window.innerWidth <= 1024) {
-            e.stopPropagation(); // Prevent document click from closing immediately
-            searchBar.classList.toggle('active');
-            if (searchBar.classList.contains('active') && searchInput) {
-                searchInput.focus();
-            }
+            e.stopPropagation();
+            searchBar.classList.add('active');
+            if (searchInput) searchInput.focus();
         }
+    });
+
+    // Close Button Action
+    closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchBar.classList.remove('active');
     });
 
     // Close when clicking outside

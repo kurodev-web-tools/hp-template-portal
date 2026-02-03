@@ -17,7 +17,8 @@ body.theme-trust {
     overflow-x: hidden;
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
     max-width: 100%;
 }
@@ -291,7 +292,8 @@ html, body {
 
 /* Compliance */
 .trust-compliance {
-    padding: 10rem 4rem;
+    padding: 10rem 4rem !important;
+    /* Override business-base 0 padding */
     background: #fff;
     border-top: 2px solid var(--color-steel);
 }
@@ -546,7 +548,7 @@ html, body {
         color: #fff;
         width: 60px;
         height: 60px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         cursor: pointer;
     }
 
@@ -611,6 +613,20 @@ html, body {
         font-size: 3.5rem;
     }
 
+    /* Boost specificity to override business-base.css (0-1-2) */
+    body.theme-trust .trust-solutions {
+        padding: 6rem 1.5rem !important;
+        /* Fix missing margins */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .trust-solutions .section-header {
+        width: 100%;
+        padding: 0;
+        /* Let parent padding handle spacing */
+    }
+
     .blocks-grid {
         grid-template-columns: 1fr;
     }
@@ -627,7 +643,16 @@ html, body {
 
     .compliance-wrap {
         flex-direction: column;
-        gap: 4rem;
+        gap: 3rem;
+        width: 100%;
+        padding: 0 1.5rem;
+        /* Inner safety padding */
+        box-sizing: border-box;
+    }
+
+    .trust-compliance {
+        padding: 6rem 1.5rem !important;
+        /* Mobile safe vertical/horizontal */
     }
 
     .subpage-hero {
@@ -655,22 +680,23 @@ html, body {
 
     /* Overflow Fix for "GLOBAL_STANDARDS" - V3 */
     .text-area h2 {
-        font-size: 1.5rem !important; /* さらに小さくして収める */
-        overflow-wrap: normal !important; /* 単語途中での改行を禁止 */
-        word-break: normal !important;
-        white-space: normal;
+        font-size: 1.8rem;
+        /* Prevent overwhelming size */
+        overflow-wrap: break-word;
         line-height: 1.2;
+        margin-bottom: 1.5rem;
     }
-    
-    /* 念のため全体的なH2サイズも調整 */
-    .section-header h2 {
-         font-size: 2.5rem;
-         overflow-wrap: break-word;
-    }
-    
-    /* Body/HTMLの横スクロール防止（再確認） */
-    html, body {
-        overflow-x: hidden !important;
+
+    /* Ensure body doesn't overflow horizontally */
+    html,
+    body {
+        overflow-x: hidden;
         width: 100%;
+    }
+
+    /* Safety sizing for headers */
+    .section-header h2 {
+        font-size: 2.5rem;
+        overflow-wrap: break-word;
     }
 }
