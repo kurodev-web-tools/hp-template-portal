@@ -261,7 +261,7 @@ const PORTAL_DATA = {
                 description: '深海ネオン、グリッチ、中毒性のある青とピンク。没入感溢れるサイバーパンク・デザイン。',
                 features: ['Cyberpunk', 'Glitch Effect', 'Neon'],
                 colors: ['#00f2ff', '#ff0055', '#05050a'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_a.webp',
                 themeLabel: 'Abyss Neon'
             },
             {
@@ -269,7 +269,7 @@ const PORTAL_DATA = {
                 description: 'RPGのボス戦を彷彿とさせる重厚なデザイン。ダークゴールドと視差効果で圧倒的な存在感を。',
                 features: ['RPG Boss', 'Parallax', 'Dark Gold'],
                 colors: ['#d4af37', '#8a6d3b', '#121212'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_b.webp',
                 themeLabel: 'Boss Room'
             },
             {
@@ -277,7 +277,7 @@ const PORTAL_DATA = {
                 description: '宝石のような透明感と虹色の輝き。パステルカラーのガラスモーフィズム・デザイン。',
                 features: ['Glassmorphism', 'Prism', 'Pastel'],
                 colors: ['#ffd6ff', '#e7ffff', '#c8b6ff'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_c.webp',
                 themeLabel: 'Crystal Prism'
             },
             {
@@ -285,7 +285,7 @@ const PORTAL_DATA = {
                 description: 'デジタルノイズと匿名性の深淵。スポットライト演出がミステリアスな雰囲気を醸成。',
                 features: ['Matrix', 'Spotlight', 'Mysterious'],
                 colors: ['#00ff41', '#003b00', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_d.webp',
                 themeLabel: 'Digital Ghost'
             },
             {
@@ -293,7 +293,7 @@ const PORTAL_DATA = {
                 description: 'プロ大会の熱狂と信頼を形に。清潔感のあるブルーと白のグリッドレイアウト。',
                 features: ['Competitive', 'Scoreboard', 'Official'],
                 colors: ['#0055ff', '#ffffff', '#0a0e1a'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_e.webp',
                 themeLabel: 'E-Sports Pro'
             },
             {
@@ -301,7 +301,7 @@ const PORTAL_DATA = {
                 description: '宇宙船のコンソールをイメージした未来志向のデザイン。独立したウィジェットが浮遊感を演出。',
                 features: ['Sci-Fi', 'Dashboard', 'Widget'],
                 colors: ['#00f2ff', '#030a10', '#00f2ff'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_f.webp',
                 themeLabel: 'Future Tech'
             },
             {
@@ -309,7 +309,7 @@ const PORTAL_DATA = {
                 description: 'RGBズレとカオスなエネルギー。過激な演出が視聴者の視線を釘付けにする衝撃的デザイン。',
                 features: ['Glitch', 'Noise', 'Chaos'],
                 colors: ['#ff0000', '#00ffff', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_g.webp',
                 themeLabel: 'Glitch Core'
             },
             {
@@ -317,7 +317,7 @@ const PORTAL_DATA = {
                 description: 'ホラーゲーム実況に特化した、没入感溢れるダークデザイン。懐中電灯演出が恐怖を誘う。',
                 features: ['Horror', 'Spotlight', 'Dark'],
                 colors: ['#991b1b', '#1a1a1b', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_h.webp',
                 themeLabel: 'Horror Mansion'
             },
             {
@@ -325,7 +325,7 @@ const PORTAL_DATA = {
                 description: 'キラキラと輝くライブステージを再現。歌枠やアイドル系ストリーマーに最適。',
                 features: ['Idol', 'Particles', 'Sparkle'],
                 colors: ['#f472b6', '#ffffff', '#ffebf5'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_i.webp',
                 themeLabel: 'Idol Stage'
             },
             {
@@ -333,7 +333,7 @@ const PORTAL_DATA = {
                 description: '大人の余裕を感じさせる横スクロールデザイン。深夜の雑談やチルな配信に。',
                 features: ['Side Scroll', 'Jazz', 'Chill'],
                 colors: ['#b45309', '#2d1b0d', '#1a0f08'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_j.webp',
                 themeLabel: 'Jazz Lounge'
             },
             {
@@ -341,7 +341,7 @@ const PORTAL_DATA = {
                 description: '騎士の誇りと格式を。羊皮紙テクスチャとロイヤルブルーが織りなすマルチページ構成。',
                 features: ['Knight', 'Multi-page', 'Classic'],
                 colors: ['#2563eb', '#f3f4f6', '#d1d5db'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_k.webp',
                 themeLabel: 'Knight Honor'
             },
             {
@@ -349,7 +349,7 @@ const PORTAL_DATA = {
                 description: '月の満ち欠けと幻想的な夜空。情緒的な配信スタイルを美しく演出。',
                 features: ['Lunar', 'Fantasy', 'Calm'],
                 colors: ['#fef3c7', '#4c1d95', '#1e1b4b'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_l.webp',
                 themeLabel: 'Lunar Phase'
             },
             {
@@ -357,7 +357,7 @@ const PORTAL_DATA = {
                 description: '無機質で鋭利なクロームデザイン。液体金属のような高度なビジュアル表現。',
                 features: ['Metallic', 'Liquid', 'Pro'],
                 colors: ['#9ca3af', '#111827', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_m.webp',
                 themeLabel: 'Metallic Chrome'
             },
             {
@@ -365,7 +365,7 @@ const PORTAL_DATA = {
                 description: '眠らない街のネオンサイン。都会的でストリート感のあるパープルスタイル。',
                 features: ['Neon', 'Urban', 'Street'],
                 colors: ['#7000ff', '#1e1b4b', '#020617'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_n.webp',
                 themeLabel: 'Neon Night'
             },
             {
@@ -373,7 +373,7 @@ const PORTAL_DATA = {
                 description: '宇宙の壮大さと浮遊感を表現した全画面スクロールデザイン。銀河を旅するような体験を。',
                 features: ['Full-page', 'Snap Scroll', 'Space'],
                 colors: ['#00d2ff', '#3a7bd5', '#000222'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_o.webp',
                 themeLabel: 'Orbit Space'
             },
             {
@@ -381,7 +381,7 @@ const PORTAL_DATA = {
                 description: '懐かしの8-bitスタイル。ドット絵とPress Start 2Pフォントが織りなすレトロな世界観。',
                 features: ['8-bit', 'Pixel Art', 'Retro'],
                 colors: ['#22c55e', '#795548', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_p.webp',
                 themeLabel: 'Pixel Retro'
             },
             {
@@ -389,7 +389,7 @@ const PORTAL_DATA = {
                 description: '王道RPGのメニュー画面をWebサイトに。冒険の記録（配信内容）を美しく整理。',
                 features: ['RPG UI', 'Log Style', 'Fantasy'],
                 colors: ['#f5e6be', '#5d4037', '#2b1d0e'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_q.webp',
                 themeLabel: 'Quest Log'
             },
             {
@@ -397,7 +397,7 @@ const PORTAL_DATA = {
                 description: '暗闇に紛れるアウトロースタイル。スモーク演出とヴィネット効果が緊張感を醸成。',
                 features: ['Stealth', 'Smoke Effect', 'Dark Red'],
                 colors: ['#991b1b', '#000000', '#1a1a1a'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_r.webp',
                 themeLabel: 'Rogue Stealth'
             },
             {
@@ -405,7 +405,7 @@ const PORTAL_DATA = {
                 description: '蒸気と歯車の重厚なマルチページ。産業革命時代のレトロフューチャリスティックなデザイン。',
                 features: ['Steampunk', 'Multi-page', 'Gear'],
                 colors: ['#b87333', '#262626', '#1a1a1a'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_s.webp',
                 themeLabel: 'Steampunk Gear'
             },
             {
@@ -413,7 +413,7 @@ const PORTAL_DATA = {
                 description: '論理的で戦略的なダッシュボード。回路基板のような幾何学的な美しさを。',
                 features: ['Tech', 'Logic', 'Circuit'],
                 colors: ['#06b6d4', '#1f2937', '#111827'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_t.webp',
                 themeLabel: 'Tech Logic'
             },
             {
@@ -421,7 +421,7 @@ const PORTAL_DATA = {
                 description: '自由なストリート文化を体現。スプレーアートと全画面スクロールの躍動感。',
                 features: ['Graffiti', 'Street', 'Vivid'],
                 colors: ['#fbbf24', '#262626', '#181818'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_u.webp',
                 themeLabel: 'Urban Graffiti'
             },
             {
@@ -429,7 +429,7 @@ const PORTAL_DATA = {
                 description: '色彩が弾け、視覚が震える。スクロール連動型のRGBズレ演出が強烈な個性を放つ。',
                 features: ['Vivid', 'RGB Shift', 'Glitch'],
                 colors: ['#ff00ff', '#00ffff', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_v.webp',
                 themeLabel: 'Vivid Glitch'
             },
             {
@@ -437,7 +437,7 @@ const PORTAL_DATA = {
                 description: '地平線まで続くかのような圧倒的スケール。横スクロールと視差効果によるパノラマ体験。',
                 features: ['Side Scroll', 'Parallax', 'Scenic'],
                 colors: ['#10b981', '#064e3b', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_w.webp',
                 themeLabel: 'Wide Pan'
             },
             {
@@ -445,7 +445,7 @@ const PORTAL_DATA = {
                 description: '爆発的なエネルギーと躍動感。衝撃波エフェクトがセクション切り替えに劇的な緊迫感を。',
                 features: ['Xtreme', 'Shockwave', 'Snap Scroll'],
                 colors: ['#fbbf24', '#000000', '#78350f'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_x.webp',
                 themeLabel: 'Xtreme Action'
             },
             {
@@ -453,7 +453,7 @@ const PORTAL_DATA = {
                 description: '上昇し続ける数値とリアルタイムチャート。成長を可視化するトレーディング風デザイン。',
                 features: ['Trading', 'Counter', 'Chart'],
                 colors: ['#22c55e', '#1a2e05', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_y.webp',
                 themeLabel: 'Yield Chart'
             },
             {
@@ -461,7 +461,7 @@ const PORTAL_DATA = {
                 description: '静寂の中の力強さ。一筆書きのアニメーションと和の精神が宿るマルチページ。',
                 features: ['Zen', 'Brush Stroke', 'Multi-page'],
                 colors: ['#171717', '#fafafa', '#404040'],
-                image: '',
+                image: 'assets/thumbnails/streamer/st_z.webp',
                 themeLabel: 'Zen Brush'
             }
         ],
