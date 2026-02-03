@@ -1,0 +1,110 @@
+/* =========================================
+   Business Design System (Modernization Layer)
+   Target: Professional, Trust, Speed
+   Ref: Steve Jobs (White Space / Typography)
+   ========================================= */
+
+:root {
+    --bus-max-width: 1280px;
+    --bus-section-padding: 120px 0;
+    --bus-text-line-height: 1.8;
+}
+
+/* 
+   Global Scope Protection 
+   Only applies when body has .theme-business class 
+*/
+
+/* 1. Container Modernization (Wide & Breathable) */
+body.theme-business .container {
+    max-width: var(--bus-max-width) !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    body.theme-business .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+/* 2. Section Spacing (White Space) */
+body.theme-business section,
+body.theme-business .auth-section {
+    padding: var(--bus-section-padding) !important;
+}
+
+/* 3. Typography Refinements */
+body.theme-business {
+    line-height: var(--bus-text-line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.theme-business p {
+    font-size: 1.05rem;
+    /* Slight increase for readability */
+    color: rgba(0, 0, 0, 0.75);
+    /* Soft black instead of #000 */
+    margin-bottom: 2rem;
+}
+
+/* Dark Mode Typography override if template is dark */
+body.theme-business[class*="dark"] p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 4. Button Modernization (Micro-interactions) */
+body.theme-business .btn-primary,
+body.theme-business .btn-action,
+body.theme-business .btn-inquiry {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translateY(0);
+}
+
+body.theme-business .btn-primary:hover,
+body.theme-business .btn-action:hover,
+body.theme-business .btn-inquiry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 5. Card Lift Effect (Interactive Feel) */
+body.theme-business .service-card,
+body.theme-business .feature-card,
+body.theme-business .card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Subtle border */
+}
+
+body.theme-business .service-card:hover,
+body.theme-business .feature-card:hover,
+body.theme-business .card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 6. Form Modernization */
+body.theme-business input,
+body.theme-business textarea,
+body.theme-business select {
+    padding: 16px !important;
+    /* Larger touch area */
+    border-radius: 4px !important;
+    /* Modern border radius */
+    border: 1px solid #e2e8f0 !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+body.theme-business input:focus,
+body.theme-business textarea:focus,
+body.theme-business select:focus {
+    border-color: var(--col-main, #003366) !important;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1) !important;
+    /* Focus ring */
+    outline: none !important;
+}
