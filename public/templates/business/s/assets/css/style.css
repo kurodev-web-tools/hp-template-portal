@@ -132,7 +132,9 @@ body.theme-smart {
     align-items: center;
     gap: 1rem;
     color: #999;
+    color: #999;
     width: 400px;
+    transition: width 0.3s ease;
 }
 
 .search-bar input {
@@ -319,10 +321,17 @@ body.theme-smart {
     margin-bottom: 6rem;
 }
 
+/* Hide mobile controls by default on desktop */
+.mobile-pricing-controls {
+    display: none;
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    /* Desktop Default */
+    scroll-behavior: smooth;
 }
 
 .price-card {
@@ -519,10 +528,10 @@ body.theme-smart {
         margin-bottom: 1rem;
         transform: rotateX(10deg) rotateY(-10deg) translateZ(0);
         transition: transform 0.4s, background 0.3s;
-        box-shadow: -5px 5px 10px rgba(0,0,0,0.3);
+        box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
+
     .saas-sidebar.active .sidebar-nav a:hover {
         transform: rotateX(0) rotateY(0) translateZ(20px);
         background: var(--color-violet);
@@ -545,6 +554,57 @@ body.theme-smart {
     .saas-header {
         justify-content: flex-start;
         gap: 0.5rem;
+        position: relative;
+        /* Context for absolute search if needed, currently flex */
+    }
+
+    /* Mobile Expandable Search */
+    .search-bar {
+        width: 40px;
+        /* Icon size only */
+        background: transparent;
+        border-radius: 20px;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .search-bar .material-icons {
+        min-width: 24px;
+        /* Prevent icon shrinking */
+        color: var(--color-violet);
+        /* Highlight icon */
+    }
+
+    .search-bar input {
+        width: 0;
+        opacity: 0;
+        padding: 0;
+        transition: all 0.3s;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        /* Align right during transition */
+    }
+
+    /* Active State */
+    .search-bar.active {
+        width: 100%;
+        /* Expand to fill header space */
+        background: #f4f7fe;
+        padding: 5px 15px;
+    }
+
+    .search-bar.active input {
+        width: calc(100% - 40px);
+        opacity: 1;
+        position: relative;
+        right: auto;
+    }
+
+    /* Hide Actions when Search is Active to prevent overflow */
+    .saas-header:has(.search-bar.active) .header-actions {
+        display: none;
     }
 
     .saas-body {
@@ -575,9 +635,57 @@ body.theme-smart {
         grid-template-columns: 1fr;
     }
 
+    /* Mobile Pricing Carousel (SaaS Standard) */
     .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        display: flex;
+        /* Horizontal Flow */
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding-bottom: 2rem;
+        /* Space for scrollbar/shadow */
+        -webkit-overflow-scrolling: touch;
+        /* Hide Scrollbar */
+        scrollbar-width: none;
+    }
+
+    .pricing-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .price-card {
+        min-width: 85%;
+        /* Show part of next card to encourage swipe */
+        scroll-snap-align: center;
+        margin-right: 0;
+    }
+
+    /* Mobile Controls Styles */
+    .mobile-pricing-controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 2rem;
+    }
+
+    .p-control {
+        background: transparent;
+        border: 1px solid #ddd;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #999;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .p-control.active {
+        background: var(--color-violet);
+        color: white;
+        border-color: var(--color-violet);
+        box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
     }
 
     .price-card.featured {

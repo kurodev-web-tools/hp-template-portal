@@ -62,3 +62,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Mobile Pricing Carousel Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const controls = document.querySelectorAll('.p-control');
+    const container = document.querySelector('.pricing-grid');
+    const cards = document.querySelectorAll('.price-card');
+
+    if (!container || controls.length === 0) return;
+
+    // 1. Tab Click -> Scroll
+    controls.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            // Update UI
+            controls.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Scroll
+            const card = cards[index];
+            if (card) {
+                const left = card.offsetLeft - container.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+                container.scrollTo({
+                    left: left,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 2. Scroll/Swipe -> Update Tab
+    // Use IntersectionObserver to tell which card is center
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Find index of intersecting card
+                const index = Array.from(cards).indexOf(entry.target);
+                if (index !== -1) {
+                    controls.forEach(b => b.classList.remove('active'));
+                    controls[index].classList.add('active');
+                }
+            }
+        });
+    }, {
+        root: container,
+        threshold: 0.6 // Card must be 60% visible to activate tab
+    });
+
+    cards.forEach(card => observer.observe(card));
+});
+
+// Mobile Expandable Search Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBar = document.querySelector('.search-bar');
+    const searchIcon = searchBar ? searchBar.querySelector('.material-icons') : null;
+    const searchInput = searchBar ? searchBar.querySelector('input') : null;
+
+    if (!searchBar || !searchIcon) return;
+
+    // Expand on Click (Mobile only)
+    searchIcon.addEventListener('click', (e) => {
+        // Only trigger if window is mobile-sized (<= 1024px based on CSS)
+        if (window.innerWidth <= 1024) {
+            e.stopPropagation(); // Prevent document click from closing immediately
+            searchBar.classList.toggle('active');
+            if (searchBar.classList.contains('active') && searchInput) {
+                searchInput.focus();
+            }
+        }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1024 && searchBar.classList.contains('active')) {
+            if (!searchBar.contains(e.target)) {
+                searchBar.classList.remove('active');
+            }
+        }
+    });
+});
