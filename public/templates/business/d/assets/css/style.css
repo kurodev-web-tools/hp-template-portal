@@ -17,12 +17,35 @@
     --font-body: 'Montserrat', sans-serif;
 }
 
+/* Utility: Keep text groups together */
+.text-group {
+    display: inline-block;
+}
+
+/* Global Safety Reset */
+* {
+    box-sizing: border-box;
+}
+
 /* Reset / Base Overrides */
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
 body {
     background-color: var(--color-bg-dynamic);
     color: var(--color-text-white);
     font-family: var(--font-body);
-    overflow-x: hidden;
+    /* overflow-x: hidden; Removed redundant line */
     /* Mobile Fix */
 
     /* Speed Lines Texture */
@@ -394,13 +417,34 @@ a {
 /* Mobile */
 @media (max-width: 768px) {
 
+    /* Header Adjustments for Mobile */
+    .dynamic-header {
+        padding: 1rem 1.5rem;
+    }
+
+    /* Fix Horizontal Scroll & Margins */
+    .container {
+        width: 90%;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
     /* Show mobile menu elements on mobile */
     .dynamic-mobile-toggle {
         display: flex;
     }
 
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        overflow-wrap: break-word;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        word-break: break-all;
+        padding: 0 0.5rem;
     }
 
     .gallery-track {
@@ -419,6 +463,30 @@ a {
     .contact-section {
         clip-path: none;
         margin-top: 0;
+    }
+
+    /* ===== Small Mobile Optimization (< 375px) ===== */
+    @media (max-width: 380px) {
+        .container {
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+
+        .dynamic-header {
+            padding: 0.8rem 1rem;
+        }
+
+        .dynamic-header .logo {
+            font-size: 1.5rem;
+        }
     }
 
     /* ===== Custom Mobile Menu - Dynamic "Skewed Slit" ===== */
