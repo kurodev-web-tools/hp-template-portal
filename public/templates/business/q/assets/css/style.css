@@ -387,7 +387,7 @@ body.theme-quality {
         cursor: pointer;
         transition: all 0.5s ease;
     }
-    
+
     .precision-mobile-toggle:hover {
         background: var(--color-charcoal);
         color: #fff;
@@ -424,6 +424,8 @@ body.theme-quality {
 
     .craft-text h2 {
         font-size: 2rem;
+        word-break: break-all;
+        /* Break long words */
     }
 
     .contact-header h2 {
@@ -437,13 +439,29 @@ body.theme-quality {
 
     .values-container {
         flex-direction: column;
-        padding: 0 1.5rem;
+        padding: 0 1rem;
+        /* Reduced padding from 1.5rem */
         gap: 4rem;
+    }
+
+    .value-item p {
+        font-size: 0.9rem;
+        /* Slightly smaller to fit on one line */
+        letter-spacing: 0.05em;
+        /* Tighter tracking */
+        white-space: nowrap;
+        /* Force single line if possible, font-size handles fit */
     }
 
     .craft-container {
         flex-direction: column;
         padding: 0 1.5rem;
+        align-items: flex-start;
+        /* Prevent center overflow */
+    }
+
+    .craft-text {
+        width: 100%;
     }
 
     .craft-img-small {
