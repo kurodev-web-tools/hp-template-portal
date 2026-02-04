@@ -80,6 +80,10 @@ a {
     color: var(--color-gold);
 }
 
+.text-group {
+    display: inline-block;
+}
+
 /* Header */
 .luxury-header {
     position: fixed;
@@ -361,6 +365,7 @@ a {
     justify-content: center;
     background: var(--color-bg-secondary);
     padding: 4rem;
+    box-sizing: border-box;
 }
 
 .content-inner {
@@ -370,6 +375,8 @@ a {
 .amenities {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping on mobile */
     gap: 2rem;
     padding: 0;
     margin: 2rem 0;
@@ -432,6 +439,22 @@ blockquote.quote cite {
     font-style: normal;
 }
 
+/* Contact Form Classes */
+.contact-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #111;
+    padding: 3rem;
+    border: 1px solid #222;
+}
+
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
 /* Footer */
 .luxury-footer {
     padding: 5rem 0 2rem;
@@ -454,6 +477,16 @@ blockquote.quote cite {
     justify-content: center;
     gap: 3rem;
     margin-bottom: 4rem;
+    flex-wrap: wrap;
+    /* Allow wrapping */
+}
+
+@media (max-width: 600px) {
+    .footer-links {
+        gap: 1.5rem;
+        /* Reduced gap for mobile */
+        margin-bottom: 3rem;
+    }
 }
 
 .footer-links a {
@@ -513,7 +546,8 @@ blockquote.quote cite {
     }
 
     .split-content {
-        padding: 3rem 1.5rem;
+        padding: 4rem 2rem !important;
+        /* Force padding for mobile */
     }
 
     .luxury-header {
@@ -523,6 +557,16 @@ blockquote.quote cite {
     /* ===== Custom Mobile Menu - Luxury "Staggered Reveal" ===== */
 
     /* Hide desktop nav on mobile */
+    /* Contact Form Mobile Override */
+    .contact-form-wrapper {
+        padding: 1.5rem !important;
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
     /* Hide desktop nav on mobile */
     .luxury-header .nav,
     .luxury-header nav {
@@ -684,6 +728,7 @@ blockquote.quote cite {
         display: none !important;
     }
 }
+
 /* Accessibility Focus Override for Luxury Theme */
 input:focus-visible,
 select:focus-visible,
