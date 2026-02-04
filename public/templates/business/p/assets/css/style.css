@@ -369,10 +369,21 @@ body.theme-pop {
 }
 
 @keyframes bounceIn {
-    0% { transform: translateY(-100%); }
-    60% { transform: translateY(10%); }
-    80% { transform: translateY(-5%); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(-100%);
+    }
+
+    60% {
+        transform: translateY(10%);
+    }
+
+    80% {
+        transform: translateY(-5%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .pop-mobile-menu ul {
@@ -415,6 +426,39 @@ body.theme-pop {
         display: none;
     }
 
+    /* Fix Horizontal Scroll & Shadow Clipping */
+    .pop-container {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .pop-story,
+    .pop-manga-grid,
+    .pop-cta {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .story-panel {
+        width: calc(100% - 20px);
+        /* Room for shadow */
+        margin: 0 auto;
+        box-shadow: 10px 10px 0 var(--color-pop-pink);
+        /* Slightly reduced shadow */
+    }
+
+    .grid-item {
+        width: calc(100% - 20px);
+        /* Room for shadow */
+        margin: 0 auto;
+        box-shadow: 8px 8px 0 var(--color-black);
+    }
+
+    .grid-item:hover {
+        transform: none;
+        box-shadow: 8px 8px 0 var(--color-black);
+    }
+
     .pop-mobile-toggle {
         display: flex;
         align-items: center;
@@ -432,30 +476,50 @@ body.theme-pop {
         cursor: pointer;
         transition: transform 0.2s;
     }
-    
+
     .pop-mobile-toggle:active {
         transform: translate(2px, 2px);
         box-shadow: 4px 4px 0 var(--color-black);
     }
 
     .pop-stroke {
-        font-size: 4rem;
+        font-size: 3.5rem;
+    }
+
+    .sub-bubble {
+        padding: 1.5rem;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+    }
+
+    .panel-body {
+        padding: 2.5rem 1.5rem;
+        font-size: 1rem;
     }
 
     .grid-wrap {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .grid-item {
+        grid-column: auto !important;
+        width: calc(100% - 20px);
+        margin: 0 auto !important;
         transform: none !important;
-        margin-left: 0 !important;
+        padding: 2rem 1.5rem;
+        /* Reduced padding for mobile */
     }
 
     .speech-bubble-cta {
-        width: 100%;
+        width: calc(100% - 20px);
         height: auto;
         border-radius: 30px;
-        padding: 4rem 1.5rem;
+        padding: 3rem 1.5rem;
+        margin: 0 auto;
+        box-shadow: 12px 12px 0 var(--color-pop-orange);
     }
 
     .speech-bubble-cta::after {
