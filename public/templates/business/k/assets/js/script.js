@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Header Scroll Logic ---
+    const header = document.querySelector('.main-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                document.body.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+                document.body.classList.remove('scrolled');
+            }
+        });
+    }
+
     // --- Premium Effects Initialization ---
     // Note: Depends on premium-effects.js being loaded
 
