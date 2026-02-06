@@ -51,7 +51,7 @@ const PORTAL_DATA = {
                 description: '信頼と誠実さを表現するオーセンティックなデザイン。企業の公式サイトに最適です。',
                 features: ['Corporate', 'Trust', 'Blue Theme'],
                 colors: ['#003366', '#ffffff', '#f5f5f5'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_a.webp',
                 themeLabel: 'Authentic'
             },
             {
@@ -59,7 +59,7 @@ const PORTAL_DATA = {
                 description: '革新とエネルギーを感じさせる大胆なデザイン。スタートアップやベンチャー企業向け。',
                 features: ['Startup', 'Bold Typography', 'High Contrast'],
                 colors: ['#ff9900', '#1a1a1a', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_b.webp',
                 themeLabel: 'Bold'
             },
             {
@@ -67,7 +67,7 @@ const PORTAL_DATA = {
                 description: '清潔感と安心感を与えるクリーンなデザイン。医療機関やコンサルティングファームに。',
                 features: ['Medical', 'Clean', 'Minimalist'],
                 colors: ['#30cfd0', '#ffffff', '#330867'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_c.webp',
                 themeLabel: 'Clean'
             },
             {
@@ -75,7 +75,7 @@ const PORTAL_DATA = {
                 description: 'スピード感と力強さを強調したダイナミックなデザイン。スポーツや自動車関連に。',
                 features: ['Automotive', 'Speed', 'Impact'],
                 colors: ['#ff4500', '#1a1a1a', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_d.webp',
                 themeLabel: 'Dynamic'
             },
             {
@@ -83,7 +83,7 @@ const PORTAL_DATA = {
                 description: '自然との調和をテーマにしたエコデザイン。環境保護団体やオーガニック製品に。',
                 features: ['Nature', 'Organic', 'Sustainability'],
                 colors: ['#a8e6cf', '#dcedc1', '#f9f9f0'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_e.webp',
                 themeLabel: 'Eco'
             },
             {
@@ -91,7 +91,7 @@ const PORTAL_DATA = {
                 description: '最先端技術をイメージさせる近未来的なデザイン。IT企業やテック系サービスに。',
                 features: ['Cyber', 'Neon', 'Tech'],
                 colors: ['#00ffff', '#000000', '#111111'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_f.webp',
                 themeLabel: 'Future'
             },
             {
@@ -99,7 +99,7 @@ const PORTAL_DATA = {
                 description: '世界規模のネットワークを表現したグローバルデザイン。物流や商社に。',
                 features: ['Logistics', 'Global', 'Network'],
                 colors: ['#1e90ff', '#0d1b2a', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_g.webp',
                 themeLabel: 'Global'
             },
             {
@@ -107,7 +107,7 @@ const PORTAL_DATA = {
                 description: '圧倒的な高級感と静寂を演出するラグジュアリーデザイン。ホテルや高級ブランドに。',
                 features: ['Luxury', 'Hotel', 'Premium'],
                 colors: ['#d4af37', '#1a1a1a', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_h.webp',
                 themeLabel: 'High-end'
             },
             {
@@ -115,7 +115,7 @@ const PORTAL_DATA = {
                 description: '信頼と知性を象徴するインテリジェント・デザイン。分析ツールやダッシュボードに最適です。',
                 features: ['Monitoring', 'Intelligent', 'Dashboard'],
                 colors: ['#0a192f', '#64ffda', '#ccd6f6'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_i.webp',
                 themeLabel: 'Intelligent'
             },
             {
@@ -123,7 +123,7 @@ const PORTAL_DATA = {
                 description: '伝統と革新が融合する和モダン・デザイン。京都の老舗や和テイストのブランドに。',
                 features: ['Modern Japanese', 'Vertical Text', 'Mincho'],
                 colors: ['#2d3436', '#00b894', '#dfe6e9'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_j.webp',
                 themeLabel: 'Modern'
             },
             {
@@ -131,7 +131,7 @@ const PORTAL_DATA = {
                 description: '理性と知性を重んじるアカデミックなデザイン。研究所や学会、教育機関向け。',
                 features: ['Academic', 'Rational', 'Serif'],
                 colors: ['#1a202c', '#edf2f7', '#2d3748'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_k.webp',
                 themeLabel: 'Knowledge'
             },
             {
@@ -139,7 +139,7 @@ const PORTAL_DATA = {
                 description: '論理的思考とシステム美を体現するロジカル・デザイン。エンジニアリングやシステム開発に。',
                 features: ['Systemic', 'Terminal', 'Logic Flow'],
                 colors: ['#0f172a', '#38bdf8', '#1e293b'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_l.webp',
                 themeLabel: 'Logical'
             },
             {
@@ -147,7 +147,7 @@ const PORTAL_DATA = {
                 description: '本質のみを抽出した究極のミニマル・デザイン。プロダクトギャラリーや建築事務所に。',
                 features: ['Minimalist', 'Whitespace', 'Typography'],
                 colors: ['#ffffff', '#000000', '#333333'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_m.webp',
                 themeLabel: 'Minimal'
             },
             {
@@ -155,7 +155,7 @@ const PORTAL_DATA = {
                 description: 'ネオンの鼓動を感じるサイバーパンク・デザイン。ナイトクラブやエキサイティングなイベントに。',
                 features: ['Neon', 'Cyber', 'Night-life'],
                 colors: ['#ff00ff', '#00ffff', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_n.webp',
                 themeLabel: 'Neon Night'
             },
             {
@@ -163,7 +163,7 @@ const PORTAL_DATA = {
                 description: '自然のリズムと調和する流体デザイン。スパやウェルビーイング、オーガニックブランドに。',
                 features: ['Organic', 'Fluid Shape', 'Healing'],
                 colors: ['#ff7f50', '#ffdced', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_o.webp',
                 themeLabel: 'Organic Flow'
             },
             {
@@ -171,7 +171,7 @@ const PORTAL_DATA = {
                 description: '元気を届けるポップで弾けるデザイン。エンターテインメントや親しみやすいブランドに。',
                 features: ['Pop', 'Vibrant', 'Comic Style'],
                 colors: ['#ff6600', '#ffea00', '#ff007f'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_p.webp',
                 themeLabel: 'Pop Vibrant'
             },
             {
@@ -179,7 +179,7 @@ const PORTAL_DATA = {
                 description: '究極の精度と品質を象徴する、引き算の美学。高級プロダクトや精密機器ブランドに。',
                 features: ['Quality', 'Precision', 'Minimal Luxury'],
                 colors: ['#000000', '#ffffff', '#e5e5e5'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_q.webp',
                 themeLabel: 'Quality First'
             },
             {
@@ -187,7 +187,7 @@ const PORTAL_DATA = {
                 description: '格式高い伝統と権威を継承するマルチページ。歴史ある組織や高級ブランドのアーカイブに。',
                 features: ['Multi-page', 'Tradition', 'Decorative'],
                 colors: ['#8b0000', '#d4af37', '#0d0d0d'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_r.webp',
                 themeLabel: 'Royal Legacy'
             },
             {
@@ -195,7 +195,7 @@ const PORTAL_DATA = {
                 description: '次世代の効率を追求したモダンなSaaS UI。テックツールやWebサービスの紹介に。',
                 features: ['Modern SaaS', 'Isometric', 'High Efficiency'],
                 colors: ['#8a2be2', '#f8f9fe', '#1a1a1a'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_s.webp',
                 themeLabel: 'Smart SaaS'
             },
             {
@@ -203,7 +203,7 @@ const PORTAL_DATA = {
                 description: '堅牢なセキュリティと信頼を誓うマルチページ。金融・インフラ・セキュリティ企業向け。',
                 features: ['Multi-page', 'Security', 'Robust'],
                 colors: ['#434b4d', '#1e3a8a', '#f0f2f5'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_t.webp',
                 themeLabel: 'Trust Guard'
             },
             {
@@ -211,7 +211,7 @@ const PORTAL_DATA = {
                 description: '都市のエネルギーをステンシルで刻んだストリート・デザイン。クリエイティブ集団やカルチャー拠点に。',
                 features: ['Urban', 'Stencil', 'Raw Energy'],
                 colors: ['#ff3e00', '#444444', '#eaeaea'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_u.webp',
                 themeLabel: 'Urban Street'
             },
             {
@@ -219,7 +219,7 @@ const PORTAL_DATA = {
                 description: '記憶に焼き付く補色配色のインパクト・デザイン。広告・プロモーションや先鋭的なアートプロジェクトに。',
                 features: ['Vivid', 'Contrast', 'Impact'],
                 colors: ['#ffff00', '#ff00ff', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_v.webp',
                 themeLabel: 'Vivid Impact'
             },
             {
@@ -227,7 +227,7 @@ const PORTAL_DATA = {
                 description: 'パノラマ的な広がりを見せる横スクロール・デザイン。写真・建築・風景を愛するブランドに。',
                 features: ['Horizontal Scroll', 'Panorama', 'Minimal'],
                 colors: ['#ffffff', '#000000', '#f0f0f0'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_w.webp',
                 themeLabel: 'Wide Horizon'
             },
             {
@@ -235,7 +235,7 @@ const PORTAL_DATA = {
                 description: '極限のボルテージを全画面スナップで表現。エクストリームスポーツや熱狂的なプロジェクトに。',
                 features: ['Snap Scroll', 'Action', 'Xtreme'],
                 colors: ['#ff0000', '#000000', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_x.webp',
                 themeLabel: 'Xtreme Snap'
             },
             {
@@ -243,7 +243,7 @@ const PORTAL_DATA = {
                 description: '着実な成長と収益をイメージした洗練のマルチページ。コンサルティングや投資関連ビジネスに。',
                 features: ['Multi-page', 'Investment', 'Sophisticated'],
                 colors: ['#d4af37', '#3a4d39', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_y.webp',
                 themeLabel: 'Yield Growth'
             },
             {
@@ -251,7 +251,7 @@ const PORTAL_DATA = {
                 description: '究極の静寂と和の精神を形にした禅デザイン。茶室・スパ・哲学的なブランドに。',
                 features: ['Zen', 'Vertical', 'Silence'],
                 colors: ['#ffffff', '#1a1a1a', '#f5f5f5'],
-                image: '',
+                image: 'assets/thumbnails/business/bus_z.webp',
                 themeLabel: 'Zen Garden'
             }
         ],
