@@ -30,8 +30,7 @@ const PORTAL_DATA = {
             // Vibrant Pink/Red
             color: '#ff0055',
             theme: 'theme-lp',
-            image: '',
-            isComingSoon: true
+            image: ''
         },
         {
             id: 'portfolio',
@@ -466,8 +465,19 @@ const PORTAL_DATA = {
             }
         ],
         'lp': [
-            ...Array.from({ length: 26 }, (_, i) => {
-                const char = String.fromCharCode(65 + i); // A to Z
+            {
+                id: 'lp_a',
+                name: 'App Showcase',
+                tag: 'A',
+                path: 'templates/lp/a',
+                description: 'スマホの中のアプリが実際に動く、没入型デモンストレーション。アプリやSaaSの魅力が直感的に伝わります。',
+                features: ['Interactive Mockup', 'Scroll Animation', 'App/SaaS'],
+                colors: ['#2563EB', '#ffffff', '#F8FAFC'],
+                image: 'assets/thumbnails/lp/lp_a.webp',
+                themeLabel: 'App Showcase'
+            },
+            ...Array.from({ length: 25 }, (_, i) => {
+                const char = String.fromCharCode(66 + i); // B to Z
                 return {
                     id: `lp_${char.toLowerCase()}`,
                     name: `LP ${char}`,
