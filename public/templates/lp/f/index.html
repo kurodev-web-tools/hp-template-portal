@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="あなたにピッタリのスキンケア診断。3つの質問で、あなたの肌タイプと最適なケア方法を提案します。">
+    <title>あなたにピッタリのスキンケア診断 | 肌タイプ診断</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__inner">
+            <span class="header__logo">お肌診断</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero__container">
+            <div class="hero__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+            </div>
+            <h1 class="hero__title">
+                あなたにピッタリの<br>
+                <span class="hero__title-accent">スキンケア</span>は？
+            </h1>
+            <p class="hero__lead">
+                <span>たった3つの質問で、</span><span>あなたの肌タイプを診断。</span><br class="pc-only">
+                <span>今のお悩みに合わせた</span><span>ケア方法をご提案します。</span>
+            </p>
+            <button class="btn btn--large btn--primary" id="startQuiz">
+                診断を始める
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+            <p class="hero__note">所要時間：約1分</p>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz" id="quiz">
+        <div class="quiz__container">
+            <!-- Progress Bar -->
+            <div class="quiz__progress">
+                <div class="quiz__progress-bar">
+                    <div class="quiz__progress-fill" id="progressFill"></div>
+                </div>
+                <span class="quiz__progress-text"><span id="currentStep">1</span> / 3</span>
+            </div>
+
+            <!-- Question Cards -->
+            <div class="quiz__cards">
+                <!-- Q1 -->
+                <div class="quiz-card quiz-card--active" data-step="1">
+                    <div class="quiz-card__number">Q1</div>
+                    <h2 class="quiz-card__question">年齢を教えてください</h2>
+                    <div class="quiz-card__options">
+                        <button class="option-btn" data-value="20s">
+                            <span class="option-btn__icon">🌸</span>
+                            <span class="option-btn__text">20代</span>
+                        </button>
+                        <button class="option-btn" data-value="30s">
+                            <span class="option-btn__icon">✨</span>
+                            <span class="option-btn__text">30代</span>
+                        </button>
+                        <button class="option-btn" data-value="40s">
+                            <span class="option-btn__icon">🌺</span>
+                            <span class="option-btn__text">40代</span>
+                        </button>
+                        <button class="option-btn" data-value="50s">
+                            <span class="option-btn__icon">🌹</span>
+                            <span class="option-btn__text">50代以上</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="quiz-card" data-step="2">
+                    <div class="quiz-card__number">Q2</div>
+                    <h2 class="quiz-card__question">肌のお悩みは？</h2>
+                    <div class="quiz-card__options">
+                        <button class="option-btn" data-value="dry">
+                            <span class="option-btn__icon">💧</span>
+                            <span class="option-btn__text">乾燥・カサつき</span>
+                        </button>
+                        <button class="option-btn" data-value="oil">
+                            <span class="option-btn__icon">💦</span>
+                            <span class="option-btn__text">テカリ・皮脂</span>
+                        </button>
+                        <button class="option-btn" data-value="aging">
+                            <span class="option-btn__icon">🌿</span>
+                            <span class="option-btn__text">シワ・たるみ</span>
+                        </button>
+                        <button class="option-btn" data-value="sensitive">
+                            <span class="option-btn__icon">🌸</span>
+                            <span class="option-btn__text">赤み・敏感肌</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="quiz-card" data-step="3">
+                    <div class="quiz-card__number">Q3</div>
+                    <h2 class="quiz-card__question">理想の仕上がりは？</h2>
+                    <div class="quiz-card__options">
+                        <button class="option-btn" data-value="moist">
+                            <span class="option-btn__icon">✨</span>
+                            <span class="option-btn__text">しっとり艶肌</span>
+                        </button>
+                        <button class="option-btn" data-value="clear">
+                            <span class="option-btn__icon">💎</span>
+                            <span class="option-btn__text">透明感のある肌</span>
+                        </button>
+                        <button class="option-btn" data-value="firm">
+                            <span class="option-btn__icon">🌟</span>
+                            <span class="option-btn__text">ハリのある肌</span>
+                        </button>
+                        <button class="option-btn" data-value="calm">
+                            <span class="option-btn__icon">🍃</span>
+                            <span class="option-btn__text">落ち着いた肌</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Section -->
+    <section class="loading" id="loading">
+        <div class="loading__container">
+            <div class="loading__spinner">
+                <svg viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="3" />
+                </svg>
+            </div>
+            <p class="loading__text">診断中...</p>
+            <p class="loading__sub">あなたの肌タイプを分析しています</p>
+        </div>
+    </section>
+
+    <!-- Result Section -->
+    <section class="result" id="result">
+        <div class="result__container">
+            <div class="result__badge">診断結果</div>
+            <h2 class="result__title">
+                あなたは<span id="resultType">【潤い不足タイプ】</span>です！
+            </h2>
+            <div class="result__image">
+                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80" alt="潤い肌"
+                    id="resultImage">
+            </div>
+            <div class="result__features">
+                <h3 class="result__features-title">このタイプの特徴</h3>
+                <ul class="result__list" id="resultFeatures">
+                    <li>メイクノリが悪くなりがち</li>
+                    <li>小じわが気になる</li>
+                    <li>季節の変わり目に肌が敏感になりやすい</li>
+                </ul>
+            </div>
+            <div class="result__advice">
+                <h3 class="result__advice-title">おすすめのケア方法</h3>
+                <p id="resultAdvice">
+                    バリア機能をサポートする成分が配合された保湿ケアが効果的です。特にヒアルロン酸やセラミドを配合したアイテムを選びましょう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="solution__container">
+            <span class="section-label">FOR YOU</span>
+            <h2 class="section-title">だから、これが必要です</h2>
+
+            <div class="product-card">
+                <div class="product-card__badge">診断結果からのおすすめ</div>
+                <div class="product-card__image">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80" alt="美容液">
+                </div>
+                <div class="product-card__content">
+                    <h3 class="product-card__name">モイストバリア美容液</h3>
+                    <p class="product-card__desc">
+                        ヒアルロン酸・セラミド・コラーゲンを配合。<br>
+                        肌の奥深くまで潤いを届け、バリア機能をサポートします。
+                    </p>
+                    <ul class="product-card__features">
+                        <li>✓ 浸透型ヒアルロン酸配合</li>
+                        <li>✓ 3種のセラミドで保湿</li>
+                        <li>✓ 敏感肌でも安心の低刺激設計</li>
+                        <li>✓ 1本で化粧水＋美容液の役割</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="offer" id="offer">
+        <div class="offer__container">
+            <div class="offer-card">
+                <div class="offer-card__header">
+                    <span class="offer-card__label">初回限定お試し価格</span>
+                    <h3 class="offer-card__title">今だけの特別価格</h3>
+                </div>
+
+                <div class="offer-card__price">
+                    <p class="offer-card__original">
+                        通常価格 <span>¥6,480</span>
+                    </p>
+                    <div class="offer-card__current">
+                        <span class="offer-card__yen">¥</span>
+                        <span class="offer-card__amount">1</span>
+                        <span class="offer-card__unit">,980</span>
+                    </div>
+                    <p class="offer-card__tax">（税込・送料無料）</p>
+                </div>
+
+                <div class="offer-card__benefits">
+                    <div class="offer-card__benefit">
+                        <span class="offer-card__benefit-icon">🎁</span>
+                        <span>初回限定 70% OFF</span>
+                    </div>
+                    <div class="offer-card__benefit">
+                        <span class="offer-card__benefit-icon">🚚</span>
+                        <span>全国送料無料</span>
+                    </div>
+                    <div class="offer-card__benefit">
+                        <span class="offer-card__benefit-icon">✨</span>
+                        <span>30日間全額返金保証</span>
+                    </div>
+                </div>
+
+                <div class="countdown">
+                    <p class="countdown__label">この価格で購入できるのは...</p>
+                    <div class="countdown__timer" id="countdown">
+                        <span>23</span>:<span>59</span>:<span>45</span>
+                    </div>
+                </div>
+
+                <a href="#purchase" class="btn btn--large btn--primary">今すぐお試しする</a>
+                <p class="offer-card__note">
+                    <span>※ 2回目以降は通常価格での</span><span>お届けとなります</span><br>
+                    <span>※ いつでも解約可能</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purchase Form Section -->
+    <section class="purchase" id="purchase">
+        <div class="purchase__container">
+            <h2 class="section-title">お申し込み</h2>
+            <form class="purchase-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="form-label">お名前 <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="山田 花子" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">メールアドレス <span>*</span></label>
+                    <input type="email" class="form-input" placeholder="hanako@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">電話番号 <span>*</span></label>
+                    <input type="tel" class="form-input" placeholder="090-1234-5678" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">郵便番号 <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="123-4567" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">住所 <span>*</span></label>
+                    <input type="text" class="form-input" placeholder="東京都〇〇区..." required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">お支払い方法 <span>*</span></label>
+                    <div class="form-radio-group">
+                        <label class="form-radio">
+                            <input type="radio" name="payment" value="card" checked>
+                            <span>クレジットカード</span>
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="payment" value="konbini">
+                            <span>コンビニ決済</span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn--large btn--primary btn--full">
+                    ご注文を確定する
+                </button>
+                <p class="form-privacy">
+                    <a href="#">プライバシーポリシー</a>に同意の上、送信してください。
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="faq__container">
+            <h2 class="section-title">よくあるご質問</h2>
+            <div class="faq__list">
+                <div class="faq-item">
+                    <button class="faq-item__question">
+                        <span>定期購入はいつでも解約できますか？</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>はい、いつでも解約可能です。マイページから1クリックで解約できますし、メールや電話でも対応しております。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-item__question">
+                        <span>敏感肌でも使えますか？</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>はい、敏感肌の方でもお使いいただける低刺激設計です。アルコール・パラベン・合成香料不使用で、パッチテストもクリアしています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-item__question">
+                        <span>効果が実感できなかった場合は？</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>30日間全額返金保証をお付けしています。効果にご満足いただけない場合は、全額返金いたしますのでご安心ください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__logo">お肌診断</span>
+            <nav class="footer__nav">
+                <a href="#">会社概要</a>
+                <a href="#">プライバシーポリシー</a>
+                <a href="#">特定商取引法に基づく表記</a>
+                <a href="#">お問い合わせ</a>
+            </nav>
+            <p class="footer__copy">&copy; 2026 お肌診断 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
