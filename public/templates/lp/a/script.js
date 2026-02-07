@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFAQAccordion();
     initInteractiveMockup();
     initScrollResponsiveMockup();
+    initDynamicDate();
 });
 
 /**
@@ -55,17 +56,17 @@ function initFAQAccordion() {
 
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-item__question');
-        
+
         question.addEventListener('click', () => {
             const isOpen = item.classList.contains('is-open');
-            
+
             // Close all other items
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
                     otherItem.classList.remove('is-open');
                 }
             });
-            
+
             // Toggle current item
             item.classList.toggle('is-open', !isOpen);
         });
@@ -78,7 +79,7 @@ function initFAQAccordion() {
  */
 function initInteractiveMockup() {
     const cards = document.querySelectorAll('.interactive-app__card');
-    
+
     cards.forEach(card => {
         card.addEventListener('click', () => {
             // Add a visual feedback effect
@@ -91,21 +92,21 @@ function initInteractiveMockup() {
             const currentColumn = card.closest('.interactive-app__column');
             const columns = document.querySelectorAll('.interactive-app__column');
             const currentIndex = Array.from(columns).indexOf(currentColumn);
-            
+
             // Move to next column (cycle back to first if at end)
             const nextIndex = (currentIndex + 1) % columns.length;
             const nextColumn = columns[nextIndex];
-            
+
             if (nextColumn && nextColumn !== currentColumn) {
                 // Animate the move
                 card.style.opacity = '0';
                 card.style.transform = 'translateX(20px)';
-                
+
                 setTimeout(() => {
                     nextColumn.querySelector('.interactive-app__cards').appendChild(card);
                     card.style.opacity = '1';
                     card.style.transform = 'translateX(0)';
-                    
+
                     // Update card status based on column
                     if (nextColumn.getAttribute('data-column') === 'done') {
                         card.classList.add('interactive-app__card--done');
@@ -128,7 +129,7 @@ function initScrollResponsiveMockup() {
 
     const cards = mockup.querySelectorAll('.interactive-app__card');
     const finger = mockup.querySelector('.interactive-phone__finger');
-    
+
     let lastScrollY = window.scrollY;
     let ticking = false;
 
@@ -136,36 +137,36 @@ function initScrollResponsiveMockup() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
         const mockupRect = mockup.getBoundingClientRect();
-        
+
         // Check if mockup is in viewport
         if (mockupRect.top < windowHeight && mockupRect.bottom > 0) {
             const progress = 1 - (mockupRect.top / windowHeight);
             const clampedProgress = Math.max(0, Math.min(1, progress));
-            
+
             // Subtle rotation based on scroll
             const rotation = (clampedProgress - 0.5) * 5;
             mockup.style.transform = `perspective(1000px) rotateY(${rotation}deg)`;
-            
+
             // Animate cards based on scroll direction
             const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
-            
+
             cards.forEach((card, index) => {
                 const delay = index * 0.1;
                 const cardProgress = Math.max(0, Math.min(1, (clampedProgress - delay) / (1 - delay)));
-                
+
                 if (scrollDirection === 'down') {
                     card.style.transform = `translateY(${(1 - cardProgress) * 20}px)`;
                     card.style.opacity = 0.5 + (cardProgress * 0.5);
                 }
             });
-            
+
             // Animate finger indicator
             if (finger) {
                 const fingerOffset = Math.sin(Date.now() / 500) * 5;
                 finger.style.transform = `translateY(${fingerOffset}px)`;
             }
         }
-        
+
         lastScrollY = scrollY;
         ticking = false;
     }
@@ -185,7 +186,7 @@ function initScrollResponsiveMockup() {
  * Phone Mockup Parallax Effect
  * Add subtle parallax to hero phone mockup
  */
-(function() {
+(function () {
     const heroMockup = document.querySelector('.hero__mockup');
     if (!heroMockup) return;
 
@@ -194,7 +195,7 @@ function initScrollResponsiveMockup() {
     function updateParallax() {
         const scrolled = window.scrollY;
         const rate = scrolled * 0.1;
-        
+
         heroMockup.style.transform = `translateY(${rate}px)`;
         ticking = false;
     }
@@ -210,9 +211,9 @@ function initScrollResponsiveMockup() {
 /**
  * Smooth reveal animations for steps
  */
-(function() {
+(function () {
     const steps = document.querySelectorAll('.step');
-    
+
     const stepObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -236,9 +237,9 @@ function initScrollResponsiveMockup() {
 /**
  * Feature cards stagger animation
  */
-(function() {
+(function () {
     const featureCards = document.querySelectorAll('.feature-card');
-    
+
     const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -263,9 +264,9 @@ function initScrollResponsiveMockup() {
 /**
  * Pricing cards animation
  */
-(function() {
+(function () {
     const pricingCards = document.querySelectorAll('.pricing-card');
-    
+
     const pricingObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -290,9 +291,9 @@ function initScrollResponsiveMockup() {
 /**
  * Testimonial cards animation
  */
-(function() {
+(function () {
     const testimonialCards = document.querySelectorAll('.testimonial-card');
-    
+
     const testimonialObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -317,15 +318,15 @@ function initScrollResponsiveMockup() {
 /**
  * Float cards animation enhancement
  */
-(function() {
+(function () {
     const floatCards = document.querySelectorAll('.phone-mockup__float-card');
-    
+
     floatCards.forEach((card, index) => {
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'scale(1.1)';
             card.style.zIndex = '10';
         });
-        
+
         card.addEventListener('mouseleave', () => {
             card.style.transform = '';
             card.style.zIndex = '';
@@ -336,9 +337,9 @@ function initScrollResponsiveMockup() {
 /**
  * CTA buttons pulse animation
  */
-(function() {
+(function () {
     const ctaButtons = document.querySelectorAll('.cta__btn');
-    
+
     ctaButtons.forEach(btn => {
         btn.addEventListener('mouseenter', () => {
             btn.style.animation = 'none';
@@ -349,19 +350,21 @@ function initScrollResponsiveMockup() {
 /**
  * Add pulse animation keyframes dynamically
  */
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes gentlePulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-        50% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-    }
-    
-    .cta__btn--primary {
-        animation: gentlePulse 2s infinite;
-    }
-    
+
     .cta__btn--primary:hover {
-        animation: none;
-    }
+    animation: none;
+}
 `;
 document.head.appendChild(style);
+
+/**
+ * Dynamic Date for Mockup
+ * Sets the date in the phone mockup to today
+ */
+function initDynamicDate() {
+    const dateEl = document.querySelector('.app-ui__date');
+    if (dateEl) {
+        const now = new Date();
+        dateEl.textContent = `${ now.getFullYear() }年${ now.getMonth() + 1 }月${ now.getDate() } 日`;
+    }
+}
