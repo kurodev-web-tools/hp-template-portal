@@ -1,0 +1,369 @@
+/* ==========================================================================
+   LP Base CSS (Common Infrastructure for A-Z)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables & Reset
+   -------------------------------------------------------------------------- */
+:root {
+    /* Default Colors (Will be overridden by individual themes) */
+    --primary-color: #333;
+    --secondary-color: #666;
+    --accent-color: #007bff;
+    --bg-color: #fff;
+    --text-color: #333;
+    --text-light: #fff;
+
+    /* Spacing (Desktop Default) */
+    --space-xs: 0.5rem;
+    /* 8px */
+    --space-sm: 1rem;
+    /* 16px */
+    --space-md: 2rem;
+    /* 32px */
+    --space-lg: 4rem;
+    /* 64px */
+    --space-xl: 8rem;
+    /* 128px */
+
+    /* Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+
+    /* Common */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-full: 9999px;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    :root {
+        /* Spacing (Mobile Adjustment) */
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 5rem;
+        --header-height: 60px;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Layout Utilities
+   -------------------------------------------------------------------------- */
+.l-container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.l-section {
+    padding: var(--space-lg) 0;
+}
+
+.l-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+.l-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .l-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .l-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Spacing Utilities */
+.u-mb-xs {
+    margin-bottom: var(--space-xs);
+}
+
+.u-mb-sm {
+    margin-bottom: var(--space-sm);
+}
+
+.u-mb-md {
+    margin-bottom: var(--space-md);
+}
+
+.u-mb-lg {
+    margin-bottom: var(--space-lg);
+}
+
+.u-text-center {
+    text-align: center;
+}
+
+.u-text-right {
+    text-align: right;
+}
+
+.u-text-left {
+    text-align: left;
+}
+
+.u-font-bold {
+    font-weight: 700;
+}
+
+.u-hidden-pc {
+    display: none !important;
+}
+
+.u-hidden-sp {
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .u-hidden-pc {
+        display: block !important;
+    }
+
+    .u-hidden-sp {
+        display: none !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. Common Components
+   -------------------------------------------------------------------------- */
+
+/* Buttons */
+.c-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 3rem;
+    font-weight: bold;
+    border-radius: var(--radius-full);
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.c-btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.c-btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.c-btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.c-btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Form */
+.c-form-group {
+    margin-bottom: var(--space-md);
+}
+
+.c-input,
+.c-textarea,
+.c-select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.c-input:focus,
+.c-textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Cards */
+.c-card {
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Pricing Component */
+.c-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    scroll-behavior: smooth;
+}
+
+.c-price-card {
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid #eee;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.c-pricing-controls {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .c-pricing-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: var(--space-sm);
+        padding-bottom: var(--space-md);
+        /* Hide Scrollbar */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .c-pricing-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .c-price-card {
+        min-width: 85%;
+        margin-right: 0;
+        scroll-snap-align: center;
+    }
+
+    .c-pricing-controls {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: var(--space-md);
+    }
+
+    .c-price-control {
+        background: transparent;
+        border: 1px solid #ddd;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: var(--secondary-color);
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+    }
+
+    .c-price-control.is-active {
+        background: var(--accent-color);
+        color: #fff;
+        border-color: var(--accent-color);
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. Animations
+   -------------------------------------------------------------------------- */
+.js-scroll-trigger {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js-scroll-trigger.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animations Definitions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
