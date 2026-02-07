@@ -476,8 +476,19 @@ const PORTAL_DATA = {
                 image: 'assets/thumbnails/lp/lp_a.webp',
                 themeLabel: 'App Showcase'
             },
-            ...Array.from({ length: 25 }, (_, i) => {
-                const char = String.fromCharCode(66 + i); // B to Z
+            {
+                id: 'lp_b',
+                name: 'Brand Story',
+                tag: 'B',
+                path: 'templates/lp/b',
+                description: 'ブランドの世界観を余すことなく表現するストーリーテリング型LP。D2Cやアパレルの「想い」を伝えます。',
+                features: ['Parallax', 'Storytelling', 'D2C/Brand'],
+                colors: ['#A68A64', '#57534E', '#FAFAF9'],
+                image: 'assets/thumbnails/lp/lp_b.webp',
+                themeLabel: 'Brand Story'
+            },
+            ...Array.from({ length: 24 }, (_, i) => {
+                const char = String.fromCharCode(67 + i); // C to Z
                 return {
                     id: `lp_${char.toLowerCase()}`,
                     name: `LP ${char}`,
