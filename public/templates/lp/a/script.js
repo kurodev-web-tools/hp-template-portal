@@ -350,10 +350,20 @@ function initScrollResponsiveMockup() {
 /**
  * Add pulse animation keyframes dynamically
  */
-
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes gentlePulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+        50% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+    }
+    
+    .cta__btn--primary {
+        animation: gentlePulse 2s infinite;
+    }
+    
     .cta__btn--primary:hover {
-    animation: none;
-}
+        animation: none;
+    }
 `;
 document.head.appendChild(style);
 
@@ -365,6 +375,6 @@ function initDynamicDate() {
     const dateEl = document.querySelector('.app-ui__date');
     if (dateEl) {
         const now = new Date();
-        dateEl.textContent = `${ now.getFullYear() }年${ now.getMonth() + 1 }月${ now.getDate() } 日`;
+        dateEl.textContent = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()} 日`;
     }
 }
