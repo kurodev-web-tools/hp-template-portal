@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="あなたの家計、あと◯◯万円節約できます。リアルタイムシミュレーションで電気代削減額を計算。">
+    <title>家計シミュレーター | あなたの節約額を今すぐ計算</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/lp-base.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">Smart Saver</span>
+            </div>
+            <nav class="nav-desktop">
+                <a href="#simulation">シミュレーション</a>
+                <a href="#solution">解決策</a>
+                <a href="#proof">実績</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span class="badge-text">電気代削減シミュレーター</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">あなたの家計、</span>
+                        <span class="title-line">
+                            あと<span class="highlight" id="hero-savings">68</span><span class="highlight-unit">万円</span>
+                            <span class="ib">節約できます。</span>
+                        </span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        今の電気代を入力するだけで、<br class="sp-only">
+                        <span class="ib">年間の削減額と10年後の貯蓄額が</span><span class="ib">即座にわかります。</span>
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#simulation" class="btn btn-primary btn-pulse">
+                            <span class="btn-text">まずはシミュレーション</span>
+                            <span class="btn-arrow">↓</span>
+                        </a>
+                        <p class="hero-note">無料・登録不要・30秒で完了</p>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="calculator-preview">
+                        <div class="preview-header">
+                            <span class="preview-label">年間削減額</span>
+                            <span class="preview-value" id="preview-savings">¥82,500</span>
+                        </div>
+                        <div class="preview-chart">
+                            <div class="chart-bar" style="--value: 30%"></div>
+                            <div class="chart-bar highlight" style="--value: 70%"></div>
+                        </div>
+                        <div class="preview-footer">
+                            <span class="preview-note">↑ スライダーで調整可能</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>SCROLL</span>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="problem" id="problem">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">PROBLEM</span>
+                    <h2 class="section-title">
+                        <span class="ib">こんな悩み、</span><span class="ib">ありませんか？</span>
+                    </h2>
+                </div>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M24 4V12M24 36V44M4 24H12M36 24H44" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+                                <circle cx="24" cy="24" r="8" stroke="#EF4444" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">電気代の値上げ</h3>
+                        <p class="problem-text">毎月の電気代が気になり始めた。家計に占める割合が大きくなっている。</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M24 8V24L32 32" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+                                <circle cx="24" cy="24" r="18" stroke="#EF4444" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">老後の資金不安</h3>
+                        <p class="problem-text">退職後の生活費が心配。今から少しでも支出を減らしたい。</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <rect x="8" y="12" width="32" height="24" rx="4" stroke="#EF4444" stroke-width="3"/>
+                                <path d="M16 20H32" stroke="#EF4444" stroke-width="2"/>
+                                <path d="M16 28H24" stroke="#EF4444" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="problem-title">複雑なプラン選び</h3>
+                        <p class="problem-text">電力会社のプランが多すぎて、どれが得か比較できない。</p>
+                    </div>
+                </div>
+                <div class="problem-stat">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="8.5">0</span>
+                        <span class="stat-unit">%</span>
+                        <span class="stat-label">電気代値上げ率<br>（過去3年）</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section (Core Feature) -->
+        <section class="calculator" id="simulation">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">SIMULATION</span>
+                    <h2 class="section-title">
+                        <span class="ib">あなたの</span><span class="ib">節約額を計算</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        スライダーを動かすだけで、<span class="ib">リアルタイムに金額が変わります</span>
+                    </p>
+                </div>
+                
+                <div class="calculator-wrapper">
+                    <!-- Input Panel -->
+                    <div class="input-panel">
+                        <div class="input-group">
+                            <label class="input-label">
+                                <span class="label-text">月々の電気代</span>
+                                <span class="label-value">
+                                    <span class="currency">¥</span>
+                                    <span class="number" id="bill-display">15,000</span>
+                                </span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="bill-slider" min="5000" max="50000" step="1000" value="15000">
+                                <div class="slider-track">
+                                    <div class="slider-fill" id="bill-fill"></div>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>¥5,000</span>
+                                    <span>¥50,000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">
+                                <span class="label-text">世帯人数</span>
+                                <span class="label-value">
+                                    <span class="number" id="people-display">4</span>
+                                    <span class="unit">人</span>
+                                </span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="people-slider" min="1" max="8" step="1" value="4">
+                                <div class="slider-track">
+                                    <div class="slider-fill" id="people-fill"></div>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>1人</span>
+                                    <span>8人</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">
+                                <span class="label-text">削減率（目標）</span>
+                                <span class="label-value">
+                                    <span class="number" id="rate-display">30</span>
+                                    <span class="unit">%</span>
+                                </span>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="rate-slider" min="10" max="50" step="5" value="30">
+                                <div class="slider-track">
+                                    <div class="slider-fill" id="rate-fill"></div>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>10%</span>
+                                    <span>50%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Panel -->
+                    <div class="result-panel">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <h3 class="result-title">シミュレーション結果</h3>
+                            </div>
+                            
+                            <div class="result-main">
+                                <div class="savings-display">
+                                    <span class="savings-label">年間削減額</span>
+                                    <div class="savings-value">
+                                        <span class="currency">¥</span>
+                                        <span class="number" id="annual-savings">54,000</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="chart-container">
+                                <h4 class="chart-title">10年間の累積効果</h4>
+                                <div class="bar-chart" id="year-chart">
+                                    <!-- Generated by JS -->
+                                </div>
+                                <div class="chart-total">
+                                    <span class="total-label">10年間で合計</span>
+                                    <span class="total-value">
+                                        <span class="currency">¥</span>
+                                        <span class="number" id="total-savings">540,000</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="result-breakdown">
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">月々の削減額</span>
+                                    <span class="breakdown-value" id="monthly-savings">¥4,500</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">削減率</span>
+                                    <span class="breakdown-value" id="savings-rate">30%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cta-card">
+                            <p class="cta-text">この結果を無料で詳しく見てみませんか？</p>
+                            <button class="btn btn-primary btn-large" id="save-result">
+                                結果を保存して問い合わせる
+                            </button>
+                            <p class="cta-note">専門家があなたに最適なプランをご提案</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution" id="solution">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">SOLUTION</span>
+                    <h2 class="section-title">
+                        <span class="ib">なぜ削減できるのか？</span>
+                    </h2>
+                </div>
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <div class="solution-number">01</div>
+                        <div class="solution-icon">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <circle cx="32" cy="32" r="28" stroke="#3B82F6" stroke-width="3"/>
+                                <path d="M32 20V32L40 40" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">AIによる最適プラン提案</h3>
+                        <p class="solution-text">過去の使用データを分析し、あなたのライフスタイルに最適な電力プランを自動で選定します。</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-number">02</div>
+                        <div class="solution-icon">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <path d="M32 8L38 26H56L42 38L48 56L32 44L16 56L22 38L8 26H26L32 8Z" stroke="#22C55E" stroke-width="3" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">大手電力会社との提携</h3>
+                        <p class="solution-text">大手電力会社と直接提携しているため、通常よりも割安な料金プランを提供できます。</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-number">03</div>
+                        <div class="solution-icon">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <rect x="12" y="20" width="40" height="28" rx="4" stroke="#3B82F6" stroke-width="3"/>
+                                <path d="M20 20V14C20 11.7909 21.7909 10 24 10H40C42.2091 10 44 11.7909 44 14V20" stroke="#3B82F6" stroke-width="3"/>
+                                <circle cx="32" cy="34" r="6" stroke="#3B82F6" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="solution-title">手続きは全て代行</h3>
+                        <p class="solution-text">電力会社への切り替え手続きから、今までの電気代の精算まで、全てサポートします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proof Section -->
+        <section class="proof" id="proof">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">PROOF</span>
+                    <h2 class="section-title">
+                        <span class="ib">導入実績と</span><span class="ib">お客様の声</span>
+                    </h2>
+                </div>
+                
+                <div class="proof-stats">
+                    <div class="proof-stat">
+                        <span class="stat-number" data-count="50000">0</span>
+                        <span class="stat-unit">件</span>
+                        <span class="stat-label">累計導入実績</span>
+                    </div>
+                    <div class="proof-stat">
+                        <span class="stat-number" data-count="98">0</span>
+                        <span class="stat-unit">%</span>
+                        <span class="stat-label">顧客満足度</span>
+                    </div>
+                    <div class="proof-stat">
+                        <span class="stat-number" data-count="12.5">0</span>
+                        <span class="stat-unit">万円</span>
+                        <span class="stat-label">平均年間削減額</span>
+                    </div>
+                </div>
+
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">「シミュレーションで年間8万円の削減が可能と分かり、即申し込みました。実際の請求書を見て驚きました。」</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">S.K</div>
+                            <div class="author-info">
+                                <span class="author-name">S.K. 様</span>
+                                <span class="author-detail">40代・世帯4人・年間¥82,000削減</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card featured">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">「高齢の両親の代わりに手続きをお願いしました。面倒な作業は全て代行してくれて本当に助かりました。」</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">T.M</div>
+                            <div class="author-info">
+                                <span class="author-name">T.M. 様</span>
+                                <span class="author-detail">50代・実家の電気代見直し</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text">「一人暮らしでも思ったより削減できました。毎月の電気代が約1,500円安くなりました。」</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">Y.A</div>
+                            <div class="author-info">
+                                <span class="author-name">Y.A. 様</span>
+                                <span class="author-detail">30代・単身・年間¥18,000削減</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">FAQ</span>
+                    <h2 class="section-title">
+                        <span class="ib">よくある質問</span>
+                    </h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>本当に無料で利用できますか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>はい、シミュレーションは完全無料です。また、プランのご提案も無料で行っております。費用が発生するのは、ご契約いただいた場合のみです。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>電気の停電はありませんか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>いいえ、停電の心配はありません。電力の供給インフラは変わらず、現在と同じ安定性が保証されています。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>申し込みから切り替えまでどのくらいかかりますか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>お申し込みから約2週間程度で切り替えが完了します。手続きは全て当社が代行いたしますので、ご本人様の手間は最小限です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta" id="contact">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">
+                        <span class="ib">今すぐシミュレーション</span><br class="pc-only">
+                        <span class="ib">であなたの節約額を確認</span>
+                    </h2>
+                    <p class="cta-subtitle">
+                        無料・登録不要・30秒で完了
+                    </p>
+                    <a href="#simulation" class="btn btn-primary btn-large btn-pulse">
+                        <span class="btn-text">無料でシミュレーションする</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <div class="cta-trust">
+                        <div class="trust-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="9" stroke="#22C55E" stroke-width="2"/>
+                                <path d="M6 10L9 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>完全無料</span>
+                        </div>
+                        <div class="trust-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="9" stroke="#22C55E" stroke-width="2"/>
+                                <path d="M6 10L9 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>登録不要</span>
+                        </div>
+                        <div class="trust-item">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="9" stroke="#22C55E" stroke-width="2"/>
+                                <path d="M6 10L9 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>即座に結果表示</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">Smart Saver</span>
+                    <p class="footer-tagline">あなたの家計をもっとスマートに</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">利用規約</a>
+                    <a href="#">プライバシーポリシー</a>
+                    <a href="#">特定商取引法に基づく表記</a>
+                    <a href="#">お問い合わせ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2026 Smart Saver. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA (Mobile Only) -->
+    <div class="sticky-cta mobile-only">
+        <div class="sticky-content">
+            <div class="sticky-info">
+                <span class="sticky-label">無料シミュレーション</span>
+                <span class="sticky-note">30秒で完了</span>
+            </div>
+            <a href="#simulation" class="btn btn-small btn-primary">今すぐ計算</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
