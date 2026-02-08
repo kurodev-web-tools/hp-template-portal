@@ -1,0 +1,1165 @@
+/* Template J - Just One
+   Minimal Luxury LP
+   Matte Black + Bordeaux + Gold
+*/
+
+:root {
+  /* Core Colors */
+  --matte-black: #18181B;
+  --matte-black-light: #27272A;
+  --bordeaux: #881337;
+  --bordeaux-light: #9F1239;
+  --gold: #D4AF37;
+  --gold-light: #E5C158;
+  --off-white: #F4F4F5;
+  --off-white-dim: #A1A1AA;
+  
+  /* Typography */
+  --font-mincho: 'Shippori Mincho', 'Noto Serif JP', serif;
+  --font-serif: 'Noto Serif JP', serif;
+  
+  /* Spacing - Generous negative space */
+  --space-xs: 1rem;
+  --space-sm: 2rem;
+  --space-md: 4rem;
+  --space-lg: 8rem;
+  --space-xl: 12rem;
+  
+  /* Transitions - Slow and elegant */
+  --transition-fast: 0.4s ease;
+  --transition-base: 0.8s ease;
+  --transition-slow: 1.2s ease;
+  
+  /* Z-index */
+  --z-grain: 100;
+  --z-nav: 200;
+  --z-menu: 300;
+  --z-modal: 400;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: var(--matte-black);
+  color: var(--off-white);
+  line-height: 2;
+  letter-spacing: 0.05em;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-grain);
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  padding: var(--space-sm);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  font-family: var(--font-mincho);
+  font-size: 1.25rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+
+/* Responsive Navigation */
+@media (max-width: 767px) {
+  .nav-logo {
+    font-size: 1.125rem;
+  }
+  
+  .nav-toggle {
+    width: 28px;
+    height: 18px;
+  }
+}
+
+.nav-toggle {
+  width: 32px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--off-white);
+  transition: var(--transition-fast);
+}
+
+.nav-toggle:hover span {
+  background-color: var(--gold);
+}
+
+/* Menu Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--matte-black);
+  z-index: var(--z-menu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-base);
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu Header - Same structure as .nav */
+.menu-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: calc(var(--z-menu) + 1);
+  padding: var(--space-sm);
+  pointer-events: none; /* Let clicks pass through to overlay */
+}
+
+.menu-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  pointer-events: auto; /* Re-enable clicks for buttons */
+}
+
+.menu-header-inner .spacer {
+  width: 32px; /* Same width as menu-close button */
+}
+
+/* Menu Close Button */
+.menu-close {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu-close span {
+  position: absolute;
+  width: 24px;
+  height: 1px;
+  background-color: var(--off-white);
+  transition: var(--transition-fast);
+}
+
+.menu-close span:first-child {
+  transform: rotate(45deg);
+}
+
+.menu-close span:last-child {
+  transform: rotate(-45deg);
+}
+
+.menu-close:hover span {
+  background-color: var(--gold);
+}
+
+.menu-close:hover span:first-child {
+  transform: rotate(135deg);
+}
+
+.menu-close:hover span:last-child {
+  transform: rotate(45deg);
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.menu-link {
+  font-family: var(--font-mincho);
+  font-size: 1.5rem;
+  color: var(--off-white);
+  padding: 0.5rem 1rem;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--gold);
+  transition: var(--transition-fast);
+  transform: translateX(-50%);
+}
+
+.menu-link:hover {
+  color: var(--gold);
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile Optimization for Intro Section */
+@media (max-width: 767px) {
+    .intro {
+        /* 上: ナビゲーションと被らないよう広めに
+           左右: 文字が入るよう狭く
+           下: 適度に */
+        padding: 120px 1.5rem 4rem;
+        
+        /* コンテンツが縦に増えた場合、100vhだと切れる可能性があるのでmin-heightにする（既存ならOK） */
+        min-height: 100vh;
+        height: auto; /* autoにして中身に合わせて伸びるようにする */
+    }
+
+    /* 以下は前回の修正を維持 */
+    .logo-text {
+        font-size: 2.5rem; /* clamp(2.5rem, 8vw, 5rem) -> 固定値 */
+    }
+
+    .intro-subtitle {
+        font-size: 0.75rem; /* clamp(0.875rem, 2vw, 1.125rem) -> 固定値 */
+        letter-spacing: 0.2em; /* 0.4em -> 0.2em に縮小 */
+        white-space: nowrap; /* 強制的に1行にする */
+        width: 100%;
+        overflow: hidden; /* はみ出た場合の保険 */
+        text-overflow: ellipsis; 
+    }
+    
+    /* Mobile Navigation Height Fix */
+    .nav {
+        height: 80px;
+    }
+    
+    /* Mobile Status Indicator */
+    .intro-status {
+        margin-top: var(--space-sm);
+    }
+    
+    .status-text {
+        font-size: 0.75rem;
+    }
+}
+
+.intro-content {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.intro-logo {
+  margin-bottom: var(--space-sm);
+}
+
+.logo-text {
+  font-family: var(--font-mincho);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  display: block;
+}
+
+.intro-subtitle {
+  font-family: var(--font-mincho);
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  color: var(--off-white-dim);
+  letter-spacing: 0.4em;
+  margin-bottom: var(--space-md);
+}
+
+.intro-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease 0.5s forwards;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--bordeaux);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-text {
+  font-size: 0.875rem;
+  color: var(--off-white-dim);
+  letter-spacing: 0.2em;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease 1s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+/* Philosophy Section */
+.philosophy {
+  padding: var(--space-xl) 0;
+}
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.philosophy-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  transform: translateY(60px);
+  transition: var(--transition-slow);
+}
+
+.philosophy-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.philosophy-item.reverse {
+  direction: rtl;
+}
+
+.philosophy-item.reverse > * {
+  direction: ltr;
+}
+
+/* Mobile Content Ordering */
+
+
+.philosophy-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  filter: grayscale(30%);
+  transition: filter var(--transition-slow), transform 0.1s linear;
+  will-change: transform;
+  transform: translateY(-15%);
+}
+
+.philosophy-item:hover .image-wrapper img {
+  filter: grayscale(0%);
+}
+
+.philosophy-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-sm);
+}
+
+.philosophy-title {
+  font-family: var(--font-mincho);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.3em;
+}
+
+.title-line {
+  display: block;
+}
+
+.philosophy-desc {
+  font-size: 0.9375rem;
+  color: var(--off-white-dim);
+  line-height: 2.2;
+  white-space: pre-line;
+}
+
+/* Responsive Breakpoint Consolidation */
+@media (max-width: 767px) {
+    .experience-grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+        align-items: stretch;
+    }
+
+    .experience-grid {
+        gap: var(--space-sm);
+    }
+
+    .experience-item {
+        padding: var(--space-sm) var(--space-xs);
+        margin-bottom: 0;
+        transform: translateY(20px);
+    }
+    
+    .experience-number::after {
+        display: block;
+    }
+    
+    /* Image first, then text - for mobile */
+    .philosophy-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+    
+    .philosophy-item.reverse {
+        flex-direction: column-reverse;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+    
+    .philosophy-item .philosophy-text {
+        text-align: center;
+        margin-top: var(--space-sm);
+    }
+    
+    .philosophy-title.vertical-text {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        height: auto;
+        max-height: none;
+        width: 100%;
+        margin-bottom: var(--space-sm);
+        align-self: center;
+        text-align: center;
+    }
+    
+    .title-line {
+        display: inline;
+        margin-left: 0;
+        margin-right: 0.5em;
+    }
+    
+    /* Mobile Gallery Optimization */
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: var(--space-sm);
+    }
+    
+    .gallery-item {
+        width: 100%;
+        height: 200px;
+    }
+    
+    /* Mobile Invitation Card */
+    .invitation-card {
+        padding: var(--space-sm);
+        margin: 0 var(--space-sm);
+    }
+    
+    .invitation-btn {
+        width: 100%;
+        padding: 1.25rem 2rem;
+    }
+    
+    /* Mobile Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-xs);
+    }
+    
+    .footer-info p {
+        font-size: 0.875rem;
+    }
+}
+
+/* Experience Item - Global Base Styles (Applied to Mobile too) */
+.experience-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-md) var(--space-sm);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all var(--transition-base);
+    background-color: transparent;
+}
+
+.experience-item:hover {
+    border-color: var(--gold);
+    background-color: rgba(212, 175, 55, 0.03);
+    transform: translateY(-5px);
+}
+
+.experience-number {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-sm);
+    color: var(--bordeaux);
+    position: relative;
+    display: inline-block;
+}
+
+.experience-number::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 20px;
+    background-color: var(--gold);
+    margin: 10px auto 0;
+}
+
+.experience-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.experience-desc {
+    font-size: 0.9375rem;
+    line-height: 2;
+    color: var(--off-white-dim);
+}
+
+/* Experience Header - Global Style (Center Aligned) */
+.experience-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+/* Mobile Tweaks */
+@media (max-width: 767px) {
+    .experience-header {
+        margin-bottom: var(--space-md);
+    }
+}
+
+/* PC Experience Section Enhancement */
+@media (min-width: 768px) {
+    .experience-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* Gallery Section */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
+  padding: var(--space-xs);
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: var(--transition-slow);
+}
+
+.gallery-item.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(50%);
+  transition: var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* Invitation Section */
+.invitation {
+  padding: var(--space-xl) 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Invitation Card Redesign - Premium Black Card Style */
+.invitation-card {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  position: relative;
+  background-color: #1a1a1d;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(60px);
+  transition: var(--transition-slow);
+}
+
+.invitation-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inner decorative border (double line effect) */
+.invitation-card::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  pointer-events: none;
+}
+
+/* Hide envelope shapes */
+.envelope {
+  display: none;
+}
+
+/* Redesign wax seal as premium logo mark */
+.wax-seal {
+  margin: 0 auto var(--space-md);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--bordeaux) 0%, #4a041e 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset 0 2px 5px rgba(255,255,255,0.1),
+    0 10px 20px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.seal-text {
+  font-family: var(--font-mincho);
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.invitation-title {
+  font-family: var(--font-mincho);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.5em;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.1);
+}
+
+.invitation-message {
+  font-size: 0.9375rem;
+  color: var(--off-white-dim);
+  line-height: 2.2;
+  margin-bottom: var(--space-sm);
+  white-space: pre-line;
+}
+
+.invitation-note {
+  font-size: 0.875rem;
+  color: var(--bordeaux);
+  margin-bottom: var(--space-md);
+  white-space: pre-line;
+}
+
+.invitation-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 1rem 3rem;
+  font-family: var(--font-mincho);
+  font-size: 0.9375rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.invitation-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--gold);
+  transition: var(--transition-fast);
+  z-index: -1;
+}
+
+.invitation-btn:hover {
+  color: var(--matte-black);
+}
+
+.invitation-btn:hover::before {
+  left: 0;
+}
+
+.btn-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: var(--gold);
+  margin: 1rem auto 0;
+  transition: var(--transition-fast);
+}
+
+.invitation-btn:hover .btn-line {
+  width: 60px;
+  background-color: var(--matte-black);
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-md) 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-logo {
+  font-family: var(--font-mincho);
+  font-size: 1.5rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: var(--space-xs);
+}
+
+.footer-info {
+  font-size: 0.8125rem;
+  color: var(--off-white-dim);
+  line-height: 1.8;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(212, 175, 55, 0.05);
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: var(--off-white-dim);
+  letter-spacing: 0.1em;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-base);
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(24, 24, 27, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  background-color: var(--matte-black-light);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: var(--space-md);
+  overflow-y: auto;
+  transform: translateY(40px);
+  transition: var(--transition-base);
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close span {
+  position: absolute;
+  width: 20px;
+  height: 1px;
+  background-color: var(--off-white);
+}
+
+.modal-close span:first-child {
+  transform: rotate(45deg);
+}
+
+.modal-close span:last-child {
+  transform: rotate(-45deg);
+}
+
+.modal-close:hover span {
+  background-color: var(--gold);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.modal-title {
+  font-family: var(--font-mincho);
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.2em;
+}
+
+.modal-subtitle {
+  font-size: 0.875rem;
+  color: var(--off-white-dim);
+}
+
+/* Form */
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.8125rem;
+  color: var(--off-white-dim);
+  letter-spacing: 0.1em;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  color: var(--off-white);
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  transition: var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--off-white-dim);
+  opacity: 0.5;
+}
+
+.submit-btn {
+  background-color: var(--bordeaux);
+  color: var(--off-white);
+  border: none;
+  padding: 1rem 2rem;
+  font-family: var(--font-mincho);
+  font-size: 0.9375rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  margin-top: var(--space-xs);
+  width: 100%;
+}
+
+/* Mobile Modal Optimization */
+@media (max-width: 767px) {
+  .modal-content {
+    width: 95%;
+    padding: var(--space-sm);
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .submit-btn {
+    padding: 1.25rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+.submit-btn:hover {
+  background-color: var(--bordeaux-light);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scrollLine {
+  0%, 100% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .philosophy-item {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  
+  .gallery {
+    grid-template-columns: 2fr 1fr 2fr;
+  }
+  
+  .gallery-item:nth-child(2) {
+    aspect-ratio: 3/4;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-lg: 10rem;
+    --space-xl: 15rem;
+  }
+  
+  /* PCでもハンバーガーメニューのみにする強制スタイル */
+  .nav-links,
+  .nav-desktop {
+    display: none !important;
+  }
+  
+  .nav-toggle {
+    display: flex !important;
+  }
+  
+  .menu-overlay {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    background-color: var(--matte-black);
+  }
+  
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .menu-content {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 2px;
+}
+/* Mobile Text Layout Optimization */
+@media (max-width: 767px) {
+  .philosophy-desc,
+  .experience-desc,
+  .invitation-message,
+  .invitation-note {
+    white-space: normal;
+    font-size: 0.875rem;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* Inline Block for Natural Japanese Wrapping */
+.ib {
+    display: inline-block;
+}
