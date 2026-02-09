@@ -1,0 +1,1085 @@
+/* ==========================================================================
+   Template O - Offer Wall / Affiliate Ranking Theme
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables
+   -------------------------------------------------------------------------- */
+:root {
+    /* Ranking Colors - Premium Metallic */
+    --gold: #C5A059;
+    /* Champagne Gold */
+    --gold-dark: #A6833D;
+    --silver: #9CA3AF;
+    /* Platinum Grey */
+    --silver-dark: #6B7280;
+    --bronze: #B45309;
+    /* Deep Bronze */
+    --bronze-dark: #92400E;
+
+    /* Primary Colors - Trustworthy */
+    --color-primary: #DC2626;
+    /* Deep Red */
+    --color-primary-hover: #B91C1C;
+    --color-secondary: #2563EB;
+    /* Trust Blue */
+
+    /* Neutral Colors */
+    --color-bg: #F3F4F6;
+    --color-bg-white: #FFFFFF;
+    --color-text: #111827;
+    /* Darker Black */
+    --color-text-secondary: #374151;
+    --color-text-muted: #6B7280;
+    --color-border: #E5E7EB;
+    --color-border-dark: #D1D5DB;
+
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    /* Modern & Geometric */
+    --font-body: 'Inter', 'Noto Sans JP', sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 3rem;
+    --space-xl: 4rem;
+
+    /* Shadows - Neutral & Sharp */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    /* Softer, black shadow */
+    --shadow-gold: 0 10px 25px -5px rgba(197, 160, 89, 0.25);
+    /* Subtle gold glow */
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Styles
+   -------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout
+   -------------------------------------------------------------------------- */
+.l-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.l-section {
+    padding: var(--space-lg) 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. Buttons
+   -------------------------------------------------------------------------- */
+.c-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.c-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.c-btn-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Neutral shadow */
+}
+
+.c-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.c-btn-secondary {
+    background-color: var(--color-bg-white);
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+}
+
+.c-btn-secondary:hover {
+    border-color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+.c-btn--small {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. Header
+   -------------------------------------------------------------------------- */
+.header {
+    background-color: var(--color-bg-white);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-sm);
+    padding-bottom: var(--space-sm);
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.header__logo-crown {
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+}
+
+.header__logo-crown svg {
+    width: 28px;
+    height: 28px;
+}
+
+.header__logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.header__nav {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .header__nav {
+        display: flex;
+        gap: var(--space-md);
+    }
+}
+
+.header__link {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.header__link:hover {
+    color: var(--color-text);
+}
+
+.header__menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header__menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+@media (min-width: 640px) {
+    .header__menu-toggle {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+    color: white;
+    padding: var(--space-lg) 0;
+    text-align: center;
+}
+
+.hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.hero__badge-year {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+.hero__badge-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid var(--gold);
+    border-radius: var(--space-xs);
+}
+
+.hero__title {
+    margin-bottom: var(--space-sm);
+}
+
+.hero__title-line {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+.hero__title-line--highlight {
+    background: linear-gradient(90deg, var(--gold) 0%, #FFA500 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero__subtitle {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-md);
+}
+
+.hero__meta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    font-size: 0.875rem;
+}
+
+.hero__update {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.hero__verified {
+    color: #10B981;
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   7. Ranking Summary
+   -------------------------------------------------------------------------- */
+.ranking-summary {
+    background-color: var(--color-bg-white);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.ranking-summary__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+}
+
+.ranking-summary__item {
+    text-align: center;
+    padding: var(--space-sm);
+    border-radius: 8px;
+    transition: transform var(--transition-normal);
+}
+
+.ranking-summary__item:hover {
+    transform: translateY(-4px);
+}
+
+.ranking-summary__item--gold {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+    border: 2px solid var(--gold);
+}
+
+.ranking-summary__item--silver {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(192, 192, 192, 0.05) 100%);
+    border: 2px solid var(--silver);
+}
+
+.ranking-summary__item--bronze {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.1) 0%, rgba(205, 127, 50, 0.05) 100%);
+    border: 2px solid var(--bronze);
+}
+
+.ranking-summary__crown {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+}
+
+.ranking-summary__crown svg {
+    width: 32px;
+    height: 32px;
+}
+
+.ranking-summary__item--gold .ranking-summary__crown {
+    color: var(--gold);
+}
+
+.ranking-summary__item--silver .ranking-summary__crown {
+    color: var(--silver);
+}
+
+.ranking-summary__item--bronze .ranking-summary__crown {
+    color: var(--bronze);
+}
+
+.ranking-summary__rank {
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.ranking-summary__name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    /* Ensure alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.6em;
+    /* Support 2 lines */
+    line-height: 1.3;
+}
+
+.ranking-summary__score {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   8. Section Header
+   -------------------------------------------------------------------------- */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.section-header__label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-primary);
+    background: rgba(225, 29, 72, 0.1);
+    padding: 0.375rem 0.875rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.section-header__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.section-header__text {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   9. Rank Cards
+   -------------------------------------------------------------------------- */
+.rank-card {
+    background-color: var(--color-bg-white);
+    border-radius: 12px;
+    border: 2px solid var(--color-border);
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.rank-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.rank-card--first {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-gold);
+}
+
+.rank-card--second {
+    border-color: var(--silver);
+}
+
+.rank-card--third {
+    border-color: var(--bronze);
+}
+
+/* Badge */
+.rank-card__badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+}
+
+.rank-card__crown {
+    width: 36px;
+    height: 36px;
+}
+
+.rank-card__crown svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.rank-card__number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+.rank-card__number--simple {
+    font-size: 1.25rem;
+    color: var(--color-text);
+}
+
+.rank-card__badge--simple {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Content */
+.rank-card__content {
+    padding: var(--space-md);
+}
+
+.rank-card__header {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.rank-card__header--simple {
+    margin-bottom: var(--space-xs);
+}
+
+.rank-card__image {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.rank-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rank-card__image--small {
+    width: 64px;
+    height: 64px;
+}
+
+.rank-card__info {
+    flex: 1;
+}
+
+.rank-card__label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-bg-white);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.375rem;
+}
+
+.rank-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 0.375rem;
+}
+
+.rank-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.rank-card__stars {
+    color: #FBBF24;
+    font-size: 1rem;
+    letter-spacing: -2px;
+}
+
+.rank-card__score {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+}
+
+.rank-card__reviews {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+}
+
+/* Score Bar */
+.rank-card__score-bar {
+    margin-bottom: var(--space-sm);
+}
+
+.score-bar {
+    height: 8px;
+    background-color: var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.score-bar__fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1s ease-out;
+}
+
+.score-bar__label {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+}
+
+/* Details */
+.rank-card__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+@media (max-width: 480px) {
+    .rank-card__details {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rank-card__section-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.rank-card__list {
+    list-style: none;
+    font-size: 0.875rem;
+}
+
+.rank-card__list li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+    color: var(--color-text-secondary);
+}
+
+.footer__logo-crown {
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+}
+
+.footer__logo-crown svg {
+    width: 24px;
+    height: 24px;
+}
+
+.rank-card__list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #10B981;
+}
+
+.rank-card__list--cons li::before {
+    color: #F59E0B;
+}
+
+/* Summary (for 4-5 rank) */
+.rank-card__summary {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.rank-card__summary p {
+    margin: 0;
+}
+
+/* Footer */
+.rank-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+}
+
+.rank-card__price {
+    margin-bottom: var(--space-sm);
+}
+
+.rank-card__price-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-right: 0.25rem;
+}
+
+.rank-card__price-value {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    color: var(--color-text);
+}
+
+.rank-card__price-value--free {
+    color: #10B981;
+}
+
+.rank-card__price-note {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+}
+
+.rank-card__cta {
+    width: 100%;
+}
+
+.rank-card__cta--gold {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #1F2937;
+}
+
+.rank-card__cta--silver {
+    background: linear-gradient(135deg, var(--silver) 0%, var(--silver-dark) 100%);
+    color: #1F2937;
+}
+
+.rank-card__cta--bronze {
+    background: linear-gradient(135deg, var(--bronze) 0%, var(--bronze-dark) 100%);
+    color: white;
+}
+
+.rank-card__cta--small {
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   10. Comparison Table
+   -------------------------------------------------------------------------- */
+.comparison {
+    background-color: var(--color-bg-white);
+}
+
+.comparison__wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.comparison__table-container {
+    width: 100%;
+}
+
+.comparison__table {
+    width: 100%;
+    min-width: 700px;
+    /* Ensure scroll on mobile */
+    table-layout: fixed;
+    /* Enforce width respect */
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+
+.comparison__th {
+    padding: var(--space-sm);
+    text-align: center;
+    font-weight: 600;
+    background-color: var(--color-bg);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.comparison__th--feature {
+    text-align: left;
+    width: 140px;
+    background-color: var(--color-bg-white);
+}
+
+
+.comparison__th--gold {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%), #FFFFFF;
+    border-bottom-color: var(--gold);
+}
+
+.comparison__th--silver {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(192, 192, 192, 0.05) 100%), #FFFFFF;
+    border-bottom-color: var(--silver);
+}
+
+.comparison__th--bronze {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.15) 0%, rgba(205, 127, 50, 0.05) 100%), #FFFFFF;
+    border-bottom-color: var(--bronze);
+}
+
+.comparison__product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.comparison__rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.comparison__rank svg {
+    width: 20px;
+    height: 20px;
+}
+
+.comparison__name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+.comparison__row {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.comparison__row--cta {
+    border-bottom: none;
+}
+
+.comparison__td {
+    padding: var(--space-sm);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.comparison__td--label {
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg);
+}
+
+.comparison__td--highlight {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+}
+
+.comparison__price {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.comparison__score-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    border-radius: 50%;
+}
+
+.comparison__score-badge--gold {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #1F2937;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.comparison__score-badge--silver {
+    background: linear-gradient(135deg, var(--silver) 0%, var(--silver-dark) 100%);
+    color: #1F2937;
+}
+
+.comparison__score-badge--bronze {
+    background: linear-gradient(135deg, var(--bronze) 0%, var(--bronze-dark) 100%);
+    color: white;
+}
+
+.comparison__feature {
+    font-size: 0.875rem;
+}
+
+.comparison__feature--check {
+    color: #10B981;
+    font-weight: 600;
+}
+
+.comparison__feature--check::before {
+    content: '✓ ';
+}
+
+.comparison__feature--partial {
+    color: #F59E0B;
+}
+
+.comparison__feature--partial::before {
+    content: '△ ';
+}
+
+.comparison__feature--cross {
+    color: var(--color-text-muted);
+}
+
+.comparison__feature--cross::before {
+    content: '✕ ';
+}
+
+/* --------------------------------------------------------------------------
+   11. Guide Section
+   -------------------------------------------------------------------------- */
+.guide {
+    background-color: var(--color-bg);
+}
+
+.guide__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+}
+
+@media (min-width: 640px) {
+    .guide__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.guide-card {
+    background-color: var(--color-bg-white);
+    padding: var(--space-md);
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--color-border);
+    transition: all var(--transition-normal);
+}
+
+.guide-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.guide-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--color-bg);
+    color: var(--color-primary);
+    border-radius: 50%;
+    margin-bottom: var(--space-sm);
+}
+
+.guide-card__icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.guide-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.guide-card__text {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.guide-card__recommend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.guide-card__recommend-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+.guide-card__recommend-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+    color: white;
+    padding: var(--space-lg) 0;
+}
+
+.footer__content {
+    text-align: center;
+}
+
+.footer__brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: var(--space-md);
+}
+
+.footer__logo-crown {
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+}
+
+.footer__logo-crown svg {
+    width: 24px;
+    height: 24px;
+}
+
+.footer__logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+}
+
+.footer__disclaimer {
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--space-md);
+    border-radius: 8px;
+    margin-bottom: var(--space-md);
+}
+
+.footer__disclaimer-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.footer__disclaimer-text {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+}
+
+.footer__nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.footer__link {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color var(--transition-fast);
+}
+
+.footer__link:hover {
+    color: white;
+}
+
+.footer__copy {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   13. Scroll Animations
+   -------------------------------------------------------------------------- */
+.js-scroll-trigger {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js-scroll-trigger.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Score bar animation */
+.score-bar__fill.is-animated {
+    width: var(--score-width);
+}
