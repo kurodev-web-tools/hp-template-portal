@@ -13,23 +13,23 @@
   --gold-light: #E5C158;
   --off-white: #F4F4F5;
   --off-white-dim: #A1A1AA;
-  
+
   /* Typography */
   --font-mincho: 'Shippori Mincho', 'Noto Serif JP', serif;
   --font-serif: 'Noto Serif JP', serif;
-  
+
   /* Spacing - Generous negative space */
   --space-xs: 1rem;
   --space-sm: 2rem;
   --space-md: 4rem;
   --space-lg: 8rem;
   --space-xl: 12rem;
-  
+
   /* Transitions - Slow and elegant */
   --transition-fast: 0.4s ease;
   --transition-base: 0.8s ease;
   --transition-slow: 1.2s ease;
-  
+
   /* Z-index */
   --z-grain: 100;
   --z-nav: 200;
@@ -38,7 +38,9 @@
 }
 
 /* Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -112,7 +114,7 @@ a {
   .nav-logo {
     font-size: 1.125rem;
   }
-  
+
   .nav-toggle {
     width: 28px;
     height: 18px;
@@ -173,7 +175,8 @@ a {
   right: 0;
   z-index: calc(var(--z-menu) + 1);
   padding: var(--space-sm);
-  pointer-events: none; /* Let clicks pass through to overlay */
+  pointer-events: none;
+  /* Let clicks pass through to overlay */
 }
 
 .menu-header-inner {
@@ -182,11 +185,13 @@ a {
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-  pointer-events: auto; /* Re-enable clicks for buttons */
+  pointer-events: auto;
+  /* Re-enable clicks for buttons */
 }
 
 .menu-header-inner .spacer {
-  width: 32px; /* Same width as menu-close button */
+  width: 32px;
+  /* Same width as menu-close button */
 }
 
 /* Menu Close Button */
@@ -268,44 +273,50 @@ a {
 
 /* Mobile Optimization for Intro Section */
 @media (max-width: 767px) {
-    .intro {
-        /* 上: ナビゲーションと被らないよう広めに
+  .intro {
+    /* 上: ナビゲーションと被らないよう広めに
            左右: 文字が入るよう狭く
            下: 適度に */
-        padding: 120px 1.5rem 4rem;
-        
-        /* コンテンツが縦に増えた場合、100vhだと切れる可能性があるのでmin-heightにする（既存ならOK） */
-        min-height: 100vh;
-        height: auto; /* autoにして中身に合わせて伸びるようにする */
-    }
+    padding: 120px 1.5rem 4rem;
 
-    /* 以下は前回の修正を維持 */
-    .logo-text {
-        font-size: 2.5rem; /* clamp(2.5rem, 8vw, 5rem) -> 固定値 */
-    }
+    /* コンテンツが縦に増えた場合、100vhだと切れる可能性があるのでmin-heightにする（既存ならOK） */
+    min-height: 100vh;
+    height: auto;
+    /* autoにして中身に合わせて伸びるようにする */
+  }
 
-    .intro-subtitle {
-        font-size: 0.75rem; /* clamp(0.875rem, 2vw, 1.125rem) -> 固定値 */
-        letter-spacing: 0.2em; /* 0.4em -> 0.2em に縮小 */
-        white-space: nowrap; /* 強制的に1行にする */
-        width: 100%;
-        overflow: hidden; /* はみ出た場合の保険 */
-        text-overflow: ellipsis; 
-    }
-    
-    /* Mobile Navigation Height Fix */
-    .nav {
-        height: 80px;
-    }
-    
-    /* Mobile Status Indicator */
-    .intro-status {
-        margin-top: var(--space-sm);
-    }
-    
-    .status-text {
-        font-size: 0.75rem;
-    }
+  /* 以下は前回の修正を維持 */
+  .logo-text {
+    font-size: 2.5rem;
+    /* clamp(2.5rem, 8vw, 5rem) -> 固定値 */
+  }
+
+  .intro-subtitle {
+    font-size: 0.75rem;
+    /* clamp(0.875rem, 2vw, 1.125rem) -> 固定値 */
+    letter-spacing: 0.2em;
+    /* 0.4em -> 0.2em に縮小 */
+    white-space: nowrap;
+    /* 強制的に1行にする */
+    width: 100%;
+    overflow: hidden;
+    /* はみ出た場合の保険 */
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile Navigation Height Fix */
+  .nav {
+    height: 80px;
+  }
+
+  /* Mobile Status Indicator */
+  .intro-status {
+    margin-top: var(--space-sm);
+  }
+
+  .status-text {
+    font-size: 0.75rem;
+  }
 }
 
 .intro-content {
@@ -409,7 +420,7 @@ a {
   direction: rtl;
 }
 
-.philosophy-item.reverse > * {
+.philosophy-item.reverse>* {
   direction: ltr;
 }
 
@@ -470,167 +481,169 @@ a {
 
 /* Responsive Breakpoint Consolidation */
 @media (max-width: 767px) {
-    .experience-grid {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-lg);
-        align-items: stretch;
-    }
+  .experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: stretch;
+  }
 
-    .experience-grid {
-        gap: var(--space-sm);
-    }
+  .experience-grid {
+    gap: var(--space-sm);
+  }
 
-    .experience-item {
-        padding: var(--space-sm) var(--space-xs);
-        margin-bottom: 0;
-        transform: translateY(20px);
-    }
-    
-    .experience-number::after {
-        display: block;
-    }
-    
-    /* Image first, then text - for mobile */
-    .philosophy-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-md);
-        margin-bottom: var(--space-lg);
-    }
-    
-    .philosophy-item.reverse {
-        flex-direction: column-reverse;
-        gap: var(--space-md);
-        margin-bottom: var(--space-lg);
-    }
-    
-    .philosophy-item .philosophy-text {
-        text-align: center;
-        margin-top: var(--space-sm);
-    }
-    
-    .philosophy-title.vertical-text {
-        writing-mode: horizontal-tb;
-        text-orientation: mixed;
-        height: auto;
-        max-height: none;
-        width: 100%;
-        margin-bottom: var(--space-sm);
-        align-self: center;
-        text-align: center;
-    }
-    
-    .title-line {
-        display: inline;
-        margin-left: 0;
-        margin-right: 0.5em;
-    }
-    
-    /* Mobile Gallery Optimization */
-    .gallery {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: var(--space-sm);
-    }
-    
-    .gallery-item {
-        width: 100%;
-        height: 200px;
-    }
-    
-    /* Mobile Invitation Card */
-    .invitation-card {
-        padding: var(--space-sm);
-        margin: 0 var(--space-sm);
-    }
-    
-    .invitation-btn {
-        width: 100%;
-        padding: 1.25rem 2rem;
-    }
-    
-    /* Mobile Footer */
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--space-xs);
-    }
-    
-    .footer-info p {
-        font-size: 0.875rem;
-    }
+  .experience-item {
+    padding: var(--space-sm) var(--space-xs);
+    margin-bottom: 0;
+    transform: translateY(20px);
+  }
+
+  .experience-number::after {
+    display: block;
+  }
+
+  /* Image first, then text - for mobile */
+  .philosophy-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .philosophy-item.reverse {
+    flex-direction: column-reverse;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .philosophy-item .philosophy-text {
+    text-align: center;
+    margin-top: var(--space-sm);
+  }
+
+  .philosophy-title.vertical-text {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    height: auto;
+    max-height: none;
+    width: 100%;
+    margin-bottom: var(--space-sm);
+    align-self: center;
+    text-align: center;
+  }
+
+  .title-line {
+    display: inline;
+    margin-left: 0;
+    margin-right: 0.5em;
+  }
+
+  /* Mobile Gallery Optimization */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: var(--space-sm);
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* Mobile Invitation Card */
+  .invitation-card {
+    padding: var(--space-sm);
+    margin: 0 var(--space-sm);
+  }
+
+  .invitation-btn {
+    width: 100%;
+    padding: 1.25rem 1rem;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+  }
+
+  /* Mobile Footer */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-xs);
+  }
+
+  .footer-info p {
+    font-size: 0.875rem;
+  }
 }
 
 /* Experience Item - Global Base Styles (Applied to Mobile too) */
 .experience-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: var(--space-md) var(--space-sm);
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    transition: all var(--transition-base);
-    background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-md) var(--space-sm);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all var(--transition-base);
+  background-color: transparent;
 }
 
 .experience-item:hover {
-    border-color: var(--gold);
-    background-color: rgba(212, 175, 55, 0.03);
-    transform: translateY(-5px);
+  border-color: var(--gold);
+  background-color: rgba(212, 175, 55, 0.03);
+  transform: translateY(-5px);
 }
 
 .experience-number {
-    font-size: 0.875rem;
-    margin-bottom: var(--space-sm);
-    color: var(--bordeaux);
-    position: relative;
-    display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: var(--space-sm);
+  color: var(--bordeaux);
+  position: relative;
+  display: inline-block;
 }
 
 .experience-number::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 20px;
-    background-color: var(--gold);
-    margin: 10px auto 0;
+  content: '';
+  display: block;
+  width: 1px;
+  height: 20px;
+  background-color: var(--gold);
+  margin: 10px auto 0;
 }
 
 .experience-title {
-    font-size: 1.5rem;
-    margin-bottom: var(--space-sm);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
 }
 
 .experience-desc {
-    font-size: 0.9375rem;
-    line-height: 2;
-    color: var(--off-white-dim);
+  font-size: 0.9375rem;
+  line-height: 2;
+  color: var(--off-white-dim);
 }
 
 /* Experience Header - Global Style (Center Aligned) */
 .experience-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
+  text-align: center;
+  margin-bottom: var(--space-xl);
 }
 
 /* Mobile Tweaks */
 @media (max-width: 767px) {
-    .experience-header {
-        margin-bottom: var(--space-md);
-    }
+  .experience-header {
+    margin-bottom: var(--space-md);
+  }
 }
 
 /* PC Experience Section Enhancement */
 @media (min-width: 768px) {
-    .experience-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-lg);
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  .experience-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 /* Gallery Section */
@@ -724,18 +737,18 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 
-    inset 0 2px 5px rgba(255,255,255,0.1),
-    0 10px 20px rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .seal-text {
   font-family: var(--font-mincho);
   font-size: 1.5rem;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .invitation-title {
@@ -1013,11 +1026,11 @@ a {
     width: 95%;
     padding: var(--space-sm);
   }
-  
+
   .modal-title {
     font-size: 1.5rem;
   }
-  
+
   .submit-btn {
     padding: 1.25rem 2rem;
     font-size: 1rem;
@@ -1033,6 +1046,7 @@ a {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1043,6 +1057,7 @@ a {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1050,26 +1065,34 @@ a {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
 }
 
 @keyframes scrollLine {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleY(0);
     transform-origin: top;
   }
+
   50% {
     transform: scaleY(1);
     transform-origin: top;
   }
+
   51% {
     transform-origin: bottom;
   }
+
   100% {
     transform: scaleY(0);
     transform-origin: bottom;
@@ -1083,11 +1106,11 @@ a {
     gap: var(--space-lg);
     align-items: center;
   }
-  
+
   .gallery {
     grid-template-columns: 2fr 1fr 2fr;
   }
-  
+
   .gallery-item:nth-child(2) {
     aspect-ratio: 3/4;
   }
@@ -1098,29 +1121,29 @@ a {
     --space-lg: 10rem;
     --space-xl: 15rem;
   }
-  
+
   /* PCでもハンバーガーメニューのみにする強制スタイル */
   .nav-links,
   .nav-desktop {
     display: none !important;
   }
-  
+
   .nav-toggle {
     display: flex !important;
   }
-  
+
   .menu-overlay {
     position: fixed;
     opacity: 0;
     visibility: hidden;
     background-color: var(--matte-black);
   }
-  
+
   .menu-overlay.active {
     opacity: 1;
     visibility: visible;
   }
-  
+
   .menu-content {
     flex-direction: column;
     gap: var(--space-sm);
@@ -1129,7 +1152,10 @@ a {
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -1144,8 +1170,10 @@ textarea:focus-visible {
   outline: 1px solid var(--gold);
   outline-offset: 2px;
 }
+
 /* Mobile Text Layout Optimization */
 @media (max-width: 767px) {
+
   .philosophy-desc,
   .experience-desc,
   .invitation-message,
@@ -1153,7 +1181,7 @@ textarea:focus-visible {
     white-space: normal;
     font-size: 0.875rem;
     line-height: 1.8;
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
     text-align: center;
     width: 100%;
   }
@@ -1161,5 +1189,5 @@ textarea:focus-visible {
 
 /* Inline Block for Natural Japanese Wrapping */
 .ib {
-    display: inline-block;
+  display: inline-block;
 }
