@@ -1,0 +1,976 @@
+/* ==========================================================================
+   Template L - Local Map / Store Attraction Theme
+   Urban 24h Fitness Gym Landing Page
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables & Theme Overrides
+   -------------------------------------------------------------------------- */
+:root {
+    /* Theme Colors - Map Style */
+    --primary-color: #34A853;
+    --primary-dark: #2E7D32;
+    --accent-red: #EA4335;
+    --accent-blue: #4285F4;
+    --bg-color: #F1F3F4;
+    --bg-white: #FFFFFF;
+    --text-color: #202124;
+    --text-secondary: #5F6368;
+    --text-muted: #80868B;
+    --border-color: #DADCE0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    /* Typography */
+    --font-en: 'Open Sans', sans-serif;
+    --font-jp: 'Noto Sans JP', sans-serif;
+    
+    /* Shadows */
+    --shadow-card: 0 2px 8px var(--shadow-color);
+    --shadow-float: 0 -4px 12px var(--shadow-color);
+    --shadow-elevated: 0 4px 16px rgba(66, 133, 244, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Styles
+   -------------------------------------------------------------------------- */
+body {
+    font-family: var(--font-jp), var(--font-en), sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding-bottom: 70px;
+}
+
+@media (min-width: 768px) {
+    body {
+        padding-bottom: 0;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. Header
+   -------------------------------------------------------------------------- */
+.header {
+    background: var(--bg-white);
+    box-shadow: var(--shadow-card);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-sm);
+    padding-bottom: var(--space-sm);
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header__logo-icon {
+    font-size: 1.5rem;
+}
+
+.header__logo-text {
+    font-family: var(--font-en);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+.header__badge {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background: rgba(52, 168, 83, 0.1);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-full);
+}
+
+.header__badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* --------------------------------------------------------------------------
+   4. Section Headers
+   -------------------------------------------------------------------------- */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.section-header__label {
+    display: inline-block;
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--primary-color);
+    background: rgba(52, 168, 83, 0.1);
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-xs);
+}
+
+.section-header__title {
+    font-family: var(--font-en);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.375rem;
+    line-height: 1.3;
+}
+
+.section-header__text {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+    .section-header__title {
+        font-size: 2rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+    background: var(--bg-white);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero__content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero__location {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.hero__location-pin {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
+}
+
+.hero__location-pin svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+.hero__location-info {
+    flex: 1;
+}
+
+.hero__location-label {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.hero__title {
+    font-family: var(--font-en);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+/* Map Container */
+.hero__map-container {
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--border-color);
+}
+
+.hero__map {
+    position: relative;
+    height: 250px;
+    background: white;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.hero__map-grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+/* You Are Here */
+.hero__map-you {
+    position: absolute;
+    left: 15%;
+    bottom: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.hero__map-you-marker {
+    width: 40px;
+    height: 40px;
+}
+
+.hero__map-you-marker svg {
+    width: 100%;
+    height: 100%;
+}
+
+.hero__map-you-label {
+    font-family: var(--font-en);
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    background: white;
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-card);
+    white-space: nowrap;
+}
+
+/* Route */
+.hero__map-route {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero__map-route-path {
+    stroke-dasharray: 8, 4;
+    animation: dash 20s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -100;
+    }
+}
+
+/* Gym Location */
+.hero__map-gym {
+    position: absolute;
+    right: 20%;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.hero__map-gym-pin {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 2px 4px rgba(234, 67, 53, 0.3));
+    animation: bounce-pin 1.5s ease infinite;
+}
+
+@keyframes bounce-pin {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.hero__map-gym-pin svg {
+    width: 100%;
+    height: 100%;
+}
+
+.hero__map-gym-label {
+    background: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+}
+
+.hero__map-gym-name {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.hero__map-gym-time {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Hero Badges */
+.hero__badges {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.hero__badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: rgba(52, 168, 83, 0.08);
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(52, 168, 83, 0.2);
+}
+
+.hero__badge-item-icon {
+    font-size: 1rem;
+}
+
+.hero__badge-item-text {
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+/* Hero CTA */
+.hero__cta {
+    text-align: center;
+}
+
+.hero__cta-button {
+    font-size: 1.0625rem;
+    padding: 1rem 2.5rem;
+    width: 100%;
+    max-width: 320px;
+    box-shadow: var(--shadow-elevated);
+}
+
+.hero__cta-sub {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   6. Access Section
+   -------------------------------------------------------------------------- */
+.access {
+    padding: var(--space-lg) 0;
+    background: var(--bg-white);
+}
+
+.access__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .access__content {
+        flex-direction: row;
+    }
+    
+    .access__map-static {
+        flex: 1.5;
+    }
+    
+    .access__details {
+        flex: 1;
+    }
+}
+
+.access__map-static {
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    border: 1px solid var(--border-color);
+}
+
+.access__map-image {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.access__map-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.access__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.access__route-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-en);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: var(--space-sm);
+}
+
+.access__route-title svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-red);
+}
+
+.access__route-steps {
+    counter-reset: step;
+    list-style: none;
+}
+
+.access__route-steps li {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: var(--space-sm);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+}
+
+.access__route-steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--primary-color);
+    color: white;
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.access__route-steps li::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 26px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.access__route-steps li:last-child::after {
+    display: none;
+}
+
+.access__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: var(--space-sm);
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+}
+
+.access__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.access__info-label {
+    font-family: var(--font-en);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.access__info-value {
+    font-size: 0.9375rem;
+    color: var(--text-color);
+}
+
+.access__directions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+}
+
+.access__directions svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Features Section
+   -------------------------------------------------------------------------- */
+.features {
+    background: var(--bg-color);
+}
+
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+}
+
+@media (min-width: 640px) {
+    .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .features__grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.feature-card {
+    background: var(--bg-white);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+.feature-card__icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-sm);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-card__icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.feature-card__icon--wifi {
+    background: rgba(66, 133, 244, 0.1);
+    color: var(--accent-blue);
+}
+
+.feature-card__icon--shower {
+    background: rgba(52, 168, 83, 0.1);
+    color: var(--primary-color);
+}
+
+.feature-card__icon--shoes {
+    background: rgba(234, 67, 53, 0.1);
+    color: var(--accent-red);
+}
+
+.feature-card__icon--locker {
+    background: rgba(251, 188, 5, 0.1);
+    color: #FBBC05;
+}
+
+.feature-card__icon--water {
+    background: rgba(66, 133, 244, 0.1);
+    color: var(--accent-blue);
+}
+
+.feature-card__icon--parking {
+    background: rgba(52, 168, 83, 0.1);
+    color: var(--primary-color);
+}
+
+.feature-card__title {
+    font-family: var(--font-en);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.375rem;
+}
+
+.feature-card__text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   8. Timetable Section
+   -------------------------------------------------------------------------- */
+.timetable {
+    background: var(--bg-white);
+}
+
+.timetable__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .timetable__content {
+        flex-direction: row;
+    }
+    
+    .timetable__main {
+        flex: 2;
+    }
+    
+    .timetable__cta {
+        flex: 1;
+    }
+}
+
+.timetable__hours {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.timetable__hours-block {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    background: var(--bg-color);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.timetable__hours-block:nth-child(2) {
+    border-left-color: var(--accent-blue);
+}
+
+.timetable__hours-block:nth-child(3) {
+    border-left-color: var(--accent-red);
+}
+
+.timetable__hours-icon {
+    font-size: 1.75rem;
+}
+
+.timetable__hours-content {
+    flex: 1;
+}
+
+.timetable__hours-title {
+    font-family: var(--font-en);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.timetable__hours-time {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.timetable__hours-badge {
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    background: rgba(52, 168, 83, 0.1);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-sm);
+}
+
+.timetable__hours-badge--blue {
+    color: var(--accent-blue);
+    background: rgba(66, 133, 244, 0.1);
+}
+
+.timetable__hours-text {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+}
+
+.timetable__status {
+    text-align: center;
+    padding: var(--space-md);
+    background: linear-gradient(135deg, rgba(52, 168, 83, 0.1) 0%, rgba(52, 168, 83, 0.05) 100%);
+    border-radius: var(--radius-md);
+    border: 2px solid rgba(52, 168, 83, 0.2);
+}
+
+.timetable__status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.timetable__status-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.timetable__status-text {
+    font-family: var(--font-en);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.timetable__status-sub {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Timetable CTA */
+.timetable__cta {
+    background: var(--bg-color);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.timetable__pricing {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.timetable__pricing-divider {
+    width: 1px;
+    background: var(--border-color);
+}
+
+.timetable__pricing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.timetable__pricing-label {
+    font-family: var(--font-en);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.timetable__pricing-value {
+    font-family: var(--font-en);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.timetable__pricing-value span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.timetable__button {
+    width: 100%;
+    margin-bottom: var(--space-sm);
+    font-size: 1.0625rem;
+    padding: 1rem;
+}
+
+.timetable__note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+    background: var(--text-color);
+    color: rgba(255, 255, 255, 0.7);
+    padding: var(--space-lg) 0;
+}
+
+.footer__content {
+    text-align: center;
+}
+
+.footer__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.footer__logo-icon {
+    font-size: 1.5rem;
+}
+
+.footer__logo-text {
+    font-family: var(--font-en);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+}
+
+.footer__info {
+    margin-bottom: var(--space-sm);
+}
+
+.footer__address,
+.footer__contact {
+    font-size: 0.8125rem;
+    margin-bottom: 0.25rem;
+}
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.footer__link {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+    color: white;
+}
+
+.footer__copy {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   10. Mobile Fixed Footer
+   -------------------------------------------------------------------------- */
+.mobile-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--bg-white);
+    box-shadow: var(--shadow-float);
+    display: flex;
+    padding: var(--space-xs);
+    gap: var(--space-xs);
+}
+
+.mobile-footer__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-en);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.mobile-footer__btn--map {
+    flex: 1;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.mobile-footer__btn--map svg {
+    width: 20px;
+    height: 20px;
+}
+
+.mobile-footer__btn--cta {
+    flex: 2;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. Animation Keyframes
+   -------------------------------------------------------------------------- */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   12. Stagger Animation Classes
+   -------------------------------------------------------------------------- */
+.feature-card.js-scroll-trigger.is-visible {
+    animation: slideInUp 0.5s ease forwards;
+}
+
+.feature-card:nth-child(1).is-visible { animation-delay: 0s; }
+.feature-card:nth-child(2).is-visible { animation-delay: 0.05s; }
+.feature-card:nth-child(3).is-visible { animation-delay: 0.1s; }
+.feature-card:nth-child(4).is-visible { animation-delay: 0.15s; }
+.feature-card:nth-child(5).is-visible { animation-delay: 0.2s; }
+.feature-card:nth-child(6).is-visible { animation-delay: 0.25s; }
