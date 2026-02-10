@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>パーソナル・ウェルネス診断 | 30秒でわかるあなたに最適なプラン</title>
+    <meta name="description" content="30秒で完了！あなたのライフスタイルに合わせた最適なウェルネスプランを診断します。">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section active">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">✓</span>
+                    <span>無料診断</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="highlight">30秒</span>でわかる！<br>
+                    あなたに最適な<br>
+                    ウェルネス診断
+                </h1>
+                <p class="hero-subtitle">
+                    3つの質問に答えるだけで、<br>
+                    あなたにぴったりのプランをご提案
+                </p>
+                <div class="hero-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🎯</span>
+                        <span>最短30秒</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔒</span>
+                        <span>完全無料</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📱</span>
+                        <span>登録不要</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="quizApp.startQuiz()">
+                    <span class="btn-text">診断を始める</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+                <p class="hero-note">※診断結果はあくまで目安です</p>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section quiz-section">
+            <div class="quiz-container">
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">3</span>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="question-card" id="questionCard">
+                    <div class="question-number">Question <span id="questionNum">1</span></div>
+                    <h2 class="question-title" id="questionTitle"></h2>
+                    <div class="question-options" id="questionOptions"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Section -->
+        <section id="loading" class="section loading-section">
+            <div class="loading-content">
+                <div class="loading-circle">
+                    <svg viewBox="0 0 100 100" class="loading-svg">
+                        <circle class="loading-track" cx="50" cy="50" r="40"></circle>
+                        <circle class="loading-progress" cx="50" cy="50" r="40"></circle>
+                    </svg>
+                    <div class="loading-percentage" id="loadingPercentage">0%</div>
+                </div>
+                <div class="loading-text-container">
+                    <p class="loading-text" id="loadingText">データを分析中...</p>
+                </div>
+                <div class="loading-steps">
+                    <div class="loading-step active" id="step1">
+                        <span class="step-dot"></span>
+                        <span class="step-label">回答を集計中</span>
+                    </div>
+                    <div class="loading-step" id="step2">
+                        <span class="step-dot"></span>
+                        <span class="step-label">ライフスタイルを分析</span>
+                    </div>
+                    <div class="loading-step" id="step3">
+                        <span class="step-dot"></span>
+                        <span class="step-label">最適プランを選定中</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result" class="section result-section">
+            <div class="result-content">
+                <div class="result-badge">診断結果</div>
+                <h2 class="result-title">あなたに最適なのは...</h2>
+
+                <div class="result-card" id="resultCard">
+                    <div class="result-icon" id="resultIcon">🏃</div>
+                    <h3 class="result-course" id="resultCourse"></h3>
+                    <p class="result-description" id="resultDescription"></p>
+
+                    <div class="result-features" id="resultFeatures"></div>
+
+                    <div class="result-match">
+                        <div class="match-label">マッチング度</div>
+                        <div class="match-bar">
+                            <div class="match-fill" id="matchFill"></div>
+                        </div>
+                        <div class="match-percentage" id="matchPercentage">98%</div>
+                    </div>
+                </div>
+
+                <div class="result-recommendation">
+                    <h4>このプランがおすすめな理由</h4>
+                    <p id="resultReason"></p>
+                </div>
+
+                <div class="cta-container">
+                    <button class="btn btn-primary btn-large" onclick="quizApp.showDetails()">
+                        <span class="btn-text">おすすめコースを見る</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="quizApp.restartQuiz()">
+                        <span class="btn-text">もう一度診断する</span>
+                    </button>
+                </div>
+
+                <div class="result-trust">
+                    <div class="trust-item">
+                        <span class="trust-icon">👥</span>
+                        <span>累計<span class="trust-number">50,000</span>人が診断</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-icon">⭐</span>
+                        <span>満足度<span class="trust-number">4.8</span>/5.0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
