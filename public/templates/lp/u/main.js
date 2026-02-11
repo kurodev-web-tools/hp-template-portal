@@ -4,11 +4,11 @@
  * Global Logistics Platform
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Mobile Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (menuToggle && navLinks) {
         // Create mobile menu overlay if not exists
         let mobileOverlay = document.querySelector('.mobile-overlay');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition: transform 0.3s ease;
             `;
             document.body.appendChild(mobileOverlay);
-            
+
             // Clone nav links to overlay
             const links = navLinks.querySelectorAll('a');
             links.forEach(link => {
@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileOverlay.appendChild(clone);
             });
         }
-        
-        menuToggle.addEventListener('click', function() {
+
+        menuToggle.addEventListener('click', function () {
             this.classList.toggle('active');
             const isOpen = this.classList.contains('active');
-            
+
             if (isOpen) {
                 mobileOverlay.style.transform = 'translateX(0)';
                 document.body.style.overflow = 'hidden';
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = '';
             }
         });
-        
+
         // Close menu when clicking on links
         mobileOverlay.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href !== '#') {
                 e.preventDefault();
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (target) {
                     const navHeight = document.querySelector('.nav').offsetHeight;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                    
+
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
@@ -94,12 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Scroll Reveal Animation
     const revealElements = document.querySelectorAll(
         '.section-header, .stat-card, .feature-card, .network-map, .cta-content'
     );
-    
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -113,12 +113,12 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     });
-    
+
     revealElements.forEach(el => {
         el.classList.add('reveal');
         revealObserver.observe(el);
     });
-    
+
     // Add reveal-active class styles
     const style = document.createElement('style');
     style.textContent = `
@@ -134,14 +134,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-    
+
     // Navigation background on scroll
     const nav = document.getElementById('nav');
     let lastScroll = 0;
-    
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
+
         if (currentScroll > 50) {
             nav.style.background = 'rgba(11, 16, 38, 0.98)';
             nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
@@ -149,69 +149,69 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.style.background = 'rgba(11, 16, 38, 0.9)';
             nav.style.boxShadow = 'none';
         }
-        
+
         lastScroll = currentScroll;
     }, { passive: true });
-    
+
     // Animate stats numbers on scroll
     const statNumbers = document.querySelectorAll('.stat-number');
-    
+
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const target = entry.target;
                 const text = target.textContent;
-                
+
                 // Check if it's a number
                 if (/\d/.test(text)) {
                     animateNumber(target, text);
                 }
-                
+
                 statsObserver.unobserve(target);
             }
         });
     }, { threshold: 0.5 });
-    
+
     statNumbers.forEach(stat => statsObserver.observe(stat));
-    
+
     function animateNumber(element, finalText) {
         // Extract number from text
         const numMatch = finalText.match(/[\d.]+/);
         if (!numMatch) return;
-        
+
         const finalNum = parseFloat(numMatch[0]);
         const isDecimal = finalText.includes('.');
         const suffix = finalText.replace(/[\d.]+/, '');
         const duration = 2000;
         const startTime = performance.now();
-        
+
         function update(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            
+
             // Ease out cubic
             const easeProgress = 1 - Math.pow(1 - progress, 3);
             const currentNum = finalNum * easeProgress;
-            
+
             if (isDecimal) {
                 element.textContent = currentNum.toFixed(2) + suffix;
             } else {
                 element.textContent = Math.floor(currentNum) + suffix;
             }
-            
+
             if (progress < 1) {
                 requestAnimationFrame(update);
             } else {
                 element.textContent = finalText;
             }
         }
-        
+
         requestAnimationFrame(update);
     }
-    
+
     // Parallax effect for globe on scroll (subtle)
     const globe = document.querySelector('.globe-container');
-    
+
     if (globe && window.matchMedia('(pointer: fine)').matches) {
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
             globe.style.transform = `translate(-50%, calc(-50% + ${rate}px))`;
         }, { passive: true });
     }
-    
+
     // Network node animation - random pulse timing
     const nodes = document.querySelectorAll('.node');
     nodes.forEach((node, index) => {
@@ -229,14 +229,71 @@ document.addEventListener('DOMContentLoaded', function() {
             pulse.style.animationDuration = `${3 + Math.random() * 2}s`;
         }
     });
-    
+
     // Globe dots animation enhancement
     const dots = document.querySelectorAll('.globe-dots span');
     dots.forEach((dot, index) => {
         // Randomize animation delay for more organic feel
         dot.style.animationDelay = `${Math.random() * 3}s`;
     });
+
+    // Initialize Map System (New)
+    initMapSystem();
 });
+
+/**
+ * Initialize Map System
+ * Positions nodes based on Lat/Lon and draws connections
+ */
+function initMapSystem() {
+    const mapNodes = document.querySelectorAll('.map-node-group');
+    const connections = document.querySelectorAll('.map-connection');
+
+    // Hardcoded SVG coordinates (viewBox: 0 0 1280 640)
+    // Calibrated via browser visual inspection against the actual map SVG
+    const calibratedPositions = {
+        ny: { x: 336, y: 254 },   // New York
+        sp: { x: 434, y: 452 },   // São Paulo
+        lon: { x: 602, y: 212 },  // London
+        fra: { x: 665, y: 224 },  // Frankfurt
+        mos: { x: 777, y: 205 },  // Moscow
+        dxb: { x: 803, y: 308 },  // Dubai
+        sin: { x: 968, y: 375 },  // Singapore
+        tok: { x: 1102, y: 273 }, // Tokyo
+        syd: { x: 1139, y: 480 }, // Sydney
+    };
+
+    const nodePositions = {};
+
+    // 1. Position Nodes using calibrated coordinates
+    mapNodes.forEach(node => {
+        const id = node.getAttribute('data-id');
+        const pos = calibratedPositions[id];
+
+        if (!pos) return;
+
+        const { x, y } = pos;
+
+        // Apply transform
+        node.setAttribute('transform', `translate(${x}, ${y})`);
+
+        // Store position for connections
+        nodePositions[id] = { x, y };
+    });
+
+    // 2. Draw Connections
+    connections.forEach(line => {
+        const fromId = line.getAttribute('data-from');
+        const toId = line.getAttribute('data-to');
+
+        if (nodePositions[fromId] && nodePositions[toId]) {
+            line.setAttribute('x1', nodePositions[fromId].x);
+            line.setAttribute('y1', nodePositions[fromId].y);
+            line.setAttribute('x2', nodePositions[toId].x);
+            line.setAttribute('y2', nodePositions[toId].y);
+        }
+    });
+}
 
 // Add CSS for mobile overlay
 const mobileStyles = document.createElement('style');
