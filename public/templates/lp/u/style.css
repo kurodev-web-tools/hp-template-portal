@@ -57,6 +57,7 @@ html {
     scroll-behavior: smooth;
 }
 
+
 body {
     font-family: var(--font-ja), var(--font-en);
     background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-midnight) 50%, var(--bg-deep) 100%);
@@ -64,6 +65,14 @@ body {
     line-height: 1.8;
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+/* Container Utility */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
 }
 
 /* Utility */
@@ -498,6 +507,18 @@ body {
     transition: all var(--transition-base);
 }
 
+/* Mobile Stats Grid Adjustment */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .stat-card {
+        padding: var(--space-md);
+    }
+}
+
 .stat-card:hover {
     border-color: var(--border-glow);
     transform: translateY(-4px);
@@ -841,6 +862,21 @@ body {
         transform: scale(4);
         opacity: 0;
     }
+}
+
+/* Map Node Labels */
+.node-label {
+    font-family: 'Inter', 'Outfit', var(--font-en), sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    fill: #F8FAFC;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    paint-order: stroke fill;
+    stroke: rgba(11, 16, 38, 0.85);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px rgba(76, 201, 240, 0.5));
 }
 
 @keyframes dashFlow {
