@@ -352,10 +352,18 @@ body {
 }
 
 .problem__list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .problem__list {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: var(--space-lg);
+        row-gap: var(--space-md);
+    }
 }
 
 .problem__item {
