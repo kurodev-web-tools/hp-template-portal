@@ -68,6 +68,9 @@ function initParallax() {
         const scrollY = window.scrollY;
 
         parallaxElements.forEach(element => {
+            // Skip hero background as it's handled by a unified animation loop
+            if (element.classList.contains('hero__bg')) return;
+
             const rect = element.getBoundingClientRect();
             // speed is defined in HTML data-speed (e.g. 0.5)
             const speed = parseFloat(element.dataset.speed) || 0.5;
@@ -449,11 +452,32 @@ function isValidEmail(email) {
 })();
 
 /**
- * Mouse Move Parallax (Desktop Only)
- * Subtle parallax effect following mouse movement
+ * Hero Section Animation
+ * Unified handling for Scroll Parallax + Mouse Movement
  */
-(function () {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+function initHeroAnimation() {
+    if (window.matchMedia('(pointer: coarse)').matches) {
+        // Mobile: Scroll only parallax for hero (Simplified)
+        let ticking = false;
+        const heroBg = document.querySelector('.hero__bg');
+        if (!heroBg) return;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    if (scrollY < window.innerHeight) {
+                        const speed = parseFloat(heroBg.dataset.speed) || 0.5;
+                        const offset = (scrollY * speed * 0.2);
+                        heroBg.style.transform = `translateY(${offset}px) scale(1.05)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+        return;
+    }
 
     const hero = document.querySelector('.hero');
     if (!hero) return;
@@ -465,6 +489,7 @@ function isValidEmail(email) {
     let mouseY = 0;
     let currentX = 0;
     let currentY = 0;
+    let scrollY = 0;
 
     hero.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
@@ -473,16 +498,28 @@ function isValidEmail(email) {
     });
 
     function animate() {
+        // Smooth mouse movement
         currentX += (mouseX - currentX) * 0.05;
         currentY += (mouseY - currentY) * 0.05;
 
-        const moveX = currentX * 10;
-        const moveY = currentY * 10;
+        scrollY = window.scrollY;
 
-        heroBg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+        // Only calculate if hero is visible
+        if (scrollY < window.innerHeight) {
+            const speed = parseFloat(heroBg.dataset.speed) || 0.5;
+            const parallaxOffset = (scrollY * speed * 0.2);
+
+            const moveX = currentX * 15;
+            const moveY = (currentY * 15) + parallaxOffset;
+
+            heroBg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+        }
 
         requestAnimationFrame(animate);
     }
 
     animate();
-})();
+}
+
+// Replace the previous anonymous function with the call
+initHeroAnimation();
