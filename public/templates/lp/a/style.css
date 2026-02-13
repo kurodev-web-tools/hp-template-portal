@@ -221,11 +221,16 @@ body {
 }
 
 .hero__title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    /* Slightly reduced to fit 2 lines on PC */
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.2;
+    /* Improved for better multi-line legibility */
     color: var(--text-color);
     margin-bottom: 1.5rem;
+    word-break: keep-all;
+    /* Ensure Japanese characters don't break mid-phrase */
+    overflow-wrap: anywhere;
 }
 
 .hero__title-accent {
@@ -596,6 +601,26 @@ body {
     margin-bottom: 1rem;
 }
 
+@media (max-width: 1023px) {
+    .hero__inner {
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .hero__badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero__actions {
+        justify-content: center;
+    }
+
+    .hero__social-proof {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
     .hero__title {
         font-size: 1.8rem;
@@ -605,6 +630,18 @@ body {
     .cta__title {
         font-size: 1.5rem;
         /* Reduced to fit 1 line */
+    }
+
+    .feature-card {
+        padding: 1.25rem;
+        /* Reduced to ensure horizontal fit */
+    }
+
+    .feature-card__title {
+        font-size: 1.05rem;
+        /* Optimized to avoid wrap for "Enterprise" */
+        letter-spacing: -0.02em;
+        /* Tighter kerning for long headings */
     }
 }
 
@@ -1247,6 +1284,7 @@ body {
 
 .pricing-card__btn {
     width: 100%;
+    margin-top: auto;
 }
 
 /* --------------------------------------------------------------------------
@@ -1504,14 +1542,25 @@ body {
 
 .footer__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
     margin-bottom: 3rem;
+}
+
+.footer__brand {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
 }
 
 @media (min-width: 768px) {
     .footer__grid {
         grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 3rem;
+    }
+
+    .footer__brand {
+        grid-column: auto;
+        margin-bottom: 0;
     }
 }
 
@@ -1617,6 +1666,11 @@ body {
     transform: translateY(0);
 }
 
+/* Text-safe utility for natural line breaks */
+.text-safe {
+    display: inline-block;
+}
+
 /* ==========================================================================
    Mobile Optimizations (Added at the end to ensure override)
    ========================================================================== */
@@ -1630,7 +1684,8 @@ body {
     }
 
     .pricing-card {
-        padding: 1rem;
+        padding: 2.5rem 1.25rem 1.5rem;
+        /* Increased top padding to avoid badge overlap */
     }
 
     .pricing-card__btn {
