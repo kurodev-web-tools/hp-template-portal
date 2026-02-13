@@ -16,16 +16,16 @@
     --color-text-muted: #94A3B8;
     --color-gold: #D97706;
     --color-gold-light: #FEF3C7;
-    
+
     /* Shadows */
     --shadow-teal: 0 4px 6px -1px rgba(20, 184, 166, 0.1), 0 2px 4px -2px rgba(20, 184, 166, 0.1);
     --shadow-soft: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
     --shadow-medium: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
-    
+
     /* Typography */
     --font-en: 'Lato', sans-serif;
     --font-jp: 'Noto Sans JP', sans-serif;
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -33,7 +33,7 @@
     --spacing-lg: 2.5rem;
     --spacing-xl: 4rem;
     --spacing-2xl: 6rem;
-    
+
     /* Transitions */
     --transition-fast: 0.15s ease;
     --transition-base: 0.3s ease;
@@ -41,7 +41,9 @@
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -49,6 +51,10 @@
 
 html {
     scroll-behavior: smooth;
+    /* Override lp-base.css overflow-x: hidden which breaks position: sticky.
+       'clip' still prevents horizontal scrollbar but does NOT create
+       a new formatting context, so sticky positioning works. */
+    overflow-x: clip;
 }
 
 body {
@@ -59,6 +65,8 @@ body {
     background-color: var(--color-base);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Override lp-base.css overflow-x: hidden for sticky positioning */
+    overflow-x: clip;
 }
 
 img {
@@ -516,9 +524,17 @@ ul {
     letter-spacing: 0.1em;
 }
 
-.step-image[data-step="1"]::before { content: "01"; }
-.step-image[data-step="2"]::before { content: "02"; }
-.step-image[data-step="3"]::before { content: "03"; }
+.step-image[data-step="1"]::before {
+    content: "01";
+}
+
+.step-image[data-step="2"]::before {
+    content: "02";
+}
+
+.step-image[data-step="3"]::before {
+    content: "03";
+}
 
 /* Hide fallback number when image is loaded */
 .step-image:has(img:not([src=""]))::before,
@@ -1178,34 +1194,34 @@ ul {
         display: flex;
         flex-direction: column;
     }
-    
+
     .how-visual-wrapper {
         display: none;
     }
-    
+
     .how-steps {
         width: 100%;
         padding-left: 0;
         gap: var(--spacing-xl);
     }
-    
+
     .step-item {
         min-height: auto;
     }
-    
+
     /* Show mobile images inside each step */
     .step-item .step-image-mobile {
         display: block;
     }
-    
+
     /* Visual indicator when image fails to load */
     .step-image-mobile img[src=""],
     .step-image-mobile img:not([src]) {
         display: none;
     }
-    
+
     .step-image-mobile:empty::before,
-    .step-image-mobile img[style*="display: none"] + ::before {
+    .step-image-mobile img[style*="display: none"]+ ::before {
         content: attr(data-alt);
         position: absolute;
         top: 50%;
@@ -1225,81 +1241,82 @@ ul {
     .nav-desktop {
         display: flex;
     }
-    
+
     .hero-container {
         flex-direction: row;
         align-items: center;
         gap: var(--spacing-2xl);
     }
-    
+
     .hero-content {
         flex: 1;
         text-align: left;
     }
-    
+
     .hero-cta {
         align-items: flex-start;
     }
-    
+
     .hero-visual {
         flex: 1;
     }
-    
+
     .problem-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .solution-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .testimonials-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .testimonial-card.featured {
         transform: scale(1.05);
     }
-    
+
     .offer-comparison {
         flex-direction: row;
         align-items: center;
     }
-    
+
     .comparison-item {
         flex: 1;
     }
-    
+
     .comparison-divider {
         width: auto;
     }
-    
+
     .footer-content {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
     }
-    
+
     .footer-links {
         flex-direction: row;
         gap: 2rem;
     }
-    
+
     .mobile-only {
         display: none;
     }
-    
+
     /* PC: Enhanced Price Display */
     .comparison-item.highlight .comparison-value {
         font-size: 2.5rem;
     }
-    
+
     .price-current {
         font-size: 3.5rem !important;
     }
 }
 
 @media (min-width: 1024px) {
+
     /* Desktop Scrollytelling Layout - Fixed */
     .how-content {
         display: flex;
@@ -1309,7 +1326,7 @@ ul {
         gap: 5%;
         min-height: auto;
     }
-    
+
     .how-visual-wrapper {
         position: sticky;
         top: 15vh;
@@ -1320,7 +1337,7 @@ ul {
         flex-shrink: 0;
         z-index: 10;
     }
-    
+
     .how-visual {
         width: 100%;
         height: 100%;
@@ -1333,7 +1350,7 @@ ul {
         background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 50%, #F0FDFA 100%);
         border: 3px solid rgba(20, 184, 166, 0.2);
     }
-    
+
     /* Visual indicator for image area on desktop */
     .how-visual::before {
         content: '';
@@ -1347,12 +1364,12 @@ ul {
         border-radius: 50%;
         z-index: 0;
     }
-    
+
     /* Hide indicator when any image is active */
     .how-visual:has(.step-image.active)::before {
         display: none;
     }
-    
+
     .how-steps {
         width: 45%;
         padding-left: 0;
@@ -1362,7 +1379,7 @@ ul {
         flex-direction: column;
         gap: 60vh;
     }
-    
+
     .step-item {
         min-height: auto;
         display: flex;
@@ -1370,25 +1387,25 @@ ul {
         justify-content: center;
         padding: var(--spacing-xl);
     }
-    
+
     /* Hide mobile images on desktop */
     .step-item .step-image-mobile {
         display: none;
     }
-    
+
     .tech-content {
         flex-direction: row;
         align-items: center;
     }
-    
+
     .tech-visual {
         flex: 1;
     }
-    
+
     .tech-features {
         flex: 1;
     }
-    
+
     .hero-scroll {
         display: flex;
     }
@@ -1396,12 +1413,15 @@ ul {
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-    
+
     html {
         scroll-behavior: auto;
     }
@@ -1416,12 +1436,13 @@ button:focus-visible {
 
 /* Print styles */
 @media print {
+
     .site-header,
     .sticky-cta,
     .hero-scroll {
         display: none !important;
     }
-    
+
     .hero {
         min-height: auto;
         padding-top: var(--spacing-lg);
@@ -1450,6 +1471,7 @@ button:focus-visible {
     .pc-only {
         display: block;
     }
+
     .sp-only {
         display: none;
     }

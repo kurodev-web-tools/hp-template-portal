@@ -3,7 +3,7 @@
  * Scrollytelling & Interactive Features
  */
 
-(function() {
+(function () {
     'use strict';
 
     // ========================================
@@ -41,7 +41,7 @@
     // ========================================
     class ScrollytellingController {
         constructor() {
-            this.currentStep = 1;
+            this.currentStep = 0;
             this.isActive = false;
             this.init();
         }
@@ -89,13 +89,13 @@
 
         activateStep(stepNumber) {
             if (this.currentStep === stepNumber) return;
-            
+
             this.currentStep = stepNumber;
 
             // Update images with crossfade
             elements.stepImages.forEach((img, index) => {
                 const imgStep = parseInt(img.dataset.step);
-                
+
                 if (imgStep === stepNumber) {
                     img.classList.add('active');
                     img.style.opacity = '1';
@@ -108,7 +108,7 @@
             // Update step items styling
             elements.stepItems.forEach(item => {
                 const itemStep = parseInt(item.dataset.step);
-                
+
                 if (itemStep === stepNumber) {
                     item.classList.add('active');
                 } else {
@@ -117,8 +117,8 @@
             });
 
             // Custom event for analytics/debugging
-            window.dispatchEvent(new CustomEvent('stepChange', { 
-                detail: { step: stepNumber } 
+            window.dispatchEvent(new CustomEvent('stepChange', {
+                detail: { step: stepNumber }
             }));
         }
 
@@ -161,7 +161,7 @@
 
         handleScroll() {
             const currentScrollY = window.scrollY;
-            
+
             // Hide when near top
             if (currentScrollY < CONFIG.stickyCTA.showAt) {
                 this.hide();
@@ -212,7 +212,7 @@
 
         setupFadeInAnimations() {
             const fadeElements = document.querySelectorAll('.problem-item, .stat-item');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -415,7 +415,7 @@
             if (window.gtag) {
                 window.gtag('event', eventName, data);
             }
-            
+
             console.log('[Analytics]', eventName, data);
         }
 
