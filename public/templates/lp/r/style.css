@@ -1083,3 +1083,111 @@ button:focus-visible {
     background-color: var(--color-teal);
     color: var(--color-navy);
 }
+
+/* ============================================
+   Template R Mobile Optimization
+   Horizontal Scroll for Job Cards
+   ============================================ */
+
+@media (max-width: 768px) {
+    .jobs {
+        padding: var(--space-2xl) 0;
+        overflow: hidden;
+        /* Prevent horizontal scroll on body */
+    }
+
+    .jobs .container {
+        padding-right: 0;
+        /* Align first card to left edge but allow scroll */
+    }
+
+    .jobs-grid {
+        display: flex;
+        grid-template-columns: none;
+        gap: var(--space-md);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: var(--space-lg);
+        /* Space for shadow/scroll */
+        padding-right: var(--space-lg);
+        /* Padding for last card */
+        -webkit-overflow-scrolling: touch;
+        /* Hide scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .jobs-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .job-card {
+        flex: 0 0 90%;
+        /* Increase to 90% for better readability */
+        width: 90%;
+        scroll-snap-align: center;
+        margin-right: 0;
+        height: auto;
+        /* Ensure consistent height */
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-lg);
+        /* Reduce padding on mobile */
+    }
+
+    .job-title {
+        word-break: keep-all;
+        /* Prevent awkward breaks in Japanese */
+        overflow-wrap: break-word;
+        /* But break if too long */
+        line-height: 1.4;
+        /* Slightly tighter line height for titles */
+    }
+
+    .job-body {
+        margin-bottom: var(--space-md);
+    }
+
+    .meta-item {
+        flex-direction: column;
+        gap: var(--space-xs);
+        align-items: flex-start;
+    }
+
+    .meta-label {
+        font-size: 0.75rem;
+        color: var(--color-teal);
+    }
+}
+/* Benefits Mobile Optimization (2-column grid) */
+@media (max-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+    }
+
+    .benefit-item {
+        padding: var(--space-md);
+    }
+
+    .benefit-icon-wrap {
+        width: 48px;
+        height: 48px;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .benefit-icon-svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .benefit-item h3 {
+        font-size: 0.9rem;
+        margin-bottom: var(--space-xs);
+    }
+
+    .benefit-item p {
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+}
