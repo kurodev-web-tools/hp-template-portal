@@ -47,13 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData(form);
 
-            // Prepare data for backend
+            // 1. Submit to Netlify Forms (for email notification)
+            try {
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString(),
+                });
+                console.log('Form submitted to Netlify');
+            } catch (formError) {
+                console.warn('Form submission failed, proceeding to payment anyway', formError);
+            }
+
+            // 2. Prepare data for Stripe backend
             const data = {
                 customerEmail: formData.get('email'),
                 customerName: formData.get('name'),
                 successUrl: window.location.origin + '/success.html', // Redirect here after payment
                 cancelUrl: window.location.href, // Redirect here if canceled
-                // Metadata to be passed to Stripe (handled by create-checkout-session if needed)
+                // Metadata to be passed to Stripe (handled by create-checkout-session)
                 metadata: {
                     template: formData.get('template'),
                     domain: formData.get('domain'),
