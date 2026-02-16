@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { successUrl, cancelUrl, customerEmail } = JSON.parse(event.body);
+    const { successUrl, cancelUrl, customerEmail, metadata } = JSON.parse(event.body);
 
     // Validate required fields
     if (!successUrl || !cancelUrl) {
@@ -35,6 +35,7 @@ exports.handler = async (event, context) => {
       success_url: successUrl,
       cancel_url: cancelUrl,
       customer_email: customerEmail,
+      metadata: metadata, // Pass metadata to Stripe
     });
 
     return {
