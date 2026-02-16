@@ -514,12 +514,37 @@ body {
 /* Mobile Stats Grid Adjustment */
 @media (max-width: 768px) {
     .stats-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-sm);
     }
 
     .stat-card {
-        padding: var(--space-md);
+        padding: var(--space-sm) var(--space-xs);
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .stat-icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: var(--space-xs);
+    }
+
+    .stat-number {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+        /* Smaller label */
+        margin-bottom: 0;
     }
 }
 
@@ -1122,4 +1147,10 @@ button:focus-visible {
 ::selection {
     background: rgba(76, 201, 240, 0.3);
     color: var(--text-primary);
+}
+
+/* Text Formatting Utilities */
+.ib {
+    display: inline-block;
+    white-space: nowrap;
 }
