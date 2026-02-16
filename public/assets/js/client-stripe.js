@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. Submit to Netlify Forms (for email notification)
             try {
-                await fetch('/', {
+                await fetch(window.location.href, { // Post to current page for proper handling
                     method: 'POST',
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: new URLSearchParams(formData).toString(),
