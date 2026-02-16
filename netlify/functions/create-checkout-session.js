@@ -35,7 +35,11 @@ exports.handler = async (event, context) => {
       success_url: successUrl,
       cancel_url: cancelUrl,
       customer_email: customerEmail,
-      metadata: metadata, // Pass metadata to Stripe
+      customer_email: customerEmail,
+      metadata: metadata, // Metadata for the Session
+      payment_intent_data: {
+        metadata: metadata, // Metadata for the PaymentIntent (Visible in Transactions)
+      },
     });
 
     return {
