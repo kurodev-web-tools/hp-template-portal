@@ -100,10 +100,10 @@
                         </ul>
                     </div>
                     <div class="plan-action">
-                        <a href="list.html" class="plan-btn standard-btn">
-                            <span>テンプレートを見る</span>
-                            <span class="material-icons">arrow_forward</span>
-                        </a>
+                        <button class="plan-btn standard-btn" id="btn-standard-order">
+                            <span>今すぐ購入</span>
+                            <span class="material-icons">shopping_cart</span>
+                        </button>
                     </div>
                 </div>
 
@@ -141,9 +141,9 @@
                         </ul>
                     </div>
                     <div class="plan-action">
-                        <a href="#contact" class="plan-btn premium-btn">
-                            <span>相談する</span>
-                            <span class="material-icons">chat</span>
+                        <a href="order-premium.html" class="plan-btn premium-btn">
+                            <span>見積もり・相談依頼</span>
+                            <span class="material-icons">description</span>
                         </a>
                     </div>
                 </div>
@@ -204,7 +204,55 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="assets/js/premium-effects.js" defer></script>
+    <script src="assets/js/client-stripe.js" defer></script>
+
+    <!-- Standard Order Modal -->
+    <div class="modal-overlay" id="standard-order-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Standard Plan お申し込み</h3>
+                <button class="modal-close material-icons">close</button>
+            </div>
+            <div class="modal-body">
+                <form id="standard-order-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="orderName" class="form-label">お名前 (必須)</label>
+                        <input type="text" id="orderName" name="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderEmail" class="form-label">メールアドレス (必須)</label>
+                        <input type="email" id="orderEmail" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderTemplate" class="form-label">希望テンプレート (必須)</label>
+                        <select id="orderTemplate" name="template" class="form-select" required>
+                            <option value="">選択してください</option>
+                            <option value="business">Business (コーポレート)</option>
+                            <option value="streamer">Streamer (配信者向け)</option>
+                            <option value="lp">Landing Page (LP)</option>
+                            <option value="portfolio">Portfolio (ポートフォリオ)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderDomain" class="form-label">希望ドメイン名 (任意)</label>
+                        <input type="text" id="orderDomain" name="domain" class="form-input"
+                            placeholder="example.com (取得済みの場合)">
+                    </div>
+                    <div class="form-group">
+                        <label for="orderMessage" class="form-label">ご要望・メッセージ</label>
+                        <textarea id="orderMessage" name="message" class="form-textarea" rows="3"></textarea>
+                    </div>
+                    <p class="payment-note">「申し込みと支払いに進む」を押すと、Stripeの安全な決済画面へ移動します。</p>
+                    <button type="submit" class="submit-btn" style="width:100%;">
+                        <span>申し込みと支払いに進む</span>
+                        <span class="material-icons">payment</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

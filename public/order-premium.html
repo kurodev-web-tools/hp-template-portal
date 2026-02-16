@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Plan お申し込み - あなただけの完全オーダーメイドWebサイト制作のご相談はこちら。">
+    <meta name="theme-color" content="#00f2ff">
+
+    <title>Premium Plan Request - HP Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/plans.css">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="order-premium.html">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="aurora-container"></div>
+    <div class="bg-ambient"></div>
+
+    <header class="portal-header">
+        <div class="logo"><a href="index.html">HP TEMPLATES</a></div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="plans.html" class="nav-link active">Plans</a>
+        </nav>
+    </header>
+
+    <main class="plans-main">
+        <section class="contact-section">
+            <div class="contact-container glass-panel">
+                <div class="contact-header">
+                    <span class="plan-badge premium-badge">Original</span>
+                    <h1 class="section-title">Premium Request</h1>
+                    <p class="section-subtitle">世界に一つだけのWebサイトを共に創りましょう。<br>詳細なご要望をお聞かせください。</p>
+                </div>
+
+                <!-- Netlify Form: Premium Order -->
+                <form name="premium-order" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+                    enctype="multipart/form-data" class="contact-form">
+                    <input type="hidden" name="form-name" value="premium-order" />
+                    <p class="hidden" style="display:none">
+                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumName" class="form-label">お名前 / 貴社名 (必須)</label>
+                            <input type="text" id="premiumName" name="name" class="form-input" required
+                                placeholder="例: 山田 太郎 / 株式会社〇〇">
+                        </div>
+                        <div class="form-group">
+                            <label for="premiumEmail" class="form-label">メールアドレス (必須)</label>
+                            <input type="email" id="premiumEmail" name="email" class="form-input" required
+                                placeholder="example@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="premiumBudget" class="form-label">ご予算感 (目安)</label>
+                            <select id="premiumBudget" name="budget" class="form-select">
+                                <option value="">選択してください</option>
+                                <option value="5-10">5万円 〜 10万円</option>
+                                <option value="10-30">10万円 〜 30万円</option>
+                                <option value="30-50">30万円 〜 50万円</option>
+                                <option value="50+">50万円以上 (大規模開発)</option>
+                                <option value="undecided">未定・相談したい</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="premiumDeadline" class="form-label">希望納期</label>
+                            <input type="date" id="premiumDeadline" name="deadline" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="premiumRef" class="form-label">参考サイトURL (イメージに近いものがあれば)</label>
+                        <input type="url" id="premiumRef" name="reference_url" class="form-input"
+                            placeholder="https://...">
+                    </div>
+
+                    <div class="form-group file-upload-group">
+                        <label for="premiumFile" class="form-label">資料・イメージ画像添付 (任意)</label>
+                        <div class="file-upload-wrapper">
+                            <label for="premiumFile" class="file-upload-label">
+                                <span class="material-icons">cloud_upload</span>
+                                <span class="file-select-text">ファイルを選択してください</span>
+                            </label>
+                            <input type="file" id="premiumFile" name="attachment" class="file-upload-input hidden-input"
+                                accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
+                        </div>
+                        <p class="payment-note" style="text-align:left; margin-top:5px;">※ デザインカンプや仕様書などがあれば添付してください。
+                        </p>
+                    </div>
+
+                    <script>
+                        document.getElementById('premiumFile').addEventListener('change', function (e) {
+                            const fileName = e.target.files[0] ? e.target.files[0].name : 'ファイルを選択してください';
+                            const label = this.parentElement.querySelector('.file-select-text');
+                            label.textContent = fileName;
+                            label.parentElement.classList.add('has-file');
+                        });
+                    </script>
+
+                    <div class="form-group">
+                        <label for="premiumMessage" class="form-label">詳細なご要望・メッセージ</label>
+                        <textarea id="premiumMessage" name="message" class="form-textarea" rows="8"
+                            placeholder="作りたいサイトのイメージ、必要な機能、ターゲット層などを自由にご記入ください。" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn premium-btn">
+                        <span>送信して相談する</span>
+                        <span class="material-icons">send</span>
+                    </button>
+
+                    <p class="payment-note">送信後、2営業日以内に担当者より折り返しご連絡いたします。<br>お支払いは仕様確定後、Stripe決済リンクをお送りします。</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="copyright">© 2026 HP Templates Portal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
