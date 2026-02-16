@@ -487,20 +487,198 @@ const PORTAL_DATA = {
                 image: 'assets/thumbnails/lp/lp_b.webp',
                 themeLabel: 'Brand Story'
             },
-            ...Array.from({ length: 24 }, (_, i) => {
-                const char = String.fromCharCode(67 + i); // C to Z
-                return {
-                    id: `lp_${char.toLowerCase()}`,
-                    name: `LP ${char}`,
-                    tag: char,
-                    path: `templates/lp/${char.toLowerCase()}`,
-                    description: `High conversion Landing Page template ${char}.`,
-                    features: ['Impact', 'Sales', 'Marketing'],
-                    colors: ['#ff0055', '#ffffff', '#000000'],
-                    image: '',
-                    themeLabel: `${char}: Landing Page`
-                };
-            })
+            {
+                id: 'lp_c', name: 'Campaign Flow', tag: 'C', path: 'templates/lp/c',
+                description: '期間限定キャンペーンやセールに勝つための、緊急性と期待感を煽るデザイン。',
+                features: ['Campaign', 'Sale', 'Urgency'],
+                colors: ['#ef4444', '#fee2e2', '#ffffff'],
+                image: '',
+                themeLabel: 'Campaign Flow'
+            },
+            {
+                id: 'lp_d', name: 'Digital SaaS', tag: 'D', path: 'templates/lp/d',
+                description: 'B2B向けSaaS製品の機能とメリットを、論理的かつ洗練されたUIで訴求。',
+                features: ['SaaS', 'B2B', 'Tech'],
+                colors: ['#0f172a', '#38bdf8', '#f8fafc'],
+                image: '',
+                themeLabel: 'Digital SaaS'
+            },
+            {
+                id: 'lp_e', name: 'Event Summit', tag: 'E', path: 'templates/lp/e',
+                description: 'オンラインセミナーやカンファレンスの集客に特化した、熱量と信頼を伝えるデザイン。',
+                features: ['Event', 'Seminar', 'Conf'],
+                colors: ['#4f46e5', '#312e81', '#ffffff'],
+                image: '',
+                themeLabel: 'Event Summit'
+            },
+            {
+                id: 'lp_f', name: 'Food & Dining', tag: 'F', path: 'templates/lp/f',
+                description: 'シズル感たっぷりの写真で食欲を刺激。レストランや食品通販のCV率を高めます。',
+                features: ['Food', 'Restaurant', 'Delicious'],
+                colors: ['#ea580c', '#fff7ed', '#292524'],
+                image: '',
+                themeLabel: 'Food & Dining'
+            },
+            {
+                id: 'lp_g', name: 'Gym & Fit', tag: 'G', path: 'templates/lp/g',
+                description: '力強さと躍動感を表現。フィットネスジムやパーソナルトレーニングの入会促進に。',
+                features: ['Fitness', 'Gym', 'Energy'],
+                colors: ['#000000', '#bef264', '#171717'],
+                image: '',
+                themeLabel: 'Gym & Fit'
+            },
+            {
+                id: 'lp_h', name: 'Health Clinic', tag: 'H', path: 'templates/lp/h',
+                description: '清潔感と安心感を最優先。クリニックや整体院の予約獲得に最適化されたデザイン。',
+                features: ['Medical', 'Clinic', 'Trust'],
+                colors: ['#0ea5e9', '#f0f9ff', '#ffffff'],
+                image: '',
+                themeLabel: 'Health Clinic'
+            },
+            {
+                id: 'lp_i', name: 'Interior Art', tag: 'I', path: 'templates/lp/i',
+                description: '住空間の美しさを引き立てる、余白を活かした不動産・リノベーション向けLP。',
+                features: ['Real Estate', 'Interior', 'Space'],
+                colors: ['#57534e', '#e7e5e4', '#ffffff'],
+                image: '',
+                themeLabel: 'Interior Art'
+            },
+            {
+                id: 'lp_j', name: 'Jewelry Lux', tag: 'J', path: 'templates/lp/j',
+                description: '高級感あふれるセリフ体とゴールドのあしらい。ジュエリーや時計のブランディングに。',
+                features: ['Luxury', 'Jewelry', 'Gold'],
+                colors: ['#b45309', '#fffbeb', '#1c1917'],
+                image: '',
+                themeLabel: 'Jewelry Lux'
+            },
+            {
+                id: 'lp_k', name: 'Knowledge Base', tag: 'K', path: 'templates/lp/k',
+                description: '学びへの意欲を掻き立てるアカデミックなデザイン。スクールやオンライン講座に。',
+                features: ['Education', 'School', 'Academic'],
+                colors: ['#047857', '#ecfdf5', '#ffffff'],
+                image: '',
+                themeLabel: 'Knowledge Base'
+            },
+            {
+                id: 'lp_l', name: 'Legal Trust', tag: 'L', path: 'templates/lp/l',
+                description: '「頼れる」「相談できる」イメージを確立。法律事務所や税理士法人の集客に。',
+                features: ['Legal', 'Trust', 'Professional'],
+                colors: ['#1e40af', '#1e3a8a', '#ffffff'],
+                image: '',
+                themeLabel: 'Legal Trust'
+            },
+            {
+                id: 'lp_m', name: 'Media & News', tag: 'M', path: 'templates/lp/m',
+                description: '最新情報をスタイリッシュに発信。ニュースメディアや情報商材のローンチに。',
+                features: ['Media', 'News', 'Modern'],
+                colors: ['#2dd4bf', '#134e4a', '#f0fdfa'],
+                image: '',
+                themeLabel: 'Media & News'
+            },
+            {
+                id: 'lp_n', name: 'Nature Beauty', tag: 'N', path: 'templates/lp/n',
+                description: '自然派コスメやオーガニック製品の魅力を伝える、優しく透明感のあるデザイン。',
+                features: ['Organic', 'Beauty', 'Nature'],
+                colors: ['#a3e635', '#f7fee7', '#3f6212'],
+                image: '',
+                themeLabel: 'Nature Beauty'
+            },
+            {
+                id: 'lp_o', name: 'One Product', tag: 'O', path: 'templates/lp/o',
+                description: 'たった一つの商品にスポットライトを。ガジェットやアイデア商品の購入率を最大化。',
+                features: ['Single Product', 'Focus', 'Gadget'],
+                colors: ['#6366f1', '#eef2ff', '#111827'],
+                image: '',
+                themeLabel: 'One Product'
+            },
+            {
+                id: 'lp_p', name: 'Pet Life', tag: 'P', path: 'templates/lp/p',
+                description: '愛らしさと温かみで飼い主の心を掴む。ペットサロンや動物病院向け。',
+                features: ['Pet', 'Cute', 'Warm'],
+                colors: ['#f59e0b', '#fffbeb', '#78350f'],
+                image: '',
+                themeLabel: 'Pet Life'
+            },
+            {
+                id: 'lp_q', name: 'Quiz & Lead', tag: 'Q', path: 'templates/lp/q',
+                description: '診断コンテンツやクイズで楽しみながらリードを獲得。インタラクティブなマーケティングに。',
+                features: ['Quiz', 'Interactive', 'Lead'],
+                colors: ['#ec4899', '#fdf2f8', '#831843'],
+                image: '',
+                themeLabel: 'Quiz & Lead'
+            },
+            {
+                id: 'lp_r', name: 'Recruit Hero', tag: 'R', path: 'templates/lp/r',
+                description: '企業の未来を担う人材へ。情熱とビジョンを語りかける採用特化型LP。',
+                features: ['Recruit', 'Vision', 'Passion'],
+                colors: ['#dc2626', '#fef2f2', '#ffffff'],
+                image: '',
+                themeLabel: 'Recruit Hero'
+            },
+            {
+                id: 'lp_s', name: 'Service & Tech', tag: 'S', path: 'templates/lp/s',
+                description: 'Webサービスやアプリの利便性をスマートに紹介。回遊性を抑えCVへ直結。',
+                features: ['Service', 'App', 'Smart'],
+                colors: ['#8b5cf6', '#f5f3ff', '#ffffff'],
+                image: '',
+                themeLabel: 'Service & Tech'
+            },
+            {
+                id: 'lp_t', name: 'Travel & Stay', tag: 'T', path: 'templates/lp/t',
+                description: '非日常への没入感を演出。ホテル予約や観光ツアーの申し込みを後押し。',
+                features: ['Travel', 'Resort', 'Experience'],
+                colors: ['#06b6d4', '#ecfeff', '#164e63'],
+                image: '',
+                themeLabel: 'Travel & Stay'
+            },
+            {
+                id: 'lp_u', name: 'Utility Tool', tag: 'U', path: 'templates/lp/u',
+                description: '機能美を追求したツール紹介。開発者やプロフェッショナル層に響くデザイン。',
+                features: ['Utility', 'Tool', 'Functional'],
+                colors: ['#64748b', '#f1f5f9', '#0f172a'],
+                image: '',
+                themeLabel: 'Utility Tool'
+            },
+            {
+                id: 'lp_v', name: 'Visual Story', tag: 'V', path: 'templates/lp/v',
+                description: '動画や画像を全面に押し出し、視覚情報で直感的に魅力を伝えるVSLスタイル。',
+                features: ['Video', 'Visual', 'Impact'],
+                colors: ['#000000', '#ffffff', '#e5e5e5'],
+                image: '',
+                themeLabel: 'Visual Story'
+            },
+            {
+                id: 'lp_w', name: 'Webinar Host', tag: 'W', path: 'templates/lp/w',
+                description: '専門性と講師の人柄をアピール。ウェビナー申し込みや動画教材の販売に。',
+                features: ['Webinar', 'Expert', 'Trust'],
+                colors: ['#2e1065', '#faf5ff', '#ffffff'],
+                image: '',
+                themeLabel: 'Webinar Host'
+            },
+            {
+                id: 'lp_x', name: 'Xross Media', tag: 'X', path: 'templates/lp/x',
+                description: 'SNSと連動し、バズを生み出すための仕掛けが満載。バイラルマーケティングに。',
+                features: ['Viral', 'SNS', 'Cross Media'],
+                colors: ['#1da1f2', '#000000', '#ffffff'],
+                image: '',
+                themeLabel: 'Xross Media'
+            },
+            {
+                id: 'lp_y', name: 'Youth Culture', tag: 'Y', path: 'templates/lp/y',
+                description: 'トレンドに敏感な若者層へ。ポップでエッジの効いたデザインが共感を生む。',
+                features: ['Youth', 'Trend', 'Pop'],
+                colors: ['#fbbf24', '#fef3c7', '#000000'],
+                image: '',
+                themeLabel: 'Youth Culture'
+            },
+            {
+                id: 'lp_z', name: 'Zone Focus', tag: 'Z', path: 'templates/lp/z',
+                description: '特定のターゲット層に深く刺さる、ニッチで尖ったコンセプトLP。',
+                features: ['Niche', 'Focus', 'Deep'],
+                colors: ['#4c1d95', '#ffffff', '#000000'],
+                image: '',
+                themeLabel: 'Zone Focus'
+            }
         ],
         'portfolio': [
             ...Array.from({ length: 26 }, (_, i) => {
