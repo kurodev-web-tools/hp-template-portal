@@ -492,7 +492,7 @@ const PORTAL_DATA = {
                 description: '期間限定キャンペーンやセールに勝つための、緊急性と期待感を煽るデザイン。',
                 features: ['Campaign', 'Sale', 'Urgency'],
                 colors: ['#ef4444', '#fee2e2', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_c.webp',
                 themeLabel: 'Campaign Flow'
             },
             {
@@ -500,7 +500,7 @@ const PORTAL_DATA = {
                 description: 'B2B向けSaaS製品の機能とメリットを、論理的かつ洗練されたUIで訴求。',
                 features: ['SaaS', 'B2B', 'Tech'],
                 colors: ['#0f172a', '#38bdf8', '#f8fafc'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_d.webp',
                 themeLabel: 'Digital SaaS'
             },
             {
@@ -508,7 +508,7 @@ const PORTAL_DATA = {
                 description: 'オンラインセミナーやカンファレンスの集客に特化した、熱量と信頼を伝えるデザイン。',
                 features: ['Event', 'Seminar', 'Conf'],
                 colors: ['#4f46e5', '#312e81', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_e.webp',
                 themeLabel: 'Event Summit'
             },
             {
@@ -516,7 +516,7 @@ const PORTAL_DATA = {
                 description: 'シズル感たっぷりの写真で食欲を刺激。レストランや食品通販のCV率を高めます。',
                 features: ['Food', 'Restaurant', 'Delicious'],
                 colors: ['#ea580c', '#fff7ed', '#292524'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_f.webp',
                 themeLabel: 'Food & Dining'
             },
             {
@@ -524,7 +524,7 @@ const PORTAL_DATA = {
                 description: '力強さと躍動感を表現。フィットネスジムやパーソナルトレーニングの入会促進に。',
                 features: ['Fitness', 'Gym', 'Energy'],
                 colors: ['#000000', '#bef264', '#171717'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_g.webp',
                 themeLabel: 'Gym & Fit'
             },
             {
@@ -532,7 +532,7 @@ const PORTAL_DATA = {
                 description: '清潔感と安心感を最優先。クリニックや整体院の予約獲得に最適化されたデザイン。',
                 features: ['Medical', 'Clinic', 'Trust'],
                 colors: ['#0ea5e9', '#f0f9ff', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_h.webp',
                 themeLabel: 'Health Clinic'
             },
             {
@@ -540,7 +540,7 @@ const PORTAL_DATA = {
                 description: '住空間の美しさを引き立てる、余白を活かした不動産・リノベーション向けLP。',
                 features: ['Real Estate', 'Interior', 'Space'],
                 colors: ['#57534e', '#e7e5e4', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_i.webp',
                 themeLabel: 'Interior Art'
             },
             {
@@ -548,7 +548,7 @@ const PORTAL_DATA = {
                 description: '高級感あふれるセリフ体とゴールドのあしらい。ジュエリーや時計のブランディングに。',
                 features: ['Luxury', 'Jewelry', 'Gold'],
                 colors: ['#b45309', '#fffbeb', '#1c1917'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_j.webp',
                 themeLabel: 'Jewelry Lux'
             },
             {
@@ -556,7 +556,7 @@ const PORTAL_DATA = {
                 description: '学びへの意欲を掻き立てるアカデミックなデザイン。スクールやオンライン講座に。',
                 features: ['Education', 'School', 'Academic'],
                 colors: ['#047857', '#ecfdf5', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_k.webp',
                 themeLabel: 'Knowledge Base'
             },
             {
@@ -564,7 +564,7 @@ const PORTAL_DATA = {
                 description: '「頼れる」「相談できる」イメージを確立。法律事務所や税理士法人の集客に。',
                 features: ['Legal', 'Trust', 'Professional'],
                 colors: ['#1e40af', '#1e3a8a', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_l.webp',
                 themeLabel: 'Legal Trust'
             },
             {
@@ -572,7 +572,7 @@ const PORTAL_DATA = {
                 description: '最新情報をスタイリッシュに発信。ニュースメディアや情報商材のローンチに。',
                 features: ['Media', 'News', 'Modern'],
                 colors: ['#2dd4bf', '#134e4a', '#f0fdfa'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_m.webp',
                 themeLabel: 'Media & News'
             },
             {
@@ -580,7 +580,7 @@ const PORTAL_DATA = {
                 description: '自然派コスメやオーガニック製品の魅力を伝える、優しく透明感のあるデザイン。',
                 features: ['Organic', 'Beauty', 'Nature'],
                 colors: ['#a3e635', '#f7fee7', '#3f6212'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_n.webp',
                 themeLabel: 'Nature Beauty'
             },
             {
@@ -588,7 +588,7 @@ const PORTAL_DATA = {
                 description: 'たった一つの商品にスポットライトを。ガジェットやアイデア商品の購入率を最大化。',
                 features: ['Single Product', 'Focus', 'Gadget'],
                 colors: ['#6366f1', '#eef2ff', '#111827'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_o.webp',
                 themeLabel: 'One Product'
             },
             {
@@ -596,7 +596,7 @@ const PORTAL_DATA = {
                 description: '愛らしさと温かみで飼い主の心を掴む。ペットサロンや動物病院向け。',
                 features: ['Pet', 'Cute', 'Warm'],
                 colors: ['#f59e0b', '#fffbeb', '#78350f'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_p.webp',
                 themeLabel: 'Pet Life'
             },
             {
@@ -604,7 +604,7 @@ const PORTAL_DATA = {
                 description: '診断コンテンツやクイズで楽しみながらリードを獲得。インタラクティブなマーケティングに。',
                 features: ['Quiz', 'Interactive', 'Lead'],
                 colors: ['#ec4899', '#fdf2f8', '#831843'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_q.webp',
                 themeLabel: 'Quiz & Lead'
             },
             {
@@ -612,7 +612,7 @@ const PORTAL_DATA = {
                 description: '企業の未来を担う人材へ。情熱とビジョンを語りかける採用特化型LP。',
                 features: ['Recruit', 'Vision', 'Passion'],
                 colors: ['#dc2626', '#fef2f2', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_r.webp',
                 themeLabel: 'Recruit Hero'
             },
             {
@@ -620,7 +620,7 @@ const PORTAL_DATA = {
                 description: 'Webサービスやアプリの利便性をスマートに紹介。回遊性を抑えCVへ直結。',
                 features: ['Service', 'App', 'Smart'],
                 colors: ['#8b5cf6', '#f5f3ff', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_s.webp',
                 themeLabel: 'Service & Tech'
             },
             {
@@ -628,7 +628,7 @@ const PORTAL_DATA = {
                 description: '非日常への没入感を演出。ホテル予約や観光ツアーの申し込みを後押し。',
                 features: ['Travel', 'Resort', 'Experience'],
                 colors: ['#06b6d4', '#ecfeff', '#164e63'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_t.webp',
                 themeLabel: 'Travel & Stay'
             },
             {
@@ -636,7 +636,7 @@ const PORTAL_DATA = {
                 description: '機能美を追求したツール紹介。開発者やプロフェッショナル層に響くデザイン。',
                 features: ['Utility', 'Tool', 'Functional'],
                 colors: ['#64748b', '#f1f5f9', '#0f172a'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_u.webp',
                 themeLabel: 'Utility Tool'
             },
             {
@@ -644,7 +644,7 @@ const PORTAL_DATA = {
                 description: '動画や画像を全面に押し出し、視覚情報で直感的に魅力を伝えるVSLスタイル。',
                 features: ['Video', 'Visual', 'Impact'],
                 colors: ['#000000', '#ffffff', '#e5e5e5'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_v.webp',
                 themeLabel: 'Visual Story'
             },
             {
@@ -652,7 +652,7 @@ const PORTAL_DATA = {
                 description: '専門性と講師の人柄をアピール。ウェビナー申し込みや動画教材の販売に。',
                 features: ['Webinar', 'Expert', 'Trust'],
                 colors: ['#2e1065', '#faf5ff', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_w.webp',
                 themeLabel: 'Webinar Host'
             },
             {
@@ -660,7 +660,7 @@ const PORTAL_DATA = {
                 description: 'SNSと連動し、バズを生み出すための仕掛けが満載。バイラルマーケティングに。',
                 features: ['Viral', 'SNS', 'Cross Media'],
                 colors: ['#1da1f2', '#000000', '#ffffff'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_x.webp',
                 themeLabel: 'Xross Media'
             },
             {
@@ -668,7 +668,7 @@ const PORTAL_DATA = {
                 description: 'トレンドに敏感な若者層へ。ポップでエッジの効いたデザインが共感を生む。',
                 features: ['Youth', 'Trend', 'Pop'],
                 colors: ['#fbbf24', '#fef3c7', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_y.webp',
                 themeLabel: 'Youth Culture'
             },
             {
@@ -676,7 +676,7 @@ const PORTAL_DATA = {
                 description: '特定のターゲット層に深く刺さる、ニッチで尖ったコンセプトLP。',
                 features: ['Niche', 'Focus', 'Deep'],
                 colors: ['#4c1d95', '#ffffff', '#000000'],
-                image: '',
+                image: 'assets/thumbnails/lp/lp_z.webp',
                 themeLabel: 'Zone Focus'
             }
         ],
