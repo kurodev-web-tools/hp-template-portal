@@ -29,6 +29,9 @@ exports.handler = async (event, context) => {
         const customerEmail = session.customer_details?.email;
         const customerName = session.customer_details?.name || 'お客様';
         const productName = session.metadata?.productName || 'Standard Plan';
+        const templateName = session.metadata?.template;
+        const domainName = session.metadata?.domain;
+        const userMessage = session.metadata?.message || '(なし)';
 
         console.log(`Payment successful: ${session.id}, Email: ${customerEmail}`);
 
@@ -44,31 +47,36 @@ exports.handler = async (event, context) => {
 
             try {
                 const info = await transporter.sendMail({
-                    from: '"HP Templates 制作チーム" <' + process.env.GMAIL_USER + '>',
+                    from: '"HP Templates 代表" <' + process.env.GMAIL_USER + '>',
                     to: customerEmail,
                     cc: process.env.GMAIL_USER, // Also send a copy to yourself
-                    subject: '【HP Templates】ご注文ありがとうございます（担当者よりご連絡いたします）',
+                    subject: '【HP Templates】ご購入ありがとうございます (Standard Plan)',
                     html: `
                         <p>${customerName} 様</p>
-                        <p>この度は、HP Templatesをご利用いただき、誠にありがとうございます。<br>
-                        制作チーム代表でございます。</p>
-                        <p><strong>${productName}</strong> の決済を確認いたしました。心より感謝申し上げます。</p>
-                        <p>これより、お客様の現在の環境（サーバー契約の有無やドメイン取得状況など）に合わせて、最適な導入手順をご案内させていただきます。</p>
-                        <h3>【今後の流れ】</h3>
-                        <ol>
-                            <li><strong>担当者からのご連絡（ヒアリング）</strong><br>
-                            通常24時間以内に、担当者（制作チーム代表）より別途メールにてご連絡を差し上げます。<br>
-                            その際、ドメインの状況やサーバーのご希望等について簡単にお伺いさせていただきます。<br>
-                            （※既にサーバーをお持ちの場合なども柔軟に対応可能です）</li>
-                            <li><strong>設定・構築</strong><br>
-                            ヒアリング内容に基づき、サーバー環境の構築やドメイン接続を行います。</li>
-                            <li><strong>納品・公開</strong></li>
-                        </ol>
-                        <p>まずは担当者からの連絡を今しばらくお待ちください。<br>
-                        （お急ぎの場合や補足事項がある場合は、このメールに直接ご返信いただいても構いません。代表が直接確認いたします）</p>
+                        <p>HP Templates 代表の鈴木です。<br>
+                        この度は、Standard Plan（テンプレート）をご購入いただき、誠にありがとうございます。</p>
+                        <br>
+                        <p>以下の内容で注文を受け付けいたしました。</p>
                         <hr>
-                        <p>HP Templates 制作チーム<br>
-                        URL: <a href="https://kuro-web-design.netlify.app/">https://kuro-web-design.netlify.app/</a></p>
+                        <blockquote style="background: #f9f9f9; padding: 15px; border-left: 4px solid #00f2ff; margin: 0;">
+                            <p><strong>商品名:</strong> ${productName}</p>
+                            <p><strong>テンプレート:</strong> ${templateName || '未選択'}</p>
+                            <p><strong>ドメイン希望:</strong> ${domainName || 'なし'}</p>
+                            <p><strong>メッセージ:</strong><br>${userMessage.replace(/\n/g, '<br>')}</p>
+                        </blockquote>
+                        <hr>
+                        <br>
+                        <h3>【今後の流れ】</h3>
+                        <p>内容を確認し、通常24時間以内に私（鈴木）よりメールにてご連絡差し上げます。<br>
+                        ドメイン・サーバー設定代行等の手続きについてご案内いたします。</p>
+                        <br>
+                        <p>今後ともHP Templatesをよろしくお願いいたします。</p>
+                        <br>
+                        <p>--------------------------------------------------<br>
+                        HP Templates<br>
+                        代表: 鈴木<br>
+                        URL: <a href="https://kuro-web-design.netlify.app/">https://kuro-web-design.netlify.app/</a><br>
+                        --------------------------------------------------</p>
                     `,
                 });
 
