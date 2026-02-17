@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = {
                 customerEmail: formData.get('email'),
                 customerName: formData.get('name'),
-                successUrl: window.location.origin + '/success.html', // Redirect here after payment
+                successUrl: window.location.origin + '/submission-success.html', // Redirect here after payment
                 cancelUrl: window.location.href, // Redirect here if canceled
                 // Metadata to be passed to Stripe (handled by create-checkout-session)
                 metadata: {

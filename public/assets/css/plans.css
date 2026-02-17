@@ -113,6 +113,16 @@
     font-weight: 300;
 }
 
+.hero-br {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hero-br {
+        display: block;
+    }
+}
+
 @keyframes titleFloat {
     0% {
         transform: translateY(0);
@@ -144,9 +154,71 @@
     margin: 0 auto;
 }
 
+/* Tabs (Mobile Only) */
+.plans-tabs {
+    display: none;
+    /* Hidden on Desktop */
+}
+
 @media (min-width: 768px) {
     .pricing-container {
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .plans-tabs {
+        display: flex;
+        justify-content: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+        position: relative;
+        z-index: 10;
+    }
+
+    .tab-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--color-text-muted);
+        padding: 10px 24px;
+        border-radius: 30px;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+        background: rgba(0, 242, 255, 0.1);
+        border-color: var(--color-primary);
+        color: var(--color-text-main);
+        box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    }
+
+    .pricing-container {
+        display: flex;
+        overflow-x: hidden;
+        /* Hide scrollbar, controlled by JS */
+        scroll-behavior: smooth;
+        gap: 0;
+        /* Remove gap for sliding */
+        width: 100%;
+    }
+
+    .pricing-card {
+        width: 100%;
+        max-width: 100%;
+        /* Full width for slider */
+        flex-shrink: 0;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+
+    .pricing-card.active {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -273,7 +345,17 @@
     color: transparent;
 }
 
-/* Features List */
+/* Price Note */
+.price-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+    /* Prevent awkward breaks */
+    margin-left: 2px;
+}
+
+/* Plan Features List */
 .plan-features {
     flex: 1;
     margin-bottom: var(--spacing-lg);

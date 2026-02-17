@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="お問い合わせありがとうございます。内容を確認次第、担当者よりご連絡いたします。">
+    <meta name="theme-color" content="#00f2ff">
+    <!-- Do not index this page -->
+    <meta name="robots" content="noindex">
+
+    <title>Submission Received - HP Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/plans.css">
+
+    <style>
+        .success-icon {
+            font-size: 4rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+                transform: scale(1);
+            }
+
+            50% {
+                text-shadow: 0 0 40px rgba(0, 242, 255, 0.8);
+                transform: scale(1.05);
+            }
+
+            100% {
+                text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+                transform: scale(1);
+            }
+        }
+
+        .success-message {
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: var(--color-text-main);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="aurora-container"></div>
+    <div class="bg-ambient"></div>
+
+    <header class="portal-header">
+        <div class="logo"><a href="index.html">HP TEMPLATES</a></div>
+    </header>
+
+    <main class="plans-main" style="display: flex; align-items: center;">
+        <section class="contact-section" style="width: 100%;">
+            <div class="contact-container glass-panel" style="text-align: center; padding: 60px 20px;">
+                <span class="material-icons success-icon" id="successIcon">check_circle</span>
+                <h1 class="section-title" id="successTitle">Thank You!</h1>
+                <p class="section-subtitle" style="margin-bottom: 30px;" id="successSubtitle">お問い合わせありがとうございます</p>
+
+                <div class="success-message" id="successMessage">
+                    <p>フォームの送信が完了いたしました。<br>
+                        ご入力いただいたメールアドレスへ、自動返信メールをお送りしております。</p>
+                    <p>通常2営業日以内に、私（鈴木）より改めてご連絡させていただきます。<br>
+                        今しばらくお待ちくださいませ。</p>
+                </div>
+
+                <a href="index.html" class="home-btn" id="homeBtn">
+                    <span class="material-icons">home</span>
+                    トップページへ戻る
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/three.min.js"></script>
+    <script src="assets/js/bg-effect.js"></script>
+
+    <script>
+        // Check for Stripe Session ID to determine if this is a payment success
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPayment = urlParams.has('session_id'); // Stripe gets redirected here with session_id
+
+        if (isPayment) {
+            document.getElementById('successTitle').textContent = 'Payment Successful!';
+            document.getElementById('successSubtitle').textContent = 'ご購入ありがとうございます';
+            document.getElementById('successMessage').innerHTML = `
+                <p>決済手続きが正常に完了いたしました。<br>
+                ご登録いただいたメールアドレスへ、領収書とご案内メールをお送りしております。</p>
+                <p>内容を確認次第、私（鈴木）よりドメイン設定等の導入サポートについて<br>
+                詳しくご連絡させていただきます。</p>
+            `;
+        }
+    </script>
+
+</body>
+
+</html>
