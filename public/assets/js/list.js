@@ -579,6 +579,11 @@ function renderGalleryCards(templates, container) {
         if (t.image) {
             card.style.backgroundImage = `url(${t.image})`;
             card.classList.add('has-image');
+
+            // Individual Background Position Adjustment
+            if (t.bgPosition) {
+                card.style.backgroundPosition = t.bgPosition;
+            }
         }
 
         // Set Card Color for Unified Glow

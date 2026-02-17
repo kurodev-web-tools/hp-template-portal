@@ -6,7 +6,8 @@ const { spawn } = require('child_process');
 // Configuration
 const PORT = 3000;
 const BASE_URL = `http://localhost:${PORT}`;
-const VIEWPORT = { width: 1280, height: 800 };
+// Updated to Mobile Viewport (iPhone 12/13/14 Pro dimensions)
+const VIEWPORT = { width: 390, height: 844, isMobile: true, hasTouch: true };
 const PUBLIC_DIR = path.join(__dirname, '../public');
 const TEMPLATES_DIR = path.join(PUBLIC_DIR, 'templates');
 const THUMBNAILS_DIR = path.join(PUBLIC_DIR, 'assets/thumbnails');
@@ -15,7 +16,7 @@ const THUMBNAILS_DIR = path.join(PUBLIC_DIR, 'assets/thumbnails');
 // Prefixes must match assets/js/data.js
 const CATEGORIES = [
     { dir: 'business', prefix: 'bus_' },
-    { dir: 'streamer', prefix: 'st_' }, // Changed str_ to st_ to match data.js
+    { dir: 'streamer', prefix: 'st_' },
     { dir: 'lp', prefix: 'lp_' }
 ];
 
@@ -42,10 +43,13 @@ async function main() {
 
     let browser;
     try {
-        console.log('Launching browser...');
+        console.log('Launching browser (Mobile Mode)...');
         browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
+
+        // Emulate Mobile Device
         await page.setViewport(VIEWPORT);
+        await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1');
 
         // 3. Process each category
         for (const cat of CATEGORIES) {
@@ -67,13 +71,16 @@ async function main() {
                 if (!fs.existsSync(templateIdx)) continue;
 
                 const url = `${BASE_URL}/templates/${cat.dir}/${subdir}/`;
-                const filename = `${cat.prefix}${subdir}.webp`; // Changed to .webp
+                const filename = `${cat.prefix}${subdir}.webp`;
                 const outputPath = path.join(THUMBNAILS_DIR, cat.dir, filename);
 
                 console.log(`  Capturing ${cat.dir}/${subdir} => ${filename}`);
 
                 try {
-                    await page.goto(url, { waitUntil: 'networkidle0', timeout: 15000 }); // Increased timeout
+                    await page.goto(url, { waitUntil: 'networkidle0', timeout: 15000 });
+                    // Provide a delay for animations/layout shift (10s)
+                    await new Promise(r => setTimeout(r, 10000));
+
                     // Capture as WebP
                     await page.screenshot({ path: outputPath, type: 'webp', quality: 80 });
                 } catch (err) {

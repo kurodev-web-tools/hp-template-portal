@@ -51,6 +51,7 @@ const PORTAL_DATA = {
                 features: ['Corporate', 'Trust', 'Blue Theme'],
                 colors: ['#003366', '#ffffff', '#f5f5f5'],
                 image: 'assets/thumbnails/business/bus_a.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Authentic'
             },
             {
@@ -59,6 +60,7 @@ const PORTAL_DATA = {
                 features: ['Startup', 'Bold Typography', 'High Contrast'],
                 colors: ['#ff9900', '#1a1a1a', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_b.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Bold'
             },
             {
@@ -67,6 +69,7 @@ const PORTAL_DATA = {
                 features: ['Medical', 'Clean', 'Minimalist'],
                 colors: ['#30cfd0', '#ffffff', '#330867'],
                 image: 'assets/thumbnails/business/bus_c.webp',
+                bgPosition: 'center 90%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Clean'
             },
             {
@@ -75,6 +78,7 @@ const PORTAL_DATA = {
                 features: ['Automotive', 'Speed', 'Impact'],
                 colors: ['#ff4500', '#1a1a1a', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_d.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Dynamic'
             },
             {
@@ -83,6 +87,7 @@ const PORTAL_DATA = {
                 features: ['Nature', 'Organic', 'Sustainability'],
                 colors: ['#a8e6cf', '#dcedc1', '#f9f9f0'],
                 image: 'assets/thumbnails/business/bus_e.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Eco'
             },
             {
@@ -91,6 +96,7 @@ const PORTAL_DATA = {
                 features: ['Cyber', 'Neon', 'Tech'],
                 colors: ['#00ffff', '#000000', '#111111'],
                 image: 'assets/thumbnails/business/bus_f.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Future'
             },
             {
@@ -99,6 +105,7 @@ const PORTAL_DATA = {
                 features: ['Logistics', 'Global', 'Network'],
                 colors: ['#1e90ff', '#0d1b2a', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_g.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Global'
             },
             {
@@ -107,6 +114,7 @@ const PORTAL_DATA = {
                 features: ['Luxury', 'Hotel', 'Premium'],
                 colors: ['#d4af37', '#1a1a1a', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_h.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'High-end'
             },
             {
@@ -115,6 +123,7 @@ const PORTAL_DATA = {
                 features: ['Monitoring', 'Intelligent', 'Dashboard'],
                 colors: ['#0a192f', '#64ffda', '#ccd6f6'],
                 image: 'assets/thumbnails/business/bus_i.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Intelligent'
             },
             {
@@ -123,6 +132,7 @@ const PORTAL_DATA = {
                 features: ['Modern Japanese', 'Vertical Text', 'Mincho'],
                 colors: ['#2d3436', '#00b894', '#dfe6e9'],
                 image: 'assets/thumbnails/business/bus_j.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Modern'
             },
             {
@@ -131,6 +141,7 @@ const PORTAL_DATA = {
                 features: ['Academic', 'Rational', 'Serif'],
                 colors: ['#1a202c', '#edf2f7', '#2d3748'],
                 image: 'assets/thumbnails/business/bus_k.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Knowledge'
             },
             {
@@ -139,6 +150,7 @@ const PORTAL_DATA = {
                 features: ['Systemic', 'Terminal', 'Logic Flow'],
                 colors: ['#0f172a', '#38bdf8', '#1e293b'],
                 image: 'assets/thumbnails/business/bus_l.webp',
+                bgPosition: 'center 100%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Logical'
             },
             {
@@ -147,6 +159,7 @@ const PORTAL_DATA = {
                 features: ['Minimalist', 'Whitespace', 'Typography'],
                 colors: ['#ffffff', '#000000', '#333333'],
                 image: 'assets/thumbnails/business/bus_m.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Minimal'
             },
             {
@@ -155,6 +168,7 @@ const PORTAL_DATA = {
                 features: ['Neon', 'Cyber', 'Night-life'],
                 colors: ['#ff00ff', '#00ffff', '#000000'],
                 image: 'assets/thumbnails/business/bus_n.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Neon Night'
             },
             {
@@ -163,6 +177,7 @@ const PORTAL_DATA = {
                 features: ['Organic', 'Fluid Shape', 'Healing'],
                 colors: ['#ff7f50', '#ffdced', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_o.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Organic Flow'
             },
             {
@@ -171,6 +186,7 @@ const PORTAL_DATA = {
                 features: ['Pop', 'Vibrant', 'Comic Style'],
                 colors: ['#ff6600', '#ffea00', '#ff007f'],
                 image: 'assets/thumbnails/business/bus_p.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Pop Vibrant'
             },
             {
@@ -179,6 +195,7 @@ const PORTAL_DATA = {
                 features: ['Quality', 'Precision', 'Minimal Luxury'],
                 colors: ['#000000', '#ffffff', '#e5e5e5'],
                 image: 'assets/thumbnails/business/bus_q.webp',
+                bgPosition: 'center 85%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Quality First'
             },
             {
@@ -187,6 +204,7 @@ const PORTAL_DATA = {
                 features: ['Multi-page', 'Tradition', 'Decorative'],
                 colors: ['#8b0000', '#d4af37', '#0d0d0d'],
                 image: 'assets/thumbnails/business/bus_r.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Royal Legacy'
             },
             {
@@ -195,6 +213,7 @@ const PORTAL_DATA = {
                 features: ['Modern SaaS', 'Isometric', 'High Efficiency'],
                 colors: ['#8a2be2', '#f8f9fe', '#1a1a1a'],
                 image: 'assets/thumbnails/business/bus_s.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Smart SaaS'
             },
             {
@@ -203,6 +222,7 @@ const PORTAL_DATA = {
                 features: ['Multi-page', 'Security', 'Robust'],
                 colors: ['#434b4d', '#1e3a8a', '#f0f2f5'],
                 image: 'assets/thumbnails/business/bus_t.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Trust Guard'
             },
             {
@@ -211,6 +231,7 @@ const PORTAL_DATA = {
                 features: ['Urban', 'Stencil', 'Raw Energy'],
                 colors: ['#ff3e00', '#444444', '#eaeaea'],
                 image: 'assets/thumbnails/business/bus_u.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Urban Street'
             },
             {
@@ -219,6 +240,7 @@ const PORTAL_DATA = {
                 features: ['Vivid', 'Contrast', 'Impact'],
                 colors: ['#ffff00', '#ff00ff', '#000000'],
                 image: 'assets/thumbnails/business/bus_v.webp',
+                bgPosition: 'center 70%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Vivid Impact'
             },
             {
@@ -227,6 +249,7 @@ const PORTAL_DATA = {
                 features: ['Horizontal Scroll', 'Panorama', 'Minimal'],
                 colors: ['#ffffff', '#000000', '#f0f0f0'],
                 image: 'assets/thumbnails/business/bus_w.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Wide Horizon'
             },
             {
@@ -235,6 +258,7 @@ const PORTAL_DATA = {
                 features: ['Snap Scroll', 'Action', 'Xtreme'],
                 colors: ['#ff0000', '#000000', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_x.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Xtreme Snap'
             },
             {
@@ -243,6 +267,7 @@ const PORTAL_DATA = {
                 features: ['Multi-page', 'Investment', 'Sophisticated'],
                 colors: ['#d4af37', '#3a4d39', '#ffffff'],
                 image: 'assets/thumbnails/business/bus_y.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Yield Growth'
             },
             {
@@ -251,6 +276,7 @@ const PORTAL_DATA = {
                 features: ['Zen', 'Vertical', 'Silence'],
                 colors: ['#ffffff', '#1a1a1a', '#f5f5f5'],
                 image: 'assets/thumbnails/business/bus_z.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Zen Garden'
             }
         ],
@@ -261,6 +287,7 @@ const PORTAL_DATA = {
                 features: ['Cyberpunk', 'Glitch Effect', 'Neon'],
                 colors: ['#00f2ff', '#ff0055', '#05050a'],
                 image: 'assets/thumbnails/streamer/st_a.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Abyss Neon'
             },
             {
@@ -269,6 +296,7 @@ const PORTAL_DATA = {
                 features: ['RPG Boss', 'Parallax', 'Dark Gold'],
                 colors: ['#d4af37', '#8a6d3b', '#121212'],
                 image: 'assets/thumbnails/streamer/st_b.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Boss Room'
             },
             {
@@ -277,6 +305,7 @@ const PORTAL_DATA = {
                 features: ['Glassmorphism', 'Prism', 'Pastel'],
                 colors: ['#ffd6ff', '#e7ffff', '#c8b6ff'],
                 image: 'assets/thumbnails/streamer/st_c.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Crystal Prism'
             },
             {
@@ -285,6 +314,7 @@ const PORTAL_DATA = {
                 features: ['Matrix', 'Spotlight', 'Mysterious'],
                 colors: ['#00ff41', '#003b00', '#000000'],
                 image: 'assets/thumbnails/streamer/st_d.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Digital Ghost'
             },
             {
@@ -293,6 +323,7 @@ const PORTAL_DATA = {
                 features: ['Competitive', 'Scoreboard', 'Official'],
                 colors: ['#0055ff', '#ffffff', '#0a0e1a'],
                 image: 'assets/thumbnails/streamer/st_e.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'E-Sports Pro'
             },
             {
@@ -301,6 +332,7 @@ const PORTAL_DATA = {
                 features: ['Sci-Fi', 'Dashboard', 'Widget'],
                 colors: ['#00f2ff', '#030a10', '#00f2ff'],
                 image: 'assets/thumbnails/streamer/st_f.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Future Tech'
             },
             {
@@ -309,6 +341,7 @@ const PORTAL_DATA = {
                 features: ['Glitch', 'Noise', 'Chaos'],
                 colors: ['#ff0000', '#00ffff', '#000000'],
                 image: 'assets/thumbnails/streamer/st_g.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Glitch Core'
             },
             {
@@ -317,6 +350,7 @@ const PORTAL_DATA = {
                 features: ['Horror', 'Spotlight', 'Dark'],
                 colors: ['#991b1b', '#1a1a1b', '#000000'],
                 image: 'assets/thumbnails/streamer/st_h.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Horror Mansion'
             },
             {
@@ -325,6 +359,7 @@ const PORTAL_DATA = {
                 features: ['Idol', 'Particles', 'Sparkle'],
                 colors: ['#f472b6', '#ffffff', '#ffebf5'],
                 image: 'assets/thumbnails/streamer/st_i.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Idol Stage'
             },
             {
@@ -333,6 +368,7 @@ const PORTAL_DATA = {
                 features: ['Side Scroll', 'Jazz', 'Chill'],
                 colors: ['#b45309', '#2d1b0d', '#1a0f08'],
                 image: 'assets/thumbnails/streamer/st_j.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Jazz Lounge'
             },
             {
@@ -341,6 +377,7 @@ const PORTAL_DATA = {
                 features: ['Knight', 'Multi-page', 'Classic'],
                 colors: ['#2563eb', '#f3f4f6', '#d1d5db'],
                 image: 'assets/thumbnails/streamer/st_k.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Knight Honor'
             },
             {
@@ -349,6 +386,7 @@ const PORTAL_DATA = {
                 features: ['Lunar', 'Fantasy', 'Calm'],
                 colors: ['#fef3c7', '#4c1d95', '#1e1b4b'],
                 image: 'assets/thumbnails/streamer/st_l.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Lunar Phase'
             },
             {
@@ -357,6 +395,7 @@ const PORTAL_DATA = {
                 features: ['Metallic', 'Liquid', 'Pro'],
                 colors: ['#9ca3af', '#111827', '#000000'],
                 image: 'assets/thumbnails/streamer/st_m.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Metallic Chrome'
             },
             {
@@ -365,6 +404,7 @@ const PORTAL_DATA = {
                 features: ['Neon', 'Urban', 'Street'],
                 colors: ['#7000ff', '#1e1b4b', '#020617'],
                 image: 'assets/thumbnails/streamer/st_n.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Neon Night'
             },
             {
@@ -373,6 +413,7 @@ const PORTAL_DATA = {
                 features: ['Full-page', 'Snap Scroll', 'Space'],
                 colors: ['#00d2ff', '#3a7bd5', '#000222'],
                 image: 'assets/thumbnails/streamer/st_o.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Orbit Space'
             },
             {
@@ -381,6 +422,7 @@ const PORTAL_DATA = {
                 features: ['8-bit', 'Pixel Art', 'Retro'],
                 colors: ['#22c55e', '#795548', '#000000'],
                 image: 'assets/thumbnails/streamer/st_p.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Pixel Retro'
             },
             {
@@ -389,6 +431,7 @@ const PORTAL_DATA = {
                 features: ['RPG UI', 'Log Style', 'Fantasy'],
                 colors: ['#f5e6be', '#5d4037', '#2b1d0e'],
                 image: 'assets/thumbnails/streamer/st_q.webp',
+                bgPosition: 'center 20%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Quest Log'
             },
             {
@@ -397,6 +440,7 @@ const PORTAL_DATA = {
                 features: ['Stealth', 'Smoke Effect', 'Dark Red'],
                 colors: ['#991b1b', '#000000', '#1a1a1a'],
                 image: 'assets/thumbnails/streamer/st_r.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Rogue Stealth'
             },
             {
@@ -405,6 +449,7 @@ const PORTAL_DATA = {
                 features: ['Steampunk', 'Multi-page', 'Gear'],
                 colors: ['#b87333', '#262626', '#1a1a1a'],
                 image: 'assets/thumbnails/streamer/st_s.webp',
+                bgPosition: 'center 70%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Steampunk Gear'
             },
             {
@@ -413,6 +458,7 @@ const PORTAL_DATA = {
                 features: ['Tech', 'Logic', 'Circuit'],
                 colors: ['#06b6d4', '#1f2937', '#111827'],
                 image: 'assets/thumbnails/streamer/st_t.webp',
+                bgPosition: 'center 50%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Tech Logic'
             },
             {
@@ -421,6 +467,7 @@ const PORTAL_DATA = {
                 features: ['Graffiti', 'Street', 'Vivid'],
                 colors: ['#fbbf24', '#262626', '#181818'],
                 image: 'assets/thumbnails/streamer/st_u.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Urban Graffiti'
             },
             {
@@ -429,6 +476,7 @@ const PORTAL_DATA = {
                 features: ['Vivid', 'RGB Shift', 'Glitch'],
                 colors: ['#ff00ff', '#00ffff', '#000000'],
                 image: 'assets/thumbnails/streamer/st_v.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Vivid Glitch'
             },
             {
@@ -437,6 +485,7 @@ const PORTAL_DATA = {
                 features: ['Side Scroll', 'Parallax', 'Scenic'],
                 colors: ['#10b981', '#064e3b', '#000000'],
                 image: 'assets/thumbnails/streamer/st_w.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Wide Pan'
             },
             {
@@ -445,6 +494,7 @@ const PORTAL_DATA = {
                 features: ['Xtreme', 'Shockwave', 'Snap Scroll'],
                 colors: ['#fbbf24', '#000000', '#78350f'],
                 image: 'assets/thumbnails/streamer/st_x.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Xtreme Action'
             },
             {
@@ -453,6 +503,7 @@ const PORTAL_DATA = {
                 features: ['Trading', 'Counter', 'Chart'],
                 colors: ['#22c55e', '#1a2e05', '#ffffff'],
                 image: 'assets/thumbnails/streamer/st_y.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Yield Chart'
             },
             {
@@ -461,6 +512,7 @@ const PORTAL_DATA = {
                 features: ['Zen', 'Brush Stroke', 'Multi-page'],
                 colors: ['#171717', '#fafafa', '#404040'],
                 image: 'assets/thumbnails/streamer/st_z.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Zen Brush'
             }
         ],
@@ -474,6 +526,7 @@ const PORTAL_DATA = {
                 features: ['Interactive Mockup', 'Scroll Animation', 'App/SaaS'],
                 colors: ['#2563EB', '#ffffff', '#F8FAFC'],
                 image: 'assets/thumbnails/lp/lp_a.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'App Showcase'
             },
             {
@@ -485,6 +538,7 @@ const PORTAL_DATA = {
                 features: ['Parallax', 'Storytelling', 'D2C/Brand'],
                 colors: ['#A68A64', '#57534E', '#FAFAF9'],
                 image: 'assets/thumbnails/lp/lp_b.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Brand Story'
             },
             {
@@ -493,6 +547,7 @@ const PORTAL_DATA = {
                 features: ['Campaign', 'Sale', 'Urgency'],
                 colors: ['#ef4444', '#fee2e2', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_c.webp',
+                bgPosition: 'center 35%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Campaign Flow'
             },
             {
@@ -501,6 +556,7 @@ const PORTAL_DATA = {
                 features: ['SaaS', 'B2B', 'Tech'],
                 colors: ['#0f172a', '#38bdf8', '#f8fafc'],
                 image: 'assets/thumbnails/lp/lp_d.webp',
+                bgPosition: 'center 25%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Digital SaaS'
             },
             {
@@ -509,6 +565,7 @@ const PORTAL_DATA = {
                 features: ['Event', 'Seminar', 'Conf'],
                 colors: ['#4f46e5', '#312e81', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_e.webp',
+                bgPosition: 'center 35%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Event Summit'
             },
             {
@@ -517,6 +574,7 @@ const PORTAL_DATA = {
                 features: ['Food', 'Restaurant', 'Delicious'],
                 colors: ['#ea580c', '#fff7ed', '#292524'],
                 image: 'assets/thumbnails/lp/lp_f.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Food & Dining'
             },
             {
@@ -525,6 +583,7 @@ const PORTAL_DATA = {
                 features: ['Fitness', 'Gym', 'Energy'],
                 colors: ['#000000', '#bef264', '#171717'],
                 image: 'assets/thumbnails/lp/lp_g.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Gym & Fit'
             },
             {
@@ -533,6 +592,7 @@ const PORTAL_DATA = {
                 features: ['Medical', 'Clinic', 'Trust'],
                 colors: ['#0ea5e9', '#f0f9ff', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_h.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Health Clinic'
             },
             {
@@ -541,6 +601,7 @@ const PORTAL_DATA = {
                 features: ['Real Estate', 'Interior', 'Space'],
                 colors: ['#57534e', '#e7e5e4', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_i.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Interior Art'
             },
             {
@@ -549,6 +610,7 @@ const PORTAL_DATA = {
                 features: ['Luxury', 'Jewelry', 'Gold'],
                 colors: ['#b45309', '#fffbeb', '#1c1917'],
                 image: 'assets/thumbnails/lp/lp_j.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Jewelry Lux'
             },
             {
@@ -557,6 +619,7 @@ const PORTAL_DATA = {
                 features: ['Education', 'School', 'Academic'],
                 colors: ['#047857', '#ecfdf5', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_k.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Knowledge Base'
             },
             {
@@ -565,6 +628,7 @@ const PORTAL_DATA = {
                 features: ['Legal', 'Trust', 'Professional'],
                 colors: ['#1e40af', '#1e3a8a', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_l.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Legal Trust'
             },
             {
@@ -573,6 +637,7 @@ const PORTAL_DATA = {
                 features: ['Media', 'News', 'Modern'],
                 colors: ['#2dd4bf', '#134e4a', '#f0fdfa'],
                 image: 'assets/thumbnails/lp/lp_m.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Media & News'
             },
             {
@@ -581,6 +646,7 @@ const PORTAL_DATA = {
                 features: ['Organic', 'Beauty', 'Nature'],
                 colors: ['#a3e635', '#f7fee7', '#3f6212'],
                 image: 'assets/thumbnails/lp/lp_n.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Nature Beauty'
             },
             {
@@ -589,6 +655,7 @@ const PORTAL_DATA = {
                 features: ['Single Product', 'Focus', 'Gadget'],
                 colors: ['#6366f1', '#eef2ff', '#111827'],
                 image: 'assets/thumbnails/lp/lp_o.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'One Product'
             },
             {
@@ -597,6 +664,7 @@ const PORTAL_DATA = {
                 features: ['Pet', 'Cute', 'Warm'],
                 colors: ['#f59e0b', '#fffbeb', '#78350f'],
                 image: 'assets/thumbnails/lp/lp_p.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Pet Life'
             },
             {
@@ -605,6 +673,7 @@ const PORTAL_DATA = {
                 features: ['Quiz', 'Interactive', 'Lead'],
                 colors: ['#ec4899', '#fdf2f8', '#831843'],
                 image: 'assets/thumbnails/lp/lp_q.webp',
+                bgPosition: 'center 35%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Quiz & Lead'
             },
             {
@@ -613,6 +682,7 @@ const PORTAL_DATA = {
                 features: ['Recruit', 'Vision', 'Passion'],
                 colors: ['#dc2626', '#fef2f2', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_r.webp',
+                bgPosition: 'center 35%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Recruit Hero'
             },
             {
@@ -621,6 +691,7 @@ const PORTAL_DATA = {
                 features: ['Service', 'App', 'Smart'],
                 colors: ['#8b5cf6', '#f5f3ff', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_s.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Service & Tech'
             },
             {
@@ -629,6 +700,7 @@ const PORTAL_DATA = {
                 features: ['Travel', 'Resort', 'Experience'],
                 colors: ['#06b6d4', '#ecfeff', '#164e63'],
                 image: 'assets/thumbnails/lp/lp_t.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Travel & Stay'
             },
             {
@@ -637,6 +709,7 @@ const PORTAL_DATA = {
                 features: ['Utility', 'Tool', 'Functional'],
                 colors: ['#64748b', '#f1f5f9', '#0f172a'],
                 image: 'assets/thumbnails/lp/lp_u.webp',
+                bgPosition: 'center 35%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Utility Tool'
             },
             {
@@ -645,6 +718,7 @@ const PORTAL_DATA = {
                 features: ['Video', 'Visual', 'Impact'],
                 colors: ['#000000', '#ffffff', '#e5e5e5'],
                 image: 'assets/thumbnails/lp/lp_v.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Visual Story'
             },
             {
@@ -653,6 +727,7 @@ const PORTAL_DATA = {
                 features: ['Webinar', 'Expert', 'Trust'],
                 colors: ['#2e1065', '#faf5ff', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_w.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Webinar Host'
             },
             {
@@ -661,6 +736,7 @@ const PORTAL_DATA = {
                 features: ['Viral', 'SNS', 'Cross Media'],
                 colors: ['#1da1f2', '#000000', '#ffffff'],
                 image: 'assets/thumbnails/lp/lp_x.webp',
+                bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Xross Media'
             },
             {
@@ -669,6 +745,7 @@ const PORTAL_DATA = {
                 features: ['Youth', 'Trend', 'Pop'],
                 colors: ['#fbbf24', '#fef3c7', '#000000'],
                 image: 'assets/thumbnails/lp/lp_y.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Youth Culture'
             },
             {
@@ -677,6 +754,7 @@ const PORTAL_DATA = {
                 features: ['Niche', 'Focus', 'Deep'],
                 colors: ['#4c1d95', '#ffffff', '#000000'],
                 image: 'assets/thumbnails/lp/lp_z.webp',
+                bgPosition: 'center 30%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)
                 themeLabel: 'Zone Focus'
             }
         ],
