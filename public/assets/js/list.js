@@ -213,6 +213,11 @@ function renderAllCategorySections() {
                 if (t.image) {
                     card.style.backgroundImage = `url(${t.image})`;
                     card.classList.add('has-image');
+
+                    // Individual Background Position Adjustment (Same as main gallery)
+                    if (t.bgPosition) {
+                        card.style.backgroundPosition = t.bgPosition;
+                    }
                 }
 
                 card.innerHTML = `
