@@ -5,38 +5,38 @@ import templates from '../public/templates.json';
 
 // Configuration
 const COLUMNS = 4;
-const SCROLL_SPEED_BASE = 2; // Pixels per frame approx
+const IMAGES_PER_COLUMN = 8;
+const IMAGE_HEIGHT = 400;
+const GAP = 20;
+const ITEM_HEIGHT = IMAGE_HEIGHT + GAP; // 420px
+const TOTAL_HEIGHT = IMAGES_PER_COLUMN * ITEM_HEIGHT; // 3360px
+const SPEED = 2; // px per frame. 3360 / 2 = 1680 frames.
+
+// Pre-process data safely
+const safeTemplates = (templates && templates.length > 0) ? templates : [];
 
 const Column: React.FC<{
     images: any[];
-    speed: number;
-    delay: number;
-}> = ({ images, speed, delay }) => {
+    columnIndex: number;
+    delayOffset: number; // To stagger the visual start position
+}> = ({ images, columnIndex, delayOffset }) => {
     const frame = useCurrentFrame();
 
-    // Fixed image height for calculation
-    const IMAGE_HEIGHT = 400; // Aspect ratio of around 0.6
-    const GAP = 15;
-    const TOTAL_ITEM_HEIGHT = IMAGE_HEIGHT + GAP;
-    const NUM_IMAGES = images.length;
-    const TOTAL_HEIGHT = NUM_IMAGES * TOTAL_ITEM_HEIGHT;
+    // Scroll Logic
+    // We want to scroll UP.
+    // Base scroll = frame * SPEED
+    // Add visual offset to stagger columns: (columnIndex * fixed_amount)
+    // But this offset must NOT affect the loop period, just the phase.
+    // Actually, simply shifting the initial Y position is enough.
+    // translateY = - ((frame * SPEED + delayOffset) % TOTAL_HEIGHT)
 
-    // Calculate scroll
-    // We scroll UP (negative Y)
-    // Offset by delay to stagger
-    const scrollY = (frame * speed) + delay;
+    // Wait, if we add delayOffset, we shift the phase. 
+    // At frame 1680, (1680*2 + delay) % 3360 = (3360 + delay) % 3360 = delay % 3360.
+    // At frame 0, (0 + delay) % 3360 = delay % 3360.
+    // So the start and end positions match perfectly!
 
-    // Infinite loop math
-    // We render 3 sets: [Set1][Set2][Set3]
-    // We translate the whole container up.
-    // When we scroll past Set1 (TOTAL_HEIGHT), we wrap around.
-    // Actually, simple modulo on the translation is better.
-    // TranslateY = -(scrollY % TOTAL_HEIGHT)
-    // But this jumps.
-    // To be seamless, we need at least 2 full sets visible if the screen is tall.
-    // For 1080p, we need about 3 screen heights to be safe.
-
-    const yParams = -(scrollY % TOTAL_HEIGHT);
+    const scrollY = (frame * SPEED) + delayOffset;
+    const translateY = -(scrollY % TOTAL_HEIGHT);
 
     return (
         <div style={{
@@ -46,23 +46,23 @@ const Column: React.FC<{
             width: '100%',
             position: 'absolute',
             top: 0,
-            transform: `translateY(${yParams}px)`
+            transform: `translateY(${translateY}px)`
         }}>
             {/* 
-               Render enough duplicates to cover the scroll.
-               If TOTAL_HEIGHT is large enough, 2 sets are fine.
-               If small, we need more. 
-               Let's render 3 full sets to be safe.
+               Render 3 sets (Before, Current, After) to cover the view.
+               Since TOTAL_HEIGHT (3360) > Screen Height (1080), 2 sets is theoretically enough,
+               but 3 ensures no gaps at boundaries.
             */}
             {[...images, ...images, ...images].map((t, i) => (
                 <div key={i} style={{
                     height: IMAGE_HEIGHT,
                     width: '100%',
-                    borderRadius: 8,
+                    borderRadius: 12, // Slightly more rounded
                     overflow: 'hidden',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.5)',
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.6)', // Deeper shadow
                     flexShrink: 0,
                     margin: 0,
+                    position: 'relative',
                 }}>
                     {t.image ? (
                         <Img
@@ -71,9 +71,12 @@ const Column: React.FC<{
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
+                                filter: 'brightness(0.85) contrast(1.1)', // Subtle enhancement
                             }}
                         />
-                    ) : <div style={{ width: '100%', height: '100%', background: '#333' }} />}
+                    ) : <div style={{ background: '#222', width: '100%', height: '100%' }} />}
+
+                    {/* Optional: template name overlay on hover-like effect? No, keep clean. */}
                 </div>
             ))}
         </div>
@@ -81,20 +84,29 @@ const Column: React.FC<{
 };
 
 export const HeroVideo: React.FC = () => {
-    if (!templates || templates.length === 0) return <AbsoluteFill style={{ backgroundColor: '#000' }}><h1 style={{ color: 'white' }}>No Data</h1></AbsoluteFill>;
+    if (safeTemplates.length === 0) return <AbsoluteFill style={{ backgroundColor: '#000' }} />;
 
-    // Split templates into columns
+    // Prepare columns
+    // We need exactly COLUMNS * IMAGES_PER_COLUMN = 32 images.
+    // If we have more, we pick first 32. If less, we repeat.
+    const needed = COLUMNS * IMAGES_PER_COLUMN;
+    const sourcePool = [...safeTemplates];
+    while (sourcePool.length < needed) {
+        sourcePool.push(...safeTemplates);
+    }
+    const usedTemplates = sourcePool.slice(0, needed);
+
     const columnData: any[][] = Array.from({ length: COLUMNS }, () => []);
-    templates.forEach((t: any, i: number) => {
+    usedTemplates.forEach((t, i) => {
         columnData[i % COLUMNS].push(t);
     });
 
     return (
         <AbsoluteFill style={{
-            backgroundColor: '#050510',
+            backgroundColor: '#0a0a0a', // Almost black
             flexDirection: 'row',
-            gap: 15,
-            padding: 0,
+            gap: 20, // Horizontal gap
+            padding: '0 20px', // Horizontal padding
             overflow: 'hidden'
         }}>
             {columnData.map((colImages, i) => (
@@ -102,27 +114,29 @@ export const HeroVideo: React.FC = () => {
                     flex: 1,
                     position: 'relative',
                     height: '100%',
-                    // Staggered margin top to break alignment
-                    marginTop: i % 2 === 0 ? -100 : 0
                 }}>
                     <Column
                         images={colImages}
-                        speed={SCROLL_SPEED_BASE + (i === 1 || i === 3 ? 1.5 : 0)} // Vary speed
-                        delay={i * 500} // Initial offset
+                        columnIndex={i}
+                        // Stagger each column by 1/4 of item height or similar to look random
+                        // i * 300 ensures they don't align perfectly
+                        delayOffset={i * 900}
                     />
                 </div>
             ))}
 
-            {/* Vignette & Color Grade */}
+            {/* Vignette Overlay for focus */}
             <AbsoluteFill style={{
-                background: 'radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%)',
+                background: 'radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%)',
                 pointerEvents: 'none',
                 zIndex: 10
             }} />
+
+            {/* Bottom Fade for text readability */}
             <AbsoluteFill style={{
-                background: 'linear-gradient(to top, #000 0%, transparent 20%, transparent 80%, #000 100%)',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 40%)',
                 pointerEvents: 'none',
-                zIndex: 10
+                zIndex: 11
             }} />
         </AbsoluteFill>
     );

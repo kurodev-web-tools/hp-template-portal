@@ -23,7 +23,28 @@ function initPortal() {
     initHyperspeed();
     initLiquidGlass();
     // initMontage(); // Replaced by video
+    initVideoControl();
     initViewTransitions();
+}
+
+function initVideoControl() {
+    const video = document.querySelector('.montage-container video');
+    const btn = document.getElementById('hero-video-toggle');
+    const icon = btn.querySelector('.material-icons');
+
+    if (!video || !btn) return;
+
+    btn.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            icon.textContent = 'pause';
+            btn.setAttribute('aria-label', 'Pause Video');
+        } else {
+            video.pause();
+            icon.textContent = 'play_arrow';
+            btn.setAttribute('aria-label', 'Play Video');
+        }
+    });
 }
 
 function initViewTransitions() {
