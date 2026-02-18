@@ -47,17 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData(form);
 
-            // 1. Submit to Netlify Forms (for email notification)
-            try {
-                await fetch(window.location.href, { // Post to current page for proper handling
-                    method: 'POST',
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams(formData).toString(),
-                });
-                console.log('Form submitted to Netlify');
-            } catch (formError) {
-                console.warn('Form submission failed, proceeding to payment anyway', formError);
-            }
+            // 1. (Removed Netlify Forms submission)
 
             // 2. Prepare data for Stripe backend
             const data = {
@@ -65,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 customerName: formData.get('name'),
                 successUrl: window.location.origin + '/submission-success.html', // Redirect here after payment
                 cancelUrl: window.location.href, // Redirect here if canceled
-                // Metadata to be passed to Stripe (handled by create-checkout-session)
+                // Metadata to be passed to Stripe (handled by checkout.js)
                 metadata: {
                     template: formData.get('template'),
                     domain: formData.get('domain'),
@@ -74,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                // Call Netlify Function
-                const response = await fetch('/.netlify/functions/create-checkout-session', {
+                // Call Cloudflare Worker
+                const response = await fetch('/api/checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),

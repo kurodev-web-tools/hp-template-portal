@@ -1,0 +1,60 @@
+import Stripe from 'stripe';
+
+export const onRequestPost = async (context) => {
+  const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
+
+  try {
+    const { successUrl, cancelUrl, customerEmail, metadata } = await context.request.json();
+
+    // Validate required fields
+    if (!successUrl || !cancelUrl) {
+      return new Response(JSON.stringify({ error: 'Missing successUrl or cancelUrl' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'jpy',
+            product_data: {
+              name: 'Standard Template Plan',
+              description: 'Access to premium templates',
+            },
+            unit_amount: 100, // 100 JPY for testing
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      customer_email: customerEmail,
+      metadata: {
+        ...metadata,
+        customerName: context.request.json().customerName || metadata.customerName, // Ensure we catch it
+      },
+      payment_intent_data: {
+        metadata: {
+          ...metadata,
+          customerName: context.request.json().customerName || metadata.customerName,
+        },
+      },
+    });
+
+    return new Response(JSON.stringify({ sessionId: session.id }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+  } catch (error) {
+    console.error('Stripe Error:', error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+};
