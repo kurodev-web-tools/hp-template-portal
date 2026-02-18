@@ -5,18 +5,6 @@ export const onRequestPost = async (context) => {
     const signature = context.request.headers.get('stripe-signature');
     const endpointSecret = context.env.STRIPE_WEBHOOK_SECRET;
 
-    // Local Dev Bypass (INSECURE - Only for Dev)
-    if (!endpointSecret || endpointSecret.startsWith('whsec_...')) {
-        console.warn('Skipping signature verification (Local Dev Mode)');
-        // Mock event construction for dev
-        try {
-            const body = await context.request.json();
-            return await processEvent(context, body);
-        } catch (e) {
-            return new Response(`Dev Error: ${e.message}`, { status: 400 });
-        }
-    }
-
     if (!signature) {
         return new Response('Missing signature', { status: 400 });
     }
