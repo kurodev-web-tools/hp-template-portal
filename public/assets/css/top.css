@@ -339,20 +339,48 @@ body {
 
 .montage-overlay {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 5px 15px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
+    bottom: 25px;
+    right: 25px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease 0.2s;
+    /* Delay for nice entrance */
+}
+
+.montage-item.active .montage-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.label-featured {
+    background: #00f2ff;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono, monospace);
+    text-shadow: none;
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
 }
 
 .montage-label {
-    font-size: 0.7rem;
-    font-family: var(--font-mono);
-    color: var(--color-primary);
-    letter-spacing: 1px;
+    display: none;
+    /* Deprecated */
 }
 
 /* --- Category Grid (Bento Layout) --- */

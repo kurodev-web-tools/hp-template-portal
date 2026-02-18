@@ -22,7 +22,7 @@ function initPortal() {
     renderCategories();
     initHyperspeed();
     initLiquidGlass();
-    initMontage();
+    // initMontage(); // Replaced by video
     initViewTransitions();
 }
 
@@ -42,19 +42,57 @@ function initViewTransitions() {
     });
 }
 
+
 function initMontage() {
-    const items = document.querySelectorAll('.montage-item');
-    if (items.length === 0) return;
-    
+    const container = document.querySelector('.montage-container');
+    if (!container) return;
+
+    // 1. Gather all valid templates with images
+    const allTemplates = [];
+    if (PORTAL_DATA && PORTAL_DATA.templates) {
+        Object.values(PORTAL_DATA.templates).forEach(list => {
+            if (Array.isArray(list)) {
+                list.forEach(t => {
+                    if (t.image) allTemplates.push(t);
+                });
+            }
+        });
+    }
+
+    if (allTemplates.length === 0) return;
+
+    // 2. Shuffle and Pick 5
+    const shuffled = allTemplates.sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 5);
+
+    // 3. Render Items
+    container.innerHTML = ''; // Clear placeholder
+
+    selected.forEach((t, index) => {
+        const item = document.createElement('div');
+        item.className = 'montage-item';
+        if (index === 0) item.classList.add('active');
+        item.style.backgroundImage = `url('${t.image}')`;
+
+        // Add Overlay Label
+        const overlay = document.createElement('div');
+        overlay.className = 'montage-overlay';
+        overlay.innerHTML = `<span class="label-featured">FEATURED</span> ${t.name}`;
+        item.appendChild(overlay);
+
+        container.appendChild(item);
+    });
+
+    // 4. Start Cycling
+    const items = container.querySelectorAll('.montage-item');
+    if (items.length <= 1) return;
+
     let activeIndex = 0;
-    // Auto-rotate every 4 seconds
     setInterval(() => {
         items[activeIndex].classList.remove('active');
         activeIndex = (activeIndex + 1) % items.length;
         items[activeIndex].classList.add('active');
-        
-        // Optional: Update label if needed (e.g. data-label attribute)
-    }, 4000);
+    }, 4000); // 4 seconds per slide
 }
 
 function initLiquidGlass() {
