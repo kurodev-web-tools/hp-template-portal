@@ -19,12 +19,21 @@ try {
 
     const data = global.PORTAL_DATA;
 
-    // 2. Count Total Templates
+    // 2. Count Total Templates (Exclude "Coming Soon" categories)
     let totalTemplates = 0;
-    if (data && data.templates) {
-        Object.values(data.templates).forEach(categoryList => {
-            if (Array.isArray(categoryList)) {
-                totalTemplates += categoryList.length;
+    if (data && data.categories && data.templates) {
+        // Create a map of active category IDs
+        const activeCategoryIds = data.categories
+            .filter(cat => !cat.isComingSoon)
+            .map(cat => cat.id);
+
+        console.log('Active Categories:', activeCategoryIds);
+
+        // Count only templates belonging to active categories
+        activeCategoryIds.forEach(catId => {
+            const templates = data.templates[catId];
+            if (Array.isArray(templates)) {
+                totalTemplates += templates.length;
             }
         });
     }
