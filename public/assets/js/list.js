@@ -892,10 +892,17 @@ function renderMobileNav() {
                 const scroller = document.querySelector('.gallery-content.scrollable-y');
 
                 if (scroller) {
-                    // Using scrollIntoView with scroll-margin-top is cleanest if defined
-                    // list.css defines .category-section { scroll-margin-top: var(--spacing-xl); }
-                    // We should ensure it's enough to clear sticky nav
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Manual scroll calculation to avoid jumping and ensure correct offset
+                    // Nav height is approx 50px, adding buffer
+                    const navHeight = 60;
+                    // Calculate target position relative to the scroller
+                    // We simply subtract the navHeight so the section starts below the sticky nav
+                    const targetTop = section.offsetTop - navHeight;
+
+                    scroller.scrollTo({
+                        top: targetTop,
+                        behavior: 'smooth'
+                    });
                 } else {
                     // Fallback to window scroll if not locked
                     const offset = 120;
