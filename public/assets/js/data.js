@@ -12,6 +12,7 @@ const PORTAL_DATA = {
             // Deep Navy & Gold/Blue
             color: '#4fc3f7', // Light Blue for accent
             theme: 'theme-business',
+            icon: 'domain',
             image: ''
         },
         {
@@ -21,6 +22,7 @@ const PORTAL_DATA = {
             // Neon Purple
             color: '#bc13fe',
             theme: 'theme-streamer',
+            icon: 'sports_esports',
             image: ''
         },
         {
@@ -30,6 +32,7 @@ const PORTAL_DATA = {
             // Vibrant Pink/Red
             color: '#ff0055',
             theme: 'theme-lp',
+            icon: 'rocket_launch',
             image: ''
         },
         {
@@ -39,6 +42,7 @@ const PORTAL_DATA = {
             // Yellow/White
             color: '#ffcc00',
             theme: 'theme-portfolio',
+            icon: 'palette',
             image: '',
             isComingSoon: true
         }

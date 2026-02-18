@@ -24,7 +24,29 @@ function initPortal() {
     initLiquidGlass();
     // initMontage(); // Replaced by video
     initVideoControl();
+
     initViewTransitions();
+    initPremiumCards();
+}
+
+function initPremiumCards() {
+    // 1. 3D Tilt
+    if (PremiumEffects && PremiumEffects.Tilt) {
+        PremiumEffects.Tilt('.category-card', {
+            max: 5,        // Subtle tilt
+            perspective: 800,
+            scale: 1.02
+        });
+    }
+
+    // 2. Spotlight Logic (Custom or via Lib if added)
+    // We added Spotlight to PremiumEffects.js
+    if (PremiumEffects && PremiumEffects.Spotlight) {
+        PremiumEffects.Spotlight('.category-card', {
+            size: 350,
+            color: 'rgba(255, 255, 255, 0.12)'
+        });
+    }
 }
 
 function initVideoControl() {
@@ -154,8 +176,12 @@ function renderCategories() {
         card.className = `category-card fade-in ${cat.theme || ''}`; // Apply theme class
 
         card.innerHTML = `
-            <h2>${cat.name}</h2>
-            <p>${cat.description}</p>
+            <div class="card-content">
+                <span class="material-icons category-icon">${cat.icon || 'star'}</span>
+                <h2>${cat.name}</h2>
+                <p>${cat.description}</p>
+            </div>
+            <div class="card-glow"></div>
         `;
 
         // Unified Glow Effect (CSS-based)
