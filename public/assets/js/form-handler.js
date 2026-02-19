@@ -1,11 +1,39 @@
-/**
- * Cloudflare Worker Form Handler
- * Replacements for Netlify Forms
- */
+const Toast = {
+    show: (message, type = 'success') => {
+        const container = document.getElementById('toast-container') || createToastContainer();
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type} animate-fade-up`;
+
+        const icon = document.createElement('span');
+        icon.className = 'material-icons';
+        icon.textContent = type === 'success' ? 'check_circle' : 'error';
+
+        const text = document.createElement('span');
+        text.textContent = message;
+
+        toast.appendChild(icon);
+        toast.appendChild(text);
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 500);
+        }, 4000);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     handleForm('premium-order');
     handleForm('general-contact');
 });
+
+function createToastContainer() {
+    const container = document.createElement('div');
+    container.id = 'toast-container';
+    container.style.cssText = 'position:fixed; bottom:24px; right:24px; display:flex; flex-direction:column; gap:12px; z-index:10000;';
+    document.body.appendChild(container);
+    return container;
+}
 
 function handleForm(formNameOrId) {
     // Try to find by name attribute first, then ID
@@ -20,7 +48,8 @@ function handleForm(formNameOrId) {
         e.preventDefault();
 
         const submitBtn = form.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
+        // Store original state using textContent or clones to be safer
+        const originalContent = submitBtn.cloneNode(true).childNodes;
 
         // Loading State
         submitBtn.disabled = true;
@@ -76,29 +105,54 @@ function handleForm(formNameOrId) {
 
             if (response.ok) {
                 const result = await response.json();
-                alert('送信成功！\nResend ID: ' + (result.resendData?.id || 'Unknown'));
-                // Success - Redirect
-                window.location.href = '/submission-success.html';
+                Toast.show('送信に成功しました！確認メールをお送りします。', 'success');
+                // Success - Redirect after small delay to show toast
+                setTimeout(() => {
+                    window.location.href = '/submission-success.html';
+                }, 1000);
             } else {
                 const errorData = await response.json();
                 throw new Error(errorData.error || '送信に失敗しました');
             }
         } catch (error) {
             console.error('Submission Error:', error);
-            alert('送信エラー: ' + error.message);
+            Toast.show('エラー: ' + error.message, 'error');
 
             // Revert Button
             submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText; // this is safe as originalBtnText was from innerHTML initially
+            submitBtn.textContent = '';
+            originalContent.forEach(node => submitBtn.appendChild(node.cloneNode(true)));
         }
     });
 }
 
-// Simple CSS for spinner if not exists
+// Global Styles for Toast and Spinner
 const style = document.createElement('style');
-style.innerHTML = `
+style.textContent = `
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .material-icons.spin { animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 5px; font-size: 18px; }
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    min-width: 280px;
+    transition: opacity 0.5s ease;
+}
+.toast-success { border-left: 4px solid #00f2ff; }
+.toast-error { border-left: 4px solid #ff0055; }
+.toast .material-icons { font-size: 20px; }
+.toast-success .material-icons { color: #00f2ff; }
+.toast-error .material-icons { color: #ff0055; }
 `;
 document.head.appendChild(style);
 

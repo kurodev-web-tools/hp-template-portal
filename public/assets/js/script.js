@@ -120,7 +120,13 @@ function initMontage() {
         // Add Overlay Label
         const overlay = document.createElement('div');
         overlay.className = 'montage-overlay';
-        overlay.innerHTML = `<span class="label-featured">FEATURED</span> ${t.name}`;
+
+        const badge = document.createElement('span');
+        badge.className = 'label-featured';
+        badge.textContent = 'FEATURED';
+
+        overlay.appendChild(badge);
+        overlay.appendChild(document.createTextNode(` ${t.name}`));
         item.appendChild(overlay);
 
         container.appendChild(item);
@@ -175,14 +181,27 @@ function renderCategories() {
         card.href = `list.html?category=${cat.id}`;
         card.className = `category-card fade-in ${cat.theme || ''}`; // Apply theme class
 
-        card.innerHTML = `
-            <div class="card-content">
-                <span class="material-icons category-icon">${cat.icon || 'star'}</span>
-                <h2>${cat.name}</h2>
-                <p>${cat.description}</p>
-            </div>
-            <div class="card-glow"></div>
-        `;
+        const content = document.createElement('div');
+        content.className = 'card-content';
+
+        const icon = document.createElement('span');
+        icon.className = 'material-icons category-icon';
+        icon.textContent = cat.icon || 'star';
+        content.appendChild(icon);
+
+        const h2 = document.createElement('h2');
+        h2.textContent = cat.name;
+        content.appendChild(h2);
+
+        const p = document.createElement('p');
+        p.textContent = cat.description;
+        content.appendChild(p);
+
+        const glow = document.createElement('div');
+        glow.className = 'card-glow';
+
+        card.appendChild(content);
+        card.appendChild(glow);
 
         // Unified Glow Effect (CSS-based)
         card.style.setProperty('--card-color', CATEGORY_COLORS[cat.id]);
