@@ -9,6 +9,9 @@ import { Tilt } from './effects/tilt.js';
 import { Spotlight } from './effects/spotlight.js';
 import { PORTAL_DATA } from './data.js';
 
+// Module-level instance (shared between initHyperspeed and renderCategories)
+let hyperspeedInstance = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     initPortal();
 });
