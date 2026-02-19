@@ -6,10 +6,12 @@ export function Spotlight(selector, options = {}) {
     const elements = document.querySelectorAll(selector);
 
     elements.forEach(el => {
+        // Ensure container relative for absolute positioning of spotlight
         if (getComputedStyle(el).position === 'static') {
             el.style.position = 'relative';
         }
 
+        // Create spotlight element overlay
         const spotlight = document.createElement('div');
         spotlight.className = 'spotlight-overlay';
         spotlight.style.position = 'absolute';
@@ -20,6 +22,7 @@ export function Spotlight(selector, options = {}) {
         spotlight.style.transition = 'opacity 0.3s';
         spotlight.style.zIndex = '1';
 
+        // If element has border-radius, inherit it
         const borderRadius = getComputedStyle(el).borderRadius;
         spotlight.style.borderRadius = borderRadius;
 

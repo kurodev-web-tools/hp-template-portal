@@ -3,16 +3,11 @@
  * Handles Category Rendering and Navigation logic.
  */
 
-// Global Hyperspeed instance for dynamic color control
-let hyperspeedInstance = null;
-
-// Category accent colors
-const CATEGORY_COLORS = {
-    'business': '#38bdf8',  // Sky blue
-    'streamer': '#d946ef',  // Fuchsia
-    'lp': '#f43f5e',        // Rose
-    'portfolio': '#fbbf24'   // Amber
-};
+import { Hyperspeed } from './effects/hyperspeed.js';
+import { LiquidMetal } from './effects/liquid-metal.js';
+import { Tilt } from './effects/tilt.js';
+import { Spotlight } from './effects/spotlight.js';
+import { PORTAL_DATA } from './data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initPortal();
@@ -31,22 +26,17 @@ function initPortal() {
 
 function initPremiumCards() {
     // 1. 3D Tilt
-    if (PremiumEffects && PremiumEffects.Tilt) {
-        PremiumEffects.Tilt('.category-card', {
-            max: 5,        // Subtle tilt
-            perspective: 800,
-            scale: 1.02
-        });
-    }
+    Tilt('.category-card', {
+        max: 5,        // Subtle tilt
+        perspective: 800,
+        scale: 1.02
+    });
 
-    // 2. Spotlight Logic (Custom or via Lib if added)
-    // We added Spotlight to PremiumEffects.js
-    if (PremiumEffects && PremiumEffects.Spotlight) {
-        PremiumEffects.Spotlight('.category-card', {
-            size: 350,
-            color: 'rgba(255, 255, 255, 0.12)'
-        });
-    }
+    // 2. Spotlight Logic
+    Spotlight('.category-card', {
+        size: 350,
+        color: 'rgba(255, 255, 255, 0.12)'
+    });
 }
 
 function initVideoControl() {
@@ -145,26 +135,22 @@ function initMontage() {
 }
 
 function initLiquidGlass() {
-    if (window.PremiumEffects) {
-        // Apply Liquid Metal Background
-        if (document.querySelector('.bg-ambient')) {
-            PremiumEffects.LiquidMetal('.bg-ambient', {
-                colors: ['#00f2ff', '#7000ff', '#ff0055', '#4b0082'],
-                count: 8
-            });
-        }
+    // Apply Liquid Metal Background
+    if (document.querySelector('.bg-ambient')) {
+        LiquidMetal('.bg-ambient', {
+            colors: ['#00f2ff', '#7000ff', '#ff0055', '#4b0082'],
+            count: 8
+        });
     }
 }
 
 function initHyperspeed() {
-    if (window.PremiumEffects) {
-        hyperspeedInstance = PremiumEffects.Hyperspeed('#hyperspeed-container', {
-            count: 400,
-            speed: 5, // Slower warp for ambient feel
-            starColor: '#ffffff',
-            bgColor: '5, 5, 10' // Specific deep space bg
-        });
-    }
+    hyperspeedInstance = Hyperspeed('#hyperspeed-container', {
+        count: 400,
+        speed: 5, // Slower warp for ambient feel
+        starColor: '#ffffff',
+        bgColor: '5, 5, 10' // Specific deep space bg
+    });
 }
 
 /**
@@ -204,7 +190,7 @@ function renderCategories() {
         card.appendChild(glow);
 
         // Unified Glow Effect (CSS-based)
-        card.style.setProperty('--card-color', CATEGORY_COLORS[cat.id]);
+        card.style.setProperty('--card-color', cat.color || '#00f2ff');
 
         // Coming Soon Logic
         if (cat.isComingSoon) {
@@ -220,8 +206,8 @@ function renderCategories() {
 
         // Hyperspeed color change (PC only)
         card.addEventListener('mouseenter', () => {
-            if (hyperspeedInstance && CATEGORY_COLORS[cat.id]) {
-                hyperspeedInstance.setColor(CATEGORY_COLORS[cat.id]);
+            if (hyperspeedInstance && cat.color) {
+                hyperspeedInstance.setColor(cat.color);
             }
         });
 

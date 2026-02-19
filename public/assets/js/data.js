@@ -780,3 +780,5 @@ const PORTAL_DATA = {
         ]
     }
 };
+
+export { PORTAL_DATA };

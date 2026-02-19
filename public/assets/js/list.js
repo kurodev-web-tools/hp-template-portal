@@ -1,7 +1,7 @@
-/**
- * List Page Script
- * Handles Gallery Rendering, Filtering, and Scroll Synchronization.
- */
+import { Aurora } from './effects/aurora.js';
+import { Particles } from './effects/particles.js';
+import { Tilt } from './effects/tilt.js';
+import { PORTAL_DATA } from './data.js';
 
 // =========================================
 // Haptic Feedback Utility (Vibration API)
@@ -293,14 +293,12 @@ function setupSidebarScrollObserver() {
 }
 
 function initAuroraDefault() {
-    if (!window.PremiumEffects) return;
-
     const container = document.getElementById('auroraBg');
     if (!container) return;
 
     container.innerHTML = '';
     // Deep Space Tuning: Darker colors, high contrast
-    PremiumEffects.Aurora('#auroraBg', {
+    Aurora('#auroraBg', {
         colors: ['#050a14', '#0f172a', '#1e1b4b'], // Very Dark Blue/Purple
         bg: 'transparent'
     });
@@ -417,11 +415,9 @@ function initViewTransitions() {
 }
 
 function initTilt() {
-    if (!window.PremiumEffects) return;
-
     // Apply 3D Tilt to Gallery Cards
     // Subtle tilt, slight scale
-    PremiumEffects.Tilt('.gallery-item, .mini-card', { // Apply to mini-card too
+    Tilt('.gallery-item, .mini-card', { // Apply to mini-card too
         max: 8,
         perspective: 1200,
         scale: 1.02
@@ -429,8 +425,6 @@ function initTilt() {
 }
 
 function initAurora(categoryData) {
-    if (!window.PremiumEffects) return;
-
     const container = document.getElementById('auroraBg');
     if (!container) return;
 
@@ -455,25 +449,21 @@ function initAurora(categoryData) {
         }
     }
 
-    // Clear previous if any (simple innerHTML clear or reuse?)
-    // PremiumEffects.Aurora appends to container. If we re-run, it might duplicate.
-    // Ideally we should clear container first.
+    // Clear previous if any
     container.innerHTML = '';
 
-    PremiumEffects.Aurora('#auroraBg', {
+    Aurora('#auroraBg', {
         colors: colors,
         bg: 'transparent' // Let ambient bg show through if needed, or set base color
     });
 
     // Init Particles (Star Field) - Layered on top of Aurora
-    if (PremiumEffects.Particles) {
-        PremiumEffects.Particles('#auroraBg', {
-            color: 'rgba(255, 255, 255, 0.4)',
-            limit: 100,
-            speed: 0.2,
-            zIndex: 1 // Ensure it sits above aurora gradient but below content
-        });
-    }
+    Particles('#auroraBg', {
+        color: 'rgba(255, 255, 255, 0.4)',
+        limit: 100,
+        speed: 0.2,
+        zIndex: 1 // Ensure it sits above aurora gradient but below content
+    });
 }
 
 // === Filtering Logic ===
@@ -877,27 +867,25 @@ function initParticles() {
         particlesInstance = null;
     }
 
-    if (window.PremiumEffects && window.PremiumEffects.Particles) {
-        let starContainer = document.getElementById('star-container');
-        if (!starContainer) {
-            starContainer = document.createElement('div');
-            starContainer.id = 'star-container';
-            starContainer.style.position = 'fixed';
-            starContainer.style.top = '0';
-            starContainer.style.left = '0';
-            starContainer.style.width = '100%';
-            starContainer.style.height = '100%';
-            starContainer.style.zIndex = '-10';
-            starContainer.style.pointerEvents = 'none';
-            document.body.appendChild(starContainer);
-        }
-
-        particlesInstance = PremiumEffects.Particles('#star-container', {
-            color: 'rgba(255, 255, 255, 0.6)',
-            limit: 200,
-            speed: 0.2
-        });
+    let starContainer = document.getElementById('star-container');
+    if (!starContainer) {
+        starContainer = document.createElement('div');
+        starContainer.id = 'star-container';
+        starContainer.style.position = 'fixed';
+        starContainer.style.top = '0';
+        starContainer.style.left = '0';
+        starContainer.style.width = '100%';
+        starContainer.style.height = '100%';
+        starContainer.style.zIndex = '-10';
+        starContainer.style.pointerEvents = 'none';
+        document.body.appendChild(starContainer);
     }
+
+    particlesInstance = Particles('#star-container', {
+        color: 'rgba(255, 255, 255, 0.6)',
+        limit: 200,
+        speed: 0.2
+    });
 }
 
 /**
