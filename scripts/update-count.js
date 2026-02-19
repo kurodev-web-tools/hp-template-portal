@@ -14,6 +14,9 @@ try {
     // We can't use 'require' because it's not a module
     dataContent = dataContent.replace('const PORTAL_DATA', 'global.PORTAL_DATA');
 
+    // Strip ESM export syntax (added for browser modules) so eval() doesn't crash
+    dataContent = dataContent.replace(/^export\s*\{[^}]*\};?\s*$/gm, '');
+
     // Execute data.js in the current context
     eval(dataContent);
 
