@@ -46,7 +46,7 @@ export const onRequestPost = async (context) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                from: 'HP Templates <onboarding@resend.dev>', // Use verified domain or onboarding for dev
+                from: 'HP Templates <support@kuro-lab.com>', // Use verified domain or onboarding for dev
                 to: [customerEmail], // For dev/onboarding, this MUST be the verified account email
                 subject: emailSubject,
                 attachments: attachments,

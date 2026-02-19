@@ -50,7 +50,7 @@ async function processEvent(context, event) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    from: 'HP Templates <onboarding@resend.dev>',
+                    from: 'HP Templates <support@kuro-lab.com>',
                     to: [customerEmail],
                     subject: '【HP Templates】ご購入ありがとうございます (Standard Plan)',
                     html: `
