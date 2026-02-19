@@ -48,6 +48,7 @@ export const onRequestPost = async (context) => {
             body: JSON.stringify({
                 from: 'HP Templates <support@kuro-lab.com>', // Use verified domain or onboarding for dev
                 to: [customerEmail], // For dev/onboarding, this MUST be the verified account email
+                bcc: ['kurodev.web.tools@gmail.com'],
                 subject: emailSubject,
                 attachments: attachments,
                 html: `

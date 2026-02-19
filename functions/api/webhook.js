@@ -52,6 +52,7 @@ async function processEvent(context, event) {
                 body: JSON.stringify({
                     from: 'HP Templates <support@kuro-lab.com>',
                     to: [customerEmail],
+                    bcc: ['kurodev.web.tools@gmail.com'],
                     subject: '【HP Templates】ご購入ありがとうございます (Standard Plan)',
                     html: `
                         <p>${customerName} 様</p>
