@@ -1,3 +1,13 @@
+const sanitizeHtml = (str) => {
+    if (!str) return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+};
+
 export const onRequestPost = async (context) => {
     try {
         const body = await context.request.json();
@@ -9,11 +19,20 @@ export const onRequestPost = async (context) => {
         // HOWEVER, to match the previous Netlify structure effectively or just be clean, let's look at the incoming data.
         const data = body.payload || body; // Fallback
 
+        // 1. Honeypot check
+        if (data.b_none && data.b_none.trim() !== "") {
+            console.warn('Bot detected via honeypot');
+            return new Response(JSON.stringify({ success: true, message: 'Processed' }), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
         const formName = data['form-name'] || data.form_name;
         const customerEmail = data.email;
-        const customerName = data.name || 'お客様';
-        const customerMessage = data.message || '(本文なし)';
-        const category = data.category ? `<p><strong>カテゴリ:</strong> ${data.category}</p>` : '';
+        const customerName = sanitizeHtml(data.name || 'お客様');
+        const customerMessage = sanitizeHtml(data.message || '(本文なし)');
+        const category = data.category ? `<p><strong>カテゴリ:</strong> ${sanitizeHtml(data.category)}</p>` : '';
         const attachments = data.attachments || [];
 
         // Determine Subject and Context
@@ -91,20 +110,28 @@ export const onRequestPost = async (context) => {
             console.log('Resend Success:', JSON.stringify(successData));
         }
 
+        const securityHeaders = {
+            'Content-Type': 'application/json',
+            'X-Content-Type-Options': 'nosniff',
+            'X-Frame-Options': 'DENY',
+            'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+            'Content-Security-Policy': "default-src 'self'; script-src 'self' https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
+        };
+
         return new Response(JSON.stringify({
             success: true,
             message: 'Auto-reply sent',
             resendData: successData
         }), {
             status: 200,
-            headers: { 'Content-Type': 'application/json' }
+            headers: securityHeaders
         });
 
     } catch (error) {
         console.error('Form Submit Error:', error);
         return new Response(JSON.stringify({ error: error.message }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json', 'X-Content-Type-Options': 'nosniff' }
         });
     }
 };

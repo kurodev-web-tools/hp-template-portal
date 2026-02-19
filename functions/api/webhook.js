@@ -28,16 +28,26 @@ export const onRequestPost = async (context) => {
     }
 };
 
+const sanitizeHtml = (str) => {
+    if (!str) return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+};
+
 // Refactored event processing to be shared
 async function processEvent(context, event) {
     if (event.type === 'checkout.session.completed') {
         const session = event.data.object;
         const customerEmail = session.customer_details?.email;
-        const customerName = session.metadata?.customerName || session.customer_details?.name || 'お客様';
-        const productName = session.metadata?.productName || 'Standard Plan';
-        const templateName = session.metadata?.template;
-        const domainName = session.metadata?.domain;
-        const userMessage = session.metadata?.message || '(なし)';
+        const customerName = sanitizeHtml(session.metadata?.customerName || session.customer_details?.name || 'お客様');
+        const productName = sanitizeHtml(session.metadata?.productName || 'Standard Plan');
+        const templateName = sanitizeHtml(session.metadata?.template);
+        const domainName = sanitizeHtml(session.metadata?.domain);
+        const userMessage = sanitizeHtml(session.metadata?.message || '(なし)');
 
         console.log(`Payment successful: ${session.id}, Email: ${customerEmail}`);
 
@@ -93,8 +103,15 @@ async function processEvent(context, event) {
         }
     }
 
+    const securityHeaders = {
+        'Content-Type': 'application/json',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload'
+    };
+
     return new Response(JSON.stringify({ received: true }), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: securityHeaders
     });
 }

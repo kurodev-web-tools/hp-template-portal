@@ -24,7 +24,12 @@ function handleForm(formNameOrId) {
 
         // Loading State
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="material-icons spin">refresh</span> 送信中...';
+        const spinner = document.createElement('span');
+        spinner.className = 'material-icons spin';
+        spinner.textContent = 'refresh';
+        submitBtn.textContent = ' '; // Clear text
+        submitBtn.appendChild(spinner);
+        submitBtn.appendChild(document.createTextNode(' 送信中...'));
 
         const formData = new FormData(form);
         const data = {};
@@ -84,7 +89,7 @@ function handleForm(formNameOrId) {
 
             // Revert Button
             submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
+            submitBtn.innerHTML = originalBtnText; // this is safe as originalBtnText was from innerHTML initially
         }
     });
 }

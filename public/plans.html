@@ -167,9 +167,11 @@
                     <h2 class="section-title">Contact & Request</h2>
                     <p class="section-subtitle">お気軽にご相談ください</p>
                 </div>
-                <form name="general-contact" method="POST" action="/submission-success.html" data-netlify="true"
-                    class="contact-form">
-                    <input type="hidden" name="form-name" value="general-contact" />
+                <form name="general-contact" method="POST" class="contact-form" id="contact"
+                    netlify-honeypot="bot-field" netlify>
+                    <!-- Honeypot for bot protection -->
+                    <div style="display:none;"><input type="text" name="b_none" tabindex="-1" autocomplete="off"></div>
+                    <input type="hidden" name="form-name" value="general-contact">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="contactName" class="form-label">Name</label>
@@ -233,6 +235,8 @@
             </div>
             <div class="modal-body">
                 <form id="standard-order-form" class="contact-form" name="standard-order" method="POST" netlify>
+                    <!-- Honeypot for bot protection -->
+                    <div style="display:none;"><input type="text" name="b_none" tabindex="-1" autocomplete="off"></div>
                     <!-- Hidden field for Netlify Forms -->
                     <input type="hidden" name="form-name" value="standard-order">
 
