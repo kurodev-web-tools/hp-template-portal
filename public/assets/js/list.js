@@ -148,7 +148,12 @@ function renderSidebar() {
 
         if (cat.isComingSoon) {
             link.style.opacity = '0.5';
-            link.innerHTML += ' <span class="material-icons" style="font-size:0.8em; vertical-align:middle; margin-left:4px;">lock</span>';
+            const icon = document.createElement('span');
+            icon.className = 'material-icons';
+            icon.style.cssText = 'font-size:0.8em; vertical-align:middle; margin-left:4px;';
+            icon.textContent = 'lock';
+            link.appendChild(document.createTextNode(' '));
+            link.appendChild(icon);
         }
 
         link.addEventListener('click', () => {
@@ -181,10 +186,15 @@ function renderAllCategorySections() {
         // Header
         const header = document.createElement('div');
         header.className = 'category-section-header';
-        header.innerHTML = `
-            <h2>${cat.name}</h2>
-            <span class="template-count">${templates.length} templates</span>
-        `;
+
+        const h2 = document.createElement('h2');
+        h2.textContent = cat.name;
+        header.appendChild(h2);
+
+        const span = document.createElement('span');
+        span.className = 'template-count';
+        span.textContent = `${templates.length} templates`;
+        header.appendChild(span);
 
         // Mini gallery
         const gallery = document.createElement('div');
@@ -220,12 +230,20 @@ function renderAllCategorySections() {
                     }
                 }
 
-                card.innerHTML = `
-                    <div class="placeholder-content">
-                        <div class="big-char">${t.tag}</div>
-                        <div class="theme-label">${t.themeLabel || ''}</div>
-                    </div>
-                `;
+                const placeholder = document.createElement('div');
+                placeholder.className = 'placeholder-content';
+
+                const bigChar = document.createElement('div');
+                bigChar.className = 'big-char';
+                bigChar.textContent = t.tag;
+                placeholder.appendChild(bigChar);
+
+                const themeLabel = document.createElement('div');
+                themeLabel.className = 'theme-label';
+                themeLabel.textContent = t.themeLabel || '';
+                placeholder.appendChild(themeLabel);
+
+                card.appendChild(placeholder);
                 card.addEventListener('click', () => { if (shouldBlockClick()) return; Haptics.select(); openModal(t.id); });
                 card.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -477,7 +495,7 @@ function renderIndexBar(templates) {
         // Insert before index bar or inside it? Let's put it above.
         bar.parentElement.insertBefore(tagContainer, bar);
     }
-    tagContainer.innerHTML = '';
+    tagContainer.textContent = ''; // Clear safely
 
     const allBtn = document.createElement('button');
     allBtn.className = 'tag-btn active';
@@ -599,15 +617,32 @@ function renderGalleryCards(templates, container) {
             ? `<div class="theme-label">${t.themeLabel}</div>`
             : '';
 
-        card.innerHTML = `
-            <div class="placeholder-content">
-                <div class="big-char">${t.tag}</div>
-                ${labelHtml}
-                <div class="card-actions">
-                    <button class="btn-view" onclick="openModal('${t.id}')">DETAILS</button>
-                </div>
-            </div>
-        `;
+        const placeholder = document.createElement('div');
+        placeholder.className = 'placeholder-content';
+
+        const bigChar = document.createElement('div');
+        bigChar.className = 'big-char';
+        bigChar.textContent = t.tag;
+        placeholder.appendChild(bigChar);
+
+        if (t.themeLabel) {
+            const themeLabel = document.createElement('div');
+            themeLabel.className = 'theme-label';
+            themeLabel.textContent = t.themeLabel;
+            placeholder.appendChild(themeLabel);
+        }
+
+        const actions = document.createElement('div');
+        actions.className = 'card-actions';
+
+        const btn = document.createElement('button');
+        btn.className = 'btn-view';
+        btn.textContent = 'DETAILS';
+        btn.onclick = () => openModal(t.id);
+
+        actions.appendChild(btn);
+        placeholder.appendChild(actions);
+        card.appendChild(placeholder);
 
         card.addEventListener('click', (e) => {
             // Prevent if clicked on buttons
