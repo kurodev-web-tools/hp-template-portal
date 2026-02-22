@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 const sanitizeHtml = (str) => {
     if (!str) return '';
     return str
@@ -8,19 +10,41 @@ const sanitizeHtml = (str) => {
         .replace(/'/g, '&#039;');
 };
 
+const formSchema = z.object({
+    email: z.string().email(),
+    name: z.string().optional(),
+    message: z.string().optional(),
+    category: z.string().optional(),
+    'form-name': z.string().optional(),
+    form_name: z.string().optional(),
+    b_none: z.string().optional(),
+    attachments: z.array(z.any()).optional()
+});
+
 export const onRequestPost = async (context) => {
     try {
         const body = await context.request.json();
         const { payload } = body;
-        // Note: Cloudflare doesn't wrap in 'payload' by default unless we send it that way.
-        // Our frontend script will just send the data directly, but let's support both structure if we change frontend.
-        // For this new implementation, let's assume direct JSON body from frontend: { form_name, email, name, message, category, etc. }
 
-        // HOWEVER, to match the previous Netlify structure effectively or just be clean, let's look at the incoming data.
+        // Security: Strict Origin/Referer Validation (Anti-CSRF/Spam)
+        const requestOrigin = new URL(context.request.url).origin;
+        const referer = context.request.headers.get('Referer');
+        if (referer && !referer.startsWith(requestOrigin)) {
+            console.warn('Blocked request from unknown referer:', referer);
+            return new Response(JSON.stringify({ error: 'Invalid origin' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+        }
+
         const data = body.payload || body; // Fallback
 
+        // Security: Strict Schema Validation
+        const parseResult = formSchema.safeParse(data);
+        if (!parseResult.success) {
+            return new Response(JSON.stringify({ error: 'Validation failed' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+        }
+        const validData = parseResult.data;
+
         // 1. Honeypot check
-        if (data.b_none && data.b_none.trim() !== "") {
+        if (validData.b_none && validData.b_none.trim() !== "") {
             console.warn('Bot detected via honeypot');
             return new Response(JSON.stringify({ success: true, message: 'Processed' }), {
                 status: 200,
@@ -28,12 +52,12 @@ export const onRequestPost = async (context) => {
             });
         }
 
-        const formName = data['form-name'] || data.form_name;
-        const customerEmail = data.email;
-        const customerName = sanitizeHtml(data.name || 'お客様');
-        const customerMessage = sanitizeHtml(data.message || '(本文なし)');
-        const category = data.category ? `<p><strong>カテゴリ:</strong> ${sanitizeHtml(data.category)}</p>` : '';
-        const attachments = data.attachments || [];
+        const formName = validData['form-name'] || validData.form_name;
+        const customerEmail = validData.email;
+        const customerName = sanitizeHtml(validData.name || 'お客様');
+        const customerMessage = sanitizeHtml(validData.message || '(本文なし)');
+        const category = validData.category ? `<p><strong>カテゴリ:</strong> ${sanitizeHtml(validData.category)}</p>` : '';
+        const attachments = validData.attachments || [];
 
         // Determine Subject and Context
         let emailSubject = '';

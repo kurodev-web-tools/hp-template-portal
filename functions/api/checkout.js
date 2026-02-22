@@ -4,11 +4,21 @@ export const onRequestPost = async (context) => {
   const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
 
   try {
-    const { successUrl, cancelUrl, customerEmail, metadata } = await context.request.json();
+    const requestBody = await context.request.json();
+    const { successUrl, cancelUrl, customerEmail, metadata, customerName } = requestBody;
 
     // Validate required fields
     if (!successUrl || !cancelUrl) {
       return new Response(JSON.stringify({ error: 'Missing successUrl or cancelUrl' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Security: Validate Origins (Open Redirect protection)
+    const requestOrigin = new URL(context.request.url).origin;
+    if (!successUrl.startsWith(requestOrigin) || !cancelUrl.startsWith(requestOrigin)) {
+      return new Response(JSON.stringify({ error: 'Invalid URL origin' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -35,12 +45,12 @@ export const onRequestPost = async (context) => {
       customer_email: customerEmail,
       metadata: {
         ...metadata,
-        customerName: context.request.json().customerName || metadata.customerName, // Ensure we catch it
+        customerName: customerName || (metadata && metadata.customerName) || '',
       },
       payment_intent_data: {
         metadata: {
           ...metadata,
-          customerName: context.request.json().customerName || metadata.customerName,
+          customerName: customerName || (metadata && metadata.customerName) || '',
         },
       },
     });
