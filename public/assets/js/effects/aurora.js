@@ -6,7 +6,9 @@ export function Aurora(selector, options = {}) {
     const container = document.querySelector(selector);
     if (!container) return;
 
-    container.style.position = 'absolute';
+    if (getComputedStyle(container).position === 'static') {
+        container.style.position = 'absolute';
+    }
     container.style.overflow = 'hidden';
     container.style.background = options.bg || 'transparent';
 
