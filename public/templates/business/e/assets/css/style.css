@@ -130,17 +130,40 @@ h3 {
 .hero-content {
     position: relative;
     z-index: 10;
-    max-width: 800px;
+    max-width: 1100px;
+    /* Expanded to allow 15 characters of 4rem font */
     padding: 0 1rem;
+    margin: 0 auto;
 }
 
 .hero-content h1 {
-    display: inline-block;
-    text-align: left;
     font-size: 4rem;
     line-height: 1.2;
     margin-bottom: 2rem;
     color: var(--color-primary-eco);
+    text-align: center;
+}
+
+/* Wrapper for perfect A案 left-alignment within center */
+.hero-title-wrapper {
+    display: inline-block;
+    text-align: left;
+}
+
+/* Optical Margin Alignment for Japanese punctuation */
+.punct-adjust {
+    margin-right: -0.4em;
+}
+
+@media (min-width: 769px) {
+    .mobile-break {
+        display: none !important;
+    }
+
+    /* Shift the one-line block slightly right to satisfy user's specific optical center balance */
+    .hero-title-wrapper {
+        padding-left: 0.8em;
+    }
 }
 
 .hero-content p {
@@ -150,7 +173,9 @@ h3 {
     letter-spacing: -0.05em;
     /* Tighten to prevent middle-of-sentence wrap */
     line-height: 1.8;
-    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     word-break: keep-all;
     /* Prevent awkward mid-word breaks */
     overflow-wrap: break-word;
