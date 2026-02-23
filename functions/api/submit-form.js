@@ -18,7 +18,8 @@ const formSchema = z.object({
     'form-name': z.string().optional(),
     form_name: z.string().optional(),
     b_none: z.string().optional(),
-    attachments: z.array(z.any()).optional()
+    attachments: z.array(z.any()).optional(),
+    'cf-turnstile-response': z.string().optional()
 });
 
 export const onRequestPost = async (context) => {
@@ -42,6 +43,32 @@ export const onRequestPost = async (context) => {
             return new Response(JSON.stringify({ error: 'Validation failed' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
         }
         const validData = parseResult.data;
+
+        // Turnstile Validation
+        const turnstileResponse = validData['cf-turnstile-response'];
+        if (!turnstileResponse) {
+            console.warn('Turnstile token missing');
+            return new Response(JSON.stringify({ error: 'スパム認証（Turnstile）に失敗しました。ページを再読み込みしてください。' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+        }
+
+        // Verify the token with Cloudflare
+        const turnstileVerify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                secret: context.env.TURNSTILE_SECRET_KEY || '',
+                response: turnstileResponse,
+                remoteip: context.request.headers.get('CF-Connecting-IP')
+            })
+        });
+
+        const turnstileOutcome = await turnstileVerify.json();
+        if (!turnstileOutcome.success) {
+            console.warn('Turnstile verification failed:', turnstileOutcome);
+            return new Response(JSON.stringify({ error: 'Bot認証に失敗しました。正しいブラウザから再実行してください。' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
+        }
 
         // 1. Honeypot check
         if (validData.b_none && validData.b_none.trim() !== "") {

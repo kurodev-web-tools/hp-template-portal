@@ -62,7 +62,8 @@ export const onRequestPost = async (context) => {
 
   } catch (error) {
     console.error('Stripe Error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    // Error Masking: Hide internal Stripe errors from the client
+    return new Response(JSON.stringify({ error: '決済の準備中にエラーが発生しました。しばらく経ってから再度お試しください。' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });

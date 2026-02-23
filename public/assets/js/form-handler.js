@@ -44,6 +44,29 @@ function handleForm(formNameOrId) {
 
     if (!form) return;
 
+    // 1. Inject Turnstile Script and Widget automatically
+    if (!form.querySelector('.cf-turnstile')) {
+        const tsDiv = document.createElement('div');
+        tsDiv.className = 'cf-turnstile';
+        tsDiv.setAttribute('data-sitekey', '0x4AAAAAACguINid-Q5ncFph');
+        tsDiv.style.marginBottom = '1rem';
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            form.insertBefore(tsDiv, submitBtn);
+        } else {
+            form.appendChild(tsDiv);
+        }
+
+        if (!document.querySelector('script[src*="turnstile/v0/api.js"]')) {
+            const script = document.createElement('script');
+            script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+    }
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
