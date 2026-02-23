@@ -53,11 +53,13 @@ class PremiumEffects {
             function processNode(node, parent) {
                 if (node.nodeType === Node.TEXT_NODE) {
                     // It's text, blast it apart by words first
-                    const text = node.textContent;
+                    // Coalesce all whitespace (spaces, newlines, tabs) into a single space,
+                    // just like native HTML rendering behavior.
+                    const normalizedText = node.textContent.replace(/\s+/g, ' ');
 
                     // Split by whitespace but keep delimiters to handle spaces
                     // This allows us to wrap "words" in nowrap containers
-                    const parts = text.split(/(\s+)/);
+                    const parts = normalizedText.split(/(\s+)/);
 
                     parts.forEach(part => {
                         // Skip empty
