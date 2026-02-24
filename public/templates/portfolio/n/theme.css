@@ -1,0 +1,292 @@
+/* Neon Theme - ネオン夜の街 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+  --neon-pink: #FF10F0;
+  --neon-cyan: #00F0FF;
+  --night: #0D0D0D;
+  --font-body: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--night);
+  color: #fff;
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Night City Background */
+.night-city {
+  position: fixed;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(13,13,13,0) 0%, rgba(26,10,26,0.5) 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,16,240,0.1), transparent 70%);
+  z-index: -1;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  z-index: 100;
+}
+
+.neon-sign {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--neon-pink);
+  text-shadow: 
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-pink);
+  letter-spacing: 0.3em;
+}
+
+/* Vertical Navigation */
+.vertical-nav {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+
+.vertical-nav__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.vertical-nav__link {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.neon-pink {
+  color: var(--neon-pink);
+  text-shadow: 
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink);
+}
+
+.neon-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 
+    0 0 10px var(--neon-cyan),
+    0 0 20px var(--neon-cyan);
+}
+
+.vertical-nav__link:hover {
+  text-shadow: 
+    0 0 20px currentColor,
+    0 0 40px currentColor,
+    0 0 60px currentColor;
+}
+
+/* Hero - Large Vertical Sign */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-left: 8rem;
+}
+
+.hero__sign {
+  text-align: center;
+}
+
+.hero__title {
+  font-size: clamp(4rem, 15vw, 10rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.flicker {
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+  52% { opacity: 0.5; }
+  54% { opacity: 1; }
+  90% { opacity: 0.9; }
+  92% { opacity: 0.2; }
+  94% { opacity: 1; }
+}
+
+.hero__subtitle {
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  margin-top: 2rem;
+}
+
+/* Sections */
+.section {
+  padding: 8rem 0;
+  padding-left: 8rem;
+}
+
+.section__title {
+  font-size: 2rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+/* Neon Box */
+.neon-box {
+  max-width: 600px;
+  padding: 3rem;
+  border: 2px solid var(--neon-pink);
+  box-shadow: 
+    0 0 10px var(--neon-pink),
+    inset 0 0 20px rgba(255,16,240,0.1);
+}
+
+.about__text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Signage Grid */
+.signage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.sign {
+  padding: 3rem 2rem;
+  border: 1px solid currentColor;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.sign:hover {
+  box-shadow: 
+    0 0 20px currentColor,
+    inset 0 0 30px rgba(255,255,255,0.05);
+  transform: scale(1.02);
+}
+
+.sign__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.sign p {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+/* Contact - Large Sign */
+.neon-sign-large {
+  text-align: center;
+  padding: 4rem;
+}
+
+.neon-sign-large span {
+  display: block;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+.contact__link {
+  display: inline-block;
+  font-size: 1.25rem;
+  text-decoration: none;
+  margin-top: 2rem;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0.5rem;
+  transition: all 0.3s;
+}
+
+.contact__link:hover {
+  text-shadow: 
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-pink);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  opacity: 0.7;
+}
+
+/* Scroll Reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-reveal].is-visible,
+[data-reveal-child].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .vertical-nav {
+    display: none;
+  }
+  
+  .hero,
+  .section {
+    padding-left: 2rem;
+  }
+  
+  .hero__title {
+    font-size: clamp(2.5rem, 12vw, 6rem);
+  }
+}
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  [data-reveal],
+  [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

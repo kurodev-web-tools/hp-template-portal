@@ -1,0 +1,108 @@
+/* Yarn Theme - 毛糸 */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600&display=swap');
+
+:root {
+  --wool: #D2691E;
+  --wool-light: #F4A460;
+  --wool-warm: #CD853F;
+  --font-heading: 'Patrick Hand', cursive;
+  --font-body: 'Nunito', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: var(--wool);
+  font-family: var(--font-body);
+  margin: 0;
+}
+
+.knit-pattern {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(210,105,30,0.03) 35px, rgba(210,105,30,0.03) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(210,105,30,0.03) 35px, rgba(210,105,30,0.03) 70px);
+  z-index: -1;
+}
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  color: var(--wool-light);
+  text-shadow: 2px 2px 0 var(--wool-warm);
+}
+
+.knit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+  padding: 0 2rem;
+}
+
+.yarn-ball {
+  background: radial-gradient(circle at 30% 30%, var(--wool-light), var(--wool));
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  box-shadow: 
+    0 10px 30px rgba(210,105,30,0.3),
+    inset -10px -10px 20px rgba(0,0,0,0.1);
+}
+
+.header {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--wool-warm);
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+footer {
+  text-align: center;
+  padding: 3rem;
+  color: var(--wool-warm);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  [data-reveal],
+  [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

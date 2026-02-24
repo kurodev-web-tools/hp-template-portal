@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
+:root{--deep-blue:#006994;--sea-cyan:#48CAE4;--bubble:#90E0EF;--font-body:'Quicksand',sans-serif}
+body{background:linear-gradient(180deg,#006994 0%,#003d5c 100%);color:#fff;font-family:var(--font-body);margin:0;min-height:100vh}
+.bubble-container{position:fixed;inset:0;pointer-events:none;z-index:0}.bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.8),rgba(255,255,255,0.1));animation:rise 10s infinite;opacity:0.6}
+.bubble:nth-child(1){width:40px;height:40px;left:20%;animation-duration:8s}.bubble:nth-child(2){width:60px;height:60px;left:60%;animation-duration:12s;animation-delay:2s}.bubble:nth-child(3){width:30px;height:30px;left:80%;animation-duration:10s;animation-delay:4s}
+@keyframes rise{0%{bottom:-100px;transform:translateX(0)}50%{transform:translateX(20px)}100%{bottom:100vh;transform:translateX(-20px);opacity:0}}
+.hero{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 0;position:relative;z-index:1}
+.hero__title{font-size:clamp(4rem,12vw,8rem);font-weight:600;line-height:0.9;text-shadow:0 4px 30px rgba(0,0,0,0.3);animation:sway 6s ease-in-out infinite;margin-bottom:1rem}
+.hero__subtitle{font-size:1.25rem;opacity:0.9;letter-spacing:0.2em}
+.water-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;margin-top:4rem;position:relative;z-index:1}
+.float-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);padding:3rem;border-radius:20px;text-align:center;border:1px solid rgba(255,255,255,0.2);box-shadow:0 10px 40px rgba(0,0,0,0.2);animation:floaty 5s ease-in-out infinite;font-weight:600}
+.float-card.delay-1{animation-delay:1s}.float-card.delay-2{animation-delay:2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+.header{padding:2rem 0;text-align:center;position:relative;z-index:1}.logo{color:var(--bubble);font-weight:600;letter-spacing:0.3em}
+.section{padding:6rem 0;position:relative;z-index:1}footer{text-align:center;padding:3rem 0;opacity:0.7}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  [data-reveal],
+  [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

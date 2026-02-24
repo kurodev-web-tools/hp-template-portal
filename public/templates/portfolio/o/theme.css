@@ -1,0 +1,340 @@
+/* Obsidian Theme - 黒曜石・重厚・闇 */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant:wght@400;600&display=swap');
+
+:root {
+  --obsidian: #0A0A0A;
+  --blood: #FF0040;
+  --void: #050505;
+  --purple: #4A0080;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Cormorant', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--obsidian);
+  color: #e0e0e0;
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+/* Void Background */
+.void {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 50% 100%, rgba(255,0,64,0.05), transparent 50%),
+    linear-gradient(180deg, var(--void) 0%, var(--obsidian) 100%);
+  z-index: -1;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 0;
+  background: rgba(10,10,10,0.9);
+  border-bottom: 1px solid #222;
+  z-index: 100;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.3em;
+  color: var(--blood);
+  text-shadow: 0 0 20px var(--blood);
+}
+
+.nav__list {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav__link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  transition: all 0.3s;
+}
+
+.nav__link:hover {
+  color: var(--blood);
+  text-shadow: 0 0 10px var(--blood);
+}
+
+/* Mobile Toggle */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--blood);
+  cursor: pointer;
+  z-index: 101;
+}
+
+.nav__toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--blood);
+  box-shadow: 0 0 5px var(--blood);
+  transition: all 0.3s;
+}
+
+/* Hero - Ritual */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.hero__ritual {
+  position: relative;
+  padding: 4rem;
+}
+
+.blood-line {
+  width: 2px;
+  height: 100px;
+  background: var(--blood);
+  margin: 0 auto 2rem;
+  box-shadow: 0 0 20px var(--blood);
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.hero__subtitle {
+  font-size: 1rem;
+  color: #666;
+  letter-spacing: 0.3em;
+}
+
+/* Sections */
+.section {
+  padding: 8rem 0;
+  border-top: 1px solid #222;
+}
+
+.section__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  color: var(--blood);
+  text-shadow: 0 0 20px var(--blood);
+  margin-bottom: 2rem;
+}
+
+/* Obsidian Block */
+.obsidian-block {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 4rem;
+  border: 2px solid var(--blood);
+  background: linear-gradient(135deg, rgba(255,0,64,0.05), transparent);
+  position: relative;
+}
+
+.obsidian-block::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, var(--blood), transparent);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.about__text {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #888;
+}
+
+/* Shards Grid */
+.shards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.shard-card {
+  background: #111;
+  border-left: 3px solid var(--blood);
+  padding: 3rem;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.shard-card:hover {
+  box-shadow: 0 0 30px rgba(255,0,64,0.2);
+  border-left-color: #ff3060;
+}
+
+.shard-card__edge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent var(--blood) transparent transparent;
+}
+
+.shard-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--blood);
+  margin-bottom: 0.5rem;
+}
+
+.shard-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Contact - Blood Ritual */
+.blood-ritual {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 4rem;
+  text-align: center;
+  border: 1px solid var(--blood);
+  position: relative;
+}
+
+.blood-ritual::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--blood), var(--purple));
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.contact__link {
+  display: inline-block;
+  color: var(--blood);
+  text-decoration: none;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--blood);
+  padding-bottom: 0.25rem;
+  transition: all 0.3s;
+  margin-top: 2rem;
+}
+
+.contact__link:hover {
+  text-shadow: 0 0 20px var(--blood);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 4rem 0;
+  border-top: 1px solid #222;
+  color: #444;
+  font-size: 0.875rem;
+}
+
+/* Scroll Reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-reveal].is-visible,
+[data-reveal-child].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .nav__toggle {
+    display: flex;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10,10,10,0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 100;
+  }
+  
+  .nav.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .shard-card {
+    clip-path: none;
+  }
+}
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  [data-reveal],
+  [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
