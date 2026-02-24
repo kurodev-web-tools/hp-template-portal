@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let stripe;
             try {
-                // Initialize Stripe with Test Publishable Key
-                stripe = Stripe('pk_test_51SxogT1rosuOg7Yt1mrCMbbRuXIgcZbrq029ypmnS1OjrVVzQ1ne3DigOfj7LIIbT7dAUEXREksfjt1dtTjZczTq00FQAERq2s');
+                // Initialize Stripe with Live Publishable Key
+                stripe = Stripe('pk_live_51SxogT1rosuOg7Ytyxo2Thw5b7eiPa7diZpJrN9JTUD2arbBHp8mqPu20bnMqLYZpnM63reKRhJleqKR7fJCSHBH00EOfaunAM');
             } catch (err) {
                 console.error('Stripe initialization failed:', err);
                 alert('決済システムの初期化に失敗しました。');
