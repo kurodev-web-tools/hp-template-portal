@@ -34,7 +34,7 @@ export const onRequestPost = async (context) => {
               name: 'Standard Template Plan',
               description: 'Access to premium templates',
             },
-            unit_amount: 100, // 100 JPY for testing
+            unit_amount: 10000, // Production amount: 10,000 JPY
           },
           quantity: 1,
         },
