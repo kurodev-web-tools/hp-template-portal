@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Stripe with Test Publishable Key
-    const stripe = Stripe('pk_test_51SxogT1rosuOg7Yt1mrCMbbRuXIgcZbrq029ypmnS1OjrVVzQ1ne3DigOfj7LIIbT7dAUEXREksfjt1dtTjZczTq00FQAERq2s');
-
     const modal = document.getElementById('standard-order-modal');
     // Select the standard plan button - Note: We will add ID 'btn-standard-order' to it in HTML
     const openBtn = document.querySelector('.standard-btn');
@@ -38,6 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Make sure Stripe is loaded before proceeding
+            // This prevents ad-blockers or slow network from breaking the modal opening
+            if (typeof Stripe === 'undefined') {
+                alert('決済システム（Stripe）の準備ができていないか、広告ブロッカー等によってブロックされています。\nページを再読み込みするか、広告ブロッカーを一時的に無効にして再試行してください。');
+                return;
+            }
+
+            let stripe;
+            try {
+                // Initialize Stripe with Test Publishable Key
+                stripe = Stripe('pk_test_51SxogT1rosuOg7Yt1mrCMbbRuXIgcZbrq029ypmnS1OjrVVzQ1ne3DigOfj7LIIbT7dAUEXREksfjt1dtTjZczTq00FQAERq2s');
+            } catch (err) {
+                console.error('Stripe initialization failed:', err);
+                alert('決済システムの初期化に失敗しました。');
+                return;
+            }
+
             const submitBtn = form.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
 
