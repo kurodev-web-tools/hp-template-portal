@@ -124,6 +124,15 @@
                     navMenu.style.gap = '2rem';
                 }
             });
+
+            // Close menu when a link is clicked (mobile)
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navMenu.style.display = 'none';
+                    }
+                });
+            });
         }
     }
 
