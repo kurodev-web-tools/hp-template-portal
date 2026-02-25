@@ -1,0 +1,203 @@
+/* Template K - Knowledge Portfolio */
+
+:root {
+    --color-primary: #e6e6fa;
+    /* Lavender */
+    --color-accent: #FFB6C1;
+    /* Faint Pink */
+    --color-bg-light: #F8F9FF;
+    /* Soft White */
+    --color-bg-dark: #121220;
+    --color-text-main: #2D2D35;
+    --color-text-sub: #5A5A65;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Lato', sans-serif;
+
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Utilities */
+.u-inline {
+    display: inline-block;
+}
+
+.font-display {
+    font-family: var(--font-display);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+/* --- Base Override --- */
+body {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+}
+
+/* --- Navigation (Golden Master Style) --- */
+.nav-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: white;
+    border-radius: 50%;
+    display: none;
+    /* Desktop hidden */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-title {
+        font-size: 3.5rem !important;
+    }
+}
+
+/* --- Hero Blobs --- */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -5%;
+    width: 60vw;
+    height: 60vw;
+    background: var(--color-primary);
+}
+
+.blob-2 {
+    top: 20%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: var(--color-accent);
+}
+
+/* --- Section Title --- */
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 1.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* --- Works Asymmetric Border --- */
+.work-image-wrap {
+    border-radius: 2rem 4rem 2rem 4rem;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.work-item:nth-child(even) .work-image-wrap {
+    border-radius: 4rem 2rem 4rem 2rem;
+}
+
+.work-image-wrap:hover {
+    transform: scale(1.02);
+}
+
+/* --- Mobile Menu --- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu.active {
+    transform: translateX(-100%);
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.mobile-nav a {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.mobile-nav a:hover {
+    color: var(--color-primary);
+}
+
+/* --- Custom Cursor (Golden Master) --- */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: multiply;
+    transition: transform 0.1s ease-out;
+}
+
+@media (max-width: 1024px) {
+    .custom-cursor {
+        display: none;
+    }
+}
+
+/* --- Animations --- */
+.blob-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.reveal {
+    opacity: 1;
+    /* GSAP will handle initial state */
+}
