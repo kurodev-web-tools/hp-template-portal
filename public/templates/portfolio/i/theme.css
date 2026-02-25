@@ -1,0 +1,806 @@
+/* Infinite Portfolio Theme - VFXエンジニア/SF向けスタイル */
+
+:root {
+    --space-black: #0B0D17;
+    --nebula-purple: #6366F1;
+    --nebula-dark: #312E81;
+    --cyan-glow: #22D3EE;
+    --text-main: #E0E7FF;
+    --text-muted: #94A3B8;
+
+    --font-main: 'Exo 2', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+.u-inline {
+    display: inline-block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.text-cyan {
+    color: var(--cyan-glow);
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.text-purple {
+    color: var(--nebula-purple);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--space-black);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+::selection {
+    background-color: var(--cyan-glow);
+    color: var(--space-black);
+}
+
+/* ============================================
+   Canvas Background (Z-axis Starfield)
+   ============================================ */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+}
+
+/* ============================================
+   Custom Cursor (Target Lock)
+   ============================================ */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+    }
+
+    body,
+    a,
+    button,
+    input,
+    textarea {
+        cursor: none !important;
+    }
+}
+
+.cursor-target {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--cyan-glow);
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.2s;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+}
+
+.cursor-target::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--cyan-glow);
+}
+
+.custom-cursor.hover .cursor-target {
+    transform: scale(1.5);
+    border-color: var(--nebula-purple);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.custom-cursor.hover .cursor-target::before {
+    background: var(--nebula-purple);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.scifi-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    background: linear-gradient(to bottom, rgba(11, 13, 23, 0.9), transparent);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+}
+
+.glow-text {
+    color: #FFF;
+    text-shadow: 0 0 15px var(--cyan-glow);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+    color: var(--cyan-glow);
+    border-color: rgba(34, 211, 238, 0.5);
+    background: rgba(34, 211, 238, 0.05);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 2px;
+    background: var(--cyan-glow);
+}
+
+/* ============================================
+   Layout & Typography
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.container-large {
+    max-width: 1400px;
+}
+
+.container-medium {
+    max-width: 1000px;
+}
+
+.container-narrow {
+    max-width: 800px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    margin-bottom: 4rem;
+}
+
+/* ============================================
+   Hero Section & Planet CSS
+   ============================================ */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* CSS Only Planet */
+.planet-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vh;
+    height: 60vh;
+    z-index: -1;
+}
+
+.planet {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Nebula surface */
+    background: radial-gradient(circle at 30% 30%, #4338CA 0%, #312E81 50%, #000 90%);
+    box-shadow:
+        inset -30px -30px 40px rgba(0, 0, 0, 0.9),
+        inset 10px 10px 30px rgba(99, 102, 241, 0.4),
+        0 0 50px rgba(99, 102, 241, 0.3);
+    animation: rotatePlanet 60s linear infinite;
+}
+
+.planet-shadow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(105deg, transparent 40%, rgba(0, 0, 0, 0.95) 70%);
+}
+
+@keyframes rotatePlanet {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.h-sub {
+    font-weight: 300;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    color: var(--cyan-glow);
+    text-transform: uppercase;
+}
+
+.scrolling-instruction {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.arrow-down {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid var(--cyan-glow);
+    border-bottom: 2px solid var(--cyan-glow);
+    transform: rotate(45deg);
+    margin: 0 auto 1rem;
+    animation: pulseArrow 2s infinite;
+}
+
+@keyframes pulseArrow {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(-5px) rotate(45deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(5px) rotate(45deg);
+    }
+}
+
+/* ============================================
+   About / Cockpit UI
+   ============================================ */
+.cockpit-ui {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+}
+
+.cockpit-panel {
+    background: rgba(11, 13, 23, 0.7);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(34, 211, 238, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative corner cutouts */
+.cockpit-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, transparent 50%, rgba(34, 211, 238, 0.5) 50%);
+}
+
+.panel-header {
+    background: rgba(34, 211, 238, 0.1);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.panel-body {
+    padding: 2rem;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-family: monospace;
+    font-size: 1rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.countdown-wrap {
+    margin-top: 2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.cd-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.countdown-val {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--cyan-glow);
+    font-family: monospace;
+}
+
+.radar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid rgba(34, 211, 238, 0.5);
+    margin: 2rem auto 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.radar-sweep {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: conic-gradient(from 0deg, rgba(34, 211, 238, 0) 0deg, rgba(34, 211, 238, 0.5) 90deg);
+    transform-origin: bottom left;
+    animation: radarSpin 2s linear infinite;
+}
+
+@keyframes radarSpin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.text-content {
+    font-family: monospace;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   Works Section (Missions)
+   ============================================ */
+.mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.mission-card {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-left: 3px solid var(--nebula-purple);
+    transition: var(--transition);
+}
+
+.mission-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--cyan-glow);
+}
+
+.mission-card.reverse {
+    flex-direction: row-reverse;
+    border-left: none;
+    border-right: 3px solid var(--cyan-glow);
+}
+
+/* Orbital Thumbnails */
+.mission-orbit {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.planet-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.pt-1 {
+    background: radial-gradient(circle at 30% 30%, #EF4444, #7F1D1D);
+}
+
+.pt-2 {
+    background: radial-gradient(circle at 30% 30%, #10B981, #064E3B);
+}
+
+.pt-3 {
+    background: radial-gradient(circle at 30% 30%, #8B5CF6, #4C1D95);
+}
+
+.satellite {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #FFF;
+    border-radius: 50%;
+    transform-origin: 5px 80px;
+    /* Radius of orbit */
+    animation: orbit 4s linear infinite;
+    box-shadow: 0 0 10px #FFF;
+}
+
+.fast-orbit {
+    animation: orbit 2s linear infinite;
+}
+
+.reverse-orbit {
+    animation: orbitReverse 5s linear infinite;
+    transform-origin: 5px 80px;
+}
+
+@keyframes orbit {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbitReverse {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.mission-details {
+    flex-grow: 1;
+}
+
+.mission-details h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.mission-type {
+    color: var(--cyan-glow);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-family: monospace;
+}
+
+.scifi-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.scifi-btn:hover {
+    background: var(--text-main);
+    color: var(--space-black);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   Skills Section (Starmap)
+   ============================================ */
+.starmap-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.constellation-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.constellation-lines line {
+    stroke: rgba(34, 211, 238, 0.3);
+    stroke-width: 1;
+    stroke-dasharray: 4;
+}
+
+.star-node {
+    position: absolute;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: crosshair;
+}
+
+.star-glow {
+    width: 12px;
+    height: 12px;
+    background: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.8), 0 0 30px var(--cyan-glow);
+    transition: var(--transition);
+}
+
+.star-node span {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    transition: var(--transition);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.star-node:hover .star-glow {
+    transform: scale(1.5);
+    box-shadow: 0 0 20px 5px var(--cyan-glow);
+}
+
+.star-node:hover span {
+    opacity: 1;
+    color: var(--cyan-glow);
+}
+
+/* ============================================
+   Contact Section (Transmission)
+   ============================================ */
+.comm-terminal {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: rgba(99, 102, 241, 0.2);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.5);
+}
+
+.term-dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--nebula-purple);
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.term-dots span:nth-child(1) {
+    background: #EF4444;
+}
+
+.term-dots span:nth-child(2) {
+    background: #F59E0B;
+}
+
+.term-dots span:nth-child(3) {
+    background: #10B981;
+}
+
+.term-title {
+    font-family: monospace;
+    color: var(--cyan-glow);
+}
+
+.terminal-body {
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.form-row {
+    margin-bottom: 1.5rem;
+}
+
+.form-row label {
+    display: block;
+    font-family: monospace;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.scifi-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    color: #FFF;
+    font-family: var(--font-main);
+    transition: var(--transition);
+}
+
+.scifi-input:focus {
+    outline: none;
+    border-color: var(--cyan-glow);
+    background: rgba(34, 211, 238, 0.05);
+}
+
+.scifi-submit {
+    width: 100%;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid var(--nebula-purple);
+    color: var(--text-main);
+    padding: 1.5rem;
+    font-family: monospace;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.scifi-submit:hover {
+    background: var(--nebula-purple);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.scifi-footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-family: monospace;
+    color: var(--text-muted);
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .cockpit-ui {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mission-card.reverse {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-title {
+        font-size: 14vw;
+    }
+
+    .planet-container {
+        width: 40vh;
+        height: 40vh;
+        top: 30%;
+    }
+
+    .terminal-body {
+        padding: 1.5rem;
+    }
+
+    /* Shrink starmap on mobile */
+    .starmap-container {
+        height: 400px;
+    }
+}

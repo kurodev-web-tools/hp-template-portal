@@ -1,0 +1,817 @@
+/* Holographic Portfolio Theme - NFTアーティスト/3D方向けスタイル */
+
+:root {
+    --holo-bg: #050510;
+    --holo-dark: #000000;
+    --holo-text: #E0E7FF;
+    --holo-accent: #00FF88;
+    /* Rainbow shift gradient variables */
+    --rainbow-grad: linear-gradient(45deg, #FF0080, #00FF88, #0080FF, #FF0080);
+
+    --font-head: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+
+    --transition: all 0.3s ease;
+}
+
+.u-inline {
+    display: inline-block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--holo-bg);
+    color: var(--holo-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-size: 1.1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.logo-text,
+.holo-btn {
+    font-family: var(--font-head);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ============================================
+   Abstract 3D Grid BG
+   ============================================ */
+.cyber-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image:
+        linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center bottom;
+    transform: perspective(500px) rotateX(60deg) translateY(100px) scale(3);
+    z-index: -1;
+    pointer-events: none;
+    animation: gridMove 10s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        transform: perspective(500px) rotateX(60deg) translateY(0) scale(3);
+    }
+
+    100% {
+        transform: perspective(500px) rotateX(60deg) translateY(50px) scale(3);
+    }
+}
+
+/* ============================================
+   Holographic Text Effect 
+   ============================================ */
+.holo-text {
+    background: var(--rainbow-grad);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowShift 6s ease infinite;
+    position: relative;
+}
+
+@keyframes rainbowShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================================
+   Custom Cursor (Crosshair)
+   ============================================ */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+    }
+
+    body,
+    a,
+    button,
+    input,
+    textarea {
+        cursor: none !important;
+    }
+}
+
+.cursor-crosshair {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--holo-accent);
+    position: relative;
+    transition: width 0.3s, height 0.3s;
+}
+
+.cursor-crosshair::before,
+.cursor-crosshair::after {
+    content: '';
+    position: absolute;
+    background: var(--holo-accent);
+}
+
+.cursor-crosshair::before {
+    top: 50%;
+    left: -5px;
+    right: -5px;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+.cursor-crosshair::after {
+    left: 50%;
+    top: -5px;
+    bottom: -5px;
+    width: 1px;
+    transform: translateX(-50%);
+}
+
+.custom-cursor.hover .cursor-crosshair {
+    width: 40px;
+    height: 40px;
+    border-color: #FF0080;
+}
+
+.custom-cursor.hover .cursor-crosshair::before,
+.custom-cursor.hover .cursor-crosshair::after {
+    background: #FF0080;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2rem 0;
+    background: linear-gradient(to bottom, rgba(5, 5, 16, 0.9), transparent);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--holo-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--rainbow-grad);
+    background-size: 300% 300%;
+    animation: rainbowShift 6s ease infinite;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 2px;
+    background: var(--holo-accent);
+}
+
+/* ============================================
+   Layout
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.container-narrow {
+    max-width: 800px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    display: inline-block;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: rgba(224, 231, 255, 0.7);
+    text-transform: uppercase;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--holo-accent);
+}
+
+.mouse {
+    width: 24px;
+    height: 36px;
+    border: 2px solid var(--holo-accent);
+    border-radius: 12px;
+    margin: 0 auto 0.5rem;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--holo-accent);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollMouse 1.5s infinite;
+}
+
+@keyframes scrollMouse {
+    0% {
+        top: 6px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 18px;
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   CSS 3D Tilt Card (CORE COMPONENT)
+   ============================================ */
+.holo-card-wrap {
+    perspective: 1000px;
+    /* 3D Depth */
+}
+
+/* Base card establishing 3D space */
+.holo-card {
+    position: relative;
+    width: 100%;
+    /* Default rotation if no JS */
+    transform-style: preserve-3d;
+    background: rgba(20, 20, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    /* JS will update CSS vars: --rotateX, --rotateY, --pointerX, --pointerY */
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg));
+    transition: transform 0.1s ease-out;
+    /* smooths the JS updates */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Holographic Glare overlay */
+.holo-glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--pointerX, 50%) var(--pointerY, 50%),
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0) 60%);
+    mix-blend-mode: overlay;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Persistent Rainbow Border */
+.card-border {
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    background: var(--rainbow-grad);
+    background-size: 400% 400%;
+    animation: rainbowShift 4s ease infinite;
+    opacity: 0.3;
+    transition: opacity 0.3s;
+}
+
+.holo-card-wrap:hover .holo-card {
+    transition: none;
+    /* instant follow on hover */
+}
+
+.holo-card-wrap:hover .holo-glare {
+    opacity: 1;
+}
+
+.holo-card-wrap:hover .card-border {
+    opacity: 1;
+}
+
+/* ============================================
+   About Section
+   ============================================ */
+.about-flex {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.profile-card-wrap {
+    flex: 0 0 350px;
+}
+
+.profile-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    padding: 4px;
+    background: var(--rainbow-grad);
+    background-size: 300%;
+    animation: rainbowShift 6s infinite;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.profile-content .role {
+    color: var(--holo-accent);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-head);
+}
+
+.card-stats {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.card-stats div {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+}
+
+.card-stats span:first-child {
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.2rem;
+}
+
+.card-stats span:last-child {
+    font-weight: 700;
+    font-family: var(--font-head);
+}
+
+.about-text {
+    flex: 1;
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+}
+
+.holo-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--holo-text);
+    border: 1px solid var(--holo-accent);
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.holo-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--holo-accent);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.holo-btn:hover {
+    color: var(--holo-dark);
+    text-shadow: none;
+    border-color: transparent;
+}
+
+.holo-btn:hover::before {
+    left: 0;
+}
+
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+
+/* ============================================
+   Works Section
+   ============================================ */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.1) saturate(1.2);
+}
+
+.card-info {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.card-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.card-info p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-family: var(--font-head);
+    color: var(--holo-accent);
+    font-weight: 700;
+}
+
+/* ============================================
+   Skills Section (Hexagon Grid)
+   ============================================ */
+.hex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hex {
+    width: 200px;
+    height: 230px;
+    /* Rough ratio for hex */
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: rgba(255, 255, 255, 0.05);
+    margin: -25px 5px;
+    /* pull them tighter */
+    transition: var(--transition);
+    border: 1px solid transparent;
+    /* Cannot use standard border with clip-path, but we fake it */
+}
+
+.hex::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: rgba(10, 10, 20, 0.9);
+    z-index: -1;
+    transition: var(--transition);
+}
+
+.hex-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hex-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skill-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.skill-lvl {
+    color: var(--holo-accent);
+    font-family: var(--font-head);
+    font-weight: 900;
+}
+
+.hex:hover {
+    background: var(--rainbow-grad);
+    background-size: 300%;
+    animation: rainbowShift 3s infinite;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.hex:hover::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Fix hexagon spacing for even rows using nth-child if needed, or rely on flex wrap natural offset */
+
+/* ============================================
+   Contact Section
+   ============================================ */
+.contact {
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.projection-base {
+    position: relative;
+}
+
+/* Fake light beam coming from bottom */
+.beam {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 600px;
+    background: conic-gradient(from 180deg at 50% 100%, transparent 150deg, rgba(0, 255, 136, 0.1) 180deg, transparent 210deg);
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+.projection-form {
+    background: rgba(10, 10, 20, 0.8);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    padding: 4rem;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1), inset 0 0 20px rgba(0, 255, 136, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.projection-form h2 {
+    margin-bottom: 2rem;
+}
+
+.input-grp {
+    margin-bottom: 1.5rem;
+}
+
+.input-grp input,
+.input-grp textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--holo-accent);
+    padding: 1.5rem;
+    font-family: var(--font-head);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.input-grp input:focus,
+.input-grp textarea:focus {
+    outline: none;
+    border-color: var(--holo-accent);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.input-grp input::placeholder,
+.input-grp textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.flex-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 2rem !important;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--holo-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--holo-accent);
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0.3
+    }
+}
+
+.socials {
+    font-family: var(--font-head);
+    font-size: 0.9rem;
+}
+
+.socials a {
+    color: var(--holo-text);
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.socials a:hover {
+    color: var(--holo-accent);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-stats {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .hex {
+        margin: 5px;
+    }
+
+    /* Reset tight margin on mobile for neat column */
+    .projection-form {
+        padding: 2rem 1.5rem;
+    }
+
+    .flex-footer {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

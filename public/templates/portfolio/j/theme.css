@@ -1,0 +1,644 @@
+/* Journal Portfolio Theme - ライター/編集者向けスタイル */
+
+:root {
+    --journal-bg: #F9F7F0;
+    /* Off-white paper */
+    --journal-ink: #2C3E50;
+    /* Deep ink/slate */
+    --journal-accent: #E74C3C;
+    /* Vermilion red */
+    --journal-light: #DFDDD5;
+    /* Light border */
+
+    --font-en: 'Playfair Display', serif;
+    --font-jp-serif: 'Noto Serif JP', serif;
+    --font-jp-sans: 'Noto Sans JP', sans-serif;
+
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Typography Utilities */
+.playfair {
+    font-family: var(--font-en);
+}
+
+.jp-serif {
+    font-family: var(--font-jp-serif);
+}
+
+.jp-sans {
+    font-family: var(--font-jp-sans);
+}
+
+.text-accent {
+    color: var(--journal-accent);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mb-large {
+    margin-bottom: 4rem;
+}
+
+.border-top {
+    border-top: 1px solid var(--journal-ink);
+}
+
+.section-pad {
+    padding: 8rem 0;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-jp-sans);
+    /* Base body uses sans for readability */
+    background-color: var(--journal-bg);
+    color: var(--journal-ink);
+    line-height: 1.8;
+    overflow-x: hidden;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background-color: var(--journal-ink);
+    color: var(--journal-bg);
+}
+
+/* ============================================
+   Custom Cursor (Minimal Dot)
+   ============================================ */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    display: none;
+    mix-blend-mode: difference;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+    }
+
+    body,
+    a,
+    button,
+    input,
+    textarea {
+        cursor: none !important;
+    }
+}
+
+.cursor-dot {
+    width: 10px;
+    height: 10px;
+    background: #FFF;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.custom-cursor.hover .cursor-dot {
+    transform: scale(3);
+}
+
+/* ============================================
+   Reading Progress Bar
+   ============================================ */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--journal-accent);
+    z-index: 1002;
+    transform-origin: left;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.editorial-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2rem 0;
+    mix-blend-mode: difference;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-family: var(--font-en);
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #FFF;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: #FFF;
+    text-decoration: none;
+    font-family: var(--font-en);
+    font-size: 0.9rem;
+    font-style: italic;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #FFF;
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 2px;
+    background: var(--journal-ink);
+}
+
+/* Not difference mode on mobile for visibility */
+
+/* ============================================
+   Layout
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.container-medium {
+    max-width: 900px;
+}
+
+.container-narrow {
+    max-width: 700px;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-container {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-family: var(--font-en);
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+}
+
+.hero-title span {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.7em;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: rgba(44, 62, 80, 0.7);
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-en);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.scroll-down .line {
+    width: 1px;
+    height: 60px;
+    background: var(--journal-ink);
+}
+
+/* Text Reveal Animation masking */
+.reveal-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* ============================================
+   About Section (Profile)
+   ============================================ */
+.editorial-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 6rem;
+}
+
+.ed-heading {
+    font-family: var(--font-en);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.ed-photo {
+    width: 100%;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    filter: grayscale(100%);
+    transition: filter 0.8s;
+}
+
+.ed-photo:hover {
+    filter: grayscale(0%);
+}
+
+.ed-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ed-caption {
+    font-family: var(--font-en);
+    font-size: 0.8rem;
+    font-style: italic;
+    color: rgba(44, 62, 80, 0.6);
+}
+
+.ed-subheading {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+}
+
+/* The DROP CAP */
+.drop-cap {
+    font-size: 1.1rem;
+    line-height: 2;
+    margin-bottom: 2rem;
+}
+
+.drop-cap::first-letter {
+    font-family: var(--font-jp-serif);
+    font-size: 5rem;
+    float: left;
+    line-height: 0.8;
+    padding-top: 12px;
+    padding-right: 12px;
+    padding-bottom: 0;
+    margin-bottom: -0.2em;
+    /* adjustment for exact baselines */
+    color: var(--journal-accent);
+    font-weight: 900;
+}
+
+.ed-body p {
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    line-height: 2.2;
+}
+
+/* ============================================
+   Works (Publications List)
+   ============================================ */
+.pub-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--journal-ink);
+}
+
+.pub-item {
+    display: grid;
+    grid-template-columns: 150px 1fr 150px;
+    gap: 2rem;
+    padding: 3rem 1rem;
+    border-bottom: 1px solid var(--journal-ink);
+    text-decoration: none;
+    color: var(--journal-ink);
+    transition: var(--transition);
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.pub-item:hover {
+    background: #FFFFFF;
+    padding-left: 2rem;
+    padding-right: 0;
+}
+
+.pub-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+}
+
+.pub-cat {
+    font-weight: 600;
+    color: var(--journal-accent);
+    letter-spacing: 0.1em;
+}
+
+.pub-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.pub-content p {
+    font-size: 1rem;
+    color: rgba(44, 62, 80, 0.7);
+    line-height: 1.8;
+}
+
+.pub-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: var(--font-en);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: var(--transition);
+}
+
+.pub-item:hover .pub-action {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================
+   Quotes Section
+   ============================================ */
+.quote-block {
+    text-align: center;
+    position: relative;
+    padding: 4rem 0;
+}
+
+.quote-mark {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-en);
+    font-size: 10rem;
+    opacity: 0.1;
+    line-height: 1;
+}
+
+.quote-block blockquote {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    z-index: 1;
+    position: relative;
+}
+
+.quote-block cite {
+    font-size: 1.1rem;
+    color: rgba(44, 62, 80, 0.6);
+}
+
+/* ============================================
+   Contact Section (Inquiry)
+   ============================================ */
+.minimal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    border-bottom: 2px solid var(--journal-ink);
+    margin-bottom: 2rem;
+}
+
+.minimal-form input,
+.minimal-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    color: var(--journal-ink);
+    outline: none;
+    resize: none;
+    overflow: hidden;
+}
+
+.minimal-form input::placeholder,
+.minimal-form textarea::placeholder {
+    color: rgba(44, 62, 80, 0.3);
+    font-family: var(--font-en);
+    font-style: italic;
+}
+
+.ed-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--journal-ink);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.ed-btn:hover {
+    color: var(--journal-accent);
+}
+
+.ed-footer {
+    padding: 4rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: var(--journal-ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.footer-links a:hover {
+    color: var(--journal-accent);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .editorial-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .ed-sidebar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        border-bottom: 1px solid var(--journal-ink);
+        padding-bottom: 2rem;
+    }
+
+    .ed-photo {
+        width: 100px;
+        margin-bottom: 0;
+    }
+
+    .ed-heading {
+        margin-bottom: 0;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .editorial-nav {
+        padding: 1.5rem 0;
+        mix-blend-mode: normal;
+    }
+
+    .nav-container {
+        padding: 0 1.5rem;
+    }
+
+    .logo-text {
+        color: var(--journal-ink);
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .section-pad {
+        padding: 5rem 0;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .pub-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 2rem 0;
+    }
+
+    .pub-item:hover {
+        padding-left: 0;
+    }
+
+    .pub-action {
+        display: none;
+    }
+
+    /* Hide read more on mobile, keep it simple */
+
+    .minimal-form input,
+    .minimal-form textarea {
+        font-size: 1.2rem;
+    }
+
+    .drop-cap::first-letter {
+        font-size: 4rem;
+        padding-top: 8px;
+        padding-right: 8px;
+    }
+}
