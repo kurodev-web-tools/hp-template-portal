@@ -1,0 +1,717 @@
+/* Ethereal Portfolio Theme - UI/UXデザイナー向けスタイル */
+
+:root {
+    --ethereal-bg: #F8F9FF;
+    /* Slightly blue tinted white */
+    --ethereal-lavender: #E6E6FA;
+    --ethereal-pink: #FFB6C1;
+    --ethereal-text: #4A4A5A;
+    /* Deep grey/purple instead of harsh black */
+    --ethereal-light-text: #8A8A9A;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Lato', sans-serif;
+    --transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.u-inline {
+    display: inline-block;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--ethereal-bg);
+    color: var(--ethereal-text);
+    line-height: 1.8;
+    overflow-x: hidden;
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+.logo-text,
+.italic {
+    font-family: var(--font-serif);
+    font-weight: 300;
+}
+
+.italic {
+    font-style: italic;
+    color: var(--ethereal-light-text);
+}
+
+/* ============================================
+   Custom Cursor
+   ============================================ */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(230, 230, 250, 0.5);
+    /* Lavender semi-transparent */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    display: none;
+    backdrop-filter: blur(2px);
+    transition: width 0.4s, height 0.4s, background-color 0.4s;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+    }
+
+    body,
+    a,
+    button,
+    input,
+    textarea {
+        cursor: none;
+    }
+}
+
+.custom-cursor.hover {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 182, 193, 0.2);
+    /* Pink blush on hover */
+    border: 1px solid rgba(255, 182, 193, 0.5);
+}
+
+/* ============================================
+   Background Floating Blobs
+   ============================================ */
+.blob-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--ethereal-lavender);
+    top: -100px;
+    left: -100px;
+    animation-duration: 25s;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: #FFFFFF;
+    top: 40%;
+    right: -200px;
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: #FFF2F5;
+    /* Very light pink */
+    bottom: -100px;
+    left: 20%;
+    animation-duration: 22s;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(50px, 30px) scale(1.05);
+    }
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2.5rem 0;
+    transition: var(--transition);
+}
+
+.nav.scrolled {
+    background: rgba(248, 249, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo .logo-text {
+    font-size: 2rem;
+    color: var(--ethereal-text);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--ethereal-text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 1px;
+    background: var(--ethereal-text);
+    transition: var(--transition);
+}
+
+/* ============================================
+   Common Layout
+   ============================================ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+}
+
+.container-narrow {
+    max-width: 900px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--ethereal-text);
+}
+
+.section-title.center {
+    text-align: center;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 5vw;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ethereal-light-text);
+}
+
+.hero-graphic {
+    position: absolute;
+    right: 10vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 600px;
+    opacity: 0.7;
+    animation: floatFeather 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatFeather {
+    0% {
+        transform: translateY(-50%) rotate(-2deg);
+    }
+
+    100% {
+        transform: translateY(-45%) rotate(2deg);
+    }
+}
+
+.scroll-prompt {
+    position: absolute;
+    bottom: 3rem;
+    left: 4rem;
+    /* Match nav padding */
+    width: 1px;
+    height: 60px;
+    background: rgba(74, 74, 90, 0.2);
+}
+
+.scroll-dot {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ethereal-text);
+    animation: scrollDrop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes scrollDrop {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   About Section
+   ============================================ */
+.about {
+    background: rgba(230, 230, 250, 0.2);
+    /* 3% Lavender */
+}
+
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.about-image {
+    flex: 0 0 300px;
+    height: 300px;
+    border-radius: 50%;
+    /* Circle shape */
+    overflow: hidden;
+    /* Soft shadow to blend with bg */
+    box-shadow: 0 20px 50px rgba(230, 230, 250, 0.8);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.2) hue-rotate(-20deg) contrast(0.9);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.tags {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tag {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    background: #FFF;
+    color: var(--ethereal-light-text);
+    box-shadow: 0 5px 15px rgba(230, 230, 250, 0.5);
+    transition: var(--transition);
+    cursor: none;
+    /* Rely on custom cursor */
+}
+
+.tag:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: var(--ethereal-lavender);
+    color: var(--ethereal-text);
+    box-shadow: 0 10px 20px rgba(230, 230, 250, 0.8);
+}
+
+/* ============================================
+   Works Section (Zigzag Showcase)
+   ============================================ */
+.works-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    margin-top: 6rem;
+}
+
+.project-row {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+.project-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.project-image {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    max-width: 50vw;
+    box-shadow: 0 30px 60px rgba(230, 230, 250, 0.6);
+    transition: var(--transition);
+}
+
+/* Organic border radius shapes */
+.organic-shape-1 {
+    border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;
+}
+
+.organic-shape-2 {
+    border-radius: 60% 40% 50% 50% / 40% 60% 40% 60%;
+}
+
+.organic-shape-3 {
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+}
+
+.project-image img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.project-image:hover img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    flex: 1;
+}
+
+.project-info h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ethereal-pink);
+    margin-bottom: 2rem;
+}
+
+.desc {
+    color: var(--ethereal-light-text);
+    margin-bottom: 2rem;
+}
+
+.btn-text {
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ethereal-text);
+    position: relative;
+}
+
+.btn-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--ethereal-lavender);
+    transition: width 0.4s ease;
+}
+
+.btn-text:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   Process Section
+   ============================================ */
+.process {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 4rem;
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.process-item {
+    padding: 2rem;
+}
+
+.process-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 2rem;
+}
+
+.process-item h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.process-item p {
+    font-size: 0.95rem;
+    color: var(--ethereal-light-text);
+}
+
+/* ============================================
+   Contact Section
+   ============================================ */
+.contact {
+    padding-bottom: 2rem;
+}
+
+.contact-paper {
+    background: #FFFFFF;
+    padding: 6rem 4rem;
+    border-radius: 2px;
+    box-shadow: 0 40px 80px rgba(230, 230, 250, 0.4);
+    margin-bottom: 8rem;
+    position: relative;
+    /* Subtle paper texture idea (just white is fine per spec, keeping clean) */
+}
+
+.contact-desc {
+    color: var(--ethereal-light-text);
+    margin-bottom: 4rem;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-line {
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.input-line input,
+.input-line textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--ethereal-lavender);
+    padding: 1rem 0;
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--ethereal-text);
+    transition: var(--transition);
+}
+
+.input-line input:focus,
+.input-line textarea:focus {
+    outline: none;
+    border-bottom-color: var(--ethereal-pink);
+}
+
+.input-line input::placeholder,
+.input-line textarea::placeholder {
+    color: #D3D3E0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.btn-soft {
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+    border: 1px solid var(--ethereal-lavender);
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--ethereal-text);
+    transition: var(--transition);
+}
+
+.btn-soft:hover {
+    background: var(--ethereal-lavender);
+    transform: translateY(-2px);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.socials {
+    display: flex;
+    gap: 2rem;
+}
+
+.socials a,
+.copyright {
+    color: var(--ethereal-light-text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+}
+
+.socials a:hover {
+    color: var(--ethereal-text);
+}
+
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+
+    .project-row,
+    .project-row.reverse {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .project-image {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 30px;
+        /* Fallback from organic on tablet to be safe */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+        top: 2rem;
+        right: 1.5rem;
+    }
+
+    .nav-container,
+    .container,
+    .footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .hero {
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-graphic {
+        display: none;
+        /* Hide feather on mobile */
+    }
+
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .tags {
+        justify-content: center;
+    }
+
+    .scroll-prompt {
+        left: 1.5rem;
+    }
+
+    .contact-paper {
+        padding: 4rem 2rem;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+}
