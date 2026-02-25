@@ -582,23 +582,20 @@ h5,
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    max-width: 900px;
+    gap: 1.5rem;
+    max-width: 730px;
     margin: 0 auto;
+    overflow: visible;
+    padding: 1rem 0 2rem;
 }
 
 .hex {
-    width: 200px;
-    height: 230px;
-    /* Rough ratio for hex */
+    width: 160px;
+    height: 185px;
     position: relative;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background: rgba(255, 255, 255, 0.05);
-    margin: -25px 5px;
-    /* pull them tighter */
+    background: rgba(0, 255, 136, 0.15);
     transition: var(--transition);
-    border: 1px solid transparent;
-    /* Cannot use standard border with clip-path, but we fake it */
 }
 
 .hex::before {
@@ -801,7 +798,37 @@ h5,
         padding-right: 1.5rem;
     }
 
+    /* Hero: prevent title overflow */
+    .hero-title {
+        font-size: clamp(1.4rem, 8vw, 2.5rem);
+        letter-spacing: 0.05em;
+        word-break: break-word;
+    }
+
+    /* Subtitle: tighten letter-spacing so it doesn't exceed viewport */
+    .hero-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+    }
+
+    /* Section titles */
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* About section */
+    .profile-card-wrap {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    /* Hex grid: smaller hexagons + allow natural wrap */
     .hex {
+        width: 140px;
+        height: 160px;
         margin: 5px;
     }
 
@@ -810,8 +837,36 @@ h5,
         padding: 2rem 1.5rem;
     }
 
+    /* Works grid: 2-col on mobile */
+    .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .card-img {
+        aspect-ratio: 1;
+    }
+
+    .card-info {
+        padding: 0.8rem;
+    }
+
+    .card-info h4 {
+        font-size: 0.85rem;
+    }
+
+    .card-info p {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
     .flex-footer {
         flex-direction: column;
         gap: 2rem;
+    }
+
+    .status-indicator {
+        font-size: 0.7rem;
+        white-space: nowrap;
     }
 }

@@ -16,6 +16,9 @@
         init3DTiltCards();
         initHeroParallax();
         initFadeEffects();
+
+        // Recalculate scroll positions after all assets load
+        window.addEventListener('load', () => ScrollTrigger.refresh());
     }
 
     // ============================================
@@ -175,25 +178,33 @@
     // Fade In Effects
     // ============================================
     function initFadeEffects() {
-        // Hexagons stagger fade in
-        gsap.from('.hex', {
-            scrollTrigger: {
-                trigger: '.hex-grid',
-                start: 'top 80%'
-            },
-            scale: 0,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'back.out(1.5)'
-        });
+        // Hexagons stagger fade in — use fromTo so initial state is explicit and reliable
+        const hexEls = document.querySelectorAll('.hex');
+        if (hexEls.length) {
+            gsap.fromTo('.hex',
+                { scale: 0, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: '.hex-grid',
+                        start: 'top 75%',
+                        once: true
+                    },
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.15,
+                    ease: 'back.out(1.5)'
+                }
+            );
+        }
 
         // Works cards fade up
         gsap.utils.toArray('.holo-card-wrap').forEach(card => {
             gsap.from(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: 'top 85%'
+                    start: 'top 85%',
+                    once: true
                 },
                 y: 50,
                 opacity: 0,
