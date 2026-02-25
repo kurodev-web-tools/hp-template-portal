@@ -1,0 +1,728 @@
+/* Cinematic Portfolio Theme - 映画監督向けスタイル */
+
+:root {
+    --cinema-bg: #0A0A0A;
+    --cinema-gold: #D4AF37;
+    --cinema-gold-dark: #997A15;
+    --cinema-text: #F0F0F0;
+    --cinema-muted: #888888;
+    --transition-fast: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-slow: transform 30s linear;
+}
+
+.u-inline {
+    display: inline-block;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Hide scrollbar for cinematic feel but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: var(--cinema-bg);
+    color: var(--cinema-text);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.logo-text,
+.nav-link,
+.hero-subtitle,
+.role {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ============================================
+   Custom Cursor
+   ============================================ */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    background: var(--cinema-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    display: none;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+    }
+
+    body,
+    a,
+    button {
+        cursor: none;
+    }
+}
+
+.custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--cinema-gold);
+}
+
+/* ============================================
+   Film Grain Overlay
+   ============================================ */
+.film-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    /* Tiny flicker animation for realism */
+    animation: grainFlicker 8s steps(10) infinite;
+}
+
+@keyframes grainFlicker {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-1%, -1%);
+    }
+
+    20% {
+        transform: translate(1%, 1%);
+    }
+
+    30% {
+        transform: translate(-2%, 1%);
+    }
+
+    40% {
+        transform: translate(1%, -1%);
+    }
+
+    50% {
+        transform: translate(-1%, 2%);
+    }
+
+    60% {
+        transform: translate(2%, -1%);
+    }
+
+    70% {
+        transform: translate(1%, 2%);
+    }
+
+    80% {
+        transform: translate(-2%, -1%);
+    }
+
+    90% {
+        transform: translate(2%, 1%);
+    }
+}
+
+/* ============================================
+   Cinematic Curtains
+   ============================================ */
+.curtain {
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    background: #000;
+    z-index: 2000;
+    transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.curtain.top {
+    top: 0;
+}
+
+.curtain.bottom {
+    bottom: 0;
+}
+
+body.loaded .curtain.top {
+    transform: translateY(-100%);
+}
+
+body.loaded .curtain.bottom {
+    transform: translateY(100%);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 2rem 0;
+    transition: var(--transition-fast);
+}
+
+.nav.scrolled {
+    background: rgba(10, 10, 10, 0.9);
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo .logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--cinema-gold);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--cinema-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+    opacity: 1;
+    color: var(--cinema-gold);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 1px;
+    background: var(--cinema-gold);
+    transition: var(--transition-fast);
+}
+
+/* ============================================
+   Common 
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.container-wide {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.section-title {
+    font-size: 1rem;
+    color: var(--cinema-gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: var(--cinema-gold);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://picsum.photos/seed/cinema/1920/1080.jpg?grayscale');
+    background-size: cover;
+    background-position: center;
+    /* Ken Burns Effect initial scale */
+    transform: scale(1);
+    transition: var(--transition-slow);
+}
+
+body.loaded .hero-bg {
+    transform: scale(1.1);
+    /* Zoom in over 30s */
+}
+
+/* Vignette to darken edges */
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 30%, #0A0A0A 90%);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.text-line {
+    display: block;
+    overflow: hidden;
+}
+
+.text-line span {
+    display: inline-block;
+    transform: translateY(100%);
+    /* For GSAP */
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--cinema-gold);
+    letter-spacing: 0.4em;
+    opacity: 0;
+    /* For GSAP */
+}
+
+.scroll-prompt {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    /* For GSAP */
+}
+
+.scroll-prompt span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2rem;
+    color: var(--cinema-muted);
+}
+
+.scroll-line {
+    width: 1px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cinema-gold);
+    animation: dropScroll 2s infinite cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes dropScroll {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* ============================================
+   About Section
+   ============================================ */
+
+.about {
+    padding: 10rem 0;
+    background: var(--cinema-bg);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 8rem;
+    align-items: center;
+}
+
+.about-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+}
+
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(120%) brightness(80%);
+}
+
+.about-content {
+    opacity: 0;
+    /* JS fade in */
+    transform: translateY(30px);
+}
+
+.quote {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--cinema-gold);
+    margin-bottom: 3rem;
+    line-height: 1.4;
+}
+
+.about-text p:not(.quote) {
+    font-size: 1.1rem;
+    color: var(--cinema-muted);
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+}
+
+.awards-list {
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+}
+
+.award-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.award-year {
+    color: var(--cinema-gold);
+    font-family: 'Playfair Display', serif;
+}
+
+.award-name {
+    color: var(--cinema-text);
+    letter-spacing: 0.1em;
+}
+
+/* ============================================
+   Works Section (Filmstrip)
+   ============================================ */
+
+.works {
+    padding: 10rem 0;
+    background: #050505;
+    overflow: hidden;
+    /* Hide horizontal scrollbar */
+}
+
+.works-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+}
+
+.scroll-instruction {
+    font-size: 0.75rem;
+    letter-spacing: 0.2rem;
+    color: var(--cinema-muted);
+}
+
+/* Horizontal scroll container */
+.filmstrip-container {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2rem;
+    /* space for scrollbar if shown */
+}
+
+.filmstrip {
+    display: flex;
+    gap: 4rem;
+    padding: 0 4rem;
+    /* Initial padding */
+    width: max-content;
+}
+
+.film-card {
+    width: 60vw;
+    /* Wide format 16:9 feel */
+    min-width: 600px;
+    scroll-snap-align: center;
+    position: relative;
+    cursor: none;
+}
+
+.film-image {
+    position: relative;
+    aspect-ratio: 21/9;
+    /* True cinematic aspect ratio */
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.film-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+/* Gold tinted overlay on hover */
+.gold-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--cinema-gold);
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.film-card:hover .film-image img {
+    transform: scale(1.05);
+}
+
+.film-card:hover .gold-overlay {
+    opacity: 0.6;
+}
+
+.film-info h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.film-info p {
+    font-size: 0.8rem;
+    color: var(--cinema-muted);
+    letter-spacing: 0.2em;
+}
+
+.film-card:hover .film-info h3 {
+    color: var(--cinema-gold);
+}
+
+
+/* ============================================
+   Contact Section (Credits)
+   ============================================ */
+
+.contact {
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.credits-container {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.credits-scroll {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* GSAP will animate this from bottom to top */
+    transform: translateY(100vh);
+}
+
+.credits-title {
+    font-size: 2rem;
+    color: var(--cinema-gold);
+    letter-spacing: 0.4em;
+    margin-bottom: 6rem;
+}
+
+.credit-block {
+    margin-bottom: 4rem;
+}
+
+.role {
+    font-size: 0.8rem;
+    color: var(--cinema-muted);
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+}
+
+.name,
+.credit-link {
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+}
+
+.credit-link:hover {
+    color: var(--cinema-gold);
+}
+
+.social-credits {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 6rem 0;
+}
+
+.social-credits a {
+    color: var(--cinema-text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    transition: color 0.3s;
+}
+
+.social-credits a:hover {
+    color: var(--cinema-gold);
+}
+
+.credit-footer {
+    font-size: 0.7rem;
+    color: #444;
+    letter-spacing: 0.2em;
+    margin-top: 8rem;
+    padding-bottom: 10vh;
+    /* Extra space to scroll out */
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-image-wrapper {
+        aspect-ratio: 16/9;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+        top: 2rem;
+        right: 1.5rem;
+    }
+
+    .nav-container,
+    .container-wide {
+        padding: 0 1.5rem;
+    }
+
+    .filmstrip {
+        padding: 0 1.5rem;
+    }
+
+    .film-card {
+        width: 85vw;
+        min-width: 300px;
+    }
+
+    .quote {
+        font-size: 1.5rem;
+    }
+}
