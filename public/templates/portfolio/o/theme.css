@@ -1,0 +1,443 @@
+/* Template O - Obsidian (Luxury / Architectural) Theme */
+
+:root {
+    --primary: #FF0040;
+    /* Blood Red */
+    --accent: #4A0080;
+    /* Dark Purple */
+    --bg-dark: #0D0D0D;
+    /* Deep Obsidian */
+    --white: #F2F2F2;
+    --black: #000000;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Cormorant Garamond', serif;
+}
+
+/* ========================================
+   u-inline (Golden Master Standard)
+   ======================================== */
+.u-inline {
+    display: inline-block;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--bg-dark);
+}
+
+body {
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Stone Texture Layer (Global Background) */
+.stone-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.25;
+    /* Slightly increased for better visibility */
+    mix-blend-mode: soft-light;
+    /* Better integration with background */
+}
+
+.o-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 64px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+h1,
+h2,
+h3,
+.heading {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+/* Red Light Beam Overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60vh;
+    background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+    box-shadow: 0 0 20px var(--primary);
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: clamp(60px, 10vw, 120px);
+    color: var(--white);
+    position: relative;
+    z-index: 2;
+    mix-blend-mode: overlay;
+    /* Aesthetic stone interaction */
+}
+
+/* Clip-path reveal animation */
+.reveal-text {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1), letter-spacing 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    letter-spacing: 0.5em;
+    /* Start wider */
+}
+
+.revealed .reveal-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    letter-spacing: 0.1em;
+    /* Settle into place */
+}
+
+.hero-tag {
+    font-family: var(--font-heading);
+    letter-spacing: 0.3em;
+    color: var(--primary);
+    margin-top: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+}
+
+.revealed .hero-tag {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   About Section (Skewed Architecture)
+   ======================================== */
+.about {
+    padding: 200px 0;
+    background: #111;
+    transform: skewY(-3deg);
+    transform-origin: left top;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about.in-view {
+    transform: skewY(0deg);
+}
+
+.about-inner {
+    transform: skewY(3deg);
+    /* Revert skew for content */
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about.in-view .about-inner {
+    transform: skewY(0deg);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: center;
+}
+
+.about-content h2 {
+    font-size: 56px;
+    margin-bottom: 40px;
+    color: var(--primary);
+}
+
+.about-image {
+    position: relative;
+    line-height: 0;
+}
+
+.about-image img {
+    width: 100%;
+    filter: grayscale(1) contrast(1.2) brightness(0.8);
+    border-left: 1px solid var(--primary);
+}
+
+/* ========================================
+   Works (The Collection)
+   ======================================== */
+.works {
+    padding: 160px 0;
+    position: relative;
+}
+
+/* The Spotlight Overlay */
+.spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.9) 80%);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 1s ease;
+    /* Smoother entry */
+}
+
+.works-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    position: relative;
+    z-index: 2;
+}
+
+.work-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--black);
+    overflow: hidden;
+}
+
+.work-media {
+    position: relative;
+}
+
+.work-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    transition: filter 0.5s;
+}
+
+.work-item:hover .work-media img {
+    filter: grayscale(0) contrast(1.1);
+}
+
+.work-info {
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.work-info h3 {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.work-info .category {
+    color: var(--primary);
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* ========================================
+   Contact (Commission)
+   ======================================== */
+.contact {
+    padding: 160px 0;
+    background: var(--black);
+}
+
+.contact h2 {
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.commission-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 0;
+    font-family: inherit;
+    color: var(--white);
+    font-size: 20px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+}
+
+.input-group label {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    pointer-events: none;
+    transition: 0.3s ease all;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+.input-group input:focus~label,
+.input-group input:not(:placeholder-shown)~label {
+    top: -10px;
+    font-size: 12px;
+    color: var(--primary);
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    width: 100%;
+    padding: 24px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 4px;
+    cursor: pointer;
+    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+    transition: transform 0.3s;
+}
+
+.submit-btn:hover {
+    transform: scale(1.02);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 992px) {
+    .o-container {
+        padding: 0 32px;
+        /* Ensure lateral padding */
+    }
+
+    .hero-title {
+        font-size: clamp(80px, 18vw, 120px) !important;
+        letter-spacing: 0.05em !important;
+        mix-blend-mode: normal !important;
+        /* Ensure visibility on dark background */
+        opacity: 0.9;
+    }
+
+    .hero-tag {
+        font-size: 11px;
+        letter-spacing: 0.2em !important;
+        white-space: nowrap;
+        /* Keep it on one line for prestige */
+    }
+
+    .about {
+        padding: 80px 0;
+        transform: none !important;
+        overflow: visible;
+        /* Avoid clipping if necessary, but keep layout strictly within viewport */
+    }
+
+    .about-inner {
+        transform: none !important;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .about-content h2 {
+        font-size: 32px !important;
+        margin-bottom: 20px;
+        letter-spacing: 2px !important;
+    }
+
+    /* Fixed sculptural reveal for mobile headers (excluding hero) */
+    .heading.reveal-text {
+        letter-spacing: 12px !important;
+        /* Cap the spacing to avoid overflow */
+        font-size: min(32px, 8vw) !important;
+        white-space: normal;
+        /* Allow wrapping */
+        word-break: break-word;
+    }
+
+    .revealed .reveal-text {
+        letter-spacing: 2px !important;
+    }
+
+    .about-image {
+        order: -1;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-width: 100%;
+        border-left: none;
+        border-bottom: 2px solid var(--primary);
+    }
+
+    .works {
+        padding: 60px 0;
+    }
+
+    .works-grid {
+        gap: 48px;
+    }
+
+    .work-item {
+        grid-template-columns: 1fr;
+    }
+
+    .work-info {
+        padding: 40px 24px;
+    }
+
+    .contact h2 {
+        font-size: 36px !important;
+        letter-spacing: 4px !important;
+    }
+}
