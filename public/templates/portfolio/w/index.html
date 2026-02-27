@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watercolor Studio — 水彩アーティストポートフォリオ</title>
+    <meta name="description" content="水彩画家・イラストレーターのポートフォリオ。紙の上に水彩絵の具が広がる瞬間をテーマにした没入型UI。" />
+    <!-- Fonts: Caveat + Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body class="w-body">
+
+    <!-- ============================================================
+         Navigation
+    ============================================================ -->
+    <header class="w-header" id="header">
+        <div class="w-header-inner">
+            <a href="#hero" class="w-logo">🎨 Watercolor <span class="w-logo-accent">Studio</span></a>
+            <nav class="w-nav" id="navMenu">
+                <a href="#statement">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#palette">Skills</a>
+                <a href="#studio">Contact</a>
+            </nav>
+            <a href="#studio" class="w-hire-btn">Hire Me</a>
+            <button class="w-nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <div class="w-mobile-menu" id="mobileMenu" hidden>
+        <button class="w-mobile-close" id="mobileClose" aria-label="閉じる">✕</button>
+        <nav class="w-mobile-nav">
+            <a href="#statement" class="w-mobile-link">About</a>
+            <a href="#gallery" class="w-mobile-link">Gallery</a>
+            <a href="#palette" class="w-mobile-link">Skills</a>
+            <a href="#studio" class="w-mobile-link">Contact</a>
+        </nav>
+    </div>
+
+    <!-- ============================================================
+         HERO — BLANK CANVAS
+         水彩紙テクスチャ背景
+         WOW FACTOR 1: 下端をSVGブラシshapeでmask-imageエッジ処理
+         背景: ゆっくり広がる色（radial-gradient アニメーション）
+    ============================================================ -->
+    <section class="w-hero" id="hero">
+        <!-- 水彩色のblob（ゆっくり拡大アニメーション） -->
+        <div class="w-blob w-blob-pink" aria-hidden="true"></div>
+        <div class="w-blob w-blob-blue" aria-hidden="true"></div>
+        <div class="w-blob w-blob-yellow" aria-hidden="true"></div>
+
+        <div class="w-hero-grid">
+            <!-- 左: テキスト -->
+            <div class="w-hero-text" data-reveal>
+                <span class="w-hero-badge">AVAILABLE FOR COMMISSIONS</span>
+                <h1 class="w-hero-title">
+                    Capturing Life<br>
+                    <span class="w-hero-accent">in Color</span>
+                </h1>
+                <p class="w-hero-sub">
+                    Illustrator &amp; Watercolor Artist bringing stories to life
+                    with fluid strokes, vibrant pigments, and a touch of whimsy.
+                </p>
+                <div class="w-hero-cta">
+                    <a href="#gallery" class="w-btn-primary">View Portfolio</a>
+                    <a href="#studio" class="w-btn-ghost">Contact Me</a>
+                </div>
+            </div>
+
+            <!-- 右: アートワーク（傾いた額縁） -->
+            <div class="w-hero-art" data-reveal>
+                <div class="w-art-frame">
+                    <div class="w-art-img-wrap">
+                        <img src="https://picsum.photos/seed/watercolor1/400/500" alt="水彩絵の具のアートワーク"
+                            class="w-art-img" />
+                    </div>
+                    <!-- 装飾ブロブ -->
+                    <div class="w-art-blob-y" aria-hidden="true"></div>
+                    <div class="w-art-blob-b" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WOW FACTOR 1: SVGブラシshapeマスクでジャギーエッジ -->
+        <div class="w-hero-brush-edge" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT — ARTIST STATEMENT
+         SVG太ブラシストロークが背景 + 水彩Clipで写真クリップ
+    ============================================================ -->
+    <section class="w-section w-section-statement" id="statement">
+        <!-- SVGブラシストローク背景 -->
+        <div class="w-brush-bg" aria-hidden="true">
+            <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0,60 C200,110 400,20 600,80 C800,140 1000,30 1200,70 C1350,100 1440,60 1440,60 L1440,200 L0,200 Z"
+                    fill="rgba(135,206,235,0.2)" />
+                <path d="M0,90 C300,130 600,50 900,100 C1100,130 1300,70 1440,90 L1440,200 L0,200 Z"
+                    fill="rgba(255,183,197,0.15)" />
+            </svg>
+        </div>
+
+        <div class="w-container">
+            <div class="w-statement-grid">
+                <!-- 左: 滲みシェイプの写真 -->
+                <div class="w-artist-img-wrap" data-reveal>
+                    <!-- SVG水彩マスクでクリップ -->
+                    <div class="w-artist-img-blob">
+                        <img src="https://picsum.photos/seed/artist/320/320" alt="アーティストポートレート" class="w-artist-img" />
+                    </div>
+                    <!-- 装飾SVGストローク -->
+                    <svg class="w-artist-deco" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path
+                            d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.2,-19.2,95.8,-5.3C93.5,8.6,82,21.5,70.5,32.4C59,43.3,47.5,52.2,35.4,60.1C23.3,68,10.6,74.9,-1.3,77.1C-13.2,79.4,-25.1,77,-36.5,69.9C-47.9,62.8,-58.8,51,-67.2,38.1C-75.6,25.2,-81.5,11.2,-80.6,-2.4C-79.6,-16,-71.8,-29.2,-61.6,-40.4C-51.4,-51.6,-38.8,-60.8,-25.8,-68.6C-12.8,-76.4,-0.6,-82.8,12.9,-84.9C26.4,-87,41.9,-84.9,44.7,-76.4Z"
+                            fill="rgba(255,183,197,0.5)" transform="translate(100 100)" />
+                    </svg>
+                </div>
+                <!-- 右: テキスト -->
+                <div class="w-statement-text" data-reveal>
+                    <div class="w-statement-title-wrap">
+                        <h2 class="w-section-title">About the Artist</h2>
+                        <div class="w-title-underline" aria-hidden="true"></div>
+                    </div>
+                    <p class="w-statement-lead">Hi, I'm Elena. I paint the world as it feels, not just as it looks.</p>
+                    <p class="w-statement-body">
+                        My journey with watercolor began in a small sketchbook during a rainy summer. Since then,
+                        I've been obsessed with the unpredictable nature of water and pigment. I specialize in
+                        botanical illustrations, dreamlike landscapes, and capturing the quiet emotion in everyday
+                        scenes.
+                    </p>
+                    <div class="w-stats">
+                        <div class="w-stat">
+                            <span class="w-stat-num" style="color: #f4254b;">10+</span>
+                            <span class="w-stat-label">Years Experience</span>
+                        </div>
+                        <div class="w-stat">
+                            <span class="w-stat-num" style="color: #87CEEB;">150+</span>
+                            <span class="w-stat-label">Projects</span>
+                        </div>
+                        <div class="w-stat">
+                            <span class="w-stat-num" style="color: #f9a8d4;">24</span>
+                            <span class="w-stat-label">Exhibitions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         WORKS — GALLERY WALL
+         masonryレイアウト + 白い額縁 + 手書きキャプション
+    ============================================================ -->
+    <section class="w-section w-section-gallery" id="gallery">
+        <div class="w-container">
+            <div class="w-section-header" data-reveal>
+                <h2 class="w-section-title">Gallery Wall</h2>
+                <p class="w-section-sub">A collection of my favorite pieces</p>
+            </div>
+            <!-- masonryグリッド -->
+            <div class="w-gallery-grid">
+                <div class="w-gallery-card w-card-rot-1" data-reveal>
+                    <div class="w-gallery-img-wrap w-aspect-34">
+                        <img src="https://picsum.photos/seed/mountain/400/530" alt="Mountain Whisper"
+                            class="w-gallery-img" />
+                    </div>
+                    <div class="w-gallery-caption">
+                        <h3 class="w-gallery-title">Mountain Whisper</h3>
+                        <p class="w-gallery-meta">Watercolor on Cotton Paper</p>
+                    </div>
+                </div>
+
+                <div class="w-gallery-card w-card-rot-2 w-card-offset" data-reveal>
+                    <div class="w-gallery-img-wrap w-aspect-sq">
+                        <img src="https://picsum.photos/seed/flowers/400/400" alt="Summer Bloom"
+                            class="w-gallery-img" />
+                    </div>
+                    <div class="w-gallery-caption">
+                        <h3 class="w-gallery-title">Summer Bloom</h3>
+                        <p class="w-gallery-meta">Gouache &amp; Watercolor</p>
+                    </div>
+                </div>
+
+                <div class="w-gallery-card w-card-rot-3" data-reveal>
+                    <div class="w-gallery-img-wrap w-aspect-45">
+                        <img src="https://picsum.photos/seed/london/400/500" alt="Rainy London" class="w-gallery-img" />
+                    </div>
+                    <div class="w-gallery-caption">
+                        <h3 class="w-gallery-title">Rainy London</h3>
+                        <p class="w-gallery-meta">Ink &amp; Wash</p>
+                    </div>
+                </div>
+
+                <div class="w-gallery-card w-card-rot-2n" data-reveal>
+                    <div class="w-gallery-img-wrap w-aspect-32">
+                        <img src="https://picsum.photos/seed/morning/400/267" alt="Morning Light"
+                            class="w-gallery-img" />
+                    </div>
+                    <div class="w-gallery-caption">
+                        <h3 class="w-gallery-title">Morning Light</h3>
+                        <p class="w-gallery-meta">Pure Watercolor</p>
+                    </div>
+                </div>
+
+                <div class="w-gallery-card w-card-rot-1 w-card-offset2" data-reveal>
+                    <div class="w-gallery-img-wrap w-aspect-sq">
+                        <img src="https://picsum.photos/seed/fern/400/400" alt="Fern Study" class="w-gallery-img" />
+                    </div>
+                    <div class="w-gallery-caption">
+                        <h3 class="w-gallery-title">Fern Study</h3>
+                        <p class="w-gallery-meta">Scientific Illustration</p>
+                    </div>
+                </div>
+
+                <div class="w-gallery-card w-card-rot-3n" data-reveal>
+                    <div class="w-gallery-img-wrap w-aspect-23">
+                        <img src="https://picsum.photos/seed/ocean/400/600" alt="Ocean Dreams" class="w-gallery-img" />
+                    </div>
+                    <div class="w-gallery-caption">
+                        <h3 class="w-gallery-title">Ocean Dreams</h3>
+                        <p class="w-gallery-meta">Wet-on-wet Technique</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-gallery-more" data-reveal>
+                <a href="#" class="w-see-all">See All Projects →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS — COLOR PALETTE
+         WOW FACTOR 2: 円形絵の具パレット（スウォッチ）でスキルを表現
+         円のサイズがレベルを示す
+    ============================================================ -->
+    <section class="w-section" id="palette">
+        <div class="w-container">
+            <div class="w-section-header w-center" data-reveal>
+                <h2 class="w-section-title">My Palette of Skills</h2>
+                <p class="w-section-sub">Tools and techniques I use to create magic</p>
+            </div>
+
+            <!-- パレット形状のコンテナ -->
+            <div class="w-palette-container" data-reveal>
+                <!-- 親指穴 -->
+                <div class="w-palette-thumb" aria-hidden="true"></div>
+                <!-- スキルスウォッチ（円サイズ = レベル） -->
+                <div class="w-swatches-grid">
+                    <div class="w-swatch-item">
+                        <div class="w-swatch" style="--sz: 96px; background: #f4254b;" data-skill="95">
+                            <span>💧</span>
+                        </div>
+                        <h3 class="w-swatch-label">Wet-on-Wet</h3>
+                        <p class="w-swatch-desc">Seamless gradients</p>
+                    </div>
+                    <div class="w-swatch-item">
+                        <div class="w-swatch" style="--sz: 80px; background: #87CEEB;" data-skill="80">
+                            <span>✏️</span>
+                        </div>
+                        <h3 class="w-swatch-label">Ink Sketching</h3>
+                        <p class="w-swatch-desc">Definition &amp; detail</p>
+                    </div>
+                    <div class="w-swatch-item">
+                        <div class="w-swatch" style="--sz: 76px; background: #F0E68C;" data-skill="76">
+                            <span>🖥️</span>
+                        </div>
+                        <h3 class="w-swatch-label">Digital Art</h3>
+                        <p class="w-swatch-desc">Procreate &amp; Polish</p>
+                    </div>
+                    <div class="w-swatch-item">
+                        <div class="w-swatch" style="--sz: 88px; background: #c4b5fd;" data-skill="88">
+                            <span>🎨</span>
+                        </div>
+                        <h3 class="w-swatch-label">Color Theory</h3>
+                        <p class="w-swatch-desc">Mood &amp; harmony</p>
+                    </div>
+                    <div class="w-swatch-item">
+                        <div class="w-swatch" style="--sz: 84px; background: #fdba74;" data-skill="84">
+                            <span>🌿</span>
+                        </div>
+                        <h3 class="w-swatch-label">Botanical</h3>
+                        <p class="w-swatch-desc">Precision studies</p>
+                    </div>
+                    <div class="w-swatch-item">
+                        <div class="w-swatch" style="--sz: 72px; background: #6ee7b7;" data-skill="72">
+                            <span>📖</span>
+                        </div>
+                        <h3 class="w-swatch-label">Storytelling</h3>
+                        <p class="w-swatch-desc">Narrative illustration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — OPEN STUDIO
+         スケッチブックの1ページ風 + 余白の鉛筆SVG落書き
+    ============================================================ -->
+    <section class="w-section" id="studio">
+        <div class="w-container">
+            <div class="w-studio-card" data-reveal>
+                <!-- テープ装飾 -->
+                <div class="w-tape" aria-hidden="true"></div>
+
+                <!-- 鉛筆落書きSVG（右余白） -->
+                <svg class="w-doodle" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M20,20 C60,10 80,40 40,60 C10,75 70,90 50,120 C30,150 80,160 60,190" stroke="#94a3b8"
+                        stroke-width="1.5" fill="none" stroke-dasharray="4,3" />
+                    <circle cx="30" cy="30" r="4" stroke="#94a3b8" stroke-width="1" fill="none" />
+                    <circle cx="75" cy="100" r="3" stroke="#94a3b8" stroke-width="1" fill="none" />
+                    <path d="M10,80 Q30,70 20,100" stroke="#94a3b8" stroke-width="1" fill="none" />
+                </svg>
+
+                <div class="w-studio-grid">
+                    <!-- 左: コンタクト情報 -->
+                    <div class="w-studio-info">
+                        <h2 class="w-section-title">Open Studio</h2>
+                        <p class="w-studio-sub">
+                            Got an idea for a custom illustration, a book project, or just want to say hi?
+                            I'm always open to new creative adventures. Drop a note below!
+                        </p>
+                        <div class="w-contact-items">
+                            <div class="w-contact-item">
+                                <span class="w-contact-icon">✉</span>
+                                <span>hello@watercolorstudio.com</span>
+                            </div>
+                            <div class="w-contact-item">
+                                <span class="w-contact-icon">📍</span>
+                                <span>Portland, Oregon</span>
+                            </div>
+                        </div>
+                        <div class="w-socials">
+                            <a href="#">Ig</a>
+                            <a href="#">Be</a>
+                            <a href="#">Pt</a>
+                        </div>
+                    </div>
+
+                    <!-- 右: フォーム -->
+                    <div class="w-studio-form">
+                        <form class="w-form" id="contactForm">
+                            <div class="w-form-group">
+                                <label class="w-form-label">Name</label>
+                                <input type="text" class="w-form-input" placeholder="Your name..." />
+                            </div>
+                            <div class="w-form-group">
+                                <label class="w-form-label">Email</label>
+                                <input type="email" class="w-form-input" placeholder="your@email.com" />
+                            </div>
+                            <div class="w-form-group">
+                                <label class="w-form-label">Message</label>
+                                <textarea class="w-form-input w-form-textarea"
+                                    placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="w-send-btn" id="submitBtn">
+                                Send Message ✉
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-footer">
+        <div class="w-footer-inner">
+            <div class="w-footer-logo">
+                <span>🎨</span>
+                <span>Watercolor Studio</span>
+            </div>
+            <p class="w-footer-copy">© 2024 Watercolor Studio. Designed with ♥ and watercolors.</p>
+        </div>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+
+</html>

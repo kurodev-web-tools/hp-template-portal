@@ -1,0 +1,1117 @@
+/* ============================================
+   Watercolor Portfolio Theme — W
+   Colors: #FFB7C5（ピンク）/ #87CEEB（水色）/ #F0E68C（黄）/ #C8E6C9（薄緑）
+   Font: Caveat（見出し）/ Nunito（本文）
+   ============================================ */
+
+:root {
+    --w-pink: #FFB7C5;
+    --w-blue: #87CEEB;
+    --w-yellow: #F0E68C;
+    --w-green: #C8E6C9;
+    --w-accent: #f4254b;
+    --w-paper: #fdfbf7;
+    --w-paper-d: #f7f3ec;
+    --w-text: #1e293b;
+    --w-muted: #64748b;
+    --w-border: #e2e8f0;
+    --w-font-h: 'Caveat', cursive;
+    --w-font-b: 'Nunito', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+.w-body {
+    font-family: var(--w-font-b);
+    background: var(--w-paper);
+    color: var(--w-text);
+    overflow-x: hidden;
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+::selection {
+    background: var(--w-pink);
+    color: var(--w-text);
+}
+
+/* Reveal */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.w-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253, 251, 247, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 183, 197, 0.25);
+}
+
+.w-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.w-logo {
+    font-family: var(--w-font-h);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--w-text);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.w-logo-accent {
+    color: var(--w-accent);
+}
+
+.w-nav {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.w-nav a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--w-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.w-nav a:hover {
+    color: var(--w-accent);
+}
+
+.w-hire-btn {
+    flex-shrink: 0;
+    padding: 0.55rem 1.4rem;
+    background: var(--w-accent);
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(244, 37, 75, 0.3);
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.w-hire-btn:hover {
+    background: #d91e40;
+}
+
+.w-nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--w-border);
+    color: var(--w-text);
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}
+
+.w-mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: var(--w-paper);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.w-mobile-menu[hidden] {
+    display: none;
+}
+
+.w-mobile-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: 1px solid var(--w-border);
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}
+
+.w-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.w-mobile-link {
+    font-family: var(--w-font-h);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--w-text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.w-mobile-link:hover {
+    color: var(--w-accent);
+}
+
+/* ============================================
+   Container / Section
+   ============================================ */
+.w-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.w-section {
+    padding: 5rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.w-section-gallery {
+    background: var(--w-paper-d);
+    border-top: 1px solid var(--w-border);
+    border-bottom: 1px solid var(--w-border);
+}
+
+.w-section-statement {
+    background: var(--w-paper);
+}
+
+.w-section-header {
+    margin-bottom: 3rem;
+}
+
+.w-center {
+    text-align: center;
+}
+
+.w-section-title {
+    font-family: var(--w-font-h);
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--w-text);
+    margin-bottom: 0.5rem;
+}
+
+.w-section-sub {
+    color: var(--w-muted);
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   HERO — BLANK CANVAS
+   ============================================ */
+.w-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* 水彩紙テクスチャ（CSS noise） */
+    background-color: var(--w-paper);
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23cbd5e1' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* 水彩blobのゆっくり広がるアニメーション */
+.w-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    mix-blend-mode: multiply;
+    animation: blobExpand 10s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.w-blob-pink {
+    background: var(--w-pink);
+    width: 50%;
+    height: 50%;
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+    opacity: 0.45;
+}
+
+.w-blob-blue {
+    background: var(--w-blue);
+    width: 60%;
+    height: 60%;
+    bottom: 5%;
+    right: -5%;
+    animation-delay: -3s;
+    opacity: 0.4;
+}
+
+.w-blob-yellow {
+    background: var(--w-yellow);
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 40%;
+    animation-delay: -5s;
+    opacity: 0.35;
+}
+
+@keyframes blobExpand {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.25) rotate(10deg);
+    }
+}
+
+.w-hero-grid {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.w-hero-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: rgba(244, 37, 75, 0.08);
+    color: var(--w-accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    margin-bottom: 0.5rem;
+}
+
+.w-hero-title {
+    font-family: var(--w-font-h);
+    font-size: clamp(4rem, 9vw, 7rem);
+    line-height: 0.95;
+    color: var(--w-text);
+    font-weight: 700;
+}
+
+.w-hero-accent {
+    background: linear-gradient(135deg, var(--w-accent) 0%, #f9a8d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.w-hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--w-muted);
+    max-width: 480px;
+    margin: 1rem 0 1.5rem;
+}
+
+.w-hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.w-btn-primary {
+    padding: 0.85rem 2.25rem;
+    background: var(--w-accent);
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(244, 37, 75, 0.25);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.w-btn-primary:hover {
+    background: #d91e40;
+    transform: translateY(-2px);
+}
+
+.w-btn-ghost {
+    padding: 0.85rem 2.25rem;
+    background: transparent;
+    color: var(--w-text);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 100px;
+    border: 2px solid var(--w-border);
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.w-btn-ghost:hover {
+    border-color: var(--w-accent);
+    color: var(--w-accent);
+}
+
+/* アートフレーム */
+.w-hero-art {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-art-frame {
+    position: relative;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    transform: rotate(2deg);
+    transition: transform 0.5s ease;
+}
+
+.w-art-frame:hover {
+    transform: rotate(0deg);
+}
+
+.w-art-img-wrap {
+    width: min(360px, 80vw);
+    height: min(420px, 95vw);
+    overflow: hidden;
+    background: #f1f5f9;
+}
+
+.w-art-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.w-art-blob-y,
+.w-art-blob-b {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    filter: blur(30px);
+}
+
+.w-art-blob-y {
+    background: var(--w-yellow);
+    top: -20px;
+    left: -20px;
+    opacity: 0.7;
+}
+
+.w-art-blob-b {
+    background: var(--w-blue);
+    bottom: -20px;
+    right: -20px;
+    opacity: 0.7;
+}
+
+/* WOW FACTOR 1: SVGブラシshapeマスクで下端エッジをジャギーに */
+.w-hero-brush-edge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: var(--w-paper);
+    /* SVGブラシシェイプでジャギー上端 */
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C120,10 200,60 360,35 C520,10 640,65 800,40 C960,15 1080,60 1200,35 C1320,10 1400,50 1440,40 L1440,80 L0,80 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C120,10 200,60 360,35 C520,10 640,65 800,40 C960,15 1080,60 1200,35 C1320,10 1400,50 1440,40 L1440,80 L0,80 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* ============================================
+   ARTIST STATEMENT（About）
+   ============================================ */
+.w-section-statement {
+    position: relative;
+    overflow: hidden;
+}
+
+.w-brush-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.w-brush-bg svg {
+    width: 100%;
+    height: 100%;
+}
+
+.w-statement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.w-artist-img-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* 水彩滲みシェイプ clip */
+.w-artist-img-blob {
+    width: 280px;
+    height: 280px;
+    clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 85% 65%, 100% 80%, 75% 100%, 50% 90%, 25% 100%, 0% 80%, 15% 60%, 0% 35%, 20% 10%);
+    overflow: hidden;
+    background: #dbeafe;
+    flex-shrink: 0;
+}
+
+.w-artist-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.w-artist-deco {
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.w-statement-title-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.w-title-underline {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60%;
+    height: 10px;
+    background: rgba(240, 230, 140, 0.7);
+    transform: skewX(-12deg);
+    z-index: -1;
+}
+
+.w-statement-lead {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--w-text);
+    margin-bottom: 1rem;
+}
+
+.w-statement-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--w-muted);
+    margin-bottom: 2rem;
+}
+
+.w-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--w-border);
+    padding-top: 1.5rem;
+}
+
+.w-stat {
+    text-align: center;
+}
+
+.w-stat-num {
+    display: block;
+    font-family: var(--w-font-h);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.w-stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--w-muted);
+    margin-top: 0.3rem;
+}
+
+/* ============================================
+   GALLERY WALL（Works）
+   Masonry 3列 + 白い額縁
+   ============================================ */
+.w-gallery-grid {
+    columns: 3 280px;
+    column-gap: 1.5rem;
+}
+
+.w-gallery-card {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.w-card-rot-1 {
+    transform: rotate(1deg);
+}
+
+.w-card-rot-2 {
+    transform: rotate(-1deg);
+}
+
+.w-card-rot-3 {
+    transform: rotate(2deg);
+}
+
+.w-card-rot-2n {
+    transform: rotate(-1.5deg);
+}
+
+.w-card-rot-3n {
+    transform: rotate(-2deg);
+}
+
+.w-card-offset {
+    margin-top: 2rem;
+}
+
+.w-card-offset2 {
+    margin-top: 1rem;
+}
+
+.w-gallery-card:hover {
+    transform: rotate(0deg) translateY(-4px);
+}
+
+.w-gallery-img-wrap {
+    overflow: hidden;
+    background: #f1f5f9;
+}
+
+.w-aspect-34 {
+    aspect-ratio: 3/4;
+}
+
+.w-aspect-45 {
+    aspect-ratio: 4/5;
+}
+
+.w-aspect-sq {
+    aspect-ratio: 1/1;
+}
+
+.w-aspect-32 {
+    aspect-ratio: 3/2;
+}
+
+.w-aspect-23 {
+    aspect-ratio: 2/3;
+}
+
+.w-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.w-gallery-card:hover .w-gallery-img {
+    transform: scale(1.05);
+}
+
+.w-gallery-caption {
+    padding: 0.6rem 0.4rem 0.2rem;
+    text-align: center;
+}
+
+.w-gallery-title {
+    font-family: var(--w-font-h);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--w-text);
+}
+
+.w-gallery-meta {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--w-muted);
+    margin-top: 0.2rem;
+}
+
+.w-gallery-more {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.w-see-all {
+    font-weight: 700;
+    color: var(--w-accent);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.w-see-all:hover {
+    color: #d91e40;
+}
+
+/* ============================================
+   WOW FACTOR 2: COLOR PALETTE Skills
+   円形スウォッチ（サイズ = レベル）
+   ============================================ */
+.w-palette-container {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    background: #f5edd8;
+    border-radius: 9999px;
+    padding: 3rem 4rem;
+    box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e8dcc0;
+}
+
+/* 親指穴 */
+.w-palette-thumb {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 64px;
+    border-radius: 100px;
+    background: var(--w-paper);
+    border: 1px solid #e8dcc0;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.w-swatches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 2.5rem;
+    margin-left: 2.5rem;
+}
+
+.w-swatch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.w-swatch {
+    width: var(--sz, 80px);
+    height: var(--sz, 80px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    animation: blobMorph 8s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.w-swatch:hover {
+    transform: scale(1.12);
+}
+
+@keyframes blobMorph {
+
+    0%,
+    100% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+
+    34% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+    }
+
+    67% {
+        border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+    }
+}
+
+/* 各スウォッチのアニメーション遅延 */
+.w-swatch-item:nth-child(2) .w-swatch {
+    animation-delay: -2s;
+}
+
+.w-swatch-item:nth-child(3) .w-swatch {
+    animation-delay: -4s;
+}
+
+.w-swatch-item:nth-child(4) .w-swatch {
+    animation-delay: -1s;
+}
+
+.w-swatch-item:nth-child(5) .w-swatch {
+    animation-delay: -3s;
+}
+
+.w-swatch-item:nth-child(6) .w-swatch {
+    animation-delay: -5s;
+}
+
+.w-swatch-label {
+    font-family: var(--w-font-h);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--w-text);
+    text-align: center;
+}
+
+.w-swatch-desc {
+    font-size: 0.75rem;
+    color: var(--w-muted);
+    text-align: center;
+}
+
+/* ============================================
+   CONTACT — OPEN STUDIO（スケッチブック1ページ）
+   ============================================ */
+.w-studio-card {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 3.5rem;
+    border-radius: 2px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+    /* 横罫線 */
+    background-image: repeating-linear-gradient(white 0px, white 23px, #f0f0f0 24px);
+    overflow: hidden;
+}
+
+.w-tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(1deg);
+    width: 100px;
+    height: 32px;
+    background: rgba(253, 224, 71, 0.6);
+    border: 1px solid rgba(253, 224, 71, 0.4);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.w-doodle {
+    position: absolute;
+    right: 1rem;
+    top: 3rem;
+    width: 80px;
+    height: 140px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.w-studio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 10;
+    padding-top: 1rem;
+}
+
+.w-studio-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--w-muted);
+    margin: 1rem 0 1.5rem;
+}
+
+.w-contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.w-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--w-muted);
+}
+
+.w-contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(244, 37, 75, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.w-socials {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.w-socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--w-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--w-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.w-socials a:hover {
+    color: var(--w-accent);
+    border-color: var(--w-accent);
+}
+
+.w-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.w-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.w-form-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--w-muted);
+}
+
+.w-form-input {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--w-border);
+    padding: 0.4rem 0;
+    font-family: var(--w-font-h);
+    font-size: 1.1rem;
+    color: var(--w-text);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.w-form-input:focus {
+    border-bottom-color: var(--w-accent);
+}
+
+.w-form-input::placeholder {
+    color: #94a3b8;
+}
+
+.w-form-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.w-send-btn {
+    padding: 0.85rem 2rem;
+    background: var(--w-text);
+    color: white;
+    font-family: var(--w-font-b);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.w-send-btn:hover {
+    background: var(--w-accent);
+}
+
+/* Footer */
+.w-footer {
+    background: var(--w-paper-d);
+    border-top: 1px solid var(--w-border);
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.w-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.w-footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--w-font-h);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.w-footer-copy {
+    font-size: 0.8rem;
+    color: var(--w-muted);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .w-hero-grid {
+        grid-template-columns: 1fr;
+        padding: 5rem 2rem 7rem;
+    }
+
+    .w-hero-text {
+        text-align: center;
+        align-items: center;
+    }
+
+    .w-hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .w-hero-cta {
+        justify-content: center;
+    }
+
+    .w-statement-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .w-artist-img-wrap {
+        order: -1;
+    }
+
+    .w-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .w-palette-container {
+        padding: 2.5rem 2rem;
+        border-radius: 3rem;
+    }
+
+    .w-palette-thumb {
+        display: none;
+    }
+
+    .w-swatches-grid {
+        margin-left: 0;
+    }
+
+    .w-studio-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .w-nav,
+    .w-hire-btn {
+        display: none;
+    }
+
+    .w-nav-toggle {
+        display: block;
+    }
+
+    .w-header-inner {
+        padding: 1rem;
+    }
+
+    .w-container {
+        padding: 0 1rem;
+    }
+
+    .w-gallery-grid {
+        columns: 2;
+        column-gap: 0.75rem;
+    }
+
+    .w-card-offset,
+    .w-card-offset2 {
+        margin-top: 0;
+    }
+
+    .w-swatches-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .w-studio-card {
+        padding: 2rem 1.25rem;
+    }
+}
