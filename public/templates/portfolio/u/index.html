@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEEP ABYSS — 海洋科学者ポートフォリオ</title>
+    <meta name="description" content="海洋科学者・ダイバーのポートフォリオ。深海の光の揺らぎをモチーフにした没入型UI。" />
+    <!-- Fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body class="u-body">
+
+    <!-- ============================================================
+         WOW FACTOR 1: SVG feTurbulence + feDisplacementMap 全画面水中揺らぎ
+         このSVGは非表示で、CSSの filter: url(#waterWarp) で各要素に適用
+    ============================================================ -->
+    <svg class="u-svg-filter" aria-hidden="true">
+        <defs>
+            <filter id="waterWarp" x="0%" y="0%" width="100%" height="100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="2" result="noise">
+                    <!-- アニメーション: baseFrequencyを緩やかに変化させて揺らぎを表現 -->
+                    <animate attributeName="baseFrequency" values="0.008 0.012;0.012 0.008;0.008 0.012" dur="8s"
+                        repeatCount="indefinite" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- 泡パーティクルコンテナ（JSで生成） -->
+    <div class="u-bubbles" id="bubblesContainer" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         Navigation
+    ============================================================ -->
+    <header class="u-header" id="header">
+        <div class="u-header-inner">
+            <a href="#hero" class="u-logo">
+                🤿 DEEP<span class="u-logo-accent">ABYSS</span>
+            </a>
+            <nav class="u-nav" id="navMenu">
+                <a href="#log">Expedition Log</a>
+                <a href="#specimens">Specimens</a>
+                <a href="#oxygen">Oxygen Levels</a>
+                <a href="#surface">Surface</a>
+            </nav>
+            <a href="#surface" class="u-dive-btn">Dive In ↓</a>
+            <button class="u-nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <div class="u-mobile-menu" id="mobileMenu" hidden>
+        <button class="u-mobile-close" id="mobileClose" aria-label="閉じる">✕</button>
+        <nav class="u-mobile-nav">
+            <a href="#log" class="u-mobile-link">Expedition Log</a>
+            <a href="#specimens" class="u-mobile-link">Specimens</a>
+            <a href="#oxygen" class="u-mobile-link">Oxygen Levels</a>
+            <a href="#surface" class="u-mobile-link">Surface</a>
+        </nav>
+    </div>
+
+    <!-- ============================================================
+         HERO — THE DEEP
+         SVGフィルター適用 + 泡パーティクル + 揺れるタイトル
+    ============================================================ -->
+    <section class="u-hero" id="hero">
+        <!-- 水面光エフェクト（上部） -->
+        <div class="u-caustics" aria-hidden="true"></div>
+
+        <div class="u-hero-content" data-reveal>
+            <div class="u-status-badge">
+                <span class="u-pulse"></span>
+                Current Status: Submerged
+            </div>
+            <h1 class="u-hero-title u-water-text">
+                Exploring the<br>
+                <span class="u-hero-accent">Deep Unknown</span>
+            </h1>
+            <p class="u-hero-sub">
+                Interactive portfolio of a Marine Scientist &amp; Diver
+                documenting ecosystems beneath the surface.
+            </p>
+            <div class="u-hero-cta">
+                <a href="#log" class="u-btn-primary">
+                    📋 View Logbook
+                </a>
+                <a href="#specimens" class="u-btn-ghost">
+                    🎬 Watch Reel
+                </a>
+            </div>
+        </div>
+
+        <div class="u-descend-hint">
+            <span>Descend</span>
+            <span class="u-arrow-bounce">↓</span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT — EXPEDITION LOG
+         左: 計器パネル（Depth/Temp/Visibility）
+         右: ポートホール写真（WOW FACTOR 2）
+    ============================================================ -->
+    <section class="u-section u-section-log" id="log">
+        <div class="u-container">
+            <div class="u-log-grid">
+                <!-- 左: ログ + ゲージ -->
+                <div class="u-log-content" data-reveal>
+                    <div class="u-log-title-row">
+                        <span class="u-icon">📖</span>
+                        <div>
+                            <h2 class="u-section-title">Captain's Log</h2>
+                            <p class="u-log-entry">Entry #4024 • Mariana Trench Sector</p>
+                        </div>
+                    </div>
+                    <p class="u-log-body">
+                        With over a decade of immersion in marine biology, I specialize in deep-sea ecosystems
+                        and bioluminescent organisms. My work bridges the gap between scientific data and visual
+                        storytelling.
+                    </p>
+                    <!-- 計器パネル -->
+                    <div class="u-gauge-grid">
+                        <div class="u-gauge-card">
+                            <span class="u-gauge-label">Depth</span>
+                            <div class="u-gauge-val">250<span class="u-gauge-unit">m</span></div>
+                        </div>
+                        <div class="u-gauge-card">
+                            <span class="u-gauge-label">Temp</span>
+                            <div class="u-gauge-val">4<span class="u-gauge-unit">°C</span></div>
+                        </div>
+                        <div class="u-gauge-card">
+                            <span class="u-gauge-label">Pressure</span>
+                            <div class="u-gauge-val">380<span class="u-gauge-unit">bar</span></div>
+                        </div>
+                        <div class="u-gauge-card">
+                            <span class="u-gauge-label">Vis</span>
+                            <div class="u-gauge-val u-val-warn">Low</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右: WOW FACTOR 2 ポートホール -->
+                <div class="u-porthole-wrap" data-reveal>
+                    <div class="u-porthole-glow"></div>
+                    <!-- ポートホール外リング -->
+                    <div class="u-porthole-ring">
+                        <!-- 内側の細いリング -->
+                        <div class="u-porthole-inner-ring"></div>
+                        <!-- プロフィール写真 -->
+                        <div class="u-porthole-img"
+                            style="background-image: url('https://picsum.photos/seed/diver/600/600');" role="img"
+                            aria-label="ダイバーのプロフィール写真"></div>
+                        <!-- 光の反射グラデーション -->
+                        <div class="u-porthole-glare" aria-hidden="true"></div>
+                    </div>
+                    <!-- ネジ装飾（4隅） -->
+                    <div class="u-screw u-screw-tl" aria-hidden="true"></div>
+                    <div class="u-screw u-screw-tr" aria-hidden="true"></div>
+                    <div class="u-screw u-screw-bl" aria-hidden="true"></div>
+                    <div class="u-screw u-screw-br" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         WORKS — SPECIMENS
+         標本コレクション風グリッド。Hover: animation: sway
+    ============================================================ -->
+    <section class="u-section" id="specimens">
+        <div class="u-container">
+            <div class="u-section-header" data-reveal>
+                <h2 class="u-section-title">Collected Specimens</h2>
+                <p class="u-section-sub">Selected works from deep sea expeditions and marine research projects.</p>
+            </div>
+
+            <div class="u-specimen-grid">
+                <a href="#" class="u-specimen-card" data-reveal>
+                    <div class="u-specimen-img-wrap">
+                        <img src="https://picsum.photos/seed/jellyfish/600/400" alt="Bioluminescent jellyfish"
+                            class="u-specimen-img" />
+                    </div>
+                    <div class="u-specimen-overlay">
+                        <span class="u-specimen-taxon">Case Study</span>
+                        <h3 class="u-specimen-name">Bioluminescence</h3>
+                        <p class="u-specimen-desc">Study of light emission in deep-sea cnidarians at 1,000m depth.</p>
+                    </div>
+                    <!-- 標本ラベル -->
+                    <div class="u-specimen-label">
+                        <span class="u-label-code">SPE-001</span>
+                        <span class="u-label-sci">Aequorea victoria</span>
+                    </div>
+                </a>
+
+                <a href="#" class="u-specimen-card" data-reveal>
+                    <div class="u-specimen-img-wrap">
+                        <img src="https://picsum.photos/seed/coralreef/600/400" alt="Coral reef"
+                            class="u-specimen-img" />
+                    </div>
+                    <div class="u-specimen-overlay">
+                        <span class="u-specimen-taxon">Conservation</span>
+                        <h3 class="u-specimen-name">Reef Regeneration</h3>
+                        <p class="u-specimen-desc">Artificial structure implementation for coral growth acceleration.
+                        </p>
+                    </div>
+                    <div class="u-specimen-label">
+                        <span class="u-label-code">SPE-002</span>
+                        <span class="u-label-sci">Acropora palmata</span>
+                    </div>
+                </a>
+
+                <a href="#" class="u-specimen-card" data-reveal>
+                    <div class="u-specimen-img-wrap">
+                        <img src="https://picsum.photos/seed/seaturtle/600/400" alt="Sea turtle"
+                            class="u-specimen-img" />
+                    </div>
+                    <div class="u-specimen-overlay">
+                        <span class="u-specimen-taxon">Data Viz</span>
+                        <h3 class="u-specimen-name">Migration Mapping</h3>
+                        <p class="u-specimen-desc">Interactive maps tracking ancient sea turtle migration routes.</p>
+                    </div>
+                    <div class="u-specimen-label">
+                        <span class="u-label-code">SPE-003</span>
+                        <span class="u-label-sci">Chelonia mydas</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS — OXYGEN LEVELS
+         酸素タンクゲージ風の垂直バー + 充填アニメーション
+    ============================================================ -->
+    <section class="u-section u-section-dark" id="oxygen">
+        <div class="u-container">
+            <div class="u-section-header u-center" data-reveal>
+                <h2 class="u-section-title">Oxygen Levels</h2>
+                <p class="u-section-sub">Proficiency and technical capabilities.</p>
+            </div>
+            <div class="u-tank-grid">
+                <div class="u-tank-item" data-reveal>
+                    <div class="u-tank">
+                        <div class="u-tank-cap"></div>
+                        <div class="u-tank-fill" data-level="90">
+                            <div class="u-tank-bubble"></div>
+                        </div>
+                        <div class="u-tank-glare"></div>
+                    </div>
+                    <h3 class="u-tank-label">Marine Bio</h3>
+                    <span class="u-tank-pct">90%</span>
+                </div>
+                <div class="u-tank-item" data-reveal>
+                    <div class="u-tank">
+                        <div class="u-tank-cap"></div>
+                        <div class="u-tank-fill" data-level="75"></div>
+                        <div class="u-tank-glare"></div>
+                    </div>
+                    <h3 class="u-tank-label">Photography</h3>
+                    <span class="u-tank-pct">75%</span>
+                </div>
+                <div class="u-tank-item" data-reveal>
+                    <div class="u-tank">
+                        <div class="u-tank-cap"></div>
+                        <div class="u-tank-fill" data-level="85"></div>
+                        <div class="u-tank-glare"></div>
+                    </div>
+                    <h3 class="u-tank-label">Data Analysis</h3>
+                    <span class="u-tank-pct">85%</span>
+                </div>
+                <div class="u-tank-item" data-reveal>
+                    <div class="u-tank">
+                        <div class="u-tank-cap"></div>
+                        <div class="u-tank-fill" data-level="95"></div>
+                        <div class="u-tank-glare"></div>
+                    </div>
+                    <h3 class="u-tank-label">SCUBA</h3>
+                    <span class="u-tank-pct">95%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — SURFACE
+         「浮上」テーマ: 下から上にフローティングするコンタクトUI
+    ============================================================ -->
+    <section class="u-section u-section-surface" id="surface">
+        <!-- 光の放射エフェクト（浮上） -->
+        <div class="u-surface-light" aria-hidden="true"></div>
+
+        <div class="u-container" style="position:relative; z-index:10;">
+            <div class="u-contact-card" data-reveal>
+                <div class="u-contact-header">
+                    <span class="u-radio-icon">📡</span>
+                    <h2 class="u-contact-title">Establish Comms</h2>
+                    <p class="u-contact-sub">Ready to surface? Send a signal.</p>
+                </div>
+                <form class="u-contact-form" id="contactForm">
+                    <div class="u-form-row-2">
+                        <div class="u-form-group">
+                            <label class="u-form-label">Name</label>
+                            <input type="text" class="u-form-input" placeholder="Captain Nemo" />
+                        </div>
+                        <div class="u-form-group">
+                            <label class="u-form-label">Frequency</label>
+                            <input type="email" class="u-form-input" placeholder="email@vessel.com" />
+                        </div>
+                    </div>
+                    <div class="u-form-group">
+                        <label class="u-form-label">Transmission</label>
+                        <textarea class="u-form-input u-form-textarea"
+                            placeholder="Enter coordinates or message..."></textarea>
+                    </div>
+                    <button type="submit" class="u-send-btn" id="submitBtn">
+                        <span>Send Signal</span>
+                        <span>📡</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="u-footer">
+        <div class="u-footer-inner">
+            <span>⚓ DEEP<span class="u-logo-accent">ABYSS</span></span>
+            <div class="u-footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p class="u-footer-copy">© 2024 Deep Abyss Exploration. All rights submerged.</p>
+        </div>
+    </footer>
+
+    <!-- Theme JS -->
+    <script src="theme.js"></script>
+</body>
+
+</html>
