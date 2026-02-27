@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIXEL_DEV — VHSが再生されるCRT画面</title>
+    <meta name="description" content="インディーゲーム開発者・ピクセルアーティストのポートフォリオ。レトロVHS・CRTスクリーンのグリッチ表現。" />
+    <!-- Fonts: Press Start 2P（見出し） / VT323（本文） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+    <!-- Tailwind (ゴールデンマスター標準) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body>
+    <!-- ============================================================
+         CRT オーバーレイ（常時スキャンライン = Wow Factor 1）
+    ============================================================ -->
+    <div class="r-scanline-overlay" aria-hidden="true"></div>
+    <div class="r-vignette" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         VHSブート画面（Wow Factor 2）
+         ローディングバーが100%になると非表示になる
+    ============================================================ -->
+    <div class="r-boot-screen" id="bootScreen">
+        <div class="r-boot-inner">
+            <div class="r-vhs-logo">
+                <span class="r-vhs-left">VHS</span>
+                <span class="r-vhs-rec">● REC</span>
+            </div>
+            <div class="r-boot-title">
+                <span class="r-chromab">PIXEL_DEV</span>
+            </div>
+            <div class="r-boot-sub">INITIALIZING...</div>
+            <div class="r-loading-wrap">
+                <div class="r-loading-track">
+                    <div class="r-loading-bar" id="loadingBar"></div>
+                </div>
+                <div class="r-loading-pct" id="loadingPct">0%</div>
+            </div>
+            <div class="r-boot-tape">
+                <span class="r-blink">▶ PRESS START TO PLAY</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         メインコンテンツ（ブート後に表示）
+    ============================================================ -->
+    <div class="r-main" id="mainContent" hidden>
+
+        <!-- Navigation -->
+        <nav class="r-nav" id="nav">
+            <div class="r-nav-inner">
+                <a href="#" class="r-nav-logo">
+                    <span class="r-logo-icon">▶</span>
+                    <span class="r-chromab">PIXEL_DEV</span>
+                </a>
+                <button class="r-nav-toggle" id="navToggle" aria-label="メニューを開く">☰</button>
+            </div>
+        </nav>
+
+        <!-- モバイルメニューオーバーレイ（nav外に独立配置） -->
+        <div class="r-mobile-menu" id="mobileMenu" hidden>
+            <div class="r-mobile-menu-inner">
+                <button class="r-mobile-close" id="mobileClose" aria-label="メニューを閉じる">✕</button>
+                <nav class="r-mobile-nav">
+                    <a href="#hero" class="r-mobile-link">▶ START</a>
+                    <a href="#player" class="r-mobile-link">▶ PLAYER</a>
+                    <a href="#achievements" class="r-mobile-link">▶ WORKS</a>
+                    <a href="#stats" class="r-mobile-link">▶ STATS</a>
+                    <a href="#contact" class="r-mobile-link">▶ CONTACT</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             HERO — VHS MAIN MENU
+        ============================================================ -->
+        <section class="r-hero" id="hero">
+            <div class="r-hero-frame">
+                <div class="r-frame-corner r-fc-tl"></div>
+                <div class="r-frame-corner r-fc-tr"></div>
+                <div class="r-frame-corner r-fc-bl"></div>
+                <div class="r-frame-corner r-fc-br"></div>
+                <div class="r-hero-inner">
+                    <h1 class="r-hero-title r-chromab r-glitch" data-text="VHS PORTFOLIO">
+                        --- VHS PORTFOLIO ---
+                    </h1>
+                    <nav class="r-hero-menu" aria-label="Main menu">
+                        <a href="#player" class="r-menu-item r-active">
+                            <span class="r-cursor">▶</span>
+                            <span>PLAYER PROFILE</span>
+                        </a>
+                        <a href="#achievements" class="r-menu-item">
+                            <span class="r-cursor">　</span>
+                            <span>ACHIEVEMENT LIST</span>
+                        </a>
+                        <a href="#stats" class="r-menu-item">
+                            <span class="r-cursor">　</span>
+                            <span>SKILL STATS</span>
+                        </a>
+                        <a href="#contact" class="r-menu-item">
+                            <span class="r-cursor">　</span>
+                            <span>INSERT COIN</span>
+                        </a>
+                    </nav>
+                    <p class="r-hero-sub r-blink">PRESS START BUTTON</p>
+                </div>
+            </div>
+            <div class="r-tape-counter">
+                <span id="tapeCounter">00:00:00</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             PLAYER SELECT（About）
+        ============================================================ -->
+        <section class="r-player" id="player">
+            <div class="r-section-header">
+                <span class="r-sec-bracket">[</span>
+                <h2>PLAYER SELECT</h2>
+                <span class="r-sec-bracket">]</span>
+            </div>
+            <div class="r-container">
+                <div class="r-player-grid">
+                    <!-- アバター -->
+                    <div class="r-avatar-box" data-reveal>
+                        <div class="r-avatar-inner">
+                            <div class="r-avatar-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=400');">
+                            </div>
+                            <div class="r-avatar-tag">▶ P1</div>
+                            <div class="r-avatar-selection-arrow r-blink">▼ SELECT</div>
+                        </div>
+                    </div>
+
+                    <!-- ステータス -->
+                    <div class="r-player-stats" data-reveal>
+                        <div class="r-stat-name-block">
+                            <h3 class="r-stat-name r-chromab">DEV_01</h3>
+                            <p class="r-stat-status r-blink">STATUS: <span class="r-green">ONLINE</span></p>
+                        </div>
+                        <div class="r-stat-table">
+                            <div class="r-stat-row">
+                                <span class="r-stat-key">CLASS</span>
+                                <span class="r-stat-dots"></span>
+                                <span class="r-stat-val">INDIE DEV</span>
+                            </div>
+                            <div class="r-stat-row">
+                                <span class="r-stat-key">LVL</span>
+                                <span class="r-stat-dots"></span>
+                                <span class="r-stat-val r-cyan">99</span>
+                            </div>
+                            <div class="r-stat-row">
+                                <span class="r-stat-key">LOCATION</span>
+                                <span class="r-stat-dots"></span>
+                                <span class="r-stat-val">CYBERSPACE</span>
+                            </div>
+                            <div class="r-stat-row">
+                                <span class="r-stat-key">GUILD</span>
+                                <span class="r-stat-dots"></span>
+                                <span class="r-stat-val">FREELANCE</span>
+                            </div>
+                            <div class="r-stat-row">
+                                <span class="r-stat-key">SPEC</span>
+                                <span class="r-stat-dots"></span>
+                                <span class="r-stat-val">2D PLATFORMER</span>
+                            </div>
+                        </div>
+                        <div class="r-exp-block">
+                            <div class="r-exp-header">
+                                <span>EXP</span>
+                                <span>5000 / 9999</span>
+                            </div>
+                            <div class="r-exp-track">
+                                <div class="r-exp-bar" data-width="50"></div>
+                            </div>
+                        </div>
+                        <p class="r-player-quote">
+                            "Passionate about creating immersive worlds and engaging gameplay loops."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ACHIEVEMENTS（Works）
+             Wow Factor 3: ロック/アンロード状態の実績カード
+        ============================================================ -->
+        <section class="r-achievements" id="achievements">
+            <div class="r-section-header">
+                <span class="r-sec-bracket">[</span>
+                <h2>UNLOCKED ACHIEVEMENTS</h2>
+                <span class="r-sec-bracket">]</span>
+            </div>
+            <div class="r-container">
+                <div class="r-ach-grid">
+
+                    <!-- Achievement 1 — UNLOCKED -->
+                    <article class="r-ach-card r-unlocked" data-reveal>
+                        <div class="r-ach-img-wrap">
+                            <div class="r-ach-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400');">
+                            </div>
+                            <div class="r-ach-status r-status-done">◆ RELEASED</div>
+                            <div class="r-unlock-flash" aria-hidden="true"></div>
+                        </div>
+                        <div class="r-ach-body">
+                            <h3 class="r-ach-title">NEON RUNNER 2049</h3>
+                            <p class="r-ach-desc">サイバーパンクエンドレスランナー。シンセウェイブサウンドトラックと高速アクション。</p>
+                            <div class="r-ach-tags">
+                                <span class="r-tag">UNITY</span>
+                                <span class="r-tag">C#</span>
+                                <span class="r-tag">PIXEL ART</span>
+                            </div>
+                            <a href="#" class="r-ach-link">▶ VIEW PROJECT</a>
+                        </div>
+                        <div class="r-ach-trophy">🏆</div>
+                    </article>
+
+                    <!-- Achievement 2 — BETA -->
+                    <article class="r-ach-card r-unlocked" data-reveal>
+                        <div class="r-ach-img-wrap">
+                            <div class="r-ach-img"
+                                style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=400');">
+                            </div>
+                            <div class="r-ach-status r-status-beta">◆ BETA</div>
+                            <div class="r-unlock-flash" aria-hidden="true"></div>
+                        </div>
+                        <div class="r-ach-body">
+                            <h3 class="r-ach-title">CRYSTAL QUEST</h3>
+                            <p class="r-ach-desc">マッチ3パズルRPG。深いロアとキャラクタープログレッションシステム。</p>
+                            <div class="r-ach-tags">
+                                <span class="r-tag">GODOT</span>
+                                <span class="r-tag">GD SCRIPT</span>
+                            </div>
+                            <a href="#" class="r-ach-link">▶ VIEW PROJECT</a>
+                        </div>
+                        <div class="r-ach-trophy">🥈</div>
+                    </article>
+
+                    <!-- Achievement 3 — LOCKED/WIP -->
+                    <article class="r-ach-card r-locked" data-reveal>
+                        <div class="r-ach-img-wrap">
+                            <div class="r-ach-img r-ach-img--locked"
+                                style="background-image: url('https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?w=400');">
+                            </div>
+                            <div class="r-ach-status r-status-wip">◇ W.I.P</div>
+                            <div class="r-lock-icon" aria-label="Locked">🔒</div>
+                        </div>
+                        <div class="r-ach-body r-ach-body--locked">
+                            <h3 class="r-ach-title">DUNGEON.EXE</h3>
+                            <p class="r-ach-desc">ステルス&インベントリのプロシージャルダンジョンクローラー。<span class="r-cyan">Coming
+                                    soon...</span></p>
+                            <div class="r-ach-tags">
+                                <span class="r-tag r-tag--dim">GAME MAKER</span>
+                                <span class="r-tag r-tag--dim">2D</span>
+                            </div>
+                            <span class="r-ach-link r-ach-link--locked">🔒 ACHIEVEMENT LOCKED</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SKILL STATS（Skills）
+             RPGステータス画面。ドット絵の水平バー
+        ============================================================ -->
+        <section class="r-stats" id="stats">
+            <div class="r-section-header">
+                <span class="r-sec-bracket">[</span>
+                <h2>SKILL STATS</h2>
+                <span class="r-sec-bracket">]</span>
+            </div>
+            <div class="r-container">
+                <div class="r-stats-grid">
+                    <!-- PROGRAMMING -->
+                    <div class="r-stat-col" data-reveal>
+                        <h3 class="r-stat-col-title r-cyan">&gt; PROGRAMMING</h3>
+                        <div class="r-rpg-stat">
+                            <div class="r-rpg-header">
+                                <span>C# / UNITY</span><span>ATK 95</span>
+                            </div>
+                            <div class="r-rpg-bar-track">
+                                <div class="r-rpg-bar r-bar-magenta" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="r-rpg-stat">
+                            <div class="r-rpg-header">
+                                <span>JS / WEBGL</span><span>DEF 80</span>
+                            </div>
+                            <div class="r-rpg-bar-track">
+                                <div class="r-rpg-bar r-bar-magenta" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="r-rpg-stat">
+                            <div class="r-rpg-header">
+                                <span>PYTHON</span><span>SPD 65</span>
+                            </div>
+                            <div class="r-rpg-bar-track">
+                                <div class="r-rpg-bar r-bar-magenta" data-width="65"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ART -->
+                    <div class="r-stat-col" data-reveal>
+                        <h3 class="r-stat-col-title r-magenta">&gt; ART &amp; DESIGN</h3>
+                        <div class="r-rpg-stat">
+                            <div class="r-rpg-header">
+                                <span>PIXEL ART</span><span>MAG 90</span>
+                            </div>
+                            <div class="r-rpg-bar-track">
+                                <div class="r-rpg-bar r-bar-cyan" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="r-rpg-stat">
+                            <div class="r-rpg-header">
+                                <span>UI / UX</span><span>INT 85</span>
+                            </div>
+                            <div class="r-rpg-bar-track">
+                                <div class="r-rpg-bar r-bar-cyan" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="r-rpg-stat">
+                            <div class="r-rpg-header">
+                                <span>LEVEL DESIGN</span><span>WIS 88</span>
+                            </div>
+                            <div class="r-rpg-bar-track">
+                                <div class="r-rpg-bar r-bar-cyan" data-width="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- スペシャルタグ -->
+                <div class="r-special-tags" data-reveal>
+                    <span class="r-spe-tag">⭐ TEAM PLAYER</span>
+                    <span class="r-spe-tag">⭐ QUICK LEARNER</span>
+                    <span class="r-spe-tag">⭐ PROBLEM SOLVER</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTACT — INSERT COIN
+        ============================================================ -->
+        <section class="r-contact" id="contact">
+            <div class="r-section-header">
+                <span class="r-sec-bracket">[</span>
+                <h2>INSERT COIN</h2>
+                <span class="r-sec-bracket">]</span>
+            </div>
+            <div class="r-container">
+                <div class="r-contact-frame">
+                    <!-- 背景グリッド -->
+                    <div class="r-contact-grid-bg" aria-hidden="true"></div>
+                    <!-- タイトル -->
+                    <h2 class="r-contact-title r-glitch r-blink" data-text="GAME OVER?">GAME OVER?</h2>
+                    <p class="r-contact-sub">
+                        Continue the adventure! Let's collaborate on your next project.<br>
+                        <span class="r-cyan r-blink">09 CREDITS REMAINING</span>
+                    </p>
+                    <!-- フォーム -->
+                    <form class="r-form" id="contactForm">
+                        <div class="r-form-row">
+                            <label class="r-form-label">NAME</label>
+                            <input type="text" class="r-form-input" placeholder="PLAYER_NAME" required />
+                        </div>
+                        <div class="r-form-row">
+                            <label class="r-form-label">EMAIL</label>
+                            <input type="email" class="r-form-input" placeholder="player@arcade.com" required />
+                        </div>
+                        <div class="r-form-row">
+                            <label class="r-form-label">MESSAGE</label>
+                            <textarea class="r-form-input r-form-textarea" placeholder="ENTER YOUR MESSAGE..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="r-coin-btn" id="coinBtn">
+                            <span class="r-coin-icon">🪙</span>
+                            <span>INSERT COIN TO SEND</span>
+                        </button>
+                    </form>
+                    <div class="r-social-row">
+                        <a href="#" class="r-social">Twitter</a>
+                        <span class="r-social-sep">|</span>
+                        <a href="#" class="r-social">GitHub</a>
+                        <span class="r-social-sep">|</span>
+                        <a href="#" class="r-social">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="r-footer">
+            <p>© 2024 PIXEL_DEV <span class="r-magenta">♥</span> MADE WITH COFFEE AND CODE</p>
+        </footer>
+
+    </div><!-- /r-main -->
+
+    <!-- Theme JS -->
+    <script src="theme.js"></script>
+</body>
+
+</html>
