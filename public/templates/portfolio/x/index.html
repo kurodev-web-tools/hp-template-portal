@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XENON — Industrial Design Portfolio</title>
+    <meta name="description" content="自動車・工業デザイナーのポートフォリオ。キセノンライトの光の筋とSheen（光の帯）Hoverを特徴とするダークデザイン。" />
+    <!-- Fonts: Rajdhani + Exo 2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet" />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body class="x-body">
+
+    <!-- ============================================================
+         WOW FACTOR 1: キセノン光の筋ライン（Hero固定背景）
+         JavaScriptでランダム幅・位置・アニメ速度
+    ============================================================ -->
+    <div class="x-xenon-lines" id="xenonLines" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         Navigation
+    ============================================================ -->
+    <header class="x-header" id="header">
+        <div class="x-header-inner">
+            <a href="#hero" class="x-logo">
+                <span class="x-logo-dot"></span>
+                XENON<span class="x-logo-accent">.V2</span>
+            </a>
+            <nav class="x-nav" id="navMenu">
+                <a href="#specs">Specs</a>
+                <a href="#works">Projects</a>
+                <a href="#panel">Skills</a>
+                <a href="#ignition">Contact</a>
+            </nav>
+            <a href="#ignition" class="x-download-btn">Download Specs</a>
+            <button class="x-nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <div class="x-mobile-menu" id="mobileMenu" hidden>
+        <button class="x-mobile-close" id="mobileClose" aria-label="閉じる">✕</button>
+        <nav class="x-mobile-nav">
+            <a href="#specs" class="x-mobile-link">Specs</a>
+            <a href="#works" class="x-mobile-link">Projects</a>
+            <a href="#panel" class="x-mobile-link">Skills</a>
+            <a href="#ignition" class="x-mobile-link">Contact</a>
+        </nav>
+    </div>
+
+    <main>
+        <!-- ============================================================
+             HERO — LIGHT SPEED
+             暗背景 + キセノン光の筋 + 右端のランウェイライン
+        ============================================================ -->
+        <section class="x-hero" id="hero">
+            <!-- グリッドオーバーレイ -->
+            <div class="x-grid-overlay" aria-hidden="true"></div>
+            <!-- 右端ランウェイライン -->
+            <div class="x-runway" aria-hidden="true">
+                <div class="x-runway-line"></div>
+                <div class="x-runway-line x-rl-2"></div>
+                <div class="x-runway-line x-rl-3"></div>
+            </div>
+
+            <div class="x-hero-grid">
+                <!-- 左: テキスト -->
+                <div class="x-hero-text" data-reveal>
+                    <div class="x-status-badge">
+                        <span class="x-pulse-dot"></span>
+                        SYSTEM ONLINE
+                    </div>
+                    <h1 class="x-hero-title">
+                        AERODYNAMIC<br>
+                        <span class="x-hero-sub-word">PRECISION</span>
+                    </h1>
+                    <p class="x-hero-desc">
+                        Engineering the future of motion through aggressive styling
+                        and streamlined functionality. High-performance design solutions
+                        for next-gen concepts.
+                    </p>
+                    <div class="x-hero-cta">
+                        <a href="#works" class="x-btn-primary">
+                            View Portfolio <span>→</span>
+                        </a>
+                        <a href="#ignition" class="x-btn-ghost">
+                            ▶ Showreel
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 右: HUDオーバーレイ付きビジュアル -->
+                <div class="x-hero-visual" data-reveal>
+                    <div class="x-car-img-wrap">
+                        <img src="https://picsum.photos/seed/xenoncar/700/420" alt="工業デザインコンセプト" class="x-car-img" />
+                        <!-- シアンオーバーレイ -->
+                        <div class="x-car-overlay" aria-hidden="true"></div>
+                    </div>
+                    <!-- HUDデータ TL -->
+                    <div class="x-hud x-hud-tr">
+                        <div class="x-hud-label">VELOCITY</div>
+                        <div class="x-hud-val">240<span class="x-hud-unit">MPH</span></div>
+                    </div>
+                    <!-- HUDデータ BL -->
+                    <div class="x-hud x-hud-bl">
+                        <div class="x-hud-label">DRAG COEFF</div>
+                        <div class="x-hud-val">0.21<span class="x-hud-unit">Cd</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- スクロールヒント -->
+            <div class="x-scroll-hint" aria-hidden="true">
+                <span class="x-scroll-text">SCROLL TO INITIALIZE</span>
+                <span class="x-scroll-arrow">↓</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ABOUT — SPECIFICATIONS
+             スペックシート風: 左=プロフィール写真 / 右=スペック表
+        ============================================================ -->
+        <section class="x-section x-section-dark" id="specs">
+            <div class="x-container">
+                <div class="x-section-eyebrow">// SECTION 01</div>
+                <h2 class="x-section-title" data-reveal>SPECIFICATIONS</h2>
+
+                <div class="x-specs-grid">
+                    <!-- 左: プロフィール + IDカード -->
+                    <div class="x-profile-card" data-reveal>
+                        <div class="x-profile-img-wrap">
+                            <img src="https://picsum.photos/seed/xenondesigner/300/300" alt="デザイナーポートレート"
+                                class="x-profile-img" />
+                            <div class="x-profile-scan" aria-hidden="true"></div>
+                        </div>
+                        <div class="x-profile-id">
+                            <h3 class="x-profile-name">ALEX MERCER</h3>
+                            <p class="x-profile-code">ID: XENON-01</p>
+                        </div>
+                        <div class="x-profile-spec-list">
+                            <div class="x-spec-row">
+                                <span class="x-spec-key">ROLE</span>
+                                <span class="x-spec-val">LEAD DESIGNER</span>
+                            </div>
+                            <div class="x-spec-row">
+                                <span class="x-spec-key">EXP</span>
+                                <span class="x-spec-val">10+ YEARS</span>
+                            </div>
+                            <div class="x-spec-row">
+                                <span class="x-spec-key">LOC</span>
+                                <span class="x-spec-val">BERLIN, DE</span>
+                            </div>
+                            <div class="x-spec-row">
+                                <span class="x-spec-key">STATUS</span>
+                                <span class="x-spec-val x-status-green">
+                                    <span class="x-dot-green"></span>ACTIVE
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右: スペックシート（エンジン風技術表現） -->
+                    <div class="x-spec-sheet" data-reveal>
+                        <div class="x-spec-block">
+                            <h3 class="x-spec-block-title">// ENGINE</h3>
+                            <div class="x-spec-table">
+                                <div class="x-spec-entry">
+                                    <span class="x-entry-key">CORE</span>
+                                    <span class="x-entry-sep">——————</span>
+                                    <span class="x-entry-val">CREATIVE DEVELOPMENT</span>
+                                </div>
+                                <div class="x-spec-entry">
+                                    <span class="x-entry-key">TORQUE</span>
+                                    <span class="x-entry-sep">——————</span>
+                                    <span class="x-entry-val">10 YR EXPERIENCE</span>
+                                </div>
+                                <div class="x-spec-entry">
+                                    <span class="x-entry-key">OUTPUT</span>
+                                    <span class="x-entry-sep">——————</span>
+                                    <span class="x-entry-val">INDUSTRIAL DESIGN</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="x-spec-block">
+                            <h3 class="x-spec-block-title">// AERODYNAMICS</h3>
+                            <div class="x-spec-table">
+                                <div class="x-spec-entry">
+                                    <span class="x-entry-key">DRAG Cd</span>
+                                    <span class="x-entry-sep">——————</span>
+                                    <span class="x-entry-val">MINIMAL FRICTION</span>
+                                </div>
+                                <div class="x-spec-entry">
+                                    <span class="x-entry-key">DOWNFORCE</span>
+                                    <span class="x-entry-sep">——————</span>
+                                    <span class="x-entry-val">HIGH IMPACT DESIGN</span>
+                                </div>
+                                <div class="x-spec-entry">
+                                    <span class="x-entry-key">CHASSIS</span>
+                                    <span class="x-entry-sep">——————</span>
+                                    <span class="x-entry-val">CARBON FIBER SYSTEMS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="x-spec-block">
+                            <h3 class="x-spec-block-title">// SOFTWARE STACK</h3>
+                            <div class="x-sw-grid">
+                                <div class="x-sw-badge" style="background:#374151;">Ps</div>
+                                <div class="x-sw-badge" style="background:#c2410c;">Ai</div>
+                                <div class="x-sw-badge" style="background:#7c3aed;">Bl</div>
+                                <div class="x-sw-badge" style="background:#1d4ed8;">Fu</div>
+                                <span class="x-sw-label">Photoshop</span>
+                                <span class="x-sw-label">Illustrator</span>
+                                <span class="x-sw-label">Blender</span>
+                                <span class="x-sw-label">Fusion 360</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             WORKS — TEST DRIVE
+             WOW FACTOR 1: Hover時に白い光の帯 (Sheen) が ::after で走る
+             横長ランドスケープカード + 左端2px縦ライン
+        ============================================================ -->
+        <section class="x-section" id="works">
+            <div class="x-container">
+                <div class="x-section-eyebrow">// SECTION 02</div>
+                <div class="x-section-hrow">
+                    <h2 class="x-section-title" data-reveal>DEPLOYED PROJECTS</h2>
+                    <a href="#" class="x-archive-link">VIEW ARCHIVE →</a>
+                </div>
+
+                <div class="x-cards-stack">
+                    <!-- プロジェクト 1 -->
+                    <div class="x-project-card" data-reveal>
+                        <!-- WOW FACTOR 1: Sheenが::afterで走る -->
+                        <div class="x-project-img-wrap">
+                            <img src="https://picsum.photos/seed/apexgt/600/400" alt="Project APEX_GT"
+                                class="x-project-img" />
+                            <div class="x-project-cyan-overlay" aria-hidden="true"></div>
+                        </div>
+                        <div class="x-project-info">
+                            <div class="x-project-type">Automotive Concept</div>
+                            <h3 class="x-project-name">Project: APEX_GT</h3>
+                            <p class="x-project-desc">
+                                A track-focused grand tourer designed for maximum downforce and minimal drag.
+                                Features an active aerodynamic system and carbon-fiber monocoque chassis.
+                            </p>
+                            <div class="x-project-footer">
+                                <div class="x-project-tags">
+                                    <span class="x-tag">ALIAS</span>
+                                    <span class="x-tag">VRED</span>
+                                </div>
+                                <button class="x-arrow-btn" aria-label="詳細">↗</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- プロジェクト 2 -->
+                    <div class="x-project-card x-card-reverse" data-reveal>
+                        <div class="x-project-img-wrap">
+                            <img src="https://picsum.photos/seed/dronex1/600/400" alt="Project DRONE_X1"
+                                class="x-project-img" />
+                            <div class="x-project-cyan-overlay" aria-hidden="true"></div>
+                        </div>
+                        <div class="x-project-info">
+                            <div class="x-project-type">Industrial Design</div>
+                            <h3 class="x-project-name">Project: DRONE_X1</h3>
+                            <p class="x-project-desc">
+                                Autonomous delivery unit focusing on urban mobility and noise reduction.
+                                The propeller configuration optimizes airflow for silent operation
+                                in dense city environments.
+                            </p>
+                            <div class="x-project-footer">
+                                <div class="x-project-tags">
+                                    <span class="x-tag">SOLIDWORKS</span>
+                                    <span class="x-tag">KEYSHOT</span>
+                                </div>
+                                <button class="x-arrow-btn" aria-label="詳細">↗</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- プロジェクト 3 -->
+                    <div class="x-project-card" data-reveal>
+                        <div class="x-project-img-wrap">
+                            <img src="https://picsum.photos/seed/emoto/600/400" alt="Project E-MOTO"
+                                class="x-project-img" />
+                            <div class="x-project-cyan-overlay" aria-hidden="true"></div>
+                        </div>
+                        <div class="x-project-info">
+                            <div class="x-project-type">Urban Mobility</div>
+                            <h3 class="x-project-name">Project: E-MOTO</h3>
+                            <p class="x-project-desc">
+                                Minimalist electric motorcycle concept for the 2030 commuter.
+                                Integrated battery chassis and hub-less wheel design for a lightweight footprint.
+                            </p>
+                            <div class="x-project-footer">
+                                <div class="x-project-tags">
+                                    <span class="x-tag">BLENDER</span>
+                                    <span class="x-tag">UNREAL</span>
+                                </div>
+                                <button class="x-arrow-btn" aria-label="詳細">↗</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SKILLS — CONTROL PANEL
+             WOW FACTOR 2: SVGアークによるダイヤルゲージ
+        ============================================================ -->
+        <section class="x-section x-section-dark" id="panel">
+            <div class="x-container">
+                <div class="x-section-eyebrow">// SECTION 03</div>
+                <h2 class="x-section-title" data-reveal>SYSTEM CAPABILITIES</h2>
+
+                <div class="x-panel-grid" data-reveal>
+                    <!-- ダイヤルゲージ 1 -->
+                    <div class="x-dial-item">
+                        <div class="x-dial-wrap">
+                            <svg class="x-dial-svg" viewBox="0 0 100 100">
+                                <circle class="x-dial-track" cx="50" cy="50" r="42" />
+                                <circle class="x-dial-arc" cx="50" cy="50" r="42" data-pct="98"
+                                    style="stroke-dashoffset: calc(264 - 264 * 0.98);" />
+                            </svg>
+                            <div class="x-dial-val">98%</div>
+                        </div>
+                        <div class="x-dial-label">Industrial Design</div>
+                    </div>
+
+                    <!-- ダイヤルゲージ 2 -->
+                    <div class="x-dial-item">
+                        <div class="x-dial-wrap">
+                            <svg class="x-dial-svg" viewBox="0 0 100 100">
+                                <circle class="x-dial-track" cx="50" cy="50" r="42" />
+                                <circle class="x-dial-arc" cx="50" cy="50" r="42" data-pct="95"
+                                    style="stroke-dashoffset: calc(264 - 264 * 0.95);" />
+                            </svg>
+                            <div class="x-dial-val">95%</div>
+                        </div>
+                        <div class="x-dial-label">3D Modeling</div>
+                    </div>
+
+                    <!-- ダイヤルゲージ 3 -->
+                    <div class="x-dial-item">
+                        <div class="x-dial-wrap">
+                            <svg class="x-dial-svg" viewBox="0 0 100 100">
+                                <circle class="x-dial-track" cx="50" cy="50" r="42" />
+                                <circle class="x-dial-arc" cx="50" cy="50" r="42" data-pct="88"
+                                    style="stroke-dashoffset: calc(264 - 264 * 0.88);" />
+                            </svg>
+                            <div class="x-dial-val">88%</div>
+                        </div>
+                        <div class="x-dial-label">Prototyping</div>
+                    </div>
+
+                    <!-- ダイヤルゲージ 4 -->
+                    <div class="x-dial-item">
+                        <div class="x-dial-wrap">
+                            <svg class="x-dial-svg" viewBox="0 0 100 100">
+                                <circle class="x-dial-track" cx="50" cy="50" r="42" />
+                                <circle class="x-dial-arc" cx="50" cy="50" r="42" data-pct="92"
+                                    style="stroke-dashoffset: calc(264 - 264 * 0.92);" />
+                            </svg>
+                            <div class="x-dial-val">92%</div>
+                        </div>
+                        <div class="x-dial-label">Visualization</div>
+                    </div>
+
+                    <!-- ダイヤルゲージ 5 -->
+                    <div class="x-dial-item">
+                        <div class="x-dial-wrap">
+                            <svg class="x-dial-svg" viewBox="0 0 100 100">
+                                <circle class="x-dial-track" cx="50" cy="50" r="42" />
+                                <circle class="x-dial-arc" cx="50" cy="50" r="42" data-pct="85"
+                                    style="stroke-dashoffset: calc(264 - 264 * 0.85);" />
+                            </svg>
+                            <div class="x-dial-val">85%</div>
+                        </div>
+                        <div class="x-dial-label">Aerodynamics</div>
+                    </div>
+
+                    <!-- ダイヤルゲージ 6 -->
+                    <div class="x-dial-item">
+                        <div class="x-dial-wrap">
+                            <svg class="x-dial-svg" viewBox="0 0 100 100">
+                                <circle class="x-dial-track" cx="50" cy="50" r="42" />
+                                <circle class="x-dial-arc" cx="50" cy="50" r="42" data-pct="90"
+                                    style="stroke-dashoffset: calc(264 - 264 * 0.90);" />
+                            </svg>
+                            <div class="x-dial-val">90%</div>
+                        </div>
+                        <div class="x-dial-label">UX Research</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTACT — IGNITION
+             「START ENGINE」エンジン点火ボタンデザイン
+        ============================================================ -->
+        <section class="x-section x-section-ignition" id="ignition">
+            <div class="x-ignition-bg" aria-hidden="true"></div>
+            <div class="x-container x-text-center" data-reveal>
+                <div class="x-ignition-icon">⚡</div>
+                <h2 class="x-ignition-title">READY TO <span class="x-cyan">LAUNCH?</span></h2>
+                <p class="x-ignition-sub">
+                    Initiate collaboration sequence. Open for contract work and full-time
+                    positions in automotive and industrial design.
+                </p>
+                <!-- エンジン点火ボタン -->
+                <div class="x-engine-btn-wrap">
+                    <button class="x-engine-btn" id="engineBtn" aria-label="エンジン始動">
+                        <div class="x-engine-inner">
+                            <span class="x-engine-label">START ENGINE</span>
+                        </div>
+                        <div class="x-engine-glow" aria-hidden="true"></div>
+                    </button>
+                </div>
+                <div class="x-ignition-footer">
+                    <span>SECURE CONNECTION</span>
+                    <span>ENCRYPTED V2.0</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="x-footer">
+        <div class="x-footer-inner">
+            <div class="x-footer-logo">
+                <span class="x-footer-dot"></span>
+                XENON DESIGN SYSTEMS
+            </div>
+            <p class="x-footer-copy">© 2024 Alex Mercer. All rights reserved.</p>
+            <div class="x-footer-links">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+
+</html>
