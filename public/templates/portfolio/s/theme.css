@@ -1,0 +1,1500 @@
+/* ============================================
+   Space Portfolio Theme — S
+   Colors: #0B1026（深宇宙）/ #7B68EE（星雲紫）/ #00BFFF（星の青）
+   Font: Exo 2
+   ============================================ */
+
+/* ---- CSS Variables ---- */
+:root {
+    --s-blue: #00BFFF;
+    --s-purple: #7B68EE;
+    --s-dark: #0B1026;
+    --s-surface: #141c3a;
+    --s-surface-hi: #1e294d;
+    --s-text: #cbd5e1;
+    --s-dim: #64748b;
+    --s-green: #22c55e;
+    --s-shadow-b: 0 0 20px rgba(0, 191, 255, 0.3);
+    --s-shadow-p: 0 0 20px rgba(123, 104, 238, 0.3);
+    --s-font: 'Exo 2', 'Arial', sans-serif;
+}
+
+/* ---- Base ---- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--s-font);
+    background: var(--s-dark);
+    color: var(--s-text);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ============================================
+   背景エフェクト
+   ============================================ */
+.s-bg-stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 40%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 10%, rgba(255, 255, 255, 0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 25%, rgba(255, 255, 255, 0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 75%, rgba(255, 255, 255, 0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 80%, rgba(255, 255, 255, 0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 90%, rgba(255, 255, 255, 0.7) 0%, transparent 100%),
+        radial-gradient(2px 2px at 60% 35%, rgba(0, 191, 255, 0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 15% 55%, rgba(123, 104, 238, 0.3) 0%, transparent 100%);
+}
+
+.s-bg-nebula {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(123, 104, 238, 0.12) 0%,
+            transparent 65%);
+}
+
+/* スキャンライン（CRT風） */
+.s-scanline {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0px,
+            rgba(0, 0, 0, 0) 2px,
+            rgba(0, 0, 0, 0.05) 2px,
+            rgba(0, 0, 0, 0.05) 4px);
+    animation: scanMove 12s linear infinite;
+}
+
+@keyframes scanMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+/* Utilities */
+.s-blue {
+    color: var(--s-blue);
+}
+
+.s-purple {
+    color: var(--s-purple);
+}
+
+.s-green {
+    color: var(--s-green);
+}
+
+.s-white {
+    color: #fff;
+}
+
+.s-accent {
+    color: var(--s-blue);
+}
+
+.s-gradient-text {
+    background: linear-gradient(135deg, #fff 0%, var(--s-blue) 50%, var(--s-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.s-underline-blue {
+    color: #fff;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.5);
+}
+
+.s-underline-purple {
+    color: #fff;
+    border-bottom: 1px solid rgba(123, 104, 238, 0.5);
+}
+
+/* Reveal */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pulse dot */
+.s-pulse {
+    display: inline-flex;
+    position: relative;
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+}
+
+.s-pulse::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--s-blue);
+    animation: pulseRing 1.5s ease-out infinite;
+}
+
+.s-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--s-blue);
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.s-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(11, 16, 38, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 191, 255, 0.2);
+}
+
+.s-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.s-nav-logo {
+    text-decoration: none;
+    font-family: var(--s-font);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+}
+
+.s-logo-rocket {
+    animation: rocketBob 3s ease-in-out infinite;
+}
+
+@keyframes rocketBob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.s-nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+}
+
+.s-nav-links a {
+    font-family: var(--s-font);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--s-dim);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+}
+
+.s-nav-links a:hover {
+    color: var(--s-blue);
+}
+
+.s-transmit-btn {
+    font-family: var(--s-font);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.5rem 1.2rem;
+    background: rgba(0, 191, 255, 0.15);
+    border: 1px solid var(--s-blue);
+    color: var(--s-blue);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.s-transmit-btn:hover {
+    background: var(--s-blue);
+    color: var(--s-dark);
+}
+
+.s-nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid rgba(0, 191, 255, 0.4);
+    color: var(--s-blue);
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}
+
+/* Mobile menu overlay */
+.s-mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: var(--s-dark);
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.s-mobile-menu[hidden] {
+    display: none;
+}
+
+.s-mobile-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1rem;
+    color: var(--s-blue);
+    background: none;
+    border: 1px solid var(--s-blue);
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.s-mobile-close:hover {
+    background: var(--s-blue);
+    color: var(--s-dark);
+}
+
+.s-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.s-mobile-link {
+    font-family: var(--s-font);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--s-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.s-mobile-link:hover {
+    color: var(--s-blue);
+}
+
+/* ============================================
+   Container / Section common
+   ============================================ */
+.s-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.s-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.s-section-alt {
+    background: rgba(20, 28, 58, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.s-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+}
+
+.s-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.s-divider-line {
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--s-blue), transparent);
+}
+
+.s-glass-panel {
+    background: rgba(20, 28, 58, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 191, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   WOW FACTOR 1: HERO — SOLAR SYSTEM
+   CSS animation: orbit による公転
+   ============================================ */
+.s-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 5rem;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.s-hero-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.s-online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    background: rgba(20, 28, 58, 0.5);
+    color: var(--s-blue);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.s-hero-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.25));
+}
+
+.s-hero-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--s-blue);
+}
+
+.s-hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.s-btn-primary {
+    padding: 0.85rem 1.75rem;
+    background: var(--s-blue);
+    color: var(--s-dark);
+    font-family: var(--s-font);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: var(--s-shadow-b);
+    white-space: nowrap;
+}
+
+.s-btn-primary:hover {
+    background: white;
+    box-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
+}
+
+.s-btn-secondary {
+    padding: 0.85rem 1.75rem;
+    background: rgba(20, 28, 58, 0.3);
+    border: 1px solid rgba(100, 116, 139, 0.5);
+    color: #94a3b8;
+    font-family: var(--s-font);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.s-btn-secondary:hover {
+    border-color: var(--s-blue);
+    color: white;
+}
+
+/* ---- 太陽系 ---- */
+.s-solar-system {
+    position: relative;
+    width: 380px;
+    height: 380px;
+    margin: 0 auto;
+    flex-shrink: 0;
+}
+
+/* 太陽 */
+.s-sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    cursor: pointer;
+}
+
+.s-sun-core {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff5cc 0%, #ffd700 40%, #ff8c00 100%);
+    box-shadow:
+        0 0 20px rgba(255, 200, 0, 0.8),
+        0 0 60px rgba(255, 150, 0, 0.4),
+        0 0 100px rgba(255, 100, 0, 0.2);
+    animation: sunPulse 3s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 200, 0, 0.8), 0 0 60px rgba(255, 150, 0, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(255, 220, 0, 1), 0 0 80px rgba(255, 160, 0, 0.6);
+    }
+}
+
+.s-sun-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 200, 0, 0.15) 0%, transparent 70%);
+    animation: sunPulse 3s ease-in-out infinite;
+}
+
+/* ============================================
+   WOW FACTOR 1: CSS animation orbit（公転）
+   ============================================ */
+.s-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* 公転アニメーション */
+    animation: orbit linear infinite;
+}
+
+.s-orbit-1 {
+    width: 120px;
+    height: 120px;
+    animation-duration: 8s;
+}
+
+.s-orbit-2 {
+    width: 190px;
+    height: 190px;
+    animation-duration: 14s;
+}
+
+.s-orbit-3 {
+    width: 265px;
+    height: 265px;
+    animation-duration: 20s;
+}
+
+.s-orbit-4 {
+    width: 340px;
+    height: 340px;
+    animation-duration: 28s;
+}
+
+@keyframes orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* 惑星は公転の逆回転で「直立」を保つ */
+.s-planet {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    /* 親の回転を打ち消す */
+    animation: counterRotate linear infinite;
+}
+
+.s-orbit-1 .s-planet {
+    animation-duration: 8s;
+}
+
+.s-orbit-2 .s-planet {
+    animation-duration: 14s;
+}
+
+.s-orbit-3 .s-planet {
+    animation-duration: 20s;
+}
+
+.s-orbit-4 .s-planet {
+    animation-duration: 28s;
+}
+
+@keyframes counterRotate {
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-50%) rotate(-360deg);
+    }
+}
+
+.s-planet-dot {
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.s-planet-1 .s-planet-dot {
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(#7af5ff, var(--s-blue));
+    box-shadow: 0 0 8px var(--s-blue);
+}
+
+.s-planet-2 .s-planet-dot {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(#b4a9ff, var(--s-purple));
+    box-shadow: 0 0 8px var(--s-purple);
+}
+
+.s-planet-3 .s-planet-dot {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(#a8f5a0, #22c55e);
+    box-shadow: 0 0 6px #22c55e;
+}
+
+.s-planet-4 .s-planet-dot {
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(#ffb07a, #f97316);
+    box-shadow: 0 0 8px #f97316;
+}
+
+.s-planet-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.s-planet:hover .s-planet-dot {
+    transform: scale(1.5);
+}
+
+/* Popover（惑星クリック） */
+.s-popover {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 1rem);
+    transform: translateY(-50%);
+    background: var(--s-surface);
+    border: 1px solid var(--s-blue);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    min-width: 140px;
+    z-index: 20;
+    box-shadow: var(--s-shadow-b);
+}
+
+.s-popover[hidden] {
+    display: none;
+}
+
+.s-popover-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--s-blue);
+    margin-bottom: 0.25rem;
+}
+
+.s-popover-info {
+    font-size: 0.75rem;
+    color: var(--s-dim);
+}
+
+/* 装飾軌道楕円 */
+.s-orbit-deco {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid rgba(0, 191, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.s-orbit-deco-1 {
+    width: 800px;
+    height: 250px;
+    bottom: -120px;
+}
+
+.s-orbit-deco-2 {
+    width: 1200px;
+    height: 350px;
+    bottom: -175px;
+    border-color: rgba(123, 104, 238, 0.1);
+}
+
+/* ============================================
+   MISSION LOG（About）
+   ============================================ */
+.s-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.s-log-panel {
+    padding: 2rem;
+}
+
+.s-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--s-blue);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+}
+
+.s-icon {
+    font-size: 1rem;
+}
+
+.s-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.s-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--s-blue), var(--s-purple), transparent);
+    margin-left: 4px;
+}
+
+.s-timeline-item {
+    display: flex;
+    gap: 1rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.s-timeline-node {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--s-surface-hi);
+    border: 1px solid var(--s-surface);
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.s-timeline-node.s-node-active,
+.s-timeline-item:hover .s-timeline-node {
+    background: var(--s-blue);
+    border-color: var(--s-dark);
+}
+
+.s-timeline-content {
+    flex: 1;
+}
+
+.s-log-date {
+    font-family: monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.s-date-blue {
+    color: var(--s-blue);
+}
+
+.s-date-purple {
+    color: var(--s-purple);
+}
+
+.s-date-dim {
+    color: var(--s-dim);
+}
+
+.s-timeline-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.4rem;
+}
+
+.s-timeline-content p {
+    font-size: 0.85rem;
+    color: var(--s-dim);
+    line-height: 1.6;
+}
+
+/* Profile */
+.s-profile-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.s-profile-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.s-badge-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: rgba(0, 191, 255, 0.1);
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.s-profile-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.s-profile-id {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--s-blue);
+}
+
+.s-profile-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--s-text);
+}
+
+.s-stat-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.s-stat-card {
+    padding: 1rem;
+    background: var(--s-surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+}
+
+.s-stat-num {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 0.25rem;
+}
+
+.s-stat-label {
+    font-size: 0.7rem;
+    color: var(--s-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ============================================
+   WOW FACTOR 2: MISSION ARCHIVES — Accordion
+   ============================================ */
+.s-db-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--s-blue);
+    letter-spacing: 0.05em;
+}
+
+.s-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.s-acc-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(11, 16, 38, 0.5);
+    transition: background 0.25s;
+}
+
+.s-acc-item:last-child {
+    border-bottom: none;
+}
+
+.s-acc-item.is-open {
+    background: rgba(20, 28, 58, 0.8);
+}
+
+.s-acc-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.s-acc-trigger:hover {
+    background: rgba(0, 191, 255, 0.04);
+}
+
+.s-acc-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.s-mission-code {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.s-acc-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    transition: color 0.2s;
+}
+
+.s-acc-trigger:hover .s-acc-title {
+    color: var(--s-blue);
+}
+
+.s-acc-item.is-open .s-acc-title {
+    color: var(--s-blue);
+}
+
+.s-acc-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+.s-status {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.s-status-done {
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.s-status-pub {
+    background: rgba(123, 104, 238, 0.1);
+    color: var(--s-purple);
+    border: 1px solid rgba(123, 104, 238, 0.3);
+}
+
+.s-status-wip {
+    background: rgba(249, 115, 22, 0.1);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.s-acc-chevron {
+    font-size: 0.8rem;
+    color: var(--s-dim);
+    transition: transform 0.3s ease;
+}
+
+.s-acc-item.is-open .s-acc-chevron {
+    transform: rotate(180deg);
+    color: var(--s-blue);
+}
+
+/* Accordion body */
+.s-acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.s-acc-body.open {
+    max-height: 600px;
+}
+
+.s-acc-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 0 2rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.5rem;
+}
+
+.s-acc-img-wrap {
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+
+.s-acc-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s;
+}
+
+.s-acc-item.is-open .s-acc-img {
+    transform: scale(1.04);
+}
+
+.s-acc-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.s-acc-detail p {
+    font-size: 0.9rem;
+    color: var(--s-dim);
+    line-height: 1.7;
+}
+
+.s-acc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.s-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    background: rgba(0, 191, 255, 0.08);
+    border: 1px solid rgba(0, 191, 255, 0.2);
+    color: var(--s-blue);
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+}
+
+.s-tag--purple {
+    background: rgba(123, 104, 238, 0.08);
+    border-color: rgba(123, 104, 238, 0.2);
+    color: var(--s-purple);
+}
+
+.s-acc-link {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--s-blue);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+}
+
+.s-acc-link:hover {
+    color: white;
+}
+
+.s-link-purple {
+    color: var(--s-purple);
+}
+
+.s-link-purple:hover {
+    color: white;
+}
+
+/* ============================================
+   COMMAND CENTER（Contact）
+   ============================================ */
+.s-secure-channel {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--s-blue);
+    letter-spacing: 0.08em;
+}
+
+.s-contact-panel {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.s-hud-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.s-hud-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-right: 2rem;
+    border-right: 1px solid rgba(100, 116, 139, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.s-hud-gauge {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.s-gauge-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.s-gauge-track {
+    fill: none;
+    stroke: #1e293b;
+    stroke-width: 6;
+}
+
+.s-gauge-fill {
+    fill: none;
+    stroke: var(--s-blue);
+    stroke-width: 6;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.5s ease;
+}
+
+.s-gauge-spin {
+    fill: none;
+    stroke: var(--s-blue);
+    stroke-width: 4;
+    stroke-dasharray: 264;
+    stroke-dashoffset: 132;
+    /* SVGのtransformはデフォルト(0,0)回転のため明示的にcenterを指定 */
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: gaugeRotate 4s linear infinite;
+}
+
+@keyframes gaugeRotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.s-gauge-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.s-gauge-name {
+    font-family: monospace;
+    font-size: 0.6rem;
+    color: var(--s-dim);
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+/* Contact Form */
+.s-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+.s-form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.s-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.s-form-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--s-blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.s-form-input,
+.s-form-textarea {
+    background: rgba(11, 16, 38, 0.5);
+    border: 1px solid rgba(100, 116, 139, 0.4);
+    color: white;
+    padding: 0.75rem 1rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.s-form-input:focus,
+.s-form-textarea:focus {
+    border-color: var(--s-blue);
+    box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.1);
+}
+
+.s-form-input::placeholder,
+.s-form-textarea::placeholder {
+    color: var(--s-dim);
+}
+
+select.s-form-input option {
+    background: var(--s-dark);
+}
+
+.s-form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.s-transmit-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--s-blue);
+    color: var(--s-dark);
+    font-family: var(--s-font);
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+}
+
+.s-transmit-submit:hover {
+    background: white;
+}
+
+.s-transmit-submit:active {
+    transform: scale(0.98);
+}
+
+.s-send-icon {
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.s-transmit-submit:hover .s-send-icon {
+    transform: translate(3px, -3px);
+}
+
+/* Footer */
+.s-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--s-dark);
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.s-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--s-dim);
+}
+
+.s-footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.s-footer-links a {
+    color: var(--s-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.s-footer-links a:hover {
+    color: var(--s-blue);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .s-hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .s-hero-sub {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .s-hero-cta {
+        justify-content: center;
+    }
+
+    .s-solar-system {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto 2rem;
+    }
+
+    .s-orbit-1 {
+        width: 96px;
+        height: 96px;
+    }
+
+    .s-orbit-2 {
+        width: 152px;
+        height: 152px;
+    }
+
+    .s-orbit-3 {
+        width: 210px;
+        height: 210px;
+    }
+
+    .s-orbit-4 {
+        width: 270px;
+        height: 270px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .s-nav-links,
+    .s-transmit-btn {
+        display: none;
+    }
+
+    .s-nav-toggle {
+        display: block;
+    }
+
+    .s-mission-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .s-contact-panel {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        overflow: visible;
+    }
+
+    .s-hud-col {
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-right: none;
+        border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+        justify-content: center;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .s-form-row-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .s-acc-content {
+        grid-template-columns: 1fr;
+    }
+
+    .s-acc-trigger {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .s-acc-content {
+        padding: 1rem 1.25rem 1.25rem;
+    }
+}

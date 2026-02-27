@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORBITAL.LOG — 宇宙工学ポートフォリオ</title>
+    <meta name="description" content="宇宙工学・SF作家のポートフォリオ。惑星が公転する太陽系型UIでミッションを展示。" />
+    <!-- Fonts: Exo 2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind (ゴールデンマスター標準) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body>
+    <!-- ============================================================
+         背景エフェクト（固定）
+    ============================================================ -->
+    <div class="s-bg-stars" id="starfield" aria-hidden="true"></div>
+    <div class="s-bg-nebula" aria-hidden="true"></div>
+    <div class="s-scanline" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         Navigation
+    ============================================================ -->
+    <nav class="s-nav" id="nav">
+        <div class="s-nav-inner">
+            <a href="#hero" class="s-nav-logo">
+                <span class="s-logo-rocket">🚀</span>
+                <span>ORBITAL<span class="s-accent">.LOG</span></span>
+            </a>
+            <ul class="s-nav-links" id="navLinks">
+                <li><a href="#mission-log">MISSION LOG</a></li>
+                <li><a href="#archives">ARCHIVES</a></li>
+                <li><a href="#command">COMMAND</a></li>
+            </ul>
+            <a href="#command" class="s-transmit-btn">TRANSMIT ↗</a>
+            <button class="s-nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+        </div>
+    </nav>
+
+    <!-- モバイルメニューオーバーレイ -->
+    <div class="s-mobile-menu" id="mobileMenu" hidden>
+        <button class="s-mobile-close" id="mobileClose" aria-label="閉じる">✕</button>
+        <nav class="s-mobile-nav">
+            <a href="#mission-log" class="s-mobile-link">MISSION LOG</a>
+            <a href="#archives" class="s-mobile-link">ARCHIVES</a>
+            <a href="#command" class="s-mobile-link">COMMAND</a>
+        </nav>
+    </div>
+
+    <!-- ============================================================
+         HERO — SOLAR SYSTEM（Wow Factor 1: orbit animation）
+    ============================================================ -->
+    <section class="s-hero" id="hero">
+        <div class="s-hero-content">
+            <!-- テキスト -->
+            <div class="s-hero-text" data-reveal>
+                <div class="s-online-badge">
+                    <span class="s-pulse"></span>
+                    System Online
+                </div>
+                <h1 class="s-hero-title">
+                    EXPLORING THE<br>
+                    <span class="s-gradient-text">VAST EXPANSE</span>
+                </h1>
+                <p class="s-hero-sub">
+                    Aerospace Engineering &amp; Speculative Fiction Portfolio.<br>
+                    Bridging the gap between hard science and narrative propulsion.
+                </p>
+                <div class="s-hero-cta">
+                    <a href="#archives" class="s-btn-primary">🚀 Initialize Sequence</a>
+                    <a href="#mission-log" class="s-btn-secondary">📁 View Archives</a>
+                </div>
+            </div>
+
+            <!-- WOW FACTOR 1: 太陽系 orbit アニメーション -->
+            <div class="s-solar-system" id="solarSystem" aria-label="太陽系インタラクティブビジュアル">
+                <!-- 太陽（中心） -->
+                <div class="s-sun" id="sun">
+                    <div class="s-sun-core"></div>
+                    <div class="s-sun-glow"></div>
+                </div>
+
+                <!-- 軌道リング1 -->
+                <div class="s-orbit s-orbit-1">
+                    <div class="s-planet s-planet-1" data-planet="React" data-info="Frontend Development">
+                        <div class="s-planet-dot"></div>
+                        <div class="s-planet-label">React</div>
+                    </div>
+                </div>
+
+                <!-- 軌道リング2 -->
+                <div class="s-orbit s-orbit-2">
+                    <div class="s-planet s-planet-2" data-planet="Node.js" data-info="Backend Engineering">
+                        <div class="s-planet-dot"></div>
+                        <div class="s-planet-label">Node.js</div>
+                    </div>
+                </div>
+
+                <!-- 軌道リング3 -->
+                <div class="s-orbit s-orbit-3">
+                    <div class="s-planet s-planet-3" data-planet="Python" data-info="Data &amp; AI">
+                        <div class="s-planet-dot"></div>
+                        <div class="s-planet-label">Python</div>
+                    </div>
+                </div>
+
+                <!-- 軌道リング4 -->
+                <div class="s-orbit s-orbit-4">
+                    <div class="s-planet s-planet-4" data-planet="Rust" data-info="Systems Programming">
+                        <div class="s-planet-dot"></div>
+                        <div class="s-planet-label">Rust</div>
+                    </div>
+                </div>
+
+                <!-- 惑星Popover -->
+                <div class="s-popover" id="planetPopover" hidden>
+                    <div class="s-popover-title" id="popoverTitle"></div>
+                    <div class="s-popover-info" id="popoverInfo"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 軌道楕円ビジュアル（装飾） -->
+        <div class="s-orbit-deco s-orbit-deco-1" aria-hidden="true"></div>
+        <div class="s-orbit-deco s-orbit-deco-2" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT — MISSION LOG
+         宇宙ステーション航行ログUI
+    ============================================================ -->
+    <section class="s-section" id="mission-log">
+        <div class="s-container">
+            <div class="s-section-header" data-reveal>
+                <div class="s-divider-line"></div>
+                <h2 class="s-section-title">MISSION LOG</h2>
+                <div class="s-divider-line"></div>
+            </div>
+            <div class="s-mission-grid">
+                <!-- 左: 時系列ログ -->
+                <div class="s-glass-panel s-log-panel" data-reveal>
+                    <div class="s-panel-title">
+                        <span class="s-icon">⌨</span>
+                        TEMPORAL RECORDS
+                    </div>
+                    <div class="s-timeline">
+                        <div class="s-timeline-item">
+                            <div class="s-timeline-node s-node-active"></div>
+                            <div class="s-timeline-content">
+                                <span class="s-log-date s-date-blue">2023.08: STABILIZED</span>
+                                <h4>Narrative Core Stabilization</h4>
+                                <p>Published first volume of 'The Void Chronicles'. Critical acclaim received from
+                                    sector 7 reviewers.</p>
+                            </div>
+                        </div>
+                        <div class="s-timeline-item">
+                            <div class="s-timeline-node"></div>
+                            <div class="s-timeline-content">
+                                <span class="s-log-date s-date-purple">2022.11: DEPLOYED</span>
+                                <h4>Prototype Propulsion Drive</h4>
+                                <p>Successful integration of theoretical models into physical simulations. Efficiency
+                                    increased by 14%.</p>
+                            </div>
+                        </div>
+                        <div class="s-timeline-item">
+                            <div class="s-timeline-node"></div>
+                            <div class="s-timeline-content">
+                                <span class="s-log-date s-date-dim">2021.05: INITIATED</span>
+                                <h4>Orbital Mechanics Research</h4>
+                                <p>Established baseline parameters for trajectory optimization. Initial data collection
+                                    complete.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右: プロフィール -->
+                <div class="s-profile-col" data-reveal>
+                    <div class="s-profile-header">
+                        <div class="s-badge-icon">🎖</div>
+                        <div>
+                            <h3 class="s-profile-name">Commander's Profile</h3>
+                            <p class="s-profile-id">ID: 8492-AE-SF // Status: <span class="s-green">ACTIVE</span></p>
+                        </div>
+                    </div>
+                    <div class="s-profile-bio">
+                        <p>
+                            Specialized in two distinct but connected fields:
+                            <span class="s-underline-blue">Orbital Mechanics</span> and
+                            <span class="s-underline-purple">Narrative Propulsion Systems</span>.
+                        </p>
+                        <p>
+                            Whether calculating delta-v for a satellite insertion or plotting the character arc of a
+                            marooned pilot, the mission remains the same:
+                            <em class="s-white">Go Further.</em>
+                        </p>
+                    </div>
+                    <div class="s-stat-cards">
+                        <div class="s-stat-card">
+                            <div class="s-stat-num s-blue">12+</div>
+                            <div class="s-stat-label">Research Papers</div>
+                        </div>
+                        <div class="s-stat-card">
+                            <div class="s-stat-num s-purple">3</div>
+                            <div class="s-stat-label">Novels Published</div>
+                        </div>
+                        <div class="s-stat-card">
+                            <div class="s-stat-num s-blue">7</div>
+                            <div class="s-stat-label">Years Active</div>
+                        </div>
+                        <div class="s-stat-card">
+                            <div class="s-stat-num s-purple">∞</div>
+                            <div class="s-stat-label">Light-Years</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         WORKS — MISSION ARCHIVES
+         WOW FACTOR 2: Accordion展開リスト
+    ============================================================ -->
+    <section class="s-section s-section-alt" id="archives">
+        <div class="s-container">
+            <div class="s-section-header" data-reveal>
+                <h2 class="s-section-title">MISSION ARCHIVES</h2>
+                <div class="s-db-badge">
+                    <span class="s-pulse"></span>
+                    DATABASE_ACCESS_GRANTED
+                </div>
+            </div>
+
+            <div class="s-accordion" id="missionAccordion">
+
+                <!-- Mission 1 -->
+                <div class="s-acc-item" data-reveal>
+                    <button class="s-acc-trigger" aria-expanded="false" data-index="0">
+                        <div class="s-acc-left">
+                            <span class="s-mission-code s-blue">MISSION: AEGIS</span>
+                            <h3 class="s-acc-title">Low-Orbit Satellite Array</h3>
+                        </div>
+                        <div class="s-acc-right">
+                            <span class="s-status s-status-done">✓ COMPLETED</span>
+                            <span class="s-acc-chevron">▼</span>
+                        </div>
+                    </button>
+                    <div class="s-acc-body" id="acc-body-0">
+                        <div class="s-acc-content">
+                            <div class="s-acc-img-wrap">
+                                <div class="s-acc-img"
+                                    style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600');">
+                                </div>
+                            </div>
+                            <div class="s-acc-detail">
+                                <p>Designed the thermal control subsystem for a constellation of 24 communication
+                                    satellites. Achieved 99.9% operational uptime in simulation.</p>
+                                <div class="s-acc-tags">
+                                    <span class="s-tag">ENGINEERING</span>
+                                    <span class="s-tag">THERMAL CONTROL</span>
+                                    <span class="s-tag">SIMULATION</span>
+                                </div>
+                                <a href="#" class="s-acc-link">ACCESS DATA →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 2 -->
+                <div class="s-acc-item" data-reveal>
+                    <button class="s-acc-trigger" aria-expanded="false" data-index="1">
+                        <div class="s-acc-left">
+                            <span class="s-mission-code s-purple">MISSION: CHRONOS</span>
+                            <h3 class="s-acc-title">The Void Chronicles Vol. 1</h3>
+                        </div>
+                        <div class="s-acc-right">
+                            <span class="s-status s-status-pub">◆ PUBLISHED</span>
+                            <span class="s-acc-chevron">▼</span>
+                        </div>
+                    </button>
+                    <div class="s-acc-body" id="acc-body-1">
+                        <div class="s-acc-content">
+                            <div class="s-acc-img-wrap">
+                                <div class="s-acc-img"
+                                    style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600');">
+                                </div>
+                            </div>
+                            <div class="s-acc-detail">
+                                <p>A hard sci-fi novel exploring time dilation effects on a multi-generational colony
+                                    ship. Winner of the Nebula Rising Star award.</p>
+                                <div class="s-acc-tags">
+                                    <span class="s-tag s-tag--purple">NARRATIVE</span>
+                                    <span class="s-tag s-tag--purple">SCI-FI</span>
+                                    <span class="s-tag s-tag--purple">AWARD</span>
+                                </div>
+                                <a href="#" class="s-acc-link s-link-purple">READ EXCERPT →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission 3 -->
+                <div class="s-acc-item" data-reveal>
+                    <button class="s-acc-trigger" aria-expanded="false" data-index="2">
+                        <div class="s-acc-left">
+                            <span class="s-mission-code s-blue">MISSION: ION</span>
+                            <h3 class="s-acc-title">Next-Gen Ion Thruster Tech</h3>
+                        </div>
+                        <div class="s-acc-right">
+                            <span class="s-status s-status-wip">◉ IN PROGRESS</span>
+                            <span class="s-acc-chevron">▼</span>
+                        </div>
+                    </button>
+                    <div class="s-acc-body" id="acc-body-2">
+                        <div class="s-acc-content">
+                            <div class="s-acc-img-wrap">
+                                <div class="s-acc-img"
+                                    style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=600');">
+                                </div>
+                            </div>
+                            <div class="s-acc-detail">
+                                <p>Developing a conceptual framework for high-efficiency ion thrusters utilizing new
+                                    metallic propellants. 68% complete.</p>
+                                <div class="s-acc-tags">
+                                    <span class="s-tag">R&amp;D</span>
+                                    <span class="s-tag">PROPULSION</span>
+                                    <span class="s-tag">IN PROGRESS</span>
+                                </div>
+                                <a href="#" class="s-acc-link">VIEW SPECS →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — COMMAND CENTER
+         コックピットUI / HUD サークル
+    ============================================================ -->
+    <section class="s-section" id="command">
+        <div class="s-container">
+            <div class="s-section-header" data-reveal>
+                <h2 class="s-section-title">COMMAND CENTER</h2>
+                <p class="s-secure-channel">SECURE_CHANNEL_OPEN</p>
+            </div>
+            <div class="s-glass-panel s-contact-panel" data-reveal>
+                <!-- HUDグリッド背景 -->
+                <div class="s-hud-grid" aria-hidden="true"></div>
+                <!-- HUDサークルゲージ（左） -->
+                <div class="s-hud-col">
+                    <div class="s-hud-gauge">
+                        <svg class="s-gauge-svg" viewBox="0 0 100 100">
+                            <circle class="s-gauge-track" cx="50" cy="50" r="42" />
+                            <circle class="s-gauge-fill" cx="50" cy="50" r="42" stroke-dasharray="264"
+                                stroke-dashoffset="13" />
+                        </svg>
+                        <div class="s-gauge-label">98%</div>
+                    </div>
+                    <span class="s-gauge-name">SIGNAL_STRENGTH</span>
+
+                    <div class="s-hud-gauge s-gauge-2">
+                        <svg class="s-gauge-svg" viewBox="0 0 100 100">
+                            <circle class="s-gauge-track" cx="50" cy="50" r="42" />
+                            <circle class="s-gauge-spin s-gauge-spin-dashed" cx="50" cy="50" r="42" />
+                        </svg>
+                        <div class="s-gauge-label">🛰</div>
+                    </div>
+                    <span class="s-gauge-name">UPLINK_READY</span>
+                </div>
+                <!-- フォーム（右） -->
+                <form class="s-contact-form" id="contactForm">
+                    <div class="s-form-row s-form-row-2">
+                        <div class="s-form-group">
+                            <label class="s-form-label">DESIGNATION (NAME)</label>
+                            <input type="text" class="s-form-input" placeholder="Enter identification" required />
+                        </div>
+                        <div class="s-form-group">
+                            <label class="s-form-label">FREQUENCY (EMAIL)</label>
+                            <input type="email" class="s-form-input" placeholder="user@domain.com" required />
+                        </div>
+                    </div>
+                    <div class="s-form-group">
+                        <label class="s-form-label">TRANSMISSION TYPE</label>
+                        <select class="s-form-input">
+                            <option>Project Collaboration</option>
+                            <option>Freelance Inquiry</option>
+                            <option>General Comms</option>
+                        </select>
+                    </div>
+                    <div class="s-form-group">
+                        <label class="s-form-label">PAYLOAD (MESSAGE)</label>
+                        <textarea class="s-form-input s-form-textarea" placeholder="Enter message data..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="s-transmit-submit" id="submitBtn">
+                        <span>Initiate Transmission</span>
+                        <span class="s-send-icon">↗</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="s-footer">
+        <div class="s-footer-inner">
+            <span>© 2024 ORBITAL.LOG // All Systems Nominal</span>
+            <div class="s-footer-links">
+                <a href="#">Twitter</a>
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme JS -->
+    <script src="theme.js"></script>
+</body>
+
+</html>
