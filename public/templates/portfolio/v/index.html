@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Historian's Studio — Vintage Portfolio</title>
+    <meta name="description" content="ヴィンテージ写真家のポートフォリオ。セピアとビネットで100年前の名刺交換を再現。" />
+    <!-- Fonts: Playfair Display + Libre Baskerville -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body class="v-body">
+
+    <!-- ============================================================
+         WOW FACTOR 1: 全画面ビネット + ホコリテクスチャオーバーレイ
+         （常時表示 / pointer-events: none）
+    ============================================================ -->
+    <!-- ビネット（四隅暗変）-->
+    <div class="v-vignette" aria-hidden="true"></div>
+    <!-- ホコリ・傷テクスチャ（SVGインライン） -->
+    <div class="v-dust" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <filter id="dustFilter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65 0.65" numOctaves="4" stitchTiles="stitch"
+                    result="noise" />
+                <feColorMatrix type="saturate" values="0" in="noise" result="gray" />
+                <feBlend in="SourceGraphic" in2="gray" mode="screen" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#dustFilter)" opacity="0.08" fill="white" />
+        </svg>
+    </div>
+
+    <!-- ============================================================
+         Navigation
+    ============================================================ -->
+    <header class="v-header" id="header">
+        <div class="v-header-inner">
+            <a href="#hero" class="v-logo">
+                <span class="v-logo-icon">📷</span>
+                <div>
+                    <span class="v-logo-name">The Historian's Studio</span>
+                    <span class="v-logo-est">Est. 1920</span>
+                </div>
+            </a>
+            <nav class="v-nav" id="navMenu">
+                <a href="#folio">Portfolio</a>
+                <a href="#cv">Curriculum Vitae</a>
+                <a href="#postcard">Contact</a>
+            </nav>
+            <a href="#postcard" class="v-book-btn">Book a Sitting</a>
+            <button class="v-nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <div class="v-mobile-menu" id="mobileMenu" hidden>
+        <button class="v-mobile-close" id="mobileClose" aria-label="閉じる">✕</button>
+        <nav class="v-mobile-nav">
+            <a href="#folio" class="v-mobile-link">Portfolio</a>
+            <a href="#cv" class="v-mobile-link">Curriculum Vitae</a>
+            <a href="#postcard" class="v-mobile-link">Contact</a>
+        </nav>
+    </div>
+
+    <main>
+        <!-- ============================================================
+             HERO — PORTRAIT STUDIO
+             楕円形オーバルフレーム + セピア写真 + ビネット
+        ============================================================ -->
+        <section class="v-hero" id="hero">
+            <!-- 装飾角フロウリッシュ -->
+            <div class="v-corner v-corner-tl" aria-hidden="true"></div>
+            <div class="v-corner v-corner-br" aria-hidden="true"></div>
+
+            <div class="v-hero-grid">
+                <!-- 左: オーバルフレーム + セピア写真 -->
+                <div class="v-portrait-wrap" data-reveal>
+                    <!-- WOW FACTOR 1 個別: ホコリ傷テクスチャ（写真上に） -->
+                    <div class="v-portrait-dust" aria-hidden="true"></div>
+                    <div class="v-oval-outer">
+                        <div class="v-oval-inner">
+                            <!-- ビネットオーバーレイ -->
+                            <div class="v-oval-vignette" aria-hidden="true"></div>
+                            <!-- セピア写真 -->
+                            <img src="https://picsum.photos/seed/portrait1920/400/500" alt="ヴィンテージポートレート写真"
+                                class="v-portrait-img" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右: テキスト -->
+                <div class="v-hero-text" data-reveal>
+                    <div class="v-rule-accent">
+                        <span class="v-rule-line"></span>
+                        <span class="v-rule-label">Fine Art Photography</span>
+                        <span class="v-rule-line"></span>
+                    </div>
+                    <h1 class="v-hero-title">
+                        Capturing<br>
+                        <em>Timeless Moments</em>
+                    </h1>
+                    <p class="v-hero-sub">
+                        Specializing in vintage portraiture and historical reenactment photography.
+                        Preserving the past, one frame at a time, with the techniques of the old masters.
+                    </p>
+                    <div class="v-hero-cta">
+                        <a href="#folio" class="v-btn-primary">View Collection</a>
+                        <a href="#cv" class="v-btn-ghost">Read Biography</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 装飾区切り -->
+        <div class="v-divider" aria-hidden="true">
+            <span class="v-divider-line"></span>
+            <span class="v-divider-icon">✦</span>
+            <span class="v-divider-line"></span>
+        </div>
+
+        <!-- ============================================================
+             ABOUT — CURRICULUM VITAE
+             古典的な履歴書スタイル + 装飾横罫線
+        ============================================================ -->
+        <section class="v-section" id="cv">
+            <div class="v-container">
+                <h2 class="v-section-title v-center" data-reveal>Curriculum Vitae</h2>
+
+                <div class="v-cv-card" data-reveal>
+                    <!-- 縦ライン（タイムライン） -->
+                    <div class="v-cv-line" aria-hidden="true"></div>
+
+                    <div class="v-cv-list">
+                        <!-- CV Item 1 -->
+                        <div class="v-cv-item">
+                            <div class="v-cv-left">
+                                <h3 class="v-cv-degree">Master of Fine Arts</h3>
+                                <p class="v-cv-field">Photography</p>
+                            </div>
+                            <div class="v-cv-dot" aria-hidden="true"></div>
+                            <div class="v-cv-right">
+                                <p class="v-cv-org">University of Arts</p>
+                                <p class="v-cv-meta">2010 • Graduated with Honors</p>
+                            </div>
+                        </div>
+
+                        <div class="v-cv-divider" aria-hidden="true">— — —</div>
+
+                        <!-- CV Item 2 -->
+                        <div class="v-cv-item">
+                            <div class="v-cv-left">
+                                <h3 class="v-cv-degree">Senior Archivist</h3>
+                                <p class="v-cv-field">National Museum</p>
+                            </div>
+                            <div class="v-cv-dot" aria-hidden="true"></div>
+                            <div class="v-cv-right">
+                                <p class="v-cv-org">Washington, D.C.</p>
+                                <p class="v-cv-meta">2012–2018 • Head of Restoration</p>
+                            </div>
+                        </div>
+
+                        <div class="v-cv-divider" aria-hidden="true">— — —</div>
+
+                        <!-- CV Item 3 -->
+                        <div class="v-cv-item">
+                            <div class="v-cv-left">
+                                <h3 class="v-cv-degree">Published Author</h3>
+                                <p class="v-cv-field">'Echoes of the Past'</p>
+                            </div>
+                            <div class="v-cv-dot" aria-hidden="true"></div>
+                            <div class="v-cv-right">
+                                <p class="v-cv-org">Historical Press</p>
+                                <p class="v-cv-meta">2019 • Best Selling Art Book</p>
+                            </div>
+                        </div>
+
+                        <div class="v-cv-divider" aria-hidden="true">— — —</div>
+
+                        <!-- CV Item 4 (現在) -->
+                        <div class="v-cv-item">
+                            <div class="v-cv-left">
+                                <h3 class="v-cv-degree">Private Studio</h3>
+                                <p class="v-cv-field">Owner &amp; Photographer</p>
+                            </div>
+                            <div class="v-cv-dot v-cv-dot-current" aria-hidden="true"></div>
+                            <div class="v-cv-right">
+                                <p class="v-cv-org">New York, NY</p>
+                                <p class="v-cv-meta">2020 – Present</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             WORKS — PORTFOLIO FOLIO
+             WOW FACTOR 2: セピア→カラーHover変化
+             写真カード: 微妙な傾き + ページ折れ角（:after）
+        ============================================================ -->
+        <section class="v-section v-section-folio" id="folio">
+            <div class="v-container">
+                <div class="v-folio-header" data-reveal>
+                    <span class="v-folio-eyebrow">Selected Works</span>
+                    <h2 class="v-section-title">The Folio</h2>
+                </div>
+
+                <div class="v-folio-grid">
+                    <!-- 作品 1 -->
+                    <div class="v-folio-card v-card-tilt-1" data-reveal>
+                        <div class="v-card-inner corner-fold">
+                            <div class="v-card-img-wrap">
+                                <!-- WOW FACTOR 2: sepia-effectクラスでセピア→カラー -->
+                                <img src="https://picsum.photos/seed/lady1922/400/500" alt="Lady in Waiting — ポートレート"
+                                    class="v-card-img v-sepia" />
+                            </div>
+                            <div class="v-card-caption">
+                                <h3 class="v-card-title">Lady in Waiting</h3>
+                                <p class="v-card-meta">Portraiture • 1922 Style</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品 2（少し下にオフセット） -->
+                    <div class="v-folio-card v-folio-card-offset v-card-tilt-2" data-reveal>
+                        <div class="v-card-inner corner-fold">
+                            <div class="v-card-img-wrap">
+                                <img src="https://picsum.photos/seed/worker1920/400/500"
+                                    alt="The Working Man — キャラクタースタディ" class="v-card-img v-sepia" />
+                            </div>
+                            <div class="v-card-caption">
+                                <h3 class="v-card-title">The Working Man</h3>
+                                <p class="v-card-meta">Character Study</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品 3 -->
+                    <div class="v-folio-card v-card-tilt-3" data-reveal>
+                        <div class="v-card-inner corner-fold">
+                            <div class="v-card-img-wrap">
+                                <img src="https://picsum.photos/seed/dogportrait/400/500"
+                                    alt="Loyal Companion — ペットポートレート" class="v-card-img v-sepia" />
+                            </div>
+                            <div class="v-card-caption">
+                                <h3 class="v-card-title">Loyal Companion</h3>
+                                <p class="v-card-meta">Pet Portraiture</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="v-folio-more" data-reveal>
+                    <a href="#" class="v-link-more">View Entire Archive →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTACT — POST CARD
+             ポストカードデザイン（左: メッセージ / 右: 宛先+切手）
+        ============================================================ -->
+        <section class="v-section" id="postcard">
+            <!-- 背景ドットパターン -->
+            <div class="v-postcard-bg" aria-hidden="true"></div>
+            <div class="v-container" style="position:relative; z-index:10;">
+                <div class="v-postcard" data-reveal>
+                    <!-- 縦の破線（ポストカード区切り） -->
+                    <div class="v-postcard-split" aria-hidden="true"></div>
+
+                    <!-- 左: メッセージフォーム -->
+                    <div class="v-postcard-left">
+                        <h3 class="v-postcard-title">Send a Correspondence</h3>
+                        <form class="v-form" id="contactForm">
+                            <div class="v-form-group">
+                                <label class="v-form-label">Full Name</label>
+                                <input type="text" class="v-form-input" placeholder="Your Name" />
+                            </div>
+                            <div class="v-form-group">
+                                <label class="v-form-label">Email Address</label>
+                                <input type="email" class="v-form-input" placeholder="your@email.com" />
+                            </div>
+                            <div class="v-form-group">
+                                <label class="v-form-label">Message</label>
+                                <textarea class="v-form-input v-form-textarea" placeholder="Your message..."></textarea>
+                            </div>
+                            <button type="submit" class="v-send-btn" id="submitBtn">Send Post ✉</button>
+                        </form>
+                    </div>
+
+                    <!-- 右: 宛先 + 切手 -->
+                    <div class="v-postcard-right">
+                        <!-- 切手風スタンプ -->
+                        <div class="v-stamp" aria-hidden="true">
+                            <span class="v-stamp-icon">📬</span>
+                            <span class="v-stamp-text">Postage</span>
+                        </div>
+
+                        <!-- 消印 -->
+                        <div class="v-postmark" aria-hidden="true">
+                            <div class="v-postmark-circle">
+                                <span>NEW YORK</span>
+                                <span>NOV 1920</span>
+                            </div>
+                        </div>
+
+                        <!-- 住所（手書き風線） -->
+                        <div class="v-address">
+                            <div class="v-address-line">The Historian's Studio</div>
+                            <div class="v-address-line">124 Vintage Avenue</div>
+                            <div class="v-address-line">New York, NY 10012</div>
+                        </div>
+
+                        <div class="v-contact-icons">
+                            <a href="#">📷</a>
+                            <a href="#">✉</a>
+                            <a href="#">🔗</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="v-footer">
+        <div class="v-footer-inner">
+            <div class="v-footer-brand">
+                <h4>The Historian's Studio</h4>
+                <p>Preserving history since 1920</p>
+            </div>
+            <div class="v-footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Credits</a>
+            </div>
+            <p class="v-footer-copy">© 2024 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Theme JS -->
+    <script src="theme.js"></script>
+</body>
+
+</html>
