@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Data Portfolio — データが繋がる瞬間</title>
+    <meta name="description" content="データサイエンティスト・ML研究者のポートフォリオ。粒子ネットワークで可視化する「データが繋がる瞬間」。" />
+    <!-- Fonts: Roboto Mono (全セクション統一) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind (ゴールデンマスター標準) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="../../../assets/css/portfolio-base.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="theme.css" />
+</head>
+
+<body>
+    <!-- ============================================================
+         Navigation
+    ============================================================ -->
+    <nav class="q-nav" id="nav">
+        <div class="q-nav-inner">
+            <a href="#" class="q-nav-logo">
+                <span class="q-logo-bracket">[</span>Q<span class="q-logo-bracket">]</span>
+                <span class="q-logo-text">DATA</span>
+            </a>
+            <ul class="q-nav-links" id="navLinks">
+                <li><a href="#about">./Profile</a></li>
+                <li><a href="#research">./Research</a></li>
+                <li><a href="#skills">./Skills</a></li>
+                <li><a href="#contact">./Contact</a></li>
+            </ul>
+            <a href="#" class="q-cv-btn">
+                <span>↓</span> DATA_CV.pdf
+            </a>
+            <button class="q-nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         HERO — PARTICLE NETWORK CANVAS
+         Wow Factor: Canvas粒子がリアルタイムにエッジを形成。
+                     マウスに近い粒子は反発（力場）。
+    ============================================================ -->
+    <section class="q-hero" id="home">
+        <canvas id="particleCanvas" class="q-canvas"></canvas>
+        <div class="q-hero-content">
+            <div class="q-status-badge">
+                <span class="q-pulse"></span>
+                <span>SYSTEM ONLINE</span>
+            </div>
+            <h1 class="q-hero-title">
+                <span class="q-title-white">PREDICTIVE</span>
+                <span class="q-title-cyan">ARCHITECTURES</span>
+            </h1>
+            <p class="q-hero-sub">
+                機械学習と量子計算の交差点を探求する。<br>
+                複雑系のための堅牢な予測モデルを構築。
+            </p>
+            <div class="q-hero-cta">
+                <a href="#research" class="q-btn-primary">INITIALIZE_PROJECT()</a>
+                <a href="#research" class="q-btn-ghost">VIEW_PUBLICATIONS()</a>
+            </div>
+        </div>
+        <div class="q-scroll-hint">
+            <span>SCROLL</span>
+            <div class="q-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT — DATA PROFILE DASHBOARD
+         左: スペック + バー/ゲージ  右: 六角形写真
+    ============================================================ -->
+    <section class="q-about" id="about">
+        <div class="q-container">
+            <div class="q-about-grid">
+                <!-- 左: プロフィールカード -->
+                <div class="q-profile-card" data-reveal>
+                    <div class="q-card-topbar"></div>
+                    <div class="q-profile-inner">
+                        <div class="q-hex-wrap">
+                            <div class="q-hex-photo"
+                                style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400');">
+                            </div>
+                            <div class="q-hex-badge">✓</div>
+                        </div>
+                        <h3 class="q-profile-name">Dr. Alex Chen</h3>
+                        <p class="q-profile-role">Lead ML Engineer | PhD Comp. Physics</p>
+                        <p class="q-profile-bio">
+                            深層学習・ニューラルネットワーク・確率論的モデリングを専門とする。
+                            生データを実用的なインテリジェンスへと変換する。
+                        </p>
+                        <div class="q-profile-links">
+                            <a href="mailto:" class="q-icon-link" title="Email">✉</a>
+                            <a href="#" class="q-icon-link" title="Scholar">📄</a>
+                            <a href="#" class="q-icon-link" title="GitHub">⌥</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右: Statsグリッド (カウントアップ) -->
+                <div class="q-stats-grid">
+                    <div class="q-stat-card q-stat-blue" data-reveal>
+                        <div class="q-stat-header">
+                            <span class="q-stat-label">Projects Completed</span>
+                            <span class="q-stat-icon">◈</span>
+                        </div>
+                        <div class="q-stat-value">
+                            <span class="q-count" data-target="42">0</span>
+                            <span class="q-stat-delta">+3 this month</span>
+                        </div>
+                        <div class="q-stat-bar">
+                            <div class="q-stat-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="q-stat-card q-stat-cyan" data-reveal>
+                        <div class="q-stat-header">
+                            <span class="q-stat-label">Models Deployed</span>
+                            <span class="q-stat-icon">◉</span>
+                        </div>
+                        <div class="q-stat-value">
+                            <span class="q-count" data-target="15">0</span>
+                            <span class="q-stat-delta q-delta-green">98.5% uptime</span>
+                        </div>
+                        <div class="q-stat-bar">
+                            <div class="q-stat-fill q-fill-cyan" data-width="60"></div>
+                        </div>
+                    </div>
+                    <div class="q-stat-card q-stat-purple" data-reveal>
+                        <div class="q-stat-header">
+                            <span class="q-stat-label">Citations</span>
+                            <span class="q-stat-icon">◎</span>
+                        </div>
+                        <div class="q-stat-value">
+                            <span class="q-count" data-target="850">0</span>
+                            <span class="q-stat-plus">+</span>
+                            <span class="q-stat-delta q-delta-green">+120 this year</span>
+                        </div>
+                        <div class="q-stat-bar">
+                            <div class="q-stat-fill q-fill-purple" data-width="92"></div>
+                        </div>
+                    </div>
+                    <div class="q-stat-card q-stat-pink" data-reveal>
+                        <div class="q-stat-header">
+                            <span class="q-stat-label">Algorithm Efficiency</span>
+                            <span class="q-stat-icon">⚡</span>
+                        </div>
+                        <div class="q-stat-value">
+                            <span class="q-stat-text-value">O(n)</span>
+                            <span class="q-stat-delta">Avg complexity</span>
+                        </div>
+                        <div class="q-stat-bar">
+                            <div class="q-stat-fill q-fill-pink" data-width="75"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         RESEARCH — PAPERS LIST
+         縦積みリスト形式。Hover: 右にサムネイル表示
+    ============================================================ -->
+    <section class="q-research" id="research">
+        <div class="q-container">
+            <div class="q-section-header">
+                <div>
+                    <h2 class="q-section-title" data-reveal>Research &amp; Publications</h2>
+                    <p class="q-section-sub" data-reveal>Selected works from 2020–2024</p>
+                </div>
+                <a href="#" class="q-archive-link">VIEW_ARCHIVE →</a>
+            </div>
+            <div class="q-papers-list">
+                <!-- Paper 1 -->
+                <article class="q-paper" data-reveal>
+                    <div class="q-paper-meta">
+                        <span class="q-doi">DOI: 10.1038/s41586-023-01</span>
+                        <span class="q-tag q-tag-blue">Machine Learning</span>
+                    </div>
+                    <h3 class="q-paper-title">Quantum Entanglement in Neural Network Architectures</h3>
+                    <p class="q-paper-abstract">
+                        量子もつれを模倣した新アーキテクチャを提案し、深層ニューラルネットワークの
+                        層間情報伝達効率を改善。学習時間を40%削減。
+                    </p>
+                    <div class="q-paper-footer">
+                        <span>Cited by: 124</span>
+                        <span>Published: Nature Intelligence</span>
+                    </div>
+                    <!-- Hover thumbnail -->
+                    <div class="q-paper-thumb">
+                        <div class="q-thumb-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=200');">
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Paper 2 -->
+                <article class="q-paper" data-reveal>
+                    <div class="q-paper-meta">
+                        <span class="q-doi">DOI: 10.1109/TPAMI.2022</span>
+                        <span class="q-tag q-tag-cyan">Computer Vision</span>
+                    </div>
+                    <h3 class="q-paper-title">Stochastic Modeling for High-Noise Image Reconstruction</h3>
+                    <p class="q-paper-abstract">
+                        確率過程を用いた極高ノイズデータセットからの高解像度画像再構成。
+                        深宇宙天文撮影・医療診断への応用。
+                    </p>
+                    <div class="q-paper-footer">
+                        <span>Cited by: 89</span>
+                        <span>Published: IEEE TPAMI</span>
+                    </div>
+                    <div class="q-paper-thumb">
+                        <div class="q-thumb-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200');">
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Paper 3 -->
+                <article class="q-paper" data-reveal>
+                    <div class="q-paper-meta">
+                        <span class="q-doi">DOI: 10.48550/arXiv.2304</span>
+                        <span class="q-tag q-tag-purple">NLP</span>
+                    </div>
+                    <h3 class="q-paper-title">Semantic Decay in Large Language Models</h3>
+                    <p class="q-paper-abstract">
+                        Transformerの長コンテキスト保持を分析。16kトークン超でコンテキスト関連性が
+                        非線形に低下する「意味的減衰」現象を特定。
+                    </p>
+                    <div class="q-paper-footer">
+                        <span>Cited by: 45</span>
+                        <span>Preprint: arXiv</span>
+                    </div>
+                    <div class="q-paper-thumb">
+                        <div class="q-thumb-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=200');">
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS — WEIGHTED GRAPH (SVG Canvas)
+         Wow Factor: ノードサイズがレベルを示す重み付きグラフ
+    ============================================================ -->
+    <section class="q-skills" id="skills">
+        <div class="q-container">
+            <div class="q-section-center" data-reveal>
+                <h2 class="q-section-title">Competency Graph</h2>
+                <p class="q-section-sub">
+                    技術的な熟練度の重み付きグラフ表現。ノードサイズが専門性の深さに対応。
+                </p>
+            </div>
+            <!-- SVG スキルグラフ (theme.jsで動的に描画) -->
+            <div class="q-graph-wrap" data-reveal>
+                <canvas id="skillGraph" class="q-skill-canvas"></canvas>
+                <!-- Node labels (CSS overlay) -->
+                <div class="q-graph-legend" id="graphLegend"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — SIGNAL ENDPOINT (API UIモチーフ)
+    ============================================================ -->
+    <section class="q-contact" id="contact">
+        <div class="q-container">
+            <div class="q-contact-grid">
+                <!-- 左: API エンドポイント風フォーム -->
+                <div class="q-endpoint-panel" data-reveal>
+                    <div class="q-endpoint-header">
+                        <div class="q-method-badge">POST</div>
+                        <span class="q-endpoint-path">/api/v1/contact</span>
+                        <span class="q-status-code">200 OK</span>
+                    </div>
+                    <form class="q-contact-form" id="contactForm">
+                        <div class="q-form-field">
+                            <label class="q-field-label">// sender.name <span class="q-required">*</span></label>
+                            <div class="q-input-wrap">
+                                <span class="q-input-quote">"</span>
+                                <input type="text" class="q-input" placeholder="John Doe" required id="senderName" />
+                                <span class="q-input-quote">"</span>
+                            </div>
+                        </div>
+                        <div class="q-form-field">
+                            <label class="q-field-label">// sender.email <span class="q-required">*</span></label>
+                            <div class="q-input-wrap">
+                                <span class="q-input-quote">"</span>
+                                <input type="email" class="q-input" placeholder="john@example.com" required
+                                    id="senderEmail" />
+                                <span class="q-input-quote">"</span>
+                            </div>
+                        </div>
+                        <div class="q-form-field">
+                            <label class="q-field-label">// message.body <span class="q-required">*</span></label>
+                            <div class="q-input-wrap q-input-wrap--area">
+                                <span class="q-input-quote q-quote-top">"</span>
+                                <textarea class="q-input q-textarea"
+                                    placeholder="Hello Dr. Chen, I'm interested in collaborating on..." required
+                                    id="messageBody"></textarea>
+                                <span class="q-input-quote q-quote-bottom">"</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="q-submit-btn" id="submitBtn">
+                            <span class="q-send-icon">▶</span>
+                            SEND_REQUEST()
+                        </button>
+                    </form>
+                    <div class="q-response-panel" id="responsePanel" hidden>
+                        <div class="q-response-header">
+                            <span class="q-res-code q-res-ok">201 Created</span>
+                        </div>
+                        <pre class="q-response-body">{
+  "status": "success",
+  "message": "Request received.",
+  "id": "<span id="responseId">MSG-000</span>"
+}</pre>
+                    </div>
+                </div>
+
+                <!-- 右: コネクション情報 -->
+                <div class="q-contact-info" data-reveal>
+                    <div class="q-info-block">
+                        <div class="q-info-label">// endpoint.host</div>
+                        <div class="q-info-value">quantumdata.dev</div>
+                    </div>
+                    <div class="q-info-block">
+                        <div class="q-info-label">// contact.email</div>
+                        <div class="q-info-value q-clickable">alex@quantumdata.dev</div>
+                    </div>
+                    <div class="q-info-block">
+                        <div class="q-info-label">// contact.location</div>
+                        <div class="q-info-value">Tokyo, Japan — UTC+9</div>
+                    </div>
+                    <div class="q-info-block">
+                        <div class="q-info-label">// availability.status</div>
+                        <div class="q-info-value">
+                            <span class="q-avail-dot"></span> Open to collaboration
+                        </div>
+                    </div>
+                    <div class="q-social-row">
+                        <a href="#" class="q-social-link">GitHub</a>
+                        <span class="q-divider">/</span>
+                        <a href="#" class="q-social-link">Scholar</a>
+                        <span class="q-divider">/</span>
+                        <a href="#" class="q-social-link">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="q-footer">
+        <p>Designed &amp; Built by Quantum Data Systems &copy; 2024</p>
+    </footer>
+
+    <!-- Theme JS (粒子ネットワーク + スキルグラフ + インタラクション) -->
+    <script src="theme.js"></script>
+</body>
+
+</html>

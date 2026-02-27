@@ -1,0 +1,1238 @@
+/* ============================================
+   Quantum Portfolio Theme — Q
+   Colors: #0066CC（科学青）/ #00CCFF（エネルギー）/ #FFFFFF（粒子）
+   Font:   Roboto Mono（全て）
+   ============================================ */
+
+/* ---- CSS Variables ---- */
+:root {
+    --q-blue: #0066CC;
+    --q-cyan: #00CCFF;
+    --q-purple: #6600CC;
+    --q-pink: #CC0066;
+    --q-bg-dark: #0A0F1A;
+    --q-bg-mid: #0D1527;
+    --q-bg-card: #111827;
+    --q-border: rgba(0, 102, 204, 0.25);
+    --q-border-glow: rgba(0, 204, 255, 0.4);
+    --q-text: #E2E8F0;
+    --q-text-dim: #64748B;
+    --q-green: #10B981;
+    --q-font: 'Roboto Mono', 'Courier New', monospace;
+    --q-shadow-blue: 0 0 20px rgba(0, 102, 204, 0.3);
+    --q-shadow-cyan: 0 0 20px rgba(0, 204, 255, 0.3);
+}
+
+/* ---- Base ---- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--q-font);
+    background: var(--q-bg-dark);
+    color: var(--q-text);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.q-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.4s ease;
+}
+
+.q-nav.scrolled {
+    background: rgba(10, 15, 26, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--q-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.q-nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.q-nav-logo {
+    text-decoration: none;
+    color: var(--q-text);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.q-logo-bracket {
+    color: var(--q-cyan);
+}
+
+.q-logo-text {
+    color: var(--q-cyan);
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    margin-left: 0.5rem;
+}
+
+.q-nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+}
+
+.q-nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--q-text-dim);
+    transition: color 0.3s;
+}
+
+.q-nav-links a:hover {
+    color: var(--q-cyan);
+}
+
+.q-cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: var(--q-blue);
+    color: white;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 102, 204, 0.5);
+    box-shadow: var(--q-shadow-blue);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.q-cv-btn:hover {
+    background: var(--q-cyan);
+    border-color: var(--q-cyan);
+    color: var(--q-bg-dark);
+    box-shadow: var(--q-shadow-cyan);
+}
+
+.q-nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.q-nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--q-cyan);
+    transition: all 0.3s;
+}
+
+/* ============================================
+   Container
+   ============================================ */
+.q-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ============================================
+   HERO — PARTICLE CANVAS NETWORK
+   ============================================ */
+.q-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--q-bg-dark);
+}
+
+.q-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.q-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+}
+
+.q-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0, 204, 255, 0.35);
+    background: rgba(0, 204, 255, 0.08);
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(8px);
+}
+
+.q-status-badge span:last-child {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--q-cyan);
+    font-weight: 700;
+}
+
+.q-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--q-cyan);
+    box-shadow: 0 0 8px var(--q-cyan);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(0.8);
+    }
+}
+
+.q-hero-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+}
+
+.q-title-white {
+    display: block;
+    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.q-title-cyan {
+    display: block;
+    color: var(--q-cyan);
+    text-shadow: 0 0 40px rgba(0, 204, 255, 0.5);
+}
+
+.q-hero-sub {
+    font-size: 1rem;
+    color: #94A3B8;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.q-hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.q-btn-primary,
+.q-btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    font-family: var(--q-font);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.q-btn-primary {
+    background: var(--q-blue);
+    color: white;
+    border: 1px solid rgba(0, 102, 204, 0.5);
+    box-shadow: 0 0 16px rgba(0, 102, 204, 0.5);
+}
+
+.q-btn-primary:hover {
+    background: var(--q-cyan);
+    color: var(--q-bg-dark);
+    box-shadow: 0 0 24px rgba(0, 204, 255, 0.6);
+}
+
+.q-btn-ghost {
+    background: transparent;
+    color: var(--q-text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.q-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--q-cyan);
+    color: var(--q-cyan);
+}
+
+/* スクロールヒント */
+.q-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+}
+
+.q-scroll-hint span {
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    color: var(--q-text-dim);
+}
+
+.q-scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--q-blue), transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.q-scroll-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, var(--q-cyan), transparent);
+    animation: scrollFlow 2s ease-in-out infinite;
+}
+
+@keyframes scrollFlow {
+
+    0%,
+    100% {
+        transform: translateY(-100%);
+    }
+
+    50% {
+        transform: translateY(100%);
+    }
+}
+
+/* ============================================
+   ABOUT — DATA PROFILE
+   ============================================ */
+.q-about {
+    padding: 8rem 0;
+    background: var(--q-bg-mid);
+    border-top: 1px solid var(--q-border);
+}
+
+.q-about-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* プロフィールカード */
+.q-profile-card {
+    background: var(--q-bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--q-border);
+    box-shadow: var(--q-shadow-blue);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.q-profile-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-card-topbar {
+    height: 3px;
+    background: linear-gradient(to right, var(--q-blue), var(--q-cyan));
+}
+
+.q-profile-inner {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* 六角形写真 */
+.q-hex-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.25rem;
+}
+
+.q-hex-photo {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.q-hex-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 28px;
+    height: 28px;
+    background: var(--q-bg-dark);
+    border: 2px solid var(--q-cyan);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--q-cyan);
+}
+
+.q-profile-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.3rem;
+}
+
+.q-profile-role {
+    font-size: 0.75rem;
+    color: var(--q-cyan);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.q-profile-bio {
+    font-size: 0.82rem;
+    color: #94A3B8;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.q-profile-links {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid var(--q-border);
+    padding-top: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.q-icon-link {
+    color: #64748B;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.q-icon-link:hover {
+    color: var(--q-blue);
+}
+
+/* Stats グリッド */
+.q-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.q-stat-card {
+    background: var(--q-bg-card);
+    border: 1px solid var(--q-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    border-left-width: 3px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+}
+
+.q-stat-card:hover {
+    box-shadow: var(--q-shadow-blue);
+}
+
+.q-stat-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-stat-blue {
+    border-left-color: var(--q-blue);
+}
+
+.q-stat-cyan {
+    border-left-color: var(--q-cyan);
+}
+
+.q-stat-purple {
+    border-left-color: var(--q-purple);
+}
+
+.q-stat-pink {
+    border-left-color: var(--q-pink);
+}
+
+.q-stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.6rem;
+}
+
+.q-stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--q-text-dim);
+}
+
+.q-stat-icon {
+    font-size: 1rem;
+    color: var(--q-blue);
+}
+
+.q-stat-cyan .q-stat-icon {
+    color: var(--q-cyan);
+}
+
+.q-stat-purple .q-stat-icon {
+    color: var(--q-purple);
+}
+
+.q-stat-pink .q-stat-icon {
+    color: var(--q-pink);
+}
+
+.q-stat-value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.q-count,
+.q-stat-text-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+}
+
+.q-stat-plus {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.q-stat-delta {
+    font-size: 0.7rem;
+    color: var(--q-text-dim);
+}
+
+.q-delta-green {
+    color: var(--q-green);
+}
+
+.q-stat-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.q-stat-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: var(--q-blue);
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.q-fill-cyan {
+    background: var(--q-cyan);
+}
+
+.q-fill-purple {
+    background: var(--q-purple);
+}
+
+.q-fill-pink {
+    background: var(--q-pink);
+}
+
+/* ============================================
+   RESEARCH — PAPERS LIST
+   ============================================ */
+.q-research {
+    padding: 8rem 0;
+    background: var(--q-bg-dark);
+    border-top: 1px solid var(--q-border);
+}
+
+.q-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.q-section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.q-section-title.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-section-center {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.q-section-center .q-section-title {
+    opacity: 1;
+    transform: none;
+}
+
+.q-section-sub {
+    font-size: 0.85rem;
+    color: var(--q-text-dim);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+}
+
+.q-section-sub.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-section-center .q-section-sub {
+    opacity: 1;
+    transform: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.q-archive-link {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--q-cyan);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.q-archive-link:hover {
+    opacity: 0.75;
+}
+
+.q-papers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.q-paper {
+    position: relative;
+    background: var(--q-bg-card);
+    border: 1px solid var(--q-border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.q-paper:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.q-paper:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.q-paper.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-paper:hover {
+    border-color: var(--q-blue);
+    box-shadow: var(--q-shadow-blue);
+}
+
+/* Hover時サムネイル */
+.q-paper-thumb {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(12px);
+    width: 140px;
+    height: 90px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--q-border);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.q-paper:hover .q-paper-thumb {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.q-thumb-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(60%);
+    transition: filter 0.3s ease;
+}
+
+.q-paper:hover .q-thumb-img {
+    filter: grayscale(0%);
+}
+
+.q-paper-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.q-doi {
+    font-size: 0.7rem;
+    color: var(--q-text-dim);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.q-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+    border: 1px solid;
+}
+
+.q-tag-blue {
+    color: var(--q-blue);
+    border-color: rgba(0, 102, 204, 0.4);
+}
+
+.q-tag-cyan {
+    color: var(--q-cyan);
+    border-color: rgba(0, 204, 255, 0.35);
+}
+
+.q-tag-purple {
+    color: var(--q-purple);
+    border-color: rgba(102, 0, 204, 0.4);
+}
+
+.q-paper-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+    padding-right: 160px;
+    /* thumbスペース */
+}
+
+.q-paper:hover .q-paper-title {
+    color: var(--q-cyan);
+}
+
+.q-paper-abstract {
+    font-size: 0.82rem;
+    color: #94A3B8;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    padding-right: 160px;
+}
+
+.q-paper-footer {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.72rem;
+    color: var(--q-text-dim);
+}
+
+/* ============================================
+   SKILLS — WEIGHTED SKILL GRAPH
+   Wow Factor: Canvas重み付きグラフ
+   ============================================ */
+.q-skills {
+    padding: 8rem 0;
+    background: var(--q-bg-mid);
+    border-top: 1px solid var(--q-border);
+}
+
+.q-graph-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--q-bg-card);
+    border: 1px solid var(--q-border);
+    border-radius: 16px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.q-graph-wrap.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-skill-canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.q-graph-legend {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+    white-space: nowrap;
+}
+
+/* ============================================
+   CONTACT — API ENDPOINT UI
+   ============================================ */
+.q-contact {
+    padding: 8rem 0;
+    background: var(--q-bg-dark);
+    border-top: 1px solid var(--q-border);
+}
+
+.q-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* エンドポイントパネル */
+.q-endpoint-panel {
+    background: var(--q-bg-card);
+    border: 1px solid var(--q-border);
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.q-endpoint-panel.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-endpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 102, 204, 0.12);
+    border-bottom: 1px solid var(--q-border);
+}
+
+.q-method-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    background: var(--q-blue);
+    color: white;
+    border-radius: 4px;
+}
+
+.q-endpoint-path {
+    font-size: 0.82rem;
+    color: var(--q-cyan);
+    flex: 1;
+}
+
+.q-status-code {
+    font-size: 0.72rem;
+    color: var(--q-green);
+    font-weight: 600;
+}
+
+.q-contact-form {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.q-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.q-field-label {
+    font-size: 0.72rem;
+    color: #4ADE80;
+    letter-spacing: 0.05em;
+}
+
+.q-required {
+    color: var(--q-pink);
+}
+
+.q-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--q-border);
+    border-radius: 4px;
+    padding: 0 0.75rem;
+    transition: border-color 0.3s;
+}
+
+.q-input-wrap:focus-within {
+    border-color: var(--q-cyan);
+    box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.15);
+}
+
+.q-input-wrap--area {
+    align-items: flex-start;
+    padding: 0.5rem 0.75rem;
+}
+
+.q-input-quote {
+    font-size: 1rem;
+    color: var(--q-cyan);
+    opacity: 0.6;
+    user-select: none;
+}
+
+.q-quote-top,
+.q-quote-bottom {
+    margin-top: 0.2rem;
+}
+
+.q-input,
+.q-textarea {
+    flex: 1;
+    font-family: var(--q-font);
+    font-size: 0.85rem;
+    color: var(--q-text);
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.65rem 0;
+    resize: none;
+}
+
+.q-textarea {
+    min-height: 100px;
+    padding: 0;
+}
+
+.q-input::placeholder,
+.q-textarea::placeholder {
+    color: var(--q-text-dim);
+}
+
+.q-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.75rem;
+    background: var(--q-blue);
+    color: white;
+    font-family: var(--q-font);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(0, 102, 204, 0.5);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: var(--q-shadow-blue);
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.q-submit-btn:hover {
+    background: var(--q-cyan);
+    color: var(--q-bg-dark);
+    box-shadow: var(--q-shadow-cyan);
+}
+
+.q-send-icon {
+    font-size: 0.75rem;
+}
+
+.q-response-panel {
+    margin: -1.75rem -1.5rem 0;
+    border-top: 1px solid var(--q-border);
+}
+
+.q-response-header {
+    padding: 0.6rem 1.5rem;
+    background: rgba(16, 185, 129, 0.08);
+    border-bottom: 1px solid var(--q-border);
+}
+
+.q-res-code {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.q-res-ok {
+    color: var(--q-green);
+}
+
+.q-response-body {
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    color: #94A3B8;
+    line-height: 1.8;
+    white-space: pre;
+}
+
+.q-response-body span {
+    color: var(--q-cyan);
+}
+
+/* コンタクト情報 */
+.q-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
+}
+
+.q-contact-info.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-info-block {
+    border-bottom: 1px solid var(--q-border);
+    padding-bottom: 1rem;
+}
+
+.q-info-label {
+    font-size: 0.7rem;
+    color: #4ADE80;
+    margin-bottom: 0.25rem;
+}
+
+.q-info-value {
+    font-size: 0.9rem;
+    color: var(--q-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.q-clickable {
+    color: var(--q-cyan);
+    cursor: pointer;
+}
+
+.q-clickable:hover {
+    text-decoration: underline;
+}
+
+.q-avail-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--q-green);
+    box-shadow: 0 0 8px var(--q-green);
+    animation: pulse 2s infinite;
+}
+
+.q-social-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.q-social-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--q-text-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.q-social-link:hover {
+    color: var(--q-cyan);
+}
+
+.q-divider {
+    color: var(--q-border);
+    font-size: 0.8rem;
+}
+
+/* Footer */
+.q-footer {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: var(--q-bg-mid);
+    border-top: 1px solid var(--q-border);
+}
+
+.q-footer p {
+    font-size: 0.75rem;
+    color: var(--q-text-dim);
+    letter-spacing: 0.06em;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+    .q-about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .q-profile-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .q-contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .q-nav-links {
+        display: none;
+    }
+
+    .q-cv-btn {
+        display: none;
+    }
+
+    .q-nav-toggle {
+        display: flex;
+    }
+
+    .q-nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 15, 26, 0.98);
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 999;
+    }
+
+    .q-nav-links.open a {
+        font-size: 1.2rem;
+    }
+
+    .q-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .q-paper-title,
+    .q-paper-abstract {
+        padding-right: 0;
+    }
+
+    .q-paper-thumb {
+        display: none;
+    }
+}
