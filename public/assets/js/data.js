@@ -43,8 +43,7 @@ const PORTAL_DATA = {
             color: '#ffcc00',
             theme: 'theme-portfolio',
             icon: 'palette',
-            image: '',
-            isComingSoon: true
+            image: ''
         }
     ],
     templates: {
@@ -763,20 +762,240 @@ const PORTAL_DATA = {
             }
         ],
         'portfolio': [
-            ...Array.from({ length: 26 }, (_, i) => {
-                const char = String.fromCharCode(65 + i); // A to Z
-                return {
-                    id: `pf_${char.toLowerCase()}`,
-                    name: `Portfolio ${char}`,
-                    tag: char,
-                    path: `templates/portfolio/${char.toLowerCase()}`,
-                    description: `Minimalist portfolio for creators ${char}.`,
-                    features: ['Gallery', 'Minimal', 'Creative'],
-                    colors: ['#ffcc00', '#111111', '#eeeeee'],
-                    image: '',
-                    themeLabel: `${char}: Portfolio`
-                };
-            })
+            {
+                id: 'pf_a', name: 'Aurora', tag: 'A', path: 'templates/portfolio/a',
+                description: '複数のグラデーションと発光効果を使った「生きたオーロラ」体験。ビジュアルデザイナーのポートフォリオに最適です。',
+                features: ['Aurora', 'Gradient', 'Visual Design'],
+                colors: ['#00f2ff', '#ff0055', '#1a1a2e'],
+                image: 'assets/thumbnails/portfolio/pf_a.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Aurora'
+            },
+            {
+                id: 'pf_b', name: 'Blueprint', tag: 'B', path: 'templates/portfolio/b',
+                description: '設計図の線がスクロールで描画される堅牢なデザイン。バックエンドエンジニアやシステムアーキテクトに。',
+                features: ['Blueprint', 'SVG Animation', 'System'],
+                colors: ['#2563eb', '#1e3a8a', '#f1f5f9'],
+                image: 'assets/thumbnails/portfolio/pf_b.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Blueprint'
+            },
+            {
+                id: 'pf_c', name: 'Cinematic', tag: 'C', path: 'templates/portfolio/c',
+                description: '21:9の画角と超低速ズーム効果。映像クリエイターやディレクターの作品を映画のように魅せます。',
+                features: ['Cinematic', 'Ken Burns', 'Video'],
+                colors: ['#000000', '#1a1a1a', '#ffffff'],
+                image: 'assets/thumbnails/portfolio/pf_c.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Cinematic'
+            },
+            {
+                id: 'pf_d', name: 'Darkmode', tag: 'D', path: 'templates/portfolio/d',
+                description: '完全な漆黒の背景に、ホバー時だけ局所的に発光するストイックな意匠。デベロッパーやハッカー向け。',
+                features: ['Darkmode', 'Terminal', 'Glow'],
+                colors: ['#00ff00', '#000000', '#111111'],
+                image: 'assets/thumbnails/portfolio/pf_d.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Darkmode'
+            },
+            {
+                id: 'pf_e', name: 'Ethereal', tag: 'E', path: 'templates/portfolio/e',
+                description: '圧倒的な余白と、スクロールで浮き上がる「雲のレイヤー」。女性的なUIデザインやアートに。',
+                features: ['Ethereal', 'Parallax', 'Feminine'],
+                colors: ['#fdf2f8', '#ffffff', '#db2777'],
+                image: 'assets/thumbnails/portfolio/pf_e.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Ethereal'
+            },
+            {
+                id: 'pf_f', name: 'Film', tag: 'F', path: 'templates/portfolio/f',
+                description: '横スクロールを強制するフィルムストリップレイアウト。写真家のアナログな作品集に没入感を与えます。',
+                features: ['Film', 'Horizontal Scroll', 'Photo'],
+                colors: ['#262626', '#171717', '#e5e5e5'],
+                image: 'assets/thumbnails/portfolio/pf_f.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Film'
+            },
+            {
+                id: 'pf_g', name: 'Glassmorphism', tag: 'G', path: 'templates/portfolio/g',
+                description: '強烈なメッシュグラデーション背景と、分厚い擦りガラスのカード。トレンドを追うUI/UXデザイナー向け。',
+                features: ['Glassmorphism', 'Mesh', 'Trendy'],
+                colors: ['#a855f7', '#ec4899', '#ffffff'],
+                image: 'assets/thumbnails/portfolio/pf_g.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Glassmorphism'
+            },
+            {
+                id: 'pf_h', name: 'Holographic', tag: 'H', path: 'templates/portfolio/h',
+                description: 'デバイスの傾きやマウス位置に応じた七色のホログラフィック反射。3D・クリプトアーティストの顔に。',
+                features: ['Holographic', 'RGB Split', '3D Art'],
+                colors: ['#00ffff', '#ff00ff', '#1a1a1a'],
+                image: 'assets/thumbnails/portfolio/pf_h.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Holographic'
+            },
+            {
+                id: 'pf_i', name: 'Infinite', tag: 'I', path: 'templates/portfolio/i',
+                description: 'Z軸の奥行きに特化。スクロールするたび星屑に飛び込んでいく圧倒的没入感。VFXアーティスト向け。',
+                features: ['Infinite', 'Z-axis', 'VFX'],
+                colors: ['#020617', '#1e293b', '#38bdf8'],
+                image: 'assets/thumbnails/portfolio/pf_i.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Infinite'
+            },
+            {
+                id: 'pf_j', name: 'Journal', tag: 'J', path: 'templates/portfolio/j',
+                description: 'タイポグラフィの美しさを極めた雑誌のような段組み。エディターや文筆家のコンテンツポートフォリオに。',
+                features: ['Journal', 'Typography', 'Editorial'],
+                colors: ['#f8fafc', '#334155', '#0f172a'],
+                image: 'assets/thumbnails/portfolio/pf_j.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Journal'
+            },
+            {
+                id: 'pf_k', name: 'Kinetic', tag: 'K', path: 'templates/portfolio/k',
+                description: 'テキストや画像が重力を持つように揺れる物理演算UI。クリエイティブコーダーやモーションデザイナーに。',
+                features: ['Kinetic', 'Physics', 'Motion'],
+                colors: ['#ef4444', '#171717', '#ffffff'],
+                image: 'assets/thumbnails/portfolio/pf_k.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Kinetic'
+            },
+            {
+                id: 'pf_l', name: 'Line', tag: 'L', path: 'templates/portfolio/l',
+                description: 'すべての境目が1pxの絶対的な実線で描かれるミニマル空間。建築家やミニマリストの思想を体現。',
+                features: ['Line', '1px Solid', 'Architect'],
+                colors: ['#ffffff', '#000000', '#a3a3a3'],
+                image: 'assets/thumbnails/portfolio/pf_l.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Line'
+            },
+            {
+                id: 'pf_m', name: 'Minimal', tag: 'M', path: 'templates/portfolio/m',
+                description: '極限まで装飾を削ぎ落とし、画面に入る瞬間に文字が静かに現れるReveal。アートディレクター至高の選択。',
+                features: ['Minimal', 'Reveal', 'Art Director'],
+                colors: ['#f5f5f5', '#1a1a1a', '#e5e5e5'],
+                image: 'assets/thumbnails/portfolio/pf_m.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Minimal'
+            },
+            {
+                id: 'pf_n', name: 'Neon', tag: 'N', path: 'templates/portfolio/n',
+                description: '本物のネオン管の輝きとランダムなフリッカー（点滅）アニメーション。ミュージシャンやナイトクラブ向け。',
+                features: ['Neon', 'Flicker', 'Night-life'],
+                colors: ['#000000', '#ff00ff', '#00ffff'],
+                image: 'assets/thumbnails/portfolio/pf_n.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Neon'
+            },
+            {
+                id: 'pf_o', name: 'Obsidian', tag: 'O', path: 'templates/portfolio/o',
+                description: '黒曜石のテクスチャと、上から滑り落ちる赤い光のスポットライト。ラグジュアリーブランドの威厳を。',
+                features: ['Obsidian', 'Spotlight', 'Luxury'],
+                colors: ['#0a0a0a', '#991b1b', '#262626'],
+                image: 'assets/thumbnails/portfolio/pf_o.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Obsidian'
+            },
+            {
+                id: 'pf_p', name: 'Paper', tag: 'P', path: 'templates/portfolio/p',
+                description: '紙の重なりと影の物理的正確さを追求。ホバーで本当に紙が持ち上がったかのような質感。イラストレーターに。',
+                features: ['Paper', 'Shadow', 'Illustrator'],
+                colors: ['#fefce8', '#78350f', '#fef08a'],
+                image: 'assets/thumbnails/portfolio/pf_p.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Paper'
+            },
+            {
+                id: 'pf_q', name: 'Quantum', tag: 'Q', path: 'templates/portfolio/q',
+                description: '無機質なノードとエッジが繋がり合うネットワークアニメーション。データサイエンティストの叡智を視覚化。',
+                features: ['Quantum', 'Network', 'Data Science'],
+                colors: ['#111827', '#10b981', '#ffffff'],
+                image: 'assets/thumbnails/portfolio/pf_q.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Quantum'
+            },
+            {
+                id: 'pf_r', name: 'Retro', tag: 'R', path: 'templates/portfolio/r',
+                description: '意図的なブロックノイズやRGBの色ズレ（Glitch）。インディーゲーム開発者のレトロなポートフォリオに。',
+                features: ['Retro', 'Glitch', '8-bit'],
+                colors: ['#172554', '#facc15', '#ef4444'],
+                image: 'assets/thumbnails/portfolio/pf_r.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Retro'
+            },
+            {
+                id: 'pf_s', name: 'Space', tag: 'S', path: 'templates/portfolio/s',
+                description: '直線的ではなく、中心の周りを衛星のように要素が「円軌道」で周回する独特のレイアウト。3Dクリエイター向け。',
+                features: ['Space', 'Orbit', 'Aerospace'],
+                colors: ['#0f172a', '#e2e8f0', '#3b82f6'],
+                image: 'assets/thumbnails/portfolio/pf_s.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Space'
+            },
+            {
+                id: 'pf_t', name: 'Typography', tag: 'T', path: 'templates/portfolio/t',
+                description: '巨大なアウトラインテキストが背景を埋め尽くし、スクロールでスライド。タイポグラファーの文字への執着を形に。',
+                features: ['Typography', 'Outline', 'Graphic'],
+                colors: ['#fafafa', '#000000', '#a1a1aa'],
+                image: 'assets/thumbnails/portfolio/pf_t.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Typography'
+            },
+            {
+                id: 'pf_u', name: 'Underwater', tag: 'U', path: 'templates/portfolio/u',
+                description: 'SVGフィルターによる水面のゆらぎエフェクト。ダイバーやネイチャーフォトグラファーの静謐な世界観。',
+                features: ['Underwater', 'Displacement', 'Nature'],
+                colors: ['#083344', '#22d3ee', '#cffafe'],
+                image: 'assets/thumbnails/portfolio/pf_u.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Underwater'
+            },
+            {
+                id: 'pf_v', name: 'Vintage', tag: 'V', path: 'templates/portfolio/v',
+                description: '薄いセピア・ビネットフィルターとホコリのテクスチャ。歴史家やクラフトマンの経年劣化したヴィンテージ空間。',
+                features: ['Vintage', 'Sepia', 'Craftsman'],
+                colors: ['#fde68a', '#451a03', '#92400e'],
+                image: 'assets/thumbnails/portfolio/pf_v.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Vintage'
+            },
+            {
+                id: 'pf_w', name: 'Watercolor', tag: 'W', path: 'templates/portfolio/w',
+                description: '画像の境界を水彩画の筆跡そのままの形にマスク（mask-image）。画家のための柔らかく曖昧な表現。',
+                features: ['Watercolor', 'Mask', 'Painter'],
+                colors: ['#fdf4ff', '#c026d3', '#fbcfe8'],
+                image: 'assets/thumbnails/portfolio/pf_w.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Watercolor'
+            },
+            {
+                id: 'pf_x', name: 'Xenon', tag: 'X', path: 'templates/portfolio/x',
+                description: 'ホバー時に白い光の帯（Sheen）が鋭く走るCSSアニメーション。インダストリアルデザインや自動車関連に。',
+                features: ['Xenon', 'Sheen', 'Industrial'],
+                colors: ['#1c1917', '#e7e5e4', '#fb923c'],
+                image: 'assets/thumbnails/portfolio/pf_x.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Xenon'
+            },
+            {
+                id: 'pf_y', name: 'Yarn', tag: 'Y', path: 'templates/portfolio/y',
+                description: 'すべてのボーダーを破線やステッチ風に見せた、丸みを帯びたポップな手触り感。アパレルや手芸作家に。',
+                features: ['Yarn', 'Dashed', 'Handcraft'],
+                colors: ['#fff1f2', '#e11d48', '#fecdd3'],
+                image: 'assets/thumbnails/portfolio/pf_y.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Yarn'
+            },
+            {
+                id: 'pf_z', name: 'Zen', tag: 'Z', path: 'templates/portfolio/z',
+                description: 'スクロールで「筆文字」が描かれるアニメーションと枯山水テクスチャ。和風建築家や哲学的なポートフォリオに。',
+                features: ['Zen', 'Brush', 'Japanese Architect'],
+                colors: ['#f5f5f4', '#1c1917', '#d6d3d1'],
+                image: 'assets/thumbnails/portfolio/pf_z.webp',
+                bgPosition: 'center 50%',
+                themeLabel: 'Zen'
+            }
         ]
     }
 };
