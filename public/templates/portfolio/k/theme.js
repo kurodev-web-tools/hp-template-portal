@@ -43,15 +43,41 @@ function initMobileMenu() {
     if (toggle && menu) {
         toggle.addEventListener('click', () => {
             menu.classList.toggle('active');
-            toggle.classList.toggle('active');
+            toggle.classList.toggle('is-open');
         });
 
         // Close on link click
         const links = menu.querySelectorAll('a');
         links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                toggle.classList.remove('active');
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                if (window.innerWidth <= 768) {
+                    menu.classList.remove('active');
+                    toggle.classList.remove('is-open');
+                }
+
+                const targetId = link.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        setTimeout(() => {
+                            gsap.to(window, {
+                                duration: 1.5,
+                                scrollTo: { y: target, offsetY: 50 },
+                                ease: 'power3.inOut'
+                            });
+                        }, 50);
+                    }
+                } else if (targetId === '#') {
+                    setTimeout(() => {
+                        gsap.to(window, {
+                            duration: 1.5,
+                            scrollTo: 0,
+                            ease: 'power3.inOut'
+                        });
+                    }, 50);
+                }
             });
         });
     }
