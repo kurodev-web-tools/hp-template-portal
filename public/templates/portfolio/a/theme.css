@@ -31,9 +31,7 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+/* GSAP scrollTo plugin handles scroll-behavior in JS */
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -759,11 +757,76 @@ body {
 
 @media (max-width: 768px) {
     .nav-menu {
-        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(5, 5, 8, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        display: flex;
+        padding: 0;
+        gap: 3rem;
+        border: none;
+        box-shadow: inset 0 -200px 200px -200px rgba(112, 0, 255, 0.3), inset 0 200px 200px -200px rgba(0, 240, 255, 0.1);
+    }
+
+    .nav-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-menu li {
+        list-style: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .nav-menu.is-open li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-menu.is-open li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.is-open li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.is-open li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.is-open li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-menu.is-open li:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 1.5rem;
+        letter-spacing: 0.2em;
+        background: linear-gradient(90deg, #fff, #ccc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .nav-toggle {
         display: flex;
+        z-index: 1001;
+        position: relative;
     }
 
     .hero-title {
@@ -875,4 +938,26 @@ body {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ============================================
+   Hamburger Menu
+   ============================================ */
+
+.nav-toggle span {
+    background: linear-gradient(90deg, var(--aurora-blue), var(--aurora-purple));
+    height: 1.5px;
+    border-radius: 1px;
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
 }
