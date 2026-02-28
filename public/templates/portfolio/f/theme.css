@@ -227,6 +227,27 @@ body {
     width: 30px;
     height: 2px;
     background: var(--film-white);
+    transition: var(--transition);
+}
+
+/* ============================================
+   Darkroom Mobile Menu Toggle
+   ============================================ */
+.nav-toggle.is-open span {
+    background: var(--darkroom-red);
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+    /* Gap 4px + span 2px = perfectly centered at 6px */
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ============================================
@@ -606,7 +627,72 @@ body {
 
 @media (max-width: 768px) {
     .nav-menu {
-        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(17, 17, 17, 0.98);
+        border: 15px solid var(--film-bg);
+        /* Film frame border */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999 !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.4s ease, visibility 0.4s;
+        display: flex !important;
+        padding: 0;
+        gap: 3rem;
+        margin: 0;
+    }
+
+    .nav-menu.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-menu li {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .nav-menu.is-open li {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .nav-menu.is-open li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.is-open li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.is-open li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.is-open li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-menu .nav-link {
+        font-family: var(--font-film);
+        font-size: 1.8rem;
+        color: var(--film-white);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    .nav-menu .nav-link:hover {
+        color: var(--darkroom-red);
+        text-decoration: none;
     }
 
     .nav-toggle {
