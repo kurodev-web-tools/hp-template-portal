@@ -288,6 +288,24 @@ body {
     width: 30px;
     height: 2px;
     background: #FFF;
+    transition: var(--transition);
+}
+
+/* ============================================
+   Glassmorphism Mobile Menu Toggle
+   ============================================ */
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    /* Gap 5px + span 2px = 7px to center perfectly */
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ============================================
@@ -619,7 +637,70 @@ body {
 
 @media (max-width: 768px) {
     .nav-menu.glass-panel {
-        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999 !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.5s ease, visibility 0.5s;
+        display: flex !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0;
+        gap: 3rem !important;
+    }
+
+    .nav-menu.glass-panel.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-menu.glass-panel li {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .nav-menu.glass-panel.is-open li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-menu.glass-panel.is-open li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.glass-panel.is-open li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.glass-panel.is-open li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.glass-panel .nav-link {
+        font-family: var(--font-main);
+        font-size: 2rem;
+        font-weight: 700;
+        color: #FFF;
+        letter-spacing: 0.05em;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-menu.glass-panel .nav-link:hover {
+        opacity: 0.8;
     }
 
     .nav-toggle {

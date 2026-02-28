@@ -71,39 +71,29 @@
 
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
-                if (navMenu.style.display === 'flex') {
-                    navMenu.style.display = 'none';
-                } else {
-                    navMenu.style.display = 'flex';
-                    navMenu.style.flexDirection = 'column';
-                    navMenu.style.position = 'absolute';
-                    navMenu.style.top = '100%';
-                    navMenu.style.left = '5%';
-                    navMenu.style.width = '90%';
-                    navMenu.style.background = 'rgba(255, 255, 255, 0.2)';
-                    navMenu.style.backdropFilter = 'blur(24px)';
-                    navMenu.style.webkitBackdropFilter = 'blur(24px)';
-                    navMenu.style.padding = '3rem 2rem';
-                    navMenu.style.gap = '2rem';
-                    navMenu.style.borderRadius = '20px';
-                    navMenu.style.border = '1px solid rgba(255,255,255,0.4)';
-                    navMenu.style.textAlign = 'center';
-                }
+                navToggle.classList.toggle('is-open');
+                navMenu.classList.toggle('is-open');
             });
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    if (window.innerWidth <= 768) navMenu.style.display = 'none';
+
+                    if (window.innerWidth <= 768) {
+                        navToggle.classList.remove('is-open');
+                        navMenu.classList.remove('is-open');
+                    }
 
                     const targetId = link.getAttribute('href');
                     const target = document.querySelector(targetId);
                     if (target) {
-                        gsap.to(window, {
-                            duration: 1.5,
-                            scrollTo: target,
-                            ease: 'power3.inOut'
-                        });
+                        setTimeout(() => {
+                            gsap.to(window, {
+                                duration: 1.5,
+                                scrollTo: target,
+                                ease: 'power3.inOut'
+                            });
+                        }, 50);
                     }
                 });
             });
