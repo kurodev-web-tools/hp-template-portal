@@ -75,36 +75,29 @@
 
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
-                if (navMenu.style.display === 'flex') {
-                    navMenu.style.display = 'none';
-                } else {
-                    navMenu.style.display = 'flex';
-                    navMenu.style.flexDirection = 'column';
-                    navMenu.style.position = 'absolute';
-                    navMenu.style.top = '100%';
-                    navMenu.style.left = '0';
-                    navMenu.style.width = '100%';
-                    navMenu.style.background = 'rgba(5, 5, 16, 0.98)';
-                    navMenu.style.padding = '3rem 2rem';
-                    navMenu.style.gap = '2rem';
-                    navMenu.style.textAlign = 'center';
-                    navMenu.style.borderBottom = '1px solid #00FF88';
-                }
+                navToggle.classList.toggle('is-open');
+                navMenu.classList.toggle('is-open');
             });
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    if (window.innerWidth <= 768) navMenu.style.display = 'none';
+
+                    if (window.innerWidth <= 768) {
+                        navToggle.classList.remove('is-open');
+                        navMenu.classList.remove('is-open');
+                    }
 
                     const targetId = link.getAttribute('href');
                     const target = document.querySelector(targetId);
                     if (target) {
-                        gsap.to(window, {
-                            duration: 1.5,
-                            scrollTo: target,
-                            ease: 'power3.inOut'
-                        });
+                        setTimeout(() => {
+                            gsap.to(window, {
+                                duration: 1.5,
+                                scrollTo: target,
+                                ease: 'power3.inOut'
+                            });
+                        }, 50);
                     }
                 });
             });
