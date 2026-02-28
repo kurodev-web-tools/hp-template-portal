@@ -84,46 +84,33 @@
             }
         });
 
-        // Smooth scroll for nav links targeting IDs
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const target = document.querySelector(targetId);
-                if (target) {
-                    gsap.to(window, {
-                        duration: 1.5,
-                        scrollTo: target,
-                        ease: 'power3.inOut'
-                    });
-                }
-            });
-        });
-
-        // Mobile Menu toggle (Golden Master + bugfix applied)
+        // Mobile Menu toggle (Ethereal)
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
-                if (navMenu.style.display === 'flex') {
-                    navMenu.style.display = 'none';
-                } else {
-                    navMenu.style.display = 'flex';
-                    navMenu.style.flexDirection = 'column';
-                    navMenu.style.position = 'absolute';
-                    navMenu.style.top = '100%';
-                    navMenu.style.left = '0';
-                    navMenu.style.width = '100%';
-                    navMenu.style.background = 'rgba(248, 249, 255, 0.98)';
-                    navMenu.style.padding = '3rem 2rem';
-                    navMenu.style.gap = '2rem';
-                    navMenu.style.borderBottom = '1px solid #E6E6FA';
-                }
+                navToggle.classList.toggle('is-open');
+                navMenu.classList.toggle('is-open');
             });
 
-            // Auto-close on link click (mobile)
+            // Smooth scroll for nav links targeting IDs
             navLinks.forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
                     if (window.innerWidth <= 768) {
-                        navMenu.style.display = 'none';
+                        navToggle.classList.remove('is-open');
+                        navMenu.classList.remove('is-open');
+                    }
+
+                    const targetId = link.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        setTimeout(() => {
+                            gsap.to(window, {
+                                duration: 1.5,
+                                scrollTo: target,
+                                ease: 'power3.inOut'
+                            });
+                        }, 50);
                     }
                 });
             });

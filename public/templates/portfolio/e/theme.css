@@ -230,6 +230,28 @@ h3,
 }
 
 /* ============================================
+   Ethereal Mobile Menu & Toggle
+   ============================================ */
+
+.nav-toggle.is-open span {
+    background: var(--ethereal-pink);
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    /* Gap 6px + span 1px = 7px to center perfectly */
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================
    Common Layout
    ============================================ */
 .container {
@@ -663,7 +685,78 @@ h3,
 
 @media (max-width: 768px) {
     .nav-menu {
-        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999 !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.6s;
+        display: flex !important;
+        padding: 0;
+        gap: 3rem;
+        margin: 0;
+        border: none;
+    }
+
+    .nav-menu.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-menu li {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .nav-menu.is-open li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-menu.is-open li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.is-open li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.is-open li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.is-open li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-menu.is-open li:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    .nav-menu .nav-link {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 2.2rem;
+        color: var(--ethereal-text);
+        letter-spacing: 0.1em;
+        text-transform: capitalize;
+        opacity: 1;
+    }
+
+    .nav-menu .nav-link:hover {
+        color: var(--ethereal-pink);
     }
 
     .nav-toggle {
