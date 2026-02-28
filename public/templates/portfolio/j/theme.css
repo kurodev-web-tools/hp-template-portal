@@ -212,6 +212,29 @@ body {
     width: 30px;
     height: 2px;
     background: var(--journal-ink);
+    transition: var(--transition);
+}
+
+/* ============================================
+   Editorial Mobile Menu Toggle
+   ============================================ */
+.nav-toggle.is-open span {
+    background: var(--journal-accent);
+    /* Changes to vermilion red when open */
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    /* Gap 6px + span 2px = 8px to center perfectly */
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Not difference mode on mobile for visibility */
@@ -604,7 +627,67 @@ body {
     }
 
     .nav-menu {
-        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: var(--journal-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999 !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.5s ease, visibility 0.5s;
+        display: flex !important;
+        padding: 0;
+        gap: 3rem;
+        margin: 0;
+    }
+
+    .nav-menu.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-menu li {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .nav-menu.is-open li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-menu.is-open li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.is-open li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.is-open li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.is-open li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 2.5rem;
+        color: var(--journal-ink) !important;
+    }
+
+    .nav-menu .nav-link::after {
+        background: var(--journal-accent);
+        height: 2px;
     }
 
     .nav-toggle {

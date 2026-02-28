@@ -72,42 +72,39 @@
 
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
-                if (navMenu.style.display === 'flex') {
-                    navMenu.style.display = 'none';
-                } else {
-                    navMenu.style.display = 'flex';
-                    navMenu.style.flexDirection = 'column';
-                    navMenu.style.position = 'absolute';
-                    navMenu.style.top = '100%';
-                    navMenu.style.left = '0';
-                    navMenu.style.width = '100%';
-                    navMenu.style.background = '#F9F7F0'; // Off white bg
-                    navMenu.style.padding = '3rem 2rem';
-                    navMenu.style.gap = '2rem';
-                    navMenu.style.borderBottom = '1px solid #2C3E50';
-                    navMenu.style.textAlign = 'center';
+                navToggle.classList.toggle('is-open');
+                navMenu.classList.toggle('is-open');
 
-                    // Fix link colors for mobile menu (override difference mode)
-                    navLinks.forEach(l => {
-                        l.style.color = '#2C3E50';
-                        l.style.fontSize = '1.2rem';
-                    });
+                // Toggle nav dark class specifically for mobile menu contrasting
+                if (navMenu.classList.contains('is-open')) {
+                    navToggle.classList.remove('nav-dark');
+                } else {
+                    if (window.scrollY < 50) {
+                        navToggle.classList.add('nav-dark');
+                    }
                 }
             });
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    if (window.innerWidth <= 768) navMenu.style.display = 'none';
+
+                    if (window.innerWidth <= 768) {
+                        navToggle.classList.remove('is-open');
+                        navMenu.classList.remove('is-open');
+                        if (window.scrollY < 50) navToggle.classList.add('nav-dark');
+                    }
 
                     const targetId = link.getAttribute('href');
                     const target = document.querySelector(targetId);
                     if (target) {
-                        gsap.to(window, {
-                            duration: 1.5,
-                            scrollTo: { y: target, offsetY: 50 },
-                            ease: 'power3.inOut'
-                        });
+                        setTimeout(() => {
+                            gsap.to(window, {
+                                duration: 1.5,
+                                scrollTo: { y: target, offsetY: 50 },
+                                ease: 'power3.inOut'
+                            });
+                        }, 50);
                     }
                 });
             });
