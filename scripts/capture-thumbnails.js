@@ -4,20 +4,15 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 // Configuration
-const PORT = 3000;
-const BASE_URL = `http://localhost:${PORT}`;
+const BASE_URL = `http://127.0.0.1:8788`;
 // Updated to Mobile Viewport (iPhone 12/13/14 Pro dimensions)
 const VIEWPORT = { width: 390, height: 844, isMobile: true, hasTouch: true };
 const PUBLIC_DIR = path.join(__dirname, '../public');
 const TEMPLATES_DIR = path.join(PUBLIC_DIR, 'templates');
 const THUMBNAILS_DIR = path.join(PUBLIC_DIR, 'assets/thumbnails');
 
-// Category mapping
-// Prefixes must match assets/js/data.js
 const CATEGORIES = [
-    { dir: 'business', prefix: 'bus_' },
-    { dir: 'streamer', prefix: 'st_' },
-    { dir: 'lp', prefix: 'lp_' }
+    { dir: 'portfolio', prefix: 'pf_' }
 ];
 
 async function main() {
@@ -30,16 +25,7 @@ async function main() {
         }
     });
 
-    // 2. Start Local Server
-    console.log('Starting local server...');
-    const server = spawn(/^win/.test(process.platform) ? 'npx.cmd' : 'npx', ['serve', 'public', '-p', `${PORT}`], {
-        cwd: path.join(__dirname, '..'), // Run from root
-        stdio: 'inherit',
-        shell: true
-    });
-
-    // Wait for server to be ready
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    console.log(`Using existing DEV server at ${BASE_URL}...`);
 
     let browser;
     try {
@@ -94,9 +80,7 @@ async function main() {
     } finally {
         if (browser) await browser.close();
 
-        console.log('Stopping server...');
-        server.kill();
-        // Force exit to ensure server process dies
+        // Force exit to ensure script finishes
         process.exit(0);
     }
 }
