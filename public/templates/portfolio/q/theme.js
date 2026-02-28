@@ -17,21 +17,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-        navLinks.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => navLinks.classList.remove('open'));
-        });
+        const qMobileMenu = document.getElementById('qMobileMenu');
+        const qMobileClose = document.getElementById('qMobileClose');
+
+        function openMenu() {
+            qMobileMenu.classList.add('active');
+            navToggle.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            qMobileMenu.classList.remove('active');
+            navToggle.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+
+        navToggle.addEventListener('click', openMenu);
+        if (qMobileClose) qMobileClose.addEventListener('click', closeMenu);
+
+        if (qMobileMenu) {
+            qMobileMenu.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', closeMenu);
+            });
+        }
     }
 
-    // Smooth scroll
+    // Smooth scroll (GSAP)
+    gsap.registerPlugin(ScrollToPlugin);
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', e => {
-            const target = document.querySelector(anchor.getAttribute('href'));
+            const targetId = anchor.getAttribute('href');
+            if (targetId === '#') {
+                e.preventDefault();
+                setTimeout(() => gsap.to(window, { duration: 1.5, scrollTo: 0, ease: 'power3.inOut' }), 50);
+                return;
+            }
+            const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
-                window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                setTimeout(() => gsap.to(window, { duration: 1.5, scrollTo: { y: target, offsetY: 70 }, ease: 'power3.inOut' }), 50);
             }
         });
     });
