@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openMenu() {
         mobileMenu.hidden = false;
-        navToggle.textContent = '✕';
     }
     function closeMenu() {
         mobileMenu.hidden = true;
-        navToggle.textContent = '☰';
     }
 
     if (navToggle) navToggle.addEventListener('click', () => mobileMenu.hidden ? openMenu() : closeMenu());
