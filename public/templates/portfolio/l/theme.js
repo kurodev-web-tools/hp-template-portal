@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. GSAP Initialization
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     // 2. Line Drawing Animation logic
     const drawLines = document.querySelectorAll('.draw-line');
@@ -91,10 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const target = document.querySelector(targetId);
             if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                setTimeout(() => {
+                    gsap.to(window, {
+                        duration: 1.5,
+                        scrollTo: target,
+                        ease: 'power3.inOut'
+                    });
+                }, 50);
             }
         });
     });
