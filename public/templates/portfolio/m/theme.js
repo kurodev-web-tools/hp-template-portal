@@ -25,16 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Smooth Scroll & Close Menu on Nav Click
+    gsap.registerPlugin(ScrollToPlugin);
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            if (navList && navList.classList.contains('active')) toggleMenu();
+
+            if (window.innerWidth <= 992 && navList && navList.classList.contains('active')) {
+                toggleMenu();
+            }
 
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#') {
+                setTimeout(() => {
+                    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: 'power3.inOut' });
+                }, 50);
+                return;
+            }
             const target = document.querySelector(targetId);
             if (target) {
-                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                setTimeout(() => {
+                    gsap.to(window, { duration: 1.5, scrollTo: { y: target, offsetY: 80 }, ease: 'power3.inOut' });
+                }, 50);
             }
         });
     });
