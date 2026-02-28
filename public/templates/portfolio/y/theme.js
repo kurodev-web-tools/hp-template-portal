@@ -25,16 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
 
     /* ============================================================
-       Smooth Scroll
+       Smooth Scroll (GSAP)
     ============================================================ */
+    gsap.registerPlugin(ScrollToPlugin);
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
+            const targetId = a.getAttribute('href');
+            if (targetId === '#') {
+                e.preventDefault();
+                closeMenu();
+                setTimeout(() => gsap.to(window, { duration: 1.5, scrollTo: 0, ease: 'power3.inOut' }), 50);
+                return;
+            }
+            const target = document.querySelector(targetId);
             if (!target) return;
             e.preventDefault();
             closeMenu();
             const offset = document.getElementById('header')?.offsetHeight || 0;
-            window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+            setTimeout(() => gsap.to(window, { duration: 1.5, scrollTo: { y: target, offsetY: offset }, ease: 'power3.inOut' }), 50);
         });
     });
 
