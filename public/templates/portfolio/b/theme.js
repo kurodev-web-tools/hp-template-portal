@@ -95,46 +95,44 @@
             }
         });
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const target = document.querySelector(targetId);
-                if (target) {
-                    gsap.to(window, {
-                        duration: 1,
-                        scrollTo: {
-                            y: target,
-                            offsetY: 80
-                        },
-                        ease: 'power3.inOut'
-                    });
-                }
-            });
-        });
-
-        // Mobile Toggle Logic (Template A / Golden Master standard)
+        // Mobile Nav Toggle
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
 
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', () => {
-                // In a production scenario, you would toggle a specific mobile menu container.
-                // For scaffolding, we just toggle display for now.
-                if (navMenu.style.display === 'flex') {
-                    navMenu.style.display = 'none';
-                } else {
-                    navMenu.style.display = 'flex';
-                    navMenu.style.flexDirection = 'column';
-                    navMenu.style.position = 'absolute';
-                    navMenu.style.top = '100%';
-                    navMenu.style.left = '0';
-                    navMenu.style.width = '100%';
-                    navMenu.style.background = 'rgba(0, 59, 111, 0.95)';
-                    navMenu.style.padding = '2rem';
-                }
+                navToggle.classList.toggle('is-open');
+                navMenu.classList.toggle('is-open');
             });
         }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Close mobile menu on click
+                if (navToggle && navMenu) {
+                    navToggle.classList.remove('is-open');
+                    navMenu.classList.remove('is-open');
+                }
+
+                const targetId = link.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    // Slight delay to allow the menu closing animation to start before scrolling
+                    setTimeout(() => {
+                        gsap.to(window, {
+                            duration: 1,
+                            scrollTo: {
+                                y: target,
+                                offsetY: 80
+                            },
+                            ease: 'power3.inOut'
+                        });
+                    }, 50);
+                }
+            });
+        });
     }
 
     // ============================================

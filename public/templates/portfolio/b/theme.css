@@ -25,10 +25,7 @@
     box-sizing: border-box;
 }
 
-html {
-    /* Removed scroll-behavior: smooth; to avoid conflict with GSAP ScrollToPlugin */
-}
-
+/* GSAP scrollTo plugin handles scroll-behavior in JS */
 body {
     font-family: 'JetBrains Mono', monospace;
     background: var(--blueprint-bg);
@@ -765,11 +762,78 @@ body {
     }
 
     .nav-menu {
-        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(0, 59, 111, 0.98);
+        background-image:
+            linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+        background-size: 20px 20px, 20px 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999 !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        display: flex !important;
+        padding: 0;
+        gap: 3rem;
+        border: none;
+        margin: 0;
+    }
+
+    .nav-menu.is-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-menu li {
+        list-style: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .nav-menu.is-open li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-menu.is-open li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.is-open li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.is-open li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.is-open li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .nav-menu.is-open li:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--blueprint-accent);
     }
 
     .nav-toggle {
         display: flex;
+        z-index: 1001;
     }
 
     .hero-title {
@@ -875,4 +939,33 @@ body {
         font-size: 0.9rem;
         letter-spacing: 1px;
     }
+}
+
+/* ============================================
+   Hamburger Menu
+   ============================================ */
+
+.nav-toggle span {
+    background: var(--blueprint-text);
+    height: 1.5px;
+    border-radius: 1px;
+}
+
+.nav-toggle.is-open span {
+    background: var(--blueprint-accent);
+}
+
+
+
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
 }
