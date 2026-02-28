@@ -25,13 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileClose) mobileClose.addEventListener('click', closeMenu);
     mobileMenu && mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-    // Smooth scroll
+    // Smooth scroll (GSAP)
+    gsap.registerPlugin(ScrollToPlugin);
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
+            const targetId = a.getAttribute('href');
+            if (targetId === '#') {
+                e.preventDefault();
+                setTimeout(() => gsap.to(window, { duration: 1.5, scrollTo: 0, ease: 'power3.inOut' }), 50);
+                return;
+            }
+            const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
-                window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' });
+                setTimeout(() => gsap.to(window, { duration: 1.5, scrollTo: { y: target, offsetY: 64 }, ease: 'power3.inOut' }), 50);
             }
         });
     });
