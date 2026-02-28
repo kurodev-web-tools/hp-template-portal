@@ -19,14 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    if (navToggle && navLinks) {
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (navToggle && mobileMenu) {
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            navToggle.classList.toggle('is-open');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
-        // メニュー項目クリックで閉じる
-        navLinks.querySelectorAll('a').forEach(link => {
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
+                mobileMenu.classList.remove('active');
+                navToggle.classList.remove('is-open');
+                document.body.style.overflow = '';
             });
         });
     }
@@ -34,15 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================================
     // 2. Smooth Scroll
     // ============================================================
+    gsap.registerPlugin(ScrollToPlugin);
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') {
+                setTimeout(() => {
+                    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: 'power3.inOut' });
+                }, 50);
+                return;
+            }
+            const target = document.querySelector(targetId);
             if (target) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: target.offsetTop - 70,
-                    behavior: 'smooth'
-                });
+                setTimeout(() => {
+                    gsap.to(window, {
+                        duration: 1.5,
+                        scrollTo: { y: target, offsetY: 70 },
+                        ease: 'power3.inOut'
+                    });
+                }, 50);
             }
         });
     });
