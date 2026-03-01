@@ -858,7 +858,7 @@ const PORTAL_DATA = {
                 features: ['Kinetic', 'Physics', 'Motion'],
                 colors: ['#ef4444', '#171717', '#ffffff'],
                 image: 'assets/thumbnails/portfolio/pf_k.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 20%',
                 themeLabel: 'Kinetic'
             },
             {
@@ -867,7 +867,7 @@ const PORTAL_DATA = {
                 features: ['Line', '1px Solid', 'Architect'],
                 colors: ['#ffffff', '#000000', '#a3a3a3'],
                 image: 'assets/thumbnails/portfolio/pf_l.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 40%',
                 themeLabel: 'Line'
             },
             {
@@ -921,7 +921,7 @@ const PORTAL_DATA = {
                 features: ['Retro', 'Glitch', '8-bit'],
                 colors: ['#172554', '#facc15', '#ef4444'],
                 image: 'assets/thumbnails/portfolio/pf_r.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 60%',
                 themeLabel: 'Retro'
             },
             {
@@ -930,7 +930,7 @@ const PORTAL_DATA = {
                 features: ['Space', 'Orbit', 'Aerospace'],
                 colors: ['#0f172a', '#e2e8f0', '#3b82f6'],
                 image: 'assets/thumbnails/portfolio/pf_s.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 20%',
                 themeLabel: 'Space'
             },
             {
@@ -957,7 +957,7 @@ const PORTAL_DATA = {
                 features: ['Vintage', 'Sepia', 'Craftsman'],
                 colors: ['#fde68a', '#451a03', '#92400e'],
                 image: 'assets/thumbnails/portfolio/pf_v.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 40%',
                 themeLabel: 'Vintage'
             },
             {
@@ -966,7 +966,7 @@ const PORTAL_DATA = {
                 features: ['Watercolor', 'Mask', 'Painter'],
                 colors: ['#fdf4ff', '#c026d3', '#fbcfe8'],
                 image: 'assets/thumbnails/portfolio/pf_w.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 30%',
                 themeLabel: 'Watercolor'
             },
             {
@@ -984,7 +984,7 @@ const PORTAL_DATA = {
                 features: ['Yarn', 'Dashed', 'Handcraft'],
                 colors: ['#fff1f2', '#e11d48', '#fecdd3'],
                 image: 'assets/thumbnails/portfolio/pf_y.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 30%',
                 themeLabel: 'Yarn'
             },
             {
@@ -993,7 +993,7 @@ const PORTAL_DATA = {
                 features: ['Zen', 'Brush', 'Japanese Architect'],
                 colors: ['#f5f5f4', '#1c1917', '#d6d3d1'],
                 image: 'assets/thumbnails/portfolio/pf_z.webp',
-                bgPosition: 'center 50%',
+                bgPosition: 'center 60%',
                 themeLabel: 'Zen'
             }
         ]

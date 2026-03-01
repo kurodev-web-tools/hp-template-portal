@@ -4,7 +4,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 // Configuration
-const BASE_URL = `https://add-portfolio.hp-template-portal.pages.dev`;
+const BASE_URL = `http://127.0.0.1:8789`;
 // Updated to Mobile Viewport (iPhone 12/13/14 Pro dimensions)
 const VIEWPORT = { width: 390, height: 844, isMobile: true, hasTouch: true };
 const PUBLIC_DIR = path.join(__dirname, '../public');
