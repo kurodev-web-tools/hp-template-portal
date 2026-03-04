@@ -630,10 +630,13 @@ body.modal-open .gallery-content {
 
 /* Gallery Item (The Card) - Unified Glow */
 .gallery-item {
-    flex: 0 0 85vw;
-    width: 85vw;
+    flex: 0 0 75vw;
+    width: 75vw;
+    height: calc(75vw * 1.333);
+    /* Aspect ratio 3:4 */
+    max-height: 70vh;
+    /* Prevent it from crossing viewport */
     scroll-snap-align: center;
-    height: 80%;
     background: rgba(255, 255, 255, 0.03);
     /* Subtle glass */
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -659,12 +662,14 @@ body.modal-open .gallery-content {
 /* Desktop override */
 @media (min-width: 768px) {
     .gallery-container {
-        padding: var(--spacing-xl) calc(50vw - 200px);
+        padding: var(--spacing-xl) calc(50vw - 210px);
     }
 
     .gallery-item {
-        flex: 0 0 400px;
-        width: 400px;
+        flex: 0 0 420px;
+        width: 420px;
+        height: 560px;
+        /* 3:4 aspect ratio */
     }
 }
 
@@ -683,25 +688,52 @@ body.modal-open .gallery-content {
     z-index: 10;
 }
 
-/* Typographic Placeholder Style */
+/* Glassmorphism Hover Strategy for Placeholder Content */
 .gallery-item .placeholder-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     z-index: 2;
-    /* Ensure text is visible over images */
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    /* Glassmorphism setup: Lighter glass to show template behind it */
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Show content when hovered or no image */
+.gallery-item:hover .placeholder-content,
+.gallery-item.active-card .placeholder-content,
+.gallery-item:not(.has-image) .placeholder-content {
+    opacity: 1;
+}
+
+/* Adjust initial elements state for animation */
+.gallery-item .placeholder-content>* {
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery-item:hover .placeholder-content>*,
+.gallery-item.active-card .placeholder-content>*,
+.gallery-item:not(.has-image) .placeholder-content>* {
+    transform: translateY(0);
 }
 
 .gallery-item.has-image {
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center 50%;
+    background-position: top center;
 }
 
 .gallery-item.has-image::before {
-    /* Darker overlay for readability when image is present */
-    background: rgba(0, 0, 0, 0.6);
-    /* Removed grid pattern if image is there, or keep it subtle? Let's hide grid for clear image view */
-    background-image: none;
+    display: none;
+    /* Removed static overlay, glass handles it */
 }
 
 @keyframes aura-pulse {
@@ -718,12 +750,7 @@ body.modal-open .gallery-content {
     }
 }
 
-/* Typographic Placeholder Style */
-.gallery-item .placeholder-content {
-    text-align: center;
-    /* Removed grid pattern if image is there, or keep it subtle? Let's hide grid for clear image view */
-    background-image: none;
-}
+/* (Redundant Typographic Placeholder Style Removed) */
 
 /* Theme Label (e.g. "Gaming", "Corporate") */
 .theme-label {
