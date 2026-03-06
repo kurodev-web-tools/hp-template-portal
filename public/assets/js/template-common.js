@@ -50,7 +50,7 @@ function injectPortalNav() {
     nav.href = '../../../list.html?category=business';
     nav.className = 'portal-nav-back';
     nav.innerHTML = `
-        <span class="material-icons">arrow_back</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         <span class="nav-text">PORTAL</span>
     `;
 
@@ -85,8 +85,9 @@ function injectPortalNav() {
             transform: translateY(2px);
             border-color: rgba(255, 255, 255, 0.6);
         }
-        .portal-nav-back .material-icons {
-            font-size: 1.2rem;
+        .portal-nav-back svg {
+            width: 1.2rem;
+            height: 1.2rem;
         }
         @media (max-width: 768px) {
             .portal-nav-back {
@@ -264,7 +265,9 @@ function initStatusEngine() {
         console.log('[StatusEngine] API Key detected. Checking YouTube status...');
         checkYouTubeLiveStatus(apiKey, channelId);
     } else {
-        console.log(`[StatusEngine] Initialized in Passive Mode. Status: ${document.body.dataset.streamStatus}`);
+        if (document.body.dataset.streamStatus !== undefined) {
+            console.log(`[StatusEngine] Initialized in Passive Mode. Status: ${document.body.dataset.streamStatus}`);
+        }
     }
 }
 
