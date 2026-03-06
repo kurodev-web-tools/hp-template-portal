@@ -4,183 +4,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean & Trust - Medical Health Tech</title>
     <meta name="description" content="Clean - 高度な医療技術と寄り添うケア。健康診断、予防接種、皮膚科、心理相談に対応する医療施設サイト。">
-    <meta name="theme-color" content="#4ade80">
+    <meta name="theme-color" content="#13ec5b">
     <meta property="og:title" content="Business Clean - Medical & Health">
     <meta property="og:description" content="高度な医療技術と寄り添うケア。医療施設サイトテンプレート。">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/images/og-image.jpg">
     <meta property="og:url" content="">
     <meta name="twitter:card" content="summary_large_image">
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "MedicalOrganization",
-        "name": "Business Clean Medical",
+        "name": "Clean & Trust Medical",
         "description": "高度な医療技術と寄り添うケア。健康診断、予防接種、皮膚科に対応。",
         "url": "",
         "logo": ""
     }
     </script>
-    <title>Business Clean | Medical & Health</title>
-    <!-- Fonts: Robot + Lato (Thin/Light) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@100;300;400&display=swap"
-        rel="stylesheet">
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#13ec5b",
+                        secondary: "#0d1b12",
+                        accent: "#e7f3eb",
+                        "background-light": "#ffffff",
+                        "background-off": "#f8fcf9",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Public Sans", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <!-- Base CSS -->
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+        .clean-menu-backdrop.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-color: rgba(13, 27, 18, 0.5) !important;
+            backdrop-filter: blur(4px) !important;
+        }
 
-    <link rel="stylesheet" href="assets/css/style.css">
+        .clean-mobile-menu.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
 </head>
 
-<body class="theme-business fade-in">
+<body class="bg-background-light text-secondary font-display antialiased custom-menu-only">
 
-    <!-- Custom Mobile Menu Toggle (Direct OnClick) -->
-    <button class="clean-mobile-toggle" onclick="toggleCleanMenu()" style="z-index: 999999;" aria-label="メニューを開く">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+    <!-- Mobile Menu Toggle -->
+    <button class="clean-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-primary flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleCleanMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
+        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
+        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
     </button>
-    <div class="clean-menu-backdrop" onclick="toggleCleanMenu()"></div>
 
-    <!-- Slide-up Menu Panel -->
-    <div class="clean-mobile-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html" class="btn-outline">Contact</a></li>
+    <div class="clean-menu-backdrop fixed inset-0 z-[9998] bg-secondary/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div class="clean-mobile-menu fixed inset-0 z-[9999] bg-background-light flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-5 px-10 font-display text-2xl text-secondary font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-5 px-10 font-display text-2xl text-secondary font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">About</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-5 px-10 font-display text-2xl text-secondary font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">Service</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-5 px-10 font-display text-2xl text-primary font-bold uppercase tracking-widest mt-4">Contact</a></li>
         </ul>
     </div>
 
     <!-- Header -->
-    <header class="clean-header glass-surface">
-        <div class="container">
-            <div class="logo">
-                <span class="material-icons">local_hospital</span>
-                <span>Clean</span>
+    <header class="sticky top-0 z-50 flex items-center justify-between border-b border-accent bg-background-light/95 backdrop-blur-sm px-6 py-4 lg:px-20">
+        <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined text-3xl">local_hospital</span>
             </div>
-            <div class="nav">
-                <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html" class="btn-outline">Contact</a></li>
-                </ul>
+            <h1 class="text-xl font-bold tracking-tight text-secondary">Clean & Trust</h1>
+        </div>
+        <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
+            <div class="flex items-center gap-8">
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">About</a>
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="service.html">Services</a>
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="contact.html">Contact</a>
             </div>
+            <button class="h-10 px-6 rounded-lg bg-primary text-secondary text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm" onclick="location.href='contact.html'">
+                Book Consultation
+            </button>
+        </nav>
+        <div class="md:hidden">
+            <button class="text-secondary" onclick="toggleCleanMenu()">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Health & <br>Wellness</h1>
-                <p><span class="ib">高度な医療技術と、</span><span class="ib">一人ひとりに</span><span
-                        class="ib">寄り添うケア。</span><br><span class="ib">すべての患者様に、</span><span
-                        class="ib">安心と信頼を</span><span class="ib">お届けします。</span></p>
-                <a href="services.html" class="btn-primary">Our Services</a>
-            </div>
-            <div class="hero-image">
-                <!-- Placeholder for a clean, medical image -->
-                <div class="image-placeholder"></div>
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <div class="w-full px-4 py-8 lg:px-20 lg:py-12">
+            <div class="@container">
+                <div class="relative overflow-hidden rounded-2xl bg-secondary">
+                    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-60 mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChJJPyw9o2vzdlDbVAnu948nWwY9kV6qJeE3FKwpNFMGPzCPGHcMppbFthsaT5SE9dhoV8wIlUeleLIh55PYumpMZ1EhgoK8CbpfuXOIUKzwUt-eD14vfaowClEUaiblzp6TRnKjAcSmTX8mxgOLJw8Ee-5VI51rx4XTYfsYi83KVwk9rPOxF809dpUaEr19Mxkho6JwlJQkvc-8OvhJjz8gbrh-NMkGICe-tK1su0aK_KKrICQ_OwD4pWZFHRgU1rtxRhQk6-nDU');"></div>
+                    <div class="absolute inset-0 z-10 bg-gradient-to-r from-secondary/90 to-secondary/20"></div>
+                    <div class="relative z-20 flex min-h-[560px] flex-col justify-center px-6 py-16 sm:px-12 lg:w-2/3">
+                        <span class="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary border border-primary/20 backdrop-blur-md">
+                            <span class="material-symbols-outlined text-sm">verified_user</span>
+                            Advanced Medical Care
+                        </span>
+                        <h2 class="mb-6 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                            Your Health,<br/> Our Priority
+                        </h2>
+                        <p class="mb-8 max-w-lg text-lg leading-relaxed text-gray-200">
+                            Advanced medical technology meets compassionate care. We provide a sterile, safe, and welcoming environment for your recovery and well-being.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="h-12 px-8 rounded-lg bg-primary text-secondary font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20" onclick="location.href='contact.html'">
+                                Book Consultation
+                            </button>
+                            <button class="h-12 px-8 rounded-lg bg-white/10 text-white border border-white/20 font-bold hover:bg-white/20 transition-colors backdrop-blur-sm" onclick="location.href='service.html'">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>地域の皆様の健康を支える、幅広い診療科目。</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card scroll-animate">
-                    <span class="material-icons">medical_services</span>
-                    <h3>General Checkup</h3>
-                    <p><span class="ib">定期的な</span><span class="ib">健康診断で、</span><span class="ib">病気の</span><span
-                            class="ib">早期発見・</span><span class="ib">予防を</span><span class="ib">サポートします。</span></p>
-                </div>
-                <div class="service-card scroll-animate">
-                    <span class="material-icons">vaccines</span>
-                    <h3>Vaccination</h3>
-                    <p><span class="ib">各種予防接種に</span><span class="ib">対応。</span><span class="ib">感染症から</span><span
-                            class="ib">あなたとご家族を</span><span class="ib">守ります。</span></p>
-                </div>
-                <div class="service-card scroll-animate">
-                    <span class="material-icons">healing</span>
-                    <h3>Dermatology</h3>
-                    <p><span class="ib">ニキビや湿疹など、</span><span class="ib">皮膚のトラブルを</span><span
-                            class="ib">解決し、</span><span class="ib">健やかな肌へ</span><span class="ib">導きます。</span></p>
-                </div>
-                <div class="service-card scroll-animate">
-                    <span class="material-icons">psychology</span>
-                    <h3>Mental Health</h3>
-                    <p><span class="ib">心の健康相談。</span><span class="ib">ストレスや不安に</span><span class="ib">寄り添う</span><span
-                            class="ib">カウンセリングを</span><span class="ib">行います。</span></p>
+        <!-- Stats Section -->
+        <section class="bg-secondary text-white py-16">
+            <div class="px-4 lg:px-20">
+                <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                    <div class="flex flex-col items-center justify-center border-r border-white/10 last:border-0 md:last:border-0 md:[&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r">
+                        <span class="text-4xl font-black text-primary mb-2">15k+</span>
+                        <span class="text-sm text-gray-400">Happy Patients</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center border-r-0 md:border-r border-white/10">
+                        <span class="text-4xl font-black text-primary mb-2">120+</span>
+                        <span class="text-sm text-gray-400">Expert Doctors</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center border-r border-white/10">
+                        <span class="text-4xl font-black text-primary mb-2">24/7</span>
+                        <span class="text-sm text-gray-400">Emergency Care</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                        <span class="text-4xl font-black text-primary mb-2">50+</span>
+                        <span class="text-sm text-gray-400">Medical Awards</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Concept / About Section -->
-    <section class="concept-section">
-        <div class="container">
-            <div class="concept-content scroll-animate">
-                <h2>Clean & Safe Environment</h2>
-                <p>
-                    <span class="ib">徹底した</span><span class="ib">衛生管理と、</span><span class="ib">リラックスできる</span><span
-                        class="ib">空間づくり。</span><br>
-                    <span class="ib">患者様が</span><span class="ib">少しでも</span><span class="ib">不安を</span><span
-                        class="ib">感じないよう、</span><span class="ib">院内環境と</span><span class="ib">アメニティには</span><span
-                        class="ib">細心の注意を</span><span class="ib">払っています。</span><br>
-                    <span class="ib">清潔感あふれる</span><span class="ib">待合室で、</span><span class="ib">ゆったりと</span><span
-                        class="ib">お過ごしください。</span>
-                </p>
-                <a href="about.html" class="btn-text">Learn More <span class="material-icons">arrow_forward</span></a>
+        <!-- Treatments Section -->
+        <section class="bg-background-off py-20">
+            <div class="px-4 lg:px-20">
+                <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div class="max-w-2xl">
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">Our Services</h3>
+                        <h2 class="text-3xl font-bold text-secondary sm:text-4xl">Comprehensive Care Services</h2>
+                        <p class="mt-4 text-lg text-secondary/70">
+                            We offer a wide range of specialized treatments designed to meet your individual health needs with precision and care.
+                        </p>
+                    </div>
+                    <a class="group flex items-center gap-2 font-bold text-primary hover:text-primary/80" href="service.html">
+                        View All Treatments
+                        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <!-- Card 1 -->
+                    <div class="group flex flex-col rounded-xl bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-accent">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+                            <span class="material-symbols-outlined">stethoscope</span>
+                        </div>
+                        <h4 class="mb-2 text-lg font-bold text-secondary">General Checkups</h4>
+                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">Routine health screenings and preventative care to keep you healthy year-round.</p>
+                        <div class="mt-auto">
+                            <a href="service.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
+                                Learn more <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="group flex flex-col rounded-xl bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-accent">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+                            <span class="material-symbols-outlined">cardiology</span>
+                        </div>
+                        <h4 class="mb-2 text-lg font-bold text-secondary">Cardiology</h4>
+                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">Heart health monitoring, diagnostics, and advanced cardiac procedures.</p>
+                        <div class="mt-auto">
+                            <a href="service.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
+                                Learn more <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="group flex flex-col rounded-xl bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-accent">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+                            <span class="material-symbols-outlined">child_care</span>
+                        </div>
+                        <h4 class="mb-2 text-lg font-bold text-secondary">Pediatrics</h4>
+                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">Specialized, gentle care for infants, children, and adolescents.</p>
+                        <div class="mt-auto">
+                            <a href="service.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
+                                Learn more <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="group flex flex-col rounded-xl bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-accent">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
+                            <span class="material-symbols-outlined">dentistry</span>
+                        </div>
+                        <h4 class="mb-2 text-lg font-bold text-secondary">Dental Care</h4>
+                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">Complete oral health services including cosmetic dentistry and surgery.</p>
+                        <div class="mt-auto">
+                            <a href="service.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
+                                Learn more <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="concept-image scroll-animate">
-                <div class="image-placeholder"></div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="clean-footer">
-        <div class="container">
-            <p>&copy; 2026 Business Clean. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#">Twitter</a>
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
+    <footer class="bg-background-off pt-16 pb-8 border-t border-accent">
+        <div class="px-4 lg:px-20">
+            <div class="grid grid-cols-1 gap-12 md:grid-cols-4 mb-12">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-secondary">
+                            <span class="material-symbols-outlined text-xl">local_hospital</span>
+                        </div>
+                        <span class="text-lg font-bold text-secondary">Clean & Trust</span>
+                    </div>
+                    <p class="text-sm text-secondary/60 leading-relaxed mb-6">
+                        Providing world-class healthcare with a focus on patient comfort, safety, and advanced medical technology.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
+                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">share</span></a>
+                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Departments</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Cardiology</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Neurology</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Pediatrics</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Orthopedics</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Dental Care</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Quick Links</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="about.html">About Us</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Our Doctors</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Appointment</a></li>
+                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Contact Us</h4>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5 text-lg">location_on</span>
+                            <span class="text-sm text-secondary/60">123 Health Avenue, Medical District, New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-lg">phone</span>
+                            <span class="text-sm text-secondary/60">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-lg">mail</span>
+                            <span class="text-sm text-secondary/60">support@cleanandtrust.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-accent pt-8 text-center md:flex md:justify-between md:text-left">
+                <p class="text-xs text-secondary/40">© 2026 Clean & Trust Medical Center. All rights reserved.</p>
+                <div class="mt-4 flex justify-center gap-6 md:mt-0">
+                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">Privacy Policy</a>
+                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Template Common Scripts -->
+    <div id="template-common-container"></div>
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.PremiumEffects) {
-                // Clean Blur Text (Slower, smoother)
-                PremiumEffects.BlurText('.hero-content h1', { delay: 30, duration: 2000 });
-            }
-        });
-    </script>
-    <script src="assets/js/script.js" defer></script>
-    <script>
-        // GLOBAL FUNCTION for maximum reliability
+        // Mobile Menu Toggle Function
         function toggleCleanMenu() {
             const toggle = document.querySelector('.clean-mobile-toggle');
             const backdrop = document.querySelector('.clean-menu-backdrop');
@@ -191,22 +330,58 @@
                 backdrop.classList.toggle('active');
                 menu.classList.toggle('active');
 
-                // Toggle Overflow
+                // Toggle bars animation
+                const bars = toggle.querySelectorAll('.bar');
                 if (toggle.classList.contains('active')) {
+                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                    bars[1].style.opacity = '0';
+                    bars[1].style.transform = 'scaleX(0)';
+                    bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                    toggle.setAttribute('aria-expanded', 'true');
+                    toggle.setAttribute('aria-label', 'メニューを閉じる');
                     document.body.style.overflow = 'hidden';
                 } else {
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[1].style.transform = 'none';
+                    bars[2].style.transform = 'none';
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.setAttribute('aria-label', 'メニューを開く');
                     document.body.style.overflow = '';
                 }
-            } else {
-                console.error("Menu elements not found");
+
+                // Menu items animation
+                const items = menu.querySelectorAll('li');
+                items.forEach((item, index) => {
+                    if (toggle.classList.contains('active')) {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                    }
+                });
             }
         }
 
-        // Close on link click
+        // Close menu on backdrop click
+        document.querySelector('.clean-menu-backdrop')?.addEventListener('click', toggleCleanMenu);
+
+        // Close menu on link click
         document.querySelectorAll('.clean-mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleCleanMenu(); // Reuse toggle to close
-            });
+            link.addEventListener('click', toggleCleanMenu);
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.clean-mobile-toggle');
+                if (toggle && toggle.classList.contains('active')) {
+                    toggleCleanMenu();
+                }
+            }
         });
     </script>
 </body>
