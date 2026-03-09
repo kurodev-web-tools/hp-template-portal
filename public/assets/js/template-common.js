@@ -98,6 +98,11 @@ function injectPortalNav() {
             .portal-nav-back .nav-text {
                 display: none;
             }
+            body.mobile-menu-active .portal-nav-back {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
         }
         
         /* Mobile Menu - Minimal Functional Styles Only */
@@ -170,6 +175,7 @@ function initMobileMenu() {
         const isOpen = toggle.classList.toggle('active');
         nav.classList.toggle('mobile-open');
         backdrop.classList.toggle('active');
+        document.body.classList.toggle('mobile-menu-active', isOpen);
         toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         toggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
 
@@ -181,6 +187,7 @@ function initMobileMenu() {
         toggle.classList.remove('active');
         nav.classList.remove('mobile-open');
         backdrop.classList.remove('active');
+        document.body.classList.remove('mobile-menu-active');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'メニューを開く');
         document.body.style.overflow = '';
@@ -189,9 +196,40 @@ function initMobileMenu() {
     toggle.addEventListener('click', toggleMenu);
     backdrop.addEventListener('click', closeMenu);
 
-    // Close menu on link click
-    nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
+    function navigateFromMenuLink(link) {
+        if (!link || link.dataset.navLocked === 'true') return;
+
+        const href = link.getAttribute('href');
+        const target = link.getAttribute('target');
+
+        link.dataset.navLocked = 'true';
+        window.setTimeout(() => {
+            delete link.dataset.navLocked;
+        }, 400);
+
+        closeMenu();
+
+        if (!href || href.startsWith('#')) {
+            return;
+        }
+
+        if (target === '_blank') {
+            window.open(link.href, '_blank', 'noopener,noreferrer');
+            return;
+        }
+
+        window.location.assign(link.href);
+    }
+
+    // Use delegated handlers so dynamically styled overlays still navigate reliably on touch devices.
+    ['click', 'touchend'].forEach((eventName) => {
+        nav.addEventListener(eventName, (e) => {
+            const link = e.target.closest('a[href]');
+            if (!link) return;
+
+            e.preventDefault();
+            navigateFromMenuLink(link);
+        }, { passive: false });
     });
 
     // Close on Escape key

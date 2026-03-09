@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Dynamic Performance</title>
+    <meta name="description" content="Dynamic のサービス一覧。エンジンチューニング、空力設計、データ解析など、パフォーマンス向上のための包括的なソリューション。">
+    <meta name="theme-color" content="#ff4500">
+    <meta property="og:title" content="Services - Dynamic Performance">
+    <meta property="og:description" content="圧倒的なパフォーマンスを発揮する包括的なソリューション。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Dynamic Performance",
+        "description": "常識を覆すスピードで未来を切り拓く。自動車・スポーツ業界向けソリューション。",
+        "url": "",
+        "logo": ""
+    }
+    </script>
+
+    <!-- Google Fonts: Orbitron + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ff4500",
+                        "primary-dark": "#e63e00",
+                        charcoal: "#1a1a1a",
+                        "charcoal-light": "#2a2a2a",
+                        "charcoal-dark": "#0d0d0d",
+                    },
+                    fontFamily: {
+                        orbitron: ["Orbitron", "sans-serif"],
+                        inter: ["Inter", "sans-serif"],
+                    },
+                    skew: {
+                        "12": "12deg",
+                        "inverse-12": "-12deg",
+                    },
+                    boxShadow: {
+                        "speed": "0 0 30px rgba(255, 69, 0, 0.3)",
+                        "speed-lg": "0 0 50px rgba(255, 69, 0, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        main,
+        section {
+            overflow-x: hidden;
+        }
+
+        .speed-bg {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 69, 0, 0.03) 2px, rgba(255, 69, 0, 0.03) 4px);
+        }
+
+        .light-speed-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-speed-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .light-speed-hover:hover::before {
+            left: 100%;
+        }
+
+        .skew-container {
+            transform: skewX(-12deg);
+        }
+
+        .skew-content {
+            display: inline-block;
+            transform: skewX(12deg);
+        }
+
+        .z-card {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .z-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .z-card:nth-child(even) {
+            transform: translateX(50px);
+        }
+
+        .z-card:nth-child(even).visible {
+            transform: translateX(0);
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                z-index: 10000 !important;
+                isolation: isolate;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            header .skew-container:first-child {
+                margin-left: 4.5rem;
+                margin-right: 4.5rem;
+                max-width: calc(100% - 9rem);
+                overflow: hidden;
+            }
+
+            header .skew-container:first-child h2 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .skew-container,
+            .skew-content {
+                transform: none !important;
+            }
+
+            header nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 10004;
+                display: none !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                width: 100vw;
+                max-width: 100vw;
+                height: 100dvh;
+                padding: 6rem 1.5rem 2rem;
+                margin: 0;
+                background:
+                    radial-gradient(circle at top right, rgba(255, 69, 0, 0.18), transparent 32%),
+                    linear-gradient(135deg, rgba(8, 8, 8, 0.98), rgba(18, 18, 18, 0.96));
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                overflow-x: hidden;
+                overflow-y: auto;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            header nav::before {
+                content: '';
+                position: absolute;
+                inset: 0 10% 0 auto;
+                width: 72%;
+                background:
+                    linear-gradient(180deg, rgba(255, 69, 0, 0.12), rgba(255, 69, 0, 0.02)),
+                    rgba(20, 20, 20, 0.92);
+                border-left: 2px solid rgba(255, 69, 0, 0.5);
+                border-right: 2px solid rgba(255, 69, 0, 0.18);
+                transform: skewX(-12deg);
+                box-shadow: 0 0 40px rgba(255, 69, 0, 0.08);
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            header nav.mobile-open {
+                display: flex !important;
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            header nav a {
+                position: relative;
+                z-index: 10005;
+                display: block;
+                min-width: min(18rem, 82vw);
+                padding: 1rem 1.5rem;
+                text-align: center;
+                font-size: 1.4rem;
+                border: 2px solid rgba(255, 69, 0, 0.22);
+                background: linear-gradient(135deg, rgba(255, 69, 0, 0.08), rgba(255, 69, 0, 0.02));
+                box-shadow: inset 0 0 0 1px rgba(255, 69, 0, 0.05);
+                clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+                pointer-events: auto;
+                touch-action: manipulation;
+            }
+
+            header nav a:hover,
+            header nav a:focus-visible {
+                border-color: rgba(255, 69, 0, 0.85);
+                color: #ff4500;
+                box-shadow: 0 0 24px rgba(255, 69, 0, 0.18);
+            }
+
+            .mobile-menu-toggle {
+                background: #ff4500;
+                border: 2px solid #ff4500;
+                box-shadow: 0 0 20px rgba(255, 69, 0, 0.25);
+                z-index: 10005 !important;
+            }
+
+            .mobile-menu-toggle .bar {
+                width: 22px;
+                height: 2px;
+                margin: 2px 0;
+                background: #fff;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+
+            .mobile-menu-backdrop {
+                background: rgba(0, 0, 0, 0.55);
+            }
+
+            body.mobile-menu-active .portal-nav-back {
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+
+            .z-card,
+            .z-card.visible,
+            .z-card:nth-child(even),
+            .z-card:nth-child(even).visible {
+                width: 100%;
+                max-width: min(100%, 100vw) !important;
+                overflow-x: hidden;
+                transform: none !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        .slant-surface {
+            clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+        }
+
+        .slant-surface-soft {
+            clip-path: polygon(2.5% 0, 100% 0, 97.5% 100%, 0 100%);
+        }
+
+        .slant-media {
+            clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%);
+        }
+
+        .slant-button {
+            clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+        }
+
+        @media (max-width: 768px) {
+            .slant-surface,
+            .slant-surface-soft,
+            .slant-media,
+            .slant-button {
+                clip-path: none;
+            }
+
+            .skew-content {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-charcoal text-white font-inter antialiased overflow-x-hidden speed-bg">
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between border-b-2 border-primary bg-charcoal-dark/95 backdrop-blur-sm px-6 py-4 lg:px-12">
+        <div class="flex items-center gap-3 skew-container">
+            <div class="flex h-12 w-12 items-center justify-center bg-primary skew-content">
+                <span class="material-symbols-outlined text-3xl">speed</span>
+            </div>
+            <h2 class="font-orbitron text-2xl font-black tracking-tighter uppercase skew-content text-white">DYNAMIC
+            </h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="about.html">About</a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="service.html">Services</a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="contact.html">Contact</a>
+        </nav>
+        <button
+            class="hidden md:flex cursor-pointer items-center justify-center border-2 border-primary bg-primary text-black hover:bg-transparent hover:text-primary transition-all px-8 py-3 text-sm font-black uppercase tracking-widest font-orbitron skew-container light-speed-hover"
+            onclick="location.href='contact.html'">
+            <span class="skew-content">Get Started</span>
+        </button>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section
+            class="relative flex items-center border-b-4 border-primary bg-charcoal-dark px-6 py-20 lg:py-32 overflow-hidden skew-container">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1690984653071-37d5f9b07a29?w=1920&h=1080&fit=crop"
+                    alt="Performance tuning" class="w-full h-full object-cover opacity-30 skew-content">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-charcoal-dark via-charcoal-dark/80 to-transparent skew-content">
+                </div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl w-full skew-content">
+                <div
+                    class="inline-flex items-center gap-2 border-2 border-primary bg-primary/20 px-4 py-2 text-xs font-black uppercase tracking-[0.3em] text-primary mb-6">
+                    <span class="h-3 w-3 bg-primary animate-pulse"></span>
+                    Our Services
+                </div>
+
+                <h1
+                    class="font-orbitron font-black leading-[0.85] tracking-tighter text-white text-5xl md:text-7xl lg:text-8xl uppercase max-w-none">
+                    PERFORMANCE<br />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-500 to-primary">SERVICES</span>
+                </h1>
+
+                <div class="border-l-4 border-primary pl-6 my-8">
+                    <p class="max-w-2xl text-lg font-bold text-gray-300 md:text-xl leading-tight">
+                        エンジンチューニングから空力設計、データ解析まで。勝利を約束する包括的なパフォーマンスソリューション。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section class="py-24 px-6 lg:px-12 bg-charcoal border-t-4 border-primary">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron font-black text-4xl md:text-6xl text-white uppercase tracking-widest mb-4">
+                        // WHAT WE DO</h2>
+                    <p class="font-inter text-gray-400 max-w-2xl mx-auto">業界をリードする技術力で、あなたのマシンを最大化</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div
+                        class="z-card visible group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-48 overflow-hidden slant-media">
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop"
+                                alt="ECU Tuning"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">settings</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">01
+                                    // ECU Tuning</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Engine Mapping</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6">
+                                車両特性に最適化した ECU マッピング。出力、トルク、レスポンスを劇的に向上させ、ドライバーの意図に瞬時に反応するエンジンに。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Custom Fuel Map
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Ignition Timing Optimization
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Boost Control Programming
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-48 overflow-hidden slant-media">
+                            <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800&h=600&fit=crop"
+                                alt="Aerodynamics"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">air</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">02
+                                    // Aero Design</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Aerodynamic Package
+                            </h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6">
+                                風洞実験データに基づく空力設計。ダウンフォースと抗力の最適バランスで、コーナリング安定性と最高速度を両立。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    CFD Analysis
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Custom Body Kit Design
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Wind Tunnel Testing
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-48 overflow-hidden slant-media">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+                                alt="Data Analysis"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">analytics</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">03
+                                    // Analytics</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Telemetry System
+                            </h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6">
+                                最先端のデータロギングシステム。リアルタイムで車両パフォーマンスを監視し、最適セットアップを導き出す。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Real-time Data Logging
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Performance Analysis
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Setup Optimization
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-48 overflow-hidden slant-media">
+                            <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&h=400&fit=crop"
+                                alt="Suspension"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">tune</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">04
+                                    // Suspension</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Chassis Tuning</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6">
+                                サスペンション設定からブッシュ交換、バランス調整まで。路面からの入力を正確に把握し、思い通りのラインを取れるシャシーに。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Damper Setting
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Alignment Optimization
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Weight Reduction
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-48 overflow-hidden slant-media">
+                            <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&h=400&fit=crop"
+                                alt="Exhaust System"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">fireplace</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">05
+                                    // Exhaust</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Exhaust System</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6">
+                                排気効率を最大化するカスタムエキゾーストシステム。出力向上だけでなく、レーシングサウンドも実現。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Custom Manifold
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    High-Flow Catalyst
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Titanium Muffler
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-48 overflow-hidden slant-media">
+                            <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800&h=600&fit=crop"
+                                alt="Brake System"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">do_not_touch</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">06
+                                    // Brakes</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Brake Upgrade</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6">
+                                制動力とコントロール性を向上させるブレーキシステム。カーボンセラミックからスリットローターまで、用途に合わせた選択を。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Big Caliper Kit
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Slotted Rotors
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Racing Brake Pads
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-24 px-6 lg:px-12 bg-charcoal-dark border-t-4 border-primary">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron font-black text-4xl md:text-6xl text-white uppercase tracking-widest mb-4">
+                        // OUR PROCESS</h2>
+                    <p class="font-inter text-gray-400 max-w-2xl mx-auto">結果を生み出すまでのフロー</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="z-card visible relative">
+                        <div class="border-2 border-primary p-8 h-full light-speed-hover slant-surface">
+                            <span
+                                class="font-orbitron font-black text-6xl text-primary/20 absolute top-4 right-4">01</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-5xl text-primary mb-4">search</span>
+                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Consultation</h3>
+                                <p class="font-inter text-gray-400 text-sm">
+                                    お客様の目標と車両状況をヒアリング。最適なチューニングメニューを提案。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="z-card relative">
+                        <div
+                            class="border-2 border-charcoal p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            <span
+                                class="font-orbitron font-black text-6xl text-charcoal-light absolute top-4 right-4">02</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-5xl text-primary mb-4">engineering</span>
+                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Engineering</h3>
+                                <p class="font-inter text-gray-400 text-sm">
+                                    専門エンジニアが詳細な計画を立案。シミュレーションで最適解を導出。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="z-card relative">
+                        <div
+                            class="border-2 border-charcoal p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            <span
+                                class="font-orbitron font-black text-6xl text-charcoal-light absolute top-4 right-4">03</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-5xl text-primary mb-4">build</span>
+                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Implementation
+                                </h3>
+                                <p class="font-inter text-gray-400 text-sm">
+                                    認定テクニシャンが作業を実施。品質管理の下、確実にチューニングを適用。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="z-card relative">
+                        <div
+                            class="border-2 border-charcoal p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            <span
+                                class="font-orbitron font-black text-6xl text-charcoal-light absolute top-4 right-4">04</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-5xl text-primary mb-4">flag</span>
+                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Validation</h3>
+                                <p class="font-inter text-gray-400 text-sm">
+                                    ダイナメーターと実走行で性能を検証。目標達成を確認して完了。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section
+            class="py-24 px-6 lg:px-12 bg-gradient-to-r from-primary via-orange-600 to-primary border-t-4 border-black">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-orbitron font-black text-4xl md:text-6xl text-white uppercase tracking-widest mb-6">
+                    READY TO UNLEASH POWER?</h2>
+                <p class="font-inter text-white/90 text-lg mb-10 max-w-2xl mx-auto">
+                    あなたの車両に眠る真の力を解き放て。Dynamic が最高峰のチューニングを提供する。
+                </p>
+                <button
+                    class="group relative inline-flex items-center justify-center bg-charcoal text-white px-12 py-6 text-lg font-black uppercase tracking-widest font-orbitron hover:bg-white hover:text-charcoal transition-all border-2 border-charcoal light-speed-hover slant-button"
+                    onclick="location.href='contact.html'">
+                    <span class="relative z-10">Book Consultation</span>
+                    <span class="material-symbols-outlined ml-2 font-bold relative z-10">chevron_right</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-4 border-primary bg-charcoal-dark px-6 py-16 lg:px-12 text-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+            <div class="flex flex-col gap-6 max-w-sm border-r-0 md:border-r-2 border-charcoal md:pr-12">
+                <div class="flex items-center gap-3 skew-container">
+                    <div class="flex h-12 w-12 items-center justify-center bg-primary skew-content">
+                        <span class="material-symbols-outlined text-3xl">speed</span>
+                    </div>
+                    <h2 class="font-orbitron text-2xl font-black tracking-tighter uppercase skew-content text-white">
+                        DYNAMIC</h2>
+                </div>
+                <p class="font-inter text-gray-400 text-sm leading-relaxed">
+                    常識を覆すスピードで未来を切り拓く。自動車・スポーツ業界の最先端パフォーマンスソリューション。
+                </p>
+                <div class="flex gap-4 mt-4">
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                            class="material-symbols-outlined">mail</span></a>
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                            class="material-symbols-outlined">call</span></a>
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                            class="material-symbols-outlined">location_on</span></a>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="font-orbitron font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">
+                        Company</h4>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="about.html">About</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="service.html">Services</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="contact.html">Contact</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="font-orbitron font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">
+                        Services</h4>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Tuning</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Aero</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Analytics</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="font-orbitron font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">
+                        Legal</h4>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Privacy</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto mt-16 pt-8 border-t-4 border-gray-800 text-center md:text-left text-gray-600 text-xs font-bold uppercase tracking-widest font-inter">
+            © 2026 DYNAMIC PERFORMANCE. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- Template Common Scripts -->
+    <div id="template-common-container"></div>
+    <script src="../../../assets/js/template-common.js" defer></script>
+
+    <script>
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.z-card').forEach(card => { cardObserver.observe(card); });
+    </script>
+</body>
+
+</html>
