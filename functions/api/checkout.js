@@ -24,17 +24,22 @@ export const onRequestPost = async (context) => {
       });
     }
 
+    // Dynamic pricing based on plan
+    let unitAmount = 10000; // Default Light
+    if (metadata.plan === 'standard') unitAmount = 30000;
+    else if (metadata.plan === 'premium') unitAmount = 50000;
+
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      automatic_payment_methods: { enabled: true },
       line_items: [
         {
           price_data: {
             currency: 'jpy',
             product_data: {
-              name: 'Standard Template Plan',
-              description: 'Access to premium templates',
+              name: `${metadata.plan.charAt(0).toUpperCase() + metadata.plan.slice(1)} Template Plan`,
+              description: `HP制作テンプレートプラン: ${metadata.plan}`,
             },
-            unit_amount: 10000, // Production amount: 10,000 JPY
+            unit_amount: unitAmount,
           },
           quantity: 1,
         },
