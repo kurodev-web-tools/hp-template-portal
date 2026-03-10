@@ -108,7 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const session = await response.json();
 
                 if (session.error) {
-                    throw new Error(session.error);
+                    const errorMsg = session.message
+                        ? `${session.error}\n\n詳細: ${session.message} (${session.code || 'N/A'})`
+                        : session.error;
+                    throw new Error(errorMsg);
                 }
 
                 // Redirect to Stripe Checkout
