@@ -23,11 +23,13 @@ export const onRequestPost = async (context) => {
         headers: { 'Content-Type': 'application/json' }
       });
     }
+    // Safe metadata access and dynamic pricing
+    const safeMetadata = metadata || {};
+    const plan = safeMetadata.plan || 'light';
 
-    // Dynamic pricing based on plan
-    let unitAmount = 10000; // Default Light
-    if (metadata.plan === 'standard') unitAmount = 30000;
-    else if (metadata.plan === 'premium') unitAmount = 50000;
+    let unitAmount = 10000;
+    if (plan === 'standard') unitAmount = 30000;
+    else if (plan === 'premium') unitAmount = 50000;
 
     const session = await stripe.checkout.sessions.create({
       automatic_payment_methods: { enabled: true },
@@ -36,8 +38,8 @@ export const onRequestPost = async (context) => {
           price_data: {
             currency: 'jpy',
             product_data: {
-              name: `${metadata.plan.charAt(0).toUpperCase() + metadata.plan.slice(1)} Template Plan`,
-              description: `HP制作テンプレートプラン: ${metadata.plan}`,
+              name: `${plan.charAt(0).toUpperCase() + plan.slice(1)} Template Plan`,
+              description: `HP制作テンプレートプラン: ${plan}`,
             },
             unit_amount: unitAmount,
           },
@@ -49,13 +51,13 @@ export const onRequestPost = async (context) => {
       cancel_url: cancelUrl,
       customer_email: customerEmail,
       metadata: {
-        ...metadata,
-        customerName: customerName || (metadata && metadata.customerName) || '',
+        ...safeMetadata,
+        customerName: customerName || safeMetadata.customerName || '',
       },
       payment_intent_data: {
         metadata: {
-          ...metadata,
-          customerName: customerName || (metadata && metadata.customerName) || '',
+          ...safeMetadata,
+          customerName: customerName || safeMetadata.customerName || '',
         },
       },
     });
