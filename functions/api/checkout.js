@@ -1,7 +1,15 @@
 import Stripe from 'stripe';
 
 export const onRequestPost = async (context) => {
-  const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
+  const stripeSecretKey = context.env.STRIPE_SECRET_KEY;
+  if (!stripeSecretKey) {
+    return new Response(JSON.stringify({ error: 'Server Error: STRIPE_SECRET_KEY is not defined in the environment.' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  const stripe = new Stripe(stripeSecretKey);
 
   try {
     const requestBody = await context.request.json();
@@ -31,8 +39,17 @@ export const onRequestPost = async (context) => {
     if (plan === 'standard') unitAmount = 30000;
     else if (plan === 'premium') unitAmount = 50000;
 
-    const session = await stripe.checkout.sessions.create({
-      automatic_payment_methods: { enabled: true },
+    // Build Checkout Session with explicit Japanese Bank Transfer support
+    const sessionConfig = {
+      payment_method_types: ['card', 'customer_balance'],
+      payment_method_options: {
+        customer_balance: {
+          funding_type: 'bank_transfer',
+          bank_transfer: {
+            type: 'jp_bank_transfer',
+          },
+        },
+      },
       line_items: [
         {
           price_data: {
@@ -60,7 +77,9 @@ export const onRequestPost = async (context) => {
           customerName: customerName || safeMetadata.customerName || '',
         },
       },
-    });
+    };
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     return new Response(JSON.stringify({ sessionId: session.id }), {
       status: 200,
@@ -69,8 +88,13 @@ export const onRequestPost = async (context) => {
 
   } catch (error) {
     console.error('Stripe Error:', error);
-    // Error Masking: Hide internal Stripe errors from the client
-    return new Response(JSON.stringify({ error: '決済の準備中にエラーが発生しました。しばらく経ってから再度お試しください。' }), {
+    // Detailed error reporting for debugging
+    return new Response(JSON.stringify({
+      error: '決済の準備中にエラーが発生しました。',
+      message: error.message,
+      type: error.type,
+      code: error.code
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
