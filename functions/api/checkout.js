@@ -39,8 +39,28 @@ export const onRequestPost = async (context) => {
     if (plan === 'standard') unitAmount = 30000;
     else if (plan === 'premium') unitAmount = 50000;
 
-    // Build Checkout Session with explicit Japanese Bank Transfer support
+    // 1. Create or retrieve Customer (Required for Bank Transfer / customer_balance)
+    let customer;
+    const existingCustomers = await stripe.customers.list({
+      email: customerEmail,
+      limit: 1,
+    });
+
+    if (existingCustomers.data.length > 0) {
+      customer = existingCustomers.data[0];
+    } else {
+      customer = await stripe.customers.create({
+        email: customerEmail,
+        name: customerName,
+        metadata: {
+          source: 'hp-portal'
+        }
+      });
+    }
+
+    // 2. Build Checkout Session
     const sessionConfig = {
+      customer: customer.id, // Explicitly set customer ID
       payment_method_types: ['card', 'customer_balance'],
       payment_method_options: {
         customer_balance: {
@@ -66,7 +86,7 @@ export const onRequestPost = async (context) => {
       mode: 'payment',
       success_url: successUrl,
       cancel_url: cancelUrl,
-      customer_email: customerEmail,
+      // customer_email: customerEmail, // REMOVED: Since customer ID is now provided
       metadata: {
         ...safeMetadata,
         customerName: customerName || safeMetadata.customerName || '',
