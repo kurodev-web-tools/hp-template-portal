@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="身バレ防止ガイド - 匿名性を維持したまま安全に決済を行うためのガイドライン。">
+    <meta name="theme-color" content="#00f2ff">
+
+    <!-- Open Graph Protocol -->
+    <meta property="og:title" content="Identity Protection Guide - HP Portal">
+    <meta property="og:description" content="身バレ防止ガイド：匿名性を維持した決済について">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="https://templates.kuro-lab.com/assets/images/og-image.png">
+
+    <title>Identity Protection Guide - HP Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/plans.css">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="identity-protection.html">
+    <link rel='icon' type='image/png' href='assets/images/favicon_cyan.png'>
+
+    <style>
+        .guide-card {
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+
+        .guide-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00f2ff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .guide-card p {
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .guide-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .guide-card li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .guide-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #00f2ff;
+            font-weight: bold;
+        }
+
+        .alert-box {
+            background: rgba(255, 68, 68, 0.1);
+            border-left: 4px solid #ff4444;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+        }
+
+        .alert-box h3 {
+            color: #ff4444;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recommendation-box {
+            background: rgba(0, 242, 255, 0.05);
+            border-left: 4px solid #00f2ff;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+        }
+
+        .recommendation-box h3 {
+            color: #00f2ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="aurora-container" id="auroraBg"></div>
+    <div class="bg-ambient"></div>
+
+    <header class="portal-header">
+        <div class="logo"><a href="index.html">HP TEMPLATES</a></div>
+        <nav class="main-nav">
+            <a href="list.html" class="nav-link">All Templates</a>
+            <a href="plans.html" class="nav-link">Plans & Request</a>
+        </nav>
+    </header>
+
+    <main class="plans-main">
+        <!-- Hero Section -->
+        <section class="plans-hero">
+            <div class="hero-content">
+                <h1 class="glass-title">Identity Protection Guide</h1>
+                <p class="hero-subtitle">匿名性を維持した安全な決済のために</p>
+            </div>
+        </section>
+
+        <!-- Guide Content Section -->
+        <section class="legal-section">
+            <div class="legal-container glass-panel">
+                <div class="guide-card">
+                    <h2><span class="material-icons">security</span>はじめに</h2>
+                    <p>
+                        VTuberや配信者、匿名クリエイターの皆様が、活動上の名前（ハンドルネーム）のみでサービスを利用いただけるよう、決済時の匿名性確保についてガイドラインを策定しました。
+                    </p>
+                    <p>
+                        当サービスでは、お客様のプライバシーを最優先に考え、実名が不必要に露出しない決済方法を推奨しています。
+                    </p>
+                </div>
+
+                <div class="guide-card">
+                    <h2><span class="material-icons">credit_card</span>クレジットカード決済（Stripe）</h2>
+                    <p>
+                        当サービスは決済基盤として「Stripe」を採用しています。Stripeを通じて決済を行う際、販売者（当方）に通知される情報は以下の通りです。
+                    </p>
+                    <ul>
+                        <li>カードブランド（Visa/Master等）と下4桁</li>
+                        <li>お支払い時に入力されたメールアドレス</li>
+                        <li>お支払い時に入力された氏名（※カード券面のお名前）</li>
+                    </ul>
+                    <div class="recommendation-box">
+                        <h3><span class="material-icons">thumb_up</span>推奨される方法</h3>
+                        <p>
+                            多くのプリペイドカード（Kyash, Vプリカ等）は、券面名義として「KYASH
+                            USER」などの汎用的な名称を使用しているため、<strong>決済時にもその名称を入力することで実名を伏せたまま決済が可能</strong>です。
+                        </p>
+                        <p>
+                            ※通常のクレジットカードでは銀行への照会時に実名が必要な場合があります。匿名性を最優先される場合は、やはりバーチャルプリペイドカードの利用が最適です。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <h2><span class="material-icons">account_balance</span>銀行振込について</h2>
+                    <p>
+                        銀行振込によるお支払いも可能です。ただし、振込人名義から実名が判明するリスクがあります。
+                    </p>
+                    <div class="recommendation-box">
+                        <h3><span class="material-icons">contact_support</span>銀行振込をご希望の場合</h3>
+                        <p>
+                            銀行振込をご希望の場合は、決済前に<a href="plans.html#contact">お問い合わせフォーム</a>より個別にご相談ください。振込詳細をお伝えいたします。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <h2><span class="material-icons">info</span>本名送信の防止について</h2>
+                    <p>
+                        当サービスでは、利便性よりも安全性を優先し、デバイスに登録された本名が自動的に送信される可能性のある特定のワンタッチ決済（Apple Pay / Google
+                        Pay等）を物理的に無効化しています。
+                    </p>
+                    <p>
+                        これにより、意図しない形での実名露出（身バレ）を防ぎ、安心してサービスをご利用いただける環境を整えております。
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="plans.html" class="nav-link"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; opacity: 0.8;">
+                        <span class="material-icons">arrow_back</span> プラン・お申し込みに戻る
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-legal">
+                <a href="legal.html" class="legal-link">legal</a>
+                <a href="privacy.html" class="legal-link">privacy</a>
+                <a href="terms.html" class="legal-link">terms</a>
+                <a href="identity-protection.html" class="legal-link active">身バレ防止ガイド</a>
+            </div>
+            <p>Designed & Engineered by <span class="brand-name">KuroDev</span></p>
+            <p class="copyright">© 2026 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/premium-effects.js" defer></script>
+</body>
+
+</html>
