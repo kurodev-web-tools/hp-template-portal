@@ -1,20 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('standard-order-modal');
-    // Select the standard plan button - Note: We will add ID 'btn-standard-order' to it in HTML
-    const openBtn = document.querySelector('.standard-btn');
+    // Select all potential open buttons
+    const openBtns = document.querySelectorAll('.btn-order-trigger');
     const closeBtn = document.querySelector('.modal-close');
     const form = document.getElementById('standard-order-form');
+    const modalTitle = modal?.querySelector('.modal-title');
 
     if (!modal) return;
 
     // Open Modal
-    if (openBtn) {
-        openBtn.addEventListener('click', (e) => {
+    openBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
             e.preventDefault();
+            const planType = btn.dataset.planType;
+
+            // Update modal title dynamically
+            if (modalTitle) {
+                const planName = planType.charAt(0).toUpperCase() + planType.slice(1);
+                modalTitle.textContent = `${planName} Plan お申し込み`;
+            }
+
+            // Add hidden field for plan type if not exists
+            let planField = form.querySelector('input[name="plan_type"]');
+            if (!planField) {
+                planField = document.createElement('input');
+                planField.type = 'hidden';
+                planField.name = 'plan_type';
+                form.appendChild(planField);
+            }
+            planField.value = planType;
+
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         });
-    }
+    });
 
     // Close Modal Function
     const closeModal = () => {
@@ -68,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = {
                 customerEmail: formData.get('email'),
                 customerName: formData.get('name'),
-                successUrl: window.location.origin + '/submission-success.html', // Redirect here after payment
-                cancelUrl: window.location.href, // Redirect here if canceled
-                // Metadata to be passed to Stripe (handled by checkout.js)
+                successUrl: window.location.origin + '/submission-success.html',
+                cancelUrl: window.location.href,
                 metadata: {
+                    plan: formData.get('plan_type'),
                     template: formData.get('template'),
                     domain: formData.get('domain'),
                     message: formData.get('message')

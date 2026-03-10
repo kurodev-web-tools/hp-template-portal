@@ -17,15 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Scroll to Target Card
             const targetCard = document.querySelector(`.pricing-card[data-plan="${targetPlan}"]`);
             if (targetCard) {
-                // Determine scroll position based on card index
-                // Standard is index 0, Premium is index 1
                 const index = Array.from(cards).indexOf(targetCard);
-                const scrollAmount = index * container.offsetWidth;
 
-                container.scrollTo({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
+                // Desktop: Horizontal alignment for 3 cards
+                // Mobile: Scroll logic for swiper
+                if (window.innerWidth < 1024) {
+                    const scrollAmount = index * container.offsetWidth;
+                    container.scrollTo({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
 
                 // Update Card Active State (for scaling effect)
                 updateActiveCard(index);
@@ -53,11 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isDown = true;
     });
 
-    container.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        // Optional: Prevent default scrolling if needed, but horizontal scrolling should be native-ish
-    });
-
     container.addEventListener('touchend', (e) => {
         if (!isDown) return;
         isDown = false;
@@ -66,48 +63,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const threshold = 50; // swipe threshold
 
         if (Math.abs(diff) > threshold) {
-            // Determine current index based on scroll position
             const currentIndex = Math.round(container.scrollLeft / container.offsetWidth);
             let nextIndex = currentIndex;
 
             if (diff > 0) {
-                // Swiped Left -> Go Next (Premium)
                 nextIndex = Math.min(currentIndex + 1, cards.length - 1);
             } else {
-                // Swiped Right -> Go Prev (Standard)
                 nextIndex = Math.max(currentIndex - 1, 0);
             }
 
-            // Trigger click on corresponding tab to reuse logic
             const targetPlan = cards[nextIndex].dataset.plan;
             const targetTab = document.querySelector(`.tab-btn[data-tab="${targetPlan}"]`);
             if (targetTab) {
                 targetTab.click();
             }
-        } else {
-            // Snap back if swipe wasn't strong enough
-            const currentIndex = Math.round(container.scrollLeft / container.offsetWidth);
-            const targetPlan = cards[currentIndex].dataset.plan;
-            const targetTab = document.querySelector(`.tab-btn[data-tab="${targetPlan}"]`);
-            if (targetTab) {
-                targetTab.click(); // Re-center
-            }
         }
     });
 
     // --- Initial State ---
-    // On load, set Standard as active
-    updateActiveCard(0);
+    // Standard (Index 1) as initial for focus on the middle/popular
+    setTimeout(() => {
+        const standardTab = document.querySelector('.tab-btn[data-tab="standard"]');
+        if (standardTab) standardTab.click();
+    }, 100);
 
     // --- Resize Handler ---
-    // Ensure correct scroll position on resize
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            // Re-align to currently active tab
             const activeTab = document.querySelector('.tab-btn.active');
-            if (activeTab) activeTab.click();
+            if (activeTab && window.innerWidth < 768) activeTab.click();
         }, 100);
     });
 });
