@@ -114,11 +114,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(errorMsg);
                 }
 
-                // Redirect to Stripe Checkout
-                const result = await stripe.redirectToCheckout({ sessionId: session.sessionId });
+                // Open Checkout in a NEW tab
+                if (session.url) {
+                    window.open(session.url, '_blank');
 
-                if (result.error) {
-                    throw new Error(result.error.message);
+                    // Reset loading state so the modal is usable if they come back
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+
+                    // Optional: Close modal after a short delay
+                    setTimeout(closeModal, 500);
+                } else {
+                    // Fallback to old method if URL is missing
+                    await stripe.redirectToCheckout({ sessionId: session.sessionId });
                 }
 
             } catch (error) {

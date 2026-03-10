@@ -101,16 +101,19 @@ export const onRequestPost = async (context) => {
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
-    return new Response(JSON.stringify({ sessionId: session.id }), {
+    return new Response(JSON.stringify({
+      sessionId: session.id,
+      url: session.url
+    }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    console.error('Stripe Error:', error);
+    console.error('Stripe Exception:', error);
     // Detailed error reporting for debugging
     return new Response(JSON.stringify({
-      error: '決済の準備中にエラーが発生しました。',
+      error: '決済の準備中にシステムエラーが発生しました。',
       message: error.message,
       type: error.type,
       code: error.code
