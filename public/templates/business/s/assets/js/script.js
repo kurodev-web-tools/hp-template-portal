@@ -1,149 +1,64 @@
-
-// Global Toggle Function
-window.toggleMenu = function () {
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+    const body = document.body;
+    const menuToggle = document.querySelector('.saas-mobile-toggle');
     const sidebar = document.querySelector('.saas-sidebar');
-    const toggle = document.querySelector('.saas-mobile-toggle');
-    if (sidebar) {
-        sidebar.classList.toggle('active');
+    const backdrop = document.querySelector('.saas-backdrop');
+    const mobileLinks = document.querySelectorAll('.saas-sidebar a[href]');
+    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+    const storageKey = 'intelligent-os-theme';
 
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    // ===== Smart SaaS Theme Effects =====
-    if (window.PremiumEffects) {
-        // Crisp modern reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 1500 });
-
-        // Tilt for dashboard cards
-        PremiumEffects.Tilt('.stat-card, .f-item', { max: 5, scale: 1.05 });
-    }
-
-    // ===== Sidebar Active State Sync =====
-    const sections = document.querySelectorAll('section');
-    const sideLinks = document.querySelectorAll('.sidebar-nav a');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
+    const updateThemeButtons = (isDark) => {
+        themeToggles.forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = button.querySelector('[data-theme-label]');
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
         });
+    };
 
-        sideLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+        updateThemeButtons(isDark);
+    };
+
+    const closeMenu = () => {
+        if (!menuToggle || !sidebar || !backdrop) return;
+        menuToggle.classList.remove('active');
+        sidebar.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    };
+
+    const toggleMenu = () => {
+        if (!menuToggle || !sidebar || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        sidebar.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    const savedTheme = localStorage.getItem(storageKey);
+    applyTheme(savedTheme ? savedTheme === 'dark' : false);
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    mobileLinks.forEach((link) => link.addEventListener('click', () => {
+        if (window.innerWidth < 1280) closeMenu();
+    }));
+    themeToggles.forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
     });
 
-    // ===== Mobile Sidebar Logic =====
-    const sidebar = document.querySelector('.saas-sidebar');
-    const toggle = document.querySelector('.saas-mobile-toggle');
-
-    if (sidebar) {
-        sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                sidebar.classList.remove('active');
-                if (toggle) {
-                    const icon = toggle.querySelector('.material-icons');
-                    if (icon) icon.textContent = 'menu';
-                }
-            });
-        });
-    }
-});
-
-// Mobile Pricing Carousel Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const controls = document.querySelectorAll('.p-control');
-    const container = document.querySelector('.pricing-grid');
-    const cards = document.querySelectorAll('.price-card');
-
-    if (!container || controls.length === 0) return;
-
-    // 1. Tab Click -> Scroll
-    controls.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            // Update UI
-            controls.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Scroll
-            const card = cards[index];
-            if (card) {
-                const left = card.offsetLeft - container.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
-                container.scrollTo({
-                    left: left,
-                    behavior: 'smooth'
-                });
-            }
-        });
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1280) closeMenu();
     });
 
-    // 2. Scroll/Swipe -> Update Tab
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(cards).indexOf(entry.target);
-                if (index !== -1) {
-                    controls.forEach(b => b.classList.remove('active'));
-                    controls[index].classList.add('active');
-                }
-            }
-        });
-    }, {
-        root: container,
-        threshold: 0.6
-    });
-
-    cards.forEach(card => observer.observe(card));
-});
-
-// Mobile Expandable Search Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBar = document.querySelector('.search-bar');
-    const searchIcon = searchBar ? searchBar.querySelector('.material-icons') : null;
-    const searchInput = searchBar ? searchBar.querySelector('input') : null;
-
-    if (!searchBar || !searchIcon) return;
-
-    // Inject Close Button dynamically
-    let closeBtn = document.createElement('span');
-    closeBtn.className = 'material-icons search-close';
-    closeBtn.textContent = 'close';
-    searchBar.appendChild(closeBtn);
-
-    // Expand on Click (Mobile only)
-    searchIcon.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024) {
-            e.stopPropagation();
-            searchBar.classList.add('active');
-            if (searchInput) searchInput.focus();
-        }
-    });
-
-    // Close Button Action
-    closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        searchBar.classList.remove('active');
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024 && searchBar.classList.contains('active')) {
-            if (!searchBar.contains(e.target)) {
-                searchBar.classList.remove('active');
-            }
-        }
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
     });
 });

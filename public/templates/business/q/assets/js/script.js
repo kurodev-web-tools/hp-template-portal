@@ -1,72 +1,62 @@
-
-// Global Toggle Function
-window.toggleMenu = function() {
-    const menu = document.querySelector('.precision-mobile-menu');
-    const toggle = document.querySelector('.precision-mobile-toggle');
-    if (menu) {
-        menu.classList.toggle('active');
-        
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Quality Theme Effects =====
-    if (window.PremiumEffects) {
-        // High precision reveal (slower, elegant)
-        PremiumEffects.BlurText('h1', { delay: 200, duration: 2500 });
+    const root = document.documentElement;
+    const body = document.body;
+    const menuToggle = document.querySelector('.precision-mobile-toggle');
+    const menuPanel = document.querySelector('.precision-mobile-menu');
+    const backdrop = document.querySelector('.precision-menu-backdrop');
+    const menuLinks = document.querySelectorAll('.precision-mobile-menu a[href]');
+    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+    const storageKey = 'quality-first-theme';
 
-        // Very subtle parallax for craft image
-        PremiumEffects.Tilt('.craft-img-small', { max: 2, scale: 1.02 });
-    }
+    const updateThemeButtons = (isDark) => {
+        themeToggles.forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = button.querySelector('[data-theme-label]');
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
+        });
+    };
 
-    // ===== Header Scroll Effect =====
-    const header = document.querySelector('.quality-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('is-scrolled');
-        } else {
-            header.classList.remove('is-scrolled');
-        }
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+        updateThemeButtons(isDark);
+    };
 
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        const loader = document.querySelector('.top-loader');
-        if(loader) loader.style.width = `${scrolled}%`;
+    const closeMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        menuToggle.classList.remove('active');
+        menuPanel.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    };
+
+    const toggleMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        menuPanel.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    const savedTheme = localStorage.getItem(storageKey);
+    applyTheme(savedTheme ? savedTheme === 'dark' : true);
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    themeToggles.forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
     });
 
-    // ===== Mobile Menu Auto-Close =====
-    const menu = document.querySelector('.precision-mobile-menu');
-    const toggle = document.querySelector('.precision-mobile-toggle');
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) closeMenu();
+    });
 
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                if (toggle) {
-                     const icon = toggle.querySelector('.material-icons');
-                     if (icon) icon.textContent = 'menu';
-                }
-            });
-        });
-    }
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
 });
-
-// Create Loader Element
-const loader = document.createElement('div');
-loader.className = 'top-loader';
-document.body.appendChild(loader);
-
-const style = document.createElement('style');
-style.innerHTML = `
-.top-loader {
-    position: fixed; top: 0; left: 0; height: 2px;
-    background: #1A1A1A; width: 0%; z-index: 2000;
-    transition: width 0.1s linear;
-}
-`;
-document.head.appendChild(style);

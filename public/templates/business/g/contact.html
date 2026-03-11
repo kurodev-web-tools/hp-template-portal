@@ -1,242 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Global | Logistics & Network</title>
-    <!-- Fonts: Inter (Standard, Clean) -->
+    <title>Contact | Global</title>
+    <meta name="description" content="Global Logistics への問い合わせページ。物流網の見直し、倉庫設計、輸送改善の相談を受け付けます。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Base CSS -->
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <style>
-        /* Contact specific styles inline for simplicity or move to style.css */
-        .contact-form-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-soft);
-            max-width: 800px;
-            margin: 4rem auto 0;
-            /* Separated from hero (was -5rem) */
-            position: relative;
-            z-index: 10;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--color-secondary-global);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: var(--font-ui);
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: var(--color-primary-global);
-            outline: none;
-        }
-
-        .contact-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .contact-info-item {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            color: var(--color-primary-global);
-            margin-bottom: 1rem;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
 </head>
-
-<body class="theme-global fade-in">
-
-    <!-- Custom Mobile Menu Toggle -->
-    <button id="global-mobile-toggle" class="global-mobile-toggle" aria-label="メニューを開く" aria-expanded="false"
-        onclick="toggleGlobalMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
-    <!-- Split Panel Menu -->
-    <div id="global-mobile-menu" class="global-mobile-menu">
-        <div class="split-left" onclick="toggleGlobalMenu()"></div>
-        <div class="split-right" onclick="toggleGlobalMenu()"></div>
-        <div class="menu-content">
-            <ul>
-                <li><a href="index.html" onclick="toggleGlobalMenu()">Home</a></li>
-                <li><a href="service.html" onclick="toggleGlobalMenu()">Services</a></li>
-                <li><a href="network.html" onclick="toggleGlobalMenu()">Network</a></li>
-                <li><a href="contact.html" class="btn-primary" onclick="toggleGlobalMenu()">Get Quote</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="global-header">
-        <div class="container">
-            <div class="logo">
-                <span class="material-icons">public</span>
-                <span>GlobalLine</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="service.html">Services</a></li>
-                    <li><a href="network.html">Network</a></li>
-                    <li><a href="contact.html" class="active btn-primary">Get Quote</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Page Header -->
-    <section class="page-header hero-section">
-        <div class="hero-overlay"></div>
-        <div class="globe-container"></div>
-        <div class="container hero-content">
-            <h1>Contact Us</h1>
-            <p>Get in touch for a customized logistics solution.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-page-section" style="padding-bottom: 6rem; background: var(--color-bg-global);">
-        <div class="container">
-
-            <!-- Contact Form -->
-            <div class="contact-form-container">
-                <form>
-                    <div class="form-group">
-                        <label class="form-label">Company Name</label>
-                        <input type="text" class="form-input" placeholder="Your Company">
-                    </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-input" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="name@company.com">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Inquiry Type</label>
-                        <select class="form-input">
-                            <option>General Inquiry</option>
-                            <option>Request a Quote</option>
-                            <option>Partner with us</option>
-                            <option>Cargo Tracking</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-input" rows="5" placeholder="How can we help you?"></textarea>
-                    </div>
-                    <button type="button" class="btn-primary" style="width:100%;">Send Message</button>
-                </form>
-            </div>
-
-            <!-- Additional Info -->
-            <div style="margin-top: 6rem;">
-                <div class="section-header">
-                    <h2>Global Headquarters</h2>
-                </div>
-                <div class="contact-info-grid">
-                    <div class="contact-info-item">
-                        <span class="material-icons contact-icon">phone</span>
-                        <h3>Phone</h3>
-                        <p>+1 (555) 123-4567</p>
-                        <p style="color:#888; font-size:0.9rem;">Mon-Fri 9:00 - 18:00 EST</p>
-                    </div>
-                    <div class="contact-info-item">
-                        <span class="material-icons contact-icon">email</span>
-                        <h3>Email</h3>
-                        <p>info@globalline.example.com</p>
-                        <p style="color:#888; font-size:0.9rem;">24/7 Support</p>
-                    </div>
-                    <div class="contact-info-item">
-                        <span class="material-icons contact-icon">location_on</span>
-                        <h3>Address</h3>
-                        <p>123 Logistics Blvd,<br>New York, NY 10001, USA</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="global-footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2026 GlobalLine Logistics.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="../../../assets/js/premium-effects.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.PremiumEffects) {
-                // Reuse Globe Effect
-                PremiumEffects.Globe('.globe-container', {
-                    color: '#1E90FF',
-                    bg: '#0D1B2A',
-                    size: 400
-                });
-            }
-        });
-    </script>
-    <script src="assets/js/script.js"></script>
-    <script>
-        // GLOBAL MENU CONTROL (DEEP FIX)
-        function toggleGlobalMenu() {
-            const toggle = document.getElementById('global-mobile-toggle');
-            const menu = document.getElementById('global-mobile-menu');
-            if (toggle && menu) {
-                const isActive = toggle.classList.toggle('active');
-                menu.classList.toggle('active');
-                toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-                document.body.style.overflow = isActive ? 'hidden' : '';
-            }
-        }
-    </script>
+<body class="custom-menu-only bg-background-light text-slate-900 dark:bg-background-dark dark:text-slate-100">
+    <button class="global-mobile-toggle global-panel fixed right-4 top-4 z-[10001] flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+    <div class="global-menu-backdrop fixed inset-0 z-[9998] bg-slate-950/50 backdrop-blur-sm"></div>
+    <div class="global-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-slate-200/20 bg-white/95 p-6 shadow-2xl backdrop-blur-xl dark:bg-surface-dark/95 md:hidden"><div class="mb-6 flex items-center justify-between"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-3xl text-primary">language</span><p class="text-sm font-semibold text-slate-900 dark:text-white">Global Logistics</p></div><button class="inline-flex items-center gap-2 rounded-full border border-primary/15 px-3 py-2 text-xs font-semibold text-primary" type="button" data-theme-toggle aria-pressed="false"><span class="material-symbols-outlined text-base" data-theme-icon>dark_mode</span><span data-theme-label>Dark</span></button></div><nav class="flex flex-col gap-2 text-base font-semibold text-slate-700 dark:text-slate-100"><a class="rounded-2xl px-4 py-3 hover:bg-primary/10" href="index.html">Home</a><a class="rounded-2xl px-4 py-3 hover:bg-primary/10" href="about.html">About</a><a class="rounded-2xl px-4 py-3 hover:bg-primary/10" href="service.html">Service</a><a class="rounded-2xl bg-primary px-4 py-3 text-white" href="contact.html">Contact</a></nav></div>
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl dark:border-slate-800 dark:bg-background-dark/90"><div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 lg:px-12"><a class="flex items-center gap-3" href="index.html"><span class="material-symbols-outlined text-4xl text-primary">language</span><p class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white">Global Logistics</p></a><div class="hidden items-center gap-8 md:flex"><nav class="flex items-center gap-7 text-sm font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-300"><a class="hover:text-primary" href="index.html">Home</a><a class="hover:text-primary" href="about.html">About</a><a class="hover:text-primary" href="service.html">Service</a><a class="text-primary" href="contact.html">Contact</a></nav><button class="inline-flex items-center gap-2 rounded-full border border-primary/15 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/10" type="button" data-theme-toggle aria-pressed="false"><span class="material-symbols-outlined text-lg" data-theme-icon>dark_mode</span><span data-theme-label>Dark</span></button></div></div></header>
+    <main>
+        <section class="py-24"><div class="mx-auto grid max-w-[1440px] gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-12"><div><p class="text-sm font-black uppercase tracking-[0.28em] text-primary">Contact</p><h1 class="mt-4 text-4xl font-black text-slate-900 dark:text-white md:text-6xl"><span class="ib">物流の詰まりを、</span><span class="ib">どこから解くべきか。</span></h1><p class="mt-6 text-sm leading-8 text-slate-600 dark:text-slate-300 md:text-base"><span class="ib">輸送コスト、遅延、在庫偏り、</span><span class="ib">拠点運用の負荷など、</span><span class="ib">まずは現状の課題を共有してください。</span></p><div class="mt-8 space-y-4"><div class="global-panel rounded-[1.5rem] p-5"><p class="text-sm font-bold">Email</p><p class="mt-2 text-sm text-slate-600 dark:text-slate-300">contact@global-logistics.jp</p></div><div class="global-panel rounded-[1.5rem] p-5"><p class="text-sm font-bold">Phone</p><p class="mt-2 text-sm text-slate-600 dark:text-slate-300">03-6303-1104</p></div></div></div><div class="global-panel rounded-[2rem] p-8 md:p-10"><form class="space-y-5"><div class="grid gap-5 md:grid-cols-2"><div><label class="mb-2 block text-sm font-semibold">お名前</label><input class="global-input" type="text" placeholder="例: 佐藤 太郎"></div><div><label class="mb-2 block text-sm font-semibold">会社名</label><input class="global-input" type="text" placeholder="例: Global Foods"></div></div><div class="grid gap-5 md:grid-cols-2"><div><label class="mb-2 block text-sm font-semibold">メールアドレス</label><input class="global-input" type="email" placeholder="info@example.com"></div><div><label class="mb-2 block text-sm font-semibold">相談種別</label><select class="global-input"><option>輸送改善</option><option>倉庫設計</option><option>可視化 / 追跡</option><option>越境物流</option></select></div></div><div><label class="mb-2 block text-sm font-semibold">ご相談内容</label><textarea class="global-input min-h-32" placeholder="現状の課題、対象エリア、取扱量などをご記入ください。"></textarea></div><button class="rounded-xl bg-primary px-6 py-4 text-sm font-black text-white" type="button">送信する</button></form></div></div></section>
+    </main>
+    <footer class="bg-slate-900 px-6 py-12 text-sm text-slate-400"><div class="mx-auto flex max-w-[1440px] items-center justify-between"><p>© 2026 Global Logistics</p><div class="flex gap-5"><a class="hover:text-primary" href="index.html">Home</a><a class="hover:text-primary" href="about.html">About</a><a class="hover:text-primary" href="service.html">Service</a></div></div></footer>
+    <div id="template-common-container"></div><script src="../../../assets/js/template-common.js" defer></script><script src="assets/js/script.js" defer></script>
 </body>
-
 </html>

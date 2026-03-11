@@ -1,36 +1,58 @@
-/* =========================================
-   Template H (High-end) - Scripts
-   ========================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+    const body = document.body;
+    const menuToggle = document.querySelector('.luxe-mobile-toggle');
+    const menuPanel = document.querySelector('.luxe-mobile-menu');
+    const backdrop = document.querySelector('.luxe-menu-backdrop');
+    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+    const menuLinks = document.querySelectorAll('.luxe-mobile-menu a[href]');
 
-    // Header Scroll Effect
-    const header = document.querySelector('.luxury-header');
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem('luxe-theme', isDark ? 'dark' : 'light');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+        themeToggles.forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            const label = button.querySelector('[data-theme-label]');
+            const icon = button.querySelector('[data-theme-icon]');
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+        });
+    };
+
+    const closeMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        menuToggle.classList.remove('active');
+        menuPanel.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'メニューを開く');
+        body.style.overflow = '';
+    };
+
+    const toggleMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        menuPanel.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    const savedTheme = localStorage.getItem('luxe-theme');
+    applyTheme(savedTheme ? savedTheme === 'dark' : true);
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    themeToggles.forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
     });
 
-    // Parallax Effect for Backgrounds
-    const parallaxBgs = document.querySelectorAll('.parallax-bg, .split-img');
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-
-        parallaxBgs.forEach(bg => {
-            // Simple parallax by translating background slightly slower than scroll
-            // Note: For background-image, we often use background-position-y or transform
-            // implementing via transform on the element itself if it's absolute
-            // In CSS, .hero-bg is absolute high. 
-            // Let's assume .hero-bg is an element we can move
-
-            if (bg.classList.contains('hero-bg')) {
-                bg.style.transform = `translateY(${scrolled * 0.4}px)`;
-            }
-        });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
     });
 });

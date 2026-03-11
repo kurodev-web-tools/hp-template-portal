@@ -1,147 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wide Horizon - 視界を、拡張する。パノラマ的な広がりを見せる横スクロール・デザインが織りなす、写真・建築・風景を愛するブランド向けテンプレート。">
-    <title>WIDE_HORIZON // PANORAMA</title>
-
-    <!-- Fonts: Syne, Space Mono, Noto Sans JP -->
+    <meta name="description" content="Wide Horizon は、視界の広がりと静かな没入感を両立するパノラマ体験ブランドです。">
+    <title>Wide Horizon | 視界の先まで設計するパノラマ体験ブランド</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@0;1&family=Syne:wght@400;800&family=Noto+Sans+JP:wght@100;300&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/base.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
 </head>
-
-<body class="theme-business theme-wide custom-menu-only">
-
-    <!-- Cinematic Overlay -->
-    <div class="cinema-bars">
-        <div class="bar-top"></div>
-        <div class="bar-bottom"></div>
+<body class="theme-business antialiased">
+    <div class="wide-ambient fixed inset-0 -z-20"></div>
+    <div class="cinema-bars pointer-events-none fixed inset-0 z-40"><div class="bar-top"></div><div class="bar-bottom"></div></div>
+    <div class="wide-menu-backdrop fixed inset-0 z-[9998] bg-slate-950/45 backdrop-blur-sm lg:hidden"></div>
+    <button class="wide-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-white/80 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+    <div class="wide-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-white/60 bg-white/92 p-6 text-slate-900 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl lg:hidden">
+        <div class="mb-6 flex items-center justify-between gap-4">
+            <div><p class="wide-logo text-2xl text-slate-900">WIDE_HORIZON</p><p class="text-xs font-bold uppercase tracking-[0.34em] text-primary">Continue story</p></div>
+            <button class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700" type="button" data-theme-toggle><span class="material-symbols-outlined text-base" data-theme-icon>dark_mode</span><span data-theme-label>Dark</span></button>
+        </div>
+        <div class="flex flex-col gap-2">
+            <a href="index.html" class="wide-nav-link active rounded-2xl px-4 py-3">Home</a>
+            <a href="about.html" class="wide-nav-link rounded-2xl px-4 py-3">About</a>
+            <a href="service.html" class="wide-nav-link rounded-2xl px-4 py-3">Service</a>
+            <a href="contact.html" class="wide-nav-link rounded-2xl px-4 py-3">Contact</a>
+        </div>
     </div>
-
-    <header class="wide-header">
-        <div class="logo">W_HORIZON</div>
-        <div class="nav wide-nav">
-            <ul>
-                <li><a href="#intro">SCENE_01</a></li>
-                <li><a href="#projects">SCENE_02</a></li>
-                <li><a href="#process">SCENE_03</a></li>
-                <li><a href="#contact">END_TITLES</a></li>
-            </ul>
+    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10">
+        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/70 bg-white/72 px-5 py-3 shadow-[0_12px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-background-dark/70">
+            <a href="index.html" class="flex items-center gap-3 text-slate-900 dark:text-white">
+                <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/12 text-primary dark:bg-primary/20"><span class="material-symbols-outlined text-2xl">explore</span></div>
+                <div><p class="wide-logo text-2xl">WIDE_HORIZON</p><p class="text-[11px] font-bold uppercase tracking-[0.34em] text-slate-500 dark:text-slate-400">Panorama / quiet luxury</p></div>
+            </a>
+            <div class="nav hidden items-center gap-2 lg:flex">
+                <a href="index.html" class="wide-nav-link active rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Home</a>
+                <a href="about.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">About</a>
+                <a href="service.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Service</a>
+                <a href="contact.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Contact</a>
+            </div>
+            <div class="hidden items-center gap-3 lg:flex">
+                <button class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 dark:border-white/15 dark:text-slate-200" type="button" data-theme-toggle><span class="material-symbols-outlined text-base" data-theme-icon>dark_mode</span><span data-theme-label>Dark</span></button>
+                <a href="contact.html" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white dark:bg-primary dark:text-background-dark">Book Session</a>
+            </div>
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="wide-mobile-menu">
-        <div class="menu-hint">CONTINUE_STORY</div>
-        <ul>
-            <li><a href="#intro">SCENE_01</a></li>
-            <li><a href="#projects">SCENE_02</a></li>
-            <li><a href="#process">SCENE_03</a></li>
-            <li><a href="#contact">END_TITLES</a></li>
-        </ul>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="horizontal-progress">
-        <div class="progress-line"></div>
-    </div>
-
-    <div class="wide-wrapper">
-        <div class="horizontal-scroll-container">
-
-            <!-- Section: 01 (Intro) -->
-            <section id="intro" class="wide-section intro">
-                <div class="intro-content">
-                    <span class="scene-id">01 / INTRO</span>
-                    <h1 class="blur-text"><span class="text-group">Expanding</span><span class="text-group"><i>Views.</i></span></h1>
-                    <p><span class="text-group">枠に囚われない、</span><span class="text-group">視界のその先へ。</span><span class="text-group">Wide Horizonは、</span><span class="text-group">横に広がるパノラマ的な体験を通じて、</span><span class="text-group">物語の奥行きを表現します。</span></p>
-                </div>
-                <div class="panorama-img">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000"
-                        alt="Mountain Panorama">
-                </div>
-            </section>
-
-            <!-- Section: 02 (Projects) -->
-            <section id="projects" class="wide-section projects">
-                <div class="section-title-wrap">
-                    <span class="scene-id">02 / WORK</span>
-                    <h2>CURATED_<wbr>EXTENTS</h2>
-                </div>
-                <div class="project-items">
-                    <div class="p-item p1">
-                        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800"
-                            alt="Urban">
-                        <div class="p-info">
-                            <h3>METROPOLIS_VUE</h3>
-                        </div>
+    <main class="overflow-hidden pb-20">
+        <section class="px-6 pb-16 pt-10 lg:px-10 lg:pb-20 lg:pt-12">
+            <div class="mx-auto grid max-w-[1440px] gap-10 xl:grid-cols-[1.08fr_0.92fr]">
+                <div class="pt-10">
+                    <p class="wide-kicker">Scene 01 / Panorama intro</p>
+                    <h1 class="mt-8 text-5xl font-light leading-[0.88] tracking-[-0.05em] text-slate-900 md:text-7xl xl:text-[7rem] dark:text-white"><span class="ib">Expanding</span><span class="ib">views,</span><span class="ib text-primary">quietly.</span></h1>
+                    <p class="mt-8 max-w-2xl text-lg leading-9 text-slate-600 md:text-xl dark:text-slate-300"><span class="ib">Wide Horizon は、</span><span class="ib">空間の広がりや余白の美しさをそのまま体験へ変えるブランドです。</span><span class="ib">旅、建築、ホスピタリティの世界観を、</span><span class="ib">静かな没入感とともに届けます。</span></p>
+                    <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+                        <a href="service.html" class="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-4 text-base font-semibold uppercase tracking-[0.18em] text-white transition-transform hover:-translate-y-1 dark:bg-primary dark:text-background-dark">Explore Programs</a>
+                        <a href="about.html" class="inline-flex items-center justify-center rounded-full border border-slate-300 px-8 py-4 text-base font-semibold uppercase tracking-[0.18em] text-slate-700 transition-colors hover:border-primary hover:text-primary dark:border-white/15 dark:text-slate-200">About Horizon</a>
                     </div>
-                    <div class="p-item p2">
-                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800"
-                            alt="Nature">
-                        <div class="p-info">
-                            <h3>SILENT_PEAKS</h3>
-                        </div>
+                    <div class="mt-12 grid gap-4 md:grid-cols-3">
+                        <article class="wide-stat-card rounded-[1.8rem] p-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Reach</p><p class="mt-4 text-4xl font-light text-slate-900 dark:text-white">42</p><p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">撮影地・滞在地・体験導線を、</span><span class="ib">世界各地で設計しています。</span></p></article>
+                        <article class="wide-stat-card rounded-[1.8rem] p-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Stay</p><p class="mt-4 text-4xl font-light text-slate-900 dark:text-white">5D</p><p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">短期滞在でも深い体験になるよう、</span><span class="ib">旅程を編集します。</span></p></article>
+                        <article class="wide-stat-card rounded-[1.8rem] p-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Focus</p><p class="mt-4 text-4xl font-light text-slate-900 dark:text-white">1</p><p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">「何を感じて帰るか」</span><span class="ib">その一点から逆算します。</span></p></article>
                     </div>
                 </div>
-            </section>
-
-            <!-- Section: 03 (Process) -->
-            <section id="process" class="wide-section process">
-                <div class="process-text">
-                    <span class="scene-id">03 / PHILOSOPHY</span>
-                    <h2>CINEMATIC_GRAIN</h2>
-                    <p><span class="text-group">私たちは、一つ一つのピクセルに</span><span class="text-group">意味を持たせます。</span><span class="text-group">コントラスト、質感、そして余白。</span><span class="text-group">すべてが計算された構図の中に配置され、</span><span class="text-group">静かな感動を呼び起こします。</span></p>
+                <div class="wide-panorama-card overflow-hidden rounded-[2.4rem]">
+                    <img class="h-full min-h-[480px] w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7x45aTpmQIbPiELJQUxgTchDkr33joS7L2XaXL21ylJxqcBFxvJe545nGrqKIXSr4-afDo-wKNXMtJQinYtDqA0223mp5qLg9HVH_69N5GDSo-HRuUjBskTSGuTrtQ8anc8CUpkJrTilbQJoAHOAXmdA0znyEqTTI_kw5IJnLuEtbODB_UbkVfgqh8izpBjRHOA57ci8m0Ie4aodRxWT_1H8GYxiZTDx4O_2fUd8wCDonOoVw2WUEhIOh7OaR8Rh0yvzWXmzL8os" alt="海と空が広がるパノラマビュー">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-950/10 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <p class="text-xs font-bold uppercase tracking-[0.34em] text-white/70">Scene note</p>
+                        <p class="mt-4 text-3xl font-light leading-tight text-white"><span class="ib">Boundless horizon,</span><span class="ib">carefully directed.</span></p>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Section: 04 (Contact) -->
-            <section id="contact" class="wide-section contact">
-                <div class="contact-box">
-                    <span class="scene-id">04 / CONNECT</span>
-                    <h2>COLLABORATE_NOW</h2>
-                    <form class="wide-form">
-                        <div class="wide-input-group">
-                            <label>SCENE_REF</label>
-                            <input type="text" placeholder="SCENE_01_PANORAMA" required>
-                        </div>
-                        <div class="wide-input-group">
-                            <label>NARRATIVE_DESCRIPTION</label>
-                            <textarea placeholder="Describe the vision in detail..."></textarea>
-                        </div>
-                        <div class="wide-input-group">
-                            <label>RETURN_ADDRESS (Email)</label>
-                            <input type="email" placeholder="official@horizon.vue" required>
-                        </div>
-                        <button type="submit">SUBMIT_THE_FRAME</button>
-                    </form>
+        <section class="px-6 py-16 lg:px-10 lg:py-20">
+            <div class="mx-auto max-w-[1440px]">
+                <div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                    <div><p class="wide-kicker">Scene 02 / Destinations</p><h2 class="mt-5 text-5xl font-light leading-[0.9] tracking-[-0.05em] text-slate-900 md:text-7xl dark:text-white"><span class="ib">CURATED</span><span class="ib text-primary">EXTENTS</span></h2></div>
+                    <p class="max-w-xl text-base leading-8 text-slate-500 dark:text-slate-400"><span class="ib">ただ豪華なだけではなく、</span><span class="ib">空間が語る物語まで含めて選定する。</span><span class="ib">それが Wide Horizon のキュレーションです。</span></p>
                 </div>
-                <div class="footer-sign">
-                    <p>WIDE_HORIZON // EST. 2026 // ALL_RIGHTS_RESERVED</p>
+                <div class="grid gap-6 lg:grid-cols-3">
+                    <article class="wide-showcase rounded-[2rem] p-4 lg:col-span-2">
+                        <div class="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+                            <img class="aspect-[16/10] w-full rounded-[1.6rem] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF7C7YyJ9K6j_E45_5BWxmGp0ifzkxmMWkJKj6qNyZOqK3thUUF2iTdQ9zG5GjkhRyNTnV1IUq-PFAfGFpMmTl8QDQjSMxjZIxAxxmpVtxd5v2R1gE-7XAf11d8NRbMS4wMV9SjN0sbeUnZrC6rjvKEtfmDBeTvHEnO0M5wnKzqUDR-fDCWhVuu42YH0J14h8N19Yu0rMF0KYGSW4_wh7svLdHowOGP8pQUWZ8pjlw8ugvjHP5F-mHA-POKV9K6sxcNtc9pGTwpFY" alt="山岳地帯のワイドビュー">
+                            <div class="flex flex-col justify-between rounded-[1.6rem] bg-slate-900 px-6 py-7 text-white dark:bg-white dark:text-slate-900">
+                                <div><p class="text-xs font-bold uppercase tracking-[0.28em] text-sky">North America</p><h3 class="mt-4 text-3xl font-light">High Sierras</h3></div>
+                                <p class="text-sm leading-8 text-white/70 dark:text-slate-600"><span class="ib">視界の抜けと静けさを両立する、</span><span class="ib">長距離移動型のパノラマ体験です。</span></p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="wide-showcase rounded-[2rem] p-4">
+                        <img class="aspect-[4/5] w-full rounded-[1.6rem] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChupJuRskSBsO-XTIdTLqnA_8sh7qFLDkJe4JuYmfWdN8_OnVUXvwyrcl_Ih7BQ0NqP1FxmBEUSIhSIJLfsNDtVqb5_NoCmgejIwkzhRK4qFIs0MHTKalMQwF7mrZbkCvK2oiOBrV4RfQE8L2FrY1bEIGFXTd2uA2CsBzqY1nG_IDARBg_lbiFDTZsilvP_uxQ8Ba1zOJ_FVNueO9qWIuVj1DxW9yFHdLDN56aJQ230t1lPCV0-xItbrF04T2D8by6s_s1-bDxArk" alt="海上に浮かぶヴィラ">
+                        <div class="px-2 pb-2 pt-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Maldivian Azure</p><p class="mt-3 text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">水平線の静けさを主役にした、</span><span class="ib">滞在型のシグネチャー体験です。</span></p></div>
+                    </article>
                 </div>
-            </section>
+            </div>
+        </section>
 
+        <section class="border-y border-slate-200 bg-white/65 px-6 py-16 backdrop-blur-sm lg:px-10 lg:py-20 dark:border-white/10 dark:bg-background-dark/65">
+            <div class="mx-auto grid max-w-[1440px] gap-6 xl:grid-cols-[0.94fr_1.06fr]">
+                <article class="wide-panel rounded-[2rem] p-8 lg:p-10"><p class="wide-kicker">Scene 03 / Experience design</p><h2 class="mt-5 text-4xl font-light leading-[0.92] text-slate-900 md:text-6xl dark:text-white"><span class="ib">CINEMATIC</span><span class="ib text-primary">GRAIN</span></h2><p class="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300"><span class="ib">移動、滞在、光、音、余白。</span><span class="ib">すべてが一連のシーンとしてつながるよう、</span><span class="ib">旅の設計を映像的に組み立てています。</span></p></article>
+                <div class="grid gap-6 md:grid-cols-3">
+                    <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Chapter 01</p><h3 class="mt-4 text-2xl font-light text-slate-900 dark:text-white">Route</h3><p class="mt-4 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">移動そのものが体験になるよう、</span><span class="ib">ルートに意味を持たせます。</span></p></article>
+                    <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Chapter 02</p><h3 class="mt-4 text-2xl font-light text-slate-900 dark:text-white">Stay</h3><p class="mt-4 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">宿泊先は設備だけでなく、</span><span class="ib">視界の抜けと静けさで選びます。</span></p></article>
+                    <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Chapter 03</p><h3 class="mt-4 text-2xl font-light text-slate-900 dark:text-white">Memory</h3><p class="mt-4 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">写真や言葉として残る余白まで、</span><span class="ib">最後に設計します。</span></p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-16 lg:px-10 lg:py-20">
+            <div class="mx-auto flex max-w-[1440px] flex-col gap-6 rounded-[2.1rem] bg-slate-900 px-8 py-10 text-white lg:flex-row lg:items-center lg:justify-between dark:bg-white dark:text-slate-900">
+                <div><p class="wide-kicker border-white/20 bg-white/10 text-white dark:border-slate-300 dark:bg-slate-100 dark:text-primary">End titles</p><h2 class="mt-5 text-4xl font-light leading-tight md:text-5xl"><span class="ib">Ready for your</span><span class="ib">next horizon?</span></h2></div>
+                <a href="contact.html" class="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-semibold uppercase tracking-[0.18em] text-slate-900 transition-transform hover:-translate-y-1 dark:bg-primary dark:text-background-dark">Plan a Private Session</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 px-6 pb-12 pt-16 lg:px-10 dark:border-white/10">
+        <div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+            <div><p class="wide-logo text-3xl text-slate-900 dark:text-white">WIDE_HORIZON</p><p class="mt-4 max-w-md text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">静かなラグジュアリーと、</span><span class="ib">視界の広がりを両立する体験ブランド。</span><span class="ib">Tokyo / Reykjavik / Vancouver.</span></p></div>
+            <div><p class="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Navigation</p><div class="mt-4 flex flex-col gap-3 text-sm font-semibold uppercase text-slate-500 dark:text-slate-400"><a href="index.html">Home</a><a href="about.html">About</a><a href="service.html">Service</a><a href="contact.html">Contact</a></div></div>
+            <div><p class="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Contact</p><div class="mt-4 flex flex-col gap-3 text-sm text-slate-500 dark:text-slate-400"><p>contact@wide-horizon.jp</p><p>03-6407-2185</p><p>Mon-Fri / 10:00-18:00</p></div></div>
         </div>
-    </div>
+    </footer>
 
     <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="../../../assets/js/premium-effects.js" defer></script>
     <script src="assets/js/script.js" defer></script>
-
-    <button class="wide-mobile-toggle">
-        <span class="material-icons">menu</span>
-    </button>
 </body>
-
 </html>

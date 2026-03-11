@@ -1,73 +1,37 @@
-
-// Global Toggle Function
-window.toggleMenu = function() {
+window.toggleMenu = function () {
     const menu = document.querySelector('.pop-mobile-menu');
     const toggle = document.querySelector('.pop-mobile-toggle');
-    if (menu) {
-        menu.classList.toggle('is-active');
-        
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('is-active') ? 'close' : 'menu';
-            }
-        }
-    }
+    if (!menu || !toggle) return;
+    menu.classList.toggle('is-active');
+    toggle.setAttribute('aria-expanded', menu.classList.contains('is-active') ? 'true' : 'false');
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Pop Theme Effects =====
-    if (window.PremiumEffects) {
-        // Energetic reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 1000 });
+    const root = document.documentElement;
+    const storageKey = 'pop-spark-theme';
 
-        // Tilt for story panels and grid items
-        PremiumEffects.Tilt('.story-panel, .grid-item', { max: 15, scale: 1.05, speed: 400 });
-    }
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = button.querySelector('[data-theme-label]');
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
+        });
+    };
 
-    // ===== Sticker Hover Shiver =====
-    const stickers = document.querySelectorAll('.hero-sticker');
-    stickers.forEach(sticker => {
-        sticker.addEventListener('mouseenter', () => {
-            sticker.style.animation = 'shiver 0.3s infinite';
-        });
-        sticker.addEventListener('mouseleave', () => {
-            sticker.style.animation = '';
-        });
+    const saved = localStorage.getItem(storageKey);
+    applyTheme(saved ? saved === 'dark' : false);
+
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
     });
 
-    // ===== Mobile Menu Auto-Close =====
-    const menu = document.querySelector('.pop-mobile-menu');
-    const toggle = document.querySelector('.pop-mobile-toggle');
-
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('is-active');
-                if (toggle) {
-                     const icon = toggle.querySelector('.material-icons');
-                     if (icon) icon.textContent = 'menu';
-                }
-            });
+    document.querySelectorAll('.pop-mobile-menu a').forEach((link) => {
+        link.addEventListener('click', () => {
+            document.querySelector('.pop-mobile-menu')?.classList.remove('is-active');
         });
-    }
+    });
 });
-
-// Shiver Animation
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes shiver {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
-`;
-document.head.appendChild(style);

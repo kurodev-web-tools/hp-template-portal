@@ -1,93 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle with Overlay
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
+    const root = document.documentElement;
+    const body = document.body;
+    const menuToggle = document.querySelector('.logic-mobile-toggle');
+    const menuPanel = document.querySelector('.logic-mobile-menu');
+    const backdrop = document.querySelector('.logic-menu-backdrop');
+    const navLinks = document.querySelectorAll('.logic-nav-link');
+    const mobileLinks = document.querySelectorAll('.logic-mobile-menu a[href]');
+    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+    const storageKey = 'logical-core-theme';
 
-    // Create overlay element for mobile
-    const overlay = document.createElement('div');
-    overlay.className = 'sidebar-overlay';
-    document.body.appendChild(overlay);
-
-    function openSidebar() {
-        sidebar.classList.add('open');
-        overlay.classList.add('active');
-        menuToggle.querySelector('i').textContent = 'close';
-    }
-
-    function closeSidebar() {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        menuToggle.querySelector('i').textContent = 'terminal';
-    }
-
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', () => {
-            if (sidebar.classList.contains('open')) {
-                closeSidebar();
-            } else {
-                openSidebar();
-            }
-        });
-
-        // Close sidebar when overlay is clicked
-        overlay.addEventListener('click', closeSidebar);
-
-        // Close sidebar when navigation link is clicked (for mobile UX)
-        sidebar.querySelectorAll('.nav-item').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    closeSidebar();
-                }
-            });
-        });
-    }
-
-    // Initialize Premium Effects
-    if (window.PremiumEffects) {
-        PremiumEffects.BlurText('.blur-text');
-        PremiumEffects.CountUp('.count-up');
-        PremiumEffects.Tilt('.stat-card', { max: 5 });
-    }
-
-    // Active Link Management
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        if (item.getAttribute('href') === currentPath) {
-            item.classList.add('active');
-        } else {
-            item.classList.remove('active');
-        }
-    });
-
-    // Add some "pulse" effect to flow nodes occasionally
-    const nodes = document.querySelectorAll('.flow-node');
-    if (nodes.length > 0) {
-        setInterval(() => {
-            const randomIndex = Math.floor(Math.random() * nodes.length);
-            const node = nodes[randomIndex];
-            if (node) {
-                node.style.boxShadow = '0 0 15px var(--color-primary)';
-                node.style.transition = 'box-shadow 0.5s';
-                setTimeout(() => {
-                    node.style.boxShadow = 'none';
-                }, 1000);
-            }
-        }, 3000);
-    }
-
-    // --- Flow Icon Swap Logic (horizontal → downward on mobile) ---
-    const updateFlowIcons = () => {
-        const isMobile = window.innerWidth <= 768;
-        const arrows = document.querySelectorAll('.flow-diagram .material-icons');
-
-        arrows.forEach(icon => {
-            if (icon.textContent === 'arrow_forward' || icon.textContent === 'arrow_downward') {
-                icon.textContent = isMobile ? 'arrow_downward' : 'arrow_forward';
-            }
+    const updateThemeButtons = (isDark) => {
+        themeToggles.forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = button.querySelector('[data-theme-label]');
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
         });
     };
 
-    updateFlowIcons();
-    window.addEventListener('resize', updateFlowIcons);
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+        updateThemeButtons(isDark);
+    };
+
+    const closeMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        menuToggle.classList.remove('active');
+        menuPanel.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    };
+
+    const toggleMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        menuPanel.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        link.classList.toggle('active', href === currentPage);
+    });
+
+    const savedTheme = localStorage.getItem(storageKey);
+    applyTheme(savedTheme ? savedTheme === 'dark' : true);
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    themeToggles.forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) closeMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
 });

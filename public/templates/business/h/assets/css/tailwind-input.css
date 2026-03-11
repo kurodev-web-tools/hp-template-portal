@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@source "../../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #b7860b;
+    --color-background-light: #f8f7f5;
+    --color-background-dark: #221d10;
+    --color-surface-dark: #2d2616;
+    --color-ivory: #f2ece2;
+    --font-display: "Work Sans", "Noto Sans JP", sans-serif;
+    --shadow-luxe: 0 30px 80px rgba(34, 29, 16, 0.18);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-display);
+    background:
+        radial-gradient(circle at top right, rgba(183, 134, 11, 0.08), transparent 20rem),
+        var(--color-background-light);
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+    background:
+        radial-gradient(circle at top right, rgba(183, 134, 11, 0.16), transparent 20rem),
+        var(--color-background-dark);
+    color: #f8fafc;
+}
+
+::selection {
+    background: rgba(183, 134, 11, 0.28);
+    color: #1c1917;
+}
+
+.serif-detail {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+}
+
+.luxe-panel {
+    background: rgba(248, 247, 245, 0.82);
+    border: 1px solid rgba(183, 134, 11, 0.18);
+    box-shadow: var(--shadow-luxe);
+    backdrop-filter: blur(14px);
+}
+
+.dark .luxe-panel {
+    background: rgba(45, 38, 22, 0.8);
+    border-color: rgba(183, 134, 11, 0.16);
+}
+
+.luxe-menu-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.luxe-menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.luxe-mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-1rem);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.luxe-mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.luxe-mobile-toggle .bar {
+    width: 1.35rem;
+    height: 2px;
+    border-radius: 9999px;
+    background: #b7860b;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.luxe-mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.luxe-mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.luxe-mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.luxe-input {
+    width: 100%;
+    border: 1px solid rgba(183, 134, 11, 0.22);
+    background: rgba(255, 255, 255, 0.86);
+    padding: 1rem 1.05rem;
+    color: #1f2937;
+    outline: none;
+}
+
+.luxe-input:focus {
+    border-color: rgba(183, 134, 11, 0.85);
+    box-shadow: 0 0 0 4px rgba(183, 134, 11, 0.12);
+}
+
+.dark .luxe-input {
+    background: rgba(34, 29, 16, 0.45);
+    color: #f8fafc;
+}

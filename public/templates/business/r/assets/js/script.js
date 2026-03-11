@@ -1,65 +1,62 @@
-
-// Global Toggle Function
-window.toggleMenu = function() {
-    const menu = document.querySelector('.royal-mobile-menu');
-    const toggle = document.querySelector('.royal-mobile-toggle');
-    if (menu) {
-        menu.classList.toggle('active');
-        
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Royal Theme Effects =====
-    if (window.PremiumEffects) {
-        // Grand reveal
-        PremiumEffects.BlurText('h1', { delay: 400, duration: 3000 });
+    const root = document.documentElement;
+    const body = document.body;
+    const menuToggle = document.querySelector('.royal-mobile-toggle');
+    const menuPanel = document.querySelector('.royal-mobile-menu');
+    const backdrop = document.querySelector('.royal-menu-backdrop');
+    const mobileLinks = document.querySelectorAll('.royal-mobile-menu a[href]');
+    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+    const storageKey = 'royal-legacy-theme';
 
-        // Tilt for framed image
-        PremiumEffects.Tilt('.sig-image-frame', { max: 3, scale: 1.02 });
-    }
+    const updateThemeButtons = (isDark) => {
+        themeToggles.forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = button.querySelector('[data-theme-label]');
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
+        });
+    };
 
-    // ===== Header Scroll Effect =====
-    const header = document.querySelector('.royal-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('is-scrolled');
-        } else {
-            header.classList.remove('is-scrolled');
-        }
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+        updateThemeButtons(isDark);
+    };
+
+    const closeMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        menuToggle.classList.remove('active');
+        menuPanel.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    };
+
+    const toggleMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        menuPanel.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    const savedTheme = localStorage.getItem(storageKey);
+    applyTheme(savedTheme ? savedTheme === 'dark' : true);
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    themeToggles.forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
     });
 
-    // ===== Mobile Menu Auto-Close =====
-    const menu = document.querySelector('.royal-mobile-menu');
-    const toggle = document.querySelector('.royal-mobile-toggle');
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) closeMenu();
+    });
 
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                if (toggle) {
-                     const icon = toggle.querySelector('.material-icons');
-                     if (icon) icon.textContent = 'menu';
-                }
-            });
-        });
-    }
-
-    // ===== Scroll Fade-in Ornament =====
-    const sigImage = document.querySelector('.sig-image-frame');
-    window.addEventListener('scroll', () => {
-        if (sigImage) {
-            const rect = sigImage.getBoundingClientRect();
-            if (rect.top < window.innerHeight) {
-                sigImage.style.opacity = '1';
-                sigImage.style.transform = 'translateY(0)';
-            }
-        }
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
     });
 });

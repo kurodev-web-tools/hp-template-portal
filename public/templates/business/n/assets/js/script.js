@@ -1,67 +1,59 @@
-
-// Define toggleMenu globally for the onclick attribute
-window.toggleMenu = function() {
-    const menu = document.querySelector('.neon-mobile-menu');
-    const toggle = document.querySelector('.neon-mobile-toggle');
-    if (menu) {
-        menu.classList.toggle('is-active');
-        
-        // Toggle icon
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('is-active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Neon Theme Effects =====
-    if (window.PremiumEffects) {
-        // High impact reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 1500 });
+    const root = document.documentElement;
+    const storageKey = 'business-n-theme';
+    const storedTheme = localStorage.getItem(storageKey);
 
-        // Tilt for terminal and cards
-        PremiumEffects.Tilt('.terminal-window, .vibe-card', { max: 10, scale: 1.02, speed: 1000 });
+    if (storedTheme === 'light') {
+        root.classList.remove('dark');
+    } else {
+        root.classList.add('dark');
     }
 
-    // ===== Mobile Menu Auto-Close =====
-    const menu = document.querySelector('.neon-mobile-menu');
-    const toggle = document.querySelector('.neon-mobile-toggle');
-
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('is-active');
-                if (toggle) {
-                    const icon = toggle.querySelector('.material-icons');
-                    if (icon) icon.textContent = 'menu';
-                }
-            });
-        });
-    }
-
-    // ===== Scrolling Sidebar Highlight =====
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.side-nav a'); // Updated selector to match .nav class or wrapper
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 100) {
-                current = section.getAttribute('id');
+    const updateThemeUi = () => {
+        const isDark = root.classList.contains('dark');
+        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+            const icon = button.querySelector('.material-symbols-outlined');
+            const label = button.querySelector('[data-theme-label]');
+            if (icon) {
+                icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            }
+            if (label) {
+                label.textContent = isDark ? 'Light' : 'Dark';
             }
         });
+    };
 
-        navLinks.forEach(link => {
-            link.style.color = '';
-            link.style.textShadow = '';
-            if (link.getAttribute('href').includes(current)) {
-                link.style.color = '#00FFFF'; // Cyan
-                link.style.textShadow = '0 0 10px #00FFFF';
-            }
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const nextDark = !root.classList.contains('dark');
+            root.classList.toggle('dark', nextDark);
+            localStorage.setItem(storageKey, nextDark ? 'dark' : 'light');
+            updateThemeUi();
         });
     });
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav a[href]').forEach((link) => {
+        if (link.getAttribute('href') === currentPage) {
+            link.setAttribute('aria-current', 'page');
+        }
+    });
+
+    if (window.PremiumEffects) {
+        PremiumEffects.BlurText('.blur-target', {
+            delay: 16,
+            duration: 700,
+            baseDelay: 100
+        });
+
+        if (PremiumEffects.Tilt) {
+            PremiumEffects.Tilt('.tilt-card', {
+                max: 8,
+                scale: 1.01,
+                speed: 800
+            });
+        }
+    }
+
+    updateThemeUi();
 });

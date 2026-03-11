@@ -4,140 +4,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINIMAL | Architecture & Design</title>
-    <!-- Fonts -->
+    <title>MINIMAL | 静けさで空間を設計する建築スタジオ</title>
+    <meta name="description" content="光、余白、素材の緊張感を設計する建築スタジオ。MINIMAL の思想と代表プロジェクトを紹介します。">
+    <meta name="theme-color" content="#191919">
+    <meta property="og:title" content="MINIMAL | Architecture & Design">
+    <meta property="og:description" content="静けさで空間を設計する、ミニマル建築スタジオ。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <script>
+        (() => {
+            const saved = localStorage.getItem('template-m-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ArchitecturalFirm",
+        "name": "MINIMAL",
+        "description": "静けさと余白を軸に、建築と空間体験を設計するスタジオ。",
+        "url": "",
+        "logo": ""
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Outfit:wght@300;400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Styles -->
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
 </head>
 
-<body class="theme-business fade-in">
-    <!-- Mobile Menu Toggle (outside header for correct stacking context) -->
-    <button class="mobile-menu-toggle" aria-label="Menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <header class="header">
-        <div class="header-inner">
-            <a href="#" class="logo">MINIMAL.</a>
-            <div class="nav">
-                <ul class="nav-list">
-                    <li><a href="#hero">HOME</a></li>
-                    <li><a href="#gallery">GALLERY</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-image-wrapper">
-                <div class="placeholder-image hero-img"></div>
-            </div>
-            <div class="hero-content">
-                <h1 class="hero-title" data-effect="blur-text">LESS IS MORE</h1>
-                <p class="hero-subtitle"><span class="text-group">境界線を越え、</span><span class="text-group">本質を追求する。</span></p>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery">
-            <div class="container">
-                <h2 class="section-title">Selected Works</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item" data-effect="tilt">
-                        <div class="placeholder-image"></div>
-                        <div class="item-info">
-                            <span class="item-category">Architecture</span>
-                            <h3 class="item-title">Quiet Space</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-effect="tilt">
-                        <div class="placeholder-image"></div>
-                        <div class="item-info">
-                            <span class="item-category">Product</span>
-                            <h3 class="item-title">Pure Form</h3>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-effect="tilt">
-                        <div class="placeholder-image"></div>
-                        <div class="item-info">
-                            <span class="item-category">Design</span>
-                            <h3 class="item-title">Light & Shadow</h3>
-                        </div>
-                    </div>
+<body class="bg-background-light text-slate-900 transition-colors duration-300 dark:bg-background-dark dark:text-slate-100">
+    <div class="relative min-h-screen overflow-x-hidden">
+        <header
+            class="fixed left-0 top-0 z-50 w-full border-b border-black/10 bg-background-light/80 backdrop-blur-sm dark:border-white/10 dark:bg-background-dark/80">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
+                <a href="index.html" class="font-display text-xs font-black uppercase tracking-[0.42em]">Minimal</a>
+                <nav class="hidden items-center gap-10 md:flex">
+                    <a href="index.html" class="nav-link nav-link-current">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="service.html" class="nav-link">Service</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                <div class="hidden items-center gap-3 md:flex">
+                    <button type="button" class="theme-toggle" data-theme-toggle aria-label="ダークモードに切り替え"
+                        aria-pressed="false">
+                        <span class="material-symbols-outlined text-sm" data-theme-icon>dark_mode</span>
+                    </button>
+                    <a href="contact.html" class="minimal-button">Project Inquiry</a>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="about-flex">
-                    <div class="about-text">
-                        <h2 class="section-title">Perspective</h2>
-                        <p class="about-description">
-                            <span class="text-group">私たちは、装飾を削ぎ落とした先に</span><span class="text-group">現れる美しさを信じています。</span><span class="text-group">形、光、素材。</span><span class="text-group">それらが調和する場所で、</span><span class="text-group">新しい価値が生まれます。</span>
+        <main>
+            <section class="relative flex min-h-screen items-center overflow-hidden px-6 pb-16 pt-28 md:px-10">
+                <div class="absolute inset-0">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfk8b7W-smeQaGKB0ECnDARreJdyDym06PX_PUYFKD62YVXc7CvsY1ZFhVbDILktH1xbbb9lMbUyOeNL8JQsd0ukUjiNKI4HtL99aZA3bb08Hlpg8OScPOqBKcogRkde1v_7TLI0rZ8yk0izkQjYb9yLOoClnfKhULnJA3NRZfL28hPwy7flGQYiIGdQoeEvx-l7oLneN2XdGUBSSQEh2l5xkEeDTHrEfe4s3XuvQlBBiBK7Y8zEzihLCJF7K6b5FdgLWbeFbvlhg"
+                        alt="モノクロームの建築ファサード" class="h-full w-full object-cover grayscale">
+                    <div class="absolute inset-0 bg-black/45"></div>
+                </div>
+                <div
+                    class="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-between gap-12 lg:flex-row lg:items-end">
+                    <div class="max-w-3xl">
+                        <div class="reveal-up mb-8 h-24 w-px bg-white/70"></div>
+                        <p class="editorial-subtitle reveal-up !text-white/70">Architecture &amp; Design Portfolio</p>
+                        <h1 class="editorial-title reveal-up mt-6 !text-white">
+                            <span class="ib">静けさが、</span><span class="ib">空間の輪郭を決める。</span>
+                        </h1>
+                        <p class="reveal-up mt-8 max-w-2xl text-sm leading-8 text-white/72 md:text-base">
+                            <span class="ib">MINIMAL は、</span><span class="ib">装飾を増やすのではなく、</span><span
+                                class="ib">削ぎ落とした先に残る緊張感を設計します。</span><span class="ib">光、素材、余白のバランスで、</span><span
+                                class="ib">記憶に残る建築体験をつくります。</span>
                         </p>
-                        <div class="stats">
-                            <div class="stat-item">
-                                <span class="stat-number" data-effect="count-up">15</span>
-                                <span class="stat-label">Years of Exp.</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" data-effect="count-up">120</span>
-                                <span class="stat-label">Projects</span>
-                            </div>
+                        <div class="reveal-up mt-10 flex flex-col gap-4 sm:flex-row">
+                            <a href="service.html" class="minimal-button">View Services</a>
+                            <a href="about.html"
+                                class="minimal-button-secondary !border-white/40 !text-white dark:!border-white/40 dark:!text-white">Our
+                                Philosophy</a>
                         </div>
                     </div>
-                    <div class="about-visual" data-effect="tilt">
-                        <div class="placeholder-image"></div>
+                    <div class="reveal-up hidden lg:block">
+                        <p class="origin-left -rotate-90 text-[10px] uppercase tracking-[0.5em] text-white/45">Scroll
+                            to explore</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-background-light px-6 py-24 dark:bg-background-dark md:px-10">
+                <div class="mx-auto max-w-7xl">
+                    <div class="reveal-up mb-10">
+                        <p class="section-kicker">01 - Selected Works</p>
+                        <div class="fine-line mt-4 w-full"></div>
+                    </div>
+                    <div class="hide-scrollbar flex gap-8 overflow-x-auto pb-6">
+                        <article class="reveal-up w-[84vw] flex-none md:w-[42vw]">
+                            <a href="about.html" class="group block">
+                                <div class="aspect-[4/5] overflow-hidden bg-slate-900">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4sRenNcVgsjTWKTPK4MHSuz85FD7aJF63nKALSXo3AiEcRTnsGGHSuSDzPbnGLPudmIGvH76oPWWUF6H_zBAPTJqawcSfyY0UiGRwvaiIcetANO3ixVkMHJucWRJTcN-A5_55foEaA0JJ5r_JYnWfGHLTpzdelYq08kmXUiRiKGte_NSTvG8F1k0wBywlwxRLmSBF-IzeXaw2tz2IS37ogj48Pio6wO5odEAGuvj6qZiP4KJ5a09BE8J0aUbjP6z1XNCYRvrC9eg"
+                                        alt="コンクリートのミニマルな住宅内部"
+                                        class="h-full w-full object-cover grayscale transition-transform duration-700 group-hover:scale-105">
+                                </div>
+                                <div class="mt-6 flex items-end justify-between gap-4">
+                                    <div>
+                                        <h2 class="font-display text-lg font-black uppercase tracking-[0.16em]">The
+                                            Void House</h2>
+                                        <p
+                                            class="mt-2 text-[10px] uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
+                                            Kyoto, JP - 2023</p>
+                                    </div>
+                                    <span
+                                        class="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">View</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="reveal-up mt-0 w-[84vw] flex-none md:mt-24 md:w-[42vw]">
+                            <a href="service.html" class="group block">
+                                <div class="aspect-[4/5] overflow-hidden bg-slate-900">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADFFwO8BfPRGZmFANBhcInenWStSD6-giTSWRchrfKiUbm994q5yVXw8JJFVonHqNbLbqDmJRrm6UV5jVIRimYzgHIysycqlAj7_YM0sM_eVOW2OjJfz3Yiabar3jHmx0eX2cem7a26BoLzE-yGn-QW2JXAQDGPE2hZqkioCMxwMUP3GTD642N5sRRHZrp811iPiWwd9ABEWV1XwTB8wLq4wwAi-lCs6Hmg5cwyV7sJtDX2CvEDBDcPZrtizt6mZ_BC60jiu6Q4RE"
+                                        alt="白いミュージアム外観"
+                                        class="h-full w-full object-cover grayscale transition-transform duration-700 group-hover:scale-105">
+                                </div>
+                                <div class="mt-6 flex items-end justify-between gap-4">
+                                    <div>
+                                        <h2 class="font-display text-lg font-black uppercase tracking-[0.16em]">
+                                            Monolith Museum</h2>
+                                        <p
+                                            class="mt-2 text-[10px] uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
+                                            Berlin, DE - 2022</p>
+                                    </div>
+                                    <span
+                                        class="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">View</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="reveal-up w-[84vw] flex-none md:w-[42vw]">
+                            <a href="contact.html" class="group block">
+                                <div class="aspect-[4/5] overflow-hidden bg-slate-900">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3WpiZFLyWzRsfX8u2dFkM-QbvXtvwpE1b1UY1fGTzap0XZLHVfPZRSl-PquPpQYYQuKdl33PoahhNMDkz0Dwdw1M8Z2VeQ-9Gu6TpkUQHs7ATTWH6YdA280z4gfGzqtOqkIDmmV9VmoiAfCzaU_Z0MfdKQr38scYoq04a8pTwTaPs1YMz9LsuuZ9CIDrnbKVLMua1OB6b1EO-sqrZY67rHWu64uOTJvEafrOxJo_76dXvhM1L6ZCpBzpehCs-RXRB83LxXPgkOEU"
+                                        alt="直線的な階段の建築ディテール"
+                                        class="h-full w-full object-cover grayscale transition-transform duration-700 group-hover:scale-105">
+                                </div>
+                                <div class="mt-6 flex items-end justify-between gap-4">
+                                    <div>
+                                        <h2 class="font-display text-lg font-black uppercase tracking-[0.16em]">Line
+                                            Residence</h2>
+                                        <p
+                                            class="mt-2 text-[10px] uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
+                                            Oslo, NO - 2024</p>
+                                    </div>
+                                    <span
+                                        class="text-[10px] uppercase tracking-[0.26em] text-slate-500 dark:text-slate-400">View</span>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-lines bg-zinc-100 px-6 py-28 dark:bg-zinc-900/40 md:px-10">
+                <div class="mx-auto max-w-5xl text-center">
+                    <p class="section-kicker reveal-up">02 - Philosophy</p>
+                    <h2
+                        class="reveal-up mx-auto mt-8 max-w-4xl font-display text-3xl font-light leading-[1.6] tracking-[-0.04em] text-slate-950 md:text-5xl dark:text-white">
+                        <span class="ib">私たちは、</span><span class="ib">まだ建っていない空間の純度を</span><span
+                            class="ib">何より大切にします。</span><span class="ib">一本の線は意思であり、</span><span
+                            class="ib">ひとつの影は</span><span class="ib">構造と光の対話です。</span>
+                    </h2>
+                    <div class="reveal-up mx-auto mt-12 h-px w-24 bg-slate-950 dark:bg-white"></div>
+                    <p
+                        class="reveal-up mx-auto mt-12 max-w-2xl text-sm uppercase tracking-[0.32em] text-slate-500 dark:text-slate-400">
+                        <span class="ib">少ないことは、</span><span class="ib">何もないことではない。</span><span
+                            class="ib">必要なものだけが、</span><span class="ib">最も強く残る状態です。</span>
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <footer
+            class="border-t border-black/10 bg-background-light px-6 py-16 dark:border-white/10 dark:bg-background-dark md:px-10">
+            <div class="mx-auto flex max-w-7xl flex-col gap-12 md:flex-row md:justify-between">
+                <div class="max-w-sm">
+                    <h2 class="font-display text-xl font-black uppercase tracking-[0.32em]">Minimal</h2>
+                    <p class="mt-6 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        <span class="ib">光、余白、素材の関係を磨き上げ、</span><span
+                            class="ib">静かな存在感を持つ建築とインテリアを設計するスタジオです。</span>
+                    </p>
+                </div>
+                <div class="grid gap-10 sm:grid-cols-3">
+                    <div class="flex flex-col gap-4">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.32em]">Pages</p>
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="service.html" class="footer-link">Service</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.32em]">Contact</p>
+                        <a href="mailto:hello@minimal-design.jp" class="footer-link">hello@minimal-design.jp</a>
+                        <a href="tel:+81364551234" class="footer-link">03-6455-1234</a>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Tokyo / London / New York</p>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.32em]">Mode</p>
+                        <button type="button" class="theme-toggle" data-theme-toggle aria-label="ダークモードに切り替え"
+                            aria-pressed="false">
+                            <span class="material-symbols-outlined text-sm" data-theme-icon>dark_mode</span>
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <div class="contact-inner">
-                    <h2 class="section-title">Connect</h2>
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <input type="text" placeholder="NAME" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="EMAIL" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="MESSAGE" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">SEND REQUEST</button>
-                    </form>
-                </div>
+            <div class="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-black/10 pt-6 text-[10px] uppercase tracking-[0.34em] text-slate-500 dark:border-white/10 dark:text-slate-400 md:flex-row md:items-center md:justify-between">
+                <p>&copy; <span data-current-year>2026</span> Minimal Architecture &amp; Design</p>
+                <p>Silence / Precision / Light</p>
             </div>
-        </section>
-    </main>
+        </footer>
+    </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 MINIMAL. All rights reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="../../../assets/js/premium-effects.js"></script>
-    <script src="assets/js/script.js"></script>
+    <div id="template-common-container"></div>
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 
 </html>

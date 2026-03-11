@@ -1,63 +1,94 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Header Scroll Effect
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+(() => {
+    const storageKey = 'template-m-theme';
 
-    // Mobile Menu Toggle (Custom Logic)
-    // Detached from template-common.js by using <div class="nav"> structure
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('.nav');
-    const navLinks = document.querySelectorAll('.nav-list a');
+    function applyTheme(theme) {
+        const root = document.documentElement;
+        const isDark = theme === 'dark';
+        root.classList.toggle('dark', isDark);
 
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            nav.classList.toggle('mobile-open');
-            // Toggle body scroll lock
-            document.body.style.overflow = nav.classList.contains('mobile-open') ? 'hidden' : '';
+        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            button.setAttribute('aria-label', isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え');
         });
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // Close menu
-                menuToggle.classList.remove('active');
-                nav.classList.remove('mobile-open');
-                document.body.style.overflow = '';
-                // Default anchor behavior will handle scroll (html { scroll-behavior: smooth })
+        document.querySelectorAll('[data-theme-icon]').forEach((icon) => {
+            icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+        });
+
+        document.querySelectorAll('[data-theme-label]').forEach((label) => {
+            label.textContent = isDark ? 'Light' : 'Dark';
+        });
+    }
+
+    function resolveInitialTheme() {
+        const saved = window.localStorage.getItem(storageKey);
+        if (saved === 'light' || saved === 'dark') return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('header nav');
+        const backdrop = document.querySelector('.mobile-menu-backdrop');
+        const navLinks = document.querySelectorAll('header nav a[href]');
+
+        const closeMenu = () => {
+            menuToggle?.classList.remove('active');
+            nav?.classList.remove('mobile-open');
+            backdrop?.classList.add('hidden');
+            document.body.style.overflow = '';
+        };
+
+        const toggleMenu = () => {
+            if (!menuToggle || !nav || !backdrop) return;
+            const isOpen = menuToggle.classList.toggle('active');
+            nav.classList.toggle('mobile-open', isOpen);
+            backdrop.classList.toggle('hidden', !isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        };
+
+        applyTheme(resolveInitialTheme());
+
+        menuToggle?.addEventListener('click', toggleMenu);
+        backdrop?.addEventListener('click', closeMenu);
+        navLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                window.localStorage.setItem(storageKey, nextTheme);
+                applyTheme(nextTheme);
             });
         });
-    }
 
-    // Form Submission (Demo)
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('.submit-btn');
-            const originalText = btn.textContent;
-            btn.textContent = 'SENT SUCCESSFULLY';
-            btn.style.background = '#000';
-            btn.style.color = '#fff';
-
-            setTimeout(() => {
-                btn.textContent = originalText;
-                contactForm.reset();
-            }, 3000);
+        document.querySelectorAll('[data-current-year]').forEach((node) => {
+            node.textContent = String(new Date().getFullYear());
         });
-    }
 
-    // Parallax Effect for Hero
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const heroImg = document.querySelector('.hero-img');
-        if (heroImg) {
-            heroImg.style.transform = `translateY(${scrolled * 0.4}px)`;
-        }
+        document.querySelectorAll('[data-demo-form]').forEach((form) => {
+            form.addEventListener('submit', (event) => event.preventDefault());
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.reveal-up').forEach((element) => observer.observe(element));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) closeMenu();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeMenu();
+        });
     });
-});
+})();

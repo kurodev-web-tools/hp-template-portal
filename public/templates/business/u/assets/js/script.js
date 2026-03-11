@@ -1,84 +1,62 @@
-
-// Global Toggle Function
-window.toggleMenu = function(event) {
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    const menu = document.querySelector('.urban-mobile-menu');
-    const toggle = document.querySelector('.urban-mobile-toggle');
-    
-    if (menu) {
-        menu.classList.toggle('active');
-        
-        // Scroll Lock
-        if (menu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-
-        // Icon Toggle
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Urban Theme Effects =====
-    if (window.PremiumEffects) {
-        // High impact reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 1200 });
+    const root = document.documentElement;
+    const body = document.body;
+    const menuToggle = document.querySelector('.urban-mobile-toggle');
+    const menuPanel = document.querySelector('.urban-mobile-menu');
+    const backdrop = document.querySelector('.urban-menu-backdrop');
+    const mobileLinks = document.querySelectorAll('.urban-mobile-menu a[href]');
+    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+    const storageKey = 'urban-street-theme';
 
-        // Tilt for art cards and form
-        PremiumEffects.Tilt('.urban-art-card, .taped-form-wrap', { max: 10, scale: 1.05, speed: 1000 });
-    }
-
-    // ===== Header Scroll Effect =====
-    const header = document.querySelector('.urban-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('is-scrolled');
-        } else {
-            header.classList.remove('is-scrolled');
-        }
-    });
-
-    // ===== Scroll Parallax for Hero Image =====
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const heroImg = document.querySelector('.hero-image-tilted');
-        if (heroImg) {
-            heroImg.style.transform = `rotate(5deg) translateY(${scrolled * -0.05}px)`;
-        }
-    });
-
-    // ===== Mobile Menu Logic (Robust) =====
-    const toggleBtn = document.querySelector('.urban-mobile-toggle');
-    const menu = document.querySelector('.urban-mobile-menu');
-
-    if (toggleBtn) {
-        // Remove inline handler just in case
-        toggleBtn.removeAttribute('onclick');
-        // Add listener
-        toggleBtn.addEventListener('click', window.toggleMenu);
-    }
-
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                // Use the global function logic or manually close
-                menu.classList.remove('active');
-                document.body.style.overflow = '';
-                if (toggleBtn) {
-                    const icon = toggleBtn.querySelector('.material-icons');
-                    if (icon) icon.textContent = 'menu';
-                }
-            });
+    const updateThemeButtons = (isDark) => {
+        themeToggles.forEach((button) => {
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            const icon = button.querySelector('[data-theme-icon]');
+            const label = button.querySelector('[data-theme-label]');
+            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+            if (label) label.textContent = isDark ? 'Light' : 'Dark';
         });
-    }
+    };
+
+    const applyTheme = (isDark) => {
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
+        updateThemeButtons(isDark);
+    };
+
+    const closeMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        menuToggle.classList.remove('active');
+        menuPanel.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    };
+
+    const toggleMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        menuPanel.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    const savedTheme = localStorage.getItem(storageKey);
+    applyTheme(savedTheme ? savedTheme === 'dark' : true);
+
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    themeToggles.forEach((button) => {
+        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) closeMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
 });
