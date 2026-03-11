@@ -35,36 +35,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#ff4500",
-                        "primary-dark": "#e63e00",
-                        charcoal: "#1a1a1a",
-                        "charcoal-light": "#2a2a2a",
-                        "charcoal-dark": "#0d0d0d",
-                    },
-                    fontFamily: {
-                        orbitron: ["Orbitron", "sans-serif"],
-                        inter: ["Inter", "sans-serif"],
-                    },
-                    skew: {
-                        "12": "12deg",
-                        "inverse-12": "-12deg",
-                    },
-                    boxShadow: {
-                        "speed": "0 0 30px rgba(255, 69, 0, 0.3)",
-                        "speed-lg": "0 0 50px rgba(255, 69, 0, 0.5)",
-                    }
-                },
-            },
-        }
-    </script>
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <style>
         html {
             scroll-behavior: smooth;
@@ -168,6 +139,7 @@
             }
 
             header nav {
+                --dynamic-menu-slant: 12deg;
                 position: fixed;
                 top: 0;
                 right: 0;
@@ -205,7 +177,7 @@
                     rgba(20, 20, 20, 0.92);
                 border-left: 2px solid rgba(255, 69, 0, 0.5);
                 border-right: 2px solid rgba(255, 69, 0, 0.18);
-                transform: skewX(-12deg);
+                transform: skewX(calc(var(--dynamic-menu-slant) * -1));
                 box-shadow: 0 0 40px rgba(255, 69, 0, 0.08);
                 z-index: 0;
                 pointer-events: none;
@@ -221,17 +193,26 @@
             header nav a {
                 position: relative;
                 z-index: 10005;
-                display: block;
-                min-width: min(18rem, 82vw);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: min(18rem, 82vw);
+                min-height: 4.25rem;
                 padding: 1rem 1.5rem;
                 text-align: center;
                 font-size: 1.4rem;
                 border: 2px solid rgba(255, 69, 0, 0.22);
                 background: linear-gradient(135deg, rgba(255, 69, 0, 0.08), rgba(255, 69, 0, 0.02));
                 box-shadow: inset 0 0 0 1px rgba(255, 69, 0, 0.05);
-                clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+                transform: skewX(calc(var(--dynamic-menu-slant) * -1));
+                transform-origin: center;
                 pointer-events: auto;
                 touch-action: manipulation;
+            }
+
+            header nav a .nav-link-label {
+                display: inline-block;
+                transform: skewX(var(--dynamic-menu-slant));
             }
 
             header nav a:hover,
@@ -336,11 +317,13 @@
         </div>
         <nav class="hidden md:flex items-center gap-8">
             <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
-                href="about.html">About</a>
+                href="index.html"><span class="nav-link-label">Home</span></a>
             <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
-                href="service.html">Services</a>
+                href="about.html"><span class="nav-link-label">About</span></a>
             <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
-                href="contact.html">Contact</a>
+                href="service.html"><span class="nav-link-label">Services</span></a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="contact.html"><span class="nav-link-label">Contact</span></a>
         </nav>
         <button
             class="hidden md:flex cursor-pointer items-center justify-center border-2 border-primary bg-primary text-black hover:bg-transparent hover:text-primary transition-all px-8 py-3 text-sm font-black uppercase tracking-widest font-orbitron skew-container light-speed-hover"
