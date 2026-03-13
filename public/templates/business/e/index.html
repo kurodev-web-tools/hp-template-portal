@@ -34,6 +34,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <style>
+        .eco-panel {
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            background: rgba(255, 255, 255, 0.10);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .dark .eco-panel {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(15, 54, 37, 0.30);
+        }
+
+        .eco-primary-button {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(17, 212, 66, 0.92);
+            box-shadow: 0 18px 36px rgba(17, 212, 66, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .eco-primary-button:hover {
+            background: rgba(17, 212, 66, 0.98);
+            box-shadow: 0 20px 40px rgba(17, 212, 66, 0.18);
+        }
+
+        .eco-mobile-link {
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .dark .eco-mobile-link {
+            border-color: rgba(17, 212, 66, 0.15);
+            background: rgba(15, 54, 37, 0.24);
+        }
+
+        .eco-brand-accent {
+            color: rgb(4 120 87);
+        }
+
+        .dark .eco-brand-accent {
+            color: #11d442;
+        }
+    </style>
 </head>
 
 <body class="custom-menu-only bg-background-light text-slate-900 dark:bg-background-dark dark:text-slate-100">
@@ -62,10 +110,10 @@
             </button>
         </div>
         <nav class="flex flex-col gap-2 text-base font-semibold text-forest-green dark:text-slate-100">
-            <a class="rounded-2xl bg-primary px-4 py-3 text-background-dark" href="index.html">Home</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-primary/10" href="about.html">About</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-primary/10" href="service.html">Service</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-primary/10" href="contact.html">Contact</a>
+            <a class="eco-primary-button rounded-2xl px-4 py-3 text-background-dark shadow-lg shadow-primary/10" href="index.html">Home</a>
+            <a class="eco-mobile-link rounded-2xl px-4 py-3 hover:bg-primary/10" href="about.html">About</a>
+            <a class="eco-mobile-link rounded-2xl px-4 py-3 hover:bg-primary/10" href="service.html">Service</a>
+            <a class="eco-mobile-link rounded-2xl px-4 py-3 hover:bg-primary/10" href="contact.html">Contact</a>
         </nav>
     </div>
 
@@ -91,7 +139,7 @@
                     <span class="material-symbols-outlined text-lg" data-theme-icon>dark_mode</span>
                     <span data-theme-label>Dark</span>
                 </button>
-                <a class="rounded-full bg-primary px-5 py-3 text-sm font-bold text-background-dark transition-transform hover:-translate-y-0.5" href="contact.html">相談する</a>
+                <a class="eco-primary-button rounded-full px-5 py-3 text-sm font-bold text-background-dark transition-transform hover:-translate-y-0.5 shadow-lg shadow-primary/10" href="contact.html">相談する</a>
             </div>
         </div>
     </header>
@@ -122,7 +170,7 @@
                         <span class="ib">成長戦略へと変換します。</span>
                     </p>
                     <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-                        <a class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-black text-background-dark transition-transform hover:-translate-y-0.5" href="service.html">
+                        <a class="eco-primary-button inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-base font-black text-background-dark transition-transform hover:-translate-y-0.5 shadow-lg shadow-primary/10" href="service.html">
                             サービスを見る
                             <span class="material-symbols-outlined text-xl">arrow_forward</span>
                         </a>
@@ -130,30 +178,48 @@
                     </div>
                 </div>
                 <div class="mt-16 lg:mt-0 lg:justify-self-end">
-                    <div class="eco-panel eco-organic-shape relative overflow-hidden p-8 text-forest-green dark:text-white md:p-10">
-                        <div class="eco-grid absolute inset-0 opacity-60"></div>
+                    <div class="relative overflow-hidden rounded-[4rem] border border-slate-200/80 bg-white/5 p-6 text-white shadow-[0_30px_90px_rgba(15,23,42,0.18)] backdrop-blur-2xl dark:border-white/10 dark:bg-forest-deep/20 md:max-w-[36rem] md:p-8">
+                        <div class="absolute inset-0 rounded-[4rem] bg-gradient-to-br from-white/14 via-white/5 to-transparent dark:from-white/8 dark:via-white/0 dark:to-transparent"></div>
                         <div class="relative">
-                            <p class="text-xs font-black uppercase tracking-[0.34em] text-primary">Impact Snapshot</p>
-                            <div class="mt-8 grid gap-6 sm:grid-cols-3 lg:grid-cols-1">
+                            <div class="flex items-start justify-between gap-4">
                                 <div>
-                                    <p class="text-sm font-medium text-slate-500 dark:text-slate-300">年間 CO2 削減量</p>
-                                    <p class="mt-2 text-4xl font-black">12.5k t</p>
+                                    <p class="text-xs font-black uppercase tracking-[0.34em] text-white/90">Impact Snapshot</p>
+                                    <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Nature-Linked KPI</h2>
                                 </div>
-                                <div>
-                                    <p class="text-sm font-medium text-slate-500 dark:text-slate-300">再生活動パートナー</p>
-                                    <p class="mt-2 text-4xl font-black">85拠点</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-slate-500 dark:text-slate-300">循環型商品の採用率</p>
-                                    <p class="mt-2 text-4xl font-black">94%</p>
+                                <div class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-white/85 backdrop-blur-md dark:border-white/10 dark:bg-white/5">
+                                    Live Data
                                 </div>
                             </div>
-                            <p class="mt-8 text-sm leading-7 text-slate-600 dark:text-slate-200">
-                                <span class="ib">環境配慮を</span>
-                                <span class="ib">「理念」で終わらせず、</span>
-                                <span class="ib">事業 KPI として</span>
-                                <span class="ib">可視化します。</span>
-                            </p>
+                            <div class="mt-7 grid grid-cols-1 gap-4 md:grid-cols-2">
+                                <div class="rounded-[2rem] border border-white/10 bg-white/10 p-5 backdrop-blur-xl dark:border-white/10 dark:bg-white/5 md:col-span-2">
+                                    <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-white/75">年間 CO2 削減量</p>
+                                    <div class="mt-3 flex items-end justify-between gap-3">
+                                        <p class="text-3xl font-black text-white md:text-4xl">12.5k t</p>
+                                        <span class="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-primary">+18% YoY</span>
+                                    </div>
+                                    <p class="mt-3 text-sm leading-6 text-white/85">
+                                        <span class="ib">製造、物流、回収まで</span><span class="ib">横断して算出した</span><span class="ib">総削減量。</span>
+                                    </p>
+                                </div>
+                                <div class="rounded-[2rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+                                    <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-white/75">再生活動パートナー</p>
+                                    <p class="mt-3 text-3xl font-black text-white">85<span class="ml-1 text-lg font-bold">拠点</span></p>
+                                    <p class="mt-2 text-xs uppercase tracking-[0.22em] text-primary">Regional Alliance</p>
+                                </div>
+                                <div class="rounded-[2rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+                                    <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-white/75">循環型商品の採用率</p>
+                                    <p class="mt-3 text-3xl font-black text-white md:text-4xl">94%</p>
+                                    <p class="mt-2 text-xs uppercase tracking-[0.22em] text-primary">Circular Adoption</p>
+                                </div>
+                                <div class="rounded-[2rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl dark:border-white/10 dark:bg-white/5 md:col-span-2">
+                                    <p class="text-sm leading-7 text-white/85">
+                                        <span class="ib">環境配慮を</span>
+                                        <span class="ib">「理念」で終わらせず、</span>
+                                        <span class="ib">事業 KPI として</span>
+                                        <span class="ib">判断できる粒度まで整流します。</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,7 +229,7 @@
         <section class="bg-warm-beige py-20 dark:bg-forest-deep/60">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
                 <div class="mx-auto max-w-3xl text-center">
-                    <p class="text-sm font-black uppercase tracking-[0.28em] text-primary">Impact Report</p>
+                    <p class="text-sm font-black uppercase tracking-[0.28em] text-emerald-700 dark:text-primary">Impact Report</p>
                     <h2 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-black text-forest-green dark:text-white">
                         <span class="ib">自然と企業の</span>
                         <span class="ib">バランスを、</span>
@@ -177,8 +243,8 @@
                     </p>
                 </div>
                 <div class="mt-12 grid gap-6 md:grid-cols-3">
-                    <article class="eco-panel rounded-[2rem] p-8 text-center">
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-primary/10 text-primary">
+                    <article class="eco-panel rounded-[2.5rem] p-8 text-center">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-primary/10 text-emerald-700 dark:text-primary">
                             <span class="material-symbols-outlined text-4xl">co2</span>
                         </div>
                         <h3 class="mt-6 text-xl font-black text-forest-green dark:text-white">脱炭素設計</h3>
@@ -188,8 +254,8 @@
                             <span class="ib">優先的に見直します。</span>
                         </p>
                     </article>
-                    <article class="eco-panel rounded-[2rem] p-8 text-center">
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-primary/10 text-primary">
+                    <article class="eco-panel rounded-[2.5rem] p-8 text-center">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-primary/10 text-emerald-700 dark:text-primary">
                             <span class="material-symbols-outlined text-4xl">forest</span>
                         </div>
                         <h3 class="mt-6 text-xl font-black text-forest-green dark:text-white">再生型サプライ</h3>
@@ -199,8 +265,8 @@
                             <span class="ib">自然再生につながる状態をつくります。</span>
                         </p>
                     </article>
-                    <article class="eco-panel rounded-[2rem] p-8 text-center">
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-primary/10 text-primary">
+                    <article class="eco-panel rounded-[2.5rem] p-8 text-center">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-primary/10 text-emerald-700 dark:text-primary">
                             <span class="material-symbols-outlined text-4xl">recycling</span>
                         </div>
                         <h3 class="mt-6 text-xl font-black text-forest-green dark:text-white">循環体験設計</h3>
@@ -217,7 +283,7 @@
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
                 <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <div class="max-w-2xl">
-                        <p class="text-sm font-black uppercase tracking-[0.28em] text-primary">Featured Solutions</p>
+                        <p class="text-sm font-black uppercase tracking-[0.28em] text-emerald-700 dark:text-primary">Featured Solutions</p>
                         <h2 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-black text-forest-green dark:text-white">
                             <span class="ib">事業に馴染む</span>
                             <span class="ib">サステナビリティを、</span>
@@ -267,8 +333,8 @@
 
         <section class="py-20">
             <div class="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
-                <div class="eco-panel rounded-[2rem] p-8 md:p-10">
-                    <p class="text-sm font-black uppercase tracking-[0.28em] text-primary">Sustainability Scorecard</p>
+                <div class="eco-panel rounded-[3rem] p-8 md:p-10">
+                    <p class="text-sm font-black uppercase tracking-[0.28em] text-emerald-700 dark:text-primary">Sustainability Scorecard</p>
                     <h2 class="mt-4 text-3xl font-black text-forest-green dark:text-white md:text-4xl">
                         <span class="ib">数値で語れる</span>
                         <span class="ib">サステナビリティへ。</span>
@@ -303,22 +369,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative overflow-hidden rounded-[2rem] bg-forest-green p-8 text-white md:p-10">
+                <div class="eco-panel relative rounded-[3rem] p-8 text-slate-900 dark:text-white md:p-10">
                     <div class="eco-organic-shape absolute -right-20 -top-16 h-56 w-56 bg-primary/15"></div>
-                    <p class="relative text-sm font-black uppercase tracking-[0.28em] text-primary">Next Action</p>
-                    <h2 class="relative mt-4 text-3xl font-black md:text-4xl">
+                    <p class="relative text-sm font-black uppercase tracking-[0.28em] text-emerald-700 dark:text-primary">Next Action</p>
+                    <h2 class="relative mt-4 text-3xl font-black text-slate-900 dark:text-white md:text-4xl">
                         <span class="ib">まずは、</span>
                         <span class="ib">現状の事業を</span>
                         <span class="ib">棚卸ししませんか。</span>
                     </h2>
-                    <p class="relative mt-6 text-sm leading-8 text-white/82 md:text-base">
+                    <p class="relative mt-6 text-sm leading-8 text-slate-600 dark:text-white/80 md:text-base">
                         <span class="ib">ブランド、商品、物流、店舗、</span>
                         <span class="ib">コミュニケーションの各接点を整理し、</span>
                         <span class="ib">どこから変えるべきかを一緒に決めます。</span>
                     </p>
                     <div class="relative mt-8 flex flex-col gap-4 sm:flex-row">
-                        <a class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-4 text-sm font-black text-background-dark" href="contact.html">無料相談を予約</a>
-                        <a class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-4 text-sm font-bold text-white" href="about.html">チームを見る</a>
+                        <a class="eco-primary-button inline-flex items-center justify-center rounded-full px-6 py-4 text-sm font-black text-background-dark shadow-lg shadow-primary/10" href="contact.html">無料相談を予約</a>
+                        <a class="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-white/20 px-6 py-4 text-sm font-bold text-slate-900 dark:text-white" href="about.html">チームを見る</a>
                     </div>
                 </div>
             </div>
@@ -327,8 +393,8 @@
 
     <footer class="border-t border-white/5 bg-background-dark px-6 py-16 text-slate-400">
         <div class="mx-auto max-w-7xl">
-            <div class="grid gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr_0.9fr]">
-                <div>
+            <div class="grid grid-cols-2 gap-x-12 gap-y-10 md:grid-cols-[1.3fr_0.7fr_0.7fr_0.9fr]">
+                <div class="col-span-2 max-w-md md:col-span-1">
                     <div class="flex items-center gap-3">
                         <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-background-dark">
                             <span class="material-symbols-outlined text-[28px]">eco</span>
@@ -344,7 +410,7 @@
                         <span class="ib">ビジネスパートナーです。</span>
                     </p>
                 </div>
-                <div>
+                <div class="col-span-1 pt-3 md:pt-0">
                     <h3 class="text-sm font-black uppercase tracking-[0.28em] text-white">Pages</h3>
                     <div class="mt-5 flex flex-col gap-3 text-sm">
                         <a class="transition-colors hover:text-primary" href="index.html">Home</a>
@@ -353,7 +419,7 @@
                         <a class="transition-colors hover:text-primary" href="contact.html">Contact</a>
                     </div>
                 </div>
-                <div>
+                <div class="col-span-1 pt-3 md:pt-0">
                     <h3 class="text-sm font-black uppercase tracking-[0.28em] text-white">Focus</h3>
                     <div class="mt-5 flex flex-col gap-3 text-sm">
                         <p>Regenerative Brand</p>
@@ -361,7 +427,7 @@
                         <p>Nature-led CX</p>
                     </div>
                 </div>
-                <div>
+                <div class="col-span-2 pt-3 md:col-span-1 md:pt-0">
                     <h3 class="text-sm font-black uppercase tracking-[0.28em] text-white">Contact</h3>
                     <div class="mt-5 space-y-3 text-sm">
                         <p>hello@verdant-global.jp</p>
