@@ -201,13 +201,12 @@
                 padding: 1rem 1.5rem;
                 text-align: center;
                 font-size: 1.4rem;
-                border: 2px solid rgba(255, 69, 0, 0.22);
-                background: linear-gradient(135deg, rgba(255, 69, 0, 0.08), rgba(255, 69, 0, 0.02));
-                box-shadow: inset 0 0 0 1px rgba(255, 69, 0, 0.05);
+                color: rgba(255, 255, 255, 0.9);
                 transform: skewX(calc(var(--dynamic-menu-slant) * -1));
                 transform-origin: center;
                 pointer-events: auto;
                 touch-action: manipulation;
+                transition: color 0.2s ease, text-shadow 0.2s ease, opacity 0.2s ease;
             }
 
             header nav a .nav-link-label {
@@ -217,9 +216,14 @@
 
             header nav a:hover,
             header nav a:focus-visible {
-                border-color: rgba(255, 69, 0, 0.85);
                 color: #ff4500;
-                box-shadow: 0 0 24px rgba(255, 69, 0, 0.18);
+                text-shadow: 0 0 18px rgba(255, 69, 0, 0.28);
+                opacity: 1;
+            }
+
+            header nav a[aria-current="page"] {
+                color: #ff4500;
+                text-shadow: 0 0 18px rgba(255, 69, 0, 0.28);
             }
 
             .mobile-menu-toggle {
@@ -321,6 +325,7 @@
             <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
                 href="about.html"><span class="nav-link-label">About</span></a>
             <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                aria-current="page"
                 href="service.html"><span class="nav-link-label">Services</span></a>
             <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
                 href="contact.html"><span class="nav-link-label">Contact</span></a>
@@ -379,7 +384,7 @@
                     <!-- Service 1 -->
                     <div
                         class="z-card visible group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
-                        <div class="relative h-48 overflow-hidden slant-media">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
                             <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop"
                                 alt="ECU Tuning"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -419,7 +424,7 @@
                     <!-- Service 2 -->
                     <div
                         class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
-                        <div class="relative h-48 overflow-hidden slant-media">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
                             <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800&h=600&fit=crop"
                                 alt="Aerodynamics"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -460,7 +465,7 @@
                     <!-- Service 3 -->
                     <div
                         class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
-                        <div class="relative h-48 overflow-hidden slant-media">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
                                 alt="Data Analysis"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -501,7 +506,7 @@
                     <!-- Service 4 -->
                     <div
                         class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
-                        <div class="relative h-48 overflow-hidden slant-media">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
                             <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&h=400&fit=crop"
                                 alt="Suspension"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -541,7 +546,7 @@
                     <!-- Service 5 -->
                     <div
                         class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
-                        <div class="relative h-48 overflow-hidden slant-media">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
                             <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&h=400&fit=crop"
                                 alt="Exhaust System"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -581,7 +586,7 @@
                     <!-- Service 6 -->
                     <div
                         class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
-                        <div class="relative h-48 overflow-hidden slant-media">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
                             <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800&h=600&fit=crop"
                                 alt="Brake System"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -630,16 +635,16 @@
                     <p class="font-inter text-gray-400 max-w-2xl mx-auto">結果を生み出すまでのフロー</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                     <!-- Step 1 -->
                     <div class="z-card visible relative">
-                        <div class="border-2 border-primary p-8 h-full light-speed-hover slant-surface">
+                        <div class="border-2 border-primary p-4 md:p-8 h-full light-speed-hover slant-surface">
                             <span
-                                class="font-orbitron font-black text-3xl sm:text-4xl md:text-6xl text-primary/20 absolute top-4 right-4">01</span>
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-primary/20 absolute top-3 right-3 md:top-4 md:right-4">01</span>
                             <div class="relative z-10">
-                                <span class="material-symbols-outlined text-3xl sm:text-4xl md:text-5xl text-primary mb-4">search</span>
-                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Consultation</h3>
-                                <p class="font-inter text-gray-400 text-sm">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">search</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Consultation</h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed">
                                     お客様の目標と車両状況をヒアリング。最適なチューニングメニューを提案。
                                 </p>
                             </div>
@@ -649,13 +654,13 @@
                     <!-- Step 2 -->
                     <div class="z-card relative">
                         <div
-                            class="border-2 border-charcoal p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            class="border-2 border-charcoal p-4 md:p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
                             <span
-                                class="font-orbitron font-black text-3xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-4 right-4">02</span>
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-3 right-3 md:top-4 md:right-4">02</span>
                             <div class="relative z-10">
-                                <span class="material-symbols-outlined text-3xl sm:text-4xl md:text-5xl text-primary mb-4">engineering</span>
-                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Engineering</h3>
-                                <p class="font-inter text-gray-400 text-sm">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">engineering</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Engineering</h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed">
                                     専門エンジニアが詳細な計画を立案。シミュレーションで最適解を導出。
                                 </p>
                             </div>
@@ -665,14 +670,14 @@
                     <!-- Step 3 -->
                     <div class="z-card relative">
                         <div
-                            class="border-2 border-charcoal p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            class="border-2 border-charcoal p-4 md:p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
                             <span
-                                class="font-orbitron font-black text-3xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-4 right-4">03</span>
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-3 right-3 md:top-4 md:right-4">03</span>
                             <div class="relative z-10">
-                                <span class="material-symbols-outlined text-3xl sm:text-4xl md:text-5xl text-primary mb-4">build</span>
-                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Implementation
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">build</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Implementation
                                 </h3>
-                                <p class="font-inter text-gray-400 text-sm">
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed">
                                     認定テクニシャンが作業を実施。品質管理の下、確実にチューニングを適用。
                                 </p>
                             </div>
@@ -682,13 +687,13 @@
                     <!-- Step 4 -->
                     <div class="z-card relative">
                         <div
-                            class="border-2 border-charcoal p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            class="border-2 border-charcoal p-4 md:p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
                             <span
-                                class="font-orbitron font-black text-3xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-4 right-4">04</span>
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-3 right-3 md:top-4 md:right-4">04</span>
                             <div class="relative z-10">
-                                <span class="material-symbols-outlined text-3xl sm:text-4xl md:text-5xl text-primary mb-4">flag</span>
-                                <h3 class="font-orbitron font-bold text-xl text-white uppercase mb-3">Validation</h3>
-                                <p class="font-inter text-gray-400 text-sm">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">flag</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Validation</h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed">
                                     ダイナメーターと実走行で性能を検証。目標達成を確認して完了。
                                 </p>
                             </div>
