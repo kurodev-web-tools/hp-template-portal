@@ -1,24 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const root = document.documentElement;
     const body = document.body;
     const menuToggle = document.querySelector('.ai-mobile-toggle');
     const menuPanel = document.querySelector('.ai-mobile-menu');
     const backdrop = document.querySelector('.ai-menu-backdrop');
-    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
     const menuLinks = document.querySelectorAll('.ai-mobile-menu a[href]');
-
-    const applyTheme = (isDark) => {
-        root.classList.toggle('dark', isDark);
-        localStorage.setItem('nexus-ai-theme', isDark ? 'dark' : 'light');
-
-        themeToggles.forEach((button) => {
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            const label = button.querySelector('[data-theme-label]');
-            const icon = button.querySelector('[data-theme-icon]');
-            if (label) label.textContent = isDark ? 'Light' : 'Dark';
-            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-        });
-    };
 
     const closeMenu = () => {
         if (!menuToggle || !menuPanel || !backdrop) return;
@@ -40,17 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = isOpen ? 'hidden' : '';
     };
 
-    const savedTheme = localStorage.getItem('nexus-ai-theme');
-    applyTheme(savedTheme ? savedTheme === 'dark' : false);
-
     menuToggle?.addEventListener('click', toggleMenu);
     backdrop?.addEventListener('click', closeMenu);
     menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
-    themeToggles.forEach((button) => {
-        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    });
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeMenu();
     });
 });
+

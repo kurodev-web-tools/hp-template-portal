@@ -8,30 +8,44 @@ window.toggleMenu = function () {
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
-    const storageKey = 'pop-spark-theme';
+    // Force light theme
+    root.classList.remove('dark');
+    localStorage.removeItem('pop-spark-theme');
 
-    const applyTheme = (isDark) => {
-        root.classList.toggle('dark', isDark);
-        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
-        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-            const icon = button.querySelector('[data-theme-icon]');
-            const label = button.querySelector('[data-theme-label]');
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-            if (label) label.textContent = isDark ? 'Light' : 'Dark';
+    const menuToggle = document.querySelector('.pop-menu-toggle');
+    const menuLayer = document.querySelector('.pop-menu-layer');
+    const menuLinks = document.querySelectorAll('.pop-menu-nav a');
+
+    if (menuToggle && menuLayer) {
+        const toggleMenu = (show) => {
+            const isExpanding = show !== undefined ? show : menuToggle.getAttribute('aria-expanded') === 'false';
+            menuToggle.setAttribute('aria-expanded', isExpanding);
+            menuLayer.classList.toggle('active', isExpanding);
+            document.body.style.overflow = isExpanding ? 'hidden' : '';
+        };
+
+        menuToggle.addEventListener('click', () => toggleMenu());
+        menuLinks.forEach((link) => {
+            link.addEventListener('click', () => toggleMenu(false));
         });
+    }
+
+    // Scroll trigger animations
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const saved = localStorage.getItem(storageKey);
-    applyTheme(saved ? saved === 'dark' : false);
-
-    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    });
-
-    document.querySelectorAll('.pop-mobile-menu a').forEach((link) => {
-        link.addEventListener('click', () => {
-            document.querySelector('.pop-mobile-menu')?.classList.remove('is-active');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
         });
+    }, observerOptions);
+
+    document.querySelectorAll('.brutalist-border, .reveal-pop').forEach(el => {
+        observer.observe(el);
     });
 });

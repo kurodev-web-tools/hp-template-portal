@@ -1,28 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const root = document.documentElement;
     const body = document.body;
     const menuToggle = document.querySelector('.zen-mobile-toggle');
     const menuPanel = document.querySelector('.zen-mobile-menu');
     const backdrop = document.querySelector('.zen-menu-backdrop');
     const mobileLinks = document.querySelectorAll('.zen-mobile-menu a[href]');
-    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
-    const storageKey = 'zen-garden-theme';
-
-    const updateThemeButtons = (isDark) => {
-        themeToggles.forEach((button) => {
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            const icon = button.querySelector('[data-theme-icon]');
-            const label = button.querySelector('[data-theme-label]');
-            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-            if (label) label.textContent = isDark ? 'Light' : 'Dark';
-        });
-    };
-
-    const applyTheme = (isDark) => {
-        root.classList.toggle('dark', isDark);
-        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
-        updateThemeButtons(isDark);
-    };
 
     const closeMenu = () => {
         if (!menuToggle || !menuPanel || !backdrop) return;
@@ -42,15 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = isOpen ? 'hidden' : '';
     };
 
-    const savedTheme = localStorage.getItem(storageKey);
-    applyTheme(savedTheme ? savedTheme === 'dark' : false);
-
     menuToggle?.addEventListener('click', toggleMenu);
     backdrop?.addEventListener('click', closeMenu);
     mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
-    themeToggles.forEach((button) => {
-        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    });
 
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 1024) closeMenu();
@@ -60,3 +35,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Escape') closeMenu();
     });
 });
+

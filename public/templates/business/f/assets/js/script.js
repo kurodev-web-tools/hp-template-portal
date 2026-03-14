@@ -4,21 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.future-mobile-toggle');
     const menuPanel = document.querySelector('.future-mobile-menu');
     const backdrop = document.querySelector('.future-menu-backdrop');
-    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
     const menuLinks = document.querySelectorAll('.future-mobile-menu a[href]');
 
-    const applyTheme = (isDark) => {
-        root.classList.toggle('dark', isDark);
-        localStorage.setItem('future-theme', isDark ? 'dark' : 'light');
-
-        themeToggles.forEach((button) => {
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            const label = button.querySelector('[data-theme-label]');
-            const icon = button.querySelector('[data-theme-icon]');
-            if (label) label.textContent = isDark ? 'Light' : 'Dark';
-            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-        });
-    };
+    // Hardcode Dark Mode for Template F
+    root.classList.add('dark');
 
     const closeMenu = () => {
         if (!menuToggle || !menuPanel || !backdrop) return;
@@ -40,15 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = isOpen ? 'hidden' : '';
     };
 
-    const savedTheme = localStorage.getItem('future-theme');
-    applyTheme(savedTheme ? savedTheme === 'dark' : true);
-
     menuToggle?.addEventListener('click', toggleMenu);
     backdrop?.addEventListener('click', closeMenu);
     menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
-    themeToggles.forEach((button) => {
-        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    });
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeMenu();

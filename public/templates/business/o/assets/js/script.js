@@ -4,59 +4,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.organic-mobile-toggle');
     const menuPanel = document.querySelector('.organic-mobile-menu');
     const backdrop = document.querySelector('.organic-menu-backdrop');
-    const mobileLinks = document.querySelectorAll('.organic-mobile-menu a[href]');
-    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
-    const storageKey = 'breathe-theme';
+    // Force light theme
+    document.documentElement.classList.remove('dark');
+    localStorage.removeItem('template-o-theme');
 
-    const updateThemeButtons = (isDark) => {
-        themeToggles.forEach((button) => {
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            const icon = button.querySelector('[data-theme-icon]');
-            const label = button.querySelector('[data-theme-label]');
-            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-            if (label) label.textContent = isDark ? 'Light' : 'Dark';
+    const mobileToggle = document.querySelector('.organic-mobile-toggle');
+    const mobileMenu = document.querySelector('.organic-mobile-menu');
+    const menuBackdrop = document.querySelector('.organic-menu-backdrop');
+
+    if (mobileToggle && mobileMenu && menuBackdrop) {
+        const toggleMenu = (show) => {
+            const isExpanding = show !== undefined ? show : mobileToggle.getAttribute('aria-expanded') === 'false';
+            mobileToggle.setAttribute('aria-expanded', isExpanding);
+            mobileMenu.classList.toggle('active', isExpanding);
+            menuBackdrop.classList.toggle('active', isExpanding);
+            document.body.style.overflow = isExpanding ? 'hidden' : '';
+        };
+
+        mobileToggle.addEventListener('click', () => toggleMenu());
+        menuBackdrop.addEventListener('click', () => toggleMenu(false));
+
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
         });
+    }
+
+    // Scroll reveal
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const applyTheme = (isDark) => {
-        root.classList.toggle('dark', isDark);
-        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
-        updateThemeButtons(isDark);
-    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 
-    const closeMenu = () => {
-        if (!menuToggle || !menuPanel || !backdrop) return;
-        menuToggle.classList.remove('active');
-        menuPanel.classList.remove('active');
-        backdrop.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        body.style.overflow = '';
-    };
-
-    const toggleMenu = () => {
-        if (!menuToggle || !menuPanel || !backdrop) return;
-        const isOpen = menuToggle.classList.toggle('active');
-        menuPanel.classList.toggle('active', isOpen);
-        backdrop.classList.toggle('active', isOpen);
-        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        body.style.overflow = isOpen ? 'hidden' : '';
-    };
-
-    const savedTheme = localStorage.getItem(storageKey);
-    applyTheme(savedTheme ? savedTheme === 'dark' : false);
-
-    menuToggle?.addEventListener('click', toggleMenu);
-    backdrop?.addEventListener('click', closeMenu);
-    mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
-    themeToggles.forEach((button) => {
-        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) closeMenu();
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') closeMenu();
+    document.querySelectorAll('.organic-panel, .reveal-up').forEach(el => {
+        observer.observe(el);
     });
 });

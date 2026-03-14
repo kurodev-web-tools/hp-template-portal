@@ -1,28 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const body = document.body;
+
+    // Force dark theme
+    root.classList.add('dark');
+    localStorage.removeItem('royal-legacy-theme');
+
     const menuToggle = document.querySelector('.royal-mobile-toggle');
     const menuPanel = document.querySelector('.royal-mobile-menu');
     const backdrop = document.querySelector('.royal-menu-backdrop');
     const mobileLinks = document.querySelectorAll('.royal-mobile-menu a[href]');
-    const themeToggles = document.querySelectorAll('[data-theme-toggle]');
-    const storageKey = 'royal-legacy-theme';
-
-    const updateThemeButtons = (isDark) => {
-        themeToggles.forEach((button) => {
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            const icon = button.querySelector('[data-theme-icon]');
-            const label = button.querySelector('[data-theme-label]');
-            if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-            if (label) label.textContent = isDark ? 'Light' : 'Dark';
-        });
-    };
-
-    const applyTheme = (isDark) => {
-        root.classList.toggle('dark', isDark);
-        localStorage.setItem(storageKey, isDark ? 'dark' : 'light');
-        updateThemeButtons(isDark);
-    };
 
     const closeMenu = () => {
         if (!menuToggle || !menuPanel || !backdrop) return;
@@ -42,15 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = isOpen ? 'hidden' : '';
     };
 
-    const savedTheme = localStorage.getItem(storageKey);
-    applyTheme(savedTheme ? savedTheme === 'dark' : true);
-
     menuToggle?.addEventListener('click', toggleMenu);
     backdrop?.addEventListener('click', closeMenu);
     mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
-    themeToggles.forEach((button) => {
-        button.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
-    });
 
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) closeMenu();
@@ -58,5 +39,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeMenu();
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    }
+
+    // Intersection Observer for reveal animations
+    const revealOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, revealOptions);
+
+    document.querySelectorAll('.royal-card, .royal-panel, .royal-stat').forEach(el => {
+        revealObserver.observe(el);
     });
 });

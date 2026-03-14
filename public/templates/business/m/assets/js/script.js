@@ -1,31 +1,4 @@
 (() => {
-    const storageKey = 'template-m-theme';
-
-    function applyTheme(theme) {
-        const root = document.documentElement;
-        const isDark = theme === 'dark';
-        root.classList.toggle('dark', isDark);
-
-        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-            button.setAttribute('aria-label', isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え');
-        });
-
-        document.querySelectorAll('[data-theme-icon]').forEach((icon) => {
-            icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-        });
-
-        document.querySelectorAll('[data-theme-label]').forEach((label) => {
-            label.textContent = isDark ? 'Light' : 'Dark';
-        });
-    }
-
-    function resolveInitialTheme() {
-        const saved = window.localStorage.getItem(storageKey);
-        if (saved === 'light' || saved === 'dark') return saved;
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
         const menuToggle = document.querySelector('.mobile-menu-toggle');
         const nav = document.querySelector('header nav');
@@ -47,19 +20,9 @@
             document.body.style.overflow = isOpen ? 'hidden' : '';
         };
 
-        applyTheme(resolveInitialTheme());
-
         menuToggle?.addEventListener('click', toggleMenu);
         backdrop?.addEventListener('click', closeMenu);
         navLinks.forEach((link) => link.addEventListener('click', closeMenu));
-
-        document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-            button.addEventListener('click', () => {
-                const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-                window.localStorage.setItem(storageKey, nextTheme);
-                applyTheme(nextTheme);
-            });
-        });
 
         document.querySelectorAll('[data-current-year]').forEach((node) => {
             node.textContent = String(new Date().getFullYear());
