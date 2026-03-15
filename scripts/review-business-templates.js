@@ -44,6 +44,11 @@ function listFilesRecursive(dir) {
   return results;
 }
 
+function extractCssReferences(content) {
+  return [...content.matchAll(/<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css)["'][^>]*>/gi)]
+    .map((match) => path.basename(match[1].split('?')[0]));
+}
+
 function safeRelative(filePath) {
   return path.relative(path.join(__dirname, '..'), filePath).replace(/\\/g, '/');
 }
@@ -439,9 +444,16 @@ function buildTemplateDiagnostics(template, pages) {
     ? 'missing'
     : (implementedCount >= 6 && ariaControlsPresent ? 'implemented' : implementedCount >= 4 ? 'partial' : 'missing');
 
-  const styleCssContents = template.cssFiles.map((file) => ({ file, content: read(file) }));
-  const tailwindCssFiles = styleCssContents.filter((item) => /@theme|@import "tailwindcss"|@custom-variant/i.test(item.content)).map((item) => path.basename(item.file));
-  const customCssFiles = styleCssContents.filter((item) => !/@import "tailwindcss"|@theme|@custom-variant/i.test(item.content)).map((item) => path.basename(item.file));
+    const referencedCssBasenames = [...new Set(pages.flatMap((page) => extractCssReferences(page.content)))];
+    const styleCssContents = template.cssFiles
+      .filter((file) => referencedCssBasenames.includes(path.basename(file)))
+      .map((file) => ({ file, content: read(file) }));
+    const tailwindCssFiles = styleCssContents
+      .filter((item) => /@theme|@import "tailwindcss"|@custom-variant/i.test(item.content))
+      .map((item) => path.basename(item.file));
+    const customCssFiles = styleCssContents
+      .filter((item) => !/@import "tailwindcss"|@theme|@custom-variant/i.test(item.content))
+      .map((item) => path.basename(item.file));
   const darkClassPages = pages.filter((page) => /\bclass=["'][^"']*\bdark\b/i.test(page.content)).map((page) => path.basename(page.filePath));
   const fonts = [...new Set([
     ...styleCssContents.flatMap((item) => extractFontFamilies(item.content)),
@@ -457,10 +469,8 @@ function buildTemplateDiagnostics(template, pages) {
   const langValues = [...new Set(pages.map((page) => page.lang).filter(Boolean))];
   const pagesWithDarkClass = pages.filter((page) => /\bclass=["'][^"']*\bdark\b/i.test(page.content)).map((page) => path.basename(page.filePath));
   const pagesWithoutDarkClass = pages.filter((page) => !/\bclass=["'][^"']*\bdark\b/i.test(page.content)).map((page) => path.basename(page.filePath));
-  const hasThemedPrefix = classPrefixes.some((prefix) => ['ai', 'luxe', 'luxury', 'yield', 'mobile', 'theme'].includes(prefix));
-  const namingConsistencyIssue = (pagesWithDarkClass.length > 0 && pagesWithoutDarkClass.length > 0)
-    || langValues.length > 1
-    || (hasThemedPrefix && classPrefixes.includes('mobile'));
+    const namingConsistencyIssue = (pagesWithDarkClass.length > 0 && pagesWithoutDarkClass.length > 0)
+      || langValues.length > 1;
 
   return {
     brokenLinks: [...new Set(brokenLinks)],
