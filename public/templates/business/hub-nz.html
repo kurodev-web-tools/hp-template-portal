@@ -68,6 +68,14 @@
 </head>
 
 <body class="fade-in">
+    <button class="hub-mobile-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="hub-mobile-menu" style="position: fixed; right: 1rem; top: 1rem; z-index: 1001; display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border: 0; border-radius: 999px; background: #111; color: #fff; box-shadow: 0 10px 24px rgba(0,0,0,.22);">Menu</button>
+    <div class="hub-menu-backdrop" style="position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 999; display: none;"></div>
+    <nav id="hub-mobile-menu" style="position: fixed; top: 4.5rem; left: 1rem; right: 1rem; z-index: 1000; display: none; background: #fff; border-radius: 16px; padding: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,.18);">
+        <a href="#template-n" style="display:block; padding:.75rem 0; font-weight:700;">Template N</a>
+        <a href="#template-o" style="display:block; padding:.75rem 0; font-weight:700;">Template O</a>
+        <a href="#template-p" style="display:block; padding:.75rem 0; font-weight:700;">Template P</a>
+        <a href="#template-z" style="display:block; padding:.75rem 0; font-weight:700;">Template Z</a>
+    </nav>
     <header style="padding: 3rem 1rem; background: #000; color: #fff; text-align: center;">
         <h1>N-Z Templates Hub</h1>
         <p>Premium Business Template Series</p>
@@ -75,6 +83,8 @@
 
     <main class="template-preview-grid">
         <!-- N: Neon -->
+        <div id="template-n"></div>
+        <div id="template-n"></div>
         <div class="template-card">
             <div class="template-info">
                 <h3>Template N: NEON NIGHT</h3>
@@ -83,6 +93,8 @@
             </div>
         </div>
         <!-- O: Organic -->
+        <div id="template-o"></div>
+        <div id="template-o"></div>
         <div class="template-card">
             <div class="template-info">
                 <h3>Template O: ORGANIC FLOW</h3>
@@ -91,6 +103,8 @@
             </div>
         </div>
         <!-- P: Pop -->
+        <div id="template-p"></div>
+        <div id="template-p"></div>
         <div class="template-card">
             <div class="template-info">
                 <h3>Template P: POP VIBRANT</h3>
@@ -171,6 +185,7 @@
             </div>
         </div>
         <!-- Z: Zen -->
+        <div id="template-z"></div>
         <div class="template-card">
             <div class="template-info">
                 <h3>Template Z: ZEN GARDEN</h3>
@@ -183,6 +198,42 @@
     <footer style="padding: 3rem 1rem; text-align: center;">
         <a href="../../index.html" class="template-link" style="background: #666;">Back to Main Portal</a>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.hub-mobile-toggle');
+            const menu = document.querySelector('#hub-mobile-menu');
+            const backdrop = document.querySelector('.hub-menu-backdrop');
+            const links = document.querySelectorAll('#hub-mobile-menu a[href]');
+
+            const closeMenu = () => {
+                if (!toggle || !menu || !backdrop) return;
+                menu.style.display = 'none';
+                backdrop.style.display = 'none';
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            };
+
+            const toggleMenu = () => {
+                if (!toggle || !menu || !backdrop) return;
+                const isOpen = menu.style.display !== 'block';
+                menu.style.display = isOpen ? 'block' : 'none';
+                backdrop.style.display = isOpen ? 'block' : 'none';
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                if (isOpen) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            };
+
+            toggle?.addEventListener('click', toggleMenu);
+            backdrop?.addEventListener('click', closeMenu);
+            links.forEach((link) => link.addEventListener('click', closeMenu));
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') closeMenu();
+            });
+        });
+    </script>
 </body>
 
 </html>

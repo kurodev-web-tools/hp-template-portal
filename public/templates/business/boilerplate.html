@@ -110,6 +110,41 @@
     <!-- Scripts -->
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.{{ID}}-mobile-toggle');
+            const menu = document.querySelector('.{{ID}}-mobile-menu');
+            const backdrop = document.querySelector('.{{ID}}-menu-backdrop');
+            const links = document.querySelectorAll('.{{ID}}-mobile-menu a[href]');
+
+            const closeMenu = () => {
+                if (!toggle || !menu || !backdrop) return;
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            };
+
+            const toggleMenu = () => {
+                if (!toggle || !menu || !backdrop) return;
+                const isOpen = !menu.classList.contains('active');
+                toggle.classList.toggle('active', isOpen);
+                menu.classList.toggle('active', isOpen);
+                backdrop.classList.toggle('active', isOpen);
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            };
+
+            toggle?.addEventListener('click', toggleMenu);
+            backdrop?.addEventListener('click', closeMenu);
+            links.forEach((link) => link.addEventListener('click', closeMenu));
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') closeMenu();
+            });
+        });
+    </script>
     <script src="assets/js/script.js" defer></script>
 </body>
 

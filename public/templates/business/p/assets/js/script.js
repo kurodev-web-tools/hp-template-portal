@@ -1,43 +1,44 @@
-window.toggleMenu = function () {
-    const menu = document.querySelector('.pop-mobile-menu');
-    const toggle = document.querySelector('.pop-mobile-toggle');
-    if (!menu || !toggle) return;
-    menu.classList.toggle('is-active');
-    toggle.setAttribute('aria-expanded', menu.classList.contains('is-active') ? 'true' : 'false');
-};
-
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
-    // Force light theme
     root.classList.remove('dark');
     localStorage.removeItem('pop-spark-theme');
 
-    const menuToggle = document.querySelector('.pop-menu-toggle');
-    const menuLayer = document.querySelector('.pop-menu-layer');
-    const menuLinks = document.querySelectorAll('.pop-menu-nav a');
+    const menu = document.querySelector('.pop-mobile-menu');
+    const toggle = document.querySelector('.pop-mobile-toggle');
+    const menuLinks = document.querySelectorAll('.pop-mobile-menu a[href]');
 
-    if (menuToggle && menuLayer) {
-        const toggleMenu = (show) => {
-            const isExpanding = show !== undefined ? show : menuToggle.getAttribute('aria-expanded') === 'false';
-            menuToggle.setAttribute('aria-expanded', isExpanding);
-            menuLayer.classList.toggle('active', isExpanding);
-            document.body.style.overflow = isExpanding ? 'hidden' : '';
-        };
+    const closeMenu = () => {
+        if (!menu || !toggle) return;
+        menu.classList.remove('is-active');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    };
 
-        menuToggle.addEventListener('click', () => toggleMenu());
-        menuLinks.forEach((link) => {
-            link.addEventListener('click', () => toggleMenu(false));
-        });
-    }
+    const toggleMenu = () => {
+        if (!menu || !toggle) return;
+        const isOpen = !menu.classList.contains('is-active');
+        menu.classList.toggle('is-active', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    };
 
-    // Scroll trigger animations
+    window.toggleMenu = toggleMenu;
+    toggle?.addEventListener('click', toggleMenu);
+    menu?.addEventListener('click', (event) => {
+        if (event.target === menu) closeMenu();
+    });
+    menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
+
     const observerOptions = {
         threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
                 observer.unobserve(entry.target);
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.brutalist-border, .reveal-pop').forEach(el => {
+    document.querySelectorAll('.brutalist-border, .reveal-pop').forEach((el) => {
         observer.observe(el);
     });
 });
