@@ -3,88 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logical Contact | 基幹業務の相談受付</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/l/contact.html"><meta name="description" content="Logical への問い合わせ、初回相談、導入相談を受け付ける Contact ページです。">
-            <meta property="og:title" content="Logical Contact | 基幹業務の相談受付">
-    <meta property="og:description" content="Logical への問い合わせ、初回相談、導入相談を受け付ける Contact ページです。">
+    <title>Contact | Logical Systems - 技術相談・デプロイ依頼</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/l/contact.html">
+    <meta name="description" content="Logical Systems へのお問い合わせ。デプロイ設計、運用監視、セキュリティ強化など、技術課題についてご相談ください。">
+    <meta property="og:title" content="Contact | Logical Systems">
+    <meta property="og:description" content="技術相談・デプロイ依頼のお問い合わせフォーム">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/l/contact.html">
+    <meta property="og:url" content="https://example.com/templates/business/l/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Logical Systems",
+        "description": "低遅延・高可用性の B2B システム基盤を提供。",
+        "url": "https://example.com/templates/business/l/contact.html",
+        "logo": "assets/generated/external-image-01.svg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "technical support",
+            "availableLanguage": "Japanese"
+        }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .l-menu-backdrop.active { opacity: 1 !important; visibility: visible !important; background-color: rgba(2, 6, 23, 0.8) !important; backdrop-filter: blur(4px) !important; }
+        .l-mobile-menu.active { opacity: 1 !important; visibility: visible !important; }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            outline: none;
+            border-color: #0d7ff2;
+            box-shadow: 0 0 0 3px rgba(13, 127, 242, 0.15);
+        }
+    </style>
 </head>
-<body class="theme-business fade-in custom-menu-only">
-    <header>
-        <div class="logic-menu-backdrop fixed inset-0 z-40 bg-slate-950/55 lg:hidden"></div>
-        <button aria-controls="logic-mobile-menu" class="logic-mobile-toggle fixed right-5 top-5 z-50 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-slate-950/90 shadow-2xl lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="sr-only">メニュー</span><span class="flex flex-col gap-1.5"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></button>
-        <div id="logic-mobile-menu" class="logic-mobile-menu fixed inset-y-0 left-0 z-50 w-[88vw] max-w-sm border-r border-slate-200/10 bg-slate-950/96 p-6 lg:hidden">
-            <div class="mb-8"><p class="font-mono text-xs uppercase tracking-[0.32em] text-primary">Logical</p><p class="mt-2 text-sm text-slate-400">Contact / Consultation</p></div>
-            <nav class="space-y-3">
-                <a href="index.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>Home</span><span class="material-symbols-outlined text-base">home</span></a>
-                <a href="about.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>About</span><span class="material-symbols-outlined text-base">account_tree</span></a>
-                <a href="service.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>Services</span><span class="material-symbols-outlined text-base">deployed_code</span></a>
-                <a href="contact.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>Contact</span><span class="material-symbols-outlined text-base">support_agent</span></a>
-            </nav>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased custom-menu-only">
+
+    <button aria-controls="l-mobile-menu" class="l-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-slate-900 dark:bg-slate-950 border border-slate-700 flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleLMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+    </button>
+
+    <div class="l-menu-backdrop fixed inset-0 z-[9998] bg-slate-900/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
+
+    <div id="l-mobile-menu" class="l-mobile-menu fixed inset-0 z-[9999] bg-slate-950 flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0 space-y-4">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] hover:border-primary hover:text-primary transition-all">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] hover:border-primary hover:text-primary transition-all">About</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] hover:border-primary hover:text-primary transition-all">Service</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] hover:border-primary hover:text-primary transition-all">Contact</a></li>
+        </ul>
+    </div>
+
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="container mx-auto px-4 md:px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-3xl">terminal</span>
+                        <h2 class="text-slate-900 dark:text-slate-100 text-sm font-black leading-tight tracking-tighter uppercase">Logical Systems</h2>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6 border-l border-slate-200 dark:border-slate-800 pl-6">
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="index.html">Home</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="about.html">About</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Service</a>
+                        <a class="text-primary font-bold" href="contact.html">Contact</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#form-section" class="bg-primary text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded hover:bg-blue-600 transition-colors hidden sm:block">Start Now</a>
+                    <button class="md:hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleLMenu()">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-    <div class="logic-shell min-h-screen lg:flex">
-        <aside class="logic-sidebar hidden w-80 shrink-0 flex-col justify-between p-8 lg:flex">
-            <div>
-                <div class="logic-line mb-8 pb-6"><p class="font-mono text-xs uppercase tracking-[0.36em] text-primary">Contact</p><h1 class="mt-3 text-2xl font-black tracking-tight text-slate-100">Consultation Desk</h1><p class="mt-3 text-sm leading-7 text-slate-400"><span class="ib">現状整理の段階でも、</span><span class="ib">導入検討の直前でも</span><span class="ib">相談できます。</span></p></div>
-                <nav class="space-y-2">
-                    <a href="index.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">home</span><span>Home</span></a>
-                    <a href="about.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">account_tree</span><span>About</span></a>
-                    <a href="service.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">deployed_code</span><span>Services</span></a>
-                    <a href="contact.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">support_agent</span><span>Contact</span></a>
-                </nav>
-            </div>
-        </aside>
-        <main class="w-full px-5 pb-16 pt-20 md:pt-24 lg:px-10 lg:py-10">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-            <div class="mx-auto max-w-7xl space-y-8">
-                <section class="logic-panel rounded-[2rem] p-6 lg:p-8"><p class="font-mono text-[0.72rem] uppercase tracking-[0.3em] text-primary">Consultation</p><h2 class="mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-100 md:text-5xl"><span class="ib">基幹システムの整理を、</span><span class="ib">最初の壁打ちから。</span></h2></section>
-                <section class="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
-                    <article class="logic-panel rounded-[2rem] p-6 lg:p-8">
-                        <form data-demo-form="true" onsubmit="event.preventDefault();" method="post" action="#" class="space-y-5">
-                            <div class="grid gap-5 md:grid-cols-2">
-                                <label class="block"><span class="mb-2 block text-sm font-semibold text-slate-200">会社名</span><input class="logic-input" type="text" placeholder="株式会社 Logical Ops"></label>
-                                <label class="block"><span class="mb-2 block text-sm font-semibold text-slate-200">ご担当者名</span><input class="logic-input" type="text" placeholder="山田 太郎"></label>
-                            </div>
-                            <div class="grid gap-5 md:grid-cols-2">
-                                <label class="block"><span class="mb-2 block text-sm font-semibold text-slate-200">メールアドレス</span><input class="logic-input" type="email" placeholder="info@example.com"></label>
-                                <label class="block"><span class="mb-2 block text-sm font-semibold text-slate-200">相談テーマ</span><input class="logic-input" type="text" placeholder="在庫連携 / 承認フロー / 監査ログ"></label>
-                            </div>
-                            <label class="block"><span class="mb-2 block text-sm font-semibold text-slate-200">現状の課題</span><textarea class="logic-input min-h-40 resize-y" placeholder="現場で起きている遅延、連携ミス、属人化している運用などを記入してください。"></textarea></label>
-                            <button class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white transition hover:bg-sky-600" type="submit">Send Request</button>
-                        </form>
-                    </article>
-                    <div class="space-y-6">
-                        <article class="logic-card rounded-[1.75rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Response SLA</p><p class="mt-4 text-3xl font-black text-slate-100">24 Hours</p><p class="mt-4 text-sm leading-7 text-slate-400"><span class="ib">初回返信では、要件整理に必要な項目と打ち合わせ候補日をご案内します。</span></p></article>
-                        <article class="logic-card rounded-[1.75rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Typical Topics</p><ul class="mt-4 space-y-3 text-sm leading-7 text-slate-400"><li><span class="ib">拠点別の在庫更新がリアルタイムで揃わない。</span></li><li><span class="ib">承認フローが複雑で、担当者依存になっている。</span></li><li><span class="ib">監査ログや権限制御を後付けで整えたい。</span></li></ul></article>
-                        <article class="logic-card rounded-[1.75rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Conversation Style</p><p class="mt-4 text-sm leading-7 text-slate-400"><span class="ib">要件定義が固まっていなくても問題ありません。</span><span class="ib">現場の困りごとから整理する進め方に対応します。</span></p></article>
+
+    <main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-6 py-8">
+        <section class="py-8 md:py-12 mb-8">
+            <span class="text-[10px] font-bold uppercase text-primary tracking-[0.3em]">Contact</span>
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-black mt-2 mb-4">
+                GET IN TOUCH.
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
+                技術相談・デプロイ依頼・運用見積もりなど、お気軽にお問い合わせください。24 時間以内に担当者よりご連絡いたします。
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="lg:col-span-2">
+                <form id="form-section" class="contact-form space-y-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs font-bold uppercase text-slate-500 mb-2">お名前 <span class="text-primary">*</span></label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm" placeholder="山田 太郎">
+                        </div>
+                        <div>
+                            <label for="company" class="block text-xs font-bold uppercase text-slate-500 mb-2">会社名</label>
+                            <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm" placeholder="株式会社サンプル">
+                        </div>
                     </div>
-                </section>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-xs font-bold uppercase text-slate-500 mb-2">メールアドレス <span class="text-primary">*</span></label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm" placeholder="yamada@example.com">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-xs font-bold uppercase text-slate-500 mb-2">電話番号</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm" placeholder="03-1234-5678">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="service-type" class="block text-xs font-bold uppercase text-slate-500 mb-2">ご相談内容 <span class="text-primary">*</span></label>
+                        <select id="service-type" name="service_type" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm">
+                            <option value="">選択してください</option>
+                            <option value="deployment">デプロイ設計・構築</option>
+                            <option value="integration">API 連携・システム統合</option>
+                            <option value="monitoring">監視・運用委託</option>
+                            <option value="security">セキュリティ診断・強化</option>
+                            <option value="performance">パフォーマンスチューニング</option>
+                            <option value="support">24/7 サポート契約</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-xs font-bold uppercase text-slate-500 mb-2">詳細 <span class="text-primary">*</span></label>
+                        <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm resize-none" placeholder="現在の課題、ご希望の納期、ご予算感などをお聞かせください..."></textarea>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <input type="checkbox" id="privacy" name="privacy" required class="mt-1 w-4 h-4 accent-primary">
+                        <label for="privacy" class="text-xs text-slate-500">
+                            <a href="#" class="text-primary hover:underline">プライバシーポリシー</a>に同意し、個人情報の取得・利用に同意します <span class="text-primary">*</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary text-white text-sm font-bold uppercase px-6 py-4 rounded hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
+                        <span>送信する</span>
+                        <span class="material-symbols-outlined text-lg">send</span>
+                    </button>
+                </form>
             </div>
-        </main>
-    </div>
-    <footer class="border-t border-slate-800/80 px-5 py-8 lg:px-10">
-        <div class="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-            <p class="font-mono uppercase tracking-[0.24em]">Logical / Consultation Desk</p>
-            <div class="flex gap-6">
-                <a href="index.html" class="hover:text-primary">Operations Core</a>
-                <a href="about.html" class="hover:text-primary">Design Protocol</a>
-                <a href="service.html" class="hover:text-primary">Operational Modules</a>
+
+            <div class="space-y-6">
+                <div class="p-6 bg-slate-900 text-white rounded border border-slate-800">
+                    <h3 class="font-bold text-lg mb-4 uppercase flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">support_agent</span>
+                        技術サポート
+                    </h3>
+                    <div class="space-y-4 text-sm text-slate-300">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm mt-0.5">mail</span>
+                            <div>
+                                <span class="block font-bold text-white">Email</span>
+                                <a href="mailto:support@logical-systems.example" class="hover:text-primary transition-colors">support@logical-systems.example</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm mt-0.5">phone</span>
+                            <div>
+                                <span class="block font-bold text-white">Phone (24/7)</span>
+                                <a href="tel:0120123456" class="hover:text-primary transition-colors">0120-123-456</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-sm mt-0.5">chat</span>
+                            <div>
+                                <span class="block font-bold text-white">Live Chat</span>
+                                <span class="text-xs text-slate-400">営業時間：9:00-18:00 (JST)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded">
+                    <h3 class="font-bold text-lg mb-4 uppercase flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">location_on</span>
+                        アクセス
+                    </h3>
+                    <address class="not-italic text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                        <p>〒100-0000</p>
+                        <p>東京都千代田区丸の内 1-1-1</p>
+                        <p>東京ビルディング 15F</p>
+                        <a href="https://maps.google.com" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-primary hover:underline text-xs mt-2">
+                            <span class="material-symbols-outlined text-sm">map</span>
+                            地図を見る
+                        </a>
+                    </address>
+                </div>
+
+                <div class="p-6 bg-primary/10 border border-primary/30 rounded">
+                    <h3 class="font-bold text-sm mb-2 uppercase text-primary">緊急対応について</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+                        本番環境の障害など、緊急の対応が必要な場合は 24/7 サポート窓口へご連絡ください。
+                    </p>
+                    <a href="tel:0120123456" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">emergency</span>
+                        緊急ダイヤル：0120-123-456
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-8 md:py-12 bg-slate-100 dark:bg-slate-900 rounded">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-xl font-black mb-4">よくあるご質問</h2>
+                <div class="space-y-4 text-left">
+                    <details class="group bg-white dark:bg-slate-800 rounded p-4 border border-slate-200 dark:border-slate-700">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-sm">
+                            <span>導入までの期間はどのくらいですか？</span>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">
+                            要件にもよりますが、標準的なデプロイ設計で 2-3 週間、フルスケールの導入で 1-2 ヶ月が目安です。PoC（概念実証）から始めることも可能です。
+                        </p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 rounded p-4 border border-slate-200 dark:border-slate-700">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-sm">
+                            <span>運用保守は必須ですか？</span>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">
+                            任意です。ただし、24/7 監視と定期アップデートを含む運用保守プランをご契約いただくことで、最適なパフォーマンスを維持できます。
+                        </p>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 rounded p-4 border border-slate-200 dark:border-slate-700">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-sm">
+                            <span>見積もりは無料ですか？</span>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">
+                            はい、初回のお見積もりは無料です。既存システムの状況やご希望の要件をお聞かせいただければ、最適なプランをご提案いたします。
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark py-8">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-2xl">terminal</span>
+                    <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                </div>
+                <p class="text-[10px] text-slate-500 uppercase tracking-wider">© 2026 Logical Systems. All Rights Reserved.</p>
+                <div class="flex gap-4 text-[10px] text-slate-500 uppercase">
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-primary transition-colors">Terms</a>
+                    <a href="#" class="hover:text-primary transition-colors">API</a>
+                </div>
             </div>
         </div>
     </footer>
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="assets/js/script.js"></script>
+
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script>
+        function toggleLMenu() {
+            const toggle = document.querySelector('.l-mobile-toggle');
+            const menu = document.querySelector('#l-mobile-menu');
+            const backdrop = document.querySelector('.l-menu-backdrop');
+            const bars = toggle.querySelectorAll('.bar');
+            if (!menu || !backdrop) return;
+            const isOpen = !menu.classList.contains('active');
+            toggle.classList.toggle('active', isOpen);
+            menu.classList.toggle('active', isOpen);
+            backdrop.classList.toggle('active', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            const items = menu.querySelectorAll('li');
+            items.forEach((item, index) => {
+                if (isOpen) { setTimeout(() => { item.classList.remove('opacity-0', 'translate-y-5'); }, index * 50); }
+                else { item.classList.add('opacity-0', 'translate-y-5'); }
+            });
+            if (isOpen) {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+            }
+        }
+        document.querySelectorAll('#l-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                const toggle = document.querySelector('.l-mobile-toggle');
+                const menu = document.querySelector('#l-mobile-menu');
+                const backdrop = document.querySelector('.l-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+                menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.l-mobile-toggle');
+                const menu = document.querySelector('#l-mobile-menu');
+                const backdrop = document.querySelector('.l-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+                menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+            }
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

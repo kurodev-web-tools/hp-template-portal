@@ -3,81 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Urban Street の思想、制作姿勢、街との距離感を紹介します。">
-            <meta property="og:title" content="About | Urban Street">
-    <meta property="og:description" content="Urban Street の思想、制作姿勢、街との距離感を紹介します。">
+    <meta name="description" content="Urban Street の思想、制作姿勢、街との距離感。平均に寄せるより、熱量を残す。">
+    <meta property="og:title" content="About | Urban Street">
+    <meta property="og:description" content="Urban Street の思想、制作姿勢、街との距離感。平均に寄せるより、熱量を残す。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/u/about.html">
+    <meta property="og:url" content="https://example.com/templates/business/u/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>About | Urban Street</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/u/about.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>About | Urban Street</title>
+    <link rel="canonical" href="https://example.com/templates/business/u/about.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Space+Grotesk:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../../assets/css/business-base.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        :root {
+            --urban-primary: #f4af25;
+            --urban-neon: #ccff00;
+            --urban-asphalt: #1a1a1a;
+            --urban-concrete: #3a3a3a;
+            --urban-bg-dark: #121212;
+            --urban-bg-light: #f8f7f5;
+        }
+        .urban-theme {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background-color: var(--urban-bg-dark);
+            color: #f8f7f5;
+        }
+        .urban-stencil {
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+        .urban-italic { font-style: italic; }
+        .brutalist-box {
+            border: 4px solid var(--urban-concrete);
+            box-shadow: 8px 8px 0 0 var(--urban-primary);
+            transition: all 0.2s ease;
+        }
+        .urban-theme .brutalist-box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0 0 var(--urban-primary);
+        }
+        .tape-effect {
+            position: relative;
+        }
+        .tape-effect::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 24px;
+            width: 70px;
+            height: 24px;
+            background: rgba(244, 175, 37, 0.35);
+            transform: rotate(4deg);
+            pointer-events: none;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+        .grit-overlay::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.4;
+        }
+        @media (max-width: 768px) { .grit-overlay::before { display: none; } }
+        .urban-nav-link {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .urban-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--urban-primary);
+            transition: width 0.2s ease;
+        }
+        .urban-theme .urban-nav-link:hover::after,
+        .urban-theme .urban-nav-link.active::after { width: 100%; }
+        .urban-theme .urban-nav-link:hover,
+        .urban-theme .urban-nav-link.active { color: var(--urban-primary); }
+        .urban-menu-backdrop { display: none; }
+        @media (max-width: 1023px) {
+            .urban-menu-backdrop { display: block; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+            .urban-menu-backdrop.active { opacity: 1; visibility: visible; }
+        }
+        .urban-mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        @media (max-width: 1023px) { .urban-mobile-menu.active { transform: translateX(0); } }
+        @media (min-width: 1024px) { .urban-mobile-menu { display: none; } }
+        .urban-mobile-toggle { display: none; }
+        @media (max-width: 1023px) {
+            .urban-mobile-toggle { display: flex; }
+            .urban-mobile-toggle .bar {
+                display: block; width: 24px; height: 3px; background: var(--urban-primary);
+                position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+                transition: all 0.3s ease;
+            }
+            .urban-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
+            .urban-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
+            .urban-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+            .urban-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .urban-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+        }
+        .urban-btn {
+            background: var(--urban-primary);
+            color: var(--urban-bg-dark);
+            border: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 6px 6px 0 0 rgba(0,0,0,0.4);
+        }
+        .urban-btn:hover {
+            transform: translate(2px, -2px);
+            box-shadow: 8px 8px 0 0 rgba(0,0,0,0.4);
+        }
+        .urban-card {
+            border: 3px solid var(--urban-concrete);
+            transition: all 0.2s ease;
+        }
+        .urban-theme .urban-card:hover {
+            border-color: var(--urban-primary);
+            transform: translateY(-4px);
+        }
+    </style>
 </head>
-<body class="theme-business antialiased">
-    <div class="urban-grit-overlay fixed inset-0 pointer-events-none"></div>
-    <div class="urban-menu-backdrop fixed inset-0 z-[9998] bg-black/55 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="urban-mobile-menu" class="urban-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/90 text-white shadow-2xl backdrop-blur lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="urban-mobile-menu" class="urban-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[1.6rem] border border-concrete/80 bg-background-dark/95 p-6 text-white shadow-2xl lg:hidden">
-        <div class="mb-6 flex items-center justify-between"><div><p class="urban-stencil text-2xl text-primary">URBAN_STREET</p><p class="font-sans text-xs uppercase tracking-[0.26em] text-slate-400">Street Exit</p></div></div>
-        <nav class="flex flex-col gap-2"><a href="index.html" class="urban-nav-link rounded-xl px-4 py-3">Home</a><a href="about.html" class="urban-nav-link active rounded-xl px-4 py-3">About</a><a href="service.html" class="urban-nav-link rounded-xl px-4 py-3">Service</a><a href="contact.html" class="urban-nav-link rounded-xl px-4 py-3">Contact</a></nav>
+<body class="urban-theme">
+    <div class="grit-overlay"></div>
+    <div class="urban-menu-backdrop" id="urbanMenuBackdrop"></div>
+    <button class="urban-mobile-toggle" id="urbanMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="urbanMobileMenu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="urban-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-none border-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)] p-6 shadow-2xl" id="urbanMobileMenu">
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <p class="urban-stencil text-2xl" style="color: var(--urban-primary);">URBAN_STREET</p>
+                <p class="font-mono text-[10px] uppercase tracking-[0.24em]" style="color: #888;">STREET EXIT</p>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a href="index.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: DROPS</a>
+            <a href="about.html" class="urban-nav-link active rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: var(--urban-primary);">:: MANIFESTO</a>
+            <a href="service.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: LOOKBOOK</a>
+            <a href="contact.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: CONTACT</a>
+        </nav>
     </div>
-    <header class="sticky top-0 z-50 border-b-4 border-concrete bg-background-dark/95 px-6 py-4 backdrop-blur lg:px-10">
+    <header class="sticky top-0 z-50 border-b-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)]/95 px-6 py-4 backdrop-blur">
         <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6">
-            <a href="index.html" class="flex items-center gap-3 text-white"><div class="bg-primary p-1 text-background-dark"><span class="material-symbols-outlined text-3xl">bolt</span></div><div><p class="urban-stencil text-3xl text-white">URBAN_STREET</p><p class="font-sans text-[11px] uppercase tracking-[0.26em] text-slate-400">Raw energy / no rules</p></div></a>
-            <nav class="hidden items-center gap-2 lg:flex"><a href="index.html" class="urban-nav-link rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.14em]">Home</a><a href="about.html" class="urban-nav-link active rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.14em]">About</a><a href="service.html" class="urban-nav-link rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.14em]">Service</a><a href="contact.html" class="urban-nav-link rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.14em]">Contact</a></nav>
-            <div class="hidden items-center gap-3 lg:flex"><a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-background-dark">Connect</a></div>
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="bg-[var(--urban-primary)] p-1">
+                    <span class="material-symbols-outlined text-3xl" style="color: var(--urban-bg-dark);">bolt</span>
+                </div>
+                <div>
+                    <p class="urban-stencil text-2xl tracking-tighter">URBAN_STREET</p>
+                    <p class="font-mono text-[9px] uppercase tracking-[0.26em]" style="color: #888;">RAW ENERGY / NO RULES</p>
+                </div>
+            </a>
+            <nav class="hidden items-center gap-8 lg:flex">
+                <a href="index.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">DROPS</a>
+                <a href="about.html" class="urban-nav-link active text-sm font-bold tracking-widest pb-1">MANIFESTO</a>
+                <a href="service.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">LOOKBOOK</a>
+                <a href="contact.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">CONTACT</a>
+            </nav>
+            <div class="hidden items-center gap-4 lg:flex">
+                <a href="contact.html" class="urban-btn text-sm tracking-[0.14em]">[ CONNECT ]</a>
+            </div>
         </div>
     </header>
-    <main class="overflow-hidden">
-        <section class="bg-asphalt px-6 py-16 text-white lg:px-10 lg:py-20">
-            <div class="mx-auto max-w-[1440px] rounded-[1.6rem] border-4 border-concrete bg-background-dark/85 p-8 shadow-[12px_12px_0_0_rgba(255,78,0,0.35)] lg:p-10">
-                <p class="text-xs font-black uppercase tracking-[0.24em] text-primary">Manifesto</p>
-                <h1 class="mt-5 urban-stencil text-4xl text-white sm:text-5xl md:text-6xl"><span class="ib">BREAK_THE</span><span class="ib">SYSTEM</span></h1>
-                <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300"><span class="ib">きれいに整えすぎると、</span><span class="ib">街の熱量は消える。</span><span class="ib">Urban Street は、</span><span class="ib">都市の摩擦、</span><span class="ib">違和感、</span><span class="ib">スピード感をそのまま残すことを大事にしています。</span></p>
-            </div>
-        </section>
-        <section class="px-6 py-16 lg:px-10 lg:py-20">
-            <div class="mx-auto grid max-w-[1440px] gap-6 lg:grid-cols-3">
-                <article class="urban-card rounded-[1.4rem] p-8"><p class="text-xs font-black uppercase tracking-[0.24em] text-primary">Attitude</p><h2 class="mt-4 text-2xl font-black uppercase">No Seasons</h2><p class="mt-4 text-sm leading-8 text-slate-600 dark:text-slate-300"><span class="ib">シーズンよりも街の空気感を優先し、</span><span class="ib">必要な時に必要なドロップを行います。</span></p></article>
-                <article class="urban-card rounded-[1.4rem] p-8"><p class="text-xs font-black uppercase tracking-[0.24em] text-primary">Attitude</p><h2 class="mt-4 text-2xl font-black uppercase">Real Texture</h2><p class="mt-4 text-sm leading-8 text-slate-600 dark:text-slate-300"><span class="ib">傷、擦れ、ざらつきも含めて、</span><span class="ib">素材の輪郭として扱います。</span></p></article>
-                <article class="urban-card rounded-[1.4rem] p-8"><p class="text-xs font-black uppercase tracking-[0.24em] text-primary">Attitude</p><h2 class="mt-4 text-2xl font-black uppercase">Collective Voice</h2><p class="mt-4 text-sm leading-8 text-slate-600 dark:text-slate-300"><span class="ib">スケーター、ビルダー、ミスフィットの声を、</span><span class="ib">コレクションに反映します。</span></p></article>
-            </div>
-        </section>
-        <section class="bg-background-dark px-6 py-16 text-white lg:px-10 lg:py-20">
-            <div class="mx-auto grid max-w-[1440px] gap-8 xl:grid-cols-[0.95fr_1.05fr]">
-                <div>
-                    <p class="text-xs font-black uppercase tracking-[0.24em] text-primary">Studio Note</p>
-                    <h2 class="mt-4 urban-stencil text-4xl text-white sm:text-5xl md:text-6xl"><span class="ib">RECLAIM_THE</span><span class="ib">PAVEMENT</span></h2>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-[var(--urban-asphalt)] px-6 py-20 lg:px-12 lg:py-28">
+            <div class="mx-auto max-w-[1440px]">
+                <div class="brutalist-box bg-[var(--urban-bg-dark)] p-8 md:p-12">
+                    <p class="font-mono text-xs font-black uppercase tracking-[0.3em]" style="color: var(--urban-primary);">// MANIFESTO</p>
+                    <h1 class="mt-5 urban-stencil text-4xl font-black leading-[0.9] md:text-6xl">
+                        BREAK_THE<span class="urban-italic" style="color: var(--urban-primary);">SYSTEM</span>
+                    </h1>
+                    <p class="mt-8 max-w-3xl text-lg leading-relaxed" style="color: #ccc;">
+                        きれいに整えすぎると、街の熱量は消える。
+                        Urban Street は、都市の摩擦、違和感、スピード感をそのまま残すことを大事にしています。
+                        平均に寄せるより、熱量を残す。それが私たちのすべてです。
+                    </p>
                 </div>
-                <div class="space-y-5 text-base leading-8 text-slate-300">
-                    <p><span class="ib">磨かれたラグジュアリーではなく、</span><span class="ib">使い込むほど輪郭が出る服をつくる。</span></p>
-                    <p><span class="ib">都市の速度に耐える強度と、</span><span class="ib">個の癖がにじむ余白を同時に残す。</span></p>
-                    <p><span class="ib">それが Urban Street のデザイン基準です。</span></p>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="px-6 py-20 lg:px-12 lg:py-28">
+            <div class="mx-auto max-w-[1440px]">
+                <p class="font-mono text-xs font-black uppercase tracking-[0.3em]" style="color: var(--urban-primary);">// ATTITUDE</p>
+                <div class="mt-10 grid gap-6 lg:grid-cols-3">
+                    <div class="urban-card rounded-none bg-[var(--urban-bg-dark)] p-8">
+                        <p class="font-mono text-xs font-black uppercase tracking-[0.24em]" style="color: var(--urban-primary);">NO_SEASONS</p>
+                        <h2 class="mt-4 urban-stencil text-2xl font-black">シーズンよりも現場</h2>
+                        <p class="mt-4 text-sm leading-relaxed" style="color: #aaa;">
+                            トレンドやシーズンサイクルではなく、街の空気感で動く。
+                            必要と感じた時に、必要なドロップを。
+                        </p>
+                    </div>
+                    <div class="urban-card rounded-none bg-[var(--urban-bg-dark)] p-8">
+                        <p class="font-mono text-xs font-black uppercase tracking-[0.24em]" style="color: var(--urban-primary);">REAL_TEXTURE</p>
+                        <h2 class="mt-4 urban-stencil text-2xl font-black">傷さえも輪郭</h2>
+                        <p class="mt-4 text-sm leading-relaxed" style="color: #aaa;">
+                            磨かれた完璧さより、使い込んだ跡。
+                            傷、擦れ、ざらつきも、すべて着用の輪郭として扱う。
+                        </p>
+                    </div>
+                    <div class="urban-card rounded-none bg-[var(--urban-bg-dark)] p-8">
+                        <p class="font-mono text-xs font-black uppercase tracking-[0.24em]" style="color: var(--urban-primary);">COLLECTIVE</p>
+                        <h2 class="mt-4 urban-stencil text-2xl font-black">Misfits Collective</h2>
+                        <p class="mt-4 text-sm leading-relaxed" style="color: #aaa;">
+                            スケーター、ビルダー、クリエイター。
+                            街で生きるすべての声コレクションに。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studio Note -->
+        <section class="border-t-4 border-[var(--urban-concrete)] bg-[var(--urban-asphalt)] px-6 py-20 lg:px-12 lg:py-28">
+            <div class="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-2">
+                <div>
+                    <p class="font-mono text-xs font-black uppercase tracking-[0.3em]" style="color: var(--urban-primary);">// STUDIO_NOTE</p>
+                    <h2 class="mt-5 urban-stencil text-4xl font-black leading-[0.9] md:text-6xl">
+                        RECLAIM_THE<span class="urban-italic" style="color: var(--urban-primary);">PAVEMENT</span>
+                    </h2>
+                </div>
+                <div class="space-y-6 text-base leading-relaxed" style="color: #ccc;">
+                    <p>
+                        磨かれたラグジュアリーではなく、使い込むほど輪郭が出る服をつくる。
+                        都市の速度に耐える強度と、個の癖がにじむ余白を同時に残す。
+                    </p>
+                    <p>
+                        私たちのデザインは、ストリートのノイズから生まれる。
+                        グラフィティ、コンクリートのひび割れ、ネオンの反射。
+                        すべてがインスピレーションの源。
+                    </p>
+                    <p class="urban-stencil text-2xl font-black" style="color: var(--urban-neon);">
+                        THAT'S URBAN STREET.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Section -->
+        <section class="px-6 py-20 lg:px-12 lg:py-28">
+            <div class="mx-auto max-w-[1440px]">
+                <div class="tape-effect">
+                    <img src="assets/generated/external-image-02.svg" alt="ストリートウェアのディテール" class="w-full brutalist-box grayscale">
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <p class="font-mono text-xs uppercase tracking-[0.2em]" style="color: #666;">AUTHENTIC_SHOT / DOWNTOWN_LA</p>
+                    <p class="urban-stencil text-sm font-black" style="color: var(--urban-primary);">VOL.01</p>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="border-t-4 border-concrete bg-background-dark px-6 py-8 text-white lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div>
-                <p class="urban-stencil text-2xl text-primary">URBAN_STREET</p>
-                <p class="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">Built from friction, noise, and local energy.</p>
+
+    <footer class="border-t-8 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)] px-6 pb-10 pt-16 lg:px-12">
+        <div class="mx-auto max-w-[1440px]">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <h2 class="urban-stencil text-4xl italic">URBAN_STREET</h2>
+                    <p class="mt-6 max-w-xs font-medium text-slate-500">
+                        Defying the standard since 2024. Designed in the underground, built for the surface.
+                    </p>
+                    <div class="mt-8 flex gap-4">
+                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
+                            <span class="material-symbols-outlined">public</span>
+                        </a>
+                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
+                            <span class="material-symbols-outlined">alternate_email</span>
+                        </a>
+                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
+                            <span class="material-symbols-outlined">share</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="mb-6 font-black tracking-widest uppercase" style="color: var(--urban-primary);">Navigation</h4>
+                    <ul class="space-y-3 font-bold">
+                        <li><a href="index.html" class="hover:text-[var(--urban-primary)]">ALL_PRODUCTS</a></li>
+                        <li><a href="about.html" class="hover:text-[var(--urban-primary)]">NEW_ARRIVALS</a></li>
+                        <li><a href="service.html" class="hover:text-[var(--urban-primary)]">COLLABORATIONS</a></li>
+                        <li><a href="contact.html" class="hover:text-[var(--urban-primary)]">SUSTAINABILITY</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-6 font-black tracking-widest uppercase" style="color: var(--urban-primary);">Support</h4>
+                    <ul class="space-y-3 font-bold">
+                        <li><a href="#" class="hover:text-[var(--urban-primary)]">SHIPPING_INFO</a></li>
+                        <li><a href="#" class="hover:text-[var(--urban-primary)]">RETURNS_POLICY</a></li>
+                        <li><a href="#" class="hover:text-[var(--urban-primary)]">SIZE_GUIDE</a></li>
+                        <li><a href="contact.html" class="hover:text-[var(--urban-primary)]">CONTACT_US</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="flex flex-wrap items-center gap-4 text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                <a href="index.html" class="transition hover:text-primary">Home</a>
-                <a href="service.html" class="transition hover:text-primary">Service</a>
-                <a href="contact.html" class="transition hover:text-primary">Contact</a>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-[var(--urban-concrete)]/30 font-mono text-xs opacity-50">
+                <p>© 2024 URBAN_STREET_CULTURE. ALL RIGHTS RESERVED.</p>
+                <div class="mt-4 flex gap-8 md:mt-0">
+                    <a href="#" class="hover:text-[var(--urban-primary)]">PRIVACY_POLICY</a>
+                    <a href="#" class="hover:text-[var(--urban-primary)]">TERMS_OF_SERVICE</a>
+                </div>
             </div>
         </div>
     </footer>
-    <script src="../../../assets/js/template-common.js" defer></script>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('urbanMobileToggle');
+            const menu = document.getElementById('urbanMobileMenu');
+            const backdrop = document.getElementById('urbanMenuBackdrop');
+            if (!toggle || !menu || !backdrop) return;
+            function closeMenu() {
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = menu.classList.contains('active');
+                if (isOpen) { closeMenu(); } else {
+                    menu.classList.add('active');
+                    backdrop.classList.add('active');
+                    toggle.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+            backdrop.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.urban-nav-link').forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                    link.style.color = 'var(--urban-primary)';
+                }
+            });
+        })();
+    </script>
+    <script src="../../../../assets/js/template-common.js" defer></script>
     <script src="assets/js/script.js" defer></script>
 </body>
 </html>

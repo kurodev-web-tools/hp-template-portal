@@ -3,86 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logical About | 設計思想と運用アーキテクチャ</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/l/about.html"><meta name="description" content="Logical の設計思想、運用ルール、セキュリティ方針を紹介する About ページです。">
-            <meta property="og:title" content="Logical About | 設計思想と運用アーキテクチャ">
-    <meta property="og:description" content="Logical の設計思想、運用ルール、セキュリティ方針を紹介する About ページです。">
+    <title>About | Logical Systems - 設計思想とアーキテクチャ</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/l/about.html">
+    <meta name="description" content="Logical Systems の設計思想、セキュリティ方針、運用アーキテクチャをご紹介。低遅延・高可用性を追求した B2B システム基盤。">
+    <meta property="og:title" content="About | Logical Systems - 設計思想とアーキテクチャ">
+    <meta property="og:description" content="Logical Systems の設計思想、セキュリティ方針、運用アーキテクチャをご紹介。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/l/about.html">
+    <meta property="og:url" content="https://example.com/templates/business/l/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Logical Systems",
+        "description": "低遅延・高可用性の B2B システム基盤を提供。",
+        "url": "https://example.com/templates/business/l/about.html",
+        "logo": "assets/generated/external-image-01.svg"
+    }
+    </script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .l-menu-backdrop.active { opacity: 1 !important; visibility: visible !important; background-color: rgba(2, 6, 23, 0.8) !important; backdrop-filter: blur(4px) !important; }
+        .l-mobile-menu.active { opacity: 1 !important; visibility: visible !important; }
+        .l-grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(13, 127, 242, 0.15) 1px, transparent 0); background-size: 32px 32px; }
+    </style>
 </head>
-<body class="theme-business fade-in custom-menu-only">
-    <header>
-        <div class="logic-menu-backdrop fixed inset-0 z-40 bg-slate-950/55 lg:hidden"></div>
-        <button aria-controls="logic-mobile-menu" class="logic-mobile-toggle fixed right-5 top-5 z-50 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-slate-950/90 shadow-2xl lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="sr-only">メニュー</span><span class="flex flex-col gap-1.5"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span></button>
-        <div id="logic-mobile-menu" class="logic-mobile-menu fixed inset-y-0 left-0 z-50 w-[88vw] max-w-sm border-r border-slate-200/10 bg-slate-950/96 p-6 lg:hidden">
-            <div class="mb-8"><p class="font-mono text-xs uppercase tracking-[0.32em] text-primary">Logical</p><p class="mt-2 text-sm text-slate-400">Architecture / Security</p></div>
-            <nav class="space-y-3">
-                <a href="index.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>Home</span><span class="material-symbols-outlined text-base">home</span></a>
-                <a href="about.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>About</span><span class="material-symbols-outlined text-base">account_tree</span></a>
-                <a href="service.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>Services</span><span class="material-symbols-outlined text-base">deployed_code</span></a>
-                <a href="contact.html" class="logic-nav-link flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 font-mono text-sm uppercase tracking-[0.24em] text-slate-100"><span>Contact</span><span class="material-symbols-outlined text-base">support_agent</span></a>
-            </nav>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased custom-menu-only">
+
+    <!-- Mobile Menu Toggle -->
+    <button aria-controls="l-mobile-menu" class="l-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-slate-900 dark:bg-slate-950 border border-slate-700 flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleLMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+    </button>
+
+    <div class="l-menu-backdrop fixed inset-0 z-[9998] bg-slate-900/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="l-mobile-menu" class="l-mobile-menu fixed inset-0 z-[9999] bg-slate-950 flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0 space-y-4">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">About</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">Service</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="container mx-auto px-4 md:px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-3xl">terminal</span>
+                        <h2 class="text-slate-900 dark:text-slate-100 text-sm font-black leading-tight tracking-tighter uppercase">Logical Systems</h2>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6 border-l border-slate-200 dark:border-slate-800 pl-6">
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="index.html">Home</a>
+                        <a class="text-primary font-bold" href="about.html">About</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Service</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="contact.html">Contact</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="contact.html" class="bg-primary text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded hover:bg-blue-600 transition-colors hidden sm:block">Deploy Instance</a>
+                    <button class="md:hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleLMenu()">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-    <div class="logic-shell min-h-screen lg:flex">
-        <aside class="logic-sidebar hidden w-80 shrink-0 flex-col justify-between p-8 lg:flex">
-            <div>
-                <div class="logic-line mb-8 pb-6"><p class="font-mono text-xs uppercase tracking-[0.36em] text-primary">About Logical</p><h1 class="mt-3 text-2xl font-black tracking-tight text-slate-100">Design Protocol</h1><p class="mt-3 text-sm leading-7 text-slate-400"><span class="ib">全体最適を阻む分断を、</span><span class="ib">仕組みで解くための</span><span class="ib">設計思想です。</span></p></div>
-                <nav class="space-y-2">
-                    <a href="index.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">home</span><span>Home</span></a>
-                    <a href="about.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">account_tree</span><span>About</span></a>
-                    <a href="service.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">deployed_code</span><span>Services</span></a>
-                    <a href="contact.html" class="logic-nav-link flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 font-mono text-sm uppercase tracking-[0.22em] text-slate-200"><span class="material-symbols-outlined text-base">support_agent</span><span>Contact</span></a>
-                </nav>
-            </div>
-        </aside>
-        <main class="w-full px-5 pb-16 pt-20 md:pt-24 lg:px-10 lg:py-10">
-            <div class="mx-auto max-w-7xl space-y-8">
-                <section class="logic-panel rounded-[2rem] p-6 lg:p-8">
-                    <p class="font-mono text-[0.72rem] uppercase tracking-[0.3em] text-primary">Core Philosophy</p>
-                    <h2 class="mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-100 md:text-5xl"><span class="ib">属人化した運用を、</span><span class="ib">再現可能な仕組みに</span><span class="ib">置き換える。</span></h2>
-                    <p class="mt-6 max-w-3xl text-base leading-8 text-slate-400"><span class="ib">Logical は、現場ヒアリングとシステム設計を分断せず、</span><span class="ib">業務の流れそのものをダッシュボード上で再構成することを重視します。</span></p>
-                </section>
-                <section class="grid gap-6 lg:grid-cols-3">
-                    <article class="logic-card rounded-[1.75rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Observe</p><h3 class="mt-4 text-2xl font-black text-slate-100"><span class="ib">現場の遅延を、</span><span class="ib">数値で捉える。</span></h3><p class="mt-4 text-sm leading-7 text-slate-400"><span class="ib">ログ、操作履歴、拠点別の差分を観測し、曖昧だった問題を可視化します。</span></p></article>
-                    <article class="logic-card rounded-[1.75rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Model</p><h3 class="mt-4 text-2xl font-black text-slate-100"><span class="ib">処理の流れを、</span><span class="ib">設計図に直す。</span></h3><p class="mt-4 text-sm leading-7 text-slate-400"><span class="ib">部門間の受け渡しと承認条件をワークフローとして定義し、再現性を高めます。</span></p></article>
-                    <article class="logic-card rounded-[1.75rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Operate</p><h3 class="mt-4 text-2xl font-black text-slate-100"><span class="ib">運用改善を、</span><span class="ib">継続できる形に。</span></h3><p class="mt-4 text-sm leading-7 text-slate-400"><span class="ib">稼働後の計測と更新を前提に、運用チームが自走できる体制まで整えます。</span></p></article>
-                </section>
-                <section class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-                    <div class="logic-panel rounded-[2rem] p-6 lg:p-8">
-                        <p class="font-mono text-[0.72rem] uppercase tracking-[0.3em] text-primary">Security Posture</p>
-                        <h3 class="mt-4 text-3xl font-black tracking-tight text-slate-100"><span class="ib">監査と権限設計を、</span><span class="ib">後付けにしない。</span></h3>
+
+    <main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-6 py-8">
+        <!-- Page Hero -->
+        <section class="py-8 md:py-12 mb-8">
+            <span class="text-[10px] font-bold uppercase text-primary tracking-[0.3em]">About Logical</span>
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-black mt-2 mb-4">
+                Core Mesh Logic.
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
+                分散ノード、自己修復ルーティング、量子耐性暗号。私たちが目指すのは、デジタルスタックの新たな基盤。確率的で、拡張可能で、そして堅牢なインフラストラクチャ。
+            </p>
+        </section>
+
+        <!-- Architecture Diagram -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6 md:p-8">
+            <div class="col-span-12 md:col-span-5">
+                <h2 class="text-xl md:text-2xl font-black uppercase tracking-tighter mb-6">3 つのコア。</h2>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="size-8 flex-shrink-0 bg-primary/10 text-primary border border-primary/30 rounded flex items-center justify-center font-black text-xs">01</div>
+                        <div>
+                            <p class="text-sm font-bold uppercase mb-1">Ingress Load Balancing</p>
+                            <p class="text-[12px] text-slate-500">リアルタイムノードヘルスと遅延メトリクスに基づく自律トラフィック分散。</p>
+                        </div>
                     </div>
-                    <div class="grid gap-4 md:grid-cols-2">
-                        <article class="logic-card rounded-[1.7rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Audit Trail</p><p class="mt-4 text-sm leading-7 text-slate-400">承認履歴、差戻し、権限変更を追跡できる構造を初期設計に組み込みます。</p></article>
-                        <article class="logic-card rounded-[1.7rem] p-6"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Role Mapping</p><p class="mt-4 text-sm leading-7 text-slate-400">理想的な権限表ではなく、実際の責任分界に沿って権限を定義します。</p></article>
-                        <article class="logic-card rounded-[1.7rem] p-6 md:col-span-2"><p class="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-primary">Change Discipline</p><p class="mt-4 text-sm leading-7 text-slate-400">変更管理を会議体とセットで設計し、改修が運用品質を壊さないようにします。</p></article>
+                    <div class="flex gap-4">
+                        <div class="size-8 flex-shrink-0 bg-primary/10 text-primary border border-primary/30 rounded flex items-center justify-center font-black text-xs">02</div>
+                        <div>
+                            <p class="text-sm font-bold uppercase mb-1">Micro-Kernel Execution</p>
+                            <p class="text-[12px] text-slate-500">独自 Rust 製コアエグゼキューターによる高並発ロジック処理。</p>
+                        </div>
                     </div>
-                </section>
+                    <div class="flex gap-4">
+                        <div class="size-8 flex-shrink-0 bg-primary/10 text-primary border border-primary/30 rounded flex items-center justify-center font-black text-xs">03</div>
+                        <div>
+                            <p class="text-sm font-bold uppercase mb-1">Distributed Consensus</p>
+                            <p class="text-[12px] text-slate-500">Raft 最適化スループットによるグローバルノード間状態同期。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
-    <footer class="border-t border-slate-800/80 px-5 py-8 lg:px-10">
-        <div class="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-            <p class="font-mono uppercase tracking-[0.24em]">Logical / Design Protocol</p>
-            <div class="flex gap-6">
-                <a href="index.html" class="hover:text-primary">Operations Core</a>
-                <a href="service.html" class="hover:text-primary">Operational Modules</a>
-                <a href="contact.html" class="hover:text-primary">Consultation Desk</a>
+            <div class="col-span-12 md:col-span-7 aspect-video bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative overflow-hidden flex items-center justify-center l-grid-bg">
+                <div class="grid grid-cols-3 gap-4 md:gap-8 relative z-10 w-full max-w-md p-6">
+                    <div class="h-12 md:h-16 border border-primary bg-primary/5 rounded flex items-center justify-center text-[9px] md:text-[10px] font-bold text-primary uppercase">Edge_Node_A</div>
+                    <div class="h-12 md:h-16 border border-primary bg-primary/5 rounded flex items-center justify-center text-[9px] md:text-[10px] font-bold text-primary uppercase">Edge_Node_B</div>
+                    <div class="h-12 md:h-16 border border-primary bg-primary/5 rounded flex items-center justify-center text-[9px] md:text-[10px] font-bold text-primary uppercase">Edge_Node_C</div>
+                    <div class="col-span-3 h-16 md:h-24 border-2 border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark rounded flex flex-col items-center justify-center">
+                        <span class="text-[9px] md:text-[10px] font-black uppercase text-slate-500 tracking-widest">SYSTYX CORE ENGINE</span>
+                        <div class="w-1/2 h-1 bg-primary mt-2"></div>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 right-4 text-[8px] md:text-[9px] font-mono text-slate-500 uppercase tracking-widest">System_Diagram_v1.1</div>
+            </div>
+        </section>
+
+        <!-- Specification Table -->
+        <section class="mb-12">
+            <div class="flex items-center gap-4 mb-6">
+                <h2 class="text-lg md:text-xl font-black uppercase tracking-tight">System Specification</h2>
+                <div class="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
+                <span class="text-[10px] font-mono text-slate-500">DOC_REF: PARITY_772</span>
+            </div>
+            <div class="overflow-x-auto border border-slate-200 dark:border-slate-800">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="bg-slate-50 dark:bg-slate-900 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                            <th class="p-3 md:p-4 border-b border-r border-slate-200 dark:border-slate-800">Feature</th>
+                            <th class="p-3 md:p-4 border-b border-r border-slate-200 dark:border-slate-800">Community</th>
+                            <th class="p-3 md:p-4 border-b border-r border-slate-200 dark:border-slate-800">Enterprise</th>
+                            <th class="p-3 md:p-4 border-b border-slate-200 dark:border-slate-800 bg-primary/5 text-primary">Global Mesh</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-[11px] md:text-[12px] font-medium">
+                        <tr class="border-b border-slate-200 dark:border-slate-800">
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 font-bold uppercase">Concurrency</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">1,024 Streams</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800">Unlimited</td>
+                            <td class="p-3 md:p-4 bg-primary/5 text-primary font-bold">Infinite Horizon</td>
+                        </tr>
+                        <tr class="border-b border-slate-200 dark:border-slate-800">
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 font-bold uppercase">SLA</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">99.9%</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800">99.99%</td>
+                            <td class="p-3 md:p-4 bg-primary/5 text-primary font-bold">99.9999%</td>
+                        </tr>
+                        <tr class="border-b border-slate-200 dark:border-slate-800">
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 font-bold uppercase">Data Residency</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">Single Zone</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800">Multi-Regional</td>
+                            <td class="p-3 md:p-4 bg-primary/5 text-primary font-bold">Universal Sovereign</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 font-bold uppercase">Pricing / Mo</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 font-black">$0</td>
+                            <td class="p-3 md:p-4 border-r border-slate-200 dark:border-slate-800 font-black">$2,400</td>
+                            <td class="p-3 md:p-4 bg-primary/5 text-primary font-black uppercase">Custom</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Security & Compliance -->
+        <section class="py-8 md:py-12 border-t border-slate-200 dark:border-slate-800">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-4">security</span>
+                    <h3 class="font-bold text-lg mb-3 uppercase">Security First</h3>
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            mTLS によるエンドツーエンド暗号化
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            ハードウェアレベル暗号化対応
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            量子耐性暗号アルゴリズム準備済み
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-4">verified</span>
+                    <h3 class="font-bold text-lg mb-3 uppercase">Compliance</h3>
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            SOC 2 Type II 認証取得
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            GDPR 準拠
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
+                            ISO 27001 認証
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-8 md:py-12 bg-slate-900 text-white relative overflow-hidden mt-8">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#0d7ff2 1px, transparent 1px); background-size: 24px 24px;"></div>
+            <div class="relative z-10 max-w-2xl">
+                <h2 class="text-xl md:text-2xl font-black mb-4">
+                    仕様を、さらに深く。
+                </h2>
+                <p class="text-slate-400 text-sm mb-4">
+                    API ドキュメント、SDK リファレンス、デプロイガイドをご用意しています。
+                </p>
+                <a href="service.html" class="bg-primary text-white text-[12px] font-bold uppercase px-6 py-3 rounded inline-block hover:bg-blue-600 transition-colors">
+                    Technical Docs →
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark py-8">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-2xl">terminal</span>
+                    <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                </div>
+                <p class="text-[10px] text-slate-500 uppercase tracking-wider">© 2026 Logical Systems. All Rights Reserved.</p>
+                <div class="flex gap-4 text-[10px] text-slate-500 uppercase">
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-primary transition-colors">Terms</a>
+                    <a href="#" class="hover:text-primary transition-colors">API</a>
+                </div>
             </div>
         </div>
     </footer>
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="assets/js/script.js"></script>
+
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script>
+        function toggleLMenu() {
+            const toggle = document.querySelector('.l-mobile-toggle');
+            const menu = document.querySelector('#l-mobile-menu');
+            const backdrop = document.querySelector('.l-menu-backdrop');
+            const bars = toggle.querySelectorAll('.bar');
+            if (!menu || !backdrop) return;
+            const isOpen = !menu.classList.contains('active');
+            toggle.classList.toggle('active', isOpen);
+            menu.classList.toggle('active', isOpen);
+            backdrop.classList.toggle('active', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            const items = menu.querySelectorAll('li');
+            items.forEach((item, index) => {
+                if (isOpen) { setTimeout(() => { item.classList.remove('opacity-0', 'translate-y-5'); }, index * 50); }
+                else { item.classList.add('opacity-0', 'translate-y-5'); }
+            });
+            if (isOpen) {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+            }
+        }
+        document.querySelectorAll('#l-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                const toggle = document.querySelector('.l-mobile-toggle');
+                const menu = document.querySelector('#l-mobile-menu');
+                const backdrop = document.querySelector('.l-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+                menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.l-mobile-toggle');
+                const menu = document.querySelector('#l-mobile-menu');
+                const backdrop = document.querySelector('.l-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+                menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+            }
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

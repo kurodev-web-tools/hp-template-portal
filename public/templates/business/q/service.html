@@ -3,37 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quality First Service | 精密製造の支援領域</title>
-    
-        <meta property="og:title" content="Quality First Service | 精密製造の支援領域">
-        <meta property="og:description" content="Quality First Service | 精密製造の支援領域。加工精度、品質保証、 供給安定性を一体で支える。を紹介するページです。">
-<meta property="og:type" content="website">
-        <meta property="og:url" content="https://example.com/templates/business/q/service.html">
-<meta property="og:locale" content="ja_JP">
+    <title>Service | Quality First - 精密製造の支援領域</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/q/service.html">
+    <meta name="description" content="Quality First のサービス - 加工精度、品質保証、供給安定性を一体で支える。5 軸加工、公差設計、バリデーション支援。">
+    <meta property="og:title" content="Service | Quality First - 精密製造の支援領域">
+    <meta property="og:description" content="Quality First のサービス - 加工精度、品質保証、供給安定性を一体で支える。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/q/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://example.com/templates/business/q/service.html">    <meta name="description" content="Quality First Service | 精密製造の支援領域。加工精度、品質保証、 供給安定性を一体で支える。を紹介するページです。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Quality First",
+        "description": "高信頼な精密製造パートナー",
+        "url": "https://example.com/templates/business/q/service.html",
+        "logo": "assets/generated/external-image-01.svg"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:wght@100..700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .precision-shell { background-color: #231a0f; }
+        .precision-grid { background-image: radial-gradient(rgba(255,140,0,0.3) 1px, transparent 1px); background-size: 40px 40px; }
+        .precision-panel { background: rgba(35,26,15,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,140,0,0.2); }
+        .precision-input { background: rgba(35,26,15,0.8); border: 1px solid rgba(255,140,0,0.3); color: #fff; padding: 12px 16px; width: 100%; border-radius: 12px; }
+        .precision-input:focus { outline: none; border-color: #ff8c00; }
+        .precision-nav-link { transition: all 0.2s; }
+        .precision-nav-link:hover { background: rgba(255,140,0,0.1); }
+        .precision-nav-link.active { background: rgba(255,140,0,0.2); color: #ff8c00; }
+        .precision-stat { background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2); }
+        .precision-table-row { background: rgba(255,140,0,0.05); border: 1px solid rgba(255,140,0,0.2); }
+        .blueprint-line { border-color: #3d3124; }
+        .precision-menu-backdrop { background-color: rgba(0,0,0,0.4); backdrop-filter: blur(4px); }
+        .precision-mobile-toggle { background: rgba(255,140,0,0.2); border: 1px solid rgba(255,140,0,0.3); }
+        .precision-mobile-toggle .bar { display: block; width: 18px; height: 2px; background: #fff; margin: 4px 0; transition: all 0.3s; }
+        .precision-mobile-menu { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .precision-mobile-menu.active { opacity: 1; visibility: visible; }
+        .precision-mobile-menu.inactive { opacity: 0; visibility: hidden; }
+    </style>
 </head>
 <body class="theme-business bg-background-dark text-slate-100 custom-menu-only antialiased">
-    <div class="precision-menu-backdrop fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm md:hidden"></div>
-    <button aria-controls="precision-mobile-menu" class="precision-mobile-toggle precision-panel fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full text-slate-900 dark:text-white md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false">
+
+    <div class="precision-menu-backdrop fixed inset-0 z-[9998] md:hidden"></div>
+
+    <button aria-controls="precision-mobile-menu" class="precision-mobile-toggle precision-panel fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="togglePrecisionMenu()">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
-    <div id="precision-mobile-menu" class="precision-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-primary/20 bg-background-dark/95 p-6 shadow-2xl md:hidden">
+
+    <div id="precision-mobile-menu" class="precision-mobile-menu inactive fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-primary/20 bg-background-dark/95 p-6 shadow-2xl md:hidden">
         <div class="mb-6 flex items-center justify-between">
             <div>
                 <p class="text-xs font-black uppercase tracking-[0.34em] text-primary">Quality</p>
                 <p class="text-sm text-slate-400">First</p>
             </div>
-            <!-- Theme toggle removed for stability -->
         </div>
         <nav class="flex flex-col gap-2 text-base font-semibold text-white">
             <a href="index.html" class="precision-nav-link rounded-2xl px-4 py-3">Home</a>
@@ -42,12 +79,13 @@
             <a href="contact.html" class="precision-nav-link rounded-2xl px-4 py-3">Contact</a>
         </nav>
     </div>
+
     <div class="precision-shell min-h-screen">
         <header class="fixed left-0 right-0 top-0 z-50 px-6 py-4 lg:px-12">
             <div class="precision-panel mx-auto flex max-w-[1440px] items-center justify-between rounded-full px-6 py-3">
                 <a href="index.html" class="flex items-center gap-3 text-primary">
                     <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
-                    <span class="text-lg font-black uppercase tracking-[0.18em] text-slate-900 dark:text-white">QUALITY_FIRST</span>
+                    <span class="text-lg font-black uppercase tracking-[0.18em] text-white">QUALITY_FIRST</span>
                 </a>
                 <nav class="hidden items-center gap-3 md:flex">
                     <a href="index.html" class="precision-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.24em]">Home</a>
@@ -56,13 +94,12 @@
                     <a href="contact.html" class="precision-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.24em]">Contact</a>
                 </nav>
                 <div class="hidden items-center gap-3 md:flex">
-                    <!-- Theme toggle removed for stability -->
                     <a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-background-dark">Start Project</a>
                 </div>
             </div>
         </header>
+
         <main class="overflow-hidden pt-24">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
             <section class="precision-grid border-b border-blueprint-line px-6 py-20 lg:px-12">
                 <div class="mx-auto max-w-[1440px]">
                     <p class="text-xs font-black uppercase tracking-[0.34em] text-primary">Services</p>
@@ -70,43 +107,45 @@
                         <span class="ib">加工精度、品質保証、</span>
                         <span class="ib">供給安定性を一体で支える。</span>
                     </h1>
-                    <p class="mt-6 max-w-3xl text-base leading-8 text-slate-700 dark:text-slate-300"><span class="ib">単発の加工だけでなく、</span><span class="ib">量産移行や継続供給まで含めて</span><span class="ib">設計段階から相談できる構成です。</span></p>
+                    <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300"><span class="ib">単発の加工だけでなく、</span><span class="ib">量産移行や継続供給まで含めて</span><span class="ib">設計段階から相談できる構成です。</span></p>
                 </div>
             </section>
+
             <section class="px-6 py-20 lg:px-12">
                 <div class="mx-auto grid max-w-[1440px] gap-6 md:grid-cols-2 xl:grid-cols-3">
                     <article class="precision-panel rounded-[2rem] p-8">
                         <span class="material-symbols-outlined text-4xl text-primary">precision_manufacturing</span>
                         <h2 class="mt-5 text-2xl font-black uppercase">5-Axis Milling</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">高精度な複雑形状を、</span><span class="ib">安定条件のまま加工します。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">高精度な複雑形状を、</span><span class="ib">安定条件のまま加工します。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <span class="material-symbols-outlined text-4xl text-primary">tune</span>
                         <h2 class="mt-5 text-2xl font-black uppercase">Tolerance Design</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">図面要件と加工現実を</span><span class="ib">両立させる公差設計を支援します。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">図面要件と加工現実を</span><span class="ib">両立させる公差設計を支援します。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <span class="material-symbols-outlined text-4xl text-primary">biotech</span>
                         <h2 class="mt-5 text-2xl font-black uppercase">Validation Support</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">試作から量産移行まで、</span><span class="ib">必要な検証項目を整理します。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">試作から量産移行まで、</span><span class="ib">必要な検証項目を整理します。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <span class="material-symbols-outlined text-4xl text-primary">travel_explore</span>
                         <h2 class="mt-5 text-2xl font-black uppercase">Global Logistics</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">多拠点供給でも、</span><span class="ib">品質基準のばらつきを抑えます。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">多拠点供給でも、</span><span class="ib">品質基準のばらつきを抑えます。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <span class="material-symbols-outlined text-4xl text-primary">dataset</span>
                         <h2 class="mt-5 text-2xl font-black uppercase">Material Control</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">素材証明とロット管理を</span><span class="ib">案件ごとに最適化します。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">素材証明とロット管理を</span><span class="ib">案件ごとに最適化します。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <span class="material-symbols-outlined text-4xl text-primary">fact_check</span>
                         <h2 class="mt-5 text-2xl font-black uppercase">Supplier QA</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">外部協力先を含めた</span><span class="ib">品質統制も支援範囲です。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">外部協力先を含めた</span><span class="ib">品質統制も支援範囲です。</span></p>
                     </article>
                 </div>
             </section>
+
             <section class="border-y border-blueprint-line bg-background-dark px-6 py-20 text-white lg:px-12">
                 <div class="mx-auto grid max-w-[1440px] gap-8 xl:grid-cols-[0.9fr_1.1fr]">
                     <div>
@@ -135,34 +174,67 @@
                     </div>
                 </div>
             </section>
+
             <section class="px-6 py-20 lg:px-12">
                 <div class="mx-auto grid max-w-[1440px] gap-6 lg:grid-cols-3">
                     <article class="precision-panel rounded-[2rem] p-8">
                         <p class="text-xs font-black uppercase tracking-[0.3em] text-primary">Step 01</p>
                         <h2 class="mt-4 text-2xl font-black uppercase">Review</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">図面と要求品質を整理し、</span><span class="ib">成立条件を明確化します。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">図面と要求品質を整理し、</span><span class="ib">成立条件を明確化します。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <p class="text-xs font-black uppercase tracking-[0.3em] text-primary">Step 02</p>
                         <h2 class="mt-4 text-2xl font-black uppercase">Prototype</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">試作とフィードバックで</span><span class="ib">工程条件を固定していきます。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">試作とフィードバックで</span><span class="ib">工程条件を固定していきます。</span></p>
                     </article>
                     <article class="precision-panel rounded-[2rem] p-8">
                         <p class="text-xs font-black uppercase tracking-[0.3em] text-primary">Step 03</p>
                         <h2 class="mt-4 text-2xl font-black uppercase">Scale</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">量産・継続供給でも</span><span class="ib">変動を抑えた運用へ移行します。</span></p>
+                        <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">量産・継続供給でも</span><span class="ib">変動を抑えた運用へ移行します。</span></p>
                     </article>
                 </div>
             </section>
         </main>
+
         <footer class="border-t border-blueprint-line px-6 py-10 lg:px-12">
             <div class="mx-auto flex max-w-[1440px] flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <p class="text-sm text-slate-600 dark:text-slate-400">Capabilities from prototype to scalable production.</p>
-                <a href="contact.html" class="text-sm font-semibold text-slate-700 hover:text-primary dark:text-slate-300">Contact for RFQ</a>
+                <p class="text-sm text-slate-400">Capabilities from prototype to scalable production.</p>
+                <a href="contact.html" class="text-sm font-semibold text-slate-300 hover:text-primary">Contact for RFQ</a>
             </div>
         </footer>
     </div>
+
     <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script>
+        function togglePrecisionMenu() {
+            const menu = document.getElementById('precision-mobile-menu');
+            const toggle = document.querySelector('.precision-mobile-toggle');
+            if (!menu) return;
+            const isActive = menu.classList.contains('active');
+            if (isActive) {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            } else {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                toggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        document.querySelectorAll('#precision-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                togglePrecisionMenu();
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                togglePrecisionMenu();
+            }
+        });
+    </script>
     <script src="assets/js/script.js" defer></script>
 </body>
 </html>
