@@ -4,7 +4,7 @@ const path = require('path');
 const rootDir = path.join(__dirname, '..', 'public', 'templates', 'business');
 const noteText = '<!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->';
 const notePattern = /数値は編集してください|Edit these values|編集してください|for your business/i;
-const numericPattern = /(?:\d{1,3}(?:[.,]\d{1,3})*(?:%|\+|x)|\d+(?:[.,]\d+)?\s?(?:min|ms|h|PB|TB|GB|MB|k|K|M|B|years?|regions?|countries?|clients?|projects?|members?|hours?))/g;
+const numericPattern = /(?:\d{1,3}(?:[.,]\d{1,3})*(?:%|\+|x)|\d+(?:[.,]\d+)?\s?(?:min|ms|h|PB|TB|GB|MB|k|K|M|B|years?|regions?|countries?|clients?|projects?|members?|hours?))/i;
 
 function listHtmlFiles(dir) {
   const files = [];
