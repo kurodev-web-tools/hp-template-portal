@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = path.join(__dirname, '..', 'public', 'templates', 'business');
+const publicDir = path.join(__dirname, '..', 'public');
 const outputDir = path.join(__dirname, '..', 'codexレビュー結果');
 const reviewDate = '2026-03-15';
 
@@ -17,7 +18,16 @@ function read(filePath) {
 
 function listDirectTemplates(dir) {
   return fs.readdirSync(dir, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() || (entry.isFile() && entry.name.endsWith('.html')))
+    .filter((entry) => {
+      if (entry.isFile()) {
+        return entry.name.endsWith('.html');
+      }
+      if (!entry.isDirectory()) {
+        return false;
+      }
+      const fullPath = path.join(dir, entry.name);
+      return listFilesRecursive(fullPath).some((file) => file.endsWith('.html') && !file.includes(`${path.sep}_backup`));
+    })
     .sort((a, b) => a.name.localeCompare(b.name, 'en'));
 }
 
@@ -366,7 +376,10 @@ function buildTemplateDiagnostics(template, pages) {
       }
 
       const normalizedTarget = path.basename(filePart);
-      if (normalizedTarget && !pageNames.has(normalizedTarget)) {
+      const resolvedPath = path.resolve(path.dirname(page.filePath), filePart);
+      const targetExistsOnDisk = fs.existsSync(resolvedPath);
+      const targetIsPublicFile = resolvedPath.startsWith(publicDir);
+      if (normalizedTarget && !pageNames.has(normalizedTarget) && !(targetExistsOnDisk && targetIsPublicFile)) {
         brokenLinks.push(`${path.basename(page.filePath)} -> ${href}`);
         if (page.footerLinks.includes(href)) {
           brokenFooterLinks.push(`${path.basename(page.filePath)} -> ${href}`);
