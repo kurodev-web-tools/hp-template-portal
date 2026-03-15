@@ -4,260 +4,501 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Plaza | 知の継承と探究の広場</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/k/index.html"><meta name="description" content="Knowledge Plazaは、学術資産の保存、研究支援、共同探究を通じて次代の知を育てる知識拠点です。">
-            <meta property="og:title" content="Knowledge Plaza | 知の継承と探究の広場">
-    <meta property="og:description" content="Knowledge Plazaは、学術資産の保存、研究支援、共同探究を通じて次代の知を育てる知識拠点です。">
+
+    <link rel="canonical" href="https://example.com/templates/business/k/index.html">
+    <meta name="description" content="Knowledge Plaza は、学術資産の保存、研究支援、共同探究を通じて次代の知を育てる知識拠点です。">
+    <meta property="og:title" content="Knowledge Plaza | 知の継承と探究の広場">
+    <meta property="og:description" content="Knowledge Plaza は、学術資産の保存、研究支援、共同探究を通じて次代の知を育てる知識拠点です。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/k/index.html">
+    <meta property="og:url" content="https://example.com/templates/business/k/index.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Knowledge Plaza",
+        "description": "学術アーカイブの保存、研究設計の伴走、公開プログラムの編集を通じて、問いが育つ環境を整備する知識拠点。",
+        "url": "https://example.com/templates/business/k/index.html",
+        "logo": "assets/generated/external-image-01.svg",
+        "foundingDate": "1892",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "03-1234-5678",
+            "contactType": "customer service",
+            "availableLanguage": "Japanese"
+        }
+    }
+    </script>
+
+    <!-- Google Fonts: Newsreader (display) + Inter (body) + Noto Serif JP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body class="theme-business">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-    <div class="knowledge-menu-backdrop fixed inset-0 z-40 bg-stone-950/40 md:hidden"></div>
-    <div id="knowledge-mobile-menu" class="knowledge-mobile-menu fixed inset-x-4 top-24 z-50 rounded-[2rem] border border-k-line bg-white/95 p-6 shadow-2xl backdrop-blur md:hidden">
-        <nav class="flex flex-col gap-3">
-            <a href="index.html" class="k-nav-link">Home</a>
-            <a href="about.html" class="k-nav-link">About</a>
-            <a href="service.html" class="k-nav-link">Service</a>
-            <a href="contact.html" class="k-nav-link">Contact</a>
-        </nav>
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+
+    <!-- Portal Catalog Style -->
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .k-menu-backdrop.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-color: rgba(13, 27, 18, 0.6) !important;
+            backdrop-filter: blur(4px) !important;
+        }
+
+        .k-mobile-menu.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-primary selection:text-background-dark custom-menu-only">
+
+    <!-- Mobile Menu Toggle -->
+    <button aria-controls="k-mobile-menu" class="k-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-background-dark dark:bg-primary border-2 border-primary dark:border-background-dark flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleKMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-5 h-0.5 bg-primary dark:bg-background-dark transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary dark:bg-background-dark transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary dark:bg-background-dark transition-all duration-400"></span>
+    </button>
+
+    <div class="k-menu-backdrop fixed inset-0 z-[9998] bg-background-dark/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="k-mobile-menu" class="k-mobile-menu fixed inset-0 z-[9999] bg-background-light dark:bg-background-dark flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-transparent hover:text-primary dark:hover:text-primary transition-colors">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-transparent hover:text-primary dark:hover:text-primary transition-colors">About</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-transparent hover:text-primary dark:hover:text-primary transition-colors">Service</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-transparent hover:text-primary dark:hover:text-primary transition-colors mt-8 px-10 py-4 bg-accent dark:bg-primary text-white dark:text-background-dark">Contact</a></li>
+        </ul>
     </div>
 
-    <div class="absolute inset-x-0 top-0 -z-10 h-[36rem] bg-[radial-gradient(circle_at_top,rgba(122,24,37,0.16),transparent_60%)]"></div>
-    <header class="sticky top-0 z-40 border-b border-k-line/60 bg-white/80 backdrop-blur">
-        <div class="container flex min-h-20 items-center justify-between gap-6 py-4">
-            <a href="index.html" class="flex items-center gap-4 text-k-ink">
-                <span class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-k-line bg-white/80 font-serif text-xl font-semibold text-k-accent">K</span>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md">
+        <div class="container mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
+            <a class="flex items-center gap-3 group" href="index.html">
+                <div class="p-2 bg-background-dark dark:bg-primary rounded-lg text-primary dark:text-background-dark">
+                    <span class="material-symbols-outlined text-2xl">account_balance</span>
+                </div>
                 <div>
-                    <p class="font-serif text-xl font-semibold tracking-[0.08em]">Knowledge Plaza</p>
-                    <p class="text-xs uppercase tracking-[0.28em] text-stone-500">Plaza of Exploration</p>
+                    <h2 class="font-serif text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Knowledge Plaza</h2>
+                    <p class="text-xs uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Plaza of Exploration</p>
                 </div>
             </a>
-            <nav class="k-nav-panel hidden md:flex md:items-center md:gap-10">
-                <a href="index.html" class="k-nav-link is-active">Home</a>
-                <a href="about.html" class="k-nav-link">About</a>
-                <a href="service.html" class="k-nav-link">Service</a>
-                <a href="contact.html" class="k-nav-link">Contact</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                <a class="hover:text-primary dark:hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="hover:text-primary dark:hover:text-primary transition-colors" href="about.html">About</a>
+                <a class="hover:text-primary dark:hover:text-primary transition-colors" href="service.html">Service</a>
+                <a class="hover:text-primary dark:hover:text-primary transition-colors" href="contact.html">Contact</a>
             </nav>
-            <button class="knowledge-mobile-toggle flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-full border border-k-line bg-white/90 md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="knowledge-mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="hidden md:flex items-center gap-4">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                    <input class="bg-slate-100 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-700 rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary dark:focus:ring-primary focus:border-transparent w-48 lg:w-64" placeholder="検索..." type="text"/>
+                </div>
+                <a href="contact.html" class="bg-accent dark:bg-primary text-white dark:text-background-dark px-5 py-2.5 rounded-lg text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    参加する
+                </a>
+            </div>
+            <button class="md:hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleKMenu()">
+                <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
     </header>
 
     <main>
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="container py-8 md:py-12">
-            <div class="k-frame grid gap-10 rounded-[2.5rem] px-7 py-8 md:grid-cols-[1.25fr_0.95fr] md:px-12 md:py-14">
-                <div class="space-y-8">
-                    <span class="k-kicker">Established 1892</span>
-                    <div class="space-y-6">
-                        <h1 class="k-heading max-w-4xl">
-                            <span class="ib">蓄積された知を、</span>
-                            <span class="ib">次の探究へ</span>
-                            <span class="ib">橋渡しする広場。</span>
-                        </h1>
-                        <p class="k-copy max-w-2xl">
-                            <span class="ib">Knowledge Plazaは、</span>
-                            <span class="ib">学術アーカイブの保存、</span>
-                            <span class="ib">研究設計の伴走、</span>
-                            <span class="ib">公開プログラムの編集を通じて、</span>
-                            <span class="ib">問いが育つ環境そのものを</span>
-                            <span class="ib">整備する知識拠点です。</span>
-                        </p>
-                    </div>
-                    <div class="flex flex-col gap-4 sm:flex-row">
-                        <a href="service.html" class="k-cta">研究支援を見る</a>
-                        <a href="about.html" class="k-cta-subtle">理念と沿革を知る</a>
-                    </div>
-                    <div class="grid gap-4 sm:grid-cols-3">
-                        <div class="k-stat">
-                            <p class="text-3xl font-semibold text-k-accent md:text-4xl">12,500+</p>
-                            <p class="mt-2 text-sm uppercase tracking-[0.22em] text-stone-500">Archive Titles</p>
-                        </div>
-                        <div class="k-stat">
-                            <p class="text-3xl font-semibold text-k-accent md:text-4xl">480</p>
-                            <p class="mt-2 text-sm uppercase tracking-[0.22em] text-stone-500">Researchers</p>
-                        </div>
-                        <div class="k-stat">
-                            <p class="text-3xl font-semibold text-k-accent md:text-4xl">34</p>
-                            <p class="mt-2 text-sm uppercase tracking-[0.22em] text-stone-500">Annual Programs</p>
-                        </div>
+        <!-- Hero Section -->
+        <section class="relative w-full h-[75vh] md:h-[85vh] flex items-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent z-10"></div>
+            <img alt="Grand Academic Library" class="absolute inset-0 w-full h-full object-cover" src="assets/generated/external-image-01.svg"/>
+            <div class="relative z-20 container mx-auto px-6 lg:px-12">
+                <div class="max-w-3xl space-y-8">
+                    <span class="inline-block px-4 py-1 border border-primary/40 bg-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em] rounded-full">
+                        Established 1892
+                    </span>
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
+                        <span class="ib">蓄積された知を、</span>
+                        <span class="ib">次の探究へ</span>
+                        <span class="ib">橋渡しする広場。</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl">
+                        Knowledge Plaza は、学術アーカイブの保存、研究設計の伴走、公開プログラムの編集を通じて、問いが育つ環境そのものを整備する知識拠点です。
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="service.html" class="bg-primary text-background-dark px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest flex items-center gap-2 group hover:opacity-90 transition-opacity">
+                            研究支援を見る
+                            <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                        <a href="about.html" class="border border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest transition-colors">
+                            理念と沿革を知る
+                        </a>
                     </div>
                 </div>
-                <div class="grid gap-5">
-                    <div class="k-dark-panel k-paper-grid min-h-[18rem] justify-between">
-                        <div class="space-y-4">
-                            <p class="text-xs uppercase tracking-[0.32em] text-k-paper/60">Editorial Focus</p>
-                            <p class="font-serif text-3xl leading-tight">
-                                <span class="ib">古典文献から</span>
-                                <span class="ib">AI倫理まで、</span>
-                                <span class="ib">知の連続性を編集する。</span>
-                            </p>
-                        </div>
-                        <p class="max-w-md text-sm leading-7 text-stone-300">
-                            <span class="ib">保存だけで終わらせず、</span>
-                            <span class="ib">読み解き、共有し、</span>
-                            <span class="ib">再利用できる状態まで</span>
-                            <span class="ib">設計します。</span>
-                        </p>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-12 md:py-16 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                    <div class="text-center">
+                        <p class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary">12,500+</p>
+                        <p class="mt-2 text-xs md:text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Archive Titles</p>
                     </div>
-                    <div class="grid gap-4 sm:grid-cols-2">
-                        <div class="k-card">
-                            <p class="text-xs uppercase tracking-[0.28em] text-k-accent">Current Seminar</p>
-                            <p class="mt-4 font-serif text-2xl text-k-ink dark:text-stone-100">
-                                <span class="ib">量子観測論と</span>
-                                <span class="ib">認識論の接続</span>
-                            </p>
-                        </div>
-                        <div class="k-card">
-                            <p class="text-xs uppercase tracking-[0.28em] text-k-accent">Archive Release</p>
-                            <p class="mt-4 font-serif text-2xl text-k-ink dark:text-stone-100">
-                                <span class="ib">交易路断片史料</span>
-                                <span class="ib">新規公開</span>
-                            </p>
+                    <div class="text-center">
+                        <p class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary">480</p>
+                        <p class="mt-2 text-xs md:text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Researchers</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary">130+</p>
+                        <p class="mt-2 text-xs md:text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Publications</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary">34</p>
+                        <p class="mt-2 text-xs md:text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Annual Programs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Legacy Section -->
+        <section class="py-20 md:py-24 bg-background-light dark:bg-background-dark">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Our Academic Legacy</span>
+                        <h2 class="font-serif text-3xl md:text-4xl font-bold leading-tight">真理への探究を、<br/>共有可能な資産へ。</h2>
+                        <div class="w-16 h-1 bg-accent dark:bg-primary"></div>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <p class="text-lg md:text-xl leading-relaxed text-slate-700 dark:text-slate-300 mb-8">
+                            Knowledge Plaza は、資料保全と研究の高度化を同時に進めるために設立された学術拠点です。静かな読解と大胆な仮説形成が共存する場を目指しています。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mt-10">
+                            <div class="space-y-4 p-6 border-l-2 border-slate-200 dark:border-slate-700">
+                                <span class="material-symbols-outlined text-4xl text-accent dark:text-primary">history_edu</span>
+                                <h3 class="text-lg font-bold">蓄積と継承</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">散在する一次資料を検索可能な構造へ整理し、研究者の探索時間を大幅に短縮します。</p>
+                            </div>
+                            <div class="space-y-4 p-6 border-l-2 border-slate-200 dark:border-slate-700">
+                                <span class="material-symbols-outlined text-4xl text-accent dark:text-primary">biotech</span>
+                                <h3 class="text-lg font-bold">解釈と編集</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">歴史学、哲学、自然科学を横断し、問いの構造そのものを磨き上げます。</p>
+                            </div>
+                            <div class="space-y-4 p-6 border-l-2 border-slate-200 dark:border-slate-700">
+                                <span class="material-symbols-outlined text-4xl text-accent dark:text-primary">groups</span>
+                                <h3 class="text-lg font-bold">公開と対話</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">研究成果を教育機関、文化施設、企業と接続しながら社会実装へ展開します。</p>
+                            </div>
+                            <div class="space-y-4 p-6 border-l-2 border-slate-200 dark:border-slate-700">
+                                <span class="material-symbols-outlined text-4xl text-accent dark:text-primary">lightbulb</span>
+                                <h3 class="text-lg font-bold">探究の伴走</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">研究協働や取材依頼には、専任のキュレーションチームが目的に応じてご案内します。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="container py-10 md:py-16">
-            <div class="grid gap-8 md:grid-cols-[0.72fr_1.28fr]">
-                <div class="space-y-4">
-                    <span class="k-kicker">Academic Legacy</span>
-                    <h2 class="k-section-title">
-                        <span class="ib">知の継承を、</span>
-                        <span class="ib">現代の実装へ</span>
-                        <span class="ib">置き換える。</span>
-                    </h2>
-                </div>
-                <div class="grid gap-5 md:grid-cols-2">
-                    <article class="k-card">
-                        <p class="text-xs uppercase tracking-[0.3em] text-k-accent">Archive Design</p>
-                        <p class="mt-4 text-base leading-8 text-stone-700 dark:text-stone-300">
-                            <span class="ib">散在する一次資料を</span>
-                            <span class="ib">検索可能な構造へ整理し、</span>
-                            <span class="ib">研究者の探索時間を</span>
-                            <span class="ib">大幅に短縮します。</span>
-                        </p>
-                    </article>
-                    <article class="k-card">
-                        <p class="text-xs uppercase tracking-[0.3em] text-k-accent">Research Direction</p>
-                        <p class="mt-4 text-base leading-8 text-stone-700 dark:text-stone-300">
-                            <span class="ib">歴史学、哲学、自然科学を横断し、</span>
-                            <span class="ib">問いの構造そのものを磨き上げます。</span>
-                        </p>
-                    </article>
-                    <article class="k-card md:col-span-2">
-                        <p class="text-xs uppercase tracking-[0.3em] text-k-accent">Public Value</p>
-                        <p class="mt-4 text-base leading-8 text-stone-700 dark:text-stone-300">
-                            <span class="ib">研究成果を教育機関、文化施設、企業と接続しながら</span>
-                            <span class="ib">社会実装へ展開する編集力を持ちます。</span>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="container py-10 md:py-16">
-            <div class="grid gap-6 lg:grid-cols-3">
-                <article class="k-card">
-                    <p class="text-xs uppercase tracking-[0.28em] text-k-accent">Classical Humanities</p>
-                    <h3 class="mt-4 font-serif text-2xl text-k-ink dark:text-stone-100">
-                        <span class="ib">古典資料の</span>
-                        <span class="ib">再読解</span>
-                    </h3>
-                    <p class="mt-4 text-sm leading-7 text-stone-700 dark:text-stone-300">
-                        <span class="ib">注釈、翻刻、比較研究を通じて、現代的な問いへ接続します。</span>
-                    </p>
-                </article>
-                <article class="k-card">
-                    <p class="text-xs uppercase tracking-[0.28em] text-k-accent">Theory & Science</p>
-                    <h3 class="mt-4 font-serif text-2xl text-k-ink dark:text-stone-100">
-                        <span class="ib">先端理論の</span>
-                        <span class="ib">編集と公開</span>
-                    </h3>
-                    <p class="mt-4 text-sm leading-7 text-stone-700 dark:text-stone-300">
-                        <span class="ib">量子力学、AI倫理、環境知などの成果を分野横断で整理します。</span>
-                    </p>
-                </article>
-                <article class="k-card">
-                    <p class="text-xs uppercase tracking-[0.28em] text-k-accent">Open Programs</p>
-                    <h3 class="mt-4 font-serif text-2xl text-k-ink dark:text-stone-100">
-                        <span class="ib">社会に開く</span>
-                        <span class="ib">公開講座</span>
-                    </h3>
-                    <p class="mt-4 text-sm leading-7 text-stone-700 dark:text-stone-300">
-                        <span class="ib">一般向け講座、展示、研究会を通じて知的好奇心を循環させます。</span>
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <section class="container py-10 md:py-16">
-            <div class="k-dark-panel grid gap-8 rounded-[2.5rem] px-7 py-10 md:grid-cols-[1fr_0.9fr] md:px-12">
-                <div class="space-y-5">
-                    <span class="text-xs uppercase tracking-[0.34em] text-k-paper/60">Current Publications</span>
-                    <h2 class="font-serif text-3xl leading-tight md:text-4xl">
-                        <span class="ib">最新の知見を、</span>
-                        <span class="ib">次の議論へ。</span>
-                    </h2>
-                </div>
-                <div class="space-y-4 text-sm leading-7 text-stone-300">
-                    <p><span class="ib">最新刊では、量子観測の哲学、失われた交易路の再構築、アルゴリズム社会の倫理を扱っています。</span></p>
-                    <p><span class="ib">研究協働や取材依頼には、専任のキュレーションチームが目的に応じてご案内します。</span></p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <a href="contact.html" class="k-cta">問い合わせる</a>
-                        <a href="service.html" class="k-cta-subtle border-white/20 bg-white/6 text-white hover:text-k-paper">支援メニューへ</a>
+        <!-- Study Areas Grid -->
+        <section class="py-20 md:py-24 bg-slate-50 dark:bg-background-dark/30 border-y border-slate-200 dark:border-slate-800">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
+                    <div class="max-w-xl">
+                        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl font-bold mb-4">研究領域と公開プログラム</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base"> Our interdisciplinary approach allows us to cross-pollinate ideas between the classical and the contemporary.</p>
                     </div>
+                    <a class="text-accent dark:text-primary font-bold uppercase text-xs tracking-[0.2em] border-b border-accent/20 dark:border-primary/20 pb-1 hover:border-accent dark:hover:border-primary transition-all inline-flex items-center gap-1" href="service.html">
+                        全領域を見る <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Area 1 -->
+                    <article class="group bg-background-light dark:bg-background-dark p-6 md:p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300 flex flex-col justify-between min-h-[280px]">
+                        <div>
+                            <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">history</span>
+                            <h3 class="font-serif text-xl md:text-2xl font-bold mt-6 mb-3">古典人文科学</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">古代テキスト、言語学、社会構造の基盤を数千年にわたり集中的に研究。</p>
+                        </div>
+                        <div class="pt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent dark:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                            詳細を見る <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </div>
+                    </article>
+                    <!-- Area 2 -->
+                    <article class="group bg-background-light dark:bg-background-dark p-6 md:p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300 flex flex-col justify-between min-h-[280px]">
+                        <div>
+                            <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">science</span>
+                            <h3 class="font-serif text-xl md:text-2xl font-bold mt-6 mb-3">理論物理学</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">量子力学と宇宙的スケールの探求を通じて、人類の知覚の境界を押し広げる。</p>
+                        </div>
+                        <div class="pt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent dark:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                            詳細を見る <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </div>
+                    </article>
+                    <!-- Area 3 -->
+                    <article class="group bg-background-light dark:bg-background-dark p-6 md:p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300 flex flex-col justify-between min-h-[280px]">
+                        <div>
+                            <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">account_balance_wallet</span>
+                            <h3 class="font-serif text-xl md:text-2xl font-bold mt-6 mb-3">経済史</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">全球貿易パターン、財政進化、現代を形成した社会経済的シフトを分析。</p>
+                        </div>
+                        <div class="pt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent dark:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                            詳細を見る <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Publications -->
+        <section class="py-20 md:py-24 bg-background-light dark:bg-background-dark">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="mb-12 md:mb-16">
+                    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-2">最新刊行物</h2>
+                    <p class="text-slate-500 dark:text-slate-400 uppercase text-xs tracking-[0.3em]">Insights from the vanguard of discovery</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Publication 1 -->
+                    <article class="space-y-4 md:space-y-6">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative group">
+                            <img alt="Scientific Journal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="assets/generated/external-image-02.svg"/>
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">物理学</div>
+                        </div>
+                        <div class="space-y-2 md:space-y-3">
+                            <time class="text-xs text-slate-400 uppercase tracking-widest">2023 年 10 月 24 日</time>
+                            <h3 class="font-serif text-xl md:text-2xl font-bold leading-snug hover:text-accent dark:hover:text-primary cursor-pointer transition-colors">
+                                量子不協和：観測が絡み合い状態に与える役割
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                環境デコヒーレンスが半隔離システムにおける長距離エンタングルメントにどのように影響するかを探求。
+                            </p>
+                            <a class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all" href="#">全文を読む</a>
+                        </div>
+                    </article>
+                    <!-- Publication 2 -->
+                    <article class="space-y-4 md:space-y-6">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative group">
+                            <img alt="Philosophy Text" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="assets/generated/external-image-03.svg"/>
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">倫理学</div>
+                        </div>
+                        <div class="space-y-2 md:space-y-3">
+                            <time class="text-xs text-slate-400 uppercase tracking-widest">2023 年 9 月 12 日</time>
+                            <h3 class="font-serif text-xl md:text-2xl font-bold leading-snug hover:text-accent dark:hover:text-primary cursor-pointer transition-colors">
+                                デジタルアゴラ：アルゴリズム社会における徳の导航
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                分散型デジタルアーキテクチャと自動化されたガバナンスの文脈内でアリストテレス倫理を再評価。
+                            </p>
+                            <a class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all" href="#">全文を読む</a>
+                        </div>
+                    </article>
+                    <!-- Publication 3 -->
+                    <article class="space-y-4 md:space-y-6">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative group">
+                            <img alt="Archives Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="assets/generated/external-image-04.svg"/>
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">歴史学</div>
+                        </div>
+                        <div class="space-y-2 md:space-y-3">
+                            <time class="text-xs text-slate-400 uppercase tracking-widest">2023 年 8 月 5 日</time>
+                            <h3 class="font-serif text-xl md:text-2xl font-bold leading-snug hover:text-accent dark:hover:text-primary cursor-pointer transition-colors">
+                                絹と銀：14 世紀の未記録交易路の再構築
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                新たに発見された元帳の断片が、確立された地図に存在しなかった強固な海上回廊を示唆。
+                            </p>
+                            <a class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all" href="#">全文を読む</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 md:py-24 bg-background-dark text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]"></div>
+            <div class="container mx-auto px-6 lg:px-12 text-center relative z-10 max-w-4xl">
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8">
+                    <span class="italic">探究</span>はまだ<span class="text-primary not-italic">始まったばかり</span>です。
+                </h2>
+                <p class="text-base md:text-lg text-slate-400 mb-10 md:mb-12 max-w-2xl mx-auto">
+                    研究者、支援者、そして好奇心を持つ方々を歓迎します。研究協力や支援を通じて、発見の炎を燃やし続けましょう。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
+                    <a href="contact.html" class="bg-primary text-background-dark px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+                        学術アクセスを請求
+                    </a>
+                    <a href="about.html" class="border border-white/20 hover:bg-white/5 px-8 md:px-10 py-4 md:py-5 rounded-lg font-bold uppercase tracking-widest transition-colors">
+                        パートナーになる
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="container py-10 md:py-14">
-        <div class="rounded-[2rem] border border-k-line/60 bg-white/78 px-7 py-8 dark:border-white/10 dark:bg-white/5">
-            <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-                <div class="space-y-4">
-                    <p class="font-serif text-2xl text-k-ink dark:text-stone-100">Knowledge Plaza</p>
-                    <p class="text-sm leading-7 text-stone-600 dark:text-stone-300">
-                        <span class="ib">一般社団法人 知の継承学会</span>
-                        <span class="ib">〒100-0001 東京都千代田区千代田1-1</span>
+    <!-- Footer -->
+    <footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+                <div class="space-y-4 md:space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-accent dark:text-primary text-3xl">account_balance</span>
+                        <h4 class="font-serif font-bold text-lg">Knowledge Plaza</h4>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        一般社団法人 知の継承学会<br/>
+                        歴史の保存と未来の最前線の探求を通じて、厳密な学際的研究に捧げる世界的機関。
                     </p>
                 </div>
                 <div>
-                    <p class="text-xs uppercase tracking-[0.3em] text-k-accent">Pages</p>
-                    <div class="mt-4 space-y-3 text-sm text-stone-600 dark:text-stone-300">
-                        <a href="index.html" class="block">Home</a>
-                        <a href="about.html" class="block">About</a>
-                        <a href="service.html" class="block">Service</a>
-                        <a href="contact.html" class="block">Contact</a>
-                    </div>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6">ディレクトリ</h5>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">研究者検索</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">アーカイブ目録</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">実験施設</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">助成金機会</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <p class="text-xs uppercase tracking-[0.3em] text-k-accent">Contact</p>
-                    <div class="mt-4 space-y-3 text-sm text-stone-600 dark:text-stone-300">
-                        <p>inquiry@knowledge-plaza.jp</p>
-                        <p>03-1234-5678</p>
-                    </div>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6">刊行物</h5>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">季報レビュー</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">モノグラフシリーズ</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">年次報告書</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">オープンアクセス誌</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6">お問い合わせ</h5>
+                    <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-xs mt-1">location_on</span>
+                            <span>〒100-0001<br/>東京都千代田区千代田 1-1</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-xs">mail</span>
+                            <span>inquiry@knowledge-plaza.jp</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-xs">phone</span>
+                            <span>03-1234-5678</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 uppercase tracking-widest">
+                <p>© 2026 Knowledge Plaza. All Rights Reserved.</p>
+                <div class="flex gap-6 md:gap-8">
+                    <a class="hover:text-accent dark:hover:text-primary" href="#">プライバシーポリシー</a>
+                    <a class="hover:text-accent dark:hover:text-primary" href="#">倫理声明</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="assets/js/script.js"></script>
+    <!-- Scripts -->
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
+
+    <script>
+        function toggleKMenu() {
+            const toggle = document.querySelector('.k-mobile-toggle');
+            const menu = document.querySelector('#k-mobile-menu');
+            const backdrop = document.querySelector('.k-menu-backdrop');
+            const links = menu.querySelectorAll('a[href]');
+            const bars = toggle.querySelectorAll('.bar');
+
+            if (!menu || !backdrop) return;
+
+            const isOpen = !menu.classList.contains('active');
+
+            // Toggle active states
+            toggle.classList.toggle('active', isOpen);
+            menu.classList.toggle('active', isOpen);
+            backdrop.classList.toggle('active', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+
+            // Animate menu items
+            const items = menu.querySelectorAll('li');
+            items.forEach((item, index) => {
+                if (isOpen) {
+                    setTimeout(() => {
+                        item.classList.remove('opacity-0', 'translate-y-5');
+                    }, index * 50);
+                } else {
+                    item.classList.add('opacity-0', 'translate-y-5');
+                }
+            });
+
+            // Animate hamburger to X
+            if (isOpen) {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            }
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('#k-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                const toggle = document.querySelector('.k-mobile-toggle');
+                const menu = document.querySelector('#k-mobile-menu');
+                const backdrop = document.querySelector('.k-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            });
+        });
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.k-mobile-toggle');
+                const menu = document.querySelector('#k-mobile-menu');
+                const backdrop = document.querySelector('.k-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            }
+        });
+    </script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>
