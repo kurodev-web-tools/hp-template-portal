@@ -44,6 +44,33 @@ function absolutizeAssetUrl(filePath, assetUrl) {
   return `${canonicalBase}/${resolved}`;
 }
 
+function deriveDescription(content, titleText) {
+  const headingMatch = content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  const headingText = headingMatch ? headingMatch[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+  if (headingText && titleText) {
+    return `${titleText}。${headingText}を紹介するページです。`;
+  }
+  if (titleText) {
+    return `${titleText} の紹介ページです。`;
+  }
+  return '';
+}
+
+function findPrimaryImage(content, filePath) {
+  const imageMatches = content.matchAll(/<img[^>]*src=["']([^"']+)["'][^>]*>/gi);
+  for (const match of imageMatches) {
+    const src = match[1].trim();
+    if (!src || src.startsWith('data:')) {
+      continue;
+    }
+    if (/icon|logo/i.test(src)) {
+      continue;
+    }
+    return absolutizeAssetUrl(filePath, src);
+  }
+  return '';
+}
+
 function ensureTag(content, anchorRegex, tagText) {
   if (content.includes(tagText)) {
     return content;
@@ -75,7 +102,15 @@ function updateHtml(filePath) {
   const titleMatch = content.match(/<title>([\s\S]*?)<\/title>/i);
   const descMatch = content.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i);
   const titleText = titleMatch ? titleMatch[1].trim() : '';
-  const descriptionText = descMatch ? descMatch[1].trim() : '';
+  const descriptionText = descMatch ? descMatch[1].trim() : deriveDescription(content, titleText);
+
+  if (!descMatch && descriptionText) {
+    content = ensureTag(
+      content,
+      /<link\s+rel=["']canonical["'][^>]*>\s*/i,
+      `<meta name="description" content="${descriptionText}">`
+    );
+  }
 
   if (/<meta\s+property=["']og:url["']/i.test(content)) {
     content = content.replace(
@@ -153,7 +188,17 @@ function updateHtml(filePath) {
   }
 
   const ogImageMatch = content.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-  const ogImageUrl = absolutizeAssetUrl(filePath, ogImageMatch ? ogImageMatch[1].trim() : '');
+  const fallbackOgImageUrl = findPrimaryImage(content, filePath);
+  const ogImageUrl = absolutizeAssetUrl(filePath, ogImageMatch ? ogImageMatch[1].trim() : fallbackOgImageUrl);
+
+  if (!ogImageMatch && ogImageUrl) {
+    content = ensureTagWithFallback(
+      content,
+      [/<meta\s+property=["']og:description["'][^>]*>\s*/i, /<meta\s+property=["']og:title["'][^>]*>\s*/i],
+      /<meta\s+name=["']description["'][^>]*>\s*/i,
+      `<meta property="og:image" content="${ogImageUrl}">`
+    );
+  }
 
   content = content.replace(/"url"\s*:\s*""/g, `"url": "${canonicalUrl}"`);
   if (ogImageUrl) {
