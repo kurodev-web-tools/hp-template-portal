@@ -1,105 +1,268 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Yield Growth は、長期的な資産形成と安定成長を支援する投資パートナーです。">
-            <meta property="og:title" content="Yield Growth | 長期視点で資産を育てる投資パートナー">
-    <meta property="og:description" content="Yield Growth は、長期的な資産形成と安定成長を支援する投資パートナーです。">
+    <title>Minimal | Architecture & Design</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/y/index.html">
+    <meta name="description" content="Minimal - 光、形、機能性の交差点に焦点を当てたデザイン collectif。ノイズのない空間定義。">
+    <meta property="og:title" content="Minimal | Architecture & Design">
+    <meta property="og:description" content="ミニマル建築とデザイン。ノイズのない空間定義。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/y/index.html">
+    <meta property="og:url" content="https://example.com/templates/business/y/index.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>Yield Growth | 長期視点で資産を育てる投資パートナー</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/y/index.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Minimal",
+        "description": "Architecture and design collective",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "London",
+            "addressCountry": "UK"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; -webkit-font-smoothing: antialiased; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fine-line { height: 1px; background-color: rgba(255, 255, 255, 0.1); }
+        .minimal-mobile-menu { transition: transform 0.3s ease; }
+        .minimal-mobile-menu.active { transform: translateX(0); }
+        .minimal-mobile-menu.inactive { transform: translateX(-100%); }
+        .minimal-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .minimal-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .minimal-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .minimal-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    </style>
 </head>
-<body class="theme-business antialiased">
-    <div class="yield-grid fixed inset-0 -z-20"></div>
-    <div class="yield-menu-backdrop fixed inset-0 z-[9998] bg-slate-950/45 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="yield-mobile-menu" class="yield-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-white/85 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="yield-mobile-menu" class="yield-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-white/60 bg-white/92 p-6 text-slate-900 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl lg:hidden">
-            <div class="mb-6 flex items-center justify-between gap-4">
-            <div><p class="yield-logo text-2xl text-primary">YIELD_GROWTH</p><p class="text-xs font-bold uppercase tracking-[0.34em] text-accent-growth">Stable foundation</p></div>
-        </div>
-        <div class="flex flex-col gap-2">
-            <a href="index.html" class="yield-nav-link active rounded-2xl px-4 py-3">Home</a>
-            <a href="about.html" class="yield-nav-link rounded-2xl px-4 py-3">About</a>
-            <a href="service.html" class="yield-nav-link rounded-2xl px-4 py-3">Service</a>
-            <a href="contact.html" class="yield-nav-link rounded-2xl px-4 py-3">Contact</a>
-        </div>
-    </div>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
 
-    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/70 bg-white/76 px-5 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-background-dark/70">
-            <a href="index.html" class="flex items-center gap-3 text-primary dark:text-white">
-                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white"><span class="material-symbols-outlined text-2xl">trending_up</span></div>
-                <div><p class="yield-logo text-2xl">YIELD_GROWTH</p><p class="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Long-term wealth strategy</p></div>
-            </a>
-            <div class="nav hidden items-center gap-2 lg:flex">
-                <a href="index.html" class="yield-nav-link active rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Home</a>
-                <a href="about.html" class="yield-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">About</a>
-                <a href="service.html" class="yield-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Service</a>
-                <a href="contact.html" class="yield-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Contact</a>
-            </div>
-            <div class="hidden items-center gap-3 lg:flex">
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(25, 25, 25, 0.5); backdrop-filter: blur(4px);"></div>
 
-                <a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-white">Get Started</a>
-            </div>
+    <button class="minimal-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleMinimalMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="minimal-mobile-menu" class="minimal-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-2">
+            <span class="text-xs font-black tracking-[0.4em] uppercase">Minimal</span>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded px-4 py-3 bg-white/5 text-white text-[10px] font-medium uppercase tracking-[0.3em]">Home</a>
+            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Projects</a>
+            <a href="about.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Philosophy</a>
+            <a href="contact.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-2">
+            <span class="text-xs font-black tracking-[0.4em] uppercase">Minimal</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-12">
+            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="service.html">Projects</a>
+            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="about.html">Philosophy</a>
+            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="contact.html">Contact</a>
+        </nav>
+        <div class="flex gap-4">
+            <button class="flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">
+                <span class="material-symbols-outlined text-sm">search</span>
+            </button>
         </div>
     </header>
 
-    <main class="overflow-hidden pb-20">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 pb-16 pt-10 lg:px-10 lg:pb-20 lg:pt-12">
-            <div class="mx-auto grid max-w-[1440px] gap-10 xl:grid-cols-[1.02fr_0.98fr]">
-                <div class="pt-10">
-                    <p class="yield-kicker">Stable foundation</p>
-                    <h1 class="mt-8 text-4xl font-black leading-[0.94] tracking-[-0.05em] text-slate-900 sm:text-5xl md:text-7xl xl:text-[6.5rem] dark:text-white"><span class="ib">Cultivating</span><span class="ib text-primary">wealth,</span><span class="ib">patiently.</span></h1>
-                    <p class="mt-8 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg md:text-xl md:leading-9 dark:text-slate-300"><span class="ib">Not chasing trends,</span><span class="ib">but identifying true value.</span><span class="ib">Yield Growth provides</span><span class="ib">long-term wealth strategy</span><span class="ib">and partnership.</span></p>
-                    <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-                        <a href="service.html" class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 md:px-8 md:py-4 text-base font-bold uppercase tracking-[0.16em] text-white transition-transform hover:-translate-y-1">View Strategies</a>
-                        <a href="about.html" class="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 md:px-8 md:py-4 text-base font-bold uppercase tracking-[0.16em] text-slate-700 transition-colors hover:border-accent-growth hover:text-accent-growth dark:border-white/15 dark:text-slate-200">Our Philosophy</a>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen w-full flex items-center justify-center p-6 md:p-12">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-cover bg-center grayscale brightness-75" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfk8b7W-smeQaGKB0ECnDARreJdyDym06PX_PUYFKD62YVXc7CvsY1ZFhVbDILktH1xbbb9lMbUyOeNL8JQsd0ukUjiNKI4HtL99aZA3bb08Hlpg8OScPOqBKcogRkde1v_7TLI0rZ8yk0izkQjYb9yLOoClnfKhULnJA3NRZfL28hPwy7flGQYiIGdQoeEvx-l7oLneN2XdGUBSSQEh2l5xkEeDTHrEfe4s3XuvQlBBiBK7Y8zEzihLCJF7K6b5FdgLWbeFbvlhg");'>
+                </div>
+            </div>
+            <div class="relative z-10 flex flex-col items-center text-center">
+                <div class="h-24 w-[1px] bg-white mb-8"></div>
+                <h1 class="text-white text-[10px] font-light tracking-[0.8em] uppercase mb-4">Architecture & Design</h1>
+                <h2 class="text-white text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none">Silence</h2>
+                <p class="text-white/60 text-[10px] tracking-[0.2em] mt-12 max-w-xs uppercase leading-relaxed">Defining space through the absence of noise.</p>
+            </div>
+            <div class="absolute bottom-12 left-12 hidden md:block">
+                <p class="text-[10px] text-white/40 tracking-widest uppercase origin-left -rotate-90 translate-y-full">Scroll to explore</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Slider -->
+        <section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
+            <div class="flex flex-col mb-24">
+                <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-4">01 — Selected Works</span>
+                <div class="fine-line w-full"></div>
+            </div>
+            <div class="flex overflow-x-auto hide-scrollbar gap-8 pb-12">
+                <div class="flex-none w-[80vw] md:w-[45vw] group cursor-pointer">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-zinc-900">
+                        <img alt="Interior of a minimalist concrete living room" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4sRenNcVgsjTWKTPK4MHSuz85FD7aJF63nKALSXo3AiEcRTnsGGHSuSDzPbnGLPudmIGvH76oPWWUF6H_zBAPTJqawcSfyY0UiGRwvaiIcetANO3ixVkMHJucWRJTcN-A5_55foEaA0JJ5r_JYnWfGHLTpzdelYq08kmXUiRiKGte_NSTvG8F1k0wBywlwxRLmSBF-IzeXaw2tz2IS37ogj48Pio6wO5odEAGuvj6qZiP4KJ5a09BE8J0aUbjP6z1XNCYRvrC9eg"/>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                     </div>
-                    <div class="mt-12 grid gap-4 md:grid-cols-3">
-                        <article class="yield-stat rounded-[1.8rem] p-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-accent-growth">Yield</p><p class="mt-4 text-4xl font-black text-slate-900 dark:text-white">12.4%</p><p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">Consistent growth</span><span class="ib">through repeatable strategy.</span></p></article>
-                        <article class="yield-stat rounded-[1.8rem] p-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-accent-growth">Clients</p><p class="mt-4 text-4xl font-black text-slate-900 dark:text-white">15k</p><p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">Supporting long-term investors</span><span class="ib">across individuals and corporations.</span></p></article>
-                        <article class="yield-stat rounded-[1.8rem] p-5"><p class="text-xs font-bold uppercase tracking-[0.28em] text-accent-growth">Focus</p><p class="mt-4 text-4xl font-black text-slate-900 dark:text-white">30y</p><p class="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">Focused on building</span><span class="ib">legacy wealth for generations.</span></p></article>
+                    <div class="mt-6 flex justify-between items-baseline">
+                        <div>
+                            <h3 class="text-sm font-bold tracking-widest uppercase">The Void House</h3>
+                            <p class="text-[10px] text-primary/50 dark:text-white/40 tracking-widest uppercase mt-1">Kyoto, JP — 2023</p>
+                        </div>
+                        <span class="text-[10px] font-light italic">View Project</span>
                     </div>
                 </div>
-                <div class="yield-showcase rounded-[2.4rem] p-4">
-                    <div class="overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary/80 to-accent-growth/70 p-8 text-white">
-                        <p class="text-xs font-bold uppercase tracking-[0.28em] text-white/70">Growth forecast</p>
-                        <h2 class="mt-6 text-4xl font-black leading-tight">Portfolio Velocity</h2>
-                        <div class="mt-10 flex h-56 items-end gap-3">
-                            <div class="w-full rounded-t-2xl bg-white/15 h-[28%]"></div>
-                            <div class="w-full rounded-t-2xl bg-white/20 h-[38%]"></div>
-                            <div class="w-full rounded-t-2xl bg-white/30 h-[52%]"></div>
-                            <div class="w-full rounded-t-2xl bg-white/45 h-[68%]"></div>
-                            <div class="w-full rounded-t-2xl bg-white/60 h-[84%]"></div>
+                <div class="flex-none w-[80vw] md:w-[45vw] group cursor-pointer -mt-12 md:mt-24">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-zinc-900">
+                        <img alt="Exterior of a white monolithic museum building" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADFFwO8BfPRGZmFANBhcInenWStSD6-giTSWRchrfKiUbm994q5yVXw8JJFVonHqNbLbqDmJRrm6UV5jVIRimYzgHIysycqlAj7_YM0sM_eVOW2OjJfz3Yiabar3jHmx0eX2cem7a26BoLzE-yGn-QW2JXAQDGPE2hZqkioCMxwMUP3GTD642N5sRRHZrp811iPiWwd9ABEWV1XwTB8wLq4wwAi-lCs6Hmg5cwyV7sJtDX2CvEDBDcPZrtizt6mZ_BC60jiu6Q4RE"/>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-baseline">
+                        <div>
+                            <h3 class="text-sm font-bold tracking-widest uppercase">Monolith Museum</h3>
+                            <p class="text-[10px] text-primary/50 dark:text-white/40 tracking-widest uppercase mt-1">Berlin, DE — 2022</p>
                         </div>
-                        <p class="mt-6 text-sm leading-8 text-white/80"><span class="ib">Continuously adjusting allocation</span><span class="ib">and risk for market changes.</span></p>
+                        <span class="text-[10px] font-light italic">View Project</span>
+                    </div>
+                </div>
+                <div class="flex-none w-[80vw] md:w-[45vw] group cursor-pointer">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-zinc-900">
+                        <img alt="Abstract architectural lines of a staircase" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3WpiZFLyWzRsfX8u2dFkM-QbvXtvwpE1b1UY1fGTzap0XZLHVfPZRSl-PquPpQYYQuKdl33PoahhNMDkz0Dwdw1M8Z2VeQ-9Gu6TpkUQHs7ATTWH6YdA280z4gfGzqtOqkIDmmV9VmoiAfCzaU_Z0MfdKQr38scYoq04a8pTwTaPs1YMz9LsuuZ9CIDrnbKVLMua1OB6b1EO-sqrZY67rHWu64uOTJvEafrOxJo_76dXvhM1L6ZCpBzpehCs-RXRB83LxXPgkOEU"/>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-baseline">
+                        <div>
+                            <h3 class="text-sm font-bold tracking-widest uppercase">Line Residence</h3>
+                            <p class="text-[10px] text-primary/50 dark:text-white/40 tracking-widest uppercase mt-1">Oslo, NO — 2024</p>
+                        </div>
+                        <span class="text-[10px] font-light italic">View Project</span>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Philosophy Section -->
+        <section class="py-48 px-6 md:px-12 flex flex-col items-center justify-center text-center bg-zinc-100 dark:bg-zinc-900/30">
+            <div class="max-w-3xl">
+                <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-12 block">Philosophy</span>
+                <h2 class="text-2xl md:text-5xl font-light leading-snug md:leading-tight mb-16 tracking-tight">
+                    We believe in the <span class="font-black italic">purity</span> of the unbuilt.
+                    Every line is a decision. Every shadow is a <span class="font-black italic">dialogue</span> between light and structure.
+                </h2>
+                <div class="fine-line w-24 mx-auto mb-16"></div>
+                <p class="text-xs uppercase tracking-[0.3em] leading-relaxed max-w-lg mx-auto opacity-60">
+                    Minimal is not the absence of something. It is the perfect amount of something. Precision in silence.
+                </p>
+            </div>
+        </section>
+
+        <!-- Image Break -->
+        <section class="h-[70vh] w-full overflow-hidden">
+            <div class="w-full h-full bg-fixed bg-cover bg-center grayscale" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpfqqtg4VDaRSGFJG0zlenjdpAwprzsJ5o7CL4Rxf1qFvB7E6Y6TzQ8JJV5LQO5NJtrj1ZNgO04L0fOe6LYRtGQj9BUWkuV574xuTaAgoYCxEfTOGf14bfDkdSF7dkK4lMNJIswpz9Yv4GVwVsd8Fub7z3ZIF_qZIkzmTLwm0yrP1GZI1sq2gYw4n2n2-I-uhMvTdMmAG0XuKfUC7L-EW0EK65OFFx6ALvvxp7RTV40Rcysf8A2SnZgz7YYJ95scceUWRbfzZ90vA");'>
+            </div>
+        </section>
+
+        <!-- Studio / Stats -->
+        <section class="py-32 px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24">
+                <div class="flex flex-col">
+                    <span class="text-3xl font-black mb-2">12</span>
+                    <span class="text-[10px] uppercase tracking-widest opacity-50">Years of Practice</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-3xl font-black mb-2">48</span>
+                    <span class="text-[10px] uppercase tracking-widest opacity-50">Awards Won</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-3xl font-black mb-2">07</span>
+                    <span class="text-[10px] uppercase tracking-widest opacity-50">Global Studios</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-32 px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-5xl font-light tracking-tight mb-8">Begin Your <span class="font-black italic">Vision</span></h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-12 max-w-lg mx-auto">
+                We collaborate with clients who share our commitment to excellence and refinement.
+            </p>
+            <a href="contact.html" class="inline-block border border-white/20 px-12 py-4 text-[10px] font-medium uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+                Start a Conversation
+            </a>
+        </section>
     </main>
 
-    <footer class="border-t border-slate-200 px-6 pb-12 pt-16 lg:px-10 dark:border-white/10">
-        <div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-            <div><p class="yield-logo text-3xl text-primary dark:text-white">YIELD_GROWTH</p><p class="mt-4 max-w-md text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">Financial District / Tokyo / Singapore.</span></p></div>
-            <div><p class="text-sm font-bold uppercase tracking-[0.24em] text-accent-growth">Navigation</p><div class="mt-4 flex flex-col gap-3 text-sm font-bold uppercase text-slate-500 dark:text-slate-400"><a href="index.html">Home</a><a href="about.html">About</a><a href="service.html">Service</a><a href="contact.html">Contact</a></div></div>
-            <div><p class="text-sm font-bold uppercase tracking-[0.24em] text-accent-growth">Contact</p><div class="mt-4 flex flex-col gap-3 text-sm text-slate-500 dark:text-slate-400"><p>info@yield-growth.jp</p><p>03-6721-4830</p><p>Mon-Fri / 10:00-18:00</p></div></div>
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+            <div class="flex flex-col">
+                <h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2>
+                <p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">
+                    A design collective focused on the intersection of light, form, and functionality.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="contact.html">hello@minimal.com</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="contact.html">+44 (0) 20 7946 0123</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Social</span>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Behance</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Legal</span>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] uppercase tracking-[0.4em] opacity-30">© 2024 Minimal Architecture & Design</p>
+            <div class="flex gap-8">
+                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">London</span>
+                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">Tokyo</span>
+                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">New York</span>
+            </div>
         </div>
     </footer>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+    <script>
+        function toggleMinimalMenu() {
+            const menu = document.getElementById('minimal-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\\\[9998\\\\]');
+            const toggle = document.querySelector('.minimal-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,35 +1,340 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Yield Growth. Consultations for long-term asset formation and portfolio review.">
-            <meta property="og:title" content="Contact | Yield Growth">
-    <meta property="og:description" content="Contact Yield Growth. Consultations for long-term asset formation and portfolio review.">
+    <title>Contact | Minimal | Architecture & Design</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/y/contact.html">
+    <meta name="description" content="Minimal へのお問い合わせ。建築デザイン、プロジェクト相談、コラボレーション。">
+    <meta property="og:title" content="Contact | Minimal">
+    <meta property="og:description" content="Minimal へのお問い合わせ。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/y/contact.html">
+    <meta property="og:url" content="https://example.com/templates/business/y/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>Contact | Yield Growth</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/y/contact.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Minimal",
+        "description": "Architecture and design collective",
+        "url": "https://example.com/templates/business/y/contact.html",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "hello@minimal.com"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; -webkit-font-smoothing: antialiased; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fine-line { height: 1px; background-color: rgba(0, 0, 0, 0.08); }
+        .dark .fine-line { height: 1px; background-color: rgba(255, 255, 255, 0.1); }
+        .minimal-mobile-menu { transition: transform 0.3s ease; }
+        .minimal-mobile-menu.active { transform: translateX(0); }
+        .minimal-mobile-menu.inactive { transform: translateX(-100%); }
+        .minimal-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .minimal-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .minimal-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .minimal-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .contact-input {
+            @apply w-full bg-transparent border-b border-slate-300 dark:border-slate-700 px-0 py-4 text-sm focus:ring-0 focus:border-slate-900 dark:focus:border-white transition-colors font-light;
+        }
+        .contact-label {
+            @apply text-[10px] font-bold uppercase tracking-[0.3em] opacity-60 mb-2;
+        }
+    </style>
 </head>
-<body class="theme-business antialiased">
-    <div class="yield-grid fixed inset-0 -z-20"></div>
-    <div class="yield-menu-backdrop fixed inset-0 z-[9998] bg-slate-950/45 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="yield-mobile-menu" class="yield-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-white/85 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="yield-mobile-menu" class="yield-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-white/60 bg-white/92 p-6 text-slate-900 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl lg:hidden"><div class="mb-6 flex items-center justify-between gap-4"><div><p class="yield-logo text-2xl text-primary">YIELD_GROWTH</p><p class="text-xs font-bold uppercase tracking-[0.34em] text-accent-growth">Contact session</p></div></div><div class="flex flex-col gap-2"><a href="index.html" class="yield-nav-link rounded-2xl px-4 py-3">Home</a><a href="about.html" class="yield-nav-link rounded-2xl px-4 py-3">About</a><a href="service.html" class="yield-nav-link rounded-2xl px-4 py-3">Service</a><a href="contact.html" class="yield-nav-link active rounded-2xl px-4 py-3">Contact</a></div></div>
-    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10"><div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/70 bg-white/76 px-5 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-background-dark/70"><a href="index.html" class="flex items-center gap-3 text-primary dark:text-white"><div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white"><span class="material-symbols-outlined text-2xl">trending_up</span></div><div><p class="yield-logo text-2xl">YIELD_GROWTH</p><p class="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Long-term wealth strategy</p></div></a><div class="nav hidden items-center gap-2 lg:flex"><a href="index.html" class="yield-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Home</a><a href="about.html" class="yield-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">About</a><a href="service.html" class="yield-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Service</a><a href="contact.html" class="yield-nav-link active rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Contact</a></div><div class="hidden items-center gap-3 lg:flex"><a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-white">Get Started</a></div></div></header>
-    <main class="overflow-hidden pb-20">
-        <section class="px-6 pb-12 pt-10 lg:px-10 lg:pb-16 lg:pt-12"><div class="mx-auto max-w-[1440px]"><p class="yield-kicker">Contact</p><div class="mt-6 grid gap-8 xl:grid-cols-[0.88fr_1.12fr]"><div><h1 class="text-4xl font-black leading-[0.94] tracking-[-0.05em] text-slate-900 sm:text-5xl md:text-7xl xl:text-[6rem] dark:text-white"><span class="ib">Let's build</span><span class="ib text-primary">durable</span><span class="ib">growth.</span></h1><p class="mt-8 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg md:leading-9 dark:text-slate-300"><span class="ib">From asset formation direction checks,</span><span class="ib">to portfolio reviews,</span><span class="ib">and corporate investment consultations.</span></p></div><article class="yield-panel rounded-[2rem] p-8 lg:p-10"><p class="yield-kicker">Consulting brief</p><form data-demo-form="true" onsubmit="event.preventDefault();" method="post" action="#" class="mt-8 space-y-5"><div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="company">Name / Company</label><input id="company" class="yield-input rounded-2xl" type="text" name="company" placeholder="Name / Company" required></div><div class="grid gap-5 md:grid-cols-2"><div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="type">Inquiry Type</label><select id="type" class="yield-input rounded-2xl" name="type" required><option value="">Select an option</option><option value="allocation">Asset allocation consultation</option><option value="review">Portfolio review</option><option value="corporate">Corporate investment consulting</option><option value="other">Other</option></select></div><div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="timeline">Desired Timeline</label><input id="timeline" class="yield-input rounded-2xl" type="text" name="timeline" placeholder="例: 今四半期中"></div></div><div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="email">Email</label><input id="email" class="yield-input rounded-2xl" type="email" name="email" placeholder="contact@example.com" required></div><div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="message">Current Situation</label><textarea id="message" class="yield-input min-h-40 rounded-[1.7rem]" name="message" placeholder="Describe your current asset situation and growth goals."></textarea></div><button class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 md:px-8 md:py-4 text-base font-bold uppercase tracking-[0.16em] text-white transition-transform hover:-translate-y-1" type="submit">Send Inquiry</button></form></article></div></div></section>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(25, 25, 25, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="minimal-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleMinimalMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="minimal-mobile-menu" class="minimal-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-2">
+            <span class="text-xs font-black tracking-[0.4em] uppercase">Minimal</span>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Home</a>
+            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Projects</a>
+            <a href="about.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Philosophy</a>
+            <a href="contact.html" class="rounded px-4 py-3 bg-white/5 text-white text-[10px] font-medium uppercase tracking-[0.3em]">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-2">
+            <span class="text-xs font-black tracking-[0.4em] uppercase">Minimal</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-12">
+            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="service.html">Projects</a>
+            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="about.html">Philosophy</a>
+            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="contact.html">Contact</a>
+        </nav>
+        <div class="flex gap-4">
+            <button class="flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">
+                <span class="material-symbols-outlined text-sm">search</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[50vh] w-full flex items-center justify-center p-6 md:p-12 bg-zinc-100 dark:bg-zinc-900">
+            <div class="relative z-10 flex flex-col items-center text-center">
+                <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/40 dark:text-white/30 mb-4">Get in Touch</span>
+                <h1 class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none">
+                    Contact
+                </h1>
+                <div class="fine-line w-24 mx-auto mt-8"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <!-- Contact Form -->
+                    <div>
+                        <h2 class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/40 dark:text-white/30 mb-8">Inquiry</h2>
+                        <form class="space-y-8">
+                            <div>
+                                <label class="contact-label" for="name">Name</label>
+                                <input class="contact-input" id="name" name="name" type="text" placeholder="Your full name"/>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="email">Email</label>
+                                <input class="contact-input" id="email" name="email" type="email" placeholder="your@email.com"/>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="type">Project Type</label>
+                                <select class="contact-input" id="type" name="type">
+                                    <option value="">Select a project type...</option>
+                                    <option value="residential">Residential Design</option>
+                                    <option value="cultural">Cultural Institution</option>
+                                    <option value="commercial">Commercial Space</option>
+                                    <option value="other">Other Inquiry</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="message">Message</label>
+                                <textarea class="contact-input min-h-[150px] resize-y" id="message" name="message" rows="5" placeholder="Tell us about your vision..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full border border-slate-300 dark:border-slate-700 px-8 py-4 text-[10px] font-medium uppercase tracking-[0.3em] hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-12">
+                        <div>
+                            <h2 class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/40 dark:text-white/30 mb-8">Studios</h2>
+                            <div class="space-y-8">
+                                <div>
+                                    <h3 class="text-sm font-bold tracking-widest uppercase mb-2">Tokyo</h3>
+                                    <p class="text-xs font-light leading-relaxed opacity-70">
+                                        3-14-8 Minami-Aoyama<br/>
+                                        Minato-ku, Tokyo 107-0062<br/>
+                                        Japan
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold tracking-widest uppercase mb-2">London</h3>
+                                    <p class="text-xs font-light leading-relaxed opacity-70">
+                                        42 Shoreditch High Street<br/>
+                                        London E1 6PQ<br/>
+                                        United Kingdom
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold tracking-widest uppercase mb-2">New York</h3>
+                                    <p class="text-xs font-light leading-relaxed opacity-70">
+                                        156 Grand Street, 4th Floor<br/>
+                                        New York, NY 10013<br/>
+                                        United States
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-200 dark:border-slate-800 pt-8">
+                            <h3 class="text-sm font-bold tracking-widest uppercase mb-6">Direct Contact</h3>
+                            <div class="space-y-4 text-xs font-light">
+                                <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                                    <span class="opacity-60">General Inquiry</span>
+                                    <span>hello@minimal.com</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                                    <span class="opacity-60">Press</span>
+                                    <span>press@minimal.com</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                                    <span class="opacity-60">Careers</span>
+                                    <span>careers@minimal.com</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="opacity-60">Phone</span>
+                                    <span>+44 (0) 20 7946 0123</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-200 dark:border-slate-800 pt-8">
+                            <h3 class="text-sm font-bold tracking-widest uppercase mb-6">Follow</h3>
+                            <div class="flex gap-6 text-[10px] uppercase tracking-[0.2em]">
+                                <a href="#" class="opacity-60 hover:opacity-100 transition-opacity">Instagram</a>
+                                <a href="#" class="opacity-60 hover:opacity-100 transition-opacity">LinkedIn</a>
+                                <a href="#" class="opacity-60 hover:opacity-100 transition-opacity">Behance</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Placeholder -->
+        <section class="h-[400px] w-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
+            <div class="text-center opacity-40">
+                <span class="material-symbols-outlined text-5xl mb-4">location_on</span>
+                <p class="text-[10px] uppercase tracking-[0.3em]">Global Presence</p>
+                <p class="text-xs mt-2">Seven studios across five continents</p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-32 px-6 md:px-12 bg-zinc-100 dark:bg-zinc-900/30">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-12 text-center">FAQ</h2>
+                <div class="space-y-6">
+                    <details class="group border-b border-slate-200 dark:border-slate-800 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm font-light">How do we start a project?</span>
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
+                            Begin by submitting an inquiry through this form. Our team reviews each project carefully to ensure alignment with our design philosophy. We typically respond within 5-7 business days to schedule an initial consultation.
+                        </p>
+                    </details>
+                    <details class="group border-b border-slate-200 dark:border-slate-800 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm font-light">What is your fee structure?</span>
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
+                            Fees are calculated as a percentage of construction costs, varying by project type and scope. Residential projects typically range from 12-18%, while cultural institutions are quoted individually. We provide detailed proposals after initial consultation.
+                        </p>
+                    </details>
+                    <details class="group border-b border-slate-200 dark:border-slate-800 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm font-light">Do you work internationally?</span>
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
+                            Yes. With seven studios globally, we regularly execute projects across continents. We partner with local architects of record to ensure compliance with regional building codes and regulations.
+                        </p>
+                    </details>
+                    <details class="group border-b border-slate-200 dark:border-slate-800 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="text-sm font-light">What is your design timeline?</span>
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-sm">expand_more</span>
+                        </summary>
+                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
+                            Residential projects typically require 4-8 months for design development. Cultural and commercial projects vary widely based on scope. Construction administration is an additional service we provide throughout the build phase.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-32 px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-5xl font-light tracking-tight mb-8">
+                Begin Your <span class="font-black italic">Vision</span>
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-12 max-w-lg mx-auto">
+                We collaborate with clients who share our commitment to excellence and refinement.
+            </p>
+            <a href="contact.html" class="inline-block border border-slate-300 dark:border-slate-700 px-12 py-4 text-[10px] font-medium uppercase tracking-[0.3em] hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
+                Start a Conversation
+            </a>
+        </section>
     </main>
-    <footer class="border-t border-slate-200 px-6 pb-12 pt-16 lg:px-10 dark:border-white/10"><div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]"><div><p class="yield-logo text-3xl text-primary dark:text-white">YIELD_GROWTH</p></div><div><p class="text-sm font-bold uppercase tracking-[0.24em] text-accent-growth">Navigation</p><div class="mt-4 flex flex-col gap-3 text-sm font-bold uppercase text-slate-500 dark:text-slate-400"><a href="index.html">Home</a><a href="about.html">About</a><a href="service.html">Service</a><a href="contact.html">Contact</a></div></div><div><p class="text-sm font-bold uppercase tracking-[0.24em] text-accent-growth">Contact</p><div class="mt-4 flex flex-col gap-3 text-sm text-slate-500 dark:text-slate-400"><p>info@yield-growth.jp</p><p>03-6721-4830</p></div></div></div></footer>
-    <script src="../../../assets/js/template-common.js" defer></script><script src="assets/js/script.js" defer></script>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+            <div class="flex flex-col">
+                <h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2>
+                <p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">
+                    A design collective focused on the intersection of light, form, and functionality.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="contact.html">hello@minimal.com</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="contact.html">+44 (0) 20 7946 0123</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Social</span>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Behance</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Legal</span>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] uppercase tracking-[0.4em] opacity-30">© 2024 Minimal Architecture & Design</p>
+            <div class="flex gap-8">
+                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">London</span>
+                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">Tokyo</span>
+                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">New York</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMinimalMenu() {
+            const menu = document.getElementById('minimal-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.minimal-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

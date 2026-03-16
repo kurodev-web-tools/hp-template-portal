@@ -3,356 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TRUST_GUARD へのお問い合わせ。無料セキュリティ診断、導入相談、緊急連絡窓口はこちら。">
-    <meta property="og:title" content="Contact | TRUST_GUARD">
-    <meta property="og:description" content="TRUST_GUARD へのお問い合わせ。無料セキュリティ診断、導入相談。">
+    <title>Contact - LUXE | Inquire</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/t/contact.html">
+    <meta name="description" content="LUXE へのお問い合わせ。建築デザイン、インテリアキュレーション、プライベートアトリエに関するご相談はコチラから。">
+    <meta property="og:title" content="Contact - LUXE | Inquire">
+    <meta property="og:description" content="LUXE へのお問い合わせ">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/t/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    <title>Contact | TRUST_GUARD</title>
-    <link rel="canonical" href="https://example.com/templates/business/t/contact.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact LUXE",
+        "description": "お問い合わせフォーム"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
     <style>
-        :root {
-            --trust-primary: #38ff14;
-            --trust-primary-dim: rgba(56, 255, 20, 0.2);
-            --trust-alert: #ff3b30;
-            --trust-bg: #0a0f09;
-            --trust-surface: #12230f;
-            --trust-border: #274b20;
-            --trust-text: #f1f5f9;
-            --trust-text-dim: #94a3b8;
-        }
-        .trust-theme {
-            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
-            background-color: var(--trust-bg);
-            color: var(--trust-text);
-        }
-        .trust-scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
-            background-size: 100% 4px;
-        }
-        .trust-grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, var(--trust-border) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-        .trust-btn-primary {
-            background: var(--trust-primary);
-            color: var(--trust-bg);
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Work Sans', 'Noto Sans JP', sans-serif; }
+        .serif-detail { font-family: serif; font-style: italic; }
+        .luxe-btn {
+            background: #b7860b;
+            color: #ffffff;
+            font-weight: 700;
             transition: all 0.2s ease;
         }
-        .trust-btn-primary:hover {
-            background: #fff;
-            transform: scale(1.05);
+        .luxe-btn:hover {
+            background: #9a7009;
         }
-        .trust-input {
+        .luxe-mobile-menu { transition: transform 0.3s ease; }
+        .luxe-mobile-menu.active { transform: translateX(0); }
+        .luxe-mobile-menu.inactive { transform: translateX(-100%); }
+        .luxe-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .luxe-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .luxe-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .luxe-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .contact-input {
             width: 100%;
-            padding: 12px 16px;
-            background: var(--trust-bg);
-            border: 1px solid var(--trust-border);
-            border-radius: 4px;
-            color: var(--trust-text);
-            font-family: 'Space Grotesk', monospace;
-            font-size: 13px;
-            transition: all 0.2s ease;
+            padding: 16px 0;
+            border: none;
+            border-bottom: 1px solid rgba(183, 134, 11, 0.3);
+            background: transparent;
+            color: inherit;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
         }
-        .trust-input:focus {
+        .contact-input:focus {
             outline: none;
-            border-color: var(--trust-primary);
-            box-shadow: 0 0 20px var(--trust-primary-dim);
+            border-bottom-color: #b7860b;
         }
-        .trust-input::placeholder {
-            color: var(--trust-text-dim);
+        .contact-input::placeholder {
+            color: #64748b;
         }
-        .trust-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%2338ff14' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-            padding-right: 44px;
-        }
-        .trust-textarea {
-            min-height: 160px;
-            resize: vertical;
-        }
-        .trust-menu-backdrop { display: none; }
-        @media (max-width: 1023px) {
-            .trust-menu-backdrop { display: block; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-            .trust-menu-backdrop.active { opacity: 1; visibility: visible; }
-        }
-        .trust-mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
-        @media (max-width: 1023px) { .trust-mobile-menu.active { transform: translateX(0); } }
-        @media (min-width: 1024px) { .trust-mobile-menu { display: none; } }
-        .trust-mobile-toggle { display: none; }
-        @media (max-width: 1023px) {
-            .trust-mobile-toggle { display: flex; }
-            .trust-mobile-toggle .bar {
-                display: block; width: 24px; height: 2px; background: var(--trust-primary);
-                position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-                transition: all 0.3s ease;
-            }
-            .trust-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
-            .trust-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
-            .trust-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-            .trust-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
-            .trust-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+        .dark .contact-input {
+            color: #f1f5f9;
         }
     </style>
 </head>
-<body class="trust-theme overflow-x-hidden">
-    <div class="trust-menu-backdrop" id="trustMenuBackdrop"></div>
-    <button class="trust-mobile-toggle fixed top-6 right-6 z-[100] p-2" id="trustMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="trustMobileMenu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-    <div class="trust-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-xl border-2 border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 shadow-2xl" id="trustMobileMenu">
-        <div class="mb-6 flex items-center gap-3">
-            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">shield_with_heart</span>
-            <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
-        </div>
-        <nav class="flex flex-col gap-2">
-            <a href="index.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">HOME</a>
-            <a href="about.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">ABOUT</a>
-            <a href="service.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">SERVICES</a>
-            <a href="contact.html" class="trust-nav-link active rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);">CONTACT</a>
-        </nav>
-    </div>
+<body class="text-slate-900 dark:text-slate-100 font-display">
 
-    <header class="sticky top-0 z-50 w-full border-b-2 border-[var(--trust-border)] bg-[var(--trust-bg)]/95 backdrop-blur">
-        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-[var(--trust-primary)] text-3xl">shield_with_heart</span>
-                <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
-            </a>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="index.html">HOME</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="about.html">ABOUT</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="service.html">SERVICES</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);" href="contact.html">CONTACT</a>
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(34, 29, 16, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="luxe-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleLuxeMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="luxe-mobile-menu" class="luxe-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl text-primary">blur_on</span>
+            <h1 class="text-2xl font-black tracking-widest text-slate-100 uppercase">Luxe</h1>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Service</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="fixed top-0 w-full z-50 border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-8 md:px-20 py-6">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="text-primary">
+                    <span class="material-symbols-outlined text-3xl">blur_on</span>
+                </div>
+                <h1 class="text-2xl font-black tracking-widest text-slate-100 uppercase">Luxe</h1>
+            </div>
+            <nav class="hidden md:flex items-center gap-12">
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="service.html">Collections</a>
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="about.html">Philosophy</a>
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="service.html">Services</a>
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="about.html">Atelier</a>
             </nav>
-            <a href="contact.html" class="trust-btn-primary px-6 py-2 text-sm font-bold uppercase tracking-tighter">SECURE NETWORK</a>
+            <div class="flex items-center gap-8">
+                <a href="contact.html" class="hidden lg:block text-xs uppercase tracking-[0.3em] border-b border-primary py-1 hover:text-primary transition-all">Inquire</a>
+                <button class="md:hidden text-slate-100" onclick="toggleLuxeMenu()">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <main>
+    <main class="pt-20">
         <!-- Hero Section -->
-        <section class="relative border-b-2 border-[var(--trust-border)] trust-grid-bg overflow-hidden py-20 px-6">
-            <div class="max-w-[1440px] mx-auto">
-                <div class="inline-flex items-center gap-2 rounded border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] px-3 py-1 mb-6">
-                    <span class="material-symbols-outlined text-sm" style="color: var(--trust-primary);">mail</span>
-                    <span class="font-mono text-[10px] uppercase tracking-[0.2em]" style="color: var(--trust-primary);">SECURE_CHANNEL</span>
+        <section class="relative min-h-[40vh] flex items-center px-8 md:px-20 bg-background-dark overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent"></div>
+            </div>
+            <div class="max-w-[1440px] mx-auto w-full relative z-10">
+                <div class="flex flex-col gap-6">
+                    <p class="text-primary text-xs uppercase tracking-[0.5em]">Get In Touch</p>
+                    <h1 class="text-5xl lg:text-6xl font-light tracking-tighter text-slate-100">
+                        Begin the <span class="serif-detail">Conversation</span>
+                    </h1>
+                    <div class="w-px h-20 bg-primary opacity-50"></div>
+                    <p class="text-slate-400 font-light text-lg max-w-2xl">
+                        We invite you to share your vision. Our team will respond within 48 hours.
+                    </p>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
-                    CONTACT <span style="color: var(--trust-primary);">US</span>
-                </h1>
-                <p class="text-lg md:text-xl max-w-3xl uppercase tracking-widest font-light leading-relaxed mb-10" style="color: var(--trust-text-dim);">
-                    インフラの不安、監査対応、ゼロトラスト導入、権限見直しなど、<br/>
-                    論点を整理しながら最適なソリューションをご提案します。
-                </p>
             </div>
         </section>
 
         <!-- Contact Form Section -->
-        <section class="py-24 px-6 max-w-[1440px] mx-auto">
-            <div class="grid gap-10 xl:grid-cols-2">
-                <div>
-                    <div class="relative overflow-hidden rounded-xl border-2 border-[var(--trust-primary)] bg-[var(--trust-surface)] p-8 lg:p-10">
-                        <div class="mb-6">
-                            <p class="font-mono text-xs uppercase tracking-[0.3em]" style="color: var(--trust-primary);">ESTABLISH_SECURE_LINK</p>
-                            <p class="mt-2 text-sm" style="color: var(--trust-text-dim);">
-                                必須項目を入力し、送信ボタンを押下してください。<br/>
-                                暗号化された安全なチャンネルで受信します。
-                            </p>
-                        </div>
-                        <form onsubmit="event.preventDefault(); alert('送信完了（デモ）'); return false;" class="space-y-5">
-                            <div class="grid gap-5 md:grid-cols-2">
+        <section class="py-32 px-8 md:px-20 bg-white dark:bg-background-dark">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="grid lg:grid-cols-2 gap-20">
+                    <!-- Contact Form -->
+                    <div>
+                        <span class="text-primary text-xs uppercase tracking-[0.4em]">Inquiry</span>
+                        <h2 class="text-3xl font-light mt-4 mb-10">Send Us a Message</h2>
+                        <form class="space-y-8">
+                            <div class="grid md:grid-cols-2 gap-8">
                                 <div>
-                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="name">Name *</label>
-                                    <input id="name" class="trust-input" type="text" placeholder="山田 太郎" required>
+                                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-3">First Name</label>
+                                    <input type="text" class="contact-input" placeholder="John"/>
                                 </div>
                                 <div>
-                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="company">Company *</label>
-                                    <input id="company" class="trust-input" type="text" placeholder="株式会社○○" required>
+                                    <label class="block text-xs uppercase tracking-widest text-slate-500 mb-3">Last Name</label>
+                                    <input type="text" class="contact-input" placeholder="Doe"/>
                                 </div>
                             </div>
                             <div>
-                                <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="email">Email *</label>
-                                <input id="email" class="trust-input" type="email" placeholder="authorized@company.com" required>
-                            </div>
-                            <div class="grid gap-5 md:grid-cols-2">
-                                <div>
-                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="service">Service</label>
-                                    <select id="service" class="trust-input trust-select">
-                                        <option value="">選択してください</option>
-                                        <option value="diagnostic">無料セキュリティ診断</option>
-                                        <option value="soc">SOC 監視サービス</option>
-                                        <option value="zerotrust">ゼロトラスト導入</option>
-                                        <option value="compliance">コンプライアンス対応</option>
-                                        <option value="other">その他相談</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="priority">Priority</label>
-                                    <select id="priority" class="trust-input trust-select">
-                                        <option value="normal">通常</option>
-                                        <option value="high">High - 優先的対応希望</option>
-                                        <option value="urgent">Urgent - 緊急</option>
-                                    </select>
-                                </div>
+                                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-3">Email Address</label>
+                                <input type="email" class="contact-input" placeholder="john@example.com"/>
                             </div>
                             <div>
-                                <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="message">Message *</label>
-                                <textarea id="message" class="trust-input trust-textarea" placeholder="現在の課題、守りたい対象、想定納期、予算感など" required></textarea>
+                                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-3">Phone Number</label>
+                                <input type="tel" class="contact-input" placeholder="+1 (555) 000-0000"/>
                             </div>
-                            <button class="trust-btn-primary w-full rounded px-6 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em]" type="submit">
-                                [ TRANSMIT_REQUEST ]
-                            </button>
-                            <p class="text-center text-xs" style="color: var(--trust-text-dim);">
-                                送信することで、プライバシーポリシーに同意したものとみなします。
-                            </p>
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-3">Service Interest</label>
+                                <select class="contact-input">
+                                    <option value="">Select a service...</option>
+                                    <option value="architectural">Architectural Mastery</option>
+                                    <option value="interior">Interior Curation</option>
+                                    <option value="atelier">Private Atelier</option>
+                                    <option value="logistics">Global Logistics</option>
+                                    <option value="other">Other Inquiry</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-slate-500 mb-3">Message</label>
+                                <textarea class="contact-input" rows="5" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <div class="pt-4">
+                                <button type="submit" class="luxe-btn px-12 py-4 rounded-full text-xs uppercase tracking-[0.4em] font-bold transition-all">
+                                    Send Message
+                                </button>
+                            </div>
                         </form>
                     </div>
+
+                    <!-- Contact Info -->
+                    <div class="flex flex-col justify-center space-y-12">
+                        <div>
+                            <span class="text-primary text-xs uppercase tracking-[0.4em]">Global Headquarters</span>
+                            <div class="mt-6 space-y-4">
+                                <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                                    45 Avenue Montaigne<br/>
+                                    75008 Paris, France
+                                </p>
+                                <a href="tel:+33142001234" class="block text-lg font-light hover:text-primary transition-colors">
+                                    +33 1 42 00 12 34
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-primary text-xs uppercase tracking-[0.4em]">Direct Contact</span>
+                            <div class="mt-6 space-y-4">
+                                <a href="mailto:concierge@luxe-atelier.com" class="block text-lg font-light hover:text-primary transition-colors">
+                                    concierge@luxe-atelier.com
+                                </a>
+                                <p class="text-slate-600 dark:text-slate-400 font-light text-sm leading-relaxed">
+                                    Available Monday through Friday, 9AM - 6PM CET
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-primary text-xs uppercase tracking-[0.4em]">Private Appointments</span>
+                            <div class="mt-6 space-y-4">
+                                <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                                    By appointment only. Our concierge team will arrange a private consultation at your preferred location.
+                                </p>
+                                <a href="tel:+33142001234" class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] font-bold text-primary hover:gap-4 transition-all">
+                                    Schedule Visit <span class="material-symbols-outlined">arrow_right_alt</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="pt-8">
+                            <span class="text-primary text-xs uppercase tracking-[0.4em]">Follow LUXE</span>
+                            <div class="mt-6 flex gap-6">
+                                <a href="#" class="w-12 h-12 border border-primary/30 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <span class="material-symbols-outlined">photo_camera</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 border border-primary/30 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <span class="material-symbols-outlined">work</span>
+                                </a>
+                                <a href="#" class="w-12 h-12 border border-primary/30 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <span class="material-symbols-outlined">social_distance</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations Section -->
+        <section class="py-32 px-8 md:px-20 bg-primary/5">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-primary text-xs uppercase tracking-[0.4em]">Our Presence</span>
+                    <h2 class="text-4xl md:text-5xl font-light mt-6">Global Ateliers</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center">
+                        <div class="aspect-square bg-cover bg-center mb-6 rounded-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6h3dBZXcQzri9RJd902AmRyxBB6OCDdjriun3nAaapfqnJ3_KblB5AgPaQnfJT5YakorLTP_7L4kaysOp8cBntBbPN96OZQ901revV1TUDMnjLPJrBNsX8WpcJC3FK49Kp-XghK_xYbCmlfajxQNwdQ6pc1NwdPEzdpXOpEHKHNXivwQ1Kph3WwztbX1NYyhPQMwZVrqiZVhi5l7YQ1A-fqsDOaUBInMWw4t2jNm-ZN_8pjjM18X03gKb6AT7fUhVlQZ2fTkMyY0');"></div>
+                        <h3 class="text-lg font-medium mb-2">Paris</h3>
+                        <p class="text-primary text-xs uppercase tracking-widest mb-4">France</p>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm">45 Avenue Montaigne</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="aspect-square bg-cover bg-center mb-6 rounded-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7eYZKVkh0lddrY92Vo1n0RfHpaRqcO3KKFL02hZQswD36cZxMQ3B-q9-6l3Y9OqT9qj8O7naTWy3Qi-xaB426y-IC3CSTcSykGg876E92rD2dTULtWLxBe5yok84W-vBaNu6P-yM2sHn61mejGl4OSEGO0qpUyMkNx3RRo84JhV2WEUjLzUlkPrAa-OsYqgWbDIxUhqwjT-GZk6GCV9jaZqUrqWVNvh2Cjl0ktp35K876shrxhOMbjAoUEysEaIobtoYlYx96IGo');"></div>
+                        <h3 class="text-lg font-medium mb-2">Tokyo</h3>
+                        <p class="text-primary text-xs uppercase tracking-widest mb-4">Japan</p>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm">Minato-ku, Omotesando</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="aspect-square bg-cover bg-center mb-6 rounded-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAzcstmAem1toqymG1zET1PT48A2YPKupQZs5l8uydVWkABau4W4M-lmRnikXcttUFjDVwj4WJHm0lzV091LkNkm8EhzHg5ReHYkmF199vulphEnuF5NVvxI2UKpmT4p45t2MMH6_pDkQJZ4geH99D65ANMckkYARcenE6rzm6wol2LGEfEs7zoLihO--lLZ-7fIMXYkgu7Ig578mEi_ZRJjOUJA9uS1ws5XWY4E7NnLkEfb-sJTAaHCHy_Pezm0iiUWKb3wwGZfQ');"></div>
+                        <h3 class="text-lg font-medium mb-2">New York</h3>
+                        <p class="text-primary text-xs uppercase tracking-widest mb-4">USA</p>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm">Madison Avenue, Manhattan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-32 px-8 md:px-20 bg-white dark:bg-background-dark">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-primary text-xs uppercase tracking-[0.4em]">Inquiries</span>
+                    <h2 class="text-4xl md:text-5xl font-light mt-6">Common Questions</h2>
                 </div>
                 <div class="space-y-6">
-                    <div class="rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
-                        <p class="font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-primary);">RESPONSE_WINDOW</p>
-                        <h2 class="mt-4 font-display text-2xl font-black uppercase tracking-[0.1em]">通常 1 営業日以内に返信</h2>
-                        <p class="mt-4 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                            緊急度に応じて、専任担当または一次対応チームが折り返します。<br/>
-                            緊急時は、电话での連絡も可能です。
-                        </p>
-                        <div class="mt-6 flex items-center gap-3 rounded-lg border border-[var(--trust-border)] bg-[var(--trust-bg)] p-4">
-                            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">phone_in_talk</span>
-                            <div>
-                                <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Emergency Hotline</p>
-                                <p class="font-mono text-lg font-bold" style="color: var(--trust-primary);">0120-XXX-XXX</p>
-                            </div>
+                    <details class="group border-b border-primary/20 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none">
+                            <h3 class="text-lg font-light text-slate-900 dark:text-white">What is the typical timeline for a residential project?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                            Residential projects typically range from 6 to 18 months, depending on scope and complexity. Our team provides a detailed timeline during the initial consultation phase.
                         </div>
-                    </div>
-                    <div class="rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
-                        <p class="font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-primary);">CONTACT_INFORMATION</p>
-                        <h2 class="mt-4 font-display text-xl font-black uppercase tracking-[0.1em]">Company Info</h2>
-                        <div class="mt-4 space-y-4">
-                            <div class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">location_on</span>
-                                <div>
-                                    <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Address</p>
-                                    <p class="text-sm" style="color: var(--trust-text);">〒100-0000 東京都千代田区○○1-2-3 ○○ビル 10F</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">schedule</span>
-                                <div>
-                                    <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Hours</p>
-                                    <p class="text-sm" style="color: var(--trust-text);">平日 9:00 - 18:00（土日祝・年末年始を除く）</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">mail</span>
-                                <div>
-                                    <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Email</p>
-                                    <p class="text-sm" style="color: var(--trust-text);">info@trustguard.example.com</p>
-                                </div>
-                            </div>
+                    </details>
+                    <details class="group border-b border-primary/20 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none">
+                            <h3 class="text-lg font-light text-slate-900 dark:text-white">Do you work on international projects?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                            Yes, we maintain a global presence with ateliers in Paris, Tokyo, and New York. Our logistics team ensures seamless coordination regardless of location.
                         </div>
-                    </div>
-                    <div class="rounded-xl border-2 border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] p-8">
-                        <p class="font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-primary);">ENCRYPTED_SESSION</p>
-                        <h2 class="mt-4 font-display text-xl font-black uppercase tracking-[0.1em]">初回ヒアリング</h2>
-                        <p class="mt-4 text-sm leading-relaxed" style="color: var(--trust-text);">
-                            監査要件や既存構成に応じて必要な資料範囲もご案内します。<br/>
-                            既存投資の活用も提案。無理な乗り換えは推奨しません。
-                        </p>
-                    </div>
+                    </details>
+                    <details class="group border-b border-primary/20 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none">
+                            <h3 class="text-lg font-light text-slate-900 dark:text-white">Can you work with existing architectural plans?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                            Absolutely. We collaborate with existing architectural teams or can recommend trusted partners. Our role is to enhance and refine the vision while maintaining design integrity.
+                        </div>
+                    </details>
+                    <details class="group border-b border-primary/20 pb-6">
+                        <summary class="flex items-center justify-between cursor-pointer list-none">
+                            <h3 class="text-lg font-light text-slate-900 dark:text-white">What is your approach to sustainability?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                            We source materials responsibly and prioritize craftsmanship that stands the test of time. True sustainability lies in creating pieces that are cherished for generations.
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="border-t-2 border-[var(--trust-border)] py-24 px-6 bg-[var(--trust-bg)]">
-            <div class="max-w-[1440px] mx-auto text-center">
-                <div class="bg-[var(--trust-surface)] border-4 border-[var(--trust-border)] p-16 max-w-4xl mx-auto relative overflow-hidden">
-                    <div class="trust-scanline absolute inset-0 opacity-10"></div>
-                    <p class="font-mono text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--trust-primary);">SECURE_YOUR_NETWORK</p>
-                    <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter">
-                        Ready to <span style="color: var(--trust-primary);">stabilize</span> your network?
-                    </h2>
-                    <p class="mb-10 text-lg uppercase tracking-widest relative z-10" style="color: var(--trust-text-dim);">
-                        デプロイメントは包括的なインフラストラクチャスキャンから開始。
-                    </p>
-                    <a href="contact.html" class="trust-btn-primary px-16 py-6 text-xl font-black uppercase tracking-widest transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)] inline-block">
-                        Secure Your Network
+        <section class="py-32 px-8 md:px-20 bg-gradient-to-br from-primary/20 via-background-dark to-background-dark relative overflow-hidden">
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <h2 class="text-5xl md:text-7xl font-light tracking-tighter mb-8 text-slate-100">Your vision <span class="serif-detail">awaits.</span></h2>
+                <p class="text-xl text-slate-400 font-light mb-12 max-w-2xl mx-auto">
+                    Let us transform your aspirations into tangible reality.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="tel:+33142001234" class="luxe-btn text-slate-100 px-12 py-5 rounded-full text-xs uppercase tracking-[0.4em] font-bold hover:bg-primary/80 transition-all">
+                        Call Now
+                    </a>
+                    <a href="service.html" class="border border-primary/30 text-slate-100 px-12 py-5 rounded-full text-xs uppercase tracking-[0.4em] font-bold hover:bg-primary/10 transition-all">
+                        Explore Services
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[var(--trust-bg)] border-t-2 border-[var(--trust-border)] py-12 px-6">
-        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-[var(--trust-primary)] text-2xl">shield_with_heart</span>
-                <span class="text-sm font-bold uppercase tracking-widest" style="color: var(--trust-text-dim);">TRUST_GUARD © 2024</span>
-            </div>
-            <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em]" style="color: var(--trust-text-dim);">
-                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Privacy_Protocol</a>
-                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Service_Agreement</a>
-                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Compliance_Logs</a>
-            </div>
-            <div class="flex gap-4">
-                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
-                    <span class="material-symbols-outlined text-sm">share</span>
+    <!-- Footer -->
+    <footer class="bg-background-dark text-slate-100 py-20 px-8 md:px-20 border-t border-primary/20">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">blur_on</span>
+                    </div>
+                    <h2 class="text-2xl font-black tracking-widest uppercase">Luxe</h2>
                 </div>
-                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
-                    <span class="material-symbols-outlined text-sm">terminal</span>
-                </div>
+                <p class="text-slate-500 font-light max-w-xs leading-relaxed">
+                    Crafting the world's most exclusive living experiences since 1924. Architecture as an art form.
+                </p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Navigation</span>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="about.html">Philosophy</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="service.html">Collections</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="contact.html">Contact</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Connect</span>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">Instagram</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">LinkedIn</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">Behance</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">Vimeo</a>
+            </div>
+        </div>
+        <div class="max-w-[1440px] mx-auto mt-20 pt-8 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-600">
+            <p>© 2024 LUXE ATELIER. All Rights Reserved.</p>
+            <div class="flex gap-8">
+                <a class="hover:text-primary" href="#">Privacy Policy</a>
+                <a class="hover:text-primary" href="#">Terms of Service</a>
             </div>
         </div>
     </footer>
 
     <script>
-        (function() {
-            const toggle = document.getElementById('trustMobileToggle');
-            const menu = document.getElementById('trustMobileMenu');
-            const backdrop = document.getElementById('trustMenuBackdrop');
-            if (!toggle || !menu || !backdrop) return;
-            function closeMenu() {
+        function toggleLuxeMenu() {
+            const menu = document.getElementById('luxe-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.luxe-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
                 menu.classList.remove('active');
-                backdrop.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
                 toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
             }
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isOpen = menu.classList.contains('active');
-                if (isOpen) { closeMenu(); } else {
-                    menu.classList.add('active');
-                    backdrop.classList.add('active');
-                    toggle.classList.add('active');
-                    toggle.setAttribute('aria-expanded', 'true');
-                }
-            });
-            backdrop.addEventListener('click', closeMenu);
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeMenu();
-            });
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.trust-nav-link').forEach(function(link) {
-                const href = link.getAttribute('href');
-                if (href === currentPage) {
-                    link.style.color = 'var(--trust-primary)';
-                }
-            });
-        })();
+        }
     </script>
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

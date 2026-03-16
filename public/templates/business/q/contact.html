@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Quality First - 技術相談・RFQ</title>
+    <title>Contact - NEO-SYNC SOLUTIONS</title>
 
     <link rel="canonical" href="https://example.com/templates/business/q/contact.html">
-    <meta name="description" content="Quality First へのお問い合わせ。図面と要件を共有し、実現性を一緒に詰める。24 時間以内にご返信します。">
-    <meta property="og:title" content="Contact | Quality First - 技術相談・RFQ">
-    <meta property="og:description" content="Quality First へのお問い合わせ。図面と要件を共有し、実現性を一緒に詰める。">
+    <meta name="description" content="NEO-SYNC SOLUTIONS へのお問い合わせ。技術サポート、営業、パートナーシップに関するお問い合わせ。">
+    <meta property="og:title" content="Contact - NEO-SYNC SOLUTIONS">
+    <meta property="og:description" content="NEO-SYNC SOLUTIONS へのお問い合わせ窓口">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/q/contact.html">
@@ -18,214 +18,414 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Quality First",
-        "description": "高信頼な精密製造パートナー",
-        "url": "https://example.com/templates/business/q/contact.html",
-        "logo": "assets/generated/external-image-01.svg",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "technical support",
-            "availableLanguage": ["Japanese", "English"]
-        }
+        "@type": "ContactPage",
+        "name": "Contact NEO-SYNC SOLUTIONS",
+        "description": "NEO-SYNC SOLUTIONS へのお問い合わせ"
     }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:wght@100..700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
-        .precision-shell { background-color: #231a0f; }
-        .precision-grid { background-image: radial-gradient(rgba(255,140,0,0.3) 1px, transparent 1px); background-size: 40px 40px; }
-        .precision-panel { background: rgba(35,26,15,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,140,0,0.2); }
-        .precision-input { background: rgba(35,26,15,0.8); border: 1px solid rgba(255,140,0,0.3); color: #fff; padding: 12px 16px; width: 100%; border-radius: 12px; }
-        .precision-input:focus { outline: none; border-color: #ff8c00; }
-        .precision-nav-link { transition: all 0.2s; }
-        .precision-nav-link:hover { background: rgba(255,140,0,0.1); }
-        .precision-nav-link.active { background: rgba(255,140,0,0.2); color: #ff8c00; }
-        .precision-stat { background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2); }
-        .precision-table-row { background: rgba(255,140,0,0.05); border: 1px solid rgba(255,140,0,0.2); }
-        .blueprint-line { border-color: #3d3124; }
-        .precision-menu-backdrop { background-color: rgba(0,0,0,0.4); backdrop-filter: blur(4px); }
-        .precision-mobile-toggle { background: rgba(255,140,0,0.2); border: 1px solid rgba(255,140,0,0.3); }
-        .precision-mobile-toggle .bar { display: block; width: 18px; height: 2px; background: #fff; margin: 4px 0; transition: all 0.3s; }
-        .precision-mobile-menu { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .precision-mobile-menu.active { opacity: 1; visibility: visible; }
-        .precision-mobile-menu.inactive { opacity: 0; visibility: hidden; }
+        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        .glow-cyan { box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
+        .glow-text { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+        .tech-btn {
+            background: #00ffff;
+            color: #060b14;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .tech-btn:hover {
+            background: #00d9d9;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+        }
+        .tech-mobile-menu { transition: transform 0.3s ease; }
+        .tech-mobile-menu.active { transform: translateX(0); }
+        .tech-mobile-menu.inactive { transform: translateX(-100%); }
+        .tech-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .tech-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .tech-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .tech-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .terminal-bg {
+            background: linear-gradient(180deg, rgba(6, 11, 20, 0.9) 0%, rgba(15, 35, 35, 0.95) 100%);
+        }
+        .form-input {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #00ffff;
+            background: rgba(0, 255, 255, 0.08);
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
     </style>
 </head>
-<body class="theme-business bg-background-dark text-slate-100 custom-menu-only antialiased">
+<body class="text-slate-900 dark:text-slate-100 selection:bg-primary/30">
 
-    <div class="precision-menu-backdrop fixed inset-0 z-[9998] md:hidden"></div>
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(6, 11, 20, 0.5); backdrop-filter: blur(4px);"></div>
 
-    <button aria-controls="precision-mobile-menu" class="precision-mobile-toggle precision-panel fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="togglePrecisionMenu()">
+    <button class="tech-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleTechMenu()">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
 
-    <div id="precision-mobile-menu" class="precision-mobile-menu inactive fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-primary/20 bg-background-dark/95 p-6 shadow-2xl md:hidden">
-        <div class="mb-6 flex items-center justify-between">
-            <div>
-                <p class="text-xs font-black uppercase tracking-[0.34em] text-primary">Quality</p>
-                <p class="text-sm text-slate-400">First</p>
+    <aside id="tech-mobile-menu" class="tech-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-4xl text-primary">account_tree</span>
+            <h1 class="text-xl font-bold tracking-tighter text-slate-100">NEO-SYNC</h1>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Service</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="relative z-50 px-6 py-4 border-b border-primary/10 backdrop-blur-md sticky top-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-4xl text-primary">account_tree</span>
+                <h1 class="text-2xl font-bold tracking-tighter text-slate-100 glow-text">NEO-SYNC<span class="text-primary/70">.</span></h1>
+            </div>
+            <nav class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Solutions</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Technologies</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Network</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">About</a>
+            </nav>
+            <div class="flex items-center gap-6">
+                <a href="contact.html" class="flex items-center gap-2 bg-primary/10 hover:bg-primary/20 border border-primary/30 px-5 py-2 rounded-lg text-primary text-sm font-bold transition-all glow-cyan">
+                    <span class="material-symbols-outlined text-sm">terminal</span>
+                    Terminal Login
+                </a>
             </div>
         </div>
-        <nav class="flex flex-col gap-2 text-base font-semibold text-white">
-            <a href="index.html" class="precision-nav-link rounded-2xl px-4 py-3">Home</a>
-            <a href="about.html" class="precision-nav-link rounded-2xl px-4 py-3">About</a>
-            <a href="service.html" class="precision-nav-link rounded-2xl px-4 py-3">Service</a>
-            <a href="contact.html" class="precision-nav-link active rounded-2xl px-4 py-3" aria-current="page">Contact</a>
-        </nav>
-    </div>
+    </header>
 
-    <div class="precision-shell min-h-screen">
-        <header class="fixed left-0 right-0 top-0 z-50 px-6 py-4 lg:px-12">
-            <div class="precision-panel mx-auto flex max-w-[1440px] items-center justify-between rounded-full px-6 py-3">
-                <a href="index.html" class="flex items-center gap-3 text-primary">
-                    <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
-                    <span class="text-lg font-black uppercase tracking-[0.18em] text-white">QUALITY_FIRST</span>
-                </a>
-                <nav class="hidden items-center gap-3 md:flex">
-                    <a href="index.html" class="precision-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.24em]">Home</a>
-                    <a href="about.html" class="precision-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.24em]">About</a>
-                    <a href="service.html" class="precision-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.24em]">Service</a>
-                    <a href="contact.html" class="precision-nav-link active rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.24em]" aria-current="page">Contact</a>
-                </nav>
-                <div class="hidden items-center gap-3 md:flex">
-                    <a href="service.html" class="rounded-full border border-primary/20 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-white">View Services</a>
-                </div>
+    <main class="relative z-10 flex-grow">
+        <!-- Hero Section -->
+        <section class="relative min-h-[40vh] flex items-center justify-center px-6 overflow-hidden bg-background-dark">
+            <div class="absolute inset-0 z-0 opacity-30">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent"></div>
             </div>
-        </header>
-
-        <main class="overflow-hidden pt-24">
-            <section class="precision-grid border-b border-blueprint-line px-6 py-20 lg:px-12">
-                <div class="mx-auto max-w-[1440px]">
-                    <p class="text-xs font-black uppercase tracking-[0.34em] text-primary">Contact</p>
-                    <h1 class="mt-5 text-4xl font-black uppercase tracking-tight md:text-6xl">
-                        <span class="ib">図面と要件を共有し、</span>
-                        <span class="ib">実現性を一緒に詰める。</span>
-                    </h1>
-                    <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300"><span class="ib">初回返信では、</span><span class="ib">実現可否の見立て、追加で必要な条件、</span><span class="ib">量産時の論点まで整理して返します。</span></p>
+            <div class="relative z-10 max-w-4xl text-center flex flex-col items-center gap-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase">
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                    Contact Terminal
                 </div>
-            </section>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-100 leading-none">
+                    Initialize <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-accent-purple glow-text">Connection</span>
+                </h1>
+                <p class="text-xl text-slate-400 max-w-2xl font-light">
+                    Ready to deploy? Our team is standing by.
+                </p>
+            </div>
+        </section>
 
-            <section class="px-6 py-20 lg:px-12">
-                <div class="mx-auto grid max-w-[1440px] gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-                    <form class="precision-panel rounded-[2rem] p-8 md:p-10 space-y-5">
-                        <div class="grid gap-5 md:grid-cols-2">
-                            <label class="block">
-                                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Name</span>
-                                <input class="precision-input" type="text" placeholder="山田 太郎">
-                            </label>
-                            <label class="block">
-                                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Email</span>
-                                <input class="precision-input" type="email" placeholder="taro@example.com">
-                            </label>
-                        </div>
-                        <div class="grid gap-5 md:grid-cols-2">
-                            <label class="block">
-                                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Tolerance</span>
-                                <input class="precision-input" type="text" placeholder="±0.002 mm">
-                            </label>
-                            <label class="block">
-                                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Material</span>
-                                <input class="precision-input" type="text" placeholder="Ti6Al4V / SUS316L">
-                            </label>
-                        </div>
-                        <div class="grid gap-5 md:grid-cols-2">
-                            <label class="block">
-                                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Quantity</span>
-                                <input class="precision-input" type="text" placeholder="100 pcs">
-                            </label>
-                            <label class="block">
-                                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Deadline</span>
-                                <input class="precision-input" type="text" placeholder="2026-04-15">
-                            </label>
-                        </div>
-                        <label class="block">
-                            <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.2em] text-primary">Specification</span>
-                            <textarea class="precision-input min-h-44 resize-y rounded-[1.5rem]" placeholder="用途、数量、納期、表面処理、検査要求などを記入してください。"></textarea>
-                        </label>
-                        <button class="rounded-full bg-primary px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-background-dark" type="submit">Submit RFQ</button>
-                    </form>
-                    <div class="grid gap-6">
-                        <article class="precision-panel rounded-[2rem] p-8">
-                            <p class="text-xs font-black uppercase tracking-[0.3em] text-primary">Response</p>
-                            <p class="mt-4 text-4xl font-black uppercase">24H</p>
-                            <p class="mt-4 text-sm leading-8 text-slate-300"><span class="ib">初回返信で、</span><span class="ib">成立条件と追加確認事項を</span><span class="ib">明確にします。</span></p>
-                        </article>
-                        <article class="precision-panel rounded-[2rem] p-8">
-                            <p class="text-xs font-black uppercase tracking-[0.3em] text-primary">Checklist</p>
-                            <div class="mt-5 grid gap-4">
-                                <div class="precision-table-row rounded-[1.25rem] px-4 py-4">
-                                    <p class="font-semibold text-white">図面ファイル</p>
-                                    <p class="mt-1 text-sm text-slate-400">PDF / STEP / IGES</p>
-                                </div>
-                                <div class="precision-table-row rounded-[1.25rem] px-4 py-4">
-                                    <p class="font-semibold text-white">品質要求</p>
-                                    <p class="mt-1 text-sm text-slate-400">公差、測定項目、表面粗さ</p>
-                                </div>
-                                <div class="precision-table-row rounded-[1.25rem] px-4 py-4">
-                                    <p class="font-semibold text-white">供給条件</p>
-                                    <p class="mt-1 text-sm text-slate-400">数量、納期、配送拠点</p>
-                                </div>
+        <!-- Contact Terminal Section -->
+        <section class="py-24 px-6 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="flex flex-col gap-8">
+                    <h2 class="text-3xl font-bold text-slate-100">Contact Nodes</h2>
+                    <p class="text-lg text-slate-400 leading-relaxed">
+                        Reach out to our team for technical support, sales inquiries, or partnership opportunities. Response time: typically within 2-4 hours.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="glass-panel p-6 rounded-xl border-primary/20 flex items-start gap-4">
+                            <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 border border-primary/20">
+                                <span class="material-symbols-outlined">location_on</span>
                             </div>
-                        </article>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-100">Headquarters</h3>
+                                <p class="text-slate-400">1-2-3 Shibuya, Tech Tower 15F<br/>Tokyo, Japan 150-0001</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-6 rounded-xl border-primary/20 flex items-start gap-4">
+                            <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 border border-primary/20">
+                                <span class="material-symbols-outlined">email</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-100">Email</h3>
+                                <p class="text-slate-400">contact@neo-sync.io<br/>support@neo-sync.io</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-6 rounded-xl border-primary/20 flex items-start gap-4">
+                            <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 border border-primary/20">
+                                <span class="material-symbols-outlined">phone</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-100">Priority Line</h3>
+                                <p class="text-slate-400">+81 (03) 5555-0123<br/>24/7 Enterprise Support</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8">
+                        <h3 class="text-xl font-bold text-slate-100 mb-4">Network Channels</h3>
+                        <div class="flex gap-4">
+                            <a href="#" class="size-12 rounded-lg glass-panel flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all border border-primary/10">
+                                <span class="material-symbols-outlined">hub</span>
+                            </a>
+                            <a href="#" class="size-12 rounded-lg glass-panel flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all border border-primary/10">
+                                <span class="material-symbols-outlined">public</span>
+                            </a>
+                            <a href="#" class="size-12 rounded-lg glass-panel flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all border border-primary/10">
+                                <span class="material-symbols-outlined">code</span>
+                            </a>
+                            <a href="#" class="size-12 rounded-lg glass-panel flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-all border border-primary/10">
+                                <span class="material-symbols-outlined">work</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
 
-        <footer class="border-t border-blueprint-line px-6 py-10 lg:px-12">
-            <div class="mx-auto flex max-w-[1440px] flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <p class="text-sm text-slate-400">Send drawing data and constraints to start the technical review.</p>
-                <div class="flex gap-5 text-sm">
-                    <a href="index.html" class="text-slate-300 hover:text-primary">Home</a>
-                    <a href="about.html" class="text-slate-300 hover:text-primary">About</a>
-                    <a href="service.html" class="text-slate-300 hover:text-primary">Service</a>
+                <div class="rounded-xl overflow-hidden border border-primary/30 shadow-2xl">
+                    <div class="bg-slate-800/80 px-4 py-3 flex items-center justify-between border-b border-primary/20">
+                        <div class="flex items-center gap-2">
+                            <div class="size-3 rounded-full bg-red-500/50"></div>
+                            <div class="size-3 rounded-full bg-yellow-500/50"></div>
+                            <div class="size-3 rounded-full bg-green-500/50"></div>
+                            <span class="ml-4 text-xs font-mono text-slate-400">contact/terminal.sh</span>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-500 text-sm">settings_input_component</span>
+                    </div>
+                    <div class="terminal-bg p-8 font-mono">
+                        <div class="mb-8">
+                            <p class="text-primary mb-1">&gt;&gt; INITIALIZING CONTACT PROTOCOL...</p>
+                            <p class="text-slate-500">&gt;&gt; ENCRYPTING CHANNEL [AES-2048]</p>
+                            <p class="text-green-400">&gt;&gt; CONNECTION SECURE</p>
+                        </div>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs uppercase text-primary/70 block">User ID (Name)</label>
+                                    <input type="text" class="w-full bg-primary/5 border-b border-primary/30 focus:border-primary text-slate-100 placeholder:text-slate-700 py-3 px-4 transition-all" placeholder="Enter name..." required>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs uppercase text-primary/70 block">Response Node (Email)</label>
+                                    <input type="email" class="w-full bg-primary/5 border-b border-primary/30 focus:border-primary text-slate-100 placeholder:text-slate-700 py-3 px-4 transition-all" placeholder="email@node.sync" required>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase text-primary/70 block">Company/Node</label>
+                                <input type="text" class="w-full bg-primary/5 border-b border-primary/30 focus:border-primary text-slate-100 placeholder:text-slate-700 py-3 px-4 transition-all" placeholder="Company name">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase text-primary/70 block">Subject Protocol</label>
+                                <select class="w-full bg-primary/5 border-b border-primary/30 focus:border-primary text-slate-100 py-3 px-4 transition-all" required>
+                                    <option value="" disabled selected>Select topic...</option>
+                                    <option value="sales">Sales Inquiry</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="enterprise">Enterprise</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase text-primary/70 block">Data Payload</label>
+                                <textarea rows="4" class="w-full bg-primary/5 border-b border-primary/30 focus:border-primary text-slate-100 placeholder:text-slate-700 py-3 px-4 transition-all resize-none" placeholder="Enter your message..." required></textarea>
+                            </div>
+                            <button type="submit" class="tech-btn w-full py-4 rounded-lg font-bold text-lg transition-all mt-4">
+                                EXECUTE SEND
+                            </button>
+                            <p class="text-xs text-slate-600 text-center uppercase">
+                                By transmitting, you agree to our Protocol Terms
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </footer>
-    </div>
+        </section>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="../../../assets/js/premium-effects.js" defer></script>
+        <!-- FAQ Section -->
+        <section class="py-24 px-6 bg-slate-900">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">FAQ Database</h2>
+                    <h3 class="text-3xl lg:text-4xl font-bold text-slate-100 mb-6">Common Queries</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass-panel rounded-xl border-primary/20 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-slate-100">How quickly can I deploy?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-400">
+                                Startup tier accounts are instant. Professional and Enterprise deployments typically take 1-2 business days for full provisioning. Our team will contact you within 24 hours of signup.
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="glass-panel rounded-xl border-primary/20 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-slate-100">Do you offer migrations?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-400">
+                                Yes. Our Enterprise tier includes white-glove migration support. We've migrated thousands of workloads from AWS, GCP, Azure, and legacy infrastructure with zero downtime.
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="glass-panel rounded-xl border-primary/20 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-slate-100">What compliance standards do you meet?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-400">
+                                We maintain SOC 2 Type II, ISO 27001, GDPR, and HIPAA compliance. Enterprise customers receive full compliance documentation and can request custom audits.
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="glass-panel rounded-xl border-primary/20 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-slate-100">Is there a free trial?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-400">
+                                Yes! Our Startup tier is free forever with 100GB bandwidth and 10GB storage. No credit card required. Upgrade anytime as your needs grow.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl lg:text-6xl font-black text-slate-100 mb-8">System Ready</h2>
+                <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
+                    Our team is standing by to initialize your deployment.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="tel:+810355550123" class="tech-btn px-10 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">call</span> Priority Line
+                    </a>
+                    <a href="mailto:contact@neo-sync.io" class="glass-panel text-slate-100 px-10 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-all border border-primary/30 flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">email</span> Send Message
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-background-dark border-t border-primary/10 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary">account_tree</span>
+                        <h2 class="text-xl font-bold tracking-tighter text-slate-100 glow-text">NEO-SYNC</h2>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Redefining digital boundaries through autonomous computing and zero-trust neural architecture.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="size-8 rounded-lg bg-primary/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary border border-primary/10 transition-all" href="#">
+                            <span class="material-symbols-outlined text-sm">hub</span>
+                        </a>
+                        <a class="size-8 rounded-lg bg-primary/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary border border-primary/10 transition-all" href="#">
+                            <span class="material-symbols-outlined text-sm">public</span>
+                        </a>
+                        <a class="size-8 rounded-lg bg-primary/5 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary border border-primary/10 transition-all" href="#">
+                            <span class="material-symbols-outlined text-sm">lan</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-slate-100 font-bold mb-6 text-sm uppercase tracking-widest">Ecosystem</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Core Solutions</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Quantum Mesh</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Neural Fabric</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Edge Nodes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-100 font-bold mb-6 text-sm uppercase tracking-widest">Governance</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Data Protocol</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Privacy Nodes</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Open Source</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Network Terms</a></li>
+                    </ul>
+                </div>
+                <div class="glass-panel p-6 rounded-xl border-primary/10">
+                    <h4 class="text-primary font-bold mb-4 text-xs uppercase tracking-widest">Network Status</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Mainframe Uptime</span>
+                            <span class="text-green-400">99.998%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                            <div class="bg-primary w-[90%] h-full"></div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Global Nodes</span>
+                            <span class="text-slate-100">14,204</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-slate-600 font-mono">
+                <p>© 2030 NEO-SYNC SOLUTIONS. ALL SYSTEMS NOMINAL.</p>
+                <div class="flex gap-8">
+                    <span>LATENCY: 4ms</span>
+                    <span>SHARD: HK-09</span>
+                    <span>VER: 4.0.1</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        function togglePrecisionMenu() {
-            const menu = document.getElementById('precision-mobile-menu');
-            const toggle = document.querySelector('.precision-mobile-toggle');
-            if (!menu) return;
-            const isActive = menu.classList.contains('active');
-            if (isActive) {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                toggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            } else {
+        function toggleTechMenu() {
+            const menu = document.getElementById('tech-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.tech-toggle');
+
+            if (menu.classList.contains('inactive')) {
                 menu.classList.remove('inactive');
                 menu.classList.add('active');
-                toggle.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
             }
         }
-        document.querySelectorAll('#precision-mobile-menu a[href]').forEach(link => {
-            link.addEventListener('click', () => {
-                togglePrecisionMenu();
-            });
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                togglePrecisionMenu();
-            }
-        });
     </script>
-    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

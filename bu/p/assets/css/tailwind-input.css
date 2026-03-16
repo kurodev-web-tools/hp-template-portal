@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@source "../../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #f53d8a;
+    --color-accent-yellow: #facc15;
+    --color-accent-blue: #3b82f6;
+    --color-background-light: #f8f5f7;
+    --color-background-dark: #221017;
+    --font-display: "Space Grotesk", "Noto Sans JP", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-display);
+    background: var(--color-background-light);
+    color: #0f172a;
+}
+
+.dark body {
+    background: var(--color-background-dark);
+    color: #f8fafc;
+}
+
+.ib {
+    display: inline-block;
+}
+
+.brutalist-border {
+    border: 4px solid #000;
+}
+
+.brutalist-shadow {
+    box-shadow: 8px 8px 0 #000;
+}
+
+.pop-panel {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.dark .pop-panel {
+    background: rgba(34, 16, 23, 0.92);
+}
+
+.pop-mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.pop-mobile-menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.pop-input {
+    width: 100%;
+    border: 4px solid #000;
+    background: #fff;
+    padding: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.dark .pop-input {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+@media (max-width: 375px) {
+    nav {
+        padding-inline: 1rem !important;
+    }
+
+    .pop-mobile-menu {
+        padding: 1.25rem;
+    }
+
+    .pop-mobile-menu a {
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    .pop-mobile-toggle {
+        right: 1rem;
+        bottom: 1rem;
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .brutalist-shadow {
+        box-shadow: 5px 5px 0 #000;
+    }
+
+    nav h1 {
+        font-size: 1.6rem !important;
+    }
+
+    main h1 {
+        font-size: 2.4rem !important;
+        line-height: 0.96;
+    }
+
+    main h2 {
+        font-size: 2.7rem !important;
+        line-height: 0.94;
+    }
+
+    main h3 {
+        font-size: 2rem !important;
+        line-height: 1;
+    }
+
+    .pop-input {
+        padding: 0.85rem;
+    }
+}

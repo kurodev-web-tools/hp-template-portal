@@ -1,103 +1,376 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wide Horizon のサービス一覧。パノラマ旅程、リトリート、撮影ディレクション、法人向けホスピタリティ設計に対応します。">
-            <meta property="og:title" content="Service | Wide Horizon">
-    <meta property="og:description" content="Wide Horizon のサービス一覧。パノラマ旅程、リトリート、撮影ディレクション、法人向けホスピタリティ設計に対応します。">
+    <title>Services | Knowledge Plaza | 探求の広場</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/w/service.html">
+    <meta name="description" content="Knowledge Plaza の学術出版物と研究サービス。学術誌、モノグラフ、デジタルアーカイブへのアクセス。">
+    <meta property="og:title" content="Services | Knowledge Plaza">
+    <meta property="og:description" content="学術出版物と研究サービス。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/w/service.html">
+    <meta property="og:url" content="https://example.com/templates/business/w/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>Service | Wide Horizon</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/w/service.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Knowledge Plaza",
+        "description": "学術的探究と発見の広場",
+        "foundingDate": "1892",
+        "url": "https://example.com/templates/business/w/service.html"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Newsreader', serif, 'Noto Sans JP', sans-serif; }
+        .plaza-mobile-menu { transition: transform 0.3s ease; }
+        .plaza-mobile-menu.active { transform: translateX(0); }
+        .plaza-mobile-menu.inactive { transform: translateX(-100%); }
+        .plaza-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .plaza-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .plaza-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .plaza-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    </style>
 </head>
-<body class="theme-business bg-slate-50 text-slate-900 antialiased">
-    <div class="wide-ambient fixed inset-0 -z-20"></div>
-    <div class="cinema-bars pointer-events-none fixed inset-0 z-40"><div class="bar-top"></div><div class="bar-bottom"></div></div>
-    <div class="wide-menu-backdrop fixed inset-0 z-[9998] bg-slate-950/45 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="wide-mobile-menu" class="wide-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-white/80 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="wide-mobile-menu" class="wide-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-white/60 bg-white/92 p-6 text-slate-900 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl lg:hidden">
-        <div class="mb-6 flex items-center justify-between gap-4">
-            <div><p class="wide-logo text-2xl text-slate-900">WIDE_HORIZON</p><p class="text-xs font-bold uppercase tracking-[0.34em] text-primary">Service map</p></div>
-            <!-- Theme toggle removed for stability -->
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(13, 27, 18, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="plaza-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-lg border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="togglePlazaMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="plaza-mobile-menu" class="plaza-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl text-primary">account_balance</span>
+            <h1 class="text-xl font-bold text-slate-100">Knowledge Plaza</h1>
         </div>
-        <div class="flex flex-col gap-2">
-            <a href="index.html" class="wide-nav-link rounded-2xl px-4 py-3">Home</a>
-            <a href="about.html" class="wide-nav-link rounded-2xl px-4 py-3">About</a>
-            <a href="service.html" class="wide-nav-link active rounded-2xl px-4 py-3">Service</a>
-            <a href="contact.html" class="wide-nav-link rounded-2xl px-4 py-3">Contact</a>
-        </div>
-    </div>
-    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/70 bg-white/72 px-5 py-3 shadow-[0_12px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-background-dark/70">
-            <a href="index.html" class="flex items-center gap-3 text-slate-900 dark:text-white">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/12 text-primary dark:bg-primary/20"><span class="material-symbols-outlined text-2xl">explore</span></div>
-                <div><p class="wide-logo text-2xl">WIDE_HORIZON</p><p class="text-[11px] font-bold uppercase tracking-[0.34em] text-slate-500 dark:text-slate-400">Panorama / quiet luxury</p></div>
-            </a>
-            <div class="nav hidden items-center gap-2 lg:flex">
-                <a href="index.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Home</a>
-                <a href="about.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">About</a>
-                <a href="service.html" class="wide-nav-link active rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Service</a>
-                <a href="contact.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Contact</a>
+        <nav class="mt-10 flex flex-col gap-2 text-sm font-medium uppercase tracking-widest">
+            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded px-4 py-3 hover:bg-white/5">Study Areas</a>
+            <a href="service.html" class="rounded px-4 py-3 bg-primary/10 text-primary">Publications</a>
+            <a href="contact.html" class="rounded px-4 py-3 hover:bg-white/5">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="border-b border-background-dark/10 dark:border-background-light/10 sticky top-0 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
+            <div class="flex items-center gap-10">
+                <a class="flex items-center gap-3 group" href="index.html">
+                    <div class="p-2 bg-background-dark dark:bg-primary rounded-lg text-primary dark:text-background-dark">
+                        <span class="material-symbols-outlined text-2xl">account_balance</span>
+                    </div>
+                    <h2 class="text-xl font-bold tracking-tight">Knowledge Plaza</h2>
+                </a>
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Study Areas</a>
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Publications</a>
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Research</a>
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Archives</a>
+                </nav>
             </div>
-            <div class="hidden items-center gap-3 lg:flex">
-                <!-- Theme toggle removed for stability -->
-                <a href="contact.html" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white dark:bg-primary dark:text-background-dark">Book Session</a>
+            <div class="flex items-center gap-6">
+                <div class="relative hidden sm:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                    <input class="bg-slate-100 dark:bg-background-dark/50 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-accent dark:focus:ring-primary w-48 lg:w-64" placeholder="Search Archives..." type="text"/>
+                </div>
+                <a href="contact.html" class="bg-accent dark:bg-primary text-white dark:text-background-dark px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    Join Inquiry
+                </a>
             </div>
         </div>
     </header>
 
-    <main class="overflow-hidden pb-20">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 pb-12 pt-10 lg:px-10 lg:pb-16 lg:pt-12">
-            <div class="mx-auto max-w-[1440px]">
-                <p class="wide-kicker">Service</p>
-                <div class="mt-6 grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-                    <h1 class="text-4xl md:text-7xl font-light leading-[0.88] tracking-[-0.05em] text-slate-900 xl:text-[6.4rem] dark:text-white"><span class="ib">Programs</span><span class="ib">for the</span><span class="ib text-primary">wide view.</span></h1>
-                    <p class="max-w-3xl text-base leading-8 text-slate-600 sm:text-lg md:leading-9 dark:text-slate-300"><span class="ib">個人向けのリトリートから、</span><span class="ib">ブランド撮影や法人向けホスピタリティ設計まで。</span><span class="ib">Wide Horizon は、風景を主役にした体験づくりを支援します。</span></p>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative w-full h-[50vh] flex items-center overflow-hidden bg-slate-900">
+            <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/70 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1dD2eE3fF4gG5hH6iI7jJ8kK9lL0mM1nN2oO3pP4qQ5rR6sS7tT8uU9vV0wW1xX2yY3zZ4aA5bB6cC7dD8eE9fF0gG1hH2iI3jJ4kK5lL6mM7nN8oO9pP0qQ1rR2sS3tT4uU5vV6wW7xX8yY9zZ0aA1bB2cC3dD4eE5fF6gG7hH8iI9jJ0" alt="Academic Publications"/>
+            <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="max-w-3xl space-y-6">
+                    <span class="inline-block px-4 py-1 border border-primary/40 bg-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em] rounded-full">
+                        Publications &amp; Services
+                    </span>
+                    <h1 class="text-5xl lg:text-6xl font-bold text-white leading-[1.1] italic">
+                        Dispersing <span class="text-primary not-italic">Knowledge</span> to the World.
+                    </h1>
                 </div>
             </div>
         </section>
 
-        <section class="px-6 py-12 lg:px-10 lg:py-16">
-            <div class="mx-auto grid max-w-[1440px] gap-6 md:grid-cols-2">
-                <article class="wide-card rounded-[2rem] p-8"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Program 01</p><h2 class="mt-4 text-3xl font-light text-slate-900 dark:text-white">Panorama Retreat</h2><p class="mt-5 text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">景色の抜けが美しい土地で、</span><span class="ib">滞在と対話を中心に設計する少人数リトリートです。</span></p><ul class="mt-6 space-y-3 text-sm text-slate-500 dark:text-slate-400"><li>・ 2泊3日〜5泊6日の滞在設計</li><li>・ ローカルガイドと連携した体験導線</li><li>・ 写真 / 映像アーカイブの手配</li></ul></article>
-                <article class="wide-card rounded-[2rem] p-8"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Program 02</p><h2 class="mt-4 text-3xl font-light text-slate-900 dark:text-white">Destination Curation</h2><p class="mt-5 text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">ブランドやプロジェクトの文脈に合わせ、</span><span class="ib">撮影地・宿泊地・移動手段を一体で選定します。</span></p><ul class="mt-6 space-y-3 text-sm text-slate-500 dark:text-slate-400"><li>・ ロケーション選定</li><li>・ 宿泊体験の編集</li><li>・ 現地パートナーとの調整</li></ul></article>
-                <article class="wide-card rounded-[2rem] p-8"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Program 03</p><h2 class="mt-4 text-3xl font-light text-slate-900 dark:text-white">Brand Journey Shoot</h2><p class="mt-5 text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">風景と人、滞在の空気感をそのまま伝える、</span><span class="ib">ブランド撮影ディレクションを行います。</span></p><ul class="mt-6 space-y-3 text-sm text-slate-500 dark:text-slate-400"><li>・ ムードボード作成</li><li>・ 撮影クルー / ロケ手配</li><li>・ SNS / LP 用素材設計</li></ul></article>
-                <article class="wide-card rounded-[2rem] p-8"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Program 04</p><h2 class="mt-4 text-3xl font-light text-slate-900 dark:text-white">Hospitality Direction</h2><p class="mt-5 text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">ホテル、別荘、体験施設向けに、</span><span class="ib">景色を活かすホスピタリティ設計を支援します。</span></p><ul class="mt-6 space-y-3 text-sm text-slate-500 dark:text-slate-400"><li>・ ゲスト導線レビュー</li><li>・ 館内サイン / コピー設計</li><li>・ ブランド体験の再編集</li></ul></article>
+        <!-- Study Areas Section -->
+        <section class="py-24 bg-background-light dark:bg-background-dark">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Study Areas</h2>
+                    <h3 class="text-4xl lg:text-5xl font-bold">Departments &amp; Research Fields</h3>
+                    <p class="text-xl text-slate-600 dark:text-slate-400">
+                        Our interdisciplinary approach allows scholars to cross-pollinate ideas between classical and contemporary fields.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group bg-slate-50 dark:bg-background-dark/50 p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">history</span>
+                        <h4 class="text-xl font-bold mt-6 mb-3">Classical Humanities</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Ancient texts, linguistics, and the foundations of societal structures across millennia.
+                        </p>
+                        <a href="#" class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all">Explore Department</a>
+                    </div>
+                    <div class="group bg-slate-50 dark:bg-background-dark/50 p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">science</span>
+                        <h4 class="text-xl font-bold mt-6 mb-3">Theoretical Physics</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Quantum mechanics, cosmic-scale exploration, and the boundaries of known science.
+                        </p>
+                        <a href="#" class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all">Explore Department</a>
+                    </div>
+                    <div class="group bg-slate-50 dark:bg-background-dark/50 p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">account_balance_wallet</span>
+                        <h4 class="text-xl font-bold mt-6 mb-3">Economic History</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Global trade patterns, fiscal evolutions, and socioeconomic shifts shaping modern eras.
+                        </p>
+                        <a href="#" class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all">Explore Department</a>
+                    </div>
+                    <div class="group bg-slate-50 dark:bg-background-dark/50 p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">psychology</span>
+                        <h4 class="text-xl font-bold mt-6 mb-3">Cognitive Sciences</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            The intersection of neuroscience, psychology, and artificial intelligence research.
+                        </p>
+                        <a href="#" class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all">Explore Department</a>
+                    </div>
+                    <div class="group bg-slate-50 dark:bg-background-dark/50 p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">globe</span>
+                        <h4 class="text-xl font-bold mt-6 mb-3">Anthropology</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Cultural studies, archaeological discoveries, and human civilization analysis.
+                        </p>
+                        <a href="#" class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all">Explore Department</a>
+                    </div>
+                    <div class="group bg-slate-50 dark:bg-background-dark/50 p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-accent/40 dark:text-primary/40 group-hover:text-accent dark:group-hover:text-primary transition-colors">biotech</span>
+                        <h4 class="text-xl font-bold mt-6 mb-3">Bioethics</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Philosophical inquiry into medical advancement and the future of human enhancement.
+                        </p>
+                        <a href="#" class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all">Explore Department</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="border-y border-slate-200 bg-white/65 px-6 py-12 backdrop-blur-sm lg:px-10 lg:py-16 dark:border-white/10 dark:bg-background-dark/65">
-            <div class="mx-auto grid max-w-[1440px] gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-                <article class="wide-panel rounded-[2rem] p-8 lg:p-10"><p class="wide-kicker">Process</p><h2 class="mt-5 text-3xl font-light leading-tight text-slate-900 sm:text-4xl md:text-5xl dark:text-white"><span class="ib">Survey,</span><span class="ib">shape,</span><span class="ib text-primary">stage.</span></h2><p class="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300"><span class="ib">体験の目的地だけでなく、</span><span class="ib">そこに向かうまでの時間も含めて設計します。</span></p></article>
-                <div class="grid gap-6 md:grid-cols-3">
-                    <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Step 01</p><h3 class="mt-4 text-2xl font-light text-slate-900 dark:text-white">Survey</h3><p class="mt-4 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">目的と参加者像を整理し、</span><span class="ib">何を感じて帰るかを定義します。</span></p></article>
-                    <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Step 02</p><h3 class="mt-4 text-2xl font-light text-slate-900 dark:text-white">Shape</h3><p class="mt-4 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">行程、景色、宿泊体験をつなぎ、</span><span class="ib">全体の流れを編集します。</span></p></article>
-                    <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Step 03</p><h3 class="mt-4 text-2xl font-light text-slate-900 dark:text-white">Stage</h3><p class="mt-4 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">現地の細部まで整え、</span><span class="ib">記憶に残る本番をつくります。</span></p></article>
+        <!-- Publications Section -->
+        <section class="py-24 bg-slate-50 dark:bg-background-dark/30 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                    <div>
+                        <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em] mb-2">Publications</h2>
+                        <h3 class="text-4xl lg:text-5xl font-bold">Latest Academic Works</h3>
+                    </div>
+                    <a class="text-accent dark:text-primary font-bold uppercase text-xs tracking-[0.2em] border-b border-accent/20 dark:border-primary/20 pb-1 hover:border-accent dark:hover:border-primary transition-all" href="#">View All Publications</a>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <article class="space-y-6">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative group">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5_S4CVZkRXOHm5MoAvUJ5EvW1eiMSBkjmGDu3aHAQ4Rm8tIR908yrQ7NWPXk2w5Q8xL4V8q-6eH-3GUg8YS8EIgN9RnVU3Tvxjm-GoQY_FlrNXyr0dUlFr7K9TKZIr75zNgIuhNSX0XINUOp9kl5IF7IWwfF-65msgVBQC2ILU3eVVJCA1kbhKBe5J3ASB-3WtYH7t40DAKBrdwtw-lxyZEx1K6mgMn-SRw3928Az-8rp7W1Vrhg7GjzCzXf-qEKWCJ6_0NoHfZ0" alt="Scientific Journal"/>
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Physics</div>
+                        </div>
+                        <div class="space-y-3">
+                            <time class="text-xs text-slate-400 uppercase tracking-widest">October 24, 2023</time>
+                            <h4 class="text-2xl font-bold leading-snug hover:text-accent dark:hover:text-primary cursor-pointer transition-colors">Quantum Dissonance: Observation in Entangled States</h4>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                An exploration into how environmental decoherence affects long-range entanglement in semi-isolated systems.
+                            </p>
+                            <a class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all" href="#">Read Full Paper</a>
+                        </div>
+                    </article>
+                    <article class="space-y-6">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative group">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyTD7Dew2895SsFF41FbM13mDJ3m6VL0fwHLa1yWyMyNP400OubwMO8tbWCkF9vqPLdajmHOBhCf2kWMV_1Fu1fMvhdqx4PY5bkDPOuo9NO6IUMw4yxz_kS8wbGl2mQZ_J8p95kSONGIXeGbDSRq9R5F9Kl1Syzsni2nZ6g1DXCmvQlkCKEHddv7hkol0rATNmPSMg6x_y-pkB8TgLlCGRDQdz9t4C95338dC44dIp5zW2twiTYyC-D5XbpyoQFSuir4vSyqpTXtE" alt="Philosophy Text"/>
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Ethics</div>
+                        </div>
+                        <div class="space-y-3">
+                            <time class="text-xs text-slate-400 uppercase tracking-widest">September 12, 2023</time>
+                            <h4 class="text-2xl font-bold leading-snug hover:text-accent dark:hover:text-primary cursor-pointer transition-colors">The Digital Agora: Virtues in Algorithmic Societies</h4>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Re-evaluating Aristotelian ethics within the context of decentralized digital architectures.
+                            </p>
+                            <a class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all" href="#">Read Full Paper</a>
+                        </div>
+                    </article>
+                    <article class="space-y-6">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative group">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAL40UIg65fxtJpvBmoXPwbQQUIK1Lz49fEhj5w5kIVwl0T-TCWhGs4FRjQgE2qjLmaXXiHiPPldRXwLtRP6Jxsony4sTZY7d2FxHFwWv-qJL-Iuh2yjV7N-D9WPaeEPbwW6_SFmGvBUxEe7dc6HHHNVyLpdmgux9vFDwLPVw_xDiuCkeKOYYkCL3CM75rO7tUsxbcoqAI8-eYkmWkms__6-EH07bLtnS4DTqA9I-mofDBWULS3yIEHUcTIP16J2qjHvG6Dw6IdxY" alt="Archives Room"/>
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 text-[10px] uppercase font-bold tracking-widest">History</div>
+                        </div>
+                        <div class="space-y-3">
+                            <time class="text-xs text-slate-400 uppercase tracking-widest">August 05, 2023</time>
+                            <h4 class="text-2xl font-bold leading-snug hover:text-accent dark:hover:text-primary cursor-pointer transition-colors">Silk and Silver: Unrecorded Trade Routes of the 14th Century</h4>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Newly discovered ledger fragments suggest a robust maritime corridor absent from established maps.
+                            </p>
+                            <a class="inline-block pt-2 text-xs font-bold border-b-2 border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-all" href="#">Read Full Paper</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="py-24 bg-background-light dark:bg-background-dark">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Our Services</h2>
+                    <h3 class="text-4xl lg:text-5xl font-bold">Resources for Scholars</h3>
+                    <p class="text-xl text-slate-600 dark:text-slate-400">
+                        We provide comprehensive support for academic research and dissemination of knowledge.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex gap-6 p-6 bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 flex-shrink-0">library_books</span>
+                        <div>
+                            <h4 class="text-xl font-bold mb-3">Archive Access</h4>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Qualified researchers gain access to our extensive collection of 1.2+ million archival items, including rare manuscripts and historical documents.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 p-6 bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 flex-shrink-0">edit_document</span>
+                        <h4 class="text-xl font-bold mb-3">Publication Support</h4>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            From peer review to distribution, we support scholars in publishing their work through our quarterly review and monograph series.
+                        </p>
+                    </div>
+                    <div class="flex gap-6 p-6 bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 flex-shrink-0">groups</span>
+                        <h4 class="text-xl font-bold mb-3">Research Collaborations</h4>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Connect with fellow scholars from 89 countries through our interdisciplinary research programs and symposiums.
+                        </p>
+                    </div>
+                    <div class="flex gap-6 p-6 bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 flex-shrink-0">cloud_upload</span>
+                        <h4 class="text-xl font-bold mb-3">Digital Preservation</h4>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            State-of-the-art digitization services ensure the preservation and accessibility of fragile historical materials.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 bg-background-dark text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px]"></div>
+            <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative z-10">
+                <h2 class="text-4xl lg:text-6xl font-bold mb-8 italic">Begin Your <span class="text-primary not-italic">Scholarly</span> Journey</h2>
+                <p class="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
+                    Access to Knowledge Plaza is available to qualified researchers, doctoral candidates, and institutional partners.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="contact.html" class="bg-primary text-background-dark px-10 py-5 rounded-lg font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                        Request Academic Access
+                    </a>
+                    <a href="about.html" class="border border-white/20 hover:bg-white/5 px-10 py-5 rounded-lg font-bold uppercase tracking-widest transition-colors">
+                        Learn About Membership
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-slate-200 px-6 pb-12 pt-16 lg:px-10 dark:border-white/10">
-        <div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-            <div><p class="wide-logo text-3xl text-slate-900 dark:text-white">WIDE_HORIZON</p><p class="mt-4 max-w-md text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">Tokyo / Reykjavik / Vancouver.</span></p></div>
-            <div><p class="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Navigation</p><div class="mt-4 flex flex-col gap-3 text-sm font-semibold uppercase text-slate-500 dark:text-slate-400"><a href="index.html">Home</a><a href="about.html">About</a><a href="service.html">Service</a><a href="contact.html">Contact</a></div></div>
-            <div><p class="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Contact</p><div class="mt-4 flex flex-col gap-3 text-sm text-slate-500 dark:text-slate-400"><p>contact@wide-horizon.jp</p><p>03-6407-2185</p><p>Mon-Fri / 10:00-18:00</p></div></div>
+    <!-- Footer -->
+    <footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-accent dark:text-primary">account_balance</span>
+                        <h4 class="font-bold text-lg">Knowledge Plaza</h4>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        A global institution dedicated to the preservation of history and the exploration of future frontiers through rigorous interdisciplinary study.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Directories</h5>
+                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Faculty Search</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Archive Index</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Lab Facilities</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Grant Opportunities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Publications</h5>
+                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Quarterly Review</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Monograph Series</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Annual Report</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Open Access Journal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Contact</h5>
+                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-xs mt-1">location_on</span>
+                            <span>14th Academic Ave, University Circle, London</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-xs">mail</span>
+                            <span>inquiry@knowledge-plaza.org</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 uppercase tracking-widest">
+                <p>© 2023 Knowledge Plaza. All Rights Reserved.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-accent dark:hover:text-primary" href="#">Privacy Policy</a>
+                    <a class="hover:text-accent dark:hover:text-primary" href="#">Ethics Statement</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+    <script>
+        function togglePlazaMenu() {
+            const menu = document.getElementById('plaza-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.plaza-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

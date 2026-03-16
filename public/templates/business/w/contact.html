@@ -1,102 +1,366 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wide Horizon へのお問い合わせ。リトリート設計、撮影、ホスピタリティ刷新の相談を受け付けています。">
-            <meta property="og:title" content="Contact | Wide Horizon">
-    <meta property="og:description" content="Wide Horizon へのお問い合わせ。リトリート設計、撮影、ホスピタリティ刷新の相談を受け付けています。">
+    <title>Contact | Knowledge Plaza | 探求の広場</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/w/contact.html">
+    <meta name="description" content="Knowledge Plaza へのお問い合わせ。学術アクセスの申請、研究協力、パートナーシップについて。">
+    <meta property="og:title" content="Contact | Knowledge Plaza">
+    <meta property="og:description" content="Knowledge Plaza へのお問い合わせ。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/w/contact.html">
+    <meta property="og:url" content="https://example.com/templates/business/w/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>Contact | Wide Horizon</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/w/contact.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Knowledge Plaza",
+        "description": "学術的探究と発見の広場",
+        "foundingDate": "1892",
+        "url": "https://example.com/templates/business/w/contact.html",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "inquiry@knowledge-plaza.org",
+            "address": "14th Academic Ave, University Circle, London"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Newsreader', serif, 'Noto Sans JP', sans-serif; }
+        .plaza-mobile-menu { transition: transform 0.3s ease; }
+        .plaza-mobile-menu.active { transform: translateX(0); }
+        .plaza-mobile-menu.inactive { transform: translateX(-100%); }
+        .plaza-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .plaza-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .plaza-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .plaza-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .contact-input {
+            @apply w-full bg-slate-100 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-accent dark:focus:ring-primary focus:border-transparent transition-all;
+        }
+        .contact-label {
+            @apply block text-sm font-bold uppercase tracking-widest text-slate-700 dark:text-slate-300 mb-2;
+        }
+    </style>
 </head>
-<body class="theme-business bg-slate-50 text-slate-900 antialiased">
-    <div class="wide-ambient fixed inset-0 -z-20"></div>
-    <div class="cinema-bars pointer-events-none fixed inset-0 z-40"><div class="bar-top"></div><div class="bar-bottom"></div></div>
-    <div class="wide-menu-backdrop fixed inset-0 z-[9998] bg-slate-950/45 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="wide-mobile-menu" class="wide-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-white/80 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.18)] backdrop-blur lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="wide-mobile-menu" class="wide-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-white/60 bg-white/92 p-6 text-slate-900 shadow-[0_30px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl lg:hidden">
-        <div class="mb-6 flex items-center justify-between gap-4">
-            <div><p class="wide-logo text-2xl text-slate-900">WIDE_HORIZON</p><p class="text-xs font-bold uppercase tracking-[0.34em] text-primary">Contact session</p></div>
-            <!-- Theme toggle removed for stability -->
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(13, 27, 18, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="plaza-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-lg border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="togglePlazaMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="plaza-mobile-menu" class="plaza-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl text-primary">account_balance</span>
+            <h1 class="text-xl font-bold text-slate-100">Knowledge Plaza</h1>
         </div>
-        <div class="flex flex-col gap-2">
-            <a href="index.html" class="wide-nav-link rounded-2xl px-4 py-3">Home</a>
-            <a href="about.html" class="wide-nav-link rounded-2xl px-4 py-3">About</a>
-            <a href="service.html" class="wide-nav-link rounded-2xl px-4 py-3">Service</a>
-            <a href="contact.html" class="wide-nav-link active rounded-2xl px-4 py-3">Contact</a>
-        </div>
-    </div>
-    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/70 bg-white/72 px-5 py-3 shadow-[0_12px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-background-dark/70">
-            <a href="index.html" class="flex items-center gap-3 text-slate-900 dark:text-white">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/12 text-primary dark:bg-primary/20"><span class="material-symbols-outlined text-2xl">explore</span></div>
-                <div><p class="wide-logo text-2xl">WIDE_HORIZON</p><p class="text-[11px] font-bold uppercase tracking-[0.34em] text-slate-500 dark:text-slate-400">Panorama / quiet luxury</p></div>
-            </a>
-            <div class="nav hidden items-center gap-2 lg:flex">
-                <a href="index.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Home</a>
-                <a href="about.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">About</a>
-                <a href="service.html" class="wide-nav-link rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Service</a>
-                <a href="contact.html" class="wide-nav-link active rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]">Contact</a>
+        <nav class="mt-10 flex flex-col gap-2 text-sm font-medium uppercase tracking-widest">
+            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded px-4 py-3 hover:bg-white/5">Study Areas</a>
+            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5">Publications</a>
+            <a href="contact.html" class="rounded px-4 py-3 bg-primary/10 text-primary">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="border-b border-background-dark/10 dark:border-background-light/10 sticky top-0 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
+            <div class="flex items-center gap-10">
+                <a class="flex items-center gap-3 group" href="index.html">
+                    <div class="p-2 bg-background-dark dark:bg-primary rounded-lg text-primary dark:text-background-dark">
+                        <span class="material-symbols-outlined text-2xl">account_balance</span>
+                    </div>
+                    <h2 class="text-xl font-bold tracking-tight">Knowledge Plaza</h2>
+                </a>
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-600 dark:text-slate-400">
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Study Areas</a>
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Publications</a>
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Research</a>
+                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Archives</a>
+                </nav>
             </div>
-            <div class="hidden items-center gap-3 lg:flex">
-                <!-- Theme toggle removed for stability -->
-                <a href="contact.html" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white dark:bg-primary dark:text-background-dark">Book Session</a>
+            <div class="flex items-center gap-6">
+                <div class="relative hidden sm:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                    <input class="bg-slate-100 dark:bg-background-dark/50 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-accent dark:focus:ring-primary w-48 lg:w-64" placeholder="Search Archives..." type="text"/>
+                </div>
+                <a href="contact.html" class="bg-accent dark:bg-primary text-white dark:text-background-dark px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    Join Inquiry
+                </a>
             </div>
         </div>
     </header>
 
-    <main class="overflow-hidden pb-20">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 pb-12 pt-10 lg:px-10 lg:pb-16 lg:pt-12">
-            <div class="mx-auto max-w-[1440px]">
-                <p class="wide-kicker">Contact</p>
-                <div class="mt-6 grid gap-8 xl:grid-cols-[0.88fr_1.12fr]">
+    <main>
+        <!-- Hero Section -->
+        <section class="relative w-full h-[40vh] flex items-center overflow-hidden bg-slate-900">
+            <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/70 to-transparent z-10"></div>
+            <img class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmN3oO4pP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7cC8dD9eE0fF1gG2hH3iI4jJ5kK6lL7mM8nN9oO0pP1qQ2rR3sS4tT5uU6vV7wW8xX9yY0zZ1aA2bB3cC4dD5eE6fF7gG8hH9iI0jJ1kK2lL3mM4nN5oO6pP7qQ8rR9sS0tT1uU2vV3wW4xX5yY6zZ7" alt="Contact Hall"/>
+            <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="max-w-3xl space-y-6">
+                    <span class="inline-block px-4 py-1 border border-primary/40 bg-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em] rounded-full">
+                        Get in Touch
+                    </span>
+                    <h1 class="text-5xl lg:text-6xl font-bold text-white leading-[1.1] italic">
+                        Begin a <span class="text-primary not-italic">Dialogue</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form & Info Section -->
+        <section class="py-24 bg-background-light dark:bg-background-dark">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Form -->
                     <div>
-                        <h1 class="text-4xl md:text-7xl font-light leading-[0.88] tracking-[-0.05em] text-slate-900 xl:text-[6.2rem] dark:text-white"><span class="ib">Let's map</span><span class="ib">your next</span><span class="ib text-primary">horizon.</span></h1>
-                        <p class="mt-8 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg md:leading-9 dark:text-slate-300"><span class="ib">新しい体験づくりの相談、</span><span class="ib">撮影や滞在の再設計、</span><span class="ib">ブランドの空気感刷新まで。</span><span class="ib">まだ構想段階でも問題ありません。</span></p>
-                        <div class="mt-10 grid gap-4 sm:grid-cols-2">
-                            <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Email</p><p class="mt-4 text-2xl font-light text-slate-900 dark:text-white">contact@wide-horizon.jp</p><p class="mt-3 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">24時間以内を目安に返信します。</span></p></article>
-                            <article class="wide-card rounded-[1.8rem] p-6"><p class="text-xs font-bold uppercase tracking-[0.28em] text-primary">Call</p><p class="mt-4 text-2xl font-light text-slate-900 dark:text-white">03-6407-2185</p><p class="mt-3 text-sm leading-7 text-slate-500 dark:text-slate-400"><span class="ib">平日 10:00-18:00。</span><span class="ib">短い壁打ちも歓迎です。</span></p></article>
+                        <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em] mb-4">Inquiry Form</h2>
+                        <h3 class="text-3xl font-bold mb-8">Send Us a Message</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="contact-label" for="name">Full Name</label>
+                                <input class="contact-input" id="name" name="name" type="text" placeholder="Dr. Jane Smith" required/>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="email">Email Address</label>
+                                <input class="contact-input" id="email" name="email" type="email" placeholder="jane.smith@university.edu" required/>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="affiliation">Institutional Affiliation</label>
+                                <input class="contact-input" id="affiliation" name="affiliation" type="text" placeholder="University or Organization"/>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="subject">Subject</label>
+                                <select class="contact-input" id="subject" name="subject" required>
+                                    <option value="">Select a subject...</option>
+                                    <option value="academic-access">Academic Access Request</option>
+                                    <option value="research-collaboration">Research Collaboration</option>
+                                    <option value="publication">Publication Inquiry</option>
+                                    <option value="partnership">Institutional Partnership</option>
+                                    <option value="donation">Patronage &amp; Donations</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="contact-label" for="message">Message</label>
+                                <textarea class="contact-input min-h-[150px] resize-y" id="message" name="message" rows="5" placeholder="Please describe your inquiry in detail..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-accent dark:bg-primary text-white dark:text-background-dark px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="space-y-12">
+                        <div>
+                            <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em] mb-4">Contact Information</h2>
+                            <h3 class="text-3xl font-bold mb-8">Reach Our Offices</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-3xl text-accent/40 dark:text-primary/40 flex-shrink-0">location_on</span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Main Office</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">14th Academic Ave, University Circle<br/>London, UK SW7 2AZ</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-3xl text-accent/40 dark:text-primary/40 flex-shrink-0">mail</span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">inquiry@knowledge-plaza.org</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-3xl text-accent/40 dark:text-primary/40 flex-shrink-0">phone</span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Phone</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">+44 (0)20 7589 4200</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-3xl text-accent/40 dark:text-primary/40 flex-shrink-0">schedule</span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Office Hours</h4>
+                                    <p class="text-slate-600 dark:text-slate-400">Monday - Friday: 9:00 AM - 5:00 PM GMT<br/>Saturday: 10:00 AM - 2:00 PM GMT</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Regional Offices -->
+                        <div class="pt-8 border-t border-slate-200 dark:border-slate-800">
+                            <h4 class="font-bold mb-6">Regional Offices</h4>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800">
+                                    <span class="font-medium">North America (New York)</span>
+                                    <span class="text-slate-500">ny@knowledge-plaza.org</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800">
+                                    <span class="font-medium">Europe (Paris)</span>
+                                    <span class="text-slate-500">paris@knowledge-plaza.org</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800">
+                                    <span class="font-medium">Asia Pacific (Tokyo)</span>
+                                    <span class="text-slate-500">tokyo@knowledge-plaza.org</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <article class="wide-panel rounded-[2rem] p-8 lg:p-10">
-                        <p class="wide-kicker">Project brief</p>
-                        <form data-demo-form="true" onsubmit="event.preventDefault();" method="post" action="#" class="mt-8 space-y-5">
-                            <div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="company">Company / Brand</label><input id="company" class="wide-input rounded-2xl" type="text" name="company" placeholder="会社名・ブランド名" required></div>
-                            <div class="grid gap-5 md:grid-cols-2">
-                                <div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="type">Project Type</label><select id="type" class="wide-input rounded-2xl" name="type" required><option value="">選択してください</option><option value="retreat">リトリート設計</option><option value="curation">旅程 / 滞在キュレーション</option><option value="shoot">撮影ディレクション</option><option value="hospitality">ホスピタリティ刷新</option></select></div>
-                                <div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="timeline">Desired Timeline</label><input id="timeline" class="wide-input rounded-2xl" type="text" name="timeline" placeholder="例: 初夏までに実施"></div>
-                            </div>
-                            <div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="email">Email</label><input id="email" class="wide-input rounded-2xl" type="email" name="email" placeholder="contact@example.com" required></div>
-                            <div><label class="mb-2 block text-xs font-bold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-300" for="message">What should the guest feel?</label><textarea id="message" class="wide-input min-h-40 rounded-[1.7rem]" name="message" placeholder="参加者や宿泊者に、どんな景色と感情を持ち帰ってほしいかを書いてください。"></textarea></div>
-                            <button class="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 md:px-8 md:py-4 text-base font-semibold uppercase tracking-[0.18em] text-white transition-transform hover:-translate-y-1 dark:bg-primary dark:text-background-dark" type="submit">Send Inquiry</button>
-                        </form>
-                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="py-0 bg-slate-100 dark:bg-background-dark/30">
+            <div class="w-full h-[400px] bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                <div class="text-center p-8">
+                    <span class="material-symbols-outlined text-6xl text-slate-400 mb-4">map</span>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm uppercase tracking-widest">Interactive Map Available</p>
+                    <p class="text-slate-400 dark:text-slate-500 text-xs mt-2">Visit our main campus in University Circle, London</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-24 bg-background-light dark:bg-background-dark">
+            <div class="max-w-4xl mx-auto px-6 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">FAQ</h2>
+                    <h3 class="text-4xl lg:text-5xl font-bold">Frequently Asked Questions</h3>
+                </div>
+                <div class="space-y-4">
+                    <details class="group bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold">
+                            How do I apply for academic access?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Academic access is available to doctoral candidates, postdoctoral researchers, and faculty members. Please submit your application through our online form, including your institutional affiliation, research proposal, and two letters of recommendation. Processing typically takes 4-6 weeks.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold">
+                            Are there fees associated with archive access?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Access fees vary by affiliation. Academic researchers from partner institutions receive complimentary access. Independent scholars may apply for day passes (£50) or annual memberships (£500). Digitization services and specialized assistance may incur additional charges.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold">
+                            Can I visit the physical archives in person?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Yes, qualified researchers may visit our reading rooms by appointment. Please note that some materials require 48-hour advance notice for retrieval. Special collections and fragile documents may have restricted handling requirements.
+                        </div>
+                    </details>
+                    <details class="group bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 rounded-lg">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold">
+                            How can my institution become a partner?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Institutional partnerships are established through formal agreements. Contact our partnerships team to discuss collaboration opportunities, including faculty exchanges, joint research initiatives, and shared digitization projects.
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-slate-200 px-6 pb-12 pt-16 lg:px-10 dark:border-white/10">
-        <div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-            <div><p class="wide-logo text-3xl text-slate-900 dark:text-white">WIDE_HORIZON</p><p class="mt-4 max-w-md text-sm leading-8 text-slate-500 dark:text-slate-400"><span class="ib">Tokyo / Reykjavik / Vancouver.</span></p></div>
-            <div><p class="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Navigation</p><div class="mt-4 flex flex-col gap-3 text-sm font-semibold uppercase text-slate-500 dark:text-slate-400"><a href="index.html">Home</a><a href="about.html">About</a><a href="service.html">Service</a><a href="contact.html">Contact</a></div></div>
-            <div><p class="text-sm font-semibold uppercase tracking-[0.24em] text-primary">Contact</p><div class="mt-4 flex flex-col gap-3 text-sm text-slate-500 dark:text-slate-400"><p>contact@wide-horizon.jp</p><p>03-6407-2185</p><p>Mon-Fri / 10:00-18:00</p></div></div>
+    <!-- Footer -->
+    <footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-accent dark:text-primary">account_balance</span>
+                        <h4 class="font-bold text-lg">Knowledge Plaza</h4>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        A global institution dedicated to the preservation of history and the exploration of future frontiers through rigorous interdisciplinary study.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Directories</h5>
+                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Faculty Search</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Archive Index</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Lab Facilities</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Grant Opportunities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Publications</h5>
+                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Quarterly Review</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Monograph Series</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Annual Report</a></li>
+                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Open Access Journal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Contact</h5>
+                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-xs mt-1">location_on</span>
+                            <span>14th Academic Ave, University Circle, London</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-xs">mail</span>
+                            <span>inquiry@knowledge-plaza.org</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 uppercase tracking-widest">
+                <p>© 2023 Knowledge Plaza. All Rights Reserved.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-accent dark:hover:text-primary" href="#">Privacy Policy</a>
+                    <a class="hover:text-accent dark:hover:text-primary" href="#">Ethics Statement</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+    <script>
+        function togglePlazaMenu() {
+            const menu = document.getElementById('plaza-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.plaza-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TRUST_GUARD へのお問い合わせ。無料セキュリティ診断、導入相談、緊急連絡窓口はこちら。">
+    <meta property="og:title" content="Contact | TRUST_GUARD">
+    <meta property="og:description" content="TRUST_GUARD へのお問い合わせ。無料セキュリティ診断、導入相談。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/t/contact.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <title>Contact | TRUST_GUARD</title>
+    <link rel="canonical" href="https://example.com/templates/business/t/contact.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        :root {
+            --trust-primary: #38ff14;
+            --trust-primary-dim: rgba(56, 255, 20, 0.2);
+            --trust-alert: #ff3b30;
+            --trust-bg: #0a0f09;
+            --trust-surface: #12230f;
+            --trust-border: #274b20;
+            --trust-text: #f1f5f9;
+            --trust-text-dim: #94a3b8;
+        }
+        .trust-theme {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background-color: var(--trust-bg);
+            color: var(--trust-text);
+        }
+        .trust-scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+        .trust-grid-bg {
+            background-image: radial-gradient(circle at 1px 1px, var(--trust-border) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .trust-btn-primary {
+            background: var(--trust-primary);
+            color: var(--trust-bg);
+            transition: all 0.2s ease;
+        }
+        .trust-btn-primary:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+        .trust-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--trust-bg);
+            border: 1px solid var(--trust-border);
+            border-radius: 4px;
+            color: var(--trust-text);
+            font-family: 'Space Grotesk', monospace;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .trust-input:focus {
+            outline: none;
+            border-color: var(--trust-primary);
+            box-shadow: 0 0 20px var(--trust-primary-dim);
+        }
+        .trust-input::placeholder {
+            color: var(--trust-text-dim);
+        }
+        .trust-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%2338ff14' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 44px;
+        }
+        .trust-textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+        .trust-menu-backdrop { display: none; }
+        @media (max-width: 1023px) {
+            .trust-menu-backdrop { display: block; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+            .trust-menu-backdrop.active { opacity: 1; visibility: visible; }
+        }
+        .trust-mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        @media (max-width: 1023px) { .trust-mobile-menu.active { transform: translateX(0); } }
+        @media (min-width: 1024px) { .trust-mobile-menu { display: none; } }
+        .trust-mobile-toggle { display: none; }
+        @media (max-width: 1023px) {
+            .trust-mobile-toggle { display: flex; }
+            .trust-mobile-toggle .bar {
+                display: block; width: 24px; height: 2px; background: var(--trust-primary);
+                position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+                transition: all 0.3s ease;
+            }
+            .trust-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
+            .trust-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
+            .trust-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+            .trust-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .trust-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body class="trust-theme overflow-x-hidden">
+    <div class="trust-menu-backdrop" id="trustMenuBackdrop"></div>
+    <button class="trust-mobile-toggle fixed top-6 right-6 z-[100] p-2" id="trustMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="trustMobileMenu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="trust-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-xl border-2 border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 shadow-2xl" id="trustMobileMenu">
+        <div class="mb-6 flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">shield_with_heart</span>
+            <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a href="index.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">HOME</a>
+            <a href="about.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">ABOUT</a>
+            <a href="service.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">SERVICES</a>
+            <a href="contact.html" class="trust-nav-link active rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);">CONTACT</a>
+        </nav>
+    </div>
+
+    <header class="sticky top-0 z-50 w-full border-b-2 border-[var(--trust-border)] bg-[var(--trust-bg)]/95 backdrop-blur">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[var(--trust-primary)] text-3xl">shield_with_heart</span>
+                <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-8">
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="index.html">HOME</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="about.html">ABOUT</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="service.html">SERVICES</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);" href="contact.html">CONTACT</a>
+            </nav>
+            <a href="contact.html" class="trust-btn-primary px-6 py-2 text-sm font-bold uppercase tracking-tighter">SECURE NETWORK</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative border-b-2 border-[var(--trust-border)] trust-grid-bg overflow-hidden py-20 px-6">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="inline-flex items-center gap-2 rounded border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] px-3 py-1 mb-6">
+                    <span class="material-symbols-outlined text-sm" style="color: var(--trust-primary);">mail</span>
+                    <span class="font-mono text-[10px] uppercase tracking-[0.2em]" style="color: var(--trust-primary);">SECURE_CHANNEL</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+                    CONTACT <span style="color: var(--trust-primary);">US</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl uppercase tracking-widest font-light leading-relaxed mb-10" style="color: var(--trust-text-dim);">
+                    インフラの不安、監査対応、ゼロトラスト導入、権限見直しなど、<br/>
+                    論点を整理しながら最適なソリューションをご提案します。
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="py-24 px-6 max-w-[1440px] mx-auto">
+            <div class="grid gap-10 xl:grid-cols-2">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl border-2 border-[var(--trust-primary)] bg-[var(--trust-surface)] p-8 lg:p-10">
+                        <div class="mb-6">
+                            <p class="font-mono text-xs uppercase tracking-[0.3em]" style="color: var(--trust-primary);">ESTABLISH_SECURE_LINK</p>
+                            <p class="mt-2 text-sm" style="color: var(--trust-text-dim);">
+                                必須項目を入力し、送信ボタンを押下してください。<br/>
+                                暗号化された安全なチャンネルで受信します。
+                            </p>
+                        </div>
+                        <form onsubmit="event.preventDefault(); alert('送信完了（デモ）'); return false;" class="space-y-5">
+                            <div class="grid gap-5 md:grid-cols-2">
+                                <div>
+                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="name">Name *</label>
+                                    <input id="name" class="trust-input" type="text" placeholder="山田 太郎" required>
+                                </div>
+                                <div>
+                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="company">Company *</label>
+                                    <input id="company" class="trust-input" type="text" placeholder="株式会社○○" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="email">Email *</label>
+                                <input id="email" class="trust-input" type="email" placeholder="authorized@company.com" required>
+                            </div>
+                            <div class="grid gap-5 md:grid-cols-2">
+                                <div>
+                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="service">Service</label>
+                                    <select id="service" class="trust-input trust-select">
+                                        <option value="">選択してください</option>
+                                        <option value="diagnostic">無料セキュリティ診断</option>
+                                        <option value="soc">SOC 監視サービス</option>
+                                        <option value="zerotrust">ゼロトラスト導入</option>
+                                        <option value="compliance">コンプライアンス対応</option>
+                                        <option value="other">その他相談</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="priority">Priority</label>
+                                    <select id="priority" class="trust-input trust-select">
+                                        <option value="normal">通常</option>
+                                        <option value="high">High - 優先的対応希望</option>
+                                        <option value="urgent">Urgent - 緊急</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="mb-2 block font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);" for="message">Message *</label>
+                                <textarea id="message" class="trust-input trust-textarea" placeholder="現在の課題、守りたい対象、想定納期、予算感など" required></textarea>
+                            </div>
+                            <button class="trust-btn-primary w-full rounded px-6 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em]" type="submit">
+                                [ TRANSMIT_REQUEST ]
+                            </button>
+                            <p class="text-center text-xs" style="color: var(--trust-text-dim);">
+                                送信することで、プライバシーポリシーに同意したものとみなします。
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
+                        <p class="font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-primary);">RESPONSE_WINDOW</p>
+                        <h2 class="mt-4 font-display text-2xl font-black uppercase tracking-[0.1em]">通常 1 営業日以内に返信</h2>
+                        <p class="mt-4 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
+                            緊急度に応じて、専任担当または一次対応チームが折り返します。<br/>
+                            緊急時は、电话での連絡も可能です。
+                        </p>
+                        <div class="mt-6 flex items-center gap-3 rounded-lg border border-[var(--trust-border)] bg-[var(--trust-bg)] p-4">
+                            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">phone_in_talk</span>
+                            <div>
+                                <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Emergency Hotline</p>
+                                <p class="font-mono text-lg font-bold" style="color: var(--trust-primary);">0120-XXX-XXX</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
+                        <p class="font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-primary);">CONTACT_INFORMATION</p>
+                        <h2 class="mt-4 font-display text-xl font-black uppercase tracking-[0.1em]">Company Info</h2>
+                        <div class="mt-4 space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">location_on</span>
+                                <div>
+                                    <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Address</p>
+                                    <p class="text-sm" style="color: var(--trust-text);">〒100-0000 東京都千代田区○○1-2-3 ○○ビル 10F</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">schedule</span>
+                                <div>
+                                    <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Hours</p>
+                                    <p class="text-sm" style="color: var(--trust-text);">平日 9:00 - 18:00（土日祝・年末年始を除く）</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">mail</span>
+                                <div>
+                                    <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-text-dim);">Email</p>
+                                    <p class="text-sm" style="color: var(--trust-text);">info@trustguard.example.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border-2 border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] p-8">
+                        <p class="font-mono text-[11px] uppercase tracking-[0.24em]" style="color: var(--trust-primary);">ENCRYPTED_SESSION</p>
+                        <h2 class="mt-4 font-display text-xl font-black uppercase tracking-[0.1em]">初回ヒアリング</h2>
+                        <p class="mt-4 text-sm leading-relaxed" style="color: var(--trust-text);">
+                            監査要件や既存構成に応じて必要な資料範囲もご案内します。<br/>
+                            既存投資の活用も提案。無理な乗り換えは推奨しません。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="border-t-2 border-[var(--trust-border)] py-24 px-6 bg-[var(--trust-bg)]">
+            <div class="max-w-[1440px] mx-auto text-center">
+                <div class="bg-[var(--trust-surface)] border-4 border-[var(--trust-border)] p-16 max-w-4xl mx-auto relative overflow-hidden">
+                    <div class="trust-scanline absolute inset-0 opacity-10"></div>
+                    <p class="font-mono text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--trust-primary);">SECURE_YOUR_NETWORK</p>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter">
+                        Ready to <span style="color: var(--trust-primary);">stabilize</span> your network?
+                    </h2>
+                    <p class="mb-10 text-lg uppercase tracking-widest relative z-10" style="color: var(--trust-text-dim);">
+                        デプロイメントは包括的なインフラストラクチャスキャンから開始。
+                    </p>
+                    <a href="contact.html" class="trust-btn-primary px-16 py-6 text-xl font-black uppercase tracking-widest transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)] inline-block">
+                        Secure Your Network
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[var(--trust-bg)] border-t-2 border-[var(--trust-border)] py-12 px-6">
+        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[var(--trust-primary)] text-2xl">shield_with_heart</span>
+                <span class="text-sm font-bold uppercase tracking-widest" style="color: var(--trust-text-dim);">TRUST_GUARD © 2024</span>
+            </div>
+            <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em]" style="color: var(--trust-text-dim);">
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Privacy_Protocol</a>
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Service_Agreement</a>
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Compliance_Logs</a>
+            </div>
+            <div class="flex gap-4">
+                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
+                    <span class="material-symbols-outlined text-sm">share</span>
+                </div>
+                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
+                    <span class="material-symbols-outlined text-sm">terminal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('trustMobileToggle');
+            const menu = document.getElementById('trustMobileMenu');
+            const backdrop = document.getElementById('trustMenuBackdrop');
+            if (!toggle || !menu || !backdrop) return;
+            function closeMenu() {
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = menu.classList.contains('active');
+                if (isOpen) { closeMenu(); } else {
+                    menu.classList.add('active');
+                    backdrop.classList.add('active');
+                    toggle.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+            backdrop.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.trust-nav-link').forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.style.color = 'var(--trust-primary)';
+                }
+            });
+        })();
+    </script>
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

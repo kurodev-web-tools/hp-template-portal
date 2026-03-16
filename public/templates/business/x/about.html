@@ -3,90 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Xtreme Snap の思想と、限界突破の瞬間を支える設計哲学を紹介します。">
-            <meta property="og:title" content="About | Xtreme Snap">
-    <meta property="og:description" content="Xtreme Snap の思想と、限界突破の瞬間を支える設計哲学を紹介します。">
+    <title>About | SYSTYX CORE | Systemic Infrastructure</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/x/about.html">
+    <meta name="description" content="SYSTYX CORE の理念と技術。低遅延カーネルシステムで、エンタープライズスケールのインフラストラクチャを実現。">
+    <meta property="og:title" content="About | SYSTYX CORE">
+    <meta property="og:description" content="SYSTYX CORE の理念と技術。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/x/about.html">
+    <meta property="og:url" content="https://example.com/templates/business/x/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>About | Xtreme Snap</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/x/about.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SYSTYX CORE",
+        "description": "Systemic infrastructure for enterprise scale",
+        "applicationCategory": "BusinessApplication",
+        "url": "https://example.com/templates/business/x/about.html"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500;700&family=Montserrat:wght@700;900&family=Space+Grotesk:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .systyx-mobile-menu { transition: transform 0.3s ease; }
+        .systyx-mobile-menu.active { transform: translateX(0); }
+        .systyx-mobile-menu.inactive { transform: translateX(-100%); }
+        .systyx-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .systyx-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .systyx-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .systyx-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    </style>
 </head>
-<body class="theme-business bg-background-dark text-slate-100 antialiased">
-    <div class="xtreme-grid fixed inset-0 -z-20"></div>
-    <div class="xtreme-menu-backdrop fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="xtreme-mobile-menu" class="xtreme-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/50 bg-background-dark/90 text-white shadow-[0_18px_40px_rgba(0,0,0,0.45)] lg:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="xtreme-mobile-menu" class="xtreme-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[1.8rem] border border-white/10 bg-background-dark/95 p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.55)] lg:hidden">
-        <div class="mb-6 flex items-center justify-between gap-4">
-            <div><p class="xtreme-logo text-2xl text-white">XTREME_SNAP</p><p class="text-xs font-black uppercase tracking-[0.32em] text-primary">About force</p></div>
-            <!-- Theme toggle removed for stability -->
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 25, 34, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="systyx-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleSystyxMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="systyx-mobile-menu" class="systyx-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-3xl text-primary">terminal</span>
+            <h1 class="text-sm font-black leading-tight tracking-tighter uppercase text-slate-100">SYSTYX CORE</h1>
         </div>
-        <div class="flex flex-col gap-2">
-            <a href="index.html" class="xtreme-nav-link rounded-2xl px-4 py-3">Home</a>
-            <a href="about.html" class="xtreme-nav-link active rounded-2xl px-4 py-3">About</a>
-            <a href="service.html" class="xtreme-nav-link rounded-2xl px-4 py-3">Service</a>
-            <a href="contact.html" class="xtreme-nav-link rounded-2xl px-4 py-3">Contact</a>
-        </div>
-    </div>
-    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/10 bg-background-dark/78 px-5 py-3 backdrop-blur-xl">
-            <a href="index.html" class="flex items-center gap-3 text-white">
-                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-background-dark"><span class="material-symbols-outlined text-2xl">bolt</span></div>
-                <div><p class="xtreme-logo text-2xl">XTREME_SNAP</p><p class="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Break limits / all terrain</p></div>
-            </a>
-            <div class="nav hidden items-center gap-2 lg:flex">
-                <a href="index.html" class="xtreme-nav-link rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.16em]">Home</a>
-                <a href="about.html" class="xtreme-nav-link active rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.16em]">About</a>
-                <a href="service.html" class="xtreme-nav-link rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.16em]">Service</a>
-                <a href="contact.html" class="xtreme-nav-link rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.16em]">Contact</a>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5 text-[11px] font-bold uppercase tracking-wider">Home</a>
+            <a href="about.html" class="rounded px-4 py-3 bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider">About</a>
+            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5 text-[11px] font-bold uppercase tracking-wider">Services</a>
+            <a href="contact.html" class="rounded px-4 py-3 hover:bg-white/5 text-[11px] font-bold uppercase tracking-wider">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-2">
+        <div class="flex items-center justify-between mx-auto max-w-[1440px]">
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-3xl">terminal</span>
+                    <h2 class="text-slate-900 dark:text-slate-100 text-sm font-black leading-tight tracking-tighter uppercase">SYSTYX CORE</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-6 border-l border-slate-200 dark:border-slate-800 pl-6">
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Nodes</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Mesh API</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Registry</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="about.html">Analytics</a>
+                </nav>
             </div>
-            <div class="hidden items-center gap-3 lg:flex">
-                <!-- Theme toggle removed for stability -->
-                <a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-background-dark">Join Now</a>
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <span class="material-symbols-outlined absolute left-2 top-1.5 text-slate-500 text-sm">search</span>
+                    <input class="w-48 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-[11px] py-1.5 pl-8 pr-2 focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-slate-500" placeholder="SEARCH SYSTEM..." type="text"/>
+                </div>
+                <a href="contact.html" class="bg-primary text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded hover:bg-blue-600 transition-colors">
+                    Deploy Instance
+                </a>
+                <div class="size-8 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"></div>
             </div>
         </div>
     </header>
 
-    <main class="overflow-hidden pb-20">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 pb-12 pt-10 lg:px-10 lg:pb-16 lg:pt-12">
-            <div class="mx-auto max-w-[1440px]">
-                <p class="xtreme-kicker">About</p>
-                <div class="mt-6 grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-                    <h1 class="xtreme-display text-4xl md:text-7xl lg:text-8xl leading-[0.84] text-white xl:text-[7rem]"><span class="ib">NO SAFE</span><span class="ib text-primary">MODE.</span></h1>
-                    <p class="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg md:leading-9"><span class="ib">Xtreme Snap is</span><span class="ib">for those who leave the safe zone.</span><span class="ib">We design for high-velocity environments</span><span class="ib">where speed, judgment, and impact collide.</span></p>
+    <main class="flex-1 w-full max-w-[1440px] mx-auto px-6 py-8">
+        <!-- Hero Section -->
+        <section class="border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-8 lg:p-12 mb-8">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-2 py-1 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-bold uppercase tracking-widest mb-6">
+                    System Architecture
+                </div>
+                <h1 class="text-slate-900 dark:text-slate-100 text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight mb-6">
+                    ENGINEERING THE BACKBONE OF DIGITAL INFRASTRUCTURE.
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed max-w-2xl">
+                    SYSTYX CORE was born from a singular vision: to create a deterministic, low-latency kernel that powers the world's most critical systems. From financial trading platforms to autonomous grid management.
+                </p>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Active Deployments</p>
+                <p class="text-4xl font-black text-primary">2,847</p>
+                <p class="text-[9px] text-slate-500 mt-2 uppercase">Nodes Worldwide</p>
+            </div>
+            <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Uptime Record</p>
+                <p class="text-4xl font-black text-primary">99.9999%</p>
+                <p class="text-[9px] text-slate-500 mt-2 uppercase">6-Year Average</p>
+            </div>
+            <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Data Processed</p>
+                <p class="text-4xl font-black text-primary">8.4 PB</p>
+                <p class="text-[9px] text-slate-500 mt-2 uppercase">Monthly Throughput</p>
+            </div>
+            <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Global Regions</p>
+                <p class="text-4xl font-black text-primary">42</p>
+                <p class="text-[9px] text-slate-500 mt-2 uppercase">Data Sovereign Zones</p>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12 items-center">
+            <div class="space-y-6">
+                <h2 class="text-2xl font-black uppercase tracking-tight">From Trading Floors to Global Infrastructure</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed">
+                    Founded in 2016 by former quantitative traders and distributed systems engineers, SYSTYX CORE emerged from the high-stakes world of algorithmic trading. When microseconds determine profit and loss, traditional infrastructure fails.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed">
+                    We built what we needed: a kernel engineered for absolute determinism. Today, our technology powers critical systems across finance, logistics, energy, and telecommunications—processing billions of transactions daily with zero data loss.
+                </p>
+            </div>
+            <div class="aspect-video bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 24px 24px;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="grid grid-cols-3 gap-4 p-8">
+                        <div class="w-20 h-20 border border-primary bg-primary/10 rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">dns</span>
+                        </div>
+                        <div class="w-20 h-20 border border-primary bg-primary/10 rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">cloud</span>
+                        </div>
+                        <div class="w-20 h-20 border border-primary bg-primary/10 rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">hub</span>
+                        </div>
+                        <div class="w-20 h-20 border border-primary bg-primary/10 rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">storage</span>
+                        </div>
+                        <div class="w-20 h-20 border-2 border-primary bg-primary/20 rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-2xl text-primary">terminal</span>
+                        </div>
+                        <div class="w-20 h-20 border border-primary bg-primary/10 rounded flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-4 right-4 text-[9px] font-mono text-slate-500 uppercase tracking-widest">SYS_CORE_DIAGRAM_v4.2</div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-8 mb-12">
+            <h2 class="text-xl font-black uppercase tracking-tight mb-8">Core System Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-3xl text-primary">precision_manufacturing</span>
+                        <h3 class="font-black uppercase text-sm">Deterministic Performance</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Every operation completes within guaranteed latency bounds. No spikes, no anomalies—just predictable, repeatable performance at any scale.
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-3xl text-primary">shield</span>
+                        <h3 class="font-black uppercase text-sm">Zero-Trust Security</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Hardware-level encryption with quantum-resistant protocols. Every packet verified, every node authenticated, every access logged.
+                    </p>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-3xl text-primary">auto_fix</span>
+                        <h3 class="font-black uppercase text-sm">Self-Healing Mesh</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Automatic failover and load redistribution. The mesh detects and isolates faults before they impact your operations.
+                    </p>
                 </div>
             </div>
         </section>
-        <section class="px-6 py-12 lg:px-10 lg:py-16">
-            <div class="mx-auto grid max-w-[1440px] gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-                <article class="xtreme-panel rounded-[2rem] p-8 lg:p-10"><p class="xtreme-kicker">Philosophy</p><h2 class="xtreme-display mt-5 text-4xl leading-[0.94] text-white sm:text-5xl"><span class="ib">PRESSURE</span><span class="ib text-primary">BUILDS CLARITY.</span></h2><p class="mt-6 text-base leading-8 text-slate-200"><span class="ib">High-pressure situations demand</span><span class="ib">zero ambiguity in tools and information.</span><span class="ib">We embed this philosophy in every product.</span></p></article>
-                <div class="grid gap-6 md:grid-cols-2">
-                    <article class="xtreme-card rounded-[1.8rem] p-6"><p class="text-xs font-black uppercase tracking-[0.28em] text-primary">Principle 01</p><h3 class="mt-4 text-3xl font-black uppercase text-white">Focus</h3><p class="mt-4 text-sm leading-7 text-slate-300"><span class="ib">Prioritize instant comprehension</span><span class="ib">to reduce cognitive load.</span></p></article>
-                    <article class="xtreme-card rounded-[1.8rem] p-6"><p class="text-xs font-black uppercase tracking-[0.28em] text-primary">Principle 02</p><h3 class="mt-4 text-3xl font-black uppercase text-white">Grip</h3><p class="mt-4 text-sm leading-7 text-slate-300"><span class="ib">Maintain tactile feedback</span><span class="ib">and responsiveness under pressure.</span></p></article>
-                    <article class="xtreme-card rounded-[1.8rem] p-6 md:col-span-2"><p class="text-xs font-black uppercase tracking-[0.28em] text-primary">Principle 03</p><h3 class="mt-4 text-3xl font-black uppercase text-white">Commit</h3><p class="mt-4 text-sm leading-7 text-slate-300"><span class="ib">Beyond aesthetics,</span><span class="ib">deliver field-proven reliability</span><span class="ib">when performance matters.</span></p></article>
+
+        <!-- Leadership -->
+        <section class="mb-12">
+            <h2 class="text-xl font-black uppercase tracking-tight mb-8">Core Contributors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-slate-400">person</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase">Dr. Elena Kozlov</h3>
+                            <p class="text-[10px] text-primary font-bold uppercase">Chief Architect</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                        Former lead engineer at CERN's distributed computing division. PhD in Distributed Systems from ETH Zurich.
+                    </p>
                 </div>
+                <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-slate-400">person</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase">Marcus Okonkwo</h3>
+                            <p class="text-[10px] text-primary font-bold uppercase">Head of Protocol</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                        Ex-Google SRE with 15 years of experience in large-scale infrastructure. Architect of the Mesh Consensus Protocol v3.
+                    </p>
+                </div>
+                <div class="border border-slate-200 dark:border-slate-800 p-6 bg-background-light dark:bg-background-dark">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-16 h-16 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-slate-400">person</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm uppercase">Sarah Chen</h3>
+                            <p class="text-[10px] text-primary font-bold uppercase">VP Engineering</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                        Previously scaled infrastructure at Stripe and Airbnb. Expert in real-time data pipelines and stream processing.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-8 mb-12">
+            <h2 class="text-xl font-black uppercase tracking-tight mb-8">System Evolution</h2>
+            <div class="relative">
+                <div class="absolute left-4 top-0 bottom-0 w-px bg-slate-300 dark:bg-slate-700"></div>
+                <div class="space-y-8">
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-[10px] font-black text-white">1</div>
+                        <h3 class="font-bold text-sm uppercase">2016 — Foundation</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-2">SYSTYX Core Labs incorporated. First kernel prototype achieves sub-millisecond latency.</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 w-8 h-8 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center text-[10px] font-black text-slate-500">2</div>
+                        <h3 class="font-bold text-sm uppercase">2018 — Series A &amp; First Deployment</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-2">$24M Series A led by Andreessen Horowitz. First enterprise deployment at major European exchange.</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 w-8 h-8 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center text-[10px] font-black text-slate-500">3</div>
+                        <h3 class="font-bold text-sm uppercase">2020 — Global Mesh Launch</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-2">Multi-regional mesh topology released. Quantum-proof encryption protocol standardized.</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 w-8 h-8 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center text-[10px] font-black text-slate-500">4</div>
+                        <h3 class="font-bold text-sm uppercase">2024 — v4.2 Release</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs mt-2">Latest kernel achieves 0.05ms jitter variance. 2,847+ active nodes across 42 regions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="border border-slate-200 dark:border-slate-800 bg-primary/5 dark:bg-primary/10 p-12 text-center">
+            <h2 class="text-3xl font-black uppercase tracking-tight mb-4">Initialize Your Infrastructure</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed max-w-2xl mx-auto mb-8">
+                Deploy SYSTYX CORE in your environment. Contact our team for a custom integration assessment.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="contact.html" class="bg-primary text-white text-[12px] font-bold uppercase px-8 py-4 rounded">Contact Sales</a>
+                <a href="service.html" class="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-800 text-[12px] font-bold uppercase px-8 py-4 rounded">API Documentation</a>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-white/10 px-6 pb-12 pt-16 lg:px-10">
-        <div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-            <div><p class="xtreme-logo text-3xl text-white">XTREME_SNAP</p><p class="mt-4 max-w-md text-sm leading-8 text-slate-400"><span class="ib">Tokyo / Denver / Whistler.</span></p></div>
-            <div><p class="text-sm font-black uppercase tracking-[0.24em] text-primary">Navigation</p><div class="mt-4 flex flex-col gap-3 text-sm font-black uppercase text-slate-400"><a href="index.html">Home</a><a href="about.html">About</a><a href="service.html">Service</a><a href="contact.html">Contact</a></div></div>
-            <div><p class="text-sm font-black uppercase tracking-[0.24em] text-primary">Contact</p><div class="mt-4 flex flex-col gap-3 text-sm text-slate-400"><p>contact@xtreme-snap.jp</p><p>03-6432-9814</p><p>Mon-Fri / 10:00-18:00</p></div></div>
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-200 dark:border-slate-800 py-12 px-6 bg-slate-50 dark:bg-slate-950/30 mt-auto">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex items-center gap-2 text-primary opacity-50 grayscale">
+                    <span class="material-symbols-outlined text-2xl">terminal</span>
+                    <h2 class="text-slate-900 dark:text-slate-100 text-xs font-black uppercase tracking-tighter">SYSTYX CORE</h2>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-relaxed uppercase font-medium">
+                    The systemic foundation for the modern digital stack. Reliable, deterministic, and infinitely scalable infrastructure.
+                </p>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Resources</h4>
+                <nav class="flex flex-col gap-2">
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Documentation</a>
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="service.html">API Reference</a>
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">System Status</a>
+                </nav>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Network</h4>
+                <nav class="flex flex-col gap-2">
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="service.html">Node Registry</a>
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="service.html">Mesh Explorer</a>
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Core Protocols</a>
+                </nav>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Entity</h4>
+                <nav class="flex flex-col gap-2">
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">About System</a>
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Compliance</a>
+                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Security Ops</a>
+                </nav>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Terminal</h4>
+                <div class="flex gap-2">
+                    <div class="size-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
+                    <div class="size-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
+                    <div class="size-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1440px] mx-auto mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[9px] font-mono text-slate-500 uppercase">© 2024 SYSTYX CORE SYSTEMIC. ALL PROTOCOLS RESERVED.</p>
+            <div class="flex gap-6">
+                <span class="text-[9px] font-mono text-primary uppercase animate-pulse">SYSTEM_UPTIME: 100.00%</span>
+                <span class="text-[9px] font-mono text-slate-500 uppercase">LATENCY_CORE: 0.12ms</span>
+            </div>
         </div>
     </footer>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+    <script>
+        function toggleSystyxMenu() {
+            const menu = document.getElementById('systyx-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.systyx-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

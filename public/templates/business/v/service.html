@@ -3,297 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vivid Impact のサービス一覧。ビビッドな主張を事業成果につなぐための 4 つの支援領域と進行設計を紹介します。">
-    <meta property="og:title" content="Service | Vivid Impact">
-    <meta property="og:description" content="Vivid Impact のサービス一覧。ビビッドな主張を事業成果につなぐための 4 つの支援領域と進行設計を紹介します。">
-    <meta property="og:image" content="https://example.com/templates/business/v/assets/generated/external-image-01.svg">
+    <title>Collection - Kousei | Curated Works</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/v/service.html">
+    <meta name="description" content="Kousei のコレクション。陶芸、漆器、織物、金工。職人の技が光る上質な工芸品。">
+    <meta property="og:title" content="Collection - Kousei | Curated Works">
+    <meta property="og:description" content="Kousei のコレクション - 職人の技が光る上質な工芸品">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/v/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    <title>Service | Vivid Impact</title>
-    <link rel="canonical" href="https://example.com/templates/business/v/service.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Kousei Collection",
+        "description": "日本の伝統工芸品コレクション"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Syne:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Manrope:wght@300;400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', 'Noto Serif JP', serif; }
+        .washi-texture {
+            background-color: #F9F8F4;
+            background-image: url('https://www.transparenttextures.com/patterns/shattered-island.png');
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        .writing-spacing {
+            letter-spacing: 0.5em;
+        }
+        .kousei-mobile-menu { transition: transform 0.3s ease; }
+        .kousei-mobile-menu.active { transform: translateX(0); }
+        .kousei-mobile-menu.inactive { transform: translateX(-100%); }
+        .kousei-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .kousei-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .kousei-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .kousei-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    </style>
 </head>
-<body class="theme-business bg-slate-950 text-white antialiased">
-    <!-- Fixed transparent navigation with mix-blend-difference -->
-    <header class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12">
-        <div class="flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-slate-950">
-                    <span class="material-symbols-outlined text-xl">bolt</span>
-                </div>
-                <span class="text-xl font-black tracking-tighter">VIVID_IMPACT</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="index.html" class="text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors">Home</a>
-                <a href="about.html" class="text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors">About</a>
-                <a href="service.html" class="text-sm font-bold uppercase tracking-widest text-accent">Services</a>
-                <a href="contact.html" class="text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors">Contact</a>
-            </nav>
-            <a href="contact.html" class="bg-accent text-slate-950 px-5 py-2.5 rounded-lg text-sm font-black uppercase tracking-wider hover:scale-105 transition-transform">Start Project</a>
+<body class="bg-background-light text-sumi font-display selection:bg-accent-gold/30">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(18, 18, 18, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="kousei-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded border border-primary/20 bg-background-light/85 text-primary shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleKouseiMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="kousei-mobile-menu" class="kousei-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-primary/10 bg-background-light p-6 text-primary shadow-2xl">
+        <div class="flex items-center gap-2">
+            <div class="size-8 text-primary">
+                <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
+                    <path d="M24 8V40M8 24H40" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1"></path>
+                </svg>
+            </div>
+            <h1 class="font-serif-jp text-xl font-bold tracking-[0.2em] uppercase">Kousei</h1>
         </div>
+        <nav class="mt-10 flex flex-col gap-2 font-serif-jp text-sm tracking-widest">
+            <a href="index.html" class="rounded px-4 py-3 hover:bg-primary/5">Home</a>
+            <a href="about.html" class="rounded px-4 py-3 hover:bg-primary/5">Heritage</a>
+            <a href="service.html" class="rounded px-4 py-3 bg-primary/5 text-primary">Collection</a>
+            <a href="contact.html" class="rounded px-4 py-3 hover:bg-primary/5">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="fixed top-0 z-50 w-full bg-background-light/80 backdrop-blur-sm border-b border-primary/5 px-6 lg:px-20 py-6">
+        <nav class="flex items-center justify-between max-w-[1440px] mx-auto">
+            <div class="flex items-center gap-2">
+                <div class="size-8 text-primary">
+                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
+                        <path d="M24 8V40M8 24H40" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1"></path>
+                    </svg>
+                </div>
+                <h1 class="font-serif-jp text-xl font-bold tracking-[0.2em] uppercase">Kousei</h1>
+            </div>
+            <div class="hidden lg:flex items-center gap-12 font-serif-jp text-sm tracking-widest uppercase">
+                <a class="hover:text-accent-gold transition-colors" href="about.html">Heritage</a>
+                <a class="hover:text-accent-gold transition-colors" href="about.html">Artisans</a>
+                <a class="hover:text-accent-gold transition-colors" href="service.html">Collection</a>
+                <a class="hover:text-accent-gold transition-colors" href="about.html">Journal</a>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="text-sm font-medium tracking-widest border-b border-primary pb-1">JP / EN</button>
+                <a href="contact.html" class="bg-primary text-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
+                    Inquiry
+                </a>
+            </div>
+        </nav>
     </header>
 
-    <main class="overflow-hidden pt-32 pb-20">
+    <main class="pt-20">
         <!-- Hero Section -->
-        <section class="px-6 md:px-12 py-12">
-            <div class="max-w-7xl mx-auto">
-                <p class="text-xs font-black uppercase tracking-[0.35em] text-accent mb-6">Our Services</p>
-                <h1 class="text-4xl md:text-7xl font-black uppercase leading-[0.85] tracking-[-0.04em]">
-                    FOUR WAYS<br/><span class="text-accent">TO HIT HARD</span>
-                </h1>
-                <p class="mt-8 text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                    表現の強さだけでなく、事業の目的に沿うかどうかまで見ながら、必要なクリエイティブを組み上げます。
-                </p>
+        <section class="relative min-h-[40vh] flex items-center px-6 lg:px-20 bg-sumi overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(183,134,11,0.2)_0%,_transparent_50%)]"></div>
+            </div>
+            <div class="max-w-[1440px] mx-auto w-full relative z-10">
+                <div class="flex flex-col gap-6">
+                    <span class="text-accent-gold text-xs tracking-[0.5em] uppercase">Curated Collection</span>
+                    <h1 class="font-serif-jp text-5xl lg:text-6xl leading-tight text-white">
+                        Treasures of the <span class="italic">Hand</span>
+                    </h1>
+                    <div class="w-px h-16 bg-accent-gold opacity-50"></div>
+                    <p class="text-white/70 font-serif-jp text-lg max-w-2xl">
+                        Each piece is a singular creation, marked by the hand of the master artisan.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Services Grid -->
-        <section class="px-6 md:px-12 py-16">
-            <div class="max-w-7xl mx-auto space-y-6">
-                <!-- Service 1 -->
-                <article class="grid gap-8 lg:grid-cols-[1fr_1.5fr] items-center rounded-3xl border border-white/10 bg-slate-900/50 p-8 md:p-10">
-                    <div>
-                        <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Service 01</p>
-                        <h2 class="text-2xl md:text-3xl font-black uppercase leading-tight mb-4">Brand Identity System</h2>
-                        <p class="text-slate-400 leading-relaxed">
-                            ブランドの核となる主張を言語化し、ロゴ、色、タイポ、写真トーン、キービジュアルまで一貫設計します。
-                        </p>
+        <!-- Collection Grid -->
+        <section class="py-32 px-6 lg:px-20 washi-texture">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+                    <!-- Ceramics -->
+                    <div class="space-y-6">
+                        <div class="aspect-[4/5] bg-neutral-200 overflow-hidden">
+                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-ZCaH5U6OgcgaWg4zcjsWt-SNCMgaq8sB5jS_btADv4Wk-F51NQTLUpOuIvHP6RmiyRYEhHVc3gVIUF7sAbb-TtxhigWVHhKPhegWrbqNwXDgcy-6IOAPOHeOTs7VKvAXZvFPPUQ9ytffmFZhS9HglvvOWhb9rd6wqlOSGFWgDRDyVibjU0kEB8fff0kS1fhGCNGAtGZjpDPlIT_TK-WJoODlTWYrjc2I1AIf6hAIfDnu2U3kqkyr87cmT59msGKz1YotyeLR0ro" alt="Ceramic bowl"/>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-[10px] tracking-[0.2em] text-accent-gold uppercase">01 / Ceramics</span>
+                            <h3 class="font-serif-jp text-2xl">Shadow-Cast Stoneware</h3>
+                            <p class="text-sm text-sumi/60 leading-relaxed">Fired for 72 hours in a traditional climbing kiln. Each piece emerges with unique ash-glaze patterns created by the flames themselves.</p>
+                            <div class="pt-4">
+                                <p class="text-xs tracking-widest text-sumi/50">Starting from ¥180,000</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl p-6">
-                        <p class="text-xs font-black uppercase tracking-[0.24em] text-accent mb-4">Deliverables</p>
-                        <ul class="space-y-2 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ブランドポジショニング整理
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ビジュアルトーンガイド策定
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ローンチ向けキービジュアル制作
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ロゴ・タイポグラフィシステム
-                            </li>
-                        </ul>
-                    </div>
-                </article>
 
-                <!-- Service 2 -->
-                <article class="grid gap-8 lg:grid-cols-[1fr_1.5fr] items-center rounded-3xl border border-accent/30 bg-gradient-to-br from-primary/30 via-slate-900/90 to-accent/10 p-8 md:p-10">
-                    <div>
-                        <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Service 02</p>
-                        <h2 class="text-2xl md:text-3xl font-black uppercase leading-tight mb-4">Launch Landing Page</h2>
-                        <p class="text-slate-400 leading-relaxed">
-                            ファーストビューの一撃と、読み進めた先の理解を両立する LP を制作します。
-                        </p>
+                    <!-- Tea Ware -->
+                    <div class="space-y-6 lg:mt-16">
+                        <div class="aspect-[4/5] bg-neutral-200 overflow-hidden">
+                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACECUw_KnhLXMnb6F9-f1UjqQDZmcJHx4SYjUj1mb6ph2IR5GSZe6WNrkPMAttG4tXonAvv8N0deG61gQ0ys_spD1BmtizQ00nyiIL4FBbns6fU22YLwVzIJo8vHxFvL2Hm9PBGVfRp5Qt_yA9nN62RmHj29KjJ_CupZ0NTDzTWvBjuWeNhzL4QPNhwpYeTJHqFgxE0Ydqx8V2dutyRlcc2-TsS74WNSyw0v2prD0r-4lWFMkWQJ4hZaIrFHg3TKsRe_nxky1g0G4" alt="Tea ware"/>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-[10px] tracking-[0.2em] text-accent-gold uppercase">02 / Tea Ware</span>
+                            <h3 class="font-serif-jp text-2xl">The Bamboo Whisper Set</h3>
+                            <p class="text-sm text-sumi/60 leading-relaxed">Hand-carved soot bamboo chasen whisk and matching chawan bowl. Each whisk requires 3 days to craft from a single piece of bamboo.</p>
+                            <div class="pt-4">
+                                <p class="text-xs tracking-widest text-sumi/50">Starting from ¥95,000</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="border-l-2 border-accent pl-6">
-                        <p class="text-xs font-black uppercase tracking-[0.24em] text-accent mb-4">What Gets Built</p>
-                        <ul class="space-y-2 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                キーメッセージ抽出
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ハイコントラストな UI 設計
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                CV 導線と計測設計
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                A/B テスト設計
-                            </li>
-                        </ul>
-                    </div>
-                </article>
 
-                <!-- Service 3 -->
-                <article class="grid gap-8 lg:grid-cols-[1fr_1.5fr] items-center rounded-3xl border border-white/10 bg-slate-900/50 p-8 md:p-10">
-                    <div>
-                        <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Service 03</p>
-                        <h2 class="text-2xl md:text-3xl font-black uppercase leading-tight mb-4">Motion & Social Toolkit</h2>
-                        <p class="text-slate-400 leading-relaxed">
-                            SNS 投稿、広告クリエイティブ、展示会用ループ映像まで、同じ世界観で展開できるモーション素材をまとめて設計します。
-                        </p>
+                    <!-- Textiles -->
+                    <div class="space-y-6 lg:mt-32">
+                        <div class="aspect-[4/5] bg-neutral-200 overflow-hidden">
+                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQJirqn1sJutXzDTDcFZabkQGeWPrnAN93jt0JTtx-vrWxNFdTTchwr7I-AKl-M5RjaPLtLvpLSPrZH8UqB2QJBr18JnKUX6uxn_KbP6PJHNecu7GlDXLzoVzZvSln1d2zYif08K8HKAvGtdyAxnKVyk1A9TTPEfYBVWzfW1uMxvzlFOkVogj9JYe3rJbQKFpApiIlUruInLRnHyJg338sfNtiYEEArsIE9VVxIzjAjsWV-mcZVSVeu7GlDXLzoVzZvSln1d2zYif08K8HKAvGtdyAxnKVyk1A9TTPEfYBVWzfW1uMxvzlFOkVogj9JYe3rJbQKFpApiIlUruInLRnHyJg338sfNtiYEEArsIE9VVxIzjAjsWV-mcZVSVeu" alt="Textile"/>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-[10px] tracking-[0.2em] text-accent-gold uppercase">03 / Textiles</span>
+                            <h3 class="font-serif-jp text-2xl">Woven Mist Indigo</h3>
+                            <p class="text-sm text-sumi/60 leading-relaxed">Naturally dyed using 12th-century fermentation techniques. The deep indigo color develops over 6 months of repeated dyeing and oxidation.</p>
+                            <div class="pt-4">
+                                <p class="text-xs tracking-widest text-sumi/50">Starting from ¥220,000</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl p-6">
-                        <p class="text-xs font-black uppercase tracking-[0.24em] text-accent mb-4">What Gets Built</p>
-                        <ul class="space-y-2 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                15 秒動画向けテンプレート
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                モーションルール定義
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                SNS 運用素材の量産基盤
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                広告バナーバリエーション
-                            </li>
-                        </ul>
-                    </div>
-                </article>
+                </div>
+            </div>
+        </section>
 
-                <!-- Service 4 -->
-                <article class="grid gap-8 lg:grid-cols-[1fr_1.5fr] items-center rounded-3xl border border-white/10 bg-slate-900/50 p-8 md:p-10">
-                    <div>
-                        <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Service 04</p>
-                        <h2 class="text-2xl md:text-3xl font-black uppercase leading-tight mb-4">Campaign Copywriting</h2>
-                        <p class="text-slate-400 leading-relaxed">
-                            ビジュアルに負けないコピーをつくり、印象だけで終わらない訴求へ整えます。
+        <!-- Lacquerware Section -->
+        <section class="py-32 px-6 lg:px-20 bg-white">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">04 / Lacquerware</span>
+                        <h2 class="font-serif-jp text-4xl leading-tight">Urushi – The Soul of Japan</h2>
+                        <p class="text-sumi/80 font-serif-jp leading-loose">
+                            Our lacquerware represents the pinnacle of Japanese craftsmanship. Each piece undergoes over 60 steps and requires months to complete. The raw urushi sap is harvested from trees grown in our partner forests in Iwate Prefecture.
                         </p>
+                        <p class="text-sumi/80 font-serif-jp leading-loose">
+                            Master artisan Masahiro Kousei, a Living National Treasure, personally oversees every piece that leaves our studio. His family has worked with urushi for five generations.
+                        </p>
+                        <div class="pt-4">
+                            <p class="text-xs tracking-widest text-sumi/50">Starting from ¥350,000</p>
+                        </div>
                     </div>
-                    <div class="bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl p-6">
-                        <p class="text-xs font-black uppercase tracking-[0.24em] text-accent mb-4">What Gets Built</p>
-                        <ul class="space-y-2 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ヘッドライン開発
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                タグライン / ネーミング支援
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                広告 / LP / SNS の文脈統一
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-accent text-sm">check</span>
-                                ブランドストーリー構築
-                            </li>
-                        </ul>
+                    <div class="aspect-square bg-neutral-200 overflow-hidden">
+                        <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoY85uATe0RK0pVLV5J_Fe1XTgCYmKLkc3sR6saX-BJb-gk9rbYxfcYc3M07FBsg0rbK4jrNZWFwHS_wSSP7iLUc6BvAA2sL7bkgKVSW72yBZ9oo1G4ofl8wXCVNeBUt43z8gSC_RoxNS24yqHDiTHf5PNZmf8yzCn7xMP251m9N1zN2znDmFO40IW3i8N9shL0TIhRwbva0c0NvFCM2XLh-wxFh4mIr8TFDTP4NE2uqU7G-LPoULR7_y0ryRxoupi6GVNwBQX4F4" alt="Urushi lacquerware"/>
                     </div>
-                </article>
+                </div>
             </div>
         </section>
 
         <!-- Process Section -->
-        <section class="px-6 md:px-12 py-16 bg-gradient-to-b from-slate-900 to-slate-950 border-y border-white/10">
-            <div class="max-w-7xl mx-auto">
-                <p class="text-xs font-black uppercase tracking-[0.3em] text-primary mb-4">Process</p>
-                <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-12">
-                    QUICK BUT<br/><span class="text-accent">SHARP.</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Week 1 -->
-                    <div class="relative">
-                        <p class="text-6xl font-black text-white/10 absolute -top-4 -left-4">01</p>
-                        <div class="relative bg-slate-800/50 rounded-2xl p-6 border border-white/10">
-                            <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Week 01</p>
-                            <h3 class="text-2xl font-black uppercase mb-3">Focus</h3>
-                            <p class="text-sm text-slate-400 leading-relaxed">
-                                競合と比較し、どこで違いを出すかを定義します。
-                            </p>
-                        </div>
+        <section class="py-32 px-6 lg:px-20 washi-texture">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">The Process</span>
+                    <h2 class="font-serif-jp text-4xl mt-6">From Raw Material to Refined Art</h2>
+                </div>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-serif-jp text-primary/30 mb-4">01</div>
+                        <h3 class="font-serif-jp text-lg mb-4">Selection</h3>
+                        <p class="text-sumi/60 font-serif-jp text-sm leading-relaxed">
+                            Only the finest raw materials are chosen, sourced from traditional suppliers across Japan.
+                        </p>
                     </div>
-                    <!-- Week 2 -->
-                    <div class="relative">
-                        <p class="text-6xl font-black text-white/10 absolute -top-4 -left-4">02</p>
-                        <div class="relative bg-slate-800/50 rounded-2xl p-6 border border-white/10">
-                            <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Week 02</p>
-                            <h3 class="text-2xl font-black uppercase mb-3">Visualize</h3>
-                            <p class="text-sm text-slate-400 leading-relaxed">
-                                複数案を並行でつくり、一番強いトーンを選びます。
-                            </p>
-                        </div>
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-serif-jp text-primary/30 mb-4">02</div>
+                        <h3 class="font-serif-jp text-lg mb-4">Preparation</h3>
+                        <p class="text-sumi/60 font-serif-jp text-sm leading-relaxed">
+                            Materials are prepared using centuries-old techniques, from clay refinement to silk spinning.
+                        </p>
                     </div>
-                    <!-- Week 3+ -->
-                    <div class="relative">
-                        <p class="text-6xl font-black text-white/10 absolute -top-4 -left-4">03</p>
-                        <div class="relative bg-slate-800/50 rounded-2xl p-6 border border-white/10">
-                            <p class="text-xs font-black uppercase tracking-[0.28em] text-primary mb-4">Week 03+</p>
-                            <h3 class="text-2xl font-black uppercase mb-3">Ship</h3>
-                            <p class="text-sm text-slate-400 leading-relaxed">
-                                公開に向けて整え、運用で必要な素材まで引き渡します。
-                            </p>
-                        </div>
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-serif-jp text-primary/30 mb-4">03</div>
+                        <h3 class="font-serif-jp text-lg mb-4">Creation</h3>
+                        <p class="text-sumi/60 font-serif-jp text-sm leading-relaxed">
+                            Master artisans shape each piece by hand, bringing decades of experience to every gesture.
+                        </p>
+                    </div>
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-serif-jp text-primary/30 mb-4">04</div>
+                        <h3 class="font-serif-jp text-lg mb-4">Finishing</h3>
+                        <p class="text-sumi/60 font-serif-jp text-sm leading-relaxed">
+                            Each piece undergoes careful finishing and quality inspection before leaving our studio.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="px-6 md:px-12 py-16">
-            <div class="max-w-4xl mx-auto">
-                <div class="rounded-3xl border border-accent/30 bg-gradient-to-br from-primary/30 via-slate-900/90 to-accent/10 p-8 md:p-12 text-center">
-                    <p class="text-xs font-black uppercase tracking-[0.35em] text-accent mb-4">Need a Tailored Scope?</p>
-                    <h2 class="text-3xl md:text-5xl font-black uppercase leading-tight mb-8">
-                        ASK FOR A<br/><span class="text-accent">CUSTOM BUILD.</span>
-                    </h2>
-                    <a href="contact.html" class="inline-flex items-center justify-center bg-accent text-slate-950 px-8 py-4 rounded-lg font-black uppercase tracking-wider hover:scale-105 transition-transform">
-                        Book a Discovery Call
-                        <span class="material-symbols-outlined ml-2">arrow_forward</span>
+        <section class="py-32 px-6 lg:px-20 bg-sumi">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-serif-jp text-5xl lg:text-6xl leading-tight mb-8 text-white">Commission a <span class="italic">Masterpiece.</span></h2>
+                <p class="text-white/70 text-xl mb-12 max-w-2xl mx-auto font-serif-jp">
+                    For those seeking something truly singular, we offer bespoke commission services with our master artisans.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="contact.html" class="bg-primary text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
+                        Inquire About Commission
+                    </a>
+                    <a href="about.html" class="border border-primary/30 text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-primary/10 transition-colors">
+                        Meet the Artisans
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-950 border-t border-white/10 px-6 py-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-slate-950">
-                            <span class="material-symbols-outlined text-xl">bolt</span>
-                        </div>
-                        <span class="text-xl font-black tracking-tighter">VIVID_IMPACT</span>
+    <!-- Footer -->
+    <footer class="bg-background-light border-t border-primary/10 py-20 px-6 lg:px-20">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-4 gap-16">
+            <div class="lg:col-span-1 space-y-8">
+                <div class="flex items-center gap-2">
+                    <div class="size-6 text-primary">
+                        <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
+                        </svg>
                     </div>
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-                        Message-first creative studio crafting bold brand experiences.
-                        Tokyo / Seoul / Singapore
-                    </p>
+                    <h2 class="font-serif-jp text-lg font-bold tracking-widest uppercase">Kousei</h2>
                 </div>
-                <div>
-                    <h4 class="text-xs font-black uppercase tracking-[0.24em] text-primary mb-4">Navigation</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="index.html" class="text-slate-400 hover:text-accent transition-colors">Home</a></li>
-                        <li><a href="about.html" class="text-slate-400 hover:text-accent transition-colors">About</a></li>
-                        <li><a href="service.html" class="text-slate-400 hover:text-accent transition-colors">Services</a></li>
-                        <li><a href="contact.html" class="text-slate-400 hover:text-accent transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-black uppercase tracking-[0.24em] text-primary mb-4">Contact</h4>
-                    <ul class="space-y-3 text-sm text-slate-400">
-                        <li>hello@vivid-impact.jp</li>
-                        <li>03-6416-2418</li>
-                        <li>Mon-Fri / 10:00-18:00</li>
-                    </ul>
-                </div>
+                <p class="text-sm leading-relaxed text-sumi/60">
+                    Kyoto Studio<br/>
+                    Higashiyama District, 401<br/>
+                    Japan
+                </p>
             </div>
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-slate-500">© 2024 Vivid Impact. All rights reserved.</p>
-                <div class="flex gap-6 text-xs text-slate-500">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+            <div class="space-y-6">
+                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Explore</h5>
+                <ul class="space-y-4 text-sm font-serif-jp tracking-widest">
+                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Our Heritage</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Master Artisans</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="service.html">Private Viewings</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Contact</h5>
+                <ul class="space-y-4 text-sm font-serif-jp tracking-widest">
+                    <li><a class="hover:text-accent-gold transition-colors" href="contact.html">General Inquiry</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="contact.html">Press & Media</a></li>
+                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Care Guide</a></li>
+                </ul>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Newsletter</h5>
+                <div class="relative border-b border-primary pb-2 flex items-center justify-between">
+                    <input class="bg-transparent border-none text-sm font-serif-jp tracking-widest focus:ring-0 w-full placeholder:text-sumi/30" placeholder="Email Address" type="email"/>
+                    <button class="material-symbols-outlined text-sm">arrow_forward</button>
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-sumi/60 hover:text-sumi transition-colors text-xs tracking-[0.2em] uppercase" href="#">Instagram</a>
+                    <a class="text-sumi/60 hover:text-sumi transition-colors text-xs tracking-[0.2em] uppercase" href="#">Pinterest</a>
                 </div>
             </div>
         </div>
+        <div class="max-w-[1440px] mx-auto mt-20 pt-10 border-t border-primary/5 flex flex-col lg:flex-row justify-between items-center gap-6">
+            <span class="text-[10px] tracking-[0.2em] text-sumi/40 uppercase">© 2024 Kousei Artisan Collective. All Rights Reserved.</span>
+            <span class="text-[10px] tracking-[0.2em] text-sumi/40 uppercase font-serif-jp">伝統と革新の調和</span>
+        </div>
     </footer>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+    <script>
+        function toggleKouseiMenu() {
+            const menu = document.getElementById('kousei-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.kousei-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

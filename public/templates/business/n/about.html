@@ -3,258 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Metro Pulseの思想、体制、コミュニティ文化を紹介します。都市の夜をどう再編集しているかをまとめたAboutページです。">
-            <meta property="og:title" content="About | Metro Pulse">
-    <meta property="og:description" content="Metro Pulseの思想、体制、コミュニティ文化を紹介します。都市の夜をどう再編集しているかをまとめたAboutページです。">
+    <title>About - AgileTech</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/n/about.html">
+    <meta name="description" content="AgileTech の使命とビジョン。次世代インフラストラクチャを構築するチーム。">
+    <meta property="og:title" content="About - AgileTech">
+    <meta property="og:description" content="AgileTech の使命とビジョン">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/n/about.html">
+    <meta property="og:url" content="https://example.com/templates/business/n/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#f91f9e">
-    <title>About | Metro Pulse</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/n/about.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About AgileTech",
+        "description": "AgileTech の使命とビジョン"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
+        .glass-card {
+            background: rgba(34, 47, 73, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tech-btn {
+            background: #256af4;
+            color: #ffffff;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .tech-btn:hover {
+            background: #1d56c9;
+            transform: scale(1.02);
+        }
+        .tech-mobile-menu { transition: transform 0.3s ease; }
+        .tech-mobile-menu.active { transform: translateX(0); }
+        .tech-mobile-menu.inactive { transform: translateX(-100%); }
+        .tech-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .tech-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .tech-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .tech-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    </style>
 </head>
-<body class="theme-business bg-background-dark font-display text-slate-100 antialiased">
-    <div class="page-shell">
-        <div class="metro-grid"></div>
-        <div class="glow-orb glow-orb-pink"></div>
-        <div class="glow-orb glow-orb-cyan"></div>
+<body class="text-white antialiased overflow-x-hidden">
 
-        <header class="site-header">
-            <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10">
-                <a href="index.html" class="brand-lockup">
-                    <span class="brand-mark"><span class="material-symbols-outlined text-xl">graphic_eq</span></span>
-                    <span>
-                        <span class="block text-lg font-black uppercase tracking-[0.24em]">Metro Pulse</span>
-                        <span class="block text-[0.65rem] uppercase tracking-[0.42em] text-slate-500 dark:text-slate-400">Neon Night Collective</span>
-                    </span>
-                </a>
-                <nav class="hidden items-center gap-3 md:flex">
-                    <a href="index.html" class="nav-link"><span class="nav-link-label">Home</span></a>
-                    <a href="about.html" class="nav-link" aria-current="page"><span class="nav-link-label">About</span></a>
-                    <a href="service.html" class="nav-link"><span class="nav-link-label">Service</span></a>
-                    <a href="contact.html" class="nav-link"><span class="nav-link-label">Contact</span></a>
-                </nav>
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 22, 34, 0.5); backdrop-filter: blur(4px);"></div>
 
-                <button class="mobile-menu-toggle flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-full border border-primary/40 bg-background-dark/85 md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="neon-mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                <div class="hidden items-center gap-3 md:flex">
-                    <!-- Theme toggle removed for stability -->
-                    <a href="contact.html" class="primary-button">Talk to Us</a>
-                </div>
+    <button class="tech-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleTechMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="tech-mobile-menu" class="tech-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 text-primary">
+                <span class="material-symbols-outlined text-3xl font-bold">bolt</span>
+                <h2 class="text-xl font-bold tracking-tight uppercase">AgileTech</h2>
             </div>
-                <nav id="neon-mobile-menu" class="hidden items-center gap-6 md:hidden" aria-label="Mobile">
-            <a href="index.html" class="nav-link"><span class="nav-link-label">Home</span></a>
-            <a href="about.html" class="nav-link"><span class="nav-link-label">About</span></a>
-            <a href="service.html" class="nav-link"><span class="nav-link-label">Service</span></a>
-            <a href="contact.html" class="nav-link"><span class="nav-link-label">Contact</span></a>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Service</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Contact</a>
         </nav>
+    </aside>
+
+    <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-3xl font-bold">bolt</span>
+                    <h2 class="text-xl font-bold tracking-tight uppercase">AgileTech</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Solutions</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Platform</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Performance</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="hidden lg:flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <a href="contact.html" class="tech-btn px-6 py-2 rounded-lg text-sm font-bold transition-all transform hover:scale-105">
+                    Get Started
+                </a>
+            </div>
+        </div>
     </header>
 
-        <div class="mobile-menu-backdrop fixed inset-0 z-40 hidden bg-black/60 md:hidden"></div>
-
-        <main class="relative z-10">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-            <section class="hero-section hero-section-compact">
-                <div class="mx-auto max-w-7xl px-6 py-16 md:py-28 lg:px-10">
-                    <div class="max-w-4xl space-y-6">
-                        <p class="eyebrow-text">About Metro Pulse</p>
-                        <h1 class="hero-title blur-target">
-                            <span class="ib">夜の都市文化を、</span>
-                            <span class="ib">持続する仕組みに。</span>
-                        </h1>
-                        <p class="max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-                            <span class="ib">V2ソースの「About」「Artist」「Projects」の要素を統合し、</span>
-                            <span class="ib">Metro Pulseが担う役割を</span>
-                            <span class="ib">企画・制作・運営の3層で整理しました。</span>
-                        </p>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[60vh] flex items-center px-6 lg:px-20 bg-slate-900 overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-40">
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(37,106,244,0.2)_0%,_transparent_50%)]"></div>
+            </div>
+            <div class="max-w-7xl mx-auto w-full relative z-10">
+                <div class="flex flex-col gap-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest w-fit">
+                        <span class="material-symbols-outlined text-sm">info</span>
+                        About Us
                     </div>
-                </div>
-            </section>
-
-            <section class="section-shell">
-                <div class="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1fr_0.9fr] lg:px-10">
-                    <article class="panel tilt-card">
-                        <p class="eyebrow-text">Our Mission</p>
-                        <h2 class="section-title">
-                            <span class="ib">熱量を消費で終わらせず、</span>
-                            <span class="ib">都市資産へ変える。</span>
-                        </h2>
-                        <p class="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
-                            <span class="ib">Metro Pulseは、</span>
-                            <span class="ib">一夜限りの話題づくりではなく、</span>
-                            <span class="ib">会場、地域、出演者、ブランドが</span>
-                            <span class="ib">継続的に価値を得られる設計を重視します。</span>
-                        </p>
-                        <div class="mt-8 grid gap-4 sm:grid-cols-2">
-                            <div class="info-card">
-                                <span class="material-symbols-outlined text-primary">groups</span>
-                                <h3>Community First</h3>
-                                <p>コミュニティの熱量を中心に企画を組み、無理なく継続する運営モデルを構築します。</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="material-symbols-outlined text-cyan-neon">query_stats</span>
-                                <h3>Measured Impact</h3>
-                                <p>来場、滞在、再訪、SNS波及を測定し、イベントを改善可能な施策に変えます。</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <div class="grid gap-4">
-                        <article class="metric-card tilt-card">
-                            <p class="metric-value">14</p>
-                            <p class="metric-label">提携会場</p>
-                        </article>
-                        <article class="metric-card tilt-card">
-                            <p class="metric-value text-cyan-neon">86%</p>
-                            <p class="metric-label">再来場率</p>
-                        </article>
-                        <article class="metric-card tilt-card">
-                            <p class="metric-value text-purple-neon">9</p>
-                            <p class="metric-label">都市実験プロジェクト</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section-shell diagonal-section">
-                <div class="mx-auto max-w-7xl px-6 lg:px-10">
-                    <div class="section-heading">
-                        <div>
-                            <p class="eyebrow-text">How We Work</p>
-                            <h2 class="section-title">
-                                <span class="ib">構想から運営まで、</span>
-                                <span class="ib">夜の体験を分断しない。</span>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="grid gap-5 lg:grid-cols-3">
-                        <article class="story-card tilt-card">
-                            <span class="material-symbols-outlined text-primary">edit_note</span>
-                            <h3>Concept Edit</h3>
-                            <p>会場特性と客層を踏まえ、夜の物語を言語化し、実施計画へ落とし込みます。</p>
-                        </article>
-                        <article class="story-card tilt-card">
-                            <span class="material-symbols-outlined text-cyan-neon">layers</span>
-                            <h3>Spatial Design</h3>
-                            <p>音、光、人流、サインを一体で設計し、現場で迷わない空間体験をつくります。</p>
-                        </article>
-                        <article class="story-card tilt-card">
-                            <span class="material-symbols-outlined text-purple-neon">bolt</span>
-                            <h3>Live Operation</h3>
-                            <p>当日の進行、トラブル対応、配信切替まで運用チームが伴走します。</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section-shell">
-                <div class="mx-auto max-w-7xl px-6 lg:px-10">
-                    <div class="section-heading">
-                        <div>
-                            <p class="eyebrow-text">Timeline</p>
-                            <h2 class="section-title">
-                                <span class="ib">Metro Pulseの成長を、</span>
-                                <span class="ib">夜の更新履歴として残す。</span>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="grid gap-4">
-                        <article class="timeline-item tilt-card">
-                            <p class="timeline-kicker">2024 / Launch</p>
-                            <h3>Neon Night Collective始動</h3>
-                            <p>インディペンデントイベントからスタートし、都市の夜を編集する制作集団として活動を開始。</p>
-                        </article>
-                        <article class="timeline-item tilt-card">
-                            <p class="timeline-kicker text-cyan-neon">2025 / Expansion</p>
-                            <h3>Pulse Labを設立</h3>
-                            <p>ブランド案件と都市実験の両輪を回すため、短期実証型の制作ラインを新設。</p>
-                        </article>
-                        <article class="timeline-item tilt-card">
-                            <p class="timeline-kicker text-purple-neon">2026 / Network</p>
-                            <h3>会場ネットワークを拡充</h3>
-                            <p>複数会場を横断した企画と、配信を含む複合型イベント運営に対応。</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section-shell pt-0">
-                <div class="mx-auto max-w-7xl px-6 lg:px-10">
-                    <div class="cta-band">
-                        <div>
-                            <p class="eyebrow-text">Culture Fit</p>
-                            <h2 class="section-title mb-0">
-                                <span class="ib">都市の夜を更新したいなら、</span>
-                                <span class="ib">同じ熱量で伴走します。</span>
-                            </h2>
-                        </div>
-                        <div class="flex flex-col gap-4 sm:flex-row">
-                            <a href="service.html" class="secondary-button justify-center">サービスを見る</a>
-                            <a href="contact.html" class="primary-button justify-center">相談する</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="site-footer">
-            <div class="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] lg:px-10">
-                <div class="space-y-4">
-                    <div class="brand-lockup">
-                        <span class="brand-mark"><span class="material-symbols-outlined text-xl">graphic_eq</span></span>
-                        <span>
-                            <span class="block text-lg font-black uppercase tracking-[0.24em]">Metro Pulse</span>
-                            <span class="block text-[0.65rem] uppercase tracking-[0.42em] text-slate-500 dark:text-slate-400">Neon Night Collective</span>
-                        </span>
-                    </div>
-                    <p class="max-w-md text-sm leading-7 text-slate-600 dark:text-slate-300">
-                        <span class="ib">夜の都市文化を、</span>
-                        <span class="ib">仕組みとして育てるための</span>
-                        <span class="ib">制作と運営を担います。</span>
+                    <h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight text-white">
+                        Accelerating the <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-neon">Future</span>
+                    </h1>
+                    <p class="text-lg text-slate-400 max-w-2xl">
+                        We're on a mission to eliminate latency from the global digital infrastructure.
                     </p>
                 </div>
-                <div>
-                    <p class="footer-title">Navigation</p>
-                    <ul class="footer-list">
-                        <li><a href="index.html" class="footer-link">Home</a></li>
-                        <li><a href="about.html" class="footer-link">About</a></li>
-                        <li><a href="service.html" class="footer-link">Service</a></li>
-                        <li><a href="contact.html" class="footer-link">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="footer-title">Focus</p>
-                    <ul class="footer-list">
-                        <li><span class="footer-link">Culture Design</span></li>
-                        <li><span class="footer-link">Spatial Direction</span></li>
-                        <li><span class="footer-link">Live Operation</span></li>
-                        <li><span class="footer-link">Community Growth</span></li>
-                    </ul>
-                </div>
-                <div class="panel">
-                    <p class="footer-title">Status</p>
-                    <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-                        <div class="flex items-center justify-between"><span>Collective</span><span class="text-primary">Active</span></div>
-                        <div class="flex items-center justify-between"><span>Partnership</span><span class="text-cyan-neon">Open</span></div>
-                        <div class="flex items-center justify-between"><span>Response SLA</span><span>24h</span></div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="py-24 px-6 lg:px-20 bg-background-dark">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="flex flex-col gap-8">
+                        <h2 class="text-3xl lg:text-4xl font-bold text-white">Our Mission</h2>
+                        <p class="text-lg text-slate-400 leading-relaxed">
+                            At AgileTech, we believe that speed is not just a feature—it's a fundamental right. Every millisecond saved is an opportunity gained, a frustration avoided, a breakthrough enabled.
+                        </p>
+                        <p class="text-lg text-slate-400 leading-relaxed">
+                            Founded in 2020 by a team of ex-FAANG engineers, we've built the infrastructure layer that powers tomorrow's digital experiences. From fintech startups to enterprise SaaS platforms, our technology enables companies to move at the speed of thought.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mt-4">
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-primary/5 border border-primary/10">
+                                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                                <div>
+                                    <p class="text-white font-bold">Enterprise Ready</p>
+                                    <p class="text-xs text-slate-400 uppercase">SOC2 Certified</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-accent-neon/5 border border-accent-neon/10">
+                                <span class="material-symbols-outlined text-accent-neon text-3xl">public</span>
+                                <div>
+                                    <p class="text-white font-bold">Global Network</p>
+                                    <p class="text-xs text-slate-400 uppercase">124 Regions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-background-dark"></div>
+                            <img class="w-full h-full object-cover mix-blend-overlay" alt="Modern office with developers working" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ3DqR7Y8k9L3m5N7o1P2q4R6s8T0u2V4w6X8y0Z1a3B5c7D9e0F2g4H6i8J0k2L4m6N8o0P2q4R6s8T0u2V4w6X8y0Z1a3B5c7D9e0F2g4H6i8J0k"/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
+        </section>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="../../../assets/js/premium-effects.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+        <!-- Values Section -->
+        <section class="py-24 px-6 lg:px-20 bg-background-light dark:bg-background-dark">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Core Values</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">The principles that guide every decision we make.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-xl flex flex-col gap-4">
+                        <div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined">speed</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Velocity First</h3>
+                        <p class="text-slate-400">We optimize for speed in everything we do, from product development to customer support.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl flex flex-col gap-4">
+                        <div class="size-12 rounded-lg bg-accent-neon/20 flex items-center justify-center text-accent-neon">
+                            <span class="material-symbols-outlined">shield</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Relentless Reliability</h3>
+                        <p class="text-slate-400">Five nines uptime isn't a goal—it's the baseline. Your trust is our currency.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl flex flex-col gap-4">
+                        <div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined">diversity_3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Radical Transparency</h3>
+                        <p class="text-slate-400">Open communication, honest feedback, and clear metrics drive our culture forward.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-24 px-6 lg:px-20 bg-background-dark">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Leadership</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">The team building the future of infrastructure.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-accent-neon p-1">
+                            <div class="w-full h-full rounded-full bg-slate-800"></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Sarah Chen</h3>
+                        <p class="text-primary text-sm uppercase tracking-widest mb-2">CEO & Co-Founder</p>
+                        <p class="text-slate-400 text-sm">Ex-Google, Stanford CS. 15 years building distributed systems.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-accent-neon p-1">
+                            <div class="w-full h-full rounded-full bg-slate-800"></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Marcus Rodriguez</h3>
+                        <p class="text-primary text-sm uppercase tracking-widest mb-2">CTO & Co-Founder</p>
+                        <p class="text-slate-400 text-sm">Ex-Meta, MIT PhD. Architect of scale at every level.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-accent-neon p-1">
+                            <div class="w-full h-full rounded-full bg-slate-800"></div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Emily Watson</h3>
+                        <p class="text-primary text-sm uppercase tracking-widest mb-2">VP of Engineering</p>
+                        <p class="text-slate-400 text-sm">Ex-Amazon, built teams scaling to 100M+ users.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6 lg:px-20 bg-gradient-to-br from-primary via-primary/90 to-background-dark relative">
+            <div class="max-w-4xl mx-auto text-center relative z-10 py-10">
+                <h2 class="text-4xl lg:text-6xl font-black text-white mb-8">Join the Revolution</h2>
+                <p class="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
+                    We're hiring talented engineers who share our passion for speed and excellence.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-white text-primary px-10 py-4 rounded-xl font-black text-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all">
+                        View Open Positions
+                    </a>
+                    <a href="contact.html" class="border-2 border-white/30 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background-dark border-t border-white/5 py-12 px-6 lg:px-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2 text-primary opacity-60">
+                <span class="material-symbols-outlined font-bold">bolt</span>
+                <h2 class="text-lg font-bold tracking-tight uppercase">AgileTech</h2>
+            </div>
+            <div class="flex gap-8 text-slate-500 text-sm font-medium">
+                <a class="hover:text-white transition-colors" href="about.html">About</a>
+                <a class="hover:text-white transition-colors" href="service.html">Solutions</a>
+                <a class="hover:text-white transition-colors" href="contact.html">Contact</a>
+                <a class="hover:text-white transition-colors" href="#">Privacy</a>
+            </div>
+            <p class="text-slate-600 text-sm">© 2024 AgileTech Systems Inc. Built for speed.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTechMenu() {
+            const menu = document.getElementById('tech-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.tech-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

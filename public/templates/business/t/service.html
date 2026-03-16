@@ -3,380 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TRUST_GUARD のサービス一覧。多層防御、ゼロトラスト、24/7 監視、コンプライアンス対応。">
-    <meta property="og:title" content="Service | TRUST_GUARD">
-    <meta property="og:description" content="TRUST_GUARD のサービス一覧。多層防御、ゼロトラスト、24/7 監視。">
+    <title>Services - LUXE | Collections & Atelier</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/t/service.html">
+    <meta name="description" content="LUXE のサービス。建築デザイン、インテリアキュレーション、プライベートアトリエ、グローバルロジスティクス。">
+    <meta property="og:title" content="Services - LUXE | Collections & Atelier">
+    <meta property="og:description" content="LUXE のサービス - 最高級の建築とインテリア">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/t/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    <title>Service | TRUST_GUARD</title>
-    <link rel="canonical" href="https://example.com/templates/business/t/service.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "LUXE Services",
+        "description": "建築デザイン、インテリアキュレーション、プライベートアトリエ"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;300;400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
     <style>
-        :root {
-            --trust-primary: #38ff14;
-            --trust-primary-dim: rgba(56, 255, 20, 0.2);
-            --trust-alert: #ff3b30;
-            --trust-bg: #0a0f09;
-            --trust-surface: #12230f;
-            --trust-border: #274b20;
-            --trust-text: #f1f5f9;
-            --trust-text-dim: #94a3b8;
-        }
-        .trust-theme {
-            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
-            background-color: var(--trust-bg);
-            color: var(--trust-text);
-        }
-        .trust-scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
-            background-size: 100% 4px;
-        }
-        .trust-grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, var(--trust-border) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-        .trust-btn-primary {
-            background: var(--trust-primary);
-            color: var(--trust-bg);
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Work Sans', 'Noto Sans JP', sans-serif; }
+        .serif-detail { font-family: serif; font-style: italic; }
+        .luxe-btn {
+            background: #b7860b;
+            color: #ffffff;
+            font-weight: 700;
             transition: all 0.2s ease;
         }
-        .trust-btn-primary:hover {
-            background: #fff;
-            transform: scale(1.05);
+        .luxe-btn:hover {
+            background: #9a7009;
         }
-        .trust-btn-outline {
-            background: transparent;
-            color: var(--trust-primary);
-            border: 2px solid var(--trust-primary);
-            transition: all 0.2s ease;
-        }
-        .trust-btn-outline:hover {
-            background: var(--trust-primary);
-            color: var(--trust-bg);
-        }
-        .trust-btn-outline-primary {
-            background: transparent;
-            color: var(--trust-primary);
-            border: 2px solid var(--trust-primary);
-            transition: all 0.2s ease;
-        }
-        .trust-btn-outline-primary:hover {
-            background: var(--trust-primary);
-            color: var(--trust-bg);
-        }
-        .trust-menu-backdrop { display: none; }
-        @media (max-width: 1023px) {
-            .trust-menu-backdrop { display: block; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-            .trust-menu-backdrop.active { opacity: 1; visibility: visible; }
-        }
-        .trust-mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
-        @media (max-width: 1023px) { .trust-mobile-menu.active { transform: translateX(0); } }
-        @media (min-width: 1024px) { .trust-mobile-menu { display: none; } }
-        .trust-mobile-toggle { display: none; }
-        @media (max-width: 1023px) {
-            .trust-mobile-toggle { display: flex; }
-            .trust-mobile-toggle .bar {
-                display: block; width: 24px; height: 2px; background: var(--trust-primary);
-                position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-                transition: all 0.3s ease;
-            }
-            .trust-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
-            .trust-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
-            .trust-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-            .trust-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
-            .trust-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
-        }
+        .luxe-mobile-menu { transition: transform 0.3s ease; }
+        .luxe-mobile-menu.active { transform: translateX(0); }
+        .luxe-mobile-menu.inactive { transform: translateX(-100%); }
+        .luxe-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .luxe-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .luxe-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .luxe-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     </style>
 </head>
-<body class="trust-theme overflow-x-hidden">
-    <div class="trust-menu-backdrop" id="trustMenuBackdrop"></div>
-    <button class="trust-mobile-toggle fixed top-6 right-6 z-[100] p-2" id="trustMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="trustMobileMenu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-    <div class="trust-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-xl border-2 border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 shadow-2xl" id="trustMobileMenu">
-        <div class="mb-6 flex items-center gap-3">
-            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">shield_with_heart</span>
-            <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
-        </div>
-        <nav class="flex flex-col gap-2">
-            <a href="index.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">HOME</a>
-            <a href="about.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">ABOUT</a>
-            <a href="service.html" class="trust-nav-link active rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);">SERVICES</a>
-            <a href="contact.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">CONTACT</a>
-        </nav>
-    </div>
+<body class="text-slate-900 dark:text-slate-100 font-display">
 
-    <header class="sticky top-0 z-50 w-full border-b-2 border-[var(--trust-border)] bg-[var(--trust-bg)]/95 backdrop-blur">
-        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-[var(--trust-primary)] text-3xl">shield_with_heart</span>
-                <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
-            </a>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="index.html">HOME</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="about.html">ABOUT</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);" href="service.html">SERVICES</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="contact.html">CONTACT</a>
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(34, 29, 16, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="luxe-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleLuxeMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="luxe-mobile-menu" class="luxe-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl text-primary">blur_on</span>
+            <h1 class="text-2xl font-black tracking-widest text-slate-100 uppercase">Luxe</h1>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Service</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="fixed top-0 w-full z-50 border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-8 md:px-20 py-6">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="text-primary">
+                    <span class="material-symbols-outlined text-3xl">blur_on</span>
+                </div>
+                <h1 class="text-2xl font-black tracking-widest text-slate-100 uppercase">Luxe</h1>
+            </div>
+            <nav class="hidden md:flex items-center gap-12">
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="service.html">Collections</a>
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="about.html">Philosophy</a>
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="service.html">Services</a>
+                <a class="text-xs uppercase tracking-[0.3em] font-medium hover:text-primary transition-colors" href="about.html">Atelier</a>
             </nav>
-            <a href="contact.html" class="trust-btn-primary px-6 py-2 text-sm font-bold uppercase tracking-tighter">SECURE NETWORK</a>
+            <div class="flex items-center gap-8">
+                <a href="contact.html" class="hidden lg:block text-xs uppercase tracking-[0.3em] border-b border-primary py-1 hover:text-primary transition-all">Inquire</a>
+                <button class="md:hidden text-slate-100" onclick="toggleLuxeMenu()">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <main>
+    <main class="pt-20">
         <!-- Hero Section -->
-        <section class="relative border-b-2 border-[var(--trust-border)] trust-grid-bg overflow-hidden py-20 px-6">
-            <div class="max-w-[1440px] mx-auto">
-                <div class="inline-flex items-center gap-2 rounded border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] px-3 py-1 mb-6">
-                    <span class="material-symbols-outlined text-sm" style="color: var(--trust-primary);">shield</span>
-                    <span class="font-mono text-[10px] uppercase tracking-[0.2em]" style="color: var(--trust-primary);">PROTECTION_LAYERS</span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
-                    CORE <span style="color: var(--trust-primary);">SERVICES</span>
-                </h1>
-                <p class="text-lg md:text-xl max-w-3xl uppercase tracking-widest font-light leading-relaxed mb-10" style="color: var(--trust-text-dim);">
-                    単発の製品導入ではなく、守り続けられる体制まで含めてサービスを構成。<br/>
-                    貴社の環境に最適化したセキュリティ基盤を、丸ごと提供。
-                </p>
+        <section class="relative min-h-[50vh] flex items-center px-8 md:px-20 bg-background-dark overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_50%,_rgba(183,134,11,0.15)_0%,_transparent_50%)]"></div>
             </div>
-        </section>
-
-        <!-- Core Protections Grid -->
-        <section class="bg-[var(--trust-surface)] border-y-2 border-[var(--trust-border)] py-24 px-6">
-            <div class="max-w-[1440px] mx-auto">
-                <h3 class="text-3xl font-bold uppercase mb-16 text-center">Core Security Protections</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-[var(--trust-border)]">
-                    <!-- Card 1 -->
-                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">terminal</span>
-                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
-                        </div>
-                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">ENDPOINT_ISOLATION</h4>
-                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
-                            接続されたすべてのノードに対する、軍事レベルのハードウェア封じ込め。
-                        </p>
-                        <div class="h-1 bg-[var(--trust-border)] w-full">
-                            <div class="h-full bg-[var(--trust-primary)] w-full"></div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">cloud_sync</span>
-                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
-                        </div>
-                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">CLOUD_PERIMETER</h4>
-                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
-                            マルチリージョン同期冗長性を備えた、暗号化データボールト。
-                        </p>
-                        <div class="h-1 bg-[var(--trust-border)] w-full">
-                            <div class="h-full bg-[var(--trust-primary)] w-3/4"></div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">hub</span>
-                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
-                        </div>
-                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">NETWORK_HARDENING</h4>
-                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
-                            AI 駆動のトラフィックスクラビングとゼロトラストトンネリング。
-                        </p>
-                        <div class="h-1 bg-[var(--trust-border)] w-full">
-                            <div class="h-full bg-[var(--trust-primary)] w-1/2"></div>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">shield</span>
-                            <span class="text-[10px] font-bold border border-[var(--trust-alert)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-alert);">Alert</span>
-                        </div>
-                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">REALTIME_DEFENSE</h4>
-                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
-                            検出された侵害試行に対する自動報復プロトコル。
-                        </p>
-                        <div class="h-1 bg-[var(--trust-border)] w-full">
-                            <div class="h-full bg-[var(--trust-alert)] w-full"></div>
-                        </div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">query_stats</span>
-                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
-                        </div>
-                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">DEEP_ANALYTICS</h4>
-                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
-                            システム異常とパターン逸脱の鑑識レベル分析。
-                        </p>
-                        <div class="h-1 bg-[var(--trust-border)] w-full">
-                            <div class="h-full bg-[var(--trust-primary)] w-2/3"></div>
-                        </div>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
-                        <div class="flex justify-between items-start mb-8">
-                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">fingerprint</span>
-                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
-                        </div>
-                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">IDENTITY_VAULT</h4>
-                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
-                            全ユーザーに対する生体認証および量子暗号化アクセス制御。
-                        </p>
-                        <div class="h-1 bg-[var(--trust-border)] w-full">
-                            <div class="h-full bg-[var(--trust-primary)] w-full"></div>
-                        </div>
-                    </div>
+            <div class="max-w-[1440px] mx-auto w-full relative z-10">
+                <div class="flex flex-col gap-6">
+                    <p class="text-primary text-xs uppercase tracking-[0.5em]">Our Expertise</p>
+                    <h1 class="text-5xl lg:text-7xl font-light tracking-tighter text-slate-100">
+                        Bespoke <span class="serif-detail">Services</span>
+                    </h1>
+                    <div class="w-px h-20 bg-primary opacity-50"></div>
+                    <p class="text-slate-400 font-light text-lg max-w-2xl">
+                        Comprehensive solutions for the world's most discerning clients.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Deployment Options -->
-        <section class="py-24 px-6 max-w-[1440px] mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="border-4 border-[var(--trust-border)] p-12 bg-[var(--trust-surface)] relative">
-                    <div class="absolute top-0 right-0 bg-[var(--trust-border)] px-4 py-1 text-xs font-bold uppercase tracking-widest">Option_01</div>
-                    <h3 class="text-4xl font-black uppercase mb-6 tracking-tighter">CLOUD_NATIVE</h3>
-                    <p class="mb-8 tracking-wide" style="color: var(--trust-text-dim);">
-                        迅速な展開。スケーラブルなアーキテクチャ。<br/>
-                        TRUST_GUARD 指令センターによる 24 時間 365 日管理。
-                    </p>
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
-                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
-                            Instant Scaling
-                        </li>
-                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
-                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
-                            Zero Hardware Cost
-                        </li>
-                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
-                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
-                            Global Content Delivery
-                        </li>
-                    </ul>
-                    <a href="contact.html" class="trust-btn-outline-primary w-full py-4 font-bold uppercase tracking-widest transition-all inline-flex justify-center items-center gap-2">
-                        Configure Cloud
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
-                    </a>
+        <!-- Services List -->
+        <section class="py-32 px-8 md:px-20 bg-white dark:bg-background-dark">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="space-y-0">
+                    <!-- Service 01 -->
+                    <div class="group border-t border-primary/20 py-16">
+                        <div class="grid lg:grid-cols-12 gap-12 items-start">
+                            <div class="lg:col-span-2">
+                                <span class="text-primary/40 text-sm font-light">01</span>
+                            </div>
+                            <div class="lg:col-span-6">
+                                <h2 class="text-4xl md:text-5xl font-light mb-6">Architectural Mastery</h2>
+                                <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed text-lg mb-8">
+                                    From conceptual sketches to final execution, our architectural team brings decades of expertise in creating spaces that breathe with purpose and elegance.
+                                </p>
+                                <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-light">
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Residential Architecture
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Commercial Sanctuaries
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Landscape Integration
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Sustainable Design Solutions
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="lg:col-span-4">
+                                <div class="aspect-[3/4] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6h3dBZXcQzri9RJd902AmRyxBB6OCDdjriun3nAaapfqnJ3_KblB5AgPaQnfJT5YakorLTP_7L4kaysOp8cBntBbPN96OZQ901revV1TUDMnjLPJrBNsX8WpcJC3FK49Kp-XghK_xYbCmlfajxQNwdQ6pc1NwdPEzdpXOpEHKHNXivwQ1Kph3WwztbX1NYyhPQMwZVrqiZVhi5l7YQ1A-fqsDOaUBInMWw4t2jNm-ZN_8pjjM18X03gKb6AT7fUhVlQZ2fTkMyY0');"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 02 -->
+                    <div class="group border-t border-primary/20 py-16">
+                        <div class="grid lg:grid-cols-12 gap-12 items-start">
+                            <div class="lg:col-span-2">
+                                <span class="text-primary/40 text-sm font-light">02</span>
+                            </div>
+                            <div class="lg:col-span-6">
+                                <h2 class="text-4xl md:text-5xl font-light mb-6">Interior Curation</h2>
+                                <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed text-lg mb-8">
+                                    Every object tells a story. Our curators select and commission pieces that harmonize with your space, creating an environment of refined tranquility.
+                                </p>
+                                <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-light">
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Bespoke Furniture Design
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Art Acquisition & Placement
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Textile & Material Selection
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Lighting Design
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="lg:col-span-4">
+                                <div class="aspect-[3/4] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAzcstmAem1toqymG1zET1PT48A2YPKupQZs5l8uydVWkABau4W4M-lmRnikXcttUFjDVwj4WJHm0lzV091LkNkm8EhzHg5ReHYkmF199vulphEnuF5NVvxI2UKpmT4p45t2MMH6_pDkQJZ4geH99D65ANMckkYARcenE6rzm6wol2LGEfEs7zoLihO--lLZ-7fIMXYkgu7Ig578mEi_ZRJjOUJA9uS1ws5XWY4E7NnLkEfb-sJTAaHCHy_Pezm0iiUWKb3wwGZfQ');"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 03 -->
+                    <div class="group border-t border-primary/20 py-16">
+                        <div class="grid lg:grid-cols-12 gap-12 items-start">
+                            <div class="lg:col-span-2">
+                                <span class="text-primary/40 text-sm font-light">03</span>
+                            </div>
+                            <div class="lg:col-span-6">
+                                <h2 class="text-4xl md:text-5xl font-light mb-6">Private Atelier</h2>
+                                <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed text-lg mb-8">
+                                    Our atelier offers unlimited customization. From one-of-a-kind furniture to commissioned artworks, we bring your most personal visions to life.
+                                </p>
+                                <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-light">
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Custom Furniture Commission
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Heirloom Restoration
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Limited Edition Pieces
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Collaborative Design Process
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="lg:col-span-4">
+                                <div class="aspect-[3/4] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDznqjfjDnm-U66FTWZ9_Bj5hq8a0p4n2t7T5zcK-BImSV1q3pp5nP_MG10x97HstQxintNBKCRa-RRvYKBLE4wE6EAUUFIPcl84zQhuJ2RjscxCS8PZpdovEjZJB3RQD7Wp4f8QDGIvaQTTheD_wJHL16zhHqH0MvuRUxW1kPuuQsF18e-N4dL8YHJg726CHPXrTQqVzZwilLCNeZPDfkCg38AbKslR683rgagyAP-H9XXWm_xoXlw4WyTgVXJmWOLeJvYuKXPhxQ');"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 04 -->
+                    <div class="group border-t border-b border-primary/20 py-16">
+                        <div class="grid lg:grid-cols-12 gap-12 items-start">
+                            <div class="lg:col-span-2">
+                                <span class="text-primary/40 text-sm font-light">04</span>
+                            </div>
+                            <div class="lg:col-span-6">
+                                <h2 class="text-4xl md:text-5xl font-light mb-6">Global Logistics</h2>
+                                <p class="text-slate-600 dark:text-slate-400 font-light leading-relaxed text-lg mb-8">
+                                    White-glove delivery and installation anywhere in the world. Our logistics team ensures your treasures arrive in perfect condition.
+                                </p>
+                                <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-light">
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        International Shipping
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Climate-Controlled Transport
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Installation & Placement
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
+                                        Full Insurance Coverage
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="lg:col-span-4">
+                                <div class="aspect-[3/4] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7eYZKVkh0lddrY92Vo1n0RfHpaRqcO3KKFL02hZQswD36cZxMQ3B-q9-6l3Y9OqT9qj8O7naTWy3Qi-xaB426y-IC3CSTcSykGg876E92rD2dTULtWLxBe5yok84W-vBaNu6P-yM2sHn61mejGl4OSEGO0qpUyMkNx3RRo84JhV2WEUjLzUlkPrAa-OsYqgWbDIxUhqwjT-GZk6GCV9jaZqUrqWVNvh2Cjl0ktp35K876shrxhOMbjAoUEysEaIobtoYlYx96IGo');"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="border-4 border-[var(--trust-primary)] p-12 bg-[var(--trust-bg)] relative shadow-[0_0_40px_rgba(56,255,20,0.1)]">
-                    <div class="absolute top-0 right-0 bg-[var(--trust-primary)] px-4 py-1 text-xs font-bold uppercase tracking-widest" style="color: var(--trust-bg);">Option_02</div>
-                    <h3 class="text-4xl font-black uppercase mb-6 tracking-tighter">ON_PREMISE</h3>
-                    <p class="mb-8 tracking-wide" style="color: var(--trust-text-dim);">
-                        完全なコントロール。エアギャップ機能。<br/>
-                        高セキュリティセクター向けの物理インフラ監視。
-                    </p>
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
-                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
-                            Maximum Privacy
-                        </li>
-                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
-                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
-                            Air-Gapped Ready
-                        </li>
-                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
-                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
-                            Custom Hardware Integration
-                        </li>
-                    </ul>
-                    <a href="contact.html" class="trust-btn-primary w-full py-4 font-bold uppercase tracking-widest transition-all inline-flex justify-center items-center gap-2">
-                        Request Installation
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-32 px-8 md:px-20 bg-primary/5">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-20">
+                    <span class="text-primary text-xs uppercase tracking-[0.4em]">Our Process</span>
+                    <h2 class="text-4xl md:text-5xl font-light mt-6">From Vision to Reality</h2>
+                </div>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-light text-primary/30 mb-4">01</div>
+                        <h3 class="text-lg font-medium mb-4">Consultation</h3>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm leading-relaxed">
+                            We begin with an in-depth conversation to understand your vision, lifestyle, and aspirations.
+                        </p>
+                    </div>
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-light text-primary/30 mb-4">02</div>
+                        <h3 class="text-lg font-medium mb-4">Concept</h3>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm leading-relaxed">
+                            Our team develops a comprehensive design concept, presented through sketches, mood boards, and 3D visualizations.
+                        </p>
+                    </div>
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-light text-primary/30 mb-4">03</div>
+                        <h3 class="text-lg font-medium mb-4">Creation</h3>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm leading-relaxed">
+                            Master craftsmen bring the design to life using the finest materials and time-honored techniques.
+                        </p>
+                    </div>
+                    <div class="text-center p-8">
+                        <div class="text-5xl font-light text-primary/30 mb-4">04</div>
+                        <h3 class="text-lg font-medium mb-4">Completion</h3>
+                        <p class="text-slate-600 dark:text-slate-400 font-light text-sm leading-relaxed">
+                            White-glove installation and final walkthrough ensure every detail exceeds your expectations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="py-32 px-8 md:px-20 bg-white dark:bg-background-dark">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-20">
+                    <span class="text-primary text-xs uppercase tracking-[0.4em]">Selected Works</span>
+                    <h2 class="text-4xl md:text-5xl font-light mt-6">Recent Commissions</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="aspect-[4/3] bg-cover bg-center mb-6" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6h3dBZXcQzri9RJd902AmRyxBB6OCDdjriun3nAaapfqnJ3_KblB5AgPaQnfJT5YakorLTP_7L4kaysOp8cBntBbPN96OZQ901revV1TUDMnjLPJrBNsX8WpcJC3FK49Kp-XghK_xYbCmlfajxQNwdQ6pc1NwdPEzdpXOpEHKHNXivwQ1Kph3WwztbX1NYyhPQMwZVrqiZVhi5l7YQ1A-fqsDOaUBInMWw4t2jNm-ZN_8pjjM18X03gKb6AT7fUhVlQZ2fTkMyY0');"></div>
+                        <h3 class="text-xl font-light mb-2">The Glass Pavilion</h3>
+                        <p class="text-primary text-xs uppercase tracking-widest">Geneva, Switzerland — Residential</p>
+                    </div>
+                    <div>
+                        <div class="aspect-[4/3] bg-cover bg-center mb-6" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7eYZKVkh0lddrY92Vo1n0RfHpaRqcO3KKFL02hZQswD36cZxMQ3B-q9-6l3Y9OqT9qj8O7naTWy3Qi-xaB426y-IC3CSTcSykGg876E92rD2dTULtWLxBe5yok84W-vBaNu6P-yM2sHn61mejGl4OSEGO0qpUyMkNx3RRo84JhV2WEUjLzUlkPrAa-OsYqgWbDIxUhqwjT-GZk6GCV9jaZqUrqWVNvh2Cjl0ktp35K876shrxhOMbjAoUEysEaIobtoYlYx96IGo');"></div>
+                        <h3 class="text-xl font-light mb-2">Monolith Corporate HQ</h3>
+                        <p class="text-primary text-xs uppercase tracking-widest">Tokyo, Japan — Commercial</p>
+                    </div>
+                </div>
+                <div class="text-center mt-16">
+                    <a href="contact.html" class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] font-bold text-primary hover:gap-4 transition-all">
+                        View Full Portfolio <span class="material-symbols-outlined">arrow_right_alt</span>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="border-t-2 border-[var(--trust-border)] py-24 px-6 bg-[var(--trust-bg)]">
-            <div class="max-w-[1440px] mx-auto text-center">
-                <div class="bg-[var(--trust-surface)] border-4 border-[var(--trust-border)] p-16 max-w-4xl mx-auto relative overflow-hidden">
-                    <div class="trust-scanline absolute inset-0 opacity-10"></div>
-                    <p class="font-mono text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--trust-primary);">INITIALIZE_CONTACT</p>
-                    <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter">
-                        Ready to stabilize your network?
-                    </h2>
-                    <p class="mb-10 text-lg uppercase tracking-widest relative z-10" style="color: var(--trust-text-dim);">
-                        デプロイメントは包括的なインフラストラクチャスキャンから開始。
-                    </p>
-                    <a href="contact.html" class="trust-btn-primary px-16 py-6 text-xl font-black uppercase tracking-widest transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)] inline-block">
-                        Secure Your Network
+        <section class="py-32 px-8 md:px-20 bg-gradient-to-br from-primary/20 via-background-dark to-background-dark relative overflow-hidden">
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <h2 class="text-5xl md:text-7xl font-light tracking-tighter mb-8 text-slate-100">Let us create <span class="serif-detail">your space.</span></h2>
+                <p class="text-xl text-slate-400 font-light mb-12 max-w-2xl mx-auto">
+                    Every project begins with a conversation. Share your vision with us.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="contact.html" class="luxe-btn text-slate-100 px-12 py-5 rounded-full text-xs uppercase tracking-[0.4em] font-bold hover:bg-primary/80 transition-all">
+                        Start a Project
+                    </a>
+                    <a href="about.html" class="border border-primary/30 text-slate-100 px-12 py-5 rounded-full text-xs uppercase tracking-[0.4em] font-bold hover:bg-primary/10 transition-all">
+                        Our Philosophy
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[var(--trust-bg)] border-t-2 border-[var(--trust-border)] py-12 px-6">
-        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-[var(--trust-primary)] text-2xl">shield_with_heart</span>
-                <span class="text-sm font-bold uppercase tracking-widest" style="color: var(--trust-text-dim);">TRUST_GUARD © 2024</span>
-            </div>
-            <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em]" style="color: var(--trust-text-dim);">
-                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Privacy_Protocol</a>
-                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Service_Agreement</a>
-                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Compliance_Logs</a>
-            </div>
-            <div class="flex gap-4">
-                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
-                    <span class="material-symbols-outlined text-sm">share</span>
+    <!-- Footer -->
+    <footer class="bg-background-dark text-slate-100 py-20 px-8 md:px-20 border-t border-primary/20">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">blur_on</span>
+                    </div>
+                    <h2 class="text-2xl font-black tracking-widest uppercase">Luxe</h2>
                 </div>
-                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
-                    <span class="material-symbols-outlined text-sm">terminal</span>
-                </div>
+                <p class="text-slate-500 font-light max-w-xs leading-relaxed">
+                    Crafting the world's most exclusive living experiences since 1924. Architecture as an art form.
+                </p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Navigation</span>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="about.html">Philosophy</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="service.html">Collections</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="contact.html">Contact</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Connect</span>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">Instagram</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">LinkedIn</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">Behance</a>
+                <a class="text-sm font-light hover:text-primary transition-colors" href="#">Vimeo</a>
+            </div>
+        </div>
+        <div class="max-w-[1440px] mx-auto mt-20 pt-8 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-600">
+            <p>© 2024 LUXE ATELIER. All Rights Reserved.</p>
+            <div class="flex gap-8">
+                <a class="hover:text-primary" href="#">Privacy Policy</a>
+                <a class="hover:text-primary" href="#">Terms of Service</a>
             </div>
         </div>
     </footer>
 
     <script>
-        (function() {
-            const toggle = document.getElementById('trustMobileToggle');
-            const menu = document.getElementById('trustMobileMenu');
-            const backdrop = document.getElementById('trustMenuBackdrop');
-            if (!toggle || !menu || !backdrop) return;
-            function closeMenu() {
+        function toggleLuxeMenu() {
+            const menu = document.getElementById('luxe-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.luxe-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
                 menu.classList.remove('active');
-                backdrop.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
                 toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
             }
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isOpen = menu.classList.contains('active');
-                if (isOpen) { closeMenu(); } else {
-                    menu.classList.add('active');
-                    backdrop.classList.add('active');
-                    toggle.classList.add('active');
-                    toggle.setAttribute('aria-expanded', 'true');
-                }
-            });
-            backdrop.addEventListener('click', closeMenu);
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeMenu();
-            });
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.trust-nav-link').forEach(function(link) {
-                const href = link.getAttribute('href');
-                if (href === currentPage) {
-                    link.style.color = 'var(--trust-primary)';
-                }
-            });
-        })();
+        }
     </script>
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

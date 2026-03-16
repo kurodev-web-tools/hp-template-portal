@@ -1,86 +1,432 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POP_SPARK Contact | 相談受付</title>
-    
-        <meta property="og:title" content="POP_SPARK Contact | 相談受付">
-        <meta property="og:description" content="POP_SPARK Contact | 相談受付。POP_SPARKを紹介するページです。">
-<meta property="og:type" content="website">
-        <meta property="og:url" content="https://example.com/templates/business/p/contact.html">
-<meta property="og:locale" content="ja_JP">
+    <title>Contact - Verdant Global</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/p/contact.html">
+    <meta name="description" content="Verdant Global へのお問い合わせ。製品、卸売、持続可能性に関するご質問はこちら。">
+    <meta property="og:title" content="Contact - Verdant Global">
+    <meta property="og:description" content="Verdant Global へのお問い合わせ窓口">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/p/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://example.com/templates/business/p/contact.html">    <meta name="description" content="POP_SPARK Contact | 相談受付。POP_SPARKを紹介するページです。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Verdant Global",
+        "description": "Verdant Global へのお問い合わせ"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .organic-shape { border-radius: 60% 40% 70% 30% / 40% 50% 60% 40%; }
+        .eco-btn {
+            background: #11d442;
+            color: #102215;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .eco-btn:hover {
+            background: #0eb83a;
+            transform: scale(1.05);
+        }
+        .eco-mobile-menu { transition: transform 0.3s ease; }
+        .eco-mobile-menu.active { transform: translateX(0); }
+        .eco-mobile-menu.inactive { transform: translateX(-100%); }
+        .eco-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .eco-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .eco-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .eco-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #11d442;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .form-input-light {
+            background: rgba(17, 52, 30, 0.05);
+            border: 1px solid rgba(17, 52, 30, 0.1);
+            color: #11341e;
+            transition: all 0.2s ease;
+        }
+        .form-input-light:focus {
+            outline: none;
+            border-color: #11d442;
+            background: rgba(17, 52, 30, 0.08);
+        }
+        .form-input-light::placeholder {
+            color: rgba(17, 52, 30, 0.5);
+        }
+    </style>
 </head>
-<body class="theme-business fade-in">
-    <header>
-    <nav class="sticky top-0 z-50 border-b-4 border-black bg-background-light/90 px-6 py-4 backdrop-blur-md">
-        <div class="mx-auto flex max-w-7xl items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="brutalist-border brutalist-shadow bg-accent-yellow p-2"><span class="material-symbols-outlined font-black text-black">bolt</span></div>
-                <h1 class="text-2xl font-black italic tracking-tighter sm:text-3xl">POP_SPARK</h1>
+<body class="text-slate-900 dark:text-slate-100 antialiased">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 34, 21, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="eco-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleEcoMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="eco-mobile-menu" class="eco-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <div class="bg-primary text-background-dark p-1.5 rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl">eco</span>
             </div>
-            <div class="hidden items-center gap-8 md:flex">
-                <a href="index.html" class="text-lg font-bold hover:text-primary">Home</a>
-                <a href="about.html" class="text-lg font-bold hover:text-primary">About</a>
-                <a href="service.html" class="text-lg font-bold hover:text-primary">Service</a>
-                <a href="contact.html" class="text-lg font-bold text-primary underline decoration-4 decoration-accent-blue underline-offset-4">Contact</a>
-            </div>
+            <h2 class="text-xl font-bold tracking-tight text-primary">Verdant Global</h2>
         </div>
-    </nav>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Products</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-primary text-background-dark p-1.5 rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">eco</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight text-forest-green dark:text-primary">Verdant Global</h2>
+            </div>
+            <nav class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Mission</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Products</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Sustainability</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">About</a>
+                <a class="text-sm font-medium text-primary transition-colors" href="contact.html">Contact</a>
+            </nav>
+            <a href="contact.html" class="eco-btn hover:bg-primary/90 text-background-dark font-bold py-2.5 px-6 rounded-full transition-all text-sm">
+                Join Movement
+            </a>
+        </div>
     </header>
+
     <main>
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 py-16 md:py-20">
-            <div class="mx-auto max-w-7xl">
-                <p class="text-sm font-black uppercase tracking-[0.28em] text-primary">Contact</p>
-                <h1 class="mt-6 text-4xl font-black uppercase italic tracking-tighter sm:text-5xl md:text-7xl"><span class="ib">次の BOOM を、</span><span class="ib">ここから。</span></h1>
+        <!-- Hero Section -->
+        <section class="relative min-h-[40vh] flex items-center justify-center overflow-hidden px-6 py-20 bg-warm-beige dark:bg-background-dark">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-primary/30 w-fit mb-6">
+                    <span class="material-symbols-outlined text-primary text-sm">mail</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-forest-green dark:text-primary">Get in Touch</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black text-forest-green dark:text-slate-100 leading-[1.1] tracking-tight mb-6">
+                    We'd Love to Hear From You
+                </h1>
+                <p class="text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
+                    Questions about our products, sustainability practices, or wholesale options? We're here to help.
+                </p>
             </div>
         </section>
-        <section class="px-6 pb-20">
-            <div class="mx-auto grid max-w-7xl gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-                <form data-demo-form="true" onsubmit="event.preventDefault();" method="post" action="#" class="brutalist-border brutalist-shadow bg-white p-6 sm:p-8">
-                    <div class="grid gap-5 md:grid-cols-2">
-                        <label><span class="mb-2 block text-sm font-black uppercase">Name</span><input class="pop-input" type="text" placeholder="YAMADA TARO"></label>
-                        <label><span class="mb-2 block text-sm font-black uppercase">Email</span><input class="pop-input" type="email" placeholder="INFO@EXAMPLE.COM"></label>
+
+        <!-- Contact Form Section -->
+        <section class="py-24 px-6 bg-white dark:bg-background-dark/50">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="flex flex-col gap-8">
+                        <h2 class="text-3xl font-black text-forest-green dark:text-slate-100">Contact Information</h2>
+                        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Reach out to us for any inquiries. Our team typically responds within 24-48 hours.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-warm-beige/50 dark:bg-white/5 border border-primary/10">
+                                <div class="size-12 organic-shape bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">Headquarters</h3>
+                                    <p class="text-slate-600 dark:text-slate-400">1234 Green Street<br/>Portland, OR 97204</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-warm-beige/50 dark:bg-white/5 border border-primary/10">
+                                <div class="size-12 organic-shape bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                                    <span class="material-symbols-outlined">email</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">Email</h3>
+                                    <p class="text-slate-600 dark:text-slate-400">hello@verdantglobal.io<br/>support@verdantglobal.io</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-warm-beige/50 dark:bg-white/5 border border-primary/10">
+                                <div class="size-12 organic-shape bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+                                    <span class="material-symbols-outlined">phone</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">Phone</h3>
+                                    <p class="text-slate-600 dark:text-slate-400">+1 (503) 555-0123<br/>Mon-Fri 8am-5pm PST</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-8">
+                            <h3 class="text-xl font-bold text-forest-green dark:text-slate-100 mb-4">Follow Our Journey</h3>
+                            <div class="flex gap-4">
+                                <a href="#" class="size-12 rounded-full bg-warm-beige/50 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-background-dark transition-all">
+                                    <span class="material-symbols-outlined">public</span>
+                                </a>
+                                <a href="#" class="size-12 rounded-full bg-warm-beige/50 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-background-dark transition-all">
+                                    <span class="material-symbols-outlined">share</span>
+                                </a>
+                                <a href="#" class="size-12 rounded-full bg-warm-beige/50 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-background-dark transition-all">
+                                    <span class="material-symbols-outlined">camera</span>
+                                </a>
+                                <a href="#" class="size-12 rounded-full bg-warm-beige/50 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-background-dark transition-all">
+                                    <span class="material-symbols-outlined">play_circle</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <label class="mt-5 block"><span class="mb-2 block text-sm font-black uppercase">Project Type</span><input class="pop-input" type="text" placeholder="CAMPAIGN / LAUNCH / EVENT"></label>
-                    <label class="mt-5 block"><span class="mb-2 block text-sm font-black uppercase">Message</span><textarea class="pop-input min-h-40 resize-y" placeholder="PROJECT GOAL / TARGET / RELEASE TIMING"></textarea></label>
-                    <button class="mt-6 brutalist-border brutalist-shadow bg-primary px-5 py-3 text-base font-black text-white sm:px-8 sm:py-4 sm:text-xl" type="submit">SEND BOOM</button>
-                </form>
-                <div class="grid gap-6">
-                    <div class="brutalist-border brutalist-shadow bg-accent-yellow p-6 sm:p-8">
-                        <p class="text-2xl font-black uppercase sm:text-3xl">READY FOR THE BIG BOOM?</p>
-                        <p class="mt-6 font-bold leading-8"><span class="ib">相談段階でも大丈夫です。</span><span class="ib">企画の熱量をどう見せるか、一緒に整理します。</span></p>
-                    </div>
-                    <div class="brutalist-border brutalist-shadow bg-accent-blue p-6 text-white sm:p-8">
-                        <p class="text-sm font-black uppercase tracking-[0.24em]">Response</p>
-                        <p class="mt-4 text-3xl font-black uppercase">48 Hours</p>
-                        <p class="mt-4 font-bold leading-8">初回返信で、進め方と必要素材の整理を返します。</p>
+
+                    <div class="bg-forest-green p-8 rounded-2xl">
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label for="firstName" class="text-sm font-bold text-white uppercase tracking-wider">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-input w-full px-4 py-3 rounded-lg" placeholder="John" required>
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="lastName" class="text-sm font-bold text-white uppercase tracking-wider">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Doe" required>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="email" class="text-sm font-bold text-white uppercase tracking-wider">Email</label>
+                                <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 rounded-lg" placeholder="john@example.com" required>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="subject" class="text-sm font-bold text-white uppercase tracking-wider">Subject</label>
+                                <select id="subject" name="subject" class="form-input w-full px-4 py-3 rounded-lg" required>
+                                    <option value="" disabled selected>Select a topic</option>
+                                    <option value="products">Product Inquiry</option>
+                                    <option value="wholesale">Wholesale Partnership</option>
+                                    <option value="sustainability">Sustainability Questions</option>
+                                    <option value="orders">Order Support</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="message" class="text-sm font-bold text-white uppercase tracking-wider">Message</label>
+                                <textarea id="message" name="message" rows="5" class="form-input w-full px-4 py-3 rounded-lg resize-none" placeholder="How can we help you?" required></textarea>
+                            </div>
+
+                            <button type="submit" class="eco-btn w-full py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-[1.02]">
+                                Send Message
+                            </button>
+
+                            <p class="text-xs text-white/60 text-center">
+                                By submitting this form, you agree to our Privacy Policy and Terms of Service.
+                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- FAQ Section -->
+        <section class="py-24 px-6 bg-warm-beige dark:bg-background-dark">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">FAQ</span>
+                    <h2 class="text-3xl lg:text-4xl font-black text-forest-green dark:text-slate-100 mb-4">Common Questions</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Quick answers to frequently asked questions.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-white/5 rounded-xl border border-primary/10 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">Do you ship internationally?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 dark:text-slate-400">
+                                Yes! We ship to over 50 countries worldwide. International shipping typically takes 7-14 business days. Free international shipping on orders over $100.
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="bg-white dark:bg-white/5 rounded-xl border border-primary/10 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">Are your products truly organic?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 dark:text-slate-400">
+                                Absolutely. All our products are USDA Organic certified and sourced from verified organic farms. We provide full transparency on our supply chain.
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="bg-white dark:bg-white/5 rounded-xl border border-primary/10 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">What is your return policy?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 dark:text-slate-400">
+                                We offer a 30-day satisfaction guarantee. If you're not completely satisfied with your purchase, return it within 30 days for a full refund or exchange.
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="bg-white dark:bg-white/5 rounded-xl border border-primary/10 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-forest-green dark:text-slate-100">Do you offer wholesale pricing?</h3>
+                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-slate-600 dark:text-slate-400">
+                                Yes, we offer wholesale pricing for retailers and businesses. Contact our wholesale team at wholesale@verdantglobal.io for pricing information.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6 bg-forest-green relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+            </div>
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <h2 class="text-4xl lg:text-6xl font-black text-white mb-8">Still Have Questions?</h2>
+                <p class="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
+                    Our team is here to help you on your sustainability journey.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="tel:+15035550123" class="eco-btn text-background-dark font-black px-10 py-4 rounded-full text-lg transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">call</span> Call Us Now
+                    </a>
+                    <a href="mailto:hello@verdantglobal.io" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">email</span> Send Email
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
-    <footer class="border-t-4 border-black bg-background-light px-6 py-8">
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6">
-            <p class="text-sm font-black uppercase tracking-[0.24em]">POP_SPARK</p>
-            <div class="flex gap-5 text-sm font-bold">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="service.html">Service</a>
+
+    <!-- Footer -->
+    <footer class="bg-background-dark text-slate-400 py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="bg-primary text-background-dark p-1.5 rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xl">eco</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white">Verdant Global</h2>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        Dedicated to preserving the earth's natural beauty through regenerative practices and conscious commerce since 2012.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all" href="#">
+                            <span class="material-symbols-outlined text-xl">public</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all" href="#">
+                            <span class="material-symbols-outlined text-xl">share</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all" href="#">
+                            <span class="material-symbols-outlined text-xl">camera</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Our Story</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Mission & Values</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Sustainability Report</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Shipping Info</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Return Policy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">FAQ</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Wholesale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Certifications</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 rounded-xl flex items-center justify-center border border-white/10 grayscale hover:grayscale-0 transition-all">
+                            <span class="material-symbols-outlined text-3xl">verified</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl flex items-center justify-center border border-white/10 grayscale hover:grayscale-0 transition-all">
+                            <span class="material-symbols-outlined text-3xl">recycling</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl flex items-center justify-center border border-white/10 grayscale hover:grayscale-0 transition-all">
+                            <span class="material-symbols-outlined text-3xl">compost</span>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl flex items-center justify-center border border-white/10 grayscale hover:grayscale-0 transition-all">
+                            <span class="material-symbols-outlined text-3xl">nest_eco_leaf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-widest">
+                <p>© 2024 Verdant Global. All Rights Reserved.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="assets/js/script.js"></script>
+
+    <script>
+        function toggleEcoMenu() {
+            const menu = document.getElementById('eco-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.eco-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

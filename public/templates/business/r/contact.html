@@ -3,89 +3,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Royal Legacy へのお問い合わせ。機密性を重視した初回相談を受け付けています。">
-            <meta property="og:title" content="Contact | Royal Legacy">
-    <meta property="og:description" content="Royal Legacy へのお問い合わせ。機密性を重視した初回相談を受け付けています。">
+    <title>Contact - Global Logistics</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/r/contact.html">
+    <meta name="description" content="Global Logistics へのお問い合わせ。見積もり、トラッキング、カスタマーサポートまで、あらゆるお問い合わせに対応します。">
+    <meta property="og:title" content="Contact - Global Logistics">
+    <meta property="og:description" content="Global Logistics へのお問い合わせ">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/r/contact.html">
+    <meta property="og:url" content="https://example.com/templates/business/r/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>Contact | Royal Legacy</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/r/contact.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Global Logistics",
+        "description": "お問い合わせ・見積もりフォーム"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,700;6..72,800&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; }
+        .logistics-btn {
+            background: #0b50da;
+            color: #ffffff;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .logistics-btn:hover {
+            background: #0a45bc;
+            box-shadow: 0 4px 20px rgba(11, 80, 218, 0.4);
+        }
+        .logistics-mobile-menu { transition: transform 0.3s ease; }
+        .logistics-mobile-menu.active { transform: translateX(0); }
+        .logistics-mobile-menu.inactive { transform: translateX(-100%); }
+        .logistics-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .logistics-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .logistics-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .logistics-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .contact-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #1e293b;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .dark .contact-input {
+            background: #1e293b;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+        .contact-input:focus {
+            outline: none;
+            border-color: #0b50da;
+            box-shadow: 0 0 0 3px rgba(11, 80, 218, 0.15);
+        }
+        .contact-input::placeholder {
+            color: #94a3b8;
+        }
+    </style>
 </head>
-<body class="theme-business antialiased">
-    <div class="royal-menu-backdrop fixed inset-0 z-[9998] bg-black/45 backdrop-blur-sm md:hidden"></div>
-    <button aria-controls="royal-mobile-menu" class="royal-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-primary/30 bg-background-dark/80 text-white shadow-lg backdrop-blur md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="royal-mobile-menu" class="royal-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-primary/20 bg-background-dark/95 p-6 text-white shadow-2xl md:hidden">
-        <div class="mb-6 flex items-center justify-between"><div class="flex items-center gap-3"><span class="royal-crest"><span>R</span></span><p class="font-display text-lg font-bold tracking-[0.18em]">ROYAL LEGACY</p></div></div>
-        <nav class="flex flex-col gap-2">
-            <a href="index.html" class="royal-nav-link rounded-full px-4 py-3">Home</a>
-            <a href="about.html" class="royal-nav-link rounded-full px-4 py-3">About</a>
-            <a href="service.html" class="royal-nav-link rounded-full px-4 py-3">Service</a>
-            <a href="contact.html" class="royal-nav-link active rounded-full px-4 py-3">Contact</a>
+<body class="text-slate-900 dark:text-slate-100 antialiased">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 22, 34, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="logistics-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleLogisticsMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="logistics-mobile-menu" class="logistics-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3 text-primary">
+            <span class="material-symbols-outlined text-4xl font-bold">language</span>
+            <h2 class="text-slate-100 text-xl font-black tracking-tight uppercase">Global Logistics</h2>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Service</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
         </nav>
-    </div>
-    <header class="fixed left-0 right-0 top-0 z-50 px-6 py-4 lg:px-20">
-        <div class="royal-panel mx-auto flex max-w-7xl items-center justify-between rounded-full px-6 py-4">
-            <a href="index.html" class="flex items-center gap-4 text-white"><span class="royal-crest"><span>R</span></span><div><p class="font-display text-xl font-bold tracking-[0.18em]">ROYAL LEGACY</p><p class="text-[11px] uppercase tracking-[0.35em] text-primary/80">Since 1892</p></div></a>
-            <nav class="hidden items-center gap-3 md:flex">
-                <a href="index.html" class="royal-nav-link rounded-full px-4 py-2 text-sm">Home</a>
-                <a href="about.html" class="royal-nav-link rounded-full px-4 py-2 text-sm">About</a>
-                <a href="service.html" class="royal-nav-link rounded-full px-4 py-2 text-sm">Service</a>
-                <a href="contact.html" class="royal-nav-link active rounded-full px-4 py-2 text-sm">Contact</a>
-            </nav>
-            <div class="hidden items-center gap-3 md:flex"><a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-bold text-background-dark">Private Inquiry</a></div>
+    </aside>
+
+    <header class="sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <div class="flex items-center gap-3 text-primary">
+                    <span class="material-symbols-outlined text-4xl font-bold">language</span>
+                    <h2 class="text-slate-900 dark:text-white text-xl font-black tracking-tight uppercase">Global Logistics</h2>
+                </div>
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="service.html">Services</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="about.html">Network</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="service.html">Tracking</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="about.html">Company</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="contact.html">Contact</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-slate-200 dark:border-slate-700">
+                    <span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm w-40 placeholder:text-slate-400" placeholder="Search tracking ID..." type="text"/>
+                </div>
+                <a href="contact.html" class="logistics-btn hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">local_shipping</span>
+                    Track Shipment
+                </a>
+            </div>
         </div>
     </header>
-    <main class="royal-shell overflow-hidden pt-24">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 pb-12 pt-10 lg:px-20 lg:pb-16 lg:pt-20">
-            <div class="mx-auto max-w-7xl rounded-[2.2rem] border border-primary/15 bg-background-dark px-8 py-12 text-white">
-                <p class="text-sm font-semibold uppercase tracking-[0.34em] text-primary">Private Inquiry</p>
-                <h1 class="mt-4 font-display text-4xl font-black leading-tight md:text-6xl"><span class="ib">ご相談は、</span><span class="ib">静かな対話から始まります。</span></h1>
-                <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300"><span class="ib">継承、</span><span class="ib">運用、</span><span class="ib">家族統治、</span><span class="ib">寄付設計など、</span><span class="ib">関心領域を簡潔にご記入ください。</span></p>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[40vh] flex items-center px-6 lg:px-12 bg-slate-900 overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-40">
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(11,80,218,0.3)_0%,_transparent_50%)]"></div>
+            </div>
+            <div class="max-w-[1440px] mx-auto w-full relative z-10">
+                <div class="flex flex-col gap-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest w-fit">
+                        <span class="material-symbols-outlined text-sm">mail</span>
+                        Get In Touch
+                    </div>
+                    <h1 class="text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white">
+                        Let's Move Your Business Forward
+                    </h1>
+                    <p class="text-lg text-slate-300 max-w-2xl">
+                        見積もり、トラッキング、カスタマーサポートまで、あらゆるお問い合わせに対応します。
+                    </p>
+                </div>
             </div>
         </section>
-        <section class="px-6 pb-20 lg:px-20 lg:pb-24">
-            <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-                <div class="royal-panel rounded-[2rem] p-8 lg:p-10">
-                    <p class="text-sm font-semibold uppercase tracking-[0.34em] text-primary">Confidential Form</p>
-                    <form data-demo-form="true" onsubmit="event.preventDefault();" method="post" action="#" class="mt-8 space-y-5">
-                        <div><label class="mb-2 block text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 dark:text-slate-400" for="name">お名前</label><input id="name" class="royal-input" type="text" placeholder="山田 太郎"></div>
-                        <div><label class="mb-2 block text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 dark:text-slate-400" for="email">メールアドレス</label><input id="email" class="royal-input" type="email" placeholder="private@example.com"></div>
-                        <div><label class="mb-2 block text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 dark:text-slate-400" for="family">ご相談の主題</label><select id="family" class="royal-input"><option>資産継承の全体設計</option><option>事業承継とガバナンス</option><option>国際資産の保全</option><option>慈善戦略・財団設計</option></select></div>
-                        <div><label class="mb-2 block text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 dark:text-slate-400" for="message">ご相談内容</label><textarea id="message" class="royal-input min-h-40 resize-y" placeholder="現状の課題、家族構成、相談したい論点など"></textarea></div>
-                        <button class="w-full rounded-full bg-primary px-6 py-4 text-center font-bold text-background-dark" type="submit">非公開相談を申し込む</button>
-                    </form>
+
+        <!-- Contact Form Section -->
+        <section class="py-24 px-6 lg:px-12 bg-slate-50 dark:bg-background-dark">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 lg:p-10 border border-slate-200 dark:border-slate-700 shadow-xl">
+                            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8">Send Us a Message</h2>
+                            <form class="space-y-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">First Name *</label>
+                                        <input type="text" class="contact-input" placeholder="John"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Last Name *</label>
+                                        <input type="text" class="contact-input" placeholder="Doe"/>
+                                    </div>
+                                </div>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address *</label>
+                                        <input type="email" class="contact-input" placeholder="john@company.com"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Phone Number</label>
+                                        <input type="tel" class="contact-input" placeholder="+1 (555) 123-4567"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Company Name</label>
+                                    <input type="text" class="contact-input" placeholder="Your Company Ltd."/>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Service Interest *</label>
+                                    <select class="contact-input">
+                                        <option value="">Select a service...</option>
+                                        <option value="air-freight">Air Freight</option>
+                                        <option value="sea-cargo">Sea Cargo</option>
+                                        <option value="land-transport">Land Transport</option>
+                                        <option value="warehousing">Warehousing</option>
+                                        <option value="customs">Customs Clearance</option>
+                                        <option value="supply-chain">Supply Chain Management</option>
+                                        <option value="cold-chain">Cold Chain Logistics</option>
+                                        <option value="ecommerce">E-commerce Fulfillment</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message *</label>
+                                    <textarea class="contact-input" rows="6" placeholder="Please describe your shipping needs, origin and destination, cargo type, and any special requirements..."></textarea>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <input type="checkbox" id="consent" class="mt-1 w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary"/>
+                                    <label for="consent" class="text-sm text-slate-600 dark:text-slate-400">
+                                        I agree to the <a href="#" class="text-primary hover:underline">Privacy Policy</a> and consent to having this website store my submitted information so they can respond to my inquiry.
+                                    </label>
+                                </div>
+                                <button type="submit" class="logistics-btn w-full py-4 rounded-lg text-lg font-bold transition-all shadow-xl shadow-primary/30">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-2xl">location_on</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Global Headquarters</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                100 Commerce Plaza, Global Way<br/>
+                                Singapore Financial District<br/>
+                                Singapore 018956
+                            </p>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-2xl">call</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Phone Support</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-2">
+                                24/7 Customer Support
+                            </p>
+                            <a href="tel:+18004562256" class="text-primary font-bold text-lg hover:underline">
+                                +1 (800) GLOBAL-LOG
+                            </a>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-2xl">mail</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Email</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-2">
+                                General Inquiries
+                            </p>
+                            <a href="mailto:contact@globallogistics.com" class="text-primary font-bold hover:underline">
+                                contact@globallogistics.com
+                            </a>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
+                            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-2xl">support_agent</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Live Chat</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                Chat with our support team in real-time.
+                            </p>
+                            <button class="logistics-btn w-full py-3 rounded-lg font-bold transition-all">
+                                Start Live Chat
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="space-y-6">
-                    <article class="royal-feature rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.28em] text-primary/80">Consultation Window</p><h2 class="mt-4 font-display text-3xl font-bold text-slate-900 dark:text-white">初回は 45 分の機密面談</h2><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">論点の整理を優先するため、</span><span class="ib">詳細資料は初回後に安全な経路で共有いただきます。</span></p></article>
-                    <article class="royal-feature rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.28em] text-primary/80">Offices</p><div class="mt-4 space-y-3 text-sm leading-8 text-slate-700 dark:text-slate-300"><p><span class="font-semibold text-slate-900 dark:text-white">London</span> / Mayfair</p><p><span class="font-semibold text-slate-900 dark:text-white">New York</span> / Park Avenue</p><p><span class="font-semibold text-slate-900 dark:text-white">Geneva</span> / Private Suite</p><p><span class="font-semibold text-slate-900 dark:text-white">Hong Kong</span> / Central</p></div></article>
-                    <article class="rounded-[2rem] border border-primary/20 bg-heritage-burgundy p-8 text-white shadow-2xl"><p class="text-xs uppercase tracking-[0.28em] text-primary/80">By Referral</p><p class="mt-4 text-sm leading-8 text-slate-200"><span class="ib">ご紹介元がある場合は、</span><span class="ib">メッセージ内に担当者名をご記載ください。</span><span class="ib">優先的に面談枠を調整します。</span></p></article>
+            </div>
+        </section>
+
+        <!-- Regional Offices Section -->
+        <section class="py-24 px-6 lg:px-12 bg-white dark:bg-background-dark">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-4">Regional Offices</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">Find a Global Logistics office near you.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Americas</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                            500 Harbor Blvd, Long Beach<br/>
+                            CA 90802, USA
+                        </p>
+                        <a href="tel:+15551234567" class="text-primary text-sm font-bold hover:underline">+1 (555) 123-4567</a>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Europe</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                            25 Rotterdam Harbor<br/>
+                            3011 Rotterdam, Netherlands
+                        </p>
+                        <a href="tel:+31101234567" class="text-primary text-sm font-bold hover:underline">+31 (10) 123-4567</a>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Asia Pacific</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                            88 Marine Bay, Marina One<br/>
+                            Singapore 018956
+                        </p>
+                        <a href="tel:+6565123456" class="text-primary text-sm font-bold hover:underline">+65 6512 3456</a>
+                    </div>
+                    <div class="p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors">
+                        <div class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Middle East</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                            Jebel Ali Free Zone<br/>
+                            Dubai, UAE
+                        </p>
+                        <a href="tel:+97143123456" class="text-primary text-sm font-bold hover:underline">+971 (4) 312-3456</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-24 px-6 lg:px-12 bg-slate-50 dark:bg-background-dark">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">Quick answers to common questions about our services.</p>
+                </div>
+                <div class="space-y-4">
+                    <details class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">How quickly can you arrange international shipping?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            For air freight, we can typically arrange pickup within 24-48 hours of booking confirmation. Sea cargo bookings usually require 3-5 days advance notice. Our team will work with you to expedite urgent shipments whenever possible.
+                        </div>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Do you provide customs clearance services?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Yes, we offer comprehensive customs brokerage services in over 220 countries. Our licensed customs brokers handle documentation, duty calculations, and clearance procedures to ensure smooth cross-border shipping.
+                        </div>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Can I track my shipment in real-time?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Absolutely. All shipments include real-time tracking through our online portal and mobile app. You'll receive status updates at key milestones and can monitor your cargo's location 24/7.
+                        </div>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">What types of cargo do you handle?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            We handle a wide variety of cargo including standard freight, temperature-controlled goods, hazardous materials, oversized cargo, and high-value items. Our team can advise on special handling requirements for your specific cargo type.
+                        </div>
+                    </details>
+                    <details class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">How do I request a shipping quote?</h3>
+                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            You can request a quote through our online form, by calling our customer service line, or by emailing your requirements. Please provide details about your cargo, origin, destination, and preferred timeline for the most accurate quote.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6 lg:px-12 bg-gradient-to-br from-primary via-primary/90 to-blue-900 relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-20">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PCEtLSBwYXR0ZXJuIC0tPjxwYXRoIGQ9Ik0zMCAzMEw2MCAwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PC9zdmc+')]"></div>
+            </div>
+            <div class="max-w-4xl mx-auto text-center relative z-10 py-10">
+                <h2 class="text-4xl lg:text-5xl font-black text-white mb-8">Ready to Get Started?</h2>
+                <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+                    Partner with the global leader in logistics and supply chain solutions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="tel:+18004562256" class="bg-white text-primary px-10 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all inline-flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">call</span>
+                        Call Now
+                    </a>
+                    <a href="service.html" class="border-2 border-white/50 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                        Explore Services
+                    </a>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="px-6 pb-10 pt-6 lg:px-20">
-        <div class="mx-auto max-w-7xl rounded-[2rem] border border-primary/15 bg-background-dark px-8 py-10 text-white">
-            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <p class="font-display text-xl font-bold tracking-[0.16em] text-primary">ROYAL LEGACY</p>
-                <div class="flex gap-5 text-sm text-slate-300">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-3 text-primary mb-8">
+                        <span class="material-symbols-outlined text-3xl font-bold">language</span>
+                        <h2 class="text-white text-xl font-black tracking-tight uppercase">Global Logistics</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Setting the standard for international logistics since 1994. Building the future of connected commerce across 220 countries.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-lg text-white">share</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-lg text-white">alternate_email</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-lg text-white">groups</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Services</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Ocean Freight</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Air Freight Solutions</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Road Transport</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Warehousing & Distro</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Customs Clearance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Company</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">About Our Network</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Sustainability Goals</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Global Careers</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Investor Relations</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Press & Media</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Global HQ</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary">location_on</span>
+                            100 Commerce Plaza, Global Way<br/>Singapore Financial District
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary">call</span>
+                            +1 (800) GLOBAL-LOG
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary">mail</span>
+                            contact@globallogistics.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-500 text-sm">© 2024 Global Logistics Enterprise. All rights reserved.</p>
+                <div class="flex gap-8 text-sm text-slate-500">
+                    <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+                    <a class="hover:text-white transition-colors" href="#">Cookie Policy</a>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+
+    <script>
+        function toggleLogisticsMenu() {
+            const menu = document.getElementById('logistics-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.logistics-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

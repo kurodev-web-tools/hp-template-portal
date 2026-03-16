@@ -3,273 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Urban Street - 都市のノイズを熱量に変えるストリートブランド。RAW なエネルギーをそのまま着る。">
-    <meta property="og:title" content="Urban Street | RAW ENERGY / NO RULES">
-    <meta property="og:description" content="都市のノイズを熱量に変えるストリートブランド。平均に寄せるより、熱量を残す。">
-    <meta property="og:image" content="https://example.com/templates/business/u/assets/generated/external-image-01.svg">
+    <title>Nexus AI | Intelligent Data-Driven Solutions</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/u/index.html">
+    <meta name="description" content="Nexus AI - 複雑なマルチソースデータを行動可能なインサイトに変換。予測分析の卓越性を実現します。">
+    <meta property="og:title" content="Nexus AI | Intelligent Data-Driven Solutions">
+    <meta property="og:description" content="AI プラットフォームが複雑なデータを行動可能なインサイトに変換">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-    <meta property="og:url" content="https://example.com/templates/business/u/">
+    <meta property="og:url" content="https://example.com/templates/business/u/index.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    <title>Urban Street | RAW ENERGY / NO RULES</title>
-    <link rel="canonical" href="https://example.com/templates/business/u/">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Nexus AI",
+        "description": "AI パowered analytics and neural infrastructure platform",
+        "applicationCategory": "BusinessApplication"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
     <style>
-        :root {
-            --urban-primary: #f4af25;
-            --urban-neon: #ccff00;
-            --urban-asphalt: #1a1a1a;
-            --urban-concrete: #3a3a3a;
-            --urban-bg-dark: #121212;
-            --urban-bg-light: #f8f7f5;
-        }
-        .urban-theme {
-            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
-            background-color: var(--urban-bg-dark);
-            color: #f8f7f5;
-        }
-        .urban-stencil {
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-        }
-        .urban-italic {
-            font-style: italic;
-        }
-        /* Brutalist border effect */
-        .brutalist-box {
-            border: 4px solid var(--urban-concrete);
-            box-shadow: 8px 8px 0 0 var(--urban-primary);
-            transition: all 0.2s ease;
-        }
-        .urban-theme .brutalist-box:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 12px 12px 0 0 var(--urban-primary);
-        }
-        /* Tape effect */
-        .tape-effect {
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .chart-sparkline {
+            height: 40px;
+            background: linear-gradient(90deg, transparent 0%, rgba(50, 17, 212, 0.1) 50%, transparent 100%);
             position: relative;
-        }
-        .tape-effect::after {
-            content: '';
-            position: absolute;
-            top: -8px;
-            right: 24px;
-            width: 70px;
-            height: 24px;
-            background: rgba(244, 175, 37, 0.35);
-            transform: rotate(4deg);
-            pointer-events: none;
-            border: 1px dashed rgba(255, 255, 255, 0.15);
-        }
-        /* Grunge texture overlay */
-        .grit-overlay::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.4;
-        }
-        @media (max-width: 768px) {
-            .grit-overlay::before { display: none; }
-        }
-        /* Navigation hover */
-        .urban-nav-link {
-            position: relative;
-            transition: all 0.2s ease;
-        }
-        .urban-nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--urban-primary);
-            transition: width 0.2s ease;
-        }
-        .urban-theme .urban-nav-link:hover::after,
-        .urban-theme .urban-nav-link.active::after {
-            width: 100%;
-        }
-        .urban-theme .urban-nav-link:hover,
-        .urban-theme .urban-nav-link.active {
-            color: var(--urban-primary);
-        }
-        /* Mobile menu */
-        .urban-menu-backdrop {
-            display: none;
-        }
-        @media (max-width: 1023px) {
-            .urban-menu-backdrop {
-                display: block;
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.3s ease, visibility 0.3s ease;
-            }
-            .urban-menu-backdrop.active {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-        .urban-mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        @media (max-width: 1023px) {
-            .urban-mobile-menu.active {
-                transform: translateX(0);
-            }
-        }
-        @media (min-width: 1024px) {
-            .urban-mobile-menu {
-                display: none;
-            }
-        }
-        .urban-mobile-toggle {
-            display: none;
-        }
-        @media (max-width: 1023px) {
-            .urban-mobile-toggle {
-                display: flex;
-            }
-            .urban-mobile-toggle .bar {
-                display: block;
-                width: 24px;
-                height: 3px;
-                background: var(--urban-primary);
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                transition: all 0.3s ease;
-            }
-            .urban-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
-            .urban-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
-            .urban-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-            .urban-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
-            .urban-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
-        }
-        /* Image hover effects */
-        .urban-img-zoom {
             overflow: hidden;
         }
-        .urban-img-zoom img {
-            transition: transform 0.6s ease, filter 0.6s ease;
+        .chart-sparkline::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #3211d4;
+            clip-path: polygon(0% 70%, 15% 40%, 30% 60%, 45% 20%, 60% 50%, 75% 10%, 90% 40%, 100% 30%, 100% 100%, 0% 100%);
         }
-        .urban-theme .urban-img-zoom:hover img {
-            transform: scale(1.1);
-            filter: grayscale(0);
-        }
-        /* Staggered grid */
-        .stagger-item:nth-child(2) {
-            margin-top: 3rem;
-        }
-        .stagger-item:nth-child(3) {
-            margin-top: 0;
-        }
-        /* Rotated elements */
-        .rotated-neg {
-            transform: rotate(-3deg);
-        }
-        .rotated-pos {
-            transform: rotate(4deg);
-        }
-        /* CTA button */
-        .urban-btn {
-            background: var(--urban-primary);
-            color: var(--urban-bg-dark);
-            border: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 1rem 2.5rem;
-            transition: all 0.2s ease;
-            box-shadow: 6px 6px 0 0 rgba(0,0,0,0.4);
-        }
-        .urban-btn:hover {
-            transform: translate(2px, -2px);
-            box-shadow: 8px 8px 0 0 rgba(0,0,0,0.4);
-        }
-        .urban-btn-outline {
-            background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 1rem 2.5rem;
-            transition: all 0.2s ease;
-        }
-        .urban-btn-outline:hover {
-            background: #fff;
-            color: var(--urban-bg-dark);
-        }
-        /* Drop schedule hover */
-        .drop-row {
-            transition: all 0.2s ease;
-        }
-        .drop-row:hover {
-            background: var(--urban-concrete);
-            color: var(--urban-primary);
-        }
+        .nexus-mobile-menu { transition: transform 0.3s ease; }
+        .nexus-mobile-menu.active { transform: translateX(0); }
+        .nexus-mobile-menu.inactive { transform: translateX(-100%); }
+        .nexus-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .nexus-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .nexus-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .nexus-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     </style>
 </head>
-<body class="urban-theme">
-    <!-- Grit overlay -->
-    <div class="grit-overlay"></div>
+<body class="text-slate-900 dark:text-slate-100 font-display">
 
-    <!-- Mobile Menu Backdrop -->
-    <div class="urban-menu-backdrop" id="urbanMenuBackdrop"></div>
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(19, 16, 34, 0.5); backdrop-filter: blur(4px);"></div>
 
-    <!-- Mobile Menu Toggle -->
-    <button class="urban-mobile-toggle" id="urbanMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="urbanMobileMenu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    <button class="nexus-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleNexusMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
     </button>
 
-    <!-- Mobile Menu -->
-    <div class="urban-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-none border-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)] p-6 shadow-2xl" id="urbanMobileMenu">
-        <div class="mb-6 flex items-center justify-between">
-            <div>
-                <p class="urban-stencil text-2xl" style="color: var(--urban-primary);">URBAN_STREET</p>
-                <p class="font-mono text-[10px] uppercase tracking-[0.24em]" style="color: #888;">STREET EXIT</p>
-            </div>
+    <aside id="nexus-mobile-menu" class="nexus-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl text-primary">hub</span>
+            <h1 class="text-xl font-bold text-slate-100">Nexus AI</h1>
         </div>
-        <nav class="flex flex-col gap-2">
-            <a href="index.html" class="urban-nav-link active rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: var(--urban-primary);">:: DROPS</a>
-            <a href="about.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: MANIFESTO</a>
-            <a href="service.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: LOOKBOOK</a>
-            <a href="contact.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: CONTACT</a>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Solutions</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Contact</a>
         </nav>
-    </div>
+    </aside>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 border-b-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)]/95 px-6 py-4 backdrop-blur">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="bg-[var(--urban-primary)] p-1">
-                    <span class="material-symbols-outlined text-3xl" style="color: var(--urban-bg-dark);">bolt</span>
-                </div>
-                <div>
-                    <p class="urban-stencil text-2xl tracking-tighter">URBAN_STREET</p>
-                    <p class="font-mono text-[9px] uppercase tracking-[0.26em]" style="color: #888;">RAW ENERGY / NO RULES</p>
-                </div>
-            </a>
-            <nav class="hidden items-center gap-8 lg:flex">
-                <a href="index.html" class="urban-nav-link active text-sm font-bold tracking-widest pb-1">DROPS</a>
-                <a href="about.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">MANIFESTO</a>
-                <a href="service.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">LOOKBOOK</a>
-                <a href="contact.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">CONTACT</a>
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-2 text-primary dark:text-white">
+                <span class="material-symbols-outlined text-3xl font-bold">hub</span>
+                <h2 class="text-xl font-bold tracking-tight">Nexus AI</h2>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Solutions</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">How it Works</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Enterprise</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Docs</a>
             </nav>
-            <div class="hidden items-center gap-4 lg:flex">
-                <a href="contact.html" class="urban-btn text-sm tracking-[0.14em]">
-                    [ CONNECT ]
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-transparent focus-within:border-primary/30 transition-all">
+                    <span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-slate-400" placeholder="Search analytics..." type="text"/>
+                </div>
+                <a href="contact.html" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-primary/20">
+                    Get Started
                 </a>
             </div>
         </div>
@@ -277,246 +109,263 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="relative flex min-h-[85vh] items-center overflow-hidden border-b-4 border-[var(--urban-concrete)]">
-            <div class="absolute inset-0 z-0">
-                <img src="assets/generated/external-image-01.svg" alt="ストリートウェアのモデル" class="h-full w-full object-cover grayscale contrast-125 brightness-75">
-                <div class="absolute inset-0 bg-gradient-to-t from-[var(--urban-bg-dark)] via-transparent to-[var(--urban-bg-dark)]/50"></div>
-            </div>
-            <div class="relative z-10 px-6 md:px-12 w-full">
-                <div class="max-w-4xl">
-                    <span class="inline-block rotate-[-4deg] bg-[var(--urban-primary)] px-3 py-1 font-black text-xs tracking-[0.35em]">EST. 2024 / NO RULES</span>
-                    <h1 class="mt-6 urban-stencil text-7xl font-black leading-[0.85] tracking-tighter md:text-9xl">
-                        RAW<br>
-                        <span class="urban-italic" style="color: var(--urban-primary);">ENERGY</span>
+        <section class="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-40">
+            <div class="absolute inset-0 -z-10 opacity-30 dark:opacity-20" style="background-image: radial-gradient(circle at 2px 2px, #3211d4 1px, transparent 0); background-size: 40px 40px;"></div>
+            <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="flex flex-col gap-8">
+                    <div class="inline-flex items-center gap-2 bg-primary/10 text-primary dark:bg-primary/20 dark:text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider w-fit">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        v4.0 Engine Live
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
+                        Turn Data into <span class="text-primary italic">Intelligence</span>
                     </h1>
-                    <p class="mt-8 max-w-xl border-l-4 border-[var(--urban-neon)] pl-6 text-lg font-medium leading-relaxed text-slate-300 md:text-2xl">
-                        REBELLIOUS. AUTHENTIC. UNPOLISHED.<br>
-                        BORN IN THE ALLEYS, BUILT FOR THE STREETS.
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+                        Our AI platform transforms complex multi-source data into actionable insights, enabling predictive excellence for modern enterprises.
                     </p>
-                    <div class="mt-10 flex flex-wrap gap-4">
-                        <a href="service.html" class="urban-btn text-lg">
-                            SHOP THE DROP
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-xl shadow-primary/30 flex items-center gap-2">
+                            Start Free Trial <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
-                        <a href="about.html" class="urban-btn-outline text-lg">
-                            VIEW LOOKBOOK
+                        <a href="service.html" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary px-8 py-4 rounded-xl text-base font-bold transition-all">
+                            View Live Demo
                         </a>
                     </div>
                 </div>
-            </div>
-            <!-- Vertical watermark -->
-            <div class="absolute right-4 bottom-20 hidden rotate-90 origin-right xl:block">
-                <p class="urban-stencil text-[120px] opacity-10 select-none" style="color: #fff;">URBAN_STREET_CULTURE</p>
-            </div>
-        </section>
-
-        <!-- Manifesto Section -->
-        <section class="bg-[var(--urban-asphalt)] px-6 py-20 lg:px-12 lg:py-28">
-            <div class="mx-auto grid max-w-[1440px] gap-16 lg:grid-cols-2">
-                <div class="brutalist-box bg-[var(--urban-bg-dark)] p-8 md:p-12">
-                    <h2 class="urban-stencil text-4xl font-black italic underline decoration-[var(--urban-primary)] decoration-8 underline-offset-8">
-                        OUR_MANIFESTO
-                    </h2>
-                    <div class="mt-8 space-y-6 text-xl font-light leading-relaxed" style="color: #ccc;">
-                        <p>
-                            We don't do seasons. We don't do trends. We capture the
-                            <span class="font-black" style="color: var(--urban-primary);">CHAOS</span> of urban existence and stitch it into every garment.
-                        </p>
-                        <p>
-                            Urban Street is a collective of builders, skaters, and misfits.
-                            Our garments are tools for the concrete jungle, built with reinforced seams and zero compromise.
-                        </p>
-                        <p class="urban-stencil text-3xl font-black tracking-tighter" style="color: var(--urban-neon);">
-                            RECLAIM THE PAVEMENT.
-                        </p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="tape-effect">
-                        <img src="assets/generated/external-image-02.svg" alt="ダメージ加工のディテール" class="w-full grayscale brutalist-box">
-                    </div>
-                    <div class="absolute -bottom-8 -left-8 rotate-[-3deg] bg-[var(--urban-neon)] px-4 py-3 font-black text-background-dark">
-                        AUTHENTICITY_VERIFIED_092
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent-teal/20 rounded-3xl blur-2xl group-hover:opacity-100 transition duration-1000"></div>
+                    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl p-4 aspect-square lg:aspect-video flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+                        <div class="w-full h-full rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center overflow-hidden relative">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-20">
+                                <span class="material-symbols-outlined text-[200px] text-primary">grain</span>
+                            </div>
+                            <div class="relative z-10 grid grid-cols-3 gap-4 w-3/4">
+                                <div class="h-24 bg-primary/10 rounded-lg border border-primary/20 animate-pulse"></div>
+                                <div class="h-24 bg-accent-coral/10 rounded-lg border border-accent-coral/20"></div>
+                                <div class="h-24 bg-accent-teal/10 rounded-lg border border-accent-teal/20"></div>
+                                <div class="h-32 col-span-2 bg-primary/5 rounded-lg border border-primary/10"></div>
+                                <div class="h-32 bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Lookbook Section -->
-        <section class="px-6 py-20 lg:px-12 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <!-- How It Works -->
+        <section class="py-24 bg-slate-50 dark:bg-background-dark/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">Precision Workflow</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Streamlined from ingestion to strategic execution</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 relative">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent -translate-y-12"></div>
+                    <div class="relative flex flex-col items-center text-center group">
+                        <div class="size-16 rounded-2xl bg-white dark:bg-slate-800 shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center mb-6 group-hover:border-primary transition-colors z-10">
+                            <span class="material-symbols-outlined text-primary text-3xl">database</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Data Integration</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed px-4">Connect APIs, SQL warehouses, and cloud storage in seconds with native connectors.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center text-center group">
+                        <div class="size-16 rounded-2xl bg-white dark:bg-slate-800 shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center mb-6 group-hover:border-primary transition-colors z-10">
+                            <span class="material-symbols-outlined text-accent-coral text-3xl">psychology</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Neural Analysis</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed px-4">Proprietary LLMs and neural nets process petabytes of unstructured data for patterns.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center text-center group">
+                        <div class="size-16 rounded-2xl bg-white dark:bg-slate-800 shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center mb-6 group-hover:border-primary transition-colors z-10">
+                            <span class="material-symbols-outlined text-accent-teal text-3xl">insights</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Actionable Insights</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed px-4">Automated reports and dashboard updates delivered to your decision-makers instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Grid -->
+        <section class="py-24">
+            <div class="mx-auto max-w-7xl px-6">
+                <div class="flex justify-between items-end mb-12">
                     <div>
-                        <h2 class="urban-stencil text-6xl font-black italic">LOOKBOOK_VOL.01</h2>
-                        <p class="font-bold tracking-widest uppercase" style="color: #666;">Captured on 35mm / Downtown LA</p>
+                        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">AI-Powered Solutions</h2>
+                        <p class="text-slate-600 dark:text-slate-400">Enterprise-grade tools for every department</p>
                     </div>
-                    <a href="service.html" class="border-b-4 border-[var(--urban-primary)] pb-1 font-black tracking-widest uppercase hover:border-white hover:text-white" style="color: var(--urban-primary);">
-                        VIEW FULL GALLERY
+                    <a href="service.html" class="text-primary font-semibold flex items-center gap-1 hover:underline">
+                        Explore all modules <span class="material-symbols-outlined text-sm">open_in_new</span>
                     </a>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="stagger-item tape-effect">
-                        <div class="urban-img-zoom bg-[var(--urban-concrete)]">
-                            <img src="assets/generated/external-image-03.svg" alt="Concrete Jungle look" class="w-full aspect-[3/4] object-cover grayscale">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-primary/5 text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">timeline</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-accent-teal bg-accent-teal/10 px-2 py-1 rounded">+24% Efficiency</span>
                         </div>
-                        <div class="mt-4 flex justify-between items-start">
-                            <h3 class="urban-stencil text-2xl italic">CONCRETE_JUNGLE</h3>
-                            <span class="font-mono text-xs opacity-50">#001</span>
+                        <h3 class="text-lg font-bold mb-2">Predictive Modeling</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Forecast market trends and customer behavior with up to 98% accuracy metrics.</p>
+                        <div class="chart-sparkline rounded-lg"></div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-accent-coral/5 text-accent-coral rounded-xl group-hover:bg-accent-coral group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">warning</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">Real-time</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Anomaly Detection</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Instantly identify outliers and fraudulent activities within complex transaction flows.</p>
+                        <div class="h-10 flex items-end gap-1">
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-4 rounded-t-sm"></div>
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-6 rounded-t-sm"></div>
+                            <div class="w-full bg-accent-coral h-10 rounded-t-sm"></div>
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-5 rounded-t-sm"></div>
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-7 rounded-t-sm"></div>
                         </div>
                     </div>
-                    <div class="stagger-item relative">
-                        <div class="urban-img-zoom bg-[var(--urban-concrete)]">
-                            <img src="assets/generated/external-image-04.svg" alt="Asphalt Nights look" class="w-full aspect-[3/4] object-cover grayscale">
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-accent-teal/5 text-accent-teal rounded-xl group-hover:bg-accent-teal group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">chat_bubble</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded">NLP 2.0</span>
                         </div>
-                        <div class="absolute -top-4 -right-4 bg-[var(--urban-primary)] px-2 py-1 text-xs font-bold rotate-12">
-                            FEATURED_KIT
-                        </div>
-                        <div class="mt-4 flex justify-between items-start">
-                            <h3 class="urban-stencil text-2xl italic">ASPHALT_NIGHTS</h3>
-                            <span class="font-mono text-xs opacity-50">#002</span>
-                        </div>
-                    </div>
-                    <div class="stagger-item tape-effect">
-                        <div class="urban-img-zoom bg-[var(--urban-concrete)]">
-                            <img src="assets/generated/external-image-05.svg" alt="Spray Paint Soul look" class="w-full aspect-[3/4] object-cover grayscale">
-                        </div>
-                        <div class="mt-4 flex justify-between items-start">
-                            <h3 class="urban-stencil text-2xl italic">SPRAY_PAINT_SOUL</h3>
-                            <span class="font-mono text-xs opacity-50">#003</span>
+                        <h3 class="text-lg font-bold mb-2">Natural Language Processing</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Extract sentiment and entity relationships from massive volumes of textual data.</p>
+                        <div class="space-y-2">
+                            <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-accent-teal w-3/4"></div>
+                            </div>
+                            <div class="h-2 w-1/2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary w-2/3"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Drop Schedule -->
-        <section class="bg-[var(--urban-primary)] px-6 py-20 lg:px-12 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <h2 class="urban-stencil text-6xl font-black tracking-tighter md:text-8xl">
-                    DROP_SCHEDULE
-                </h2>
-                <div class="mt-12 space-y-0 border-y-4 border-[var(--urban-bg-dark)]">
-                    <div class="drop-row flex flex-col md:flex-row justify-between items-center py-10 border-b-2 border-[var(--urban-bg-dark)] px-6 group cursor-pointer">
-                        <div class="flex items-baseline gap-8">
-                            <span class="urban-stencil text-4xl">24.11</span>
-                            <h3 class="urban-stencil text-5xl italic uppercase">Cargo_V2</h3>
-                        </div>
-                        <div class="flex items-center gap-8 mt-4 md:mt-0">
-                            <span class="font-bold tracking-widest text-xl">LIMITED EDITION [50PCS]</span>
-                            <span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">arrow_forward</span>
-                        </div>
+        <!-- Social Proof -->
+        <section class="py-16 border-t border-slate-200 dark:border-slate-800">
+            <div class="mx-auto max-w-7xl px-6">
+                <p class="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-10">Trusted by Global Innovation Leaders</p>
+                <div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="flex items-center gap-2 font-bold text-xl">
+                        <span class="material-symbols-outlined text-2xl">rocket_launch</span> VELOCITY
                     </div>
-                    <div class="drop-row flex flex-col md:flex-row justify-between items-center py-10 border-b-2 border-[var(--urban-bg-dark)] px-6 group cursor-pointer">
-                        <div class="flex items-baseline gap-8">
-                            <span class="urban-stencil text-4xl">02.12</span>
-                            <h3 class="urban-stencil text-5xl italic uppercase">Cyber_Hoodie</h3>
-                        </div>
-                        <div class="flex items-center gap-8 mt-4 md:mt-0">
-                            <span class="font-bold tracking-widest text-xl">SOLD OUT PRE-ORDER</span>
-                            <span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">lock</span>
-                        </div>
+                    <div class="flex items-center gap-2 font-bold text-xl">
+                        <span class="material-symbols-outlined text-2xl">blur_on</span> QUANTUM
                     </div>
-                    <div class="drop-row flex flex-col md:flex-row justify-between items-center py-10 px-6 group cursor-pointer">
-                        <div class="flex items-baseline gap-8">
-                            <span class="urban-stencil text-4xl">15.12</span>
-                            <h3 class="urban-stencil text-5xl italic uppercase">Guerilla_Vest</h3>
-                        </div>
-                        <div class="flex items-center gap-8 mt-4 md:mt-0">
-                            <span class="font-bold tracking-widest text-xl">NOTIFY ME</span>
-                            <span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">notifications</span>
-                        </div>
+                    <div class="flex items-center gap-2 font-bold text-xl">
+                        <span class="material-symbols-outlined text-2xl">layers</span> STACK
                     </div>
+                    <div class="flex items-center gap-2 font-bold text-xl">
+                        <span class="material-symbols-outlined text-2xl">api</span> NEXUS
+                    </div>
+                    <div class="flex items-center gap-2 font-bold text-xl">
+                        <span class="material-symbols-outlined text-2xl">shield_with_house</span> SECURE
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6">
+            <div class="mx-auto max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">Ready to Transform Your Data?</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+                    Join thousands of enterprises leveraging Nexus AI to drive smarter decisions and unlock hidden value.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="contact.html" class="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-xl text-base font-bold transition-all shadow-xl shadow-primary/30">
+                        Start Your Free Trial
+                    </a>
+                    <a href="about.html" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary px-10 py-4 rounded-xl text-base font-bold transition-all">
+                        Learn More
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t-8 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)] px-6 pb-10 pt-16 lg:px-12">
-        <div class="mx-auto max-w-[1440px]">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div class="md:col-span-2">
-                    <h2 class="urban-stencil text-4xl italic">URBAN_STREET</h2>
-                    <p class="mt-6 max-w-xs font-medium text-slate-500">
-                        Defying the standard since 2024. Designed in the underground, built for the surface.
-                    </p>
-                    <div class="mt-8 flex gap-4">
-                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
-                            <span class="material-symbols-outlined">public</span>
-                        </a>
-                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
-                            <span class="material-symbols-outlined">alternate_email</span>
-                        </a>
-                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
-                            <span class="material-symbols-outlined">share</span>
-                        </a>
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 text-primary dark:text-white mb-6">
+                        <span class="material-symbols-outlined text-2xl font-bold">hub</span>
+                        <h2 class="text-lg font-bold tracking-tight">Nexus AI</h2>
                     </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Leading the transition to an AI-first economy with high-performance analytics and neural infrastructure.
+                    </p>
                 </div>
                 <div>
-                    <h4 class="mb-6 font-black tracking-widest uppercase" style="color: var(--urban-primary);">Navigation</h4>
-                    <ul class="space-y-3 font-bold">
-                        <li><a href="index.html" class="hover:text-[var(--urban-primary)]">ALL_PRODUCTS</a></li>
-                        <li><a href="about.html" class="hover:text-[var(--urban-primary)]">NEW_ARRIVALS</a></li>
-                        <li><a href="service.html" class="hover:text-[var(--urban-primary)]">COLLABORATIONS</a></li>
-                        <li><a href="contact.html" class="hover:text-[var(--urban-primary)]">SUSTAINABILITY</a></li>
+                    <h4 class="font-bold text-sm mb-6 uppercase tracking-widest text-slate-900 dark:text-white">Product</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Features</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Pricing</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Integrations</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Changelog</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="mb-6 font-black tracking-widest uppercase" style="color: var(--urban-primary);">Support</h4>
-                    <ul class="space-y-3 font-bold">
-                        <li><a href="#" class="hover:text-[var(--urban-primary)]">SHIPPING_INFO</a></li>
-                        <li><a href="#" class="hover:text-[var(--urban-primary)]">RETURNS_POLICY</a></li>
-                        <li><a href="#" class="hover:text-[var(--urban-primary)]">SIZE_GUIDE</a></li>
-                        <li><a href="contact.html" class="hover:text-[var(--urban-primary)]">CONTACT_US</a></li>
+                    <h4 class="font-bold text-sm mb-6 uppercase tracking-widest text-slate-900 dark:text-white">Resources</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Documentation</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Help Center</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">White Papers</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">API Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm mb-6 uppercase tracking-widest text-slate-900 dark:text-white">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Careers</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-[var(--urban-concrete)]/30 font-mono text-xs opacity-50">
-                <p>© 2024 URBAN_STREET_CULTURE. ALL RIGHTS RESERVED.</p>
-                <div class="mt-4 flex gap-8 md:mt-0">
-                    <a href="#" class="hover:text-[var(--urban-primary)]">PRIVACY_POLICY</a>
-                    <a href="#" class="hover:text-[var(--urban-primary)]">TERMS_OF_SERVICE</a>
+            <div class="pt-8 border-t border-slate-100 dark:border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-slate-400">© 2024 Nexus AI Solutions Inc. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+                    <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+                    <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        (function() {
-            const toggle = document.getElementById('urbanMobileToggle');
-            const menu = document.getElementById('urbanMobileMenu');
-            const backdrop = document.getElementById('urbanMenuBackdrop');
-            if (!toggle || !menu || !backdrop) return;
-            function closeMenu() {
+        function toggleNexusMenu() {
+            const menu = document.getElementById('nexus-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\\\[9998\\\\]');
+            const toggle = document.querySelector('.nexus-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
                 menu.classList.remove('active');
-                backdrop.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
                 toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
             }
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isOpen = menu.classList.contains('active');
-                if (isOpen) { closeMenu(); } else {
-                    menu.classList.add('active');
-                    backdrop.classList.add('active');
-                    toggle.classList.add('active');
-                    toggle.setAttribute('aria-expanded', 'true');
-                }
-            });
-            backdrop.addEventListener('click', closeMenu);
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeMenu();
-            });
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.urban-nav-link').forEach(function(link) {
-                const href = link.getAttribute('href');
-                if (href === currentPage) {
-                    link.classList.add('active');
-                    link.style.color = 'var(--urban-primary)';
-                }
-            });
-        })();
+        }
     </script>
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

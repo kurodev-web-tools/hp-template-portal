@@ -3,95 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Royal Legacy の主要サービス。資産保全、継承統治、慈善戦略までを一つの流れで設計します。">
-            <meta property="og:title" content="Service | Royal Legacy">
-    <meta property="og:description" content="Royal Legacy の主要サービス。資産保全、継承統治、慈善戦略までを一つの流れで設計します。">
+    <title>Services - Global Logistics</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/r/service.html">
+    <meta name="description" content="Global Logistics のサービス。航空貨物、海上輸送、陸上輸送、倉庫管理。">
+    <meta property="og:title" content="Services - Global Logistics">
+    <meta property="og:description" content="Global Logistics の物流ソリューション">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://example.com/templates/business/r/service.html">
+    <meta property="og:url" content="https://example.com/templates/business/r/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-<title>Service | Royal Legacy</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/r/service.html"><link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Global Logistics Services",
+        "description": "国際物流・サプライチェーン管理サービス"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,700;6..72,800&family=Noto+Serif+JP:wght@400;500;600;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; }
+        .logistics-btn {
+            background: #0b50da;
+            color: #ffffff;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .logistics-btn:hover {
+            background: #0a45bc;
+            box-shadow: 0 4px 20px rgba(11, 80, 218, 0.4);
+        }
+        .logistics-mobile-menu { transition: transform 0.3s ease; }
+        .logistics-mobile-menu.active { transform: translateX(0); }
+        .logistics-mobile-menu.inactive { transform: translateX(-100%); }
+        .logistics-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
+        .logistics-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .logistics-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .logistics-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    </style>
 </head>
-<body class="theme-business antialiased">
-    <div class="royal-menu-backdrop fixed inset-0 z-[9998] bg-black/45 backdrop-blur-sm md:hidden"></div>
-    <button aria-controls="royal-mobile-menu" class="royal-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-primary/30 bg-background-dark/80 text-white shadow-lg backdrop-blur md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="royal-mobile-menu" class="royal-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] border border-primary/20 bg-background-dark/95 p-6 text-white shadow-2xl md:hidden">
-        <div class="mb-6 flex items-center justify-between"><div class="flex items-center gap-3"><span class="royal-crest"><span>R</span></span><p class="font-display text-lg font-bold tracking-[0.18em]">ROYAL LEGACY</p></div></div>
-        <nav class="flex flex-col gap-2">
-            <a href="index.html" class="royal-nav-link rounded-full px-4 py-3">Home</a>
-            <a href="about.html" class="royal-nav-link rounded-full px-4 py-3">About</a>
-            <a href="service.html" class="royal-nav-link active rounded-full px-4 py-3">Service</a>
-            <a href="contact.html" class="royal-nav-link rounded-full px-4 py-3">Contact</a>
+<body class="text-slate-900 dark:text-slate-100 antialiased">
+
+    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 22, 34, 0.5); backdrop-filter: blur(4px);"></div>
+
+    <button class="logistics-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleLogisticsMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="logistics-mobile-menu" class="logistics-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3 text-primary">
+            <span class="material-symbols-outlined text-4xl font-bold">language</span>
+            <h2 class="text-slate-100 text-xl font-black tracking-tight uppercase">Global Logistics</h2>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
+            <a href="service.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Service</a>
+            <a href="contact.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Contact</a>
         </nav>
-    </div>
-    <header class="fixed left-0 right-0 top-0 z-50 px-6 py-4 lg:px-20">
-        <div class="royal-panel mx-auto flex max-w-7xl items-center justify-between rounded-full px-6 py-4">
-            <a href="index.html" class="flex items-center gap-4 text-white"><span class="royal-crest"><span>R</span></span><div><p class="font-display text-xl font-bold tracking-[0.18em]">ROYAL LEGACY</p><p class="text-[11px] uppercase tracking-[0.35em] text-primary/80">Since 1892</p></div></a>
-            <nav class="hidden items-center gap-3 md:flex">
-                <a href="index.html" class="royal-nav-link rounded-full px-4 py-2 text-sm">Home</a>
-                <a href="about.html" class="royal-nav-link rounded-full px-4 py-2 text-sm">About</a>
-                <a href="service.html" class="royal-nav-link active rounded-full px-4 py-2 text-sm">Service</a>
-                <a href="contact.html" class="royal-nav-link rounded-full px-4 py-2 text-sm">Contact</a>
-            </nav>
-            <div class="hidden items-center gap-3 md:flex"><a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-bold text-background-dark">Private Inquiry</a></div>
+    </aside>
+
+    <header class="sticky top-0 z-50 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <div class="flex items-center gap-3 text-primary">
+                    <span class="material-symbols-outlined text-4xl font-bold">language</span>
+                    <h2 class="text-slate-900 dark:text-white text-xl font-black tracking-tight uppercase">Global Logistics</h2>
+                </div>
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a class="text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="service.html">Services</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="about.html">Network</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="service.html">Tracking</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="about.html">Company</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wider" href="contact.html">Contact</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-slate-200 dark:border-slate-700">
+                    <span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm w-40 placeholder:text-slate-400" placeholder="Search tracking ID..." type="text"/>
+                </div>
+                <a href="contact.html" class="logistics-btn hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">local_shipping</span>
+                    Track Shipment
+                </a>
+            </div>
         </div>
     </header>
-    <main class="royal-shell overflow-hidden pt-24">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <section class="px-6 pb-12 pt-10 lg:px-20 lg:pb-16 lg:pt-20">
-            <div class="mx-auto max-w-7xl rounded-[2.2rem] border border-primary/15 bg-background-dark px-8 py-12 text-white">
-                <p class="text-sm font-semibold uppercase tracking-[0.34em] text-primary">Private Offerings</p>
-                <h1 class="mt-4 font-display text-4xl font-black leading-tight md:text-6xl"><span class="ib">一族の資産を守るための、</span><span class="ib">実務と統治を束ねる。</span></h1>
-                <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300"><span class="ib">単発の相続対策ではなく、</span><span class="ib">継承前後まで見据えた</span><span class="ib">長期運営の仕組みを設計します。</span></p>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-[40vh] flex items-center overflow-hidden bg-slate-900">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent z-10"></div>
+            </div>
+            <div class="relative z-20 max-w-[1440px] mx-auto px-6 lg:px-12 w-full">
+                <div class="max-w-3xl">
+                    <span class="inline-block py-1 px-3 bg-primary/20 text-primary text-xs font-bold tracking-widest uppercase rounded mb-6 border border-primary/30">Our Services</span>
+                    <h1 class="text-white text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight mb-6">
+                        Comprehensive Logistics Solutions
+                    </h1>
+                    <p class="text-slate-300 text-lg lg:text-xl font-normal leading-relaxed max-w-2xl">
+                        From air freight to warehousing, we have your supply chain covered.
+                    </p>
+                </div>
             </div>
         </section>
-        <section class="px-6 py-12 lg:px-20 lg:py-16">
-            <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
-                <article class="royal-card rounded-[2rem] p-8 lg:col-span-2"><p class="text-xs uppercase tracking-[0.3em] text-primary/80">01</p><h2 class="mt-4 font-display text-3xl font-bold text-slate-900 dark:text-white">資産保全と再配分</h2><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">金融資産、</span><span class="ib">事業持分、</span><span class="ib">不動産、</span><span class="ib">美術品などを横断し、</span><span class="ib">保全優先度と再配分方針を定義します。</span></p></article>
-                <article class="royal-card rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.3em] text-primary/80">02</p><h2 class="mt-4 font-display text-3xl font-bold text-slate-900 dark:text-white">家族統治設計</h2><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">後継者育成、</span><span class="ib">権限移譲、</span><span class="ib">合意形成プロセスを明文化します。</span></p></article>
-                <article class="royal-card rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.3em] text-primary/80">03</p><h2 class="mt-4 font-display text-3xl font-bold text-slate-900 dark:text-white">国際法域対応</h2><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">複数国での資産保有に対して、</span><span class="ib">税務・法務の整合を取ります。</span></p></article>
-                <article class="royal-card rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.3em] text-primary/80">04</p><h2 class="mt-4 font-display text-3xl font-bold text-slate-900 dark:text-white">慈善戦略</h2><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">一族の思想を社会的価値へ変えるための、</span><span class="ib">寄付スキームと評価設計を行います。</span></p></article>
-            </div>
-        </section>
-        <section class="px-6 py-12 lg:px-20 lg:py-16">
-            <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-                <div class="royal-panel rounded-[2rem] p-8 lg:p-10">
-                    <p class="text-sm font-semibold uppercase tracking-[0.34em] text-primary">Engagement Flow</p>
-                    <div class="mt-8 space-y-6">
-                        <div class="royal-line"><h3 class="font-display text-2xl font-bold text-slate-900 dark:text-white">Confidential Intake</h3><p class="mt-2 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">ご紹介経由の初回接点で、</span><span class="ib">論点と期待値を絞り込みます。</span></p></div>
-                        <div class="royal-line"><h3 class="font-display text-2xl font-bold text-slate-900 dark:text-white">Family &amp; Asset Mapping</h3><p class="mt-2 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">資産一覧だけでなく、</span><span class="ib">家族関係と意思決定構造まで把握します。</span></p></div>
-                        <div class="royal-line"><h3 class="font-display text-2xl font-bold text-slate-900 dark:text-white">Strategy Blueprint</h3><p class="mt-2 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">保全、</span><span class="ib">運用、</span><span class="ib">相続、</span><span class="ib">寄付の設計図を一体で提示します。</span></p></div>
+
+        <!-- Services Grid -->
+        <section class="py-24 bg-white dark:bg-background-dark">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">What We Offer</span>
+                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-6">Full-Service Logistics</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">End-to-end solutions for every step of your supply chain.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Air Freight</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Priority global delivery via our extensive air network for time-sensitive cargo.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Same-day dispatch</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Express options</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Door-to-door service</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">directions_boat</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Sea Cargo</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Cost-effective ocean freight solutions for large-scale international shipments.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> FCL & LCL options</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Port-to-port</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Refrigerated containers</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">local_shipping</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Land Transport</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">End-to-end trucking and rail services providing seamless domestic distribution.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Full truckload</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> LTL shipping</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Rail intermodal</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">warehouse</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Warehousing</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">State-of-the-art secure storage and inventory management worldwide.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Climate controlled</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> 24/7 security</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Inventory tracking</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">file_present</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Customs Clearance</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Expert handling of import/export documentation and regulatory compliance.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Documentation prep</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Duty calculation</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Compliance consulting</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">inventory_2</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Supply Chain Mgmt</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">End-to-end visibility and optimization of your entire logistics network.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Real-time tracking</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Analytics dashboard</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Route optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">cold_freeze</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Cold Chain</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Temperature-controlled logistics for pharmaceuticals and perishables.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Temperature monitoring</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Validated packaging</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> GDP compliant</li>
+                        </ul>
+                    </div>
+
+                    <div class="group p-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5">
+                        <div class="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">deployed_code</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">E-commerce Fulfillment</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Fast and accurate order fulfillment for online retailers.</p>
+                        <ul class="mt-4 space-y-2 text-sm text-slate-500">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Pick & pack</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Returns handling</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check</span> Last-mile delivery</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="grid gap-6 md:grid-cols-2">
-                    <article class="royal-feature rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.28em] text-primary/80">Service Standard</p><h3 class="mt-4 font-display text-2xl font-bold">少数案件制</h3><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">担当件数を絞り、</span><span class="ib">案件理解の密度を保ちます。</span></p></article>
-                    <article class="royal-feature rounded-[2rem] p-8"><p class="text-xs uppercase tracking-[0.28em] text-primary/80">Office Network</p><h3 class="mt-4 font-display text-2xl font-bold">4都市連携</h3><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">London, New York, Geneva, Hong Kong の</span><span class="ib">連携体制です。</span></p></article>
-                    <article class="royal-feature rounded-[2rem] p-8 md:col-span-2"><p class="text-xs uppercase tracking-[0.28em] text-primary/80">Reporting</p><p class="mt-4 text-sm leading-8 text-slate-700 dark:text-slate-300"><span class="ib">四半期レビューでは、</span><span class="ib">資産変動だけでなく、</span><span class="ib">制度改正、</span><span class="ib">一族のライフイベント、</span><span class="ib">事業承継上の論点までまとめて共有します。</span></p></article>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="py-24 bg-slate-50 dark:bg-slate-900">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Why Global Logistics</span>
+                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-6">The GL Advantage</h2>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">What sets us apart from the competition.</p>
+                </div>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl">speed</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Fast Transit</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Industry-leading delivery times across all service levels.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl">security</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Secure Handling</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Advanced tracking and security at every checkpoint.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl">attach_money</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Competitive Rates</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Transparent pricing with no hidden fees.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl">support_agent</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">24/7 Support</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Round-the-clock customer service in 15+ languages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 bg-white dark:bg-background-dark">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-6">Ready to Ship?</h2>
+                <p class="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+                    Get a customized quote for your logistics needs.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="logistics-btn px-10 py-4 rounded-lg text-lg font-bold transition-all shadow-xl shadow-primary/30">
+                        Request a Quote
+                    </a>
+                    <a href="contact.html" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white px-10 py-4 rounded-lg text-lg font-bold transition-all">
+                        Contact Sales
+                    </a>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="px-6 pb-10 pt-6 lg:px-20">
-        <div class="mx-auto max-w-7xl rounded-[2rem] border border-primary/15 bg-background-dark px-8 py-10 text-white">
-            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <p class="font-display text-xl font-bold tracking-[0.16em] text-primary">ROYAL LEGACY</p>
-                <div class="flex gap-5 text-sm text-slate-300">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-3 text-primary mb-8">
+                        <span class="material-symbols-outlined text-3xl font-bold">language</span>
+                        <h2 class="text-white text-xl font-black tracking-tight uppercase">Global Logistics</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Setting the standard for international logistics since 1994. Building the future of connected commerce across 220 countries.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-lg text-white">share</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-lg text-white">alternate_email</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-lg text-white">groups</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Services</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Ocean Freight</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Air Freight Solutions</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Road Transport</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Warehousing & Distro</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Customs Clearance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Company</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">About Our Network</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Sustainability Goals</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Global Careers</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Investor Relations</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Press & Media</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-8">Global HQ</h4>
+                    <ul class="space-y-4 text-slate-400">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary">location_on</span>
+                            100 Commerce Plaza, Global Way<br/>Singapore Financial District
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary">call</span>
+                            +1 (800) GLOBAL-LOG
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-primary">mail</span>
+                            contact@globallogistics.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-500 text-sm">© 2024 Global Logistics Enterprise. All rights reserved.</p>
+                <div class="flex gap-8 text-sm text-slate-500">
+                    <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+                    <a class="hover:text-white transition-colors" href="#">Cookie Policy</a>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+
+    <script>
+        function toggleLogisticsMenu() {
+            const menu = document.getElementById('logistics-mobile-menu');
+            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+            const toggle = document.querySelector('.logistics-toggle');
+
+            if (menu.classList.contains('inactive')) {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                backdrop.classList.remove('hidden');
+                toggle.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                backdrop.classList.add('hidden');
+                toggle.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>
