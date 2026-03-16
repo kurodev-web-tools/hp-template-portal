@@ -1,0 +1,200 @@
+:root {
+    --p-ink: #121212;
+    --p-paper: #fff8f1;
+    --p-pink: #ff4f9f;
+    --p-yellow: #ffd534;
+    --p-blue: #2f7bff;
+    --p-mint: #2de1c2;
+}
+
+body.pop-shell {
+    background:
+        radial-gradient(circle at top left, rgba(255, 79, 159, 0.16), transparent 18rem),
+        radial-gradient(circle at top right, rgba(47, 123, 255, 0.14), transparent 20rem),
+        var(--p-paper);
+    color: var(--p-ink);
+}
+
+.pop-header {
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pop-header.scrolled {
+    background: rgba(255, 248, 241, 0.96);
+    box-shadow: 0 10px 0 #121212;
+}
+
+.dark .pop-header.scrolled {
+    background: rgba(38, 17, 26, 0.96);
+}
+
+.pop-border {
+    border: 4px solid #121212;
+}
+
+.pop-shadow {
+    box-shadow: 8px 8px 0 #121212;
+}
+
+.pop-shadow-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pop-shadow-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 12px 12px 0 #121212;
+}
+
+.pop-sticker-left {
+    transform: rotate(-6deg);
+}
+
+.pop-sticker-right {
+    transform: rotate(7deg);
+}
+
+.pop-panel {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(10px);
+}
+
+.dark .pop-panel {
+    background: rgba(64, 34, 46, 0.82);
+}
+
+.pop-grid {
+    background-image:
+        linear-gradient(rgba(18, 18, 18, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 18, 18, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.pop-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pop-marquee-track {
+    display: inline-block;
+    min-width: 100%;
+    animation: pop-marquee 22s linear infinite;
+}
+
+@keyframes pop-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.pop-menu-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pop-menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pop-mobile-menu {
+    transition: transform 0.3s ease;
+}
+
+.pop-mobile-menu.active {
+    transform: translateX(0);
+}
+
+.pop-mobile-menu.hidden,
+.pop-menu-backdrop.hidden {
+    display: none;
+}
+
+.pop-nav-link {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.pop-nav-link:hover,
+.pop-nav-link.active {
+    transform: translateY(-1px);
+}
+
+.pop-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 4px solid #121212;
+    border-radius: 9999px;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+.pop-form-field {
+    width: 100%;
+    border: 4px solid #121212;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    font-weight: 700;
+    color: #121212;
+    outline: 3px solid transparent;
+    outline-offset: 2px;
+}
+
+.pop-form-field:focus {
+    outline-color: rgba(47, 123, 255, 0.35);
+}
+
+.dark .pop-form-field {
+    background: rgba(255, 255, 255, 0.88);
+    color: #121212;
+}
+
+.pop-form-field option {
+    color: #121212;
+}
+
+.pop-reveal {
+    opacity: 0;
+    transform: translateY(22px) rotate(-1deg);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.pop-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+}
+
+.pop-burst {
+    position: relative;
+}
+
+.pop-burst::before {
+    content: "";
+    position: absolute;
+    inset: 12% 12%;
+    background: conic-gradient(from 0deg, rgba(255, 79, 159, 0.28), rgba(255, 213, 52, 0.28), rgba(47, 123, 255, 0.28), rgba(45, 225, 194, 0.28), rgba(255, 79, 159, 0.28));
+    clip-path: polygon(50% 0%, 61% 27%, 100% 18%, 74% 46%, 100% 73%, 63% 68%, 50% 100%, 37% 68%, 0% 73%, 26% 46%, 0% 18%, 39% 27%);
+    opacity: 0.6;
+}
+
+.pop-burst > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .pop-reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
