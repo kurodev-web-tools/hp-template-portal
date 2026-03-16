@@ -3,288 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Minimal Architecture</title>
-
-    <link rel="canonical" href="https://example.com/templates/business/m/about.html">
-    <meta name="description" content="Minimal Architecture の哲学と歴史について">
-    <meta property="og:title" content="About | Minimal Architecture">
-    <meta property="og:description" content="12 年にわたる建築デザインの探求">
+    <meta name="description" content="Minimal Architecture Studio の思想、沿革、設計姿勢をまとめたテンプレートページです。">
+    <meta name="theme-color" content="#191919">
+    <meta property="og:title" content="About | Minimal Architecture Studio">
+    <meta property="og:description" content="静けさ、光、素材を軸にした設計思想とスタジオの背景。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/m/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-
+    <title>About | Minimal Architecture Studio</title>
+    <link rel="canonical" href="https://example.com/templates/business/m/about.html">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Minimal Architecture Studio","url":"https://example.com/templates/business/m/about.html","description":"静けさと光の密度を設計する建築スタジオテンプレート。"}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/tailwind-input.css">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; }
-        .fine-line {
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-    </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 overflow-x-hidden custom-menu-only min-shell">
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-<!-- Navigation -->
-<header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
-    <div class="flex items-center gap-2">
-        <a href="index.html" class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</a>
-    </div>
+<header class="min-header fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
+    <a href="index.html" class="text-xs font-black tracking-[0.4em] uppercase">Minimal</a>
     <nav class="hidden md:flex items-center gap-12">
-        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="index.html">Projects</a>
-        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="about.html">Philosophy</a>
-        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="service.html">Studio</a>
-        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="contact.html">Contact</a>
+        <a class="min-nav-link text-[10px] font-medium uppercase tracking-[0.3em]" href="index.html">Home</a>
+        <a class="min-nav-link text-[10px] font-medium uppercase tracking-[0.3em] active" href="about.html">About</a>
+        <a class="min-nav-link text-[10px] font-medium uppercase tracking-[0.3em]" href="service.html">Service</a>
+        <a class="min-nav-link text-[10px] font-medium uppercase tracking-[0.3em]" href="contact.html">Contact</a>
     </nav>
-    <div class="flex gap-4">
-        <button class="flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">
-            <span class="material-symbols-outlined text-sm text-white">search</span>
-        </button>
-        <button class="md:hidden flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all min-toggle" onclick="toggleMinimalMenu()">
-            <span class="material-symbols-outlined text-sm text-white">menu</span>
-        </button>
-    </div>
+    <button type="button" class="md:hidden flex items-center justify-center size-10 border border-white/20 rounded-full" data-min-menu-toggle aria-controls="min-mobile-menu" aria-expanded="false" aria-label="メニューを開く"><span class="material-symbols-outlined text-sm">menu</span></button>
 </header>
-
-<!-- Mobile Menu -->
-<div class="fixed inset-0 z-[9998] hidden backdrop-blur-md" onclick="toggleMinimalMenu()"></div>
-<nav id="min-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-white/10 p-8 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-        <div class="flex justify-between items-center mb-16">
-            <span class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</span>
-            <button class="text-white hover:opacity-50" onclick="toggleMinimalMenu()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col gap-8 flex-1">
-            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="index.html">Projects</a>
-            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="about.html">Philosophy</a>
-            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="service.html">Studio</a>
-            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="contact.html">Contact</a>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero Section -->
+<div id="min-mobile-backdrop" class="min-mobile-backdrop fixed inset-0 z-[9998] hidden bg-black/60 backdrop-blur-md"></div>
+<nav id="min-mobile-menu" class="min-mobile-menu fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] hidden bg-background-dark border-l border-white/10 p-8" aria-hidden="true" inert><div class="flex flex-col h-full"><div class="flex justify-between items-center mb-16"><span class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</span><button type="button" class="text-white" data-min-menu-toggle aria-controls="min-mobile-menu" aria-expanded="false" aria-label="メニューを閉じる"><span class="material-symbols-outlined">close</span></button></div><div class="flex flex-col gap-8 flex-1"><a class="text-sm font-medium uppercase tracking-[0.3em] text-white/80" href="index.html">Home</a><a class="text-sm font-medium uppercase tracking-[0.3em] text-white" href="about.html" aria-current="page">About</a><a class="text-sm font-medium uppercase tracking-[0.3em] text-white/80" href="service.html">Service</a><a class="text-sm font-medium uppercase tracking-[0.3em] text-white/80" href="contact.html">Contact</a></div></div></nav>
+<main>
 <section class="relative h-[60vh] w-full flex items-center justify-center p-6 md:p-12 bg-zinc-900">
-    <div class="relative z-10 flex flex-col items-center text-center">
-        <div class="h-16 w-[1px] bg-white/50 mb-8"></div>
-        <h1 class="text-white text-[10px] font-light tracking-[0.8em] uppercase mb-4">Our Story</h1>
-        <h2 class="text-white text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">Philosophy</h2>
-    </div>
+    <div class="relative z-10 flex flex-col items-center text-center px-4"><div class="h-16 w-px bg-white/50 mb-8"></div><p class="text-white text-[10px] font-light tracking-[0.8em] uppercase mb-4">Our Story</p><h1 class="text-white text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">Philosophy</h1></div>
 </section>
-
-<!-- Our Story Section -->
 <section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
-    <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col mb-16">
-            <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-4">01 — Origins</span>
-            <div class="fine-line w-full"></div>
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
+        <div>
+            <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-4 block">01 — Origins</span>
+            <h2 class="text-3xl md:text-5xl font-light leading-tight tracking-tight mb-8">We remove what does not belong, until a space begins to speak in its own voice.</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
-            <div class="prose prose-invert">
-                <p class="text-lg font-light leading-relaxed">
-                    Minimal Architecture was founded on a simple yet radical premise: that less is not merely an aesthetic choice, but a moral imperative. In a world drowning in noise, we choose silence.
-                </p>
-                <p class="text-lg font-light leading-relaxed mt-6">
-                    Our studio emerged from the conviction that architecture should not impose, but reveal. Every project begins with an act of subtraction—removing the inessential until only truth remains.
-                </p>
-            </div>
-            <div class="aspect-square bg-zinc-800 overflow-hidden">
-                <img alt="Minimal studio exterior" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80">
-            </div>
+        <div class="space-y-6 text-base leading-relaxed text-white/68">
+            <p>Minimal Architecture Studio is imagined as a practice for homes, galleries, hospitality spaces, and cultural buildings. Its work begins with silence rather than decoration.</p>
+            <p>The studio approach is to refine circulation, daylight, and material rhythm before form is finalized. Numbers, locations, and team names on this template are placeholders and should be replaced before use.</p>
         </div>
     </div>
 </section>
-
-<!-- Core Values -->
 <section class="py-32 px-6 md:px-12 bg-zinc-100 dark:bg-zinc-900/30">
     <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-24">
-            <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-4 block">Core Values</span>
-            <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tight">Principles</h3>
-        </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="text-center">
-                <div class="fine-line w-12 h-12 mx-auto mb-6 bg-white/20"></div>
-                <h4 class="text-lg font-bold uppercase tracking-widest mb-4">Purity</h4>
-                <p class="text-sm font-light leading-relaxed opacity-60">
-                    The pursuit of essential form, stripped of ornament and pretense.
-                </p>
-            </div>
-            <div class="text-center">
-                <div class="fine-line w-12 h-12 mx-auto mb-6 bg-white/20"></div>
-                <h4 class="text-lg font-bold uppercase tracking-widest mb-4">Precision</h4>
-                <p class="text-sm font-light leading-relaxed opacity-60">
-                    Every measurement, every angle, every shadow calculated with intent.
-                </p>
-            </div>
-            <div class="text-center">
-                <div class="fine-line w-12 h-12 mx-auto mb-6 bg-white/20"></div>
-                <h4 class="text-lg font-bold uppercase tracking-widest mb-4">Presence</h4>
-                <p class="text-sm font-light leading-relaxed opacity-60">
-                    Creating spaces that command attention through absence, not excess.
-                </p>
-            </div>
+            <div><p class="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 mb-4">Principle 01</p><h3 class="text-2xl font-black uppercase tracking-tight mb-4">Light</h3><p class="text-sm leading-relaxed text-white/60">Openings are treated as precise cuts that tune mood, orientation, and shadow density across the day.</p></div>
+            <div><p class="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 mb-4">Principle 02</p><h3 class="text-2xl font-black uppercase tracking-tight mb-4">Sequence</h3><p class="text-sm leading-relaxed text-white/60">Approach, threshold, pause, and release are arranged as a controlled sequence rather than decorative moments.</p></div>
+            <div><p class="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 mb-4">Principle 03</p><h3 class="text-2xl font-black uppercase tracking-tight mb-4">Material</h3><p class="text-sm leading-relaxed text-white/60">Concrete, timber, steel, and stone are selected for restraint and aging quality instead of visual noise.</p></div>
         </div>
     </div>
 </section>
-
-<!-- Leadership -->
 <section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
-    <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-24">
-            <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-4 block">Leadership</span>
-            <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tight">Studio Heads</h3>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div class="flex flex-col items-center text-center">
-                <div class="aspect-[3/4] w-full max-w-xs bg-zinc-800 overflow-hidden mb-8">
-                    <img alt="Studio head portrait" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80">
-                </div>
-                <h4 class="text-lg font-bold uppercase tracking-widest mb-2">Takeshi Nakamura</h4>
-                <p class="text-[10px] uppercase tracking-widest opacity-50 mb-4">Founding Partner</p>
-                <p class="text-sm font-light italic opacity-60 max-w-xs">"Architecture is the art of framing silence."</p>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="aspect-[4/5] overflow-hidden bg-zinc-900"><img alt="Minimal architecture studio portrait" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=80"></div>
+        <div>
+            <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-4 block">02 — Studio</span>
+            <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">A compact team built for quiet rigor.</h2>
+            <div class="space-y-5 text-white/68 leading-relaxed">
+                <p>Use this page to present founders, collaborators, project geography, and the kinds of clients you work with. For the template, the studio is positioned as a small senior team with strong authorial control.</p>
+                <p>Good fits include private residences, boutique hospitality, galleries, and space branding projects where material calibration matters more than visual abundance.</p>
             </div>
-            <div class="flex flex-col items-center text-center md:mt-24">
-                <div class="aspect-[3/4] w-full max-w-xs bg-zinc-800 overflow-hidden mb-8">
-                    <img alt="Studio head portrait" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80">
-                </div>
-                <h4 class="text-lg font-bold uppercase tracking-widest mb-2">Elena Bergmann</h4>
-                <p class="text-[10px] uppercase tracking-widest opacity-50 mb-4">Creative Director</p>
-                <p class="text-sm font-light italic opacity-60 max-w-xs">"Light is our primary material. Space is our medium."</p>
+            <!-- Replace years, commission counts, and region counts with your real company data before publishing. --><div class="grid grid-cols-3 gap-6 mt-10">
+                <div><span class="block text-3xl font-black">12</span><span class="text-[10px] uppercase tracking-widest text-white/40">Years</span></div>
+                <div><span class="block text-3xl font-black">48</span><span class="text-[10px] uppercase tracking-widest text-white/40">Commissions</span></div>
+                <div><span class="block text-3xl font-black">07</span><span class="text-[10px] uppercase tracking-widest text-white/40">Regions</span></div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- Global Studios -->
-<section class="py-32 px-6 md:px-12 bg-zinc-100 dark:bg-zinc-900/30">
-    <div class="max-w-4xl mx-auto text-center">
-        <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-12 block">Global Presence</span>
-        <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-16">Studios</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">London</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">United Kingdom</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">Tokyo</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Japan</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">Berlin</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Germany</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">New York</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">United States</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">Oslo</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Norway</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">Copenhagen</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Denmark</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl font-black mb-2">Melbourne</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Australia</span>
-            </div>
-        </div>
+<section class="py-24 px-6 md:px-12 border-t border-white/10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+        <div><p class="text-[10px] uppercase tracking-[0.4em] text-white/40 mb-4">Next</p><h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">See The Working Method</h2></div>
+        <a href="service.html" class="inline-flex items-center gap-2 border border-white/20 px-6 py-4 text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-colors">Service<span class="material-symbols-outlined text-base">north_east</span></a>
     </div>
 </section>
-
-<!-- Stats Section -->
-<section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
-    <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-            <div class="flex flex-col">
-                <span class="text-4xl font-black mb-2">12</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Years Active</span>
-            </div>
-            <div class="flex flex-col">
-                <span class="text-4xl font-black mb-2">156</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Projects Completed</span>
-            </div>
-            <div class="flex flex-col">
-                <span class="text-4xl font-black mb-2">48</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Awards Won</span>
-            </div>
-            <div class="flex flex-col">
-                <span class="text-4xl font-black mb-2">07</span>
-                <span class="text-[10px] uppercase tracking-widest opacity-50">Global Studios</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12">
-    <div class="flex flex-col md:flex-row justify-between items-start gap-16">
-        <div class="flex flex-col">
-            <h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2>
-            <p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">
-                A design collective focused on the intersection of light, form, and functionality.
-            </p>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
-            <div class="flex flex-col gap-4">
-                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">hello@minimal.com</a>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">+44 (0) 20 7946 0123</a>
-            </div>
-            <div class="flex flex-col gap-4">
-                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Social</span>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Instagram</a>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Behance</a>
-            </div>
-            <div class="flex flex-col gap-4">
-                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Legal</span>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
-                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
-            </div>
-        </div>
-    </div>
-    <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-[10px] uppercase tracking-[0.4em] opacity-30">© 2024 Minimal Architecture &amp; Design</p>
-        <div class="flex gap-8">
-            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">London</span>
-            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">Tokyo</span>
-            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">New York</span>
-        </div>
-    </div>
-</footer>
+</main>
+<!-- Replace company name, email, phone number, and studio locations in this footer before publishing. --><footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12"><div class="flex flex-col md:flex-row justify-between items-start gap-16"><div class="flex flex-col"><h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2><p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">A design collective focused on the intersection of light, form, and functionality.</p></div><div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24"><div class="flex flex-col gap-4"><span class="text-[10px] font-bold uppercase tracking-widest mb-2">Pages</span><a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100" href="index.html">Home</a><a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100" href="service.html">Service</a><a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100" href="contact.html">Contact</a></div><!-- Replace footer company label, email, and phone number with your real contact data before publishing. --><div class="flex flex-col gap-4"><span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span><a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100" href="mailto:hello@minimal.example">hello@minimal.example</a><a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100" href="tel:+81312345678">+81 3-1234-5678</a></div><div class="flex flex-col gap-4"><span class="text-[10px] font-bold uppercase tracking-widest mb-2">Studios</span><span class="text-[10px] uppercase tracking-widest opacity-50">Tokyo</span><span class="text-[10px] uppercase tracking-widest opacity-50">Kyoto</span><span class="text-[10px] uppercase tracking-widest opacity-50">Osaka</span></div></div></div></footer>
 </div>
-
-<script>
-function toggleMinimalMenu() {
-    const menu = document.getElementById('min-mobile-menu');
-    const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-    const toggle = document.querySelector('.min-toggle');
-    if (menu.classList.contains('inactive')) {
-        menu.classList.remove('inactive');
-        menu.classList.add('active');
-        backdrop.classList.remove('hidden');
-        toggle.classList.add('active');
-    } else {
-        menu.classList.remove('active');
-        menu.classList.add('inactive');
-        backdrop.classList.add('hidden');
-        toggle.classList.remove('active');
-    }
-}
-</script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>
+
+
+
+
+
