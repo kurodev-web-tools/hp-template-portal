@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Trust Guard のサービス一覧。多層防御、ゼロトラスト、24/7 監視、コンプライアンス対応。">
-    <meta property="og:title" content="Service | Trust Guard">
-    <meta property="og:description" content="Trust Guard のサービス一覧。多層防御、ゼロトラスト、24/7 監視、コンプライアンス対応。">
+    <meta name="description" content="TRUST_GUARD のサービス一覧。多層防御、ゼロトラスト、24/7 監視、コンプライアンス対応。">
+    <meta property="og:title" content="Service | TRUST_GUARD">
+    <meta property="og:description" content="TRUST_GUARD のサービス一覧。多層防御、ゼロトラスト、24/7 監視。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/t/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    <title>Service | Trust Guard</title>
+    <title>Service | TRUST_GUARD</title>
     <link rel="canonical" href="https://example.com/templates/business/t/service.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <style>
         :root {
@@ -26,85 +26,51 @@
             --trust-alert: #ff3b30;
             --trust-bg: #0a0f09;
             --trust-surface: #12230f;
-            --trust-surface-light: #1a2f1a;
-            --trust-border: #2d4a26;
-            --trust-text: #e8f5e0;
-            --trust-text-dim: #8fa888;
+            --trust-border: #274b20;
+            --trust-text: #f1f5f9;
+            --trust-text-dim: #94a3b8;
         }
         .trust-theme {
             font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
             background-color: var(--trust-bg);
             color: var(--trust-text);
         }
-        .trust-theme .trust-nav-link {
-            transition: all 0.2s ease;
-        }
-        .trust-theme .trust-nav-link:hover,
-        .trust-theme .trust-nav-link.active {
-            background: var(--trust-primary-dim);
-            color: var(--trust-primary);
-            box-shadow: 0 0 20px var(--trust-primary-dim);
-        }
         .trust-scanline {
-            position: relative;
-        }
-        .trust-scanline::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0%,
-                transparent 50%,
-                rgba(56, 255, 20, 0.03) 50%,
-                rgba(56, 255, 20, 0.03) 100%
-            );
+            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
             background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 1;
         }
         .trust-grid-bg {
-            background-image:
-                linear-gradient(rgba(56, 255, 20, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 255, 20, 0.1) 1px, transparent 1px);
+            background-image: radial-gradient(circle at 1px 1px, var(--trust-border) 1px, transparent 0);
             background-size: 40px 40px;
-            background-position: center top;
-        }
-        @keyframes trust-glow {
-            0%, 100% { box-shadow: 0 0 20px var(--trust-primary-dim), 0 0 40px var(--trust-primary-dim); }
-            50% { box-shadow: 0 0 40px var(--trust-primary-dim), 0 0 80px var(--trust-primary-dim); }
-        }
-        .trust-glow-border {
-            animation: trust-glow 3s ease-in-out infinite;
-        }
-        .trust-card {
-            transition: all 0.3s ease;
-            border: 1px solid var(--trust-border);
-        }
-        .trust-theme .trust-card:hover {
-            border-color: var(--trust-primary);
-            box-shadow: 0 0 30px var(--trust-primary-dim);
-            transform: translateY(-4px);
         }
         .trust-btn-primary {
             background: var(--trust-primary);
             color: var(--trust-bg);
-            border: none;
             transition: all 0.2s ease;
         }
         .trust-btn-primary:hover {
-            box-shadow: 0 0 40px var(--trust-primary-dim);
-            transform: translateY(-2px);
+            background: #fff;
+            transform: scale(1.05);
         }
         .trust-btn-outline {
             background: transparent;
             color: var(--trust-primary);
-            border: 1px solid var(--trust-primary);
+            border: 2px solid var(--trust-primary);
             transition: all 0.2s ease;
         }
         .trust-btn-outline:hover {
-            background: var(--trust-primary-dim);
-            box-shadow: 0 0 30px var(--trust-primary-dim);
+            background: var(--trust-primary);
+            color: var(--trust-bg);
+        }
+        .trust-btn-outline-primary {
+            background: transparent;
+            color: var(--trust-primary);
+            border: 2px solid var(--trust-primary);
+            transition: all 0.2s ease;
+        }
+        .trust-btn-outline-primary:hover {
+            background: var(--trust-primary);
+            color: var(--trust-bg);
         }
         .trust-menu-backdrop { display: none; }
         @media (max-width: 1023px) {
@@ -128,377 +94,249 @@
             .trust-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
             .trust-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
         }
-        .trust-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--trust-border), transparent);
-        }
     </style>
 </head>
-<body class="trust-theme">
+<body class="trust-theme overflow-x-hidden">
     <div class="trust-menu-backdrop" id="trustMenuBackdrop"></div>
-    <button class="trust-mobile-toggle" id="trustMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="trustMobileMenu">
+    <button class="trust-mobile-toggle fixed top-6 right-6 z-[100] p-2" id="trustMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="trustMobileMenu">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
-    <div class="trust-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 shadow-2xl" id="trustMobileMenu">
-        <div class="mb-6 flex items-center justify-between">
-            <div>
-                <p class="font-display text-lg font-bold uppercase tracking-[0.16em]" style="color: var(--trust-primary);">Trust Guard</p>
-                <p class="font-mono text-[10px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);">SECURE COMMAND</p>
-            </div>
+    <div class="trust-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-xl border-2 border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 shadow-2xl" id="trustMobileMenu">
+        <div class="mb-6 flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">shield_with_heart</span>
+            <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
         </div>
         <nav class="flex flex-col gap-2">
-            <a href="index.html" class="trust-nav-link rounded-lg px-4 py-3 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">:: HOME</a>
-            <a href="about.html" class="trust-nav-link rounded-lg px-4 py-3 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">:: ABOUT</a>
-            <a href="service.html" class="trust-nav-link active rounded-lg px-4 py-3 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-primary); background: var(--trust-primary-dim);">:: SERVICES</a>
-            <a href="contact.html" class="trust-nav-link rounded-lg px-4 py-3 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">:: CONTACT</a>
+            <a href="index.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">HOME</a>
+            <a href="about.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">ABOUT</a>
+            <a href="service.html" class="trust-nav-link active rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);">SERVICES</a>
+            <a href="contact.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">CONTACT</a>
         </nav>
     </div>
-    <header class="sticky top-0 z-50 border-b border-[var(--trust-border)]/70 bg-[var(--trust-bg)]/95 backdrop-blur">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-4 lg:px-10">
+
+    <header class="sticky top-0 z-50 w-full border-b-2 border-[var(--trust-border)] bg-[var(--trust-bg)]/95 backdrop-blur">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">shield_with_heart</span>
-                <div>
-                    <p class="font-display text-xl font-bold uppercase tracking-[0.18em]" style="color: var(--trust-primary);">Trust Guard</p>
-                    <p class="font-mono text-[9px] uppercase tracking-[0.28em]" style="color: var(--trust-text-dim);">IRONCLAD DEFENSE PROTOCOL</p>
-                </div>
+                <span class="material-symbols-outlined text-[var(--trust-primary)] text-3xl">shield_with_heart</span>
+                <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
             </a>
-            <nav class="hidden items-center gap-1 lg:flex">
-                <a href="index.html" class="trust-nav-link rounded-lg px-4 py-2 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">:: HOME</a>
-                <a href="about.html" class="trust-nav-link rounded-lg px-4 py-2 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">:: ABOUT</a>
-                <a href="service.html" class="trust-nav-link active rounded-lg px-4 py-2 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-primary); background: var(--trust-primary-dim);">:: SERVICES</a>
-                <a href="contact.html" class="trust-nav-link rounded-lg px-4 py-2 font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">:: CONTACT</a>
+            <nav class="hidden lg:flex items-center gap-8">
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="index.html">HOME</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="about.html">ABOUT</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);" href="service.html">SERVICES</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="contact.html">CONTACT</a>
             </nav>
-            <div class="hidden items-center gap-3 lg:flex">
-                <a href="contact.html" class="trust-btn-primary rounded-lg px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em]">[ INITIATE_SECURE_LINK ]</a>
-            </div>
+            <a href="contact.html" class="trust-btn-primary px-6 py-2 text-sm font-bold uppercase tracking-tighter">SECURE NETWORK</a>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="trust-scanline trust-grid-bg relative border-b border-[var(--trust-border)] px-6 py-20 lg:px-10 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <div class="inline-flex items-center gap-2 rounded-full border border-[var(--trust-primary)]/30 bg-[var(--trust-primary-dim)] px-3 py-1">
+        <section class="relative border-b-2 border-[var(--trust-border)] trust-grid-bg overflow-hidden py-20 px-6">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="inline-flex items-center gap-2 rounded border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] px-3 py-1 mb-6">
+                    <span class="material-symbols-outlined text-sm" style="color: var(--trust-primary);">shield</span>
                     <span class="font-mono text-[10px] uppercase tracking-[0.2em]" style="color: var(--trust-primary);">PROTECTION_LAYERS</span>
                 </div>
-                <h1 class="mt-6 font-display text-4xl font-black uppercase leading-tight tracking-tight text-white md:text-6xl">
-                    <span class="block">検知、遮断、証跡を、</span>
-                    <span class="block" style="color: var(--trust-primary);">一つの運用線でつなぐ。</span>
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+                    CORE <span style="color: var(--trust-primary);">SERVICES</span>
                 </h1>
-                <p class="mt-6 max-w-3xl text-base leading-relaxed" style="color: var(--trust-text-dim);">
-                    単発の製品導入ではなく、守り続けられる体制まで含めてサービスを構成。
+                <p class="text-lg md:text-xl max-w-3xl uppercase tracking-widest font-light leading-relaxed mb-10" style="color: var(--trust-text-dim);">
+                    単発の製品導入ではなく、守り続けられる体制まで含めてサービスを構成。<br/>
                     貴社の環境に最適化したセキュリティ基盤を、丸ごと提供。
                 </p>
             </div>
         </section>
 
-        <!-- Core Services Section -->
-        <section class="border-b border-[var(--trust-border)] px-6 py-20 lg:px-10 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <p class="font-mono text-xs uppercase tracking-[0.3em]" style="color: var(--trust-primary);">CORE_SERVICES</p>
-                <div class="mt-10 grid gap-6 lg:grid-cols-2">
-                    <div class="trust-card relative overflow-hidden rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
-                        <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--trust-primary-dim)] blur-3xl"></div>
-                        <div class="relative">
-                            <div class="mb-4 flex items-center gap-3">
-                                <span class="material-symbols-outlined text-4xl" style="color: var(--trust-primary);">terminal</span>
-                                <h3 class="font-display text-2xl font-black uppercase tracking-[0.1em] text-white">REALTIME_DEFENSE</h3>
-                            </div>
-                            <p class="mb-6 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                通信の異常値を検知し、優先度に応じて自動遮断または隔離。
-                                AI が学習する行動分析で、未知の脅威もキャッチ。
-                            </p>
-                            <ul class="space-y-2">
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    24/7 自動監視・遮断
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    AI 駆動異常検知
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    自動隔離・サンドボックス
-                                </li>
-                            </ul>
+        <!-- Core Protections Grid -->
+        <section class="bg-[var(--trust-surface)] border-y-2 border-[var(--trust-border)] py-24 px-6">
+            <div class="max-w-[1440px] mx-auto">
+                <h3 class="text-3xl font-bold uppercase mb-16 text-center">Core Security Protections</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-[var(--trust-border)]">
+                    <!-- Card 1 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">terminal</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">ENDPOINT_ISOLATION</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            接続されたすべてのノードに対する、軍事レベルのハードウェア封じ込め。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-full"></div>
                         </div>
                     </div>
-                    <div class="trust-card relative overflow-hidden rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
-                        <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--trust-primary-dim)] blur-3xl"></div>
-                        <div class="relative">
-                            <div class="mb-4 flex items-center gap-3">
-                                <span class="material-symbols-outlined text-4xl" style="color: var(--trust-primary);">hub</span>
-                                <h3 class="font-display text-2xl font-black uppercase tracking-[0.1em] text-white">NETWORK_HARDENING</h3>
-                            </div>
-                            <p class="mb-6 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                拠点、クラウド、VPN を横断し、ゼロトラスト前提で再設計。
-                                マイクロセグメンテーションで、横移動を封じ込め。
-                            </p>
-                            <ul class="space-y-2">
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    ゼロトラストネットワーク設計
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    マイクロセグメンテーション
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    SD-WAN セキュリティ統合
-                                </li>
-                            </ul>
+                    <!-- Card 2 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">cloud_sync</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">CLOUD_PERIMETER</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            マルチリージョン同期冗長性を備えた、暗号化データボールト。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-3/4"></div>
                         </div>
                     </div>
-                    <div class="trust-card relative overflow-hidden rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
-                        <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--trust-primary-dim)] blur-3xl"></div>
-                        <div class="relative">
-                            <div class="mb-4 flex items-center gap-3">
-                                <span class="material-symbols-outlined text-4xl" style="color: var(--trust-primary);">fingerprint</span>
-                                <h3 class="font-display text-2xl font-black uppercase tracking-[0.1em] text-white">IDENTITY_VAULT</h3>
-                            </div>
-                            <p class="mb-6 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                人事異動や外部委託を含め、権限変更の運用を崩れにくく。
-                                多要素認証、シングルサインオン、権限棚卸しを一元管理。
-                            </p>
-                            <ul class="space-y-2">
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    多要素認証（MFA）導入
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    権限自動棚卸し
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    ジャストインタイム権限
-                                </li>
-                            </ul>
+                    <!-- Card 3 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">hub</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">NETWORK_HARDENING</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            AI 駆動のトラフィックスクラビングとゼロトラストトンネリング。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-1/2"></div>
                         </div>
                     </div>
-                    <div class="trust-card relative overflow-hidden rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-8">
-                        <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--trust-primary-dim)] blur-3xl"></div>
-                        <div class="relative">
-                            <div class="mb-4 flex items-center gap-3">
-                                <span class="material-symbols-outlined text-4xl" style="color: var(--trust-primary);">data_lock</span>
-                                <h3 class="font-display text-2xl font-black uppercase tracking-[0.1em] text-white">DATA_PROTECTION</h3>
-                            </div>
-                            <p class="mb-6 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                データ保護を別工程にせず、基盤レイヤーに標準実装。
-                                暗号化、DLP、バックアップを包括的に。
-                            </p>
-                            <ul class="space-y-2">
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    AES-256 暗号化標準
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    DLP（データ漏洩防止）
-                                </li>
-                                <li class="flex items-center gap-2 text-sm" style="color: var(--trust-text-dim);">
-                                    <span class="material-symbols-outlined text-base" style="color: var(--trust-primary);">check_circle</span>
-                                    改ざん検知バックアップ
-                                </li>
-                            </ul>
+                    <!-- Card 4 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">shield</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-alert)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-alert);">Alert</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">REALTIME_DEFENSE</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            検出された侵害試行に対する自動報復プロトコル。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-alert)] w-full"></div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">query_stats</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">DEEP_ANALYTICS</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            システム異常とパターン逸脱の鑑識レベル分析。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-2/3"></div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">fingerprint</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">IDENTITY_VAULT</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            全ユーザーに対する生体認証および量子暗号化アクセス制御。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-full"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Deployment Options Section -->
-        <section class="trust-scanline border-b border-[var(--trust-border)] bg-[var(--trust-surface)] px-6 py-20 lg:px-10 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <p class="font-mono text-xs uppercase tracking-[0.3em]" style="color: var(--trust-primary);">DEPLOYMENT_OPTIONS</p>
-                <h2 class="mt-4 font-display text-3xl font-black uppercase tracking-tight text-white md:text-5xl">
-                    貴社の環境に、<br>
-                    最適な形で実装。
-                </h2>
-                <div class="mt-10 grid gap-6 lg:grid-cols-2">
-                    <div class="trust-card relative overflow-hidden rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-bg)] p-8">
-                        <div class="absolute right-0 top-0 h-32 w-32 translate-x-16 translate-y--16 rounded-full bg-[var(--trust-primary-dim)] blur-3xl"></div>
-                        <div class="relative">
-                            <div class="mb-4 flex items-center gap-3">
-                                <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">cloud</span>
-                                <h3 class="font-display text-2xl font-black uppercase tracking-[0.1em] text-white">CLOUD_NATIVE</h3>
-                            </div>
-                            <p class="mb-6 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                AWS、Azure、GCP への迅速な展開。グローバル展開する組織に最適。
-                                自動スケーリング、マネージドサービスとの親和性抜群。
-                            </p>
-                            <div class="rounded-lg border border-[var(--trust-border)] bg-[var(--trust-surface)] p-4">
-                                <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-primary); mb-2;">Best For:</p>
-                                <ul class="space-y-1">
-                                    <li class="flex items-center gap-2 text-xs" style="color: var(--trust-text-dim);">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[var(--trust-primary)]"></span>
-                                        スタートアップ〜ミドル企業
-                                    </li>
-                                    <li class="flex items-center gap-2 text-xs" style="color: var(--trust-text-dim);">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[var(--trust-primary)]"></span>
-                                        グローバル展開企業
-                                    </li>
-                                    <li class="flex items-center gap-2 text-xs" style="color: var(--trust-text-dim);">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[var(--trust-primary)]"></span>
-                                        敏捷なインフラ運用
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="trust-card relative overflow-hidden rounded-2xl border border-[var(--trust-border)] bg-[var(--trust-bg)] p-8">
-                        <div class="absolute right-0 top-0 h-32 w-32 translate-x-16 translate-y--16 rounded-full bg-[var(--trust-primary-dim)] blur-3xl"></div>
-                        <div class="relative">
-                            <div class="mb-4 flex items-center gap-3">
-                                <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">dns</span>
-                                <h3 class="font-display text-2xl font-black uppercase tracking-[0.1em] text-white">ON_PREMISE</h3>
-                            </div>
-                            <p class="mb-6 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                データセンター、閉域網、オフライン環境にも対応。
-                                規制の厳しい業界向けカスタム構成。
-                            </p>
-                            <div class="rounded-lg border border-[var(--trust-border)] bg-[var(--trust-surface)] p-4">
-                                <p class="font-mono text-xs uppercase tracking-[0.15em]" style="color: var(--trust-primary); mb-2;">Best For:</p>
-                                <ul class="space-y-1">
-                                    <li class="flex items-center gap-2 text-xs" style="color: var(--trust-text-dim);">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[var(--trust-primary)]"></span>
-                                        金融・医療・官公庁
-                                    </li>
-                                    <li class="flex items-center gap-2 text-xs" style="color: var(--trust-text-dim);">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[var(--trust-primary)]"></span>
-                                        データ主権必須企業
-                                    </li>
-                                    <li class="flex items-center gap-2 text-xs" style="color: var(--trust-text-dim);">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[var(--trust-primary)]"></span>
-                                        エアギャップ環境
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Deployment Options -->
+        <section class="py-24 px-6 max-w-[1440px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="border-4 border-[var(--trust-border)] p-12 bg-[var(--trust-surface)] relative">
+                    <div class="absolute top-0 right-0 bg-[var(--trust-border)] px-4 py-1 text-xs font-bold uppercase tracking-widest">Option_01</div>
+                    <h3 class="text-4xl font-black uppercase mb-6 tracking-tighter">CLOUD_NATIVE</h3>
+                    <p class="mb-8 tracking-wide" style="color: var(--trust-text-dim);">
+                        迅速な展開。スケーラブルなアーキテクチャ。<br/>
+                        TRUST_GUARD 指令センターによる 24 時間 365 日管理。
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Instant Scaling
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Zero Hardware Cost
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Global Content Delivery
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="trust-btn-outline-primary w-full py-4 font-bold uppercase tracking-widest transition-all inline-flex justify-center items-center gap-2">
+                        Configure Cloud
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
                 </div>
-            </div>
-        </section>
-
-        <!-- Compliance Section -->
-        <section class="border-b border-[var(--trust-border)] px-6 py-20 lg:px-10 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <p class="font-mono text-xs uppercase tracking-[0.3em]" style="color: var(--trust-primary);">COMPLIANCE_SUPPORT</p>
-                <h2 class="mt-4 font-display text-3xl font-black uppercase tracking-tight text-white md:text-5xl">
-                    監査対応を、<br>
-                    <span style="color: var(--trust-primary);">特別プロジェクトにしない。</span>
-                </h2>
-                <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <div class="trust-card rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 text-center">
-                        <p class="font-mono text-sm uppercase tracking-[0.15em] text-white">ISMS / ISO27001</p>
-                    </div>
-                    <div class="trust-card rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 text-center">
-                        <p class="font-mono text-sm uppercase tracking-[0.15em] text-white">SOC2 Type II</p>
-                    </div>
-                    <div class="trust-card rounded-xl border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] p-6 text-center">
-                        <p class="font-mono text-sm uppercase tracking-[0.15em]" style="color: var(--trust-primary);">GDPR READY</p>
-                    </div>
-                    <div class="trust-card rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 text-center">
-                        <p class="font-mono text-sm uppercase tracking-[0.15em] text-white">金融庁検査</p>
-                    </div>
-                    <div class="trust-card rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 text-center">
-                        <p class="font-mono text-sm uppercase tracking-[0.15em] text-white">個人情報保護法</p>
-                    </div>
-                    <div class="trust-card rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 text-center">
-                        <p class="font-mono text-sm uppercase tracking-[0.15em] text-white">CSIRT 運用</p>
-                    </div>
-                </div>
-                <div class="mt-10 space-y-4">
-                    <div class="trust-card flex items-start gap-5 rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6">
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)]">
-                            <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">article</span>
-                        </div>
-                        <div>
-                            <h4 class="font-display text-lg font-bold uppercase tracking-[0.1em] text-white">POLICY_GENERATOR</h4>
-                            <p class="mt-2 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                セキュリティポリシー、運用手順書を自動生成。テンプレートから選択し、
-                                組織名を入れるだけで完成。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="trust-card flex items-start gap-5 rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6">
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)]">
-                            <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">assignment</span>
-                        </div>
-                        <div>
-                            <h4 class="font-display text-lg font-bold uppercase tracking-[0.1em] text-white">AUDIT_REPORT_AUTOFILL</h4>
-                            <p class="mt-2 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                監査人の質問項目に対して、該当ログと設定画面を自動リンク。
-                                回答ドラフトを秒で作成。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="trust-card flex items-start gap-5 rounded-xl border border-[var(--trust-border)] bg-[var(--trust-surface)] p-6">
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)]">
-                            <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">update</span>
-                        </div>
-                        <div>
-                            <h4 class="font-display text-lg font-bold uppercase tracking-[0.1em] text-white">CONTINUOUS_COMPLIANCE</h4>
-                            <p class="mt-2 text-sm leading-relaxed" style="color: var(--trust-text-dim);">
-                                規制アップデートを自動キャッチ。変更があったら即通知、
-                                影響範囲と対応プランを提示。
-                            </p>
-                        </div>
-                    </div>
+                <div class="border-4 border-[var(--trust-primary)] p-12 bg-[var(--trust-bg)] relative shadow-[0_0_40px_rgba(56,255,20,0.1)]">
+                    <div class="absolute top-0 right-0 bg-[var(--trust-primary)] px-4 py-1 text-xs font-bold uppercase tracking-widest" style="color: var(--trust-bg);">Option_02</div>
+                    <h3 class="text-4xl font-black uppercase mb-6 tracking-tighter">ON_PREMISE</h3>
+                    <p class="mb-8 tracking-wide" style="color: var(--trust-text-dim);">
+                        完全なコントロール。エアギャップ機能。<br/>
+                        高セキュリティセクター向けの物理インフラ監視。
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Maximum Privacy
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Air-Gapped Ready
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Custom Hardware Integration
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="trust-btn-primary w-full py-4 font-bold uppercase tracking-widest transition-all inline-flex justify-center items-center gap-2">
+                        Request Installation
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="px-6 py-20 lg:px-10 lg:py-28">
-            <div class="mx-auto max-w-[1440px]">
-                <div class="trust-glow-border relative overflow-hidden rounded-3xl border-2 border-[var(--trust-primary)] bg-gradient-to-br from-[var(--trust-surface)] to-[var(--trust-bg)] p-10 lg:p-16">
-                    <div class="absolute right-0 top-0 h-64 w-64 translate-x-32 translate-y--32 rounded-full bg-[var(--trust-primary-dim)] blur-[100px]"></div>
-                    <div class="relative">
-                        <p class="font-mono text-xs uppercase tracking-[0.3em]" style="color: var(--trust-primary);">INITIALIZE_CONTACT</p>
-                        <h2 class="mt-4 font-display text-3xl font-black uppercase tracking-tight text-white md:text-5xl">
-                            貴社のセキュリティ、<br>
-                            <span style="color: var(--trust-primary);">本気で守り切ります。</span>
-                        </h2>
-                        <p class="mt-6 max-w-2xl text-base leading-relaxed" style="color: var(--trust-text-dim);">
-                            無料セキュリティ診断で、現在の課題と優先順位を明確化。
-                            既存投資の活用も提案。無理な乗り換えは推奨しません。
-                        </p>
-                        <div class="mt-8 flex flex-wrap gap-4">
-                            <a href="contact.html" class="trust-btn-primary inline-flex items-center gap-2 rounded-lg px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em]">
-                                <span class="material-symbols-outlined text-base">mail</span>
-                                REQUEST_DIAGNOSTIC
-                            </a>
-                            <a href="about.html" class="trust-btn-outline inline-flex items-center gap-2 rounded-lg px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em]">
-                                <span class="material-symbols-outlined text-base">person</span>
-                                SEE_REFERENCES
-                            </a>
-                        </div>
-                    </div>
+        <section class="border-t-2 border-[var(--trust-border)] py-24 px-6 bg-[var(--trust-bg)]">
+            <div class="max-w-[1440px] mx-auto text-center">
+                <div class="bg-[var(--trust-surface)] border-4 border-[var(--trust-border)] p-16 max-w-4xl mx-auto relative overflow-hidden">
+                    <div class="trust-scanline absolute inset-0 opacity-10"></div>
+                    <p class="font-mono text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--trust-primary);">INITIALIZE_CONTACT</p>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter">
+                        Ready to stabilize your network?
+                    </h2>
+                    <p class="mb-10 text-lg uppercase tracking-widest relative z-10" style="color: var(--trust-text-dim);">
+                        デプロイメントは包括的なインフラストラクチャスキャンから開始。
+                    </p>
+                    <a href="contact.html" class="trust-btn-primary px-16 py-6 text-xl font-black uppercase tracking-widest transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)] inline-block">
+                        Secure Your Network
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-[var(--trust-border)] bg-[var(--trust-bg)] px-6 py-10 lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <div>
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-2xl" style="color: var(--trust-primary);">shield_with_heart</span>
-                    <div>
-                        <p class="font-display text-lg font-bold uppercase tracking-[0.16em]" style="color: var(--trust-primary);">Trust Guard</p>
-                        <p class="font-mono text-[9px] uppercase tracking-[0.24em]" style="color: var(--trust-text-dim);">IRONCLAD DEFENSE / ZERO_TRUST / 24_7_SOC</p>
-                    </div>
-                </div>
+    <footer class="bg-[var(--trust-bg)] border-t-2 border-[var(--trust-border)] py-12 px-6">
+        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[var(--trust-primary)] text-2xl">shield_with_heart</span>
+                <span class="text-sm font-bold uppercase tracking-widest" style="color: var(--trust-text-dim);">TRUST_GUARD © 2024</span>
             </div>
-            <div class="flex flex-wrap gap-6">
-                <a href="index.html" class="font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">HOME</a>
-                <a href="about.html" class="font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">ABOUT</a>
-                <a href="service.html" class="font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">SERVICES</a>
-                <a href="contact.html" class="font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">CONTACT</a>
-                <a href="#" class="font-mono text-xs uppercase tracking-[0.2em]" style="color: var(--trust-text-dim);">PRIVACY</a>
+            <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em]" style="color: var(--trust-text-dim);">
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Privacy_Protocol</a>
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Service_Agreement</a>
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Compliance_Logs</a>
+            </div>
+            <div class="flex gap-4">
+                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
+                    <span class="material-symbols-outlined text-sm">share</span>
+                </div>
+                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
+                    <span class="material-symbols-outlined text-sm">terminal</span>
+                </div>
             </div>
         </div>
     </footer>
@@ -533,14 +371,12 @@
             document.querySelectorAll('.trust-nav-link').forEach(function(link) {
                 const href = link.getAttribute('href');
                 if (href === currentPage) {
-                    link.classList.add('active');
                     link.style.color = 'var(--trust-primary)';
-                    link.style.background = 'var(--trust-primary-dim)';
                 }
             });
         })();
     </script>
-    <script src="../../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/template-common.js" defer></script>
     <script src="assets/js/script.js" defer></script>
 </body>
 </html>
