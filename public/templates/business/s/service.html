@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="S - Intelligent OS. Modules, pricing, and implementation flow.">
     <meta property="og:title" content="Service | S - Intelligent OS">
-    <meta property="og:description" content="S - Intelligent OS. Modules, pricing, and implementation flow.">
+    <meta property="og:description" content="Modules, pricing, and implementation flow.">
     <meta property="og:image" content="https://example.com/templates/business/s/assets/generated/external-image-01.svg">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
@@ -16,205 +16,290 @@
     <link rel="canonical" href="https://example.com/templates/business/s/service.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .saas-shell { background-color: #0a0f18; }
+        .saas-glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .saas-glass-blue { background: rgba(37, 123, 244, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(37, 123, 244, 0.2); }
+        .saas-nav-link { transition: all 0.2s; }
+        .saas-nav-link:hover { background: rgba(37, 123, 244, 0.1); }
+        .saas-nav-link.active { background: rgba(37, 123, 244, 0.2); color: #257bf4; }
+        .saas-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); transition: all 0.3s; }
+        .saas-card:hover { background: rgba(255, 255, 255, 0.04); border-color: rgba(37, 123, 244, 0.3); }
+        .saas-panel { background: rgba(10, 15, 24, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .saas-backdrop { background-color: rgba(10, 15, 24, 0.5); backdrop-filter: blur(4px); }
+        .saas-mobile-toggle .bar { display: block; width: 18px; height: 2px; background: #fff; margin: 4px 0; transition: all 0.3s; }
+        .saas-mobile-menu { transition: transform 0.3s ease; }
+        .saas-mobile-menu.active { transform: translateX(0); }
+        .saas-mobile-menu.inactive { transform: translateX(-100%); }
+    </style>
 </head>
-<body class="theme-business bg-background-dark text-slate-100 antialiased">
-    <div class="s-grid fixed inset-0 -z-20"></div>
-    <div class="s-backdrop fixed inset-0 -z-10 bg-gradient-to-b from-primary/5 to-transparent"></div>
-    <div class="s-menu-backdrop fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm lg:hidden"></div>
-    <button aria-controls="s-mobile-menu" class="s-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/50 bg-background-dark/90 text-white shadow-[0_18px_40px_rgba(0,0,0,0.45)] lg:hidden" type="button" aria-label="Open menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-    <div id="s-mobile-menu" class="s-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[1.8rem] border border-white/10 bg-background-dark/95 p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.55)] lg:hidden">
-        <div class="mb-6 flex items-center justify-between gap-4">
-            <div><p class="s-logo text-2xl text-white">S</p><p class="text-xs font-bold uppercase tracking-[0.32em] text-primary">Intelligent OS</p></div>
-        </div>
-        <div class="flex flex-col gap-2">
-            <a href="index.html" class="s-nav-link rounded-2xl px-4 py-3">Home</a>
-            <a href="about.html" class="s-nav-link rounded-2xl px-4 py-3">About</a>
-            <a href="service.html" class="s-nav-link active rounded-2xl px-4 py-3">Service</a>
-            <a href="contact.html" class="s-nav-link rounded-2xl px-4 py-3">Contact</a>
-        </div>
-    </div>
+<body class="theme-business saas-shell text-slate-100 antialiased">
 
-    <header class="sticky top-0 z-50 px-6 py-4 lg:px-10">
-        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 rounded-full border border-white/10 bg-background-dark/78 px-5 py-3 backdrop-blur-xl">
-            <a href="index.html" class="flex items-center gap-3 text-white">
-                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-background-dark"><span class="material-symbols-outlined text-2xl">smart_button</span></div>
-                <div><p class="s-logo text-2xl">S</p><p class="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">Intelligent OS</p></div>
-            </a>
-            <div class="nav hidden items-center gap-2 lg:flex">
-                <a href="index.html" class="s-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Home</a>
-                <a href="about.html" class="s-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">About</a>
-                <a href="service.html" class="s-nav-link active rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Service</a>
-                <a href="contact.html" class="s-nav-link rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.16em]">Contact</a>
+    <div class="saas-backdrop fixed inset-0 z-[9998] xl:hidden"></div>
+
+    <button class="saas-mobile-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="Open menu" aria-controls="saas-mobile-menu" aria-expanded="false" onclick="toggleSaasMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+
+    <aside id="saas-mobile-menu" class="saas-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+        <div class="flex items-center gap-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/30">
+                <span class="material-symbols-outlined">account_tree</span>
             </div>
-            <div class="hidden items-center gap-3 lg:flex">
-                <a href="contact.html" class="rounded-full bg-primary px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-background-dark">Get Started</a>
+            <div>
+                <p class="text-lg font-black tracking-tight">Intelligent OS</p>
+                <p class="text-xs uppercase tracking-[0.28em] text-primary/80">AI Operating System</p>
+            </div>
+        </div>
+        <nav class="mt-10 flex flex-col gap-2">
+            <a href="index.html" class="saas-nav-link rounded-2xl px-4 py-3">Home</a>
+            <a href="about.html" class="saas-nav-link rounded-2xl px-4 py-3">About</a>
+            <a href="service.html" class="saas-nav-link active rounded-2xl px-4 py-3">Service</a>
+            <a href="contact.html" class="saas-nav-link rounded-2xl px-4 py-3">Contact</a>
+        </nav>
+    </aside>
+
+    <header class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between saas-glass rounded-full px-6 py-3">
+            <div class="flex items-center gap-2">
+                <div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-xl">account_tree</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white">Intelligent OS</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="about.html">About</a>
+                <a class="hover:text-primary transition-colors" href="service.html">Service</a>
+                <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="px-5 py-2 text-sm font-semibold hover:text-primary transition-colors text-white">Log In</button>
+                <button class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                    Get Started Free
+                </button>
             </div>
         </div>
     </header>
 
-    <main class="overflow-hidden pb-20">
-        <section class="px-6 pb-16 pt-10 lg:px-10 lg:pb-20 lg:pt-12">
-            <div class="mx-auto max-w-[1440px]">
-                <div class="rounded-[2.2rem] border border-primary/15 bg-slate-950 px-8 py-12 text-white">
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-primary">Service Modules</p>
-                    <h1 class="mt-4 text-4xl font-black leading-tight tracking-tight md:text-6xl">
-                        <span class="ib">Designing not just features,</span>
-                        <span class="ib text-primary">but operational flow.</span>
+    <main class="overflow-hidden pt-32 pb-20 px-6 lg:px-10">
+        <!-- Hero Section -->
+        <section class="relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 blur-[120px] rounded-full -z-10"></div>
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6">
+                        <span class="material-symbols-outlined text-sm">apps</span>
+                        SERVICE MODULES
+                    </div>
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.1] text-white">
+                        Designing not just features, <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00ff88]">but operational flow.</span>
                     </h1>
-                    <p class="mt-6 max-w-3xl text-base leading-8 text-slate-300">
-                        <span class="ib">Each module works standalone,</span>
-                        <span class="ib">but combines to accelerate</span>
-                        <span class="ib">your team's decision velocity.</span>
+                    <p class="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto">
+                        Each module works standalone, but combines to accelerate your team's decision velocity.
                     </p>
                 </div>
 
-                <div class="mt-12 grid gap-6 lg:grid-cols-3">
-                    <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8 transition-all hover:border-primary/30 hover:bg-white/04">
-                        <span class="material-symbols-outlined text-4xl text-primary">bolt</span>
-                        <h2 class="mt-5 text-2xl font-black">Workflow Engine</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-300">
-                            <span class="ib">Automate repetitive work</span>
-                            <span class="ib">using rule-based and AI-driven</span>
-                            <span class="ib">decision logic.</span>
+                <!-- Modules Grid -->
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-16">
+                    <article class="saas-glass rounded-xl p-8 transition-all hover:border-primary/30">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                            <span class="material-symbols-outlined text-primary text-2xl">bolt</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">Workflow Engine</h2>
+                        <p class="text-slate-400 text-sm leading-7">
+                            Automate repetitive work using rule-based and AI-driven decision logic.
                         </p>
                     </article>
-                    <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8 transition-all hover:border-primary/30 hover:bg-white/04">
-                        <span class="material-symbols-outlined text-4xl text-primary">insights</span>
-                        <h2 class="mt-5 text-2xl font-black">Insight Layer</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-300">
-                            <span class="ib">Show not just KPIs,</span>
-                            <span class="ib">but the context behind</span>
-                            <span class="ib">every change.</span>
+                    <article class="saas-glass rounded-xl p-8 transition-all hover:border-primary/30">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#00ff88]/10">
+                            <span class="material-symbols-outlined text-[#00ff88] text-2xl">insights</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">Insight Layer</h2>
+                        <p class="text-slate-400 text-sm leading-7">
+                            Show not just KPIs, but the context behind every change.
                         </p>
                     </article>
-                    <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8 transition-all hover:border-primary/30 hover:bg-white/04">
-                        <span class="material-symbols-outlined text-4xl text-primary">link</span>
-                        <h2 class="mt-5 text-2xl font-black">Integration Hub</h2>
-                        <p class="mt-4 text-sm leading-8 text-slate-300">
-                            <span class="ib">Connect with existing CRM,</span>
-                            <span class="ib">CS, and accounting tools</span>
-                            <span class="ib">for phased adoption.</span>
+                    <article class="saas-glass rounded-xl p-8 transition-all hover:border-primary/30">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                            <span class="material-symbols-outlined text-primary text-2xl">link</span>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3">Integration Hub</h2>
+                        <p class="text-slate-400 text-sm leading-7">
+                            Connect with existing CRM, CS, and accounting tools for phased adoption.
                         </p>
                     </article>
                 </div>
 
-                <div class="mt-12 max-w-7xl">
-                    <div class="mb-8">
-                        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-primary">Pricing</p>
-                        <h2 class="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
-                            <span class="ib">Scale with your team,</span>
-                            <span class="ib">without friction.</span>
+                <!-- Pricing Section -->
+                <div class="mb-16">
+                    <div class="text-center mb-10">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4">Pricing</p>
+                        <h2 class="text-3xl font-black tracking-tight text-white md:text-5xl">
+                            Scale with your team, without friction.
                         </h2>
                     </div>
-                    <div class="grid gap-6 lg:grid-cols-3">
-                        <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8">
-                            <p class="text-xs uppercase tracking-[0.24em] text-slate-400">Starter</p>
-                            <p class="mt-4 text-4xl font-black text-white">¥0</p>
-                            <p class="mt-4 text-sm leading-8 text-slate-300">For small teams. Basic automation and dashboards included.</p>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                        <article class="saas-glass rounded-xl p-8">
+                            <p class="text-xs uppercase tracking-[0.24em] text-slate-400 mb-4">Starter</p>
+                            <p class="text-4xl font-black text-white mb-4">$0 <span class="text-sm font-normal text-slate-500">/ month</span></p>
+                            <p class="text-sm text-slate-400 leading-7">For small teams. Basic automation and dashboards included.</p>
+                            <ul class="mt-6 space-y-3 text-sm">
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    5 active workflows
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    Basic dashboards
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-500">
+                                    <span class="text-slate-600 material-symbols-outlined text-sm">cancel</span>
+                                    AI proposals
+                                </li>
+                            </ul>
+                            <a href="contact.html" class="mt-6 block w-full rounded-lg border border-white/10 py-3 text-center font-bold transition-colors hover:bg-white/5">Start for free</a>
                         </article>
-                        <article class="rounded-[2rem] border border-primary/30 bg-primary/05 p-8 shadow-xl shadow-primary/10">
-                            <p class="text-xs uppercase tracking-[0.24em] text-primary/80">Growth</p>
-                            <p class="mt-4 text-4xl font-black text-primary">¥7,500</p>
-                            <p class="mt-4 text-sm leading-8 text-slate-200">For teams standardizing cross-department operations. AI proposals and advanced integrations.</p>
+                        <article class="saas-glass-blue relative rounded-xl p-8 shadow-xl md:scale-105">
+                            <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary px-4 py-1 text-[10px] font-black uppercase tracking-widest text-white">MOST POPULAR</div>
+                            <p class="text-xs uppercase tracking-[0.24em] text-primary/80 mb-4">Growth</p>
+                            <p class="text-4xl font-black text-primary mb-4">$29 <span class="text-sm font-normal text-slate-500">/ month</span></p>
+                            <p class="text-sm text-slate-300 leading-7">For teams standardizing cross-department operations. AI proposals and advanced integrations.</p>
+                            <ul class="mt-6 space-y-3 text-sm">
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    Unlimited workflows
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    AI proposals
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    Advanced integrations
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    Priority support
+                                </li>
+                            </ul>
+                            <a href="contact.html" class="mt-6 block w-full rounded-lg bg-primary py-3 text-center font-bold text-white shadow-xl shadow-primary/20">Start now</a>
                         </article>
-                        <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8">
-                            <p class="text-xs uppercase tracking-[0.24em] text-slate-400">Enterprise</p>
-                            <p class="mt-4 text-4xl font-black text-white">Custom</p>
-                            <p class="mt-4 text-sm leading-8 text-slate-300">For large-scale deployment with permission design, dedicated environments, and audit requirements.</p>
+                        <article class="saas-glass rounded-xl p-8">
+                            <p class="text-xs uppercase tracking-[0.24em] text-slate-400 mb-4">Enterprise</p>
+                            <p class="text-4xl font-black text-white mb-4">Custom</p>
+                            <p class="text-sm text-slate-400 leading-7">For large-scale deployment with permission design, dedicated environments, and audit requirements.</p>
+                            <ul class="mt-6 space-y-3 text-sm">
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    Dedicated instance
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    SLA guarantees
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <span class="text-primary material-symbols-outlined text-sm">check_circle</span>
+                                    On-premise deployment
+                                </li>
+                            </ul>
+                            <a href="contact.html" class="mt-6 block w-full rounded-lg border border-white/10 py-3 text-center font-bold transition-colors hover:bg-white/5">Contact sales</a>
                         </article>
                     </div>
                 </div>
 
-                <div class="mt-12 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-                    <div class="rounded-[2rem] border border-white/10 bg-slate-950/80 p-8 backdrop-blur">
-                        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-primary">Implementation Flow</p>
-                        <div class="mt-8 space-y-6">
-                            <div>
-                                <h3 class="text-2xl font-black">1. Current Ops Audit</h3>
-                                <p class="mt-2 text-sm leading-8 text-slate-300">
-                                    <span class="ib">Inventory existing tools,</span>
-                                    <span class="ib">approval flows,</span>
-                                    <span class="ib">and data duplication.</span>
-                                </p>
+                <!-- Implementation + Use Cases -->
+                <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+                    <article class="saas-glass-blue rounded-xl p-8 lg:p-10">
+                        <div class="mb-8 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-3xl">flowchart</span>
+                            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Implementation Flow</p>
+                        </div>
+                        <div class="space-y-8">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary font-bold">1</div>
+                                <div>
+                                    <h3 class="font-bold text-white text-lg">Current Ops Audit</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Inventory existing tools, approval flows, and data duplication.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-2xl font-black">2. Priority Automation</h3>
-                                <p class="mt-2 text-sm leading-8 text-slate-300">
-                                    <span class="ib">Automate the most time-consuming</span>
-                                    <span class="ib">tasks within the first 30 days.</span>
-                                </p>
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary font-bold">2</div>
+                                <div>
+                                    <h3 class="font-bold text-white text-lg">Priority Automation</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Automate the most time-consuming tasks within the first 30 days.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-2xl font-black">3. Team Rollout</h3>
-                                <p class="mt-2 text-sm leading-8 text-slate-300">
-                                    <span class="ib">Deploy role-specific views</span>
-                                    <span class="ib">and permissions across</span>
-                                    <span class="ib">the entire organization.</span>
-                                </p>
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary font-bold">3</div>
+                                <div>
+                                    <h3 class="font-bold text-white text-lg">Team Rollout</h3>
+                                    <p class="text-sm text-slate-400 mt-1">Deploy role-specific views and permissions across the entire organization.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid gap-6 md:grid-cols-2">
-                        <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8">
-                            <p class="text-xs uppercase tracking-[0.24em] text-primary/80">Ideal Use</p>
-                            <h3 class="mt-4 text-2xl font-black">RevOps</h3>
-                            <p class="mt-4 text-sm leading-8 text-slate-300">
-                                <span class="ib">Teams wanting seamless</span>
-                                <span class="ib">handoffs between sales</span>
-                                <span class="ib">and customer success.</span>
-                            </p>
+                    </article>
+                    <div class="grid grid-rows-2 gap-4">
+                        <article class="saas-glass rounded-xl p-8">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="material-symbols-outlined text-[#00ff88] text-2xl">trending_up</span>
+                                <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#00ff88]">Ideal Use</p>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">RevOps Teams</h3>
+                            <p class="text-slate-400 text-sm">Teams wanting seamless handoffs between sales and customer success.</p>
                         </article>
-                        <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8">
-                            <p class="text-xs uppercase tracking-[0.24em] text-primary/80">Ideal Use</p>
-                            <h3 class="mt-4 text-2xl font-black">Project PMO</h3>
-                            <p class="mt-4 text-sm leading-8 text-slate-300">
-                                <span class="ib">Organizations consolidating</span>
-                                <span class="ib">cross-project progress</span>
-                                <span class="ib">and issues into one view.</span>
-                            </p>
-                        </article>
-                        <article class="rounded-[2rem] border border-white/10 bg-white/02 p-8 md:col-span-2">
-                            <p class="text-xs uppercase tracking-[0.24em] text-primary/80">Support</p>
-                            <p class="mt-4 text-sm leading-8 text-slate-300">
-                                <span class="ib">From pre-launch design support</span>
-                                <span class="ib">to admin training and operational reviews,</span>
-                                <span class="ib">we partner with you end-to-end.</span>
-                            </p>
+                        <article class="saas-glass rounded-xl p-8">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="material-symbols-outlined text-[#00ff88] text-2xl">task</span>
+                                <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#00ff88]">Ideal Use</p>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">Project PMO</h3>
+                            <p class="text-slate-400 text-sm">Organizations consolidating cross-project progress and issues into one view.</p>
                         </article>
                     </div>
                 </div>
+
+                <!-- Support Banner -->
+                <article class="saas-glass mt-4 rounded-xl p-8 lg:p-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl">support_agent</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Support</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-base leading-8 max-w-4xl">
+                        From pre-launch design support to admin training and operational reviews, we partner with you end-to-end.
+                    </p>
+                </article>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-white/10 px-6 pb-12 pt-16 lg:px-10">
-        <div class="mx-auto grid max-w-[1440px] gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
-            <div>
-                <p class="s-logo text-3xl text-white">S</p>
-                <p class="mt-4 max-w-md text-sm leading-8 text-slate-400">
-                    <span class="ib">Intelligent OS unifies team operations.</span>
-                    <span class="ib">Tokyo / San Francisco / London.</span>
-                </p>
-            </div>
-            <div>
-                <p class="text-sm font-bold uppercase tracking-[0.24em] text-primary">Navigation</p>
-                <div class="mt-4 flex flex-col gap-3 text-sm font-bold uppercase text-slate-400">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
-                    <a href="contact.html">Contact</a>
+    <footer class="px-6 py-12 lg:px-10">
+        <div class="mx-auto max-w-7xl border-t border-white/5 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="flex h-6 w-6 items-center justify-center rounded bg-primary/20">
+                        <span class="text-sm text-primary material-symbols-outlined">account_tree</span>
+                    </div>
+                    <span class="font-bold">Intelligent OS</span>
                 </div>
-            </div>
-            <div>
-                <p class="text-sm font-bold uppercase tracking-[0.24em] text-primary">Contact</p>
-                <div class="mt-4 flex flex-col gap-3 text-sm text-slate-400">
-                    <p>hello@s-intelligent-os.jp</p>
-                    <p>03-6123-4567</p>
-                    <p>Mon-Fri / 10:00-18:00</p>
+                <div class="flex gap-8 text-sm text-slate-500">
+                    <a href="#" class="hover:text-primary">Twitter</a>
+                    <a href="#" class="hover:text-primary">LinkedIn</a>
+                    <a href="#" class="hover:text-primary">GitHub</a>
+                    <a href="#" class="hover:text-primary">Privacy</a>
+                    <a href="#" class="hover:text-primary">Terms</a>
+                </div>
+                <div class="text-xs text-slate-600">
+                    © 2026 Intelligent OS Inc. All rights reserved.
                 </div>
             </div>
         </div>
@@ -222,5 +307,34 @@
 
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="assets/js/script.js" defer></script>
+    <script>
+        function toggleSaasMenu() {
+            const menu = document.getElementById('saas-mobile-menu');
+            const toggle = document.querySelector('.saas-mobile-toggle');
+            if (!menu) return;
+            const isActive = menu.classList.contains('active');
+            if (isActive) {
+                menu.classList.remove('active');
+                menu.classList.add('inactive');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            } else {
+                menu.classList.remove('inactive');
+                menu.classList.add('active');
+                toggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        document.querySelectorAll('#saas-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleSaasMenu();
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                toggleSaasMenu();
+            }
+        });
+    </script>
 </body>
 </html>
