@@ -1,341 +1,362 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Knowledge Plaza | 探求の広場</title>
+    <title>WIDE_HORIZON - About Us</title>
 
     <link rel="canonical" href="https://example.com/templates/business/w/about.html">
-    <meta name="description" content="Knowledge Plaza の理念と歴史。1892 年から続く学術的探究の聖地で、知識の境界を押し広げる。">
-    <meta property="og:title" content="About | Knowledge Plaza">
-    <meta property="og:description" content="Knowledge Plaza の理念と歴史。学術的探究の聖地。">
+    <meta name="description" content="WIDE_HORIZON - 私たちの物語とグローバルビジョン">
+    <meta property="og:title" content="WIDE HORIZON | About">
+    <meta property="og:description" content="Boundless connections across every continent">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/w/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Knowledge Plaza",
-        "description": "学術的探究と発見の広場",
-        "foundingDate": "1892",
-        "url": "https://example.com/templates/business/w/about.html"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Newsreader', serif, 'Noto Sans JP', sans-serif; }
-        .plaza-mobile-menu { transition: transform 0.3s ease; }
-        .plaza-mobile-menu.active { transform: translateX(0); }
-        .plaza-mobile-menu.inactive { transform: translateX(-100%); }
-        .plaza-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .plaza-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .plaza-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .plaza-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        body { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(13, 27, 18, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="plaza-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-lg border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="togglePlazaMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Navigation -->
+<header class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm">
+    <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-3xl font-light text-slate-900 dark:text-white">explore</span>
+        <h1 class="text-xl font-extralight tracking-[0.2em] text-slate-900 dark:text-white">WIDE_HORIZON</h1>
+    </div>
+    <nav class="hidden md:flex items-center gap-12">
+        <a class="text-slate-600 dark:text-slate-400 text-sm font-extralight tracking-widest hover:text-primary transition-colors" href="index.html">DESTINATIONS</a>
+        <a class="text-slate-600 dark:text-slate-400 text-sm font-extralight tracking-widest hover:text-primary transition-colors" href="service.html">INSIGHTS</a>
+        <a class="text-primary text-sm font-bold tracking-widest" href="about.html">GLOBAL REACH</a>
+        <a class="text-slate-600 dark:text-slate-400 text-sm font-extralight tracking-widest hover:text-primary transition-colors" href="contact.html">EXPERIENCES</a>
+        <button class="px-8 py-2 bg-primary text-white text-xs font-light tracking-[0.2em] rounded-full hover:bg-primary/90 transition-all">
+            BOOK NOW
+        </button>
+    </nav>
+    <button class="md:hidden text-slate-900 dark:text-white" onclick="toggleWMenu()">
+        <span class="material-symbols-outlined">menu</span>
     </button>
+</header>
 
-    <aside id="plaza-mobile-menu" class="plaza-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-3xl text-primary">account_balance</span>
-            <h1 class="text-xl font-bold text-slate-100">Knowledge Plaza</h1>
+<!-- Mobile Menu -->
+<div class="w-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleWMenu()"></div>
+<nav id="w-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-white/10 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-3xl font-light text-white">explore</span>
+                <span class="text-xl font-extralight tracking-[0.2em] text-white">WIDE_HORIZON</span>
+            </div>
+            <button class="text-white/50 hover:text-white" onclick="toggleWMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
         </div>
-        <nav class="mt-10 flex flex-col gap-2 text-sm font-medium uppercase tracking-widest">
-            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5">Home</a>
-            <a href="about.html" class="rounded px-4 py-3 bg-primary/10 text-primary">Study Areas</a>
-            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5">Publications</a>
-            <a href="contact.html" class="rounded px-4 py-3 hover:bg-white/5">Contact</a>
-        </nav>
-    </aside>
+        <div class="flex flex-col gap-6 flex-1">
+            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="index.html" onclick="toggleWMenu()">DESTINATIONS</a>
+            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="service.html" onclick="toggleWMenu()">INSIGHTS</a>
+            <a class="text-sm font-bold tracking-widest text-primary" href="about.html" onclick="toggleWMenu()">GLOBAL REACH</a>
+            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="contact.html" onclick="toggleWMenu()">EXPERIENCES</a>
+        </div>
+        <button class="w-full bg-primary text-white px-8 py-4 text-xs font-light tracking-[0.2em] rounded-full hover:bg-primary/90 transition-all">
+            BOOK NOW
+        </button>
+    </div>
+</nav>
 
-    <header class="border-b border-background-dark/10 dark:border-background-light/10 sticky top-0 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md z-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-            <div class="flex items-center gap-10">
-                <a class="flex items-center gap-3 group" href="index.html">
-                    <div class="p-2 bg-background-dark dark:bg-primary rounded-lg text-primary dark:text-background-dark">
-                        <span class="material-symbols-outlined text-2xl">account_balance</span>
-                    </div>
-                    <h2 class="text-xl font-bold tracking-tight">Knowledge Plaza</h2>
-                </a>
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-600 dark:text-slate-400">
-                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Study Areas</a>
-                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Publications</a>
-                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Research</a>
-                    <a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Archives</a>
-                </nav>
-            </div>
-            <div class="flex items-center gap-6">
-                <div class="relative hidden sm:block">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-                    <input class="bg-slate-100 dark:bg-background-dark/50 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-accent dark:focus:ring-primary w-48 lg:w-64" placeholder="Search Archives..." type="text"/>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex flex-col justify-center items-center pt-20 px-4 bg-gradient-to-br from-primary/10 to-sunset/10 dark:from-primary/20 dark:to-sunset/20">
+    <div class="absolute inset-0 z-0 opacity-30 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-sunset rounded-full blur-[150px] opacity-30"></div>
+    </div>
+    <div class="relative z-10 text-center">
+        <span class="inline-block text-primary text-xs font-bold tracking-[0.3em] uppercase mb-6">EST. 2015</span>
+        <h1 class="text-5xl md:text-7xl font-extralight tracking-tight text-slate-900 dark:text-white mb-8">
+            Our <span class="text-primary font-normal">Story</span>
+        </h1>
+        <p class="text-lg text-slate-500 dark:text-slate-400 tracking-[0.2em] uppercase max-w-xl">
+            From a single horizon to global presence
+        </p>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="py-24 px-6 md:px-12 bg-white dark:bg-background-dark">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h3 class="text-sunset text-xs font-bold tracking-[0.3em] uppercase mb-6">The Beginning</h3>
+                <h2 class="text-4xl md:text-5xl font-extralight leading-tight text-slate-900 dark:text-white mb-8">
+                    It started with a <span class="text-primary font-normal">single journey</span> across an endless horizon.
+                </h2>
+                <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p class="text-lg font-light">
+                        2015 年、創業者のエレナ・ヴェルデは「真のluxury travel 体験とは何か」を追求するために、
+                        単独でパタゴニアを横断する旅に出ました。
+                    </p>
+                    <p class="font-light">
+                        彼女が目にしたのは、観光ガイドには決して載らない、地元の人々とのつながりから生まれる
+                        深い感動でした。この体験が WIDE_HORIZON の原点となっています。
+                    </p>
+                    <p class="font-light">
+                        以来、私たちは 150 カ国以上、7 大陸にネットワークを広げ、世界中の旅行者に
+                        「本物の発見」を提供し続けています。
+                    </p>
+                    <blockquote class="border-l-2 border-primary pl-6 py-4 my-8 italic text-slate-500 dark:text-slate-400">
+                        "The horizon is not a limit — it's an invitation."
+                        <footer class="mt-2 text-xs tracking-widest text-slate-400">— ELENA VERDE, Founder & CEO</footer>
+                    </blockquote>
                 </div>
-                <a href="contact.html" class="bg-accent dark:bg-primary text-white dark:text-background-dark px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
-                    Join Inquiry
-                </a>
+            </div>
+            <div class="relative">
+                <div class="aspect-[4/5] bg-cover bg-center rounded-sm" style="background-image: url('assets/generated/external-image-01.svg');"></div>
+                <div class="absolute -bottom-8 -left-8 bg-white dark:bg-background-dark p-6 shadow-xl">
+                    <p class="text-4xl font-extralight text-primary">10+</p>
+                    <p class="text-[10px] tracking-widest text-slate-400 uppercase mt-1">Years of Excellence</p>
+                </div>
             </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="relative w-full h-[60vh] flex items-center overflow-hidden bg-slate-900">
-            <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/70 to-transparent z-10"></div>
-            <img class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKxV3h7fQXz8Y9rLmN2pQ4sT6uV8wX0yZ1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sT1uV2wX3yZ4aB5cD6eF7gH8iJ9kL0mN1oP2qR3sT4uV5wX6yZ7aB8cD9eF0g" alt="Historic Academic Building"/>
-            <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="max-w-3xl space-y-6">
-                    <span class="inline-block px-4 py-1 border border-primary/40 bg-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em] rounded-full">
-                        Since 1892
-                    </span>
-                    <h1 class="text-5xl lg:text-6xl font-bold text-white leading-[1.1] italic">
-                        A Legacy of <span class="text-primary not-italic">Scholarly</span> Excellence.
-                    </h1>
-                </div>
+<!-- Global Presence -->
+<section class="py-24 px-6 md:px-12 bg-primary/5 dark:bg-background-dark">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h3 class="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Our Reach</h3>
+            <h2 class="text-4xl md:text-6xl font-extralight text-slate-900 dark:text-white mb-6">
+                Boundless Connections
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 text-lg font-light max-w-2xl mx-auto">
+                世界中に広がる私たちのネットワークは、どの瞬間でも最高の体験をお届けします。
+            </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <span class="block text-5xl md:text-6xl font-extralight text-primary mb-2">150+</span>
+                <span class="text-[10px] tracking-widest text-slate-400 uppercase">Countries Served</span>
             </div>
-        </section>
-
-        <!-- Our Story Section -->
-        <section class="py-24 bg-background-light dark:bg-background-dark">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-8">
-                        <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Our Story</h2>
-                        <h3 class="text-4xl lg:text-5xl font-bold leading-tight">Over a Century of Intellectual Discovery</h3>
-                        <div class="w-20 h-1 bg-accent dark:bg-primary"></div>
-                        <p class="text-xl leading-relaxed text-slate-700 dark:text-slate-300">
-                            Founded in 1892 by visionary scholars, Knowledge Plaza emerged from an unwavering belief in the transformative power of rigorous academic inquiry. What began as a modest collection of manuscripts has evolved into a world-renowned institution.
-                        </p>
-                        <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-                            Our halls have welcomed Nobel laureates, pioneering researchers, and curious minds from every corner of the globe. Together, they have contributed to a living tradition of scholarship that continues to push the boundaries of human understanding.
-                        </p>
-                    </div>
-                    <div class="relative">
-                        <img class="w-full h-[500px] object-cover rounded-lg shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8bC9dD0eE1fF2gG3hH4iI5jJ6kK7lL8mM9nN0oO1pP2qQ3rR4sS5tT6uU7vV8wW9xX0yY1zZ2aA3bB4cC5dD6eE7fF8gG9hH0iI1jJ2kK3lL4mM5nN6oO7pP8qQ9rR0sS1tT2uU3vV4wW5xX6yY7zZ8" alt="Historic Reading Room"/>
-                        <div class="absolute -bottom-6 -left-6 bg-primary text-background-dark px-8 py-4 rounded-lg shadow-lg">
-                            <p class="text-3xl font-bold italic">130+</p>
-                            <p class="text-xs font-bold uppercase tracking-widest">Years of Excellence</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center">
+                <span class="block text-5xl md:text-6xl font-extralight text-primary mb-2">7</span>
+                <span class="text-[10px] tracking-widest text-slate-400 uppercase">Continents</span>
             </div>
-        </section>
-
-        <!-- Core Values Section -->
-        <section class="py-24 bg-slate-50 dark:bg-background-dark/30 border-y border-slate-200 dark:border-slate-800">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Core Values</h2>
-                    <h3 class="text-4xl lg:text-5xl font-bold">The Principles That Guide Us</h3>
-                    <p class="text-xl text-slate-600 dark:text-slate-400">
-                        Every discovery, every publication, every scholarly pursuit at Knowledge Plaza is grounded in these fundamental principles.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-background-light dark:bg-background-dark p-8 border border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-colors">
-                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 mb-6">auto_stories</span>
-                        <h4 class="text-xl font-bold mb-4">Rigorous Inquiry</h4>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            We uphold the highest standards of methodological precision, challenging assumptions and demanding evidence at every turn.
-                        </p>
-                    </div>
-                    <div class="bg-background-light dark:bg-background-dark p-8 border border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-colors">
-                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 mb-6">diversity_3</span>
-                        <h4 class="text-xl font-bold mb-4">Interdisciplinary Synthesis</h4>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            The most profound insights emerge at the intersection of fields. We foster collaboration across traditional academic boundaries.
-                        </p>
-                    </div>
-                    <div class="bg-background-light dark:bg-background-dark p-8 border border-slate-200 dark:border-slate-800 hover:border-accent dark:hover:border-primary transition-colors">
-                        <span class="material-symbols-outlined text-5xl text-accent/40 dark:text-primary/40 mb-6">volunteer_activism</span>
-                        <h4 class="text-xl font-bold mb-4">Intellectual Courage</h4>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            We pursue truth wherever it may lead, even when it challenges conventional wisdom or established paradigms.
-                        </p>
-                    </div>
-                </div>
+            <div class="text-center">
+                <span class="block text-5xl md:text-6xl font-extralight text-primary mb-2">50K+</span>
+                <span class="text-[10px] tracking-widest text-slate-400 uppercase">Journeys Created</span>
             </div>
-        </section>
-
-        <!-- Leadership Section -->
-        <section class="py-24 bg-background-light dark:bg-background-dark">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <h2 class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Leadership</h2>
-                    <h3 class="text-4xl lg:text-5xl font-bold">Scholars at the Helm</h3>
-                    <p class="text-xl text-slate-600 dark:text-slate-400">
-                        Our institution is guided by distinguished academics with lifelong commitments to excellence.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center group">
-                        <div class="relative mb-6 overflow-hidden rounded-full w-48 h-48 mx-auto">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH1iI2jJ3kK4lL5mM6nN7oO8pP9qQ0rR1sS2tT3uU4vV5wW6xX7yY8zZ9aA0bB1cC2dD3eE4fF5gG6hH7iI8jJ9kK0lL1mM2nN3oO4pP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7cC8dD9eE0fF1gG2hH3iI4" alt="Dr. Elizabeth Harrow"/>
-                        </div>
-                        <h4 class="text-xl font-bold">Dr. Elizabeth Harrow</h4>
-                        <p class="text-accent dark:text-primary text-sm font-bold uppercase tracking-widest mt-1">Director</p>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
-                            Former Oxford Professor of Comparative Literature, specializing in medieval manuscripts and early印刷 culture.
-                        </p>
-                    </div>
-                    <div class="text-center group">
-                        <div class="relative mb-6 overflow-hidden rounded-full w-48 h-48 mx-auto">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ4kK5lL6mM7nN8oO9pP0qQ1rR2sS3tT4uU5vV6wW7xX8yY9zZ0aA1bB2cC3dD4eE5fF6gG7hH8iI9jJ0kK1lL2mM3nN4oO5pP6qQ7rR8sS9tT0uU1vV2wW3xX4yY5zZ6aA7bB8cC9dD0eE1fF2gG3hH4iI5jJ6" alt="Prof. Marcus Chen"/>
-                        </div>
-                        <h4 class="text-xl font-bold">Prof. Marcus Chen</h4>
-                        <p class="text-accent dark:text-primary text-sm font-bold uppercase tracking-widest mt-1">Research Director</p>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
-                            Quantum physicist turned science historian, bridging the gap between theoretical and historical scholarship.
-                        </p>
-                    </div>
-                    <div class="text-center group">
-                        <div class="relative mb-6 overflow-hidden rounded-full w-48 h-48 mx-auto">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL7mM8nN9oO0pP1qQ2rR3sS4tT5uU6vV7wW8xX9yY0zZ1aA2bB3cC4dD5eE6fF7gG8hH9iI0jJ1kK2lL3mM4nN5oO6pP7qQ8rR9sS0tT1uU2vV3wW4xX5yY6zZ7aA8bB9cC0dD1eE2fF3gG4hH5iI6jJ7kK8lL9" alt="Dr. Amara Okonkwo"/>
-                        </div>
-                        <h4 class="text-xl font-bold">Dr. Amara Okonkwo</h4>
-                        <p class="text-accent dark:text-primary text-sm font-bold uppercase tracking-widest mt-1">Curator of Archives</p>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
-                            Specialist in African oral traditions and manuscript preservation, leading our digital archiving initiatives.
-                        </p>
-                    </div>
-                </div>
+            <div class="text-center">
+                <span class="block text-5xl md:text-6xl font-extralight text-primary mb-2">98%</span>
+                <span class="text-[10px] tracking-widest text-slate-400 uppercase">Client Satisfaction</span>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- Stats Section -->
-        <section class="py-24 bg-background-dark text-white">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div class="text-center space-y-2">
-                        <p class="text-5xl lg:text-6xl font-bold text-primary italic">1.2M+</p>
-                        <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Archival Items</p>
-                    </div>
-                    <div class="text-center space-y-2">
-                        <p class="text-5xl lg:text-6xl font-bold text-primary italic">450+</p>
-                        <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Active Scholars</p>
-                    </div>
-                    <div class="text-center space-y-2">
-                        <p class="text-5xl lg:text-6xl font-bold text-primary italic">89</p>
-                        <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Countries Represented</p>
-                    </div>
-                    <div class="text-center space-y-2">
-                        <p class="text-5xl lg:text-6xl font-bold text-primary italic">12K+</p>
-                        <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Publications</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-24 bg-background-light dark:bg-background-dark">
-            <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-                <h2 class="text-4xl lg:text-5xl font-bold mb-6 italic">Join Our Community of <span class="text-accent dark:text-primary not-italic">Seekers</span></h2>
-                <p class="text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-                    Whether you are a scholar seeking access to our archives, a student pursuing doctoral research, or a patron supporting the mission of Knowledge Plaza, there is a place for you here.
+<!-- Leadership Team -->
+<section class="py-24 px-6 md:px-12 bg-white dark:bg-background-dark">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h3 class="text-sunset text-xs font-bold tracking-[0.3em] uppercase mb-4">Leadership</h3>
+            <h2 class="text-4xl md:text-5xl font-extralight text-slate-900 dark:text-white mb-6">
+                Meet the Team
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="aspect-square bg-cover bg-center rounded-sm mb-6 grayscale hover:grayscale-0 transition-all duration-500" style="background-image: url('assets/generated/external-image-02.svg');"></div>
+                <h3 class="text-xl font-medium text-slate-900 dark:text-white mb-2">ELENA VERDE</h3>
+                <p class="text-xs text-primary uppercase tracking-widest mb-4">Founder & CEO</p>
+                <p class="text-sm text-slate-500 font-light leading-relaxed">
+                    元 National Geographic 写真家。パタゴニア単独横断を含む 30 ヶ国以上の冒険経験を持つ。
                 </p>
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="contact.html" class="bg-accent dark:bg-primary text-white dark:text-background-dark px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
-                        Request Access
-                    </a>
-                    <a href="service.html" class="border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest transition-colors">
-                        Explore Publications
-                    </a>
-                </div>
             </div>
-        </section>
-    </main>
+            <div class="text-center">
+                <div class="aspect-square bg-cover bg-center rounded-sm mb-6 grayscale hover:grayscale-0 transition-all duration-500" style="background-image: url('assets/generated/external-image-03.svg');"></div>
+                <h3 class="text-xl font-medium text-slate-900 dark:text-white mb-2">MARCUS CHEN</p>
+                <p class="text-xs text-primary uppercase tracking-widest mb-4">Chief Operations Officer</p>
+                <p class="text-sm text-slate-500 font-light leading-relaxed">
+                    国際ホテルチェーン出身のオペレーション専門家。200 以上のluxury resort と提携。
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="aspect-square bg-cover bg-center rounded-sm mb-6 grayscale hover:grayscale-0 transition-all duration-500" style="background-image: url('assets/generated/external-image-04.svg');"></div>
+                <h3 class="text-xl font-medium text-slate-900 dark:text-white mb-2">SOFIA ANDERSSON</h3>
+                <p class="text-xs text-primary uppercase tracking-widest mb-4">Head of Experiences</p>
+                <p class="text-sm text-slate-500 font-light leading-relaxed">
+                    北欧出身の体験デザイナー。「持続可能なluxury travel」の提唱者。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<!-- Sustainability Pledge -->
+<section class="py-24 px-6 md:px-12 bg-gradient-to-br from-sunset/10 to-primary/10 dark:from-sunset/20 dark:to-primary/20">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <h3 class="text-sunset text-xs font-bold tracking-[0.3em] uppercase mb-6">Our Commitment</h3>
+                <h2 class="text-4xl md:text-5xl font-extralight leading-tight text-slate-900 dark:text-white mb-8">
+                    Protecting the Horizons <span class="text-primary font-normal">We Explore</span>
+                </h2>
                 <div class="space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-accent dark:text-primary">account_balance</span>
-                        <h4 class="font-bold text-lg">Knowledge Plaza</h4>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">eco</span>
+                        <div>
+                            <h4 class="font-medium text-slate-900 dark:text-white mb-1">Carbon Neutral Operations</h4>
+                            <p class="text-sm text-slate-500 font-light">2030 年までに全オペレーションのカーボンニュートラルを達成。</p>
+                        </div>
                     </div>
-                    <p class="text-sm text-slate-500 leading-relaxed">
-                        A global institution dedicated to the preservation of history and the exploration of future frontiers through rigorous interdisciplinary study.
-                    </p>
-                </div>
-                <div>
-                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Directories</h5>
-                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Faculty Search</a></li>
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Archive Index</a></li>
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="about.html">Lab Facilities</a></li>
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Grant Opportunities</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Publications</h5>
-                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Quarterly Review</a></li>
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Monograph Series</a></li>
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Annual Report</a></li>
-                        <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="service.html">Open Access Journal</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-bold text-sm uppercase tracking-widest mb-6">Contact</h5>
-                    <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-                        <li class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-xs mt-1">location_on</span>
-                            <span>14th Academic Ave, University Circle, London</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-xs">mail</span>
-                            <span>inquiry@knowledge-plaza.org</span>
-                        </li>
-                    </ul>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">hands</span>
+                        <div>
+                            <h4 class="font-medium text-slate-900 dark:text-white mb-1">Local Community Support</h4>
+                            <p class="text-sm text-slate-500 font-light">収益の 5% を訪問地域のコミュニティ開発に還元。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">shield</span>
+                        <div>
+                            <h4 class="font-medium text-slate-900 dark:text-white mb-1">Wildlife Conservation</h4>
+                            <p class="text-sm text-slate-500 font-light">絶滅危惧種保護プロジェクトとの公式パートナーシップ。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 uppercase tracking-widest">
-                <p>© 2023 Knowledge Plaza. All Rights Reserved.</p>
-                <div class="flex gap-8">
-                    <a class="hover:text-accent dark:hover:text-primary" href="#">Privacy Policy</a>
-                    <a class="hover:text-accent dark:hover:text-primary" href="#">Ethics Statement</a>
+            <div class="order-1 lg:order-2">
+                <div class="aspect-square bg-cover bg-center rounded-sm" style="background-image: url('assets/generated/external-image-05.svg');"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Grid -->
+<section class="py-24 px-6 md:px-12 bg-white dark:bg-background-dark">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h3 class="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Trusted Partners</h3>
+            <h2 class="text-4xl md:text-5xl font-extralight text-slate-900 dark:text-white">
+                Industry Recognition
+            </h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center p-8 border border-slate-200 dark:border-slate-800">
+                <p class="text-3xl font-light text-slate-400 mb-2">Forbes</p>
+                <p class="text-[10px] tracking-widest text-slate-500 uppercase">Travel Award 2023</p>
+            </div>
+            <div class="text-center p-8 border border-slate-200 dark:border-slate-800">
+                <p class="text-3xl font-light text-slate-400 mb-2">Condé Nast</p>
+                <p class="text-[10px] tracking-widest text-slate-500 uppercase">Top Operator 2023</p>
+            </div>
+            <div class="text-center p-8 border border-slate-200 dark:border-slate-800">
+                <p class="text-3xl font-light text-slate-400 mb-2">Travel +</p>
+                <p class="text-[10px] tracking-widest text-slate-500 uppercase">World Best 2022</p>
+            </div>
+            <div class="text-center p-8 border border-slate-200 dark:border-slate-800">
+                <p class="text-3xl font-light text-slate-400 mb-2">Nat Geo</p>
+                <p class="text-[10px] tracking-widest text-slate-500 uppercase">Partner Certified</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-40 bg-primary relative overflow-hidden flex flex-col items-center justify-center text-white">
+    <div class="text-center px-4">
+        <h2 class="text-5xl md:text-7xl font-extralight leading-none tracking-tight mb-8">
+            Join Our Journey
+        </h2>
+        <p class="text-white/70 text-lg font-light tracking-[0.2em] uppercase mb-12">
+            Discover what lies beyond your horizon
+        </p>
+        <a href="contact.html" class="inline-flex items-center gap-4 bg-white text-primary px-12 py-4 text-sm font-light tracking-[0.2em] rounded-full hover:scale-105 transition-transform">
+            Start Your Adventure
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-dark text-white py-20 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+        <div class="max-w-sm">
+            <div class="flex items-center gap-2 mb-6">
+                <span class="material-symbols-outlined text-3xl font-light">explore</span>
+                <h1 class="text-xl font-extralight tracking-[0.2em]">WIDE_HORIZON</h1>
+            </div>
+            <p class="text-slate-400 font-light text-sm leading-relaxed">
+                A global leader in bespoke travel, creating connections between the world's most breathtaking places and those who seek to see them.
+            </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+            <div>
+                <h6 class="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Explore</h6>
+                <ul class="space-y-4 text-xs font-light text-slate-400">
+                    <li><a class="hover:text-white transition-colors" href="index.html">Destinations</a></li>
+                    <li><a class="hover:text-white transition-colors" href="service.html">Experiences</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html">Insights</a></li>
+                </ul>
+            </div>
+            <div>
+                <h6 class="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Enterprise</h6>
+                <ul class="space-y-4 text-xs font-light text-slate-400">
+                    <li><a class="hover:text-white transition-colors" href="about.html">Our Reach</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#">Partnerships</a></li>
+                    <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h6 class="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Social</h6>
+                <div class="flex gap-4">
+                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer">public</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer">camera</span>
+                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer">send</span>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+    <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-[10px] tracking-widest text-slate-500 uppercase">© 2024 WIDE_HORIZON Enterprises. All rights reserved.</p>
+        <div class="flex gap-8 text-[10px] tracking-widest text-slate-500 uppercase">
+            <a class="hover:text-white" href="#">Privacy</a>
+            <a class="hover:text-white" href="#">Terms</a>
+            <a class="hover:text-white" href="#">Cookies</a>
+        </div>
+    </div>
+</footer>
+</div>
 
-    <script>
-        function togglePlazaMenu() {
-            const menu = document.getElementById('plaza-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.plaza-toggle');
-
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<script src="../../../assets/js/template-common.js" defer></script>
+<script>
+function toggleWMenu() {
+    const menu = document.getElementById('w-mobile-menu');
+    const backdrop = document.querySelector('.w-backdrop');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+    }
+}
+</script>
 </body>
 </html>

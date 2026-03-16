@@ -1,340 +1,406 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Minimal | Architecture & Design</title>
-
-    <link rel="canonical" href="https://example.com/templates/business/y/about.html">
-    <meta name="description" content="Minimal の哲学と理念。光、形、機能性の交差点に焦点を当てたデザイン。">
-    <meta property="og:title" content="About | Minimal">
-    <meta property="og:description" content="Minimal の哲学と理念。">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:url" content="https://example.com/templates/business/y/about.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Minimal",
-        "description": "Architecture and design collective",
-        "url": "https://example.com/templates/business/y/about.html"
-    }
-    </script>
-
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>About | YIELD_GROWTH - Investment Firm History & Leadership</title>
+    <meta content="Learn about YIELD_GROWTH's 20-year legacy of excellence in investment management and our leadership team." name="description">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; -webkit-font-smoothing: antialiased; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .fine-line { height: 1px; background-color: rgba(0, 0, 0, 0.08); }
-        .dark .fine-line { height: 1px; background-color: rgba(255, 255, 255, 0.1); }
-        .minimal-mobile-menu { transition: transform 0.3s ease; }
-        .minimal-mobile-menu.active { transform: translateX(0); }
-        .minimal-mobile-menu.inactive { transform: translateX(-100%); }
-        .minimal-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .minimal-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .minimal-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .minimal-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(25, 25, 25, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="minimal-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleMinimalMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
-    <aside id="minimal-mobile-menu" class="minimal-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
-        <div class="flex items-center gap-2">
-            <span class="text-xs font-black tracking-[0.4em] uppercase">Minimal</span>
-        </div>
-        <nav class="mt-10 flex flex-col gap-2">
-            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Home</a>
-            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Projects</a>
-            <a href="about.html" class="rounded px-4 py-3 bg-white/5 text-white text-[10px] font-medium uppercase tracking-[0.3em]">Philosophy</a>
-            <a href="contact.html" class="rounded px-4 py-3 hover:bg-white/5 text-[10px] font-medium uppercase tracking-[0.3em]">Contact</a>
-        </nav>
-    </aside>
-
-    <header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
-        <div class="flex items-center gap-2">
-            <span class="text-xs font-black tracking-[0.4em] uppercase">Minimal</span>
-        </div>
-        <nav class="hidden md:flex items-center gap-12">
-            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="service.html">Projects</a>
-            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="about.html">Philosophy</a>
-            <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity" href="contact.html">Contact</a>
-        </nav>
-        <div class="flex gap-4">
-            <button class="flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">
-                <span class="material-symbols-outlined text-sm">search</span>
-            </button>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="relative h-[60vh] w-full flex items-center justify-center p-6 md:p-12 bg-zinc-100 dark:bg-zinc-900">
-            <div class="relative z-10 flex flex-col items-center text-center">
-                <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/40 dark:text-white/30 mb-8">Since 2012</span>
-                <h1 class="text-slate-900 dark:text-white text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-6">
-                    Less, But Better
-                </h1>
-                <div class="fine-line w-24 mx-auto"></div>
-            </div>
-        </section>
-
-        <!-- Our Story -->
-        <section class="py-32 px-6 md:px-12">
-            <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-8">
-                        <h2 class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/30">Our Story</h2>
-                        <p class="text-lg font-light leading-relaxed">
-                            Minimal was founded on a simple principle: the best design is achieved not when there is nothing more to add, but when there is nothing left to take away.
-                        </p>
-                        <p class="text-lg font-light leading-relaxed">
-                            Over the past twelve years, our collective has grown from a small Tokyo studio to a global practice with seven offices. Yet our core philosophy remains unchanged—finding beauty in reduction, meaning in space, and harmony in simplicity.
-                        </p>
-                    </div>
-                    <div class="aspect-square overflow-hidden bg-zinc-200 dark:bg-zinc-800 grayscale">
-                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHXGvZKkPnJpX8Y9fL2mN3oO4pP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ5aA6bB7cC8dD9eE0fF1gG2hH3iI4jJ5kK6lL7mM8nN9oO0pP1qQ2rR3sS4tT5uU6vV7wW8xX9yY0zZ1aA2bB3cC4dD5eE6fF7gG8hH9iI0jJ1kK2lL3mM4nN5oO6pP7qQ8rR9sS0tT1uU2vV3wW4xX5yY6zZ7aA8bB9cC0dD1eE2fF3gG4" alt="Minimal Studio Interior"/>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Philosophy Grid -->
-        <section class="py-32 px-6 md:px-12 bg-zinc-100 dark:bg-zinc-900/30">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-24">
-                    <h2 class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-4">Philosophy</h2>
-                    <p class="text-2xl md:text-4xl font-light leading-tight">
-                        Three principles guide every decision we make.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="text-center space-y-6">
-                        <div class="w-16 h-16 mx-auto border border-slate-300 dark:border-slate-700 flex items-center justify-center">
-                            <span class="text-2xl font-black">01</span>
-                        </div>
-                        <h3 class="text-sm font-bold tracking-widest uppercase">Purity of Form</h3>
-                        <p class="text-sm font-light leading-relaxed opacity-70">
-                            We strip away the non-essential until only the essential remains. Every line serves a purpose. Every surface has intention.
-                        </p>
-                    </div>
-                    <div class="text-center space-y-6">
-                        <div class="w-16 h-16 mx-auto border border-slate-300 dark:border-slate-700 flex items-center justify-center">
-                            <span class="text-2xl font-black">02</span>
-                        </div>
-                        <h3 class="text-sm font-bold tracking-widest uppercase">Dialogue with Light</h3>
-                        <p class="text-sm font-light leading-relaxed opacity-70">
-                            Architecture is the art of shaping space through light. We design shadows as carefully as we design surfaces.
-                        </p>
-                    </div>
-                    <div class="text-center space-y-6">
-                        <div class="w-16 h-16 mx-auto border border-slate-300 dark:border-slate-700 flex items-center justify-center">
-                            <span class="text-2xl font-black">03</span>
-                        </div>
-                        <h3 class="text-sm font-bold tracking-widest uppercase">Timeless Function</h3>
-                        <p class="text-sm font-light leading-relaxed opacity-70">
-                            Beauty without purpose is decoration. We create spaces that endure because they work—today and tomorrow.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="py-32 px-6 md:px-12">
-            <div class="max-w-6xl mx-auto">
-                <div class="flex items-end justify-between mb-24">
-                    <div>
-                        <h2 class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-2">Leadership</h2>
-                        <p class="text-2xl font-light">The minds behind Minimal</p>
-                    </div>
-                    <div class="fine-line flex-1 ml-12 mb-4"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="group">
-                        <div class="aspect-[4/5] overflow-hidden bg-zinc-200 dark:bg-zinc-800 grayscale mb-6">
-                            <img class="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJwXyY0zZ1aA2bB3cC4dD5eE6fF7gG8hH9iI0jJ1kK2lL3mM4nN5oO6pP7qQ8rR9sS0tT1uU2vV3wW4xX5yY6zZ7aA8bB9cC0dD1eE2fF3gG4hH5iI6jJ7kK8lL9mM0nN1oO2pP3qQ4rR5sS6tT7uU8vV9wW0xX1yY2zZ3aA4bB5cC6dD7eE8fF9gG0hH1iI2" alt="Kenjiro Sato"/>
-                        </div>
-                        <h3 class="text-sm font-bold tracking-widest uppercase">Kenjiro Sato</h3>
-                        <p class="text-[10px] text-primary/50 dark:text-white/40 tracking-widest uppercase mt-1">Founding Partner</p>
-                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
-                            Former Pritzker laureate collaborator. 20+ years defining minimalist architecture across Asia.
-                        </p>
-                    </div>
-                    <div class="group">
-                        <div class="aspect-[4/5] overflow-hidden bg-zinc-200 dark:bg-zinc-800 grayscale mb-6">
-                            <img class="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLmN4oO5pP6qQ7rR8sS9tT0uU1vV2wW3xX4yY5zZ6aA7bB8cC9dD0eE1fF2gG3hH4iI5jJ6kK7lL8mM9nN0oO1pP2qQ3rR4sS5tT6uU7vV8wW9xX0yY1zZ2aA3bB4cC5dD6eE7fF8gG9hH0iI1jJ2kK3lL4mM5nN6oO7pP8qQ9rR0sS1tT2uU3vV4wW5xX6" alt="Elena Vogt"/>
-                        </div>
-                        <h3 class="text-sm font-bold tracking-widest uppercase">Elena Vogt</h3>
-                        <p class="text-[10px] text-primary/50 dark:text-white/40 tracking-widest uppercase mt-1">Creative Director</p>
-                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
-                            Ex-Big collaborator. Specializes in museum and cultural space design across Europe.
-                        </p>
-                    </div>
-                    <div class="group">
-                        <div class="aspect-[4/5] overflow-hidden bg-zinc-200 dark:bg-zinc-800 grayscale mb-6">
-                            <img class="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOpP7qQ8rR9sS0tT1uU2vV3wW4xX5yY6zZ7aA8bB9cC0dD1eE2fF3gG4hH5iI6jJ7kK8lL9mM0nN1oO2pP3qQ4rR5sS6tT7uU8vV9wW0xX1yY2zZ3aA4bB5cC6dD7eE8fF9gG0hH1iI2jJ3kK4lL5mM6nN7oO8pP9qQ0rR1sS2tT3uU4vV5wW6xX7yY8" alt="Marcus Chen"/>
-                        </div>
-                        <h3 class="text-sm font-bold tracking-widest uppercase">Marcus Chen</h3>
-                        <p class="text-[10px] text-primary/50 dark:text-white/40 tracking-widest uppercase mt-1">Technical Director</p>
-                        <p class="text-xs font-light leading-relaxed mt-4 opacity-70">
-                            Sustainable design pioneer. Leading our carbon-neutral construction initiatives.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="py-32 px-6 md:px-12 bg-zinc-900 text-white">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    <div class="text-center">
-                        <p class="text-5xl font-black mb-4">12</p>
-                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">Years of Practice</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-5xl font-black mb-4">48</p>
-                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">Awards Won</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-5xl font-black mb-4">156</p>
-                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">Projects Completed</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-5xl font-black mb-4">07</p>
-                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">Global Studios</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Studios List -->
-        <section class="py-32 px-6 md:px-12">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-12">Global Presence</h2>
-                <div class="space-y-6">
-                    <div class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800">
-                        <span class="text-sm font-bold tracking-widest uppercase">Tokyo</span>
-                        <span class="text-xs font-light opacity-60">Japan — Headquarters</span>
-                    </div>
-                    <div class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800">
-                        <span class="text-sm font-bold tracking-widest uppercase">Berlin</span>
-                        <span class="text-xs font-light opacity-60">Germany</span>
-                    </div>
-                    <div class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800">
-                        <span class="text-sm font-bold tracking-widest uppercase">Copenhagen</span>
-                        <span class="text-xs font-light opacity-60">Denmark</span>
-                    </div>
-                    <div class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800">
-                        <span class="text-sm font-bold tracking-widest uppercase">New York</span>
-                        <span class="text-xs font-light opacity-60">United States</span>
-                    </div>
-                    <div class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800">
-                        <span class="text-sm font-bold tracking-widest uppercase">London</span>
-                        <span class="text-xs font-light opacity-60">United Kingdom</span>
-                    </div>
-                    <div class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800">
-                        <span class="text-sm font-bold tracking-widest uppercase">Melbourne</span>
-                        <span class="text-xs font-light opacity-60">Australia</span>
-                    </div>
-                    <div class="flex justify-between items-center py-4">
-                        <span class="text-sm font-bold tracking-widest uppercase">Seoul</span>
-                        <span class="text-xs font-light opacity-60">South Korea</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-32 px-6 md:px-12 text-center bg-zinc-100 dark:bg-zinc-900/30">
-            <h2 class="text-3xl md:text-5xl font-light tracking-tight mb-8">
-                Begin Your <span class="font-black italic">Vision</span>
-            </h2>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mb-12 max-w-lg mx-auto">
-                We collaborate with clients who share our commitment to excellence and refinement.
-            </p>
-            <a href="contact.html" class="inline-block border border-slate-300 dark:border-slate-700 px-12 py-4 text-[10px] font-medium uppercase tracking-[0.3em] hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
-                Start a Conversation
-            </a>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12">
-        <div class="flex flex-col md:flex-row justify-between items-start gap-16">
-            <div class="flex flex-col">
-                <h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2>
-                <p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">
-                    A design collective focused on the intersection of light, form, and functionality.
-                </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
-                <div class="flex flex-col gap-4">
-                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="contact.html">hello@minimal.com</a>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="contact.html">+44 (0) 20 7946 0123</a>
-                </div>
-                <div class="flex flex-col gap-4">
-                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Social</span>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Instagram</a>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Behance</a>
-                </div>
-                <div class="flex flex-col gap-4">
-                    <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Legal</span>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
-                    <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
-                </div>
-            </div>
-        </div>
-        <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-[10px] uppercase tracking-[0.4em] opacity-30">© 2024 Minimal Architecture & Design</p>
-            <div class="flex gap-8">
-                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">London</span>
-                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">Tokyo</span>
-                <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">New York</span>
-            </div>
-        </div>
-    </footer>
-
+    <link rel="stylesheet" href="assets/css/style.css">
     <script>
-        function toggleMinimalMenu() {
-            const menu = document.getElementById('minimal-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.minimal-toggle');
-
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003366",
+                        "accent-growth": "#10b981",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "jp": ["Noto Sans JP", "sans-serif"]
+                    },
+                },
+            },
         }
     </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .font-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .growth-grid {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0,51,102,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .btn-primary {
+            background: #003366;
+            color: #fff;
+            padding: 0.875rem 1.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border: none;
+            box-shadow: 0 4px 14px rgba(0, 51, 102, 0.25);
+        }
+        .btn-primary:hover {
+            background: #002244;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 51, 102, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #1a1a1a;
+            padding: 0.875rem 1.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .btn-outline:hover {
+            border-color: #003366;
+            background: rgba(0, 51, 102, 0.02);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="bg-primary p-1.5 rounded">
+                <span class="material-symbols-outlined text-white text-2xl">trending_up</span>
+            </div>
+            <h2 class="text-primary dark:text-white text-xl font-black tracking-tighter">YIELD_GROWTH</h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-10">
+            <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-semibold transition-colors" href="index.html">Home</a>
+            <a class="text-primary font-bold transition-colors" href="about.html">About</a>
+            <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-semibold transition-colors" href="service.html">Services</a>
+            <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-semibold transition-colors" href="contact.html">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button class="text-primary dark:text-white text-sm font-bold px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all">Login</button>
+            <button class="bg-primary text-white text-sm font-bold px-6 py-2.5 rounded-lg shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                Get Started
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="w-full">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-white dark:bg-background-dark py-24 lg:py-32">
+        <div class="absolute inset-0 growth-grid opacity-50"></div>
+        <div class="absolute right-0 top-0 w-1/2 h-full opacity-10 pointer-events-none">
+            <svg class="w-full h-full" fill="none" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 400L100 300L200 350L300 150L400 200V400H0Z" fill="url(#hero-grad)"></path>
+                <defs>
+                    <lineargradient gradientunits="userSpaceOnUse" id="hero-grad" x1="200" x2="200" y1="150" y2="400">
+                        <stop stop-color="#003366"></stop>
+                        <stop offset="1" stop-color="transparent"></stop>
+                    </lineargradient>
+                </defs>
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-growth/10 text-accent-growth text-xs font-bold uppercase tracking-widest mb-6 border border-accent-growth/20">
+                    <span class="material-symbols-outlined text-sm">account_balance</span>
+                    Two Decades of Excellence
+                </div>
+                <h1 class="text-slate-900 dark:text-white text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-8">
+                    Building Wealth Through <br/><span class="text-primary">Trusted Partnership</span>
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-lg lg:text-xl font-normal leading-relaxed max-w-2xl">
+                    Since 2004, YIELD_GROWTH has been at the forefront of investment innovation, guiding thousands of clients toward their financial aspirations with integrity and expertise.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl lg:text-5xl font-black text-primary mb-2">20+</div>
+                    <div class="text-slate-600 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider">Years Active</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl lg:text-5xl font-black text-primary mb-2">$2.5B</div>
+                    <div class="text-slate-600 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider">Assets Managed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl lg:text-5xl font-black text-primary mb-2">15K+</div>
+                    <div class="text-slate-600 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider">Clients Served</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl lg:text-5xl font-black text-accent-growth mb-2">98%</div>
+                    <div class="text-slate-600 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider">Retention Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-3">Our Story</h2>
+                    <h3 class="text-slate-900 dark:text-white text-3xl lg:text-4xl font-black mb-6">From Humble Beginnings to Industry Leaders</h3>
+                    <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <p>
+                            YIELD_GROWTH was founded in 2004 by <strong class="text-slate-900 dark:text-white">James Richardson</strong>, a former Goldman Sachs portfolio manager with a vision: to make institutional-quality investment strategies accessible to individual investors.
+                        </p>
+                        <p>
+                            Starting with just three clients and a commitment to excellence, Richardson built a firm grounded in transparency, disciplined risk management, and unwavering fiduciary responsibility.
+                        </p>
+                        <p>
+                            Today, we manage over $2.5 billion in assets and serve more than 15,000 clients worldwide, while maintaining the personalized attention and care that defined us from day one.
+                        </p>
+                    </div>
+                    <div class="mt-10 flex gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-accent-growth">verified</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">SEC Registered</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-accent-growth">verified</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">FINRA Member</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-accent-growth">verified</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">SIPC Protected</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-primary/20 to-accent-growth/20 rounded-2xl overflow-hidden">
+                        <img src="https://placehold.co/800x600/003366/ffffff?text=Headquarters" alt="YIELD_GROWTH Headquarters" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-white dark:bg-background-dark p-6 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-accent-growth/10 rounded-full flex items-center justify-center">
+                                <span class="material-symbols-outlined text-accent-growth">workspace_premium</span>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-black text-primary">#1</div>
+                                <div class="text-xs font-semibold text-slate-600 dark:text-slate-400">Boutique Firm 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-3">Core Values</h2>
+                <h3 class="text-slate-900 dark:text-white text-3xl lg:text-4xl font-black mb-6">The Principles That Guide Us</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    Every decision we make is anchored in these fundamental beliefs about wealth creation and client partnership.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-background-dark p-8 rounded-xl border border-slate-200 dark:border-slate-800">
+                    <div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Fiduciary First</h4>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        We are legally and ethically bound to act in your best interest, always. No exceptions, no fine print.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-background-dark p-8 rounded-xl border border-slate-200 dark:border-slate-800">
+                    <div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl">visibility</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Radical Transparency</h4>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Clear communication, full fee disclosure, and real-time portfolio visibility—no hidden agendas.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-background-dark p-8 rounded-xl border border-slate-200 dark:border-slate-800">
+                    <div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-3xl">military_tech</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Disciplined Excellence</h4>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Rigorous analysis, proven methodologies, and continuous optimization drive every strategy we deploy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-3">Leadership</h2>
+                <h3 class="text-slate-900 dark:text-white text-3xl lg:text-4xl font-black mb-6">Meet Our Executive Team</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    Industry veterans with decades of combined experience from top-tier financial institutions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- CEO -->
+                <div class="group">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 rounded-xl overflow-hidden mb-6">
+                        <img src="https://placehold.co/400x533/003366/ffffff?text=James+Richardson" alt="James Richardson" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white">James Richardson</h4>
+                    <p class="text-primary font-semibold text-sm mb-3">Chief Executive Officer & Founder</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Former VP at Goldman Sachs. MBA from Wharton. 25+ years in investment management.
+                    </p>
+                </div>
+                <!-- CIO -->
+                <div class="group">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 rounded-xl overflow-hidden mb-6">
+                        <img src="https://placehold.co/400x533/003366/ffffff?text=Sarah+Chen" alt="Sarah Chen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white">Sarah Chen</h4>
+                    <p class="text-primary font-semibold text-sm mb-3">Chief Investment Officer</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Ex-JPMorgan senior strategist. CFA charterholder. Led $5B+ institutional portfolios.
+                    </p>
+                </div>
+                <!-- CFO -->
+                <div class="group">
+                    <div class="aspect-[3/4] bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 rounded-xl overflow-hidden mb-6">
+                        <img src="https://placehold.co/400x533/003366/ffffff?text=Michael+Torres" alt="Michael Torres" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white">Michael Torres</h4>
+                    <p class="text-primary font-semibold text-sm mb-3">Chief Financial Officer</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Former Big 4 partner. CPA with expertise in wealth structuring and tax optimization.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners & Recognition -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-slate-900 dark:text-white text-2xl font-black mb-3">Recognized Excellence</h3>
+                <p class="text-slate-600 dark:text-slate-400">Trusted by leading financial institutions and publications worldwide.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
+                <div class="flex items-center justify-center p-8 bg-white dark:bg-background-dark rounded-xl">
+                    <span class="text-2xl font-black text-slate-400">FORBES</span>
+                </div>
+                <div class="flex items-center justify-center p-8 bg-white dark:bg-background-dark rounded-xl">
+                    <span class="text-2xl font-black text-slate-400">Barron's</span>
+                </div>
+                <div class="flex items-center justify-center p-8 bg-white dark:bg-background-dark rounded-xl">
+                    <span class="text-2xl font-black text-slate-400">BLOOMBERG</span>
+                </div>
+                <div class="flex items-center justify-center p-8 bg-white dark:bg-background-dark rounded-xl">
+                    <span class="text-2xl font-black text-slate-400">WSJ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg fill="none" height="100%" viewbox="0 0 800 800" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="400" cy="400" r="400" stroke="white" stroke-dasharray="10 10" stroke-width="2"></circle>
+                <circle cx="400" cy="400" r="300" stroke="white" stroke-width="1"></circle>
+                <circle cx="400" cy="400" r="200" stroke="white" stroke-dasharray="5 5" stroke-width="2"></circle>
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-white text-4xl lg:text-5xl font-black mb-8 leading-tight">Partner With a Team That Puts You First</h2>
+            <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
+                Experience the YIELD_GROWTH difference. Schedule a complimentary consultation with our advisors today.
+            </p>
+            <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-primary px-10 py-5 rounded-lg font-bold text-xl hover:scale-105 transition-transform">
+                Schedule Your Consultation
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-dark text-slate-400 py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="col-span-1 md:col-span-1">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-primary/20 p-1.5 rounded-lg">
+                    <span class="material-symbols-outlined text-primary text-xl">trending_up</span>
+                </div>
+                <h2 class="text-white text-lg font-black tracking-tighter">YIELD_GROWTH</h2>
+            </div>
+            <p class="text-sm leading-relaxed mb-6">
+                Premier investment firm specializing in growth-centric financial architectures and long-term prosperity preservation.
+            </p>
+            <div class="flex gap-4">
+                <span class="material-symbols-outlined hover:text-white cursor-pointer transition-colors">public</span>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer transition-colors">hub</span>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer transition-colors">stacked_line_chart</span>
+            </div>
+        </div>
+        <div>
+            <h4 class="text-white font-bold mb-6">Solutions</h4>
+            <ul class="space-y-4 text-sm">
+                <li><a class="hover:text-primary transition-colors" href="service.html">Private Equity</a></li>
+                <li><a class="hover:text-primary transition-colors" href="service.html">Retirement Planning</a></li>
+                <li><a class="hover:text-primary transition-colors" href="service.html">Risk Management</a></li>
+                <li><a class="hover:text-primary transition-colors" href="service.html">Fixed Income</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="text-white font-bold mb-6">Insights</h4>
+            <ul class="space-y-4 text-sm">
+                <li><a class="hover:text-primary transition-colors" href="#">Market Reports</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Growth Mindset Blog</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Investor Relations</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Newsroom</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="text-white font-bold mb-6">Contact</h4>
+            <ul class="space-y-4 text-sm">
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> info@yieldgrowth.com</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">call</span> +1 (800) GROW-YLD</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Financial District, NYC</li>
+            </ul>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-slate-800 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+        <p>© 2024 YIELD_GROWTH Investment Partners LLC. All rights reserved.</p>
+        <div class="flex gap-8">
+            <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+            <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+            <a class="hover:text-white transition-colors" href="#">Compliance</a>
+        </div>
+    </div>
+</footer>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

@@ -3,374 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - AgileTech</title>
+    <title>Contact | Neon Night Metro Pulse</title>
 
     <link rel="canonical" href="https://example.com/templates/business/n/contact.html">
-    <meta name="description" content="AgileTech へのお問い合わせ。営業、サポート、キャリアに関するお問い合わせはこちら。">
-    <meta property="og:title" content="Contact - AgileTech">
-    <meta property="og:description" content="AgileTech へのお問い合わせ窓口">
+    <meta name="description" content="Neon Night Metro Pulse へのお問い合わせ">
+    <meta property="og:title" content="Contact | Neon Night Metro Pulse">
+    <meta property="og:description" content="イベント企画、コラボレーション、メディアのお問い合わせ">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/n/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Contact AgileTech",
-        "description": "AgileTech へのお問い合わせ"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
-        .glass-card {
-            background: rgba(34, 47, 73, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .tech-btn {
-            background: #256af4;
-            color: #ffffff;
-            font-weight: 700;
-            transition: all 0.2s ease;
-        }
-        .tech-btn:hover {
-            background: #1d56c9;
-            transform: scale(1.02);
-        }
-        .tech-mobile-menu { transition: transform 0.3s ease; }
-        .tech-mobile-menu.active { transform: translateX(0); }
-        .tech-mobile-menu.inactive { transform: translateX(-100%); }
-        .tech-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .tech-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .tech-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .tech-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-        .form-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            transition: all 0.2s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: #256af4;
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
+        .neon-glow-pink { box-shadow: 0 0 15px rgba(249, 31, 158, 0.4); }
+        .neon-glow-cyan { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); }
+        .neon-glow-purple { box-shadow: 0 0 15px rgba(188, 19, 254, 0.4); }
+        .text-glow { text-shadow: 0 0 10px rgba(249, 31, 158, 0.8), 0 0 20px rgba(249, 31, 158, 0.4); }
     </style>
 </head>
-<body class="text-white antialiased overflow-x-hidden">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 22, 34, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="tech-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleTechMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
-    <aside id="tech-mobile-menu" class="tech-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
-        <div class="flex items-center gap-3">
-            <div class="flex items-center gap-2 text-primary">
-                <span class="material-symbols-outlined text-3xl font-bold">bolt</span>
-                <h2 class="text-xl font-bold tracking-tight uppercase">AgileTech</h2>
-            </div>
-        </div>
-        <nav class="mt-10 flex flex-col gap-2">
-            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
-            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
-            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Service</a>
-            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
-        </nav>
-    </aside>
-
-    <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-2 text-primary">
-                    <span class="material-symbols-outlined text-3xl font-bold">bolt</span>
-                    <h2 class="text-xl font-bold tracking-tight uppercase">AgileTech</h2>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="fixed top-0 z-50 w-full border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-6 md:px-12 py-4">
+    <div class="flex items-center justify-between max-w-[1440px] mx-auto">
+        <div class="flex items-center gap-12">
+            <div class="flex items-center gap-3">
+                <div class="size-6 text-primary">
+                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                    </svg>
                 </div>
-                <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Solutions</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Platform</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Performance</a>
-                </nav>
+                <h2 class="text-xl font-black tracking-tighter uppercase italic text-white">Metro Pulse</h2>
             </div>
-            <div class="flex items-center gap-6">
-                <button class="hidden lg:flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-                    <span class="material-symbols-outlined">search</span>
-                </button>
-                <a href="contact.html" class="tech-btn px-6 py-2 rounded-lg text-sm font-bold transition-all transform hover:scale-105">
-                    Get Started
-                </a>
-            </div>
+            <nav class="hidden lg:flex items-center gap-10">
+                <a class="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors text-slate-300" href="index.html">Events</a>
+                <a class="text-sm font-bold tracking-widest uppercase hover:text-cyan-neon transition-colors text-slate-300" href="service.html">Projects</a>
+                <a class="text-sm font-bold tracking-widest uppercase hover:text-purple-neon transition-colors text-slate-300" href="about.html">Artists</a>
+                <a class="text-sm font-bold tracking-widest uppercase hover:text-white transition-colors text-slate-300" href="contact.html">Pulse Lab</a>
+            </nav>
         </div>
-    </header>
-
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section class="relative min-h-[40vh] flex items-center px-6 lg:px-20 bg-slate-900 overflow-hidden">
-            <div class="absolute inset-0 z-0 opacity-40">
-                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(37,106,244,0.2)_0%,_transparent_50%)]"></div>
+        <div class="flex items-center gap-6">
+            <div class="hidden md:flex bg-white/5 border border-white/10 rounded-lg px-4 py-1.5 items-center gap-3">
+                <span class="material-symbols-outlined text-sm text-slate-400">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-sm w-32 placeholder:text-slate-500 text-white" placeholder="Find the vibe..." type="text"/>
             </div>
-            <div class="max-w-7xl mx-auto w-full relative z-10">
-                <div class="flex flex-col gap-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest w-fit">
-                        <span class="material-symbols-outlined text-sm">mail</span>
-                        Contact Us
+            <button class="md:hidden text-white" onclick="toggleMetroMenu()">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+            <button class="hidden md:block bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-lg font-black text-xs uppercase tracking-widest transition-all neon-glow-pink">
+                Join the Pulse
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleMetroMenu()"></div>
+<nav id="metro-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-white/10 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-xl font-black tracking-tighter uppercase italic text-white">Metro Pulse</span>
+            <button class="text-white hover:opacity-50" onclick="toggleMetroMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 flex-1">
+            <a class="text-lg font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="index.html" onclick="toggleMetroMenu()">Events</a>
+            <a class="text-lg font-bold uppercase tracking-widest text-slate-400 hover:text-cyan-neon transition-colors" href="service.html" onclick="toggleMetroMenu()">Projects</a>
+            <a class="text-lg font-bold uppercase tracking-widest text-slate-400 hover:text-purple-neon transition-colors" href="about.html" onclick="toggleMetroMenu()">Artists</a>
+            <a class="text-lg font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors" href="contact.html" onclick="toggleMetroMenu()">Pulse Lab</a>
+        </div>
+        <div class="mt-auto">
+            <button class="w-full bg-primary text-white px-6 py-4 rounded-lg font-black text-sm uppercase tracking-widest neon-glow-pink">
+                Join the Pulse
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative h-[50vh] flex items-center justify-center p-6 md:p-12 overflow-hidden bg-background-dark">
+    <div class="absolute inset-0 bg-gradient-to-b from-purple-neon/10 via-transparent to-transparent"></div>
+    <div class="relative z-10 flex flex-col items-center text-center">
+        <div class="inline-block px-4 py-1 bg-purple-neon/20 border border-purple-neon/50 text-purple-neon rounded-full text-[10px] font-black tracking-[0.3em] uppercase mb-6">Get in Touch</div>
+        <h1 class="text-white text-6xl md:text-8xl font-black italic tracking-tighter leading-none">
+            CONTACT <span class="text-purple-neon text-glow">US</span>
+        </h1>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="py-32 px-6 md:px-12 bg-background-dark relative">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Contact Form -->
+            <div>
+                <span class="text-primary font-black uppercase tracking-widest text-sm mb-4 block">01 — Inquiry</span>
+                <h2 class="text-3xl md:text-4xl font-black italic tracking-tighter text-white mb-8">SEND US A MESSAGE</h2>
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Name</label>
+                        <input type="text" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white placeholder:text-slate-600" placeholder="Your name">
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight text-white">
-                        Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-neon">Talk</span>
-                    </h1>
-                    <p class="text-lg text-slate-400 max-w-2xl">
-                        Ready to accelerate your infrastructure? We're here to help.
-                    </p>
-                </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Email</label>
+                        <input type="email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white placeholder:text-slate-600" placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Subject</label>
+                        <select class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white">
+                            <option value="">Select a subject</option>
+                            <option value="event">Event Inquiry</option>
+                            <option value="collab">Collaboration</option>
+                            <option value="press">Press / Media</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Message</label>
+                        <textarea rows="5" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white placeholder:text-slate-600 resize-none" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-4 rounded-lg font-black uppercase tracking-widest hover:scale-[1.02] transition-transform neon-glow-pink">
+                        Send Message
+                    </button>
+                </form>
             </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section class="py-24 px-6 lg:px-20 bg-background-dark">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-16">
-                    <div class="flex flex-col gap-8">
-                        <h2 class="text-3xl font-bold text-white">Get in Touch</h2>
-                        <p class="text-lg text-slate-400 leading-relaxed">
-                            Whether you're looking to migrate your infrastructure, scale your application, or just have a question about our platform, our team is ready to help.
+            <!-- Contact Info -->
+            <div class="flex flex-col justify-center">
+                <div class="space-y-12">
+                    <div>
+                        <h3 class="text-cyan-neon font-black uppercase tracking-widest text-sm mb-6">Headquarters</h3>
+                        <p class="text-slate-400 font-light leading-relaxed">
+                            1-2-3 Shibuya, Shibuya-ku<br>
+                            Tokyo 150-0002<br>
+                            Japan
                         </p>
-
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4 p-4 rounded-lg bg-primary/5 border border-primary/10">
-                                <div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
-                                    <span class="material-symbols-outlined">location_on</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">Headquarters</h3>
-                                    <p class="text-slate-400">548 Market Street, Suite 1209<br/>San Francisco, CA 94104</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4 p-4 rounded-lg bg-accent-neon/5 border border-accent-neon/10">
-                                <div class="size-12 rounded-lg bg-accent-neon/20 flex items-center justify-center text-accent-neon flex-shrink-0">
-                                    <span class="material-symbols-outlined">email</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">Email</h3>
-                                    <p class="text-slate-400">hello@agiletech.io<br/>support@agiletech.io</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4 p-4 rounded-lg bg-primary/5 border border-primary/10">
-                                <div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
-                                    <span class="material-symbols-outlined">phone</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">Phone</h3>
-                                    <p class="text-slate-400">+1 (555) 123-4567<br/>Mon-Fri 9am-6pm PST</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-8">
-                            <h3 class="text-xl font-bold text-white mb-4">Follow Us</h3>
-                            <div class="flex gap-4">
-                                <a href="#" class="size-12 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all">
-                                    <span class="material-symbols-outlined">rss_feed</span>
-                                </a>
-                                <a href="#" class="size-12 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all">
-                                    <span class="material-symbols-outlined">share</span>
-                                </a>
-                                <a href="#" class="size-12 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all">
-                                    <span class="material-symbols-outlined">work</span>
-                                </a>
-                                <a href="#" class="size-12 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all">
-                                    <span class="material-symbols-outlined">code</span>
-                                </a>
-                            </div>
+                    </div>
+                    <div>
+                        <h3 class="text-cyan-neon font-black uppercase tracking-widest text-sm mb-6">Contact</h3>
+                        <p class="text-slate-400 font-light leading-relaxed">
+                            <a href="mailto:hello@metropulse.jp" class="hover:text-primary transition-colors">hello@metropulse.jp</a><br>
+                            <a href="tel:+81312345678" class="hover:text-primary transition-colors">+81 (0) 3-1234-5678</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-cyan-neon font-black uppercase tracking-widest text-sm mb-6">Hours</h3>
+                        <p class="text-slate-400 font-light leading-relaxed">
+                            Monday — Friday<br>
+                            11:00 — 20:00 JST
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-cyan-neon font-black uppercase tracking-widest text-sm mb-6">Social</h3>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-slate-400 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest">Instagram</a>
+                            <a href="#" class="text-slate-400 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest">Twitter</a>
+                            <a href="#" class="text-slate-400 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest">YouTube</a>
                         </div>
                     </div>
-
-                    <div class="glass-card p-8 rounded-2xl">
-                        <form class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div class="space-y-2">
-                                    <label for="firstName" class="text-sm font-bold text-white uppercase tracking-wider">First Name</label>
-                                    <input type="text" id="firstName" name="firstName" class="form-input w-full px-4 py-3 rounded-lg" placeholder="John" required>
-                                </div>
-                                <div class="space-y-2">
-                                    <label for="lastName" class="text-sm font-bold text-white uppercase tracking-wider">Last Name</label>
-                                    <input type="text" id="lastName" name="lastName" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Doe" required>
-                                </div>
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="email" class="text-sm font-bold text-white uppercase tracking-wider">Email</label>
-                                <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 rounded-lg" placeholder="john@company.com" required>
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="company" class="text-sm font-bold text-white uppercase tracking-wider">Company</label>
-                                <input type="text" id="company" name="company" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Acme Inc.">
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="subject" class="text-sm font-bold text-white uppercase tracking-wider">Subject</label>
-                                <select id="subject" name="subject" class="form-input w-full px-4 py-3 rounded-lg" required>
-                                    <option value="" disabled selected>Select a topic</option>
-                                    <option value="sales">Sales Inquiry</option>
-                                    <option value="support">Technical Support</option>
-                                    <option value="partnership">Partnership</option>
-                                    <option value="careers">Careers</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-
-                            <div class="space-y-2">
-                                <label for="message" class="text-sm font-bold text-white uppercase tracking-wider">Message</label>
-                                <textarea id="message" name="message" rows="5" class="form-input w-full px-4 py-3 rounded-lg resize-none" placeholder="Tell us how we can help..." required></textarea>
-                            </div>
-
-                            <button type="submit" class="tech-btn w-full py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-[1.02]">
-                                Send Message
-                            </button>
-
-                            <p class="text-xs text-slate-400 text-center">
-                                By submitting this form, you agree to our Privacy Policy and Terms of Service.
-                            </p>
-                        </form>
-                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-24 px-6 lg:px-20 bg-slate-900">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Common Questions</h2>
-                    <p class="text-slate-400">Quick answers to frequently asked questions.</p>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="glass-card rounded-xl overflow-hidden">
-                        <details class="group">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                                <h3 class="text-lg font-bold text-white">How quickly can I get started?</h3>
-                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                            </summary>
-                            <div class="px-6 pb-6 text-slate-400">
-                                You can start with our free tier immediately—no credit card required. For enterprise plans, our sales team typically responds within 24 hours to schedule a demo and discuss your specific needs.
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="glass-card rounded-xl overflow-hidden">
-                        <details class="group">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                                <h3 class="text-lg font-bold text-white">What kind of support do you offer?</h3>
-                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                            </summary>
-                            <div class="px-6 pb-6 text-slate-400">
-                                We offer tiered support: community support for free tier, priority email support for Pro plans, and 24/7 dedicated support with SLA guarantees for enterprise customers.
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="glass-card rounded-xl overflow-hidden">
-                        <details class="group">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                                <h3 class="text-lg font-bold text-white">Do you offer migrations from other providers?</h3>
-                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                            </summary>
-                            <div class="px-6 pb-6 text-slate-400">
-                                Yes! Our team provides white-glove migration support for enterprise customers. We've migrated thousands of applications from AWS, GCP, and Azure with zero downtime.
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="glass-card rounded-xl overflow-hidden">
-                        <details class="group">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-                                <h3 class="text-lg font-bold text-white">What compliance certifications do you have?</h3>
-                                <span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
-                            </summary>
-                            <div class="px-6 pb-6 text-slate-400">
-                                We're SOC2 Type II, ISO 27001, GDPR, and HIPAA compliant. Enterprise customers can request our compliance documentation and security whitepaper.
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-24 px-6 lg:px-20 bg-gradient-to-br from-primary via-primary/90 to-background-dark relative">
-            <div class="max-w-4xl mx-auto text-center relative z-10 py-10">
-                <h2 class="text-4xl lg:text-6xl font-black text-white mb-8">Still Have Questions?</h2>
-                <p class="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-                    Our team is here to help you succeed.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="tel:+15551234567" class="bg-white text-primary px-10 py-4 rounded-xl font-black text-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">call</span> Call Us Now
-                    </a>
-                    <a href="mailto:hello@agiletech.io" class="border-2 border-white/30 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined">email</span> Send Email
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-background-dark border-t border-white/5 py-12 px-6 lg:px-20">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-2 text-primary opacity-60">
-                <span class="material-symbols-outlined font-bold">bolt</span>
-                <h2 class="text-lg font-bold tracking-tight uppercase">AgileTech</h2>
-            </div>
-            <div class="flex gap-8 text-slate-500 text-sm font-medium">
-                <a class="hover:text-white transition-colors" href="about.html">About</a>
-                <a class="hover:text-white transition-colors" href="service.html">Solutions</a>
-                <a class="hover:text-white transition-colors" href="contact.html">Contact</a>
-                <a class="hover:text-white transition-colors" href="#">Privacy</a>
-            </div>
-            <p class="text-slate-600 text-sm">© 2024 AgileTech Systems Inc. Built for speed.</p>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        function toggleTechMenu() {
-            const menu = document.getElementById('tech-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.tech-toggle');
+<!-- Map Section -->
+<section class="h-[40vh] w-full overflow-hidden bg-zinc-800 relative">
+    <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600&q=80'); filter: grayscale(100%);"></div>
+    <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+</section>
 
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<!-- FAQ Section -->
+<section class="py-32 px-6 md:px-12 bg-white/5">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-cyan-neon font-black uppercase tracking-widest text-sm mb-4 block">FAQ</span>
+            <h2 class="text-3xl md:text-4xl font-black italic tracking-tighter text-white">Common Questions</h2>
+        </div>
+        <div class="space-y-6">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+                <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-4">What types of events do you produce?</h3>
+                <p class="text-slate-400 font-light leading-relaxed">
+                    音楽フェス、クラブイベント、デジタルアート展示、企業向け体験型イベントまで、あらゆるジャンルのイベントをプロデュースしています。
+                </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+                <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-4">How far in advance should we book?</h3>
+                <p class="text-slate-400 font-light leading-relaxed">
+                    大規模イベントの場合は 3-6 ヶ月前、小規模なイベントでも 1-2 ヶ月前のご相談を推奨しています。ただし、緊急性のある案件もご相談ください。
+                </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+                <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-4">Do you work with international clients?</h3>
+                <p class="text-slate-400 font-light leading-relaxed">
+                    はい、英語でのコミュニケーションが可能です。これまでにアメリカ、ヨーロッパ、アジア各国からのプロジェクトを手がけています。
+                </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+                <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-4">What is your typical budget range?</h3>
+                <p class="text-slate-400 font-light leading-relaxed">
+                    小規模イベント 50 万円〜、大規模フェス 1 億円超まで幅広く対応可能です。お気軽にご相談ください。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-background-dark pt-32 pb-10 px-6 md:px-12 border-t border-white/5">
+    <div class="max-w-[1440px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="size-6 text-primary">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-black tracking-tighter uppercase italic text-white">Metro Pulse</h2>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Pioneering the midnight urban aesthetic since 2024. Your guide to the pulse of the city.
+                </p>
+            </div>
+            <div>
+                <h5 class="text-white font-black uppercase text-xs tracking-[0.2em] mb-8">Navigation</h5>
+                <ul class="space-y-4 text-slate-400 text-sm font-medium">
+                    <li><a class="hover:text-primary transition-colors" href="index.html">Events Calendar</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="service.html">Lab Projects</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="about.html">Artist Directory</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="contact.html">Venues</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-black uppercase text-xs tracking-[0.2em] mb-8">Resources</h5>
+                <ul class="space-y-4 text-slate-400 text-sm font-medium">
+                    <li><a class="hover:text-cyan-neon transition-colors" href="#">Pulse API</a></li>
+                    <li><a class="hover:text-cyan-neon transition-colors" href="#">Media Kit</a></li>
+                    <li><a class="hover:text-cyan-neon transition-colors" href="#">Partnerships</a></li>
+                    <li><a class="hover:text-cyan-neon transition-colors" href="#">Legal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-black uppercase text-xs tracking-[0.2em] mb-8">Newsletter</h5>
+                <p class="text-slate-500 text-xs mb-6">Stay ahead of the rhythm. Weekly drops in your inbox.</p>
+                <div class="flex gap-2">
+                    <input class="bg-white/5 border-white/10 rounded-lg text-sm flex-grow focus:ring-primary focus:border-primary text-white placeholder:text-slate-500" placeholder="Pulse Email" type="email"/>
+                    <button class="bg-primary text-white p-2 rounded-lg hover:neon-glow-pink">
+                        <span class="material-symbols-outlined">send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
+            <p class="text-slate-600 text-[10px] uppercase font-bold tracking-widest">© 2024 Metro Pulse Media Group. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a class="text-slate-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">brand_family</span></a>
+                <a class="text-slate-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+                <a class="text-slate-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">podcasts</span></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+<script>
+function toggleMetroMenu() {
+    const menu = document.getElementById('metro-mobile-menu');
+    const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+    }
+}
+</script>
 </body>
 </html>

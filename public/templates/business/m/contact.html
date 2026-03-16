@@ -3,441 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Clean & Trust Medical Center</title>
+    <title>Contact | Minimal Architecture</title>
 
     <link rel="canonical" href="https://example.com/templates/business/m/contact.html">
-    <meta name="description" content="Clean & Trust Medical Center へのお問い合わせ。予約、ご相談、ご質問はこちらからどうぞ。">
-    <meta property="og:title" content="Contact Us - Clean & Trust Medical Center">
-    <meta property="og:description" content="最先端の医療技術と思いやりのあるケア">
+    <meta name="description" content="Minimal Architecture へのお問い合わせ">
+    <meta property="og:title" content="Contact | Minimal Architecture">
+    <meta property="og:description" content="スタジオへのご連絡、プロジェクト相談">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/m/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalOrganization",
-        "name": "Clean & Trust Medical Center",
-        "description": "高度な医療技術と思いやりのあるケアを提供する医療センター",
-        "medicalSpecialty": "GeneralPractice",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1-555-123-4567",
-            "contactType": "customer service"
-        }
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; }
-        .medical-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(19, 236, 91, 0.2); transition: all 0.3s ease; }
-        .medical-card:hover { transform: translateY(-4px); box-shadow: 0 4px 20px rgba(19, 236, 91, 0.15); }
-        .medical-hero { background: linear-gradient(135deg, rgba(19, 236, 91, 0.1) 0%, rgba(13, 27, 18, 0.95) 100%); }
-        .medical-btn { background: #13ec5b; color: #0d1b12; font-weight: 700; transition: all 0.2s ease; }
-        .medical-btn:hover { background: #0fc94d; transform: scale(1.02); }
-        .medical-backdrop { background-color: rgba(16, 34, 22, 0.5); backdrop-filter: blur(4px); }
-        .medical-mobile-menu { transition: transform 0.3s ease; }
-        .medical-mobile-menu.active { transform: translateX(0); }
-        .medical-mobile-menu.inactive { transform: translateX(-100%); }
-        .medical-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .medical-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .medical-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .medical-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-        .medical-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(19, 236, 91, 0.3);
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.95);
-            color: #0d1b12;
-            transition: all 0.2s ease;
-        }
-        .medical-input:focus {
-            outline: none;
-            border-color: #13ec5b;
-            box-shadow: 0 0 0 3px rgba(19, 236, 91, 0.1);
-        }
-        .medical-textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(19, 236, 91, 0.3);
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.95);
-            color: #0d1b12;
-            transition: all 0.2s ease;
-            min-height: 120px;
-            resize: vertical;
-        }
-        .medical-textarea:focus {
-            outline: none;
-            border-color: #13ec5b;
-            box-shadow: 0 0 0 3px rgba(19, 236, 91, 0.1);
+        .fine-line {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
-<body class="text-secondary antialiased">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
+    <div class="flex items-center gap-2">
+        <a href="index.html" class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-12">
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="index.html">Projects</a>
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="about.html">Philosophy</a>
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="service.html">Studio</a>
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="contact.html">Contact</a>
+    </nav>
+    <div class="flex gap-4">
+        <button class="flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">
+            <span class="material-symbols-outlined text-sm text-white">search</span>
+        </button>
+        <button class="md:hidden flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all min-toggle" onclick="toggleMinimalMenu()">
+            <span class="material-symbols-outlined text-sm text-white">menu</span>
+        </button>
+    </div>
+</header>
 
-    <div class="medical-backdrop fixed inset-0 z-[9998] xl:hidden hidden"></div>
+<!-- Mobile Menu -->
+<div class="fixed inset-0 z-[9998] hidden backdrop-blur-md" onclick="toggleMinimalMenu()"></div>
+<nav id="min-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-white/10 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</span>
+            <button class="text-white hover:opacity-50" onclick="toggleMinimalMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 flex-1">
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="index.html">Projects</a>
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="about.html">Philosophy</a>
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="service.html">Studio</a>
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="contact.html">Contact</a>
+        </div>
+    </div>
+</nav>
 
-    <button class="medical-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleMedicalMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
+<!-- Hero Section -->
+<section class="relative h-[60vh] w-full flex items-center justify-center p-6 md:p-12 bg-zinc-900">
+    <div class="relative z-10 flex flex-col items-center text-center">
+        <div class="h-16 w-[1px] bg-white/50 mb-8"></div>
+        <h1 class="text-white text-[10px] font-light tracking-[0.8em] uppercase mb-4">Get in Touch</h1>
+        <h2 class="text-white text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">Contact</h2>
+    </div>
+</section>
 
-    <aside id="medical-mobile-menu" class="medical-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
-        <div class="flex items-center gap-3">
-            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <span class="material-symbols-outlined text-3xl">local_hospital</span>
-            </div>
+<!-- Contact Form Section -->
+<section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
+    <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-                <p class="text-lg font-bold">Clean & Trust</p>
-                <p class="text-xs uppercase tracking-widest text-primary/80">Medical Center</p>
-            </div>
-        </div>
-        <nav class="mt-10 flex flex-col gap-2">
-            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
-            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
-            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Service</a>
-            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
-        </nav>
-    </aside>
-
-    <header class="fixed top-0 z-50 flex items-center justify-between border-b border-primary/10 bg-background-light/95 backdrop-blur-sm px-6 py-4 lg:px-20">
-        <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <span class="material-symbols-outlined text-3xl">local_hospital</span>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight text-secondary">Clean & Trust</h1>
-        </div>
-        <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
-            <div class="flex items-center gap-8">
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="index.html">Home</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="service.html">Treatments</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">Our Experts</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">About Us</a>
-                <a class="text-sm font-medium text-primary" href="contact.html">Contact</a>
-            </div>
-            <button class="h-10 px-6 rounded-lg bg-primary text-secondary text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm">
-                Book Consultation
-            </button>
-        </nav>
-        <div class="md:hidden">
-            <button class="text-secondary" onclick="toggleMedicalMenu()">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-        </div>
-    </header>
-
-    <main class="flex-1 mt-20">
-        <!-- Page Hero -->
-        <section class="relative py-20 lg:py-32 bg-secondary overflow-hidden">
-            <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQXuz8bN3oKfz6rXcDvYdXN5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5');"></div>
-            <div class="absolute inset-0 z-10 bg-gradient-to-b from-secondary/80 to-secondary"></div>
-            <div class="relative z-20 px-4 lg:px-20">
-                <div class="max-w-4xl">
-                    <span class="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-2 text-sm font-bold uppercase tracking-wide text-primary border border-primary/20 backdrop-blur-md mb-6">
-                        <span class="material-symbols-outlined text-sm">contact_mail</span>
-                        Contact Us
-                    </span>
-                    <h1 class="text-4xl lg:text-5xl font-black text-white mb-6">
-                        We're Here to Help
-                    </h1>
-                    <p class="text-lg text-gray-300 max-w-2xl">
-                        Have questions or need to schedule an appointment? Our team is ready to assist you with any inquiries.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Form & Info -->
-        <section class="py-20 bg-background-off">
-            <div class="px-4 lg:px-20">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <!-- Contact Form -->
-                    <div class="lg:col-span-2">
-                        <div class="medical-card rounded-xl bg-white p-8">
-                            <h2 class="text-2xl font-bold text-secondary mb-6">Send Us a Message</h2>
-                            <form action="#" method="POST" class="space-y-6">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="firstName" class="block text-sm font-bold text-secondary mb-2">First Name</label>
-                                        <input type="text" id="firstName" name="firstName" class="medical-input" placeholder="John" required>
-                                    </div>
-                                    <div>
-                                        <label for="lastName" class="block text-sm font-bold text-secondary mb-2">Last Name</label>
-                                        <input type="text" id="lastName" name="lastName" class="medical-input" placeholder="Doe" required>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="email" class="block text-sm font-bold text-secondary mb-2">Email Address</label>
-                                        <input type="email" id="email" name="email" class="medical-input" placeholder="john@example.com" required>
-                                    </div>
-                                    <div>
-                                        <label for="phone" class="block text-sm font-bold text-secondary mb-2">Phone Number</label>
-                                        <input type="tel" id="phone" name="phone" class="medical-input" placeholder="+1 (555) 000-0000">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="department" class="block text-sm font-bold text-secondary mb-2">Department</label>
-                                    <select id="department" name="department" class="medical-input" required>
-                                        <option value="">Select a department</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="cardiology">Cardiology</option>
-                                        <option value="neurology">Neurology</option>
-                                        <option value="pediatrics">Pediatrics</option>
-                                        <option value="dental">Dental Care</option>
-                                        <option value="orthopedics">Orthopedics</option>
-                                        <option value="emergency">Emergency</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="appointmentDate" class="block text-sm font-bold text-secondary mb-2">Preferred Appointment Date (Optional)</label>
-                                    <input type="date" id="appointmentDate" name="appointmentDate" class="medical-input">
-                                </div>
-                                <div>
-                                    <label for="message" class="block text-sm font-bold text-secondary mb-2">Message</label>
-                                    <textarea id="message" name="message" class="medical-textarea" placeholder="Please describe your inquiry or symptoms..." required></textarea>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <input type="checkbox" id="consent" name="consent" class="mt-1 h-4 w-4 rounded border-primary/30 text-primary focus:ring-primary" required>
-                                    <label for="consent" class="text-sm text-secondary/60">
-                                        I consent to the processing of my personal data for the purpose of responding to my inquiry.
-                                    </label>
-                                </div>
-                                <button type="submit" class="w-full h-12 rounded-lg bg-primary text-secondary font-bold hover:bg-primary/90 transition-colors shadow-sm">
-                                    Send Message
-                                </button>
-                            </form>
-                        </div>
+                <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-8 block">01 — Inquiry</span>
+                <h3 class="text-2xl font-black uppercase tracking-tight mb-8">Start a Conversation</h3>
+                <form class="space-y-8">
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 opacity-60">Name</label>
+                        <input type="text" class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-white transition-colors">
                     </div>
-
-                    <!-- Contact Info -->
-                    <div class="space-y-8">
-                        <div class="medical-card rounded-xl bg-white p-6">
-                            <h3 class="text-lg font-bold text-secondary mb-4">Contact Information</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-3">
-                                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                        <span class="material-symbols-outlined">location_on</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-bold text-secondary">Address</p>
-                                        <p class="text-sm text-secondary/60">123 Health Avenue<br/>Medical District, NY 10001</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                        <span class="material-symbols-outlined">phone</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-bold text-secondary">Phone</p>
-                                        <p class="text-sm text-secondary/60">+1 (555) 123-4567</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                        <span class="material-symbols-outlined">mail</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-bold text-secondary">Email</p>
-                                        <p class="text-sm text-secondary/60">support@cleanandtrust.com</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                        <span class="material-symbols-outlined">schedule</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-bold text-secondary">Hours</p>
-                                        <p class="text-sm text-secondary/60">Mon - Fri: 8:00 AM - 8:00 PM<br/>Sat: 9:00 AM - 5:00 PM<br/>Sun: Emergency Only</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="medical-card rounded-xl bg-white p-6">
-                            <h3 class="text-lg font-bold text-secondary mb-4">Emergency?</h3>
-                            <p class="text-sm text-secondary/60 mb-4">For life-threatening emergencies, call 911 or visit our Emergency Department immediately.</p>
-                            <a href="tel:911" class="flex items-center justify-center gap-2 h-10 rounded-lg bg-red-500 text-white font-bold hover:bg-red-600 transition-colors">
-                                <span class="material-symbols-outlined text-sm">emergency</span>
-                                Call 911
-                            </a>
-                        </div>
-
-                        <div class="rounded-xl bg-primary p-6">
-                            <h3 class="text-lg font-bold text-secondary mb-2">Book Appointment</h3>
-                            <p class="text-sm text-secondary/80 mb-4">Schedule your visit online or call us directly.</p>
-                            <a href="tel:+15551234567" class="flex items-center justify-center gap-2 h-10 rounded-lg bg-secondary text-primary font-bold hover:bg-secondary/90 transition-colors">
-                                <span class="material-symbols-outlined text-sm">call</span>
-                                +1 (555) 123-4567
-                            </a>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 opacity-60">Email</label>
+                        <input type="email" class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-white transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 opacity-60">Project Type</label>
+                        <select class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-white transition-colors opacity-80">
+                            <option value="">Select a service</option>
+                            <option value="architectural">Architectural Design</option>
+                            <option value="interior">Interior Architecture</option>
+                            <option value="planning">Master Planning</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest mb-2 opacity-60">Message</label>
+                        <textarea rows="4" class="w-full bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-white transition-colors resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="mt-8 px-8 py-4 border border-white text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+            <div class="flex flex-col justify-center">
+                <div class="space-y-12">
+                    <div>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest mb-4 opacity-60">Studio</h4>
+                        <p class="text-sm font-light leading-relaxed opacity-80">
+                            123 Architectural Street<br>
+                            London EC1 2AB<br>
+                            United Kingdom
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest mb-4 opacity-60">Contact</h4>
+                        <p class="text-sm font-light leading-relaxed opacity-80">
+                            <a href="mailto:hello@minimal.com" class="hover:opacity-50 transition-opacity">hello@minimal.com</a><br>
+                            <a href="tel:+442079460123" class="hover:opacity-50 transition-opacity">+44 (0) 20 7946 0123</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest mb-4 opacity-60">Hours</h4>
+                        <p class="text-sm font-light leading-relaxed opacity-80">
+                            Monday — Friday<br>
+                            9:00 — 18:00 GMT
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest mb-4 opacity-60">Social</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm font-light hover:opacity-50 transition-opacity">Instagram</a>
+                            <a href="#" class="text-sm font-light hover:opacity-50 transition-opacity">LinkedIn</a>
+                            <a href="#" class="text-sm font-light hover:opacity-50 transition-opacity">Behance</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- Map Section -->
-        <section class="h-96 bg-secondary relative">
-            <div class="absolute inset-0 z-0">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564756836!5m2!1sen!2s"
-                    width="100%"
-                    height="100%"
-                    style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </section>
+<!-- Map Section -->
+<section class="h-[50vh] w-full overflow-hidden bg-zinc-800">
+    <div class="w-full h-full bg-cover bg-center grayscale" style='background-image: url("https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1600&q=80");'></div>
+</section>
 
-        <!-- FAQ Section -->
-        <section class="py-20 bg-white">
-            <div class="px-4 lg:px-20">
-                <div class="text-center mb-12">
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">FAQ</h3>
-                    <h2 class="text-3xl font-bold text-secondary">Frequently Asked Questions</h2>
-                </div>
-                <div class="max-w-3xl mx-auto space-y-4">
-                    <details class="medical-card rounded-xl bg-white p-6 group">
-                        <summary class="flex items-center justify-between cursor-pointer font-bold text-secondary">
-                            How do I schedule an appointment?
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-secondary/60">
-                            You can schedule an appointment by calling our main line at +1 (555) 123-4567, using the contact form above, or visiting our Patient Portal for online scheduling.
-                        </p>
-                    </details>
-                    <details class="medical-card rounded-xl bg-white p-6 group">
-                        <summary class="flex items-center justify-between cursor-pointer font-bold text-secondary">
-                            Do you accept insurance?
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-secondary/60">
-                            Yes, we accept most major insurance plans including Blue Cross Blue Shield, Aetna, Cigna, UnitedHealthcare, and Medicare. Please contact our billing department for specific plan verification.
-                        </p>
-                    </details>
-                    <details class="medical-card rounded-xl bg-white p-6 group">
-                        <summary class="flex items-center justify-between cursor-pointer font-bold text-secondary">
-                            What should I bring to my first appointment?
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-secondary/60">
-                            Please bring a valid photo ID, your insurance card, a list of current medications, and any relevant medical records or imaging results from previous providers.
-                        </p>
-                    </details>
-                    <details class="medical-card rounded-xl bg-white p-6 group">
-                        <summary class="flex items-center justify-between cursor-pointer font-bold text-secondary">
-                            Is parking available at your facility?
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-secondary/60">
-                            Yes, we offer complimentary parking for all patients and visitors. Our parking garage is located adjacent to the main entrance, with additional street parking available.
-                        </p>
-                    </details>
-                </div>
+<!-- FAQ Section -->
+<section class="py-32 px-6 md:px-12 bg-zinc-100 dark:bg-zinc-900/30">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-24">
+            <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-4 block">FAQ</span>
+            <h3 class="text-3xl font-black uppercase tracking-tight">Common Questions</h3>
+        </div>
+        <div class="space-y-8">
+            <div class="border-b border-white/10 pb-8">
+                <h4 class="text-lg font-bold uppercase tracking-widest mb-4">What is your typical project timeline?</h4>
+                <p class="text-sm font-light leading-relaxed opacity-60">
+                    Residential projects typically take 12-18 months from initial concept to completion. Commercial and cultural projects vary based on scale and complexity.
+                </p>
             </div>
-        </section>
-    </main>
-
-    <footer class="bg-background-off pt-16 pb-8 border-t border-primary/20">
-        <div class="px-4 lg:px-20">
-            <div class="grid grid-cols-1 gap-12 md:grid-cols-4 mb-12">
-                <div class="md:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-secondary">
-                            <span class="material-symbols-outlined text-xl">local_hospital</span>
-                        </div>
-                        <span class="text-lg font-bold text-secondary">Clean &amp; Trust</span>
-                    </div>
-                    <p class="text-sm text-secondary/60 leading-relaxed mb-6">
-                        Providing world-class healthcare with a focus on patient comfort, safety, and advanced medical technology.
-                    </p>
-                    <div class="flex gap-4">
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">share</span></a>
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Departments</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Cardiology</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Neurology</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Pediatrics</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Orthopedics</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Dental Care</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Quick Links</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="index.html">Home</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="about.html">Our Doctors</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Appointment</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="#">Blog</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Contact Us</h4>
-                    <ul class="flex flex-col gap-4">
-                        <li class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-primary mt-0.5 text-lg">location_on</span>
-                            <span class="text-sm text-secondary/60">123 Health Avenue, Medical District, New York, NY 10001</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary text-lg">phone</span>
-                            <span class="text-sm text-secondary/60">+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary text-lg">mail</span>
-                            <span class="text-sm text-secondary/60">support@cleanandtrust.com</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="border-b border-white/10 pb-8">
+                <h4 class="text-lg font-bold uppercase tracking-widest mb-4">Do you work internationally?</h4>
+                <p class="text-sm font-light leading-relaxed opacity-60">
+                    Yes. We maintain studios in London, Tokyo, Berlin, New York, Oslo, Copenhagen, and Melbourne. Our team is equipped to handle projects globally.
+                </p>
             </div>
-            <div class="border-t border-primary/20 pt-8 text-center md:flex md:justify-between md:text-left">
-                <p class="text-xs text-secondary/40">© 2023 Clean &amp; Trust Medical Center. All rights reserved.</p>
-                <div class="mt-4 flex justify-center gap-6 md:mt-0">
-                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">Privacy Policy</a>
-                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">Terms of Service</a>
-                </div>
+            <div class="border-b border-white/10 pb-8">
+                <h4 class="text-lg font-bold uppercase tracking-widest mb-4">What is your fee structure?</h4>
+                <p class="text-sm font-light leading-relaxed opacity-60">
+                    We offer fixed fee, percentage-based, and hourly structures depending on project scope. Contact us for a detailed proposal tailored to your needs.
+                </p>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        function toggleMedicalMenu() {
-            const menu = document.getElementById('medical-mobile-menu');
-            const backdrop = document.querySelector('.medical-backdrop');
-            const toggle = document.querySelector('.medical-toggle');
+<!-- Footer -->
+<footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+        <div class="flex flex-col">
+            <h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2>
+            <p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">
+                A design collective focused on the intersection of light, form, and functionality.
+            </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
+            <div class="flex flex-col gap-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">hello@minimal.com</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">+44 (0) 20 7946 0123</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Social</span>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Behance</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Legal</span>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
+            </div>
+        </div>
+    </div>
+    <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] uppercase tracking-[0.4em] opacity-30">© 2024 Minimal Architecture &amp; Design</p>
+        <div class="flex gap-8">
+            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">London</span>
+            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">Tokyo</span>
+            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">New York</span>
+        </div>
+    </div>
+</footer>
+</div>
 
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<script>
+function toggleMinimalMenu() {
+    const menu = document.getElementById('min-mobile-menu');
+    const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+    const toggle = document.querySelector('.min-toggle');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+        toggle.classList.add('active');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+        toggle.classList.remove('active');
+    }
+}
+</script>
 </body>
 </html>

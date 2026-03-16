@@ -3,337 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heritage - Kousei | Our Legacy</title>
+    <title>VIVID IMPACT - Manifesto / About</title>
 
     <link rel="canonical" href="https://example.com/templates/business/v/about.html">
-    <meta name="description" content="Kousei の heritage。1924 年から続く日本の伝統工芸と現代ミニマリズムの調和。京都不変の美を瞬間の技で。">
-    <meta property="og:title" content="Heritage - Kousei | Our Legacy">
-    <meta property="og:description" content="Kousei の Heritage - 伝統と革新の調和">
+    <meta name="description" content="VIVID IMPACT - 私たちのマニフェストと哲学">
+    <meta property="og:title" content="VIVID IMPACT | Manifesto">
+    <meta property="og:description" content="We don't design. We create movements.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/v/about.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "AboutPage",
-        "name": "Heritage Kousei",
-        "description": "Kousei の歴史と哲学"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Manrope:wght@300;400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Manrope', 'Noto Serif JP', serif; }
-        .washi-texture {
-            background-color: #F9F8F4;
-            background-image: url('https://www.transparenttextures.com/patterns/shattered-island.png');
+        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
+        .text-stroke {
+            -webkit-text-stroke: 1px #facc15;
+            color: transparent;
         }
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-        .writing-spacing {
-            letter-spacing: 0.5em;
-        }
-        .kousei-mobile-menu { transition: transform 0.3s ease; }
-        .kousei-mobile-menu.active { transform: translateX(0); }
-        .kousei-mobile-menu.inactive { transform: translateX(-100%); }
-        .kousei-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .kousei-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .kousei-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .kousei-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     </style>
 </head>
-<body class="bg-background-light text-sumi font-display selection:bg-accent-gold/30">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(18, 18, 18, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="kousei-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded border border-primary/20 bg-background-light/85 text-primary shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleKouseiMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Navigation -->
+<header class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 md:px-12 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+        <div class="size-8 bg-accent text-background-dark flex items-center justify-center rounded-sm">
+            <span class="material-symbols-outlined font-bold text-background-dark">bolt</span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-black tracking-tighter text-white">VIVID_IMPACT</h2>
+    </div>
+    <nav class="hidden md:flex gap-12 items-center">
+        <a class="text-white hover:text-accent font-bold uppercase tracking-widest text-xs transition-colors" href="index.html">Work</a>
+        <a class="text-white hover:text-accent font-bold uppercase tracking-widest text-xs transition-colors" href="service.html">Services</a>
+        <a class="text-white hover:text-accent font-bold uppercase tracking-widest text-xs transition-colors" href="about.html">Manifesto</a>
+        <a class="bg-accent text-background-dark px-6 py-2 rounded-full font-black text-sm uppercase tracking-tighter hover:scale-105 transition-transform" href="contact.html">
+            Start Project
+        </a>
+    </nav>
+    <button class="md:hidden text-white v-mobile-toggle" onclick="toggleVMenu()">
+        <span class="material-symbols-outlined">menu</span>
     </button>
+</header>
 
-    <aside id="kousei-mobile-menu" class="kousei-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-primary/10 bg-background-light p-6 text-primary shadow-2xl">
+<!-- Mobile Menu -->
+<div class="v-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleVMenu()"></div>
+<nav id="v-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-primary/30 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-xl font-black tracking-tighter text-white">VIVID_IMPACT</span>
+            <button class="text-white hover:opacity-50" onclick="toggleVMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-6 flex-1">
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-accent transition-colors" href="index.html" onclick="toggleVMenu()">Work</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-accent transition-colors" href="service.html" onclick="toggleVMenu()">Services</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-white hover:text-accent transition-colors" href="about.html" onclick="toggleVMenu()">Manifesto</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-accent transition-colors" href="contact.html" onclick="toggleVMenu()">Contact</a>
+        </div>
+        <button class="w-full bg-accent text-background-dark px-6 py-4 rounded-full font-black uppercase tracking-tighter hover:scale-105 transition-transform">
+            Start Project
+        </button>
+    </div>
+</nav>
+
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] flex flex-col justify-center items-center pt-20 px-4 bg-background-dark">
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-accent rounded-full blur-[150px] opacity-30"></div>
+    </div>
+    <div class="relative z-10 text-center">
+        <span class="inline-block bg-primary text-white px-4 py-2 font-bold text-xs uppercase tracking-widest mb-6">EST. 2024</span>
+        <h1 class="text-6xl md:text-9xl font-black leading-[0.8] tracking-tighter uppercase text-white mb-8">
+            THE <span class="text-accent">MANIFESTO</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-400 uppercase tracking-widest font-light">
+            WE CREATE MOVEMENTS, NOT MOCKUPS
+        </p>
+    </div>
+</section>
+
+<!-- Philosophy Section -->
+<section class="py-24 px-6 md:px-12 bg-background-dark border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="material-symbols-outlined text-accent text-3xl">lightbulb</span>
+                    <span class="text-xs font-bold text-accent uppercase tracking-[0.3em]">Our Philosophy</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight text-white">
+                    SAFE IS <span class="text-primary line-through">DEAD</span><br/>
+                    <span class="text-accent">BOLD IS ALIVE</span>
+                </h2>
+                <div class="space-y-6 text-slate-300 leading-relaxed">
+                    <p class="text-lg">
+                        私たちは「無難」を拒否する。市場はありふれたデザインで溢れ、
+                        誰の目にも留まらないまま消えていく。
+                    </p>
+                    <p>
+                        VIVID IMPACT は異なる。私たちはクライアントのビジョンを、
+                        見る者の心に焼き付くビジュアルへと変換する。
+                    </p>
+                    <p>
+                        妥協しない。曖昧にしない。そして決して、決して、目線を逸らさせない。
+                    </p>
+                    <blockquote class="border-l-4 border-accent pl-6 py-4 my-8">
+                        <p class="text-2xl font-bold text-white italic">
+                            "If it doesn't make you feel something, it's not worth making."
+                        </p>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="aspect-square bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-9xl text-white/50">auto_awesome</span>
+                </div>
+                <div class="absolute -bottom-8 -right-8 bg-background-dark border-2 border-accent p-6">
+                    <p class="text-4xl font-black text-accent">50+</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-widest">Brands Transformed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Grid -->
+<section class="py-24 px-6 md:px-12 bg-primary border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4">
+                CORE <span class="text-accent italic">VALUES</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-background-dark/20 p-10 border border-white/10 backdrop-blur-sm">
+                <span class="material-symbols-outlined text-accent text-5xl mb-6">flare</span>
+                <h3 class="text-2xl font-black uppercase mb-4 text-white">Radical Honesty</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    飾らない。隠さない。真実のビジョンだけを、純度の高い形で表現する。
+                </p>
+            </div>
+            <div class="bg-background-dark/20 p-10 border border-white/10 backdrop-blur-sm">
+                <span class="material-symbols-outlined text-accent text-5xl mb-6">public</span>
+                <h3 class="text-2xl font-black uppercase mb-4 text-white">Global Vision</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    東京、ニューヨーク、ロンドン — 文化の壁を越える普遍的なビジュアルランゲージ。
+                </p>
+            </div>
+            <div class="bg-background-dark/20 p-10 border border-white/10 backdrop-blur-sm">
+                <span class="material-symbols-outlined text-accent text-5xl mb-6">speed</span>
+                <h3 class="text-2xl font-black uppercase mb-4 text-white">Relentless Pace</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    完璧より完成。迭代を繰り返し、最速で市場にインパクトを。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-24 px-6 md:px-12 bg-background-dark border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto">
+        <div class="text-center mb-16">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-accent text-3xl">group</span>
+                <span class="text-xs font-bold text-accent uppercase tracking-[0.3em]">The Collective</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white">
+                BEHIND THE <span class="text-primary">VISION</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="aspect-square bg-gradient-to-br from-primary/50 to-accent/30 rounded-lg flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-8xl text-white/50">person</span>
+                </div>
+                <h3 class="text-xl font-black uppercase text-white mb-2">AKI "VIVID" TANAKA</h3>
+                <p class="text-xs text-accent uppercase tracking-widest mb-4">FOUNDER / CREATIVE DIRECTOR</p>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    元アートディレクター。15 年のキャリアで 500 以上のブランドを再定義。
+                    「普通」を最も嫌うクリエイター。
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="aspect-square bg-gradient-to-br from-accent/50 to-primary/30 rounded-lg flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-8xl text-white/50">person</span>
+                </div>
+                <h3 class="text-xl font-black uppercase text-white mb-2">MARCO "BOLD" ROSSI</h3>
+                <p class="text-xs text-accent uppercase tracking-widest mb-4">HEAD OF MOTION</p>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    ミラノ出身のモーションデザイナー。物理法則を無視したダイナミックな
+                    アニメーションで業界を席巻。
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="aspect-square bg-gradient-to-br from-primary/50 to-slate-700 rounded-lg flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-8xl text-white/50">person</span>
+                </div>
+                <h3 class="text-xl font-black uppercase text-white mb-2">SARA "IMPACT" CHEN</h3>
+                <p class="text-xs text-accent uppercase tracking-widest mb-4">STRATEGY LEAD</p>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    数据駆動のクリエイティブ戦略家。アナリティクスとアートの融合で、
+                    測定可能なインパクトを創出。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Section -->
+<section class="py-24 px-6 md:px-12 bg-primary border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4">
+                TRUSTED <span class="text-accent italic">BY</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="bg-background-dark/20 p-8 flex items-center justify-center">
+                <span class="text-4xl font-black text-white/50">NEON</span>
+            </div>
+            <div class="bg-background-dark/20 p-8 flex items-center justify-center">
+                <span class="text-4xl font-black text-white/50">PULSE</span>
+            </div>
+            <div class="bg-background-dark/20 p-8 flex items-center justify-center">
+                <span class="text-4xl font-black text-white/50">FLUX</span>
+            </div>
+            <div class="bg-background-dark/20 p-8 flex items-center justify-center">
+                <span class="text-4xl font-black text-white/50">VOLT</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-40 bg-accent relative overflow-hidden flex flex-col items-center justify-center text-background-dark border-t border-primary/30">
+    <div class="text-center px-4">
+        <h2 class="text-7xl md:text-[10vw] font-black leading-none uppercase tracking-tighter mb-12">
+            JOIN THE<br/>MOVEMENT?
+        </h2>
+        <div class="group relative inline-block">
+            <button class="bg-background-dark text-accent text-3xl md:text-5xl font-black uppercase px-12 py-8 rounded-none hover:translate-x-4 hover:-translate-y-4 transition-transform relative z-10">
+                Start Project
+            </button>
+            <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2"></div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-dark py-12 px-6 md:px-12 border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="flex items-center gap-2">
-            <div class="size-8 text-primary">
-                <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
-                    <path d="M24 8V40M8 24H40" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1"></path>
-                </svg>
+            <div class="size-6 bg-accent text-background-dark flex items-center justify-center rounded-sm">
+                <span class="material-symbols-outlined text-xs font-bold text-background-dark">bolt</span>
             </div>
-            <h1 class="font-serif-jp text-xl font-bold tracking-[0.2em] uppercase">Kousei</h1>
+            <h2 class="text-xl font-black tracking-tighter uppercase text-white">VIVID_IMPACT</h2>
         </div>
-        <nav class="mt-10 flex flex-col gap-2 font-serif-jp text-sm tracking-widest">
-            <a href="index.html" class="rounded px-4 py-3 hover:bg-primary/5">Home</a>
-            <a href="about.html" class="rounded px-4 py-3 bg-primary/5 text-primary">Heritage</a>
-            <a href="service.html" class="rounded px-4 py-3 hover:bg-primary/5">Collection</a>
-            <a href="contact.html" class="rounded px-4 py-3 hover:bg-primary/5">Contact</a>
-        </nav>
-    </aside>
-
-    <header class="fixed top-0 z-50 w-full bg-background-light/80 backdrop-blur-sm border-b border-primary/5 px-6 lg:px-20 py-6">
-        <nav class="flex items-center justify-between max-w-[1440px] mx-auto">
-            <div class="flex items-center gap-2">
-                <div class="size-8 text-primary">
-                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
-                        <path d="M24 8V40M8 24H40" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1"></path>
-                    </svg>
-                </div>
-                <h1 class="font-serif-jp text-xl font-bold tracking-[0.2em] uppercase">Kousei</h1>
-            </div>
-            <div class="hidden lg:flex items-center gap-12 font-serif-jp text-sm tracking-widest uppercase">
-                <a class="hover:text-accent-gold transition-colors" href="about.html">Heritage</a>
-                <a class="hover:text-accent-gold transition-colors" href="about.html">Artisans</a>
-                <a class="hover:text-accent-gold transition-colors" href="service.html">Collection</a>
-                <a class="hover:text-accent-gold transition-colors" href="about.html">Journal</a>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="text-sm font-medium tracking-widest border-b border-primary pb-1">JP / EN</button>
-                <a href="contact.html" class="bg-primary text-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
-                    Inquiry
-                </a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section class="relative min-h-[60vh] flex items-center px-6 lg:px-20 bg-sumi overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-primary/10 to-transparent"></div>
-            </div>
-            <div class="max-w-[1440px] mx-auto w-full relative z-10">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="flex flex-col gap-8">
-                        <span class="text-accent-gold text-xs tracking-[0.5em] uppercase">Since 1924</span>
-                        <h1 class="font-serif-jp text-5xl lg:text-6xl leading-tight text-white">
-                            A Century of <span class="italic">Silence</span>
-                        </h1>
-                        <div class="w-px h-16 bg-accent-gold opacity-50"></div>
-                        <p class="text-white/70 font-serif-jp text-lg leading-relaxed max-w-lg">
-                            What began as a small lacquer workshop in Higashiyama has become a symbol of refined Japanese craftsmanship.
-                        </p>
-                    </div>
-                    <div class="relative">
-                        <div class="aspect-[4/5] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoY85uATe0RK0pVLV5J_Fe1XTgCYmKLkc3sR6saX-BJb-gk9rbYxfcYc3M07FBsg0rbK4jrNZWFwHS_wSSP7iLUc6BvAA2sL7bkgKVSW72yBZ9oo1G4ofl8wXCVNeBUt43z8gSC_RoxNS24yqHDiTHf5PNZmf8yzCn7xMP251m9N1zN2znDmFO40IW3i8N9shL0TIhRwbva0c0NvFCM2XLh-wxFh4mIr8TFDTP4NE2uqU7G-LPoULR7_y0ryRxoupi6GVNwBQX4F4');"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Story Section -->
-        <section class="py-32 px-6 lg:px-20 washi-texture">
-            <div class="max-w-[1440px] mx-auto">
-                <div class="grid lg:grid-cols-2 gap-20 items-center">
-                    <div class="space-y-12">
-                        <div>
-                            <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Our Story</span>
-                            <h2 class="font-serif-jp text-4xl leading-tight mt-4 mb-8">From a single brush to a global legacy.</h2>
-                        </div>
-                        <div class="space-y-6 text-sumi/80 font-serif-jp leading-loose">
-                            <p>
-                                In 1924, master lacquer artisan Takeshi Kousei opened a modest workshop in the historic Higashiyama district of Kyoto. His vision was simple yet profound: to create objects that embody the silence between breaths, the space between thoughts.
-                            </p>
-                            <p>
-                                A century later, that vision has blossomed into a collective of master artisans spanning ceramics, textiles, metalwork, and lacquer. From tea ceremonies in Tokyo to private collections in Paris, Kousei continues to define what it means to live with intention and beauty.
-                            </p>
-                            <p>
-                                Each piece we create carries the DNA of our heritage – an unwavering commitment to traditional techniques, an eye for essential beauty, and the wisdom to know that true craftsmanship lies not in what is added, but in what can be removed.
-                            </p>
-                        </div>
-                        <div class="grid grid-cols-3 gap-8 pt-8 border-t border-primary/20">
-                            <div>
-                                <p class="font-serif-jp text-4xl text-primary">100</p>
-                                <p class="text-xs tracking-widest text-sumi/50 mt-2 uppercase">Years of Excellence</p>
-                            </div>
-                            <div>
-                                <p class="font-serif-jp text-4xl text-primary">12</p>
-                                <p class="text-xs tracking-widest text-sumi/50 mt-2 uppercase">Master Artisans</p>
-                            </div>
-                            <div>
-                                <p class="font-serif-jp text-4xl text-primary">4</p>
-                                <p class="text-xs tracking-widest text-sumi/50 mt-2 uppercase">Craft Traditions</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="aspect-square bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-ZCaH5U6OgcgaWg4zcjsWt-SNCMgaq8sB5jS_btADv4Wk-F51NQTLUpOuIvHP6RmiyRYEhHVc3gVIUF7sAbb-TtxhigWVHhKPhegWrbqNwXDgcy-6IOAPOHeOTs7VKvAXZvFPPUQ9ytffmFZhS9HglvvOWhb9rd6wqlOSGFWgDRDyVibjU0kEB8fff0kS1fhGCNGAtGZjpDPlIT_TK-WJoODlTWYrjc2I1AIf6hAIfDnu2U3kqkyr87cmT59msGKz1YotyeLR0ro');"></div>
-                        <div class="aspect-[16/9] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACECUw_KnhLXMnb6F9-f1UjqQDZmcJHx4SYjUj1mb6ph2IR5GSZe6WNrkPMAttG4tXonAvv8N0deG61gQ0ys_spD1BmtizQ00nyiIL4FBbns6fU22YLwVzIJo8vHxFvL2Hm9PBGVfRp5Qt_yA9nN62RmHj29KjJ_CupZ0NTDzTWvBjuWeNhzL4QPNhwpYeTJHqFgxE0Ydqx8V2dutyRlcc2-TsS74WNSyw0v2prD0r-4lWFMkWQJ4hZaIrFHg3TKsRe_nxky1g0G4');"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Values Section -->
-        <section class="py-32 px-6 lg:px-20 bg-white">
-            <div class="max-w-[1440px] mx-auto">
-                <div class="text-center mb-20">
-                    <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Our Philosophy</span>
-                    <h2 class="font-serif-jp text-4xl mt-6">The Principles That Guide Us</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-12">
-                    <div class="text-center p-8">
-                        <div class="w-16 h-16 mx-auto mb-6 border border-primary/30 rounded-full flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-2xl">auto_stories</span>
-                        </div>
-                        <h3 class="font-serif-jp text-xl mb-4">Ancestral Technique</h3>
-                        <p class="text-sumi/60 font-serif-jp leading-relaxed">
-                            We honor the techniques passed down through generations, combining traditional mastery with contemporary vision.
-                        </p>
-                    </div>
-                    <div class="text-center p-8">
-                        <div class="w-16 h-16 mx-auto mb-6 border border-primary/30 rounded-full flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-2xl">architecture</span>
-                        </div>
-                        <h3 class="font-serif-jp text-xl mb-4">Ma – The Space Between</h3>
-                        <p class="text-sumi/60 font-serif-jp leading-relaxed">
-                            Every line serves a purpose. Every space breathes. We believe in the beauty of essential forms.
-                        </p>
-                    </div>
-                    <div class="text-center p-8">
-                        <div class="w-16 h-16 mx-auto mb-6 border border-primary/30 rounded-full flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-2xl">diamond</span>
-                        </div>
-                        <h3 class="font-serif-jp text-xl mb-4">Uncompromising Quality</h3>
-                        <p class="text-sumi/60 font-serif-jp leading-relaxed">
-                            We accept no substitutes. Only the finest materials, only the most skilled hands, only perfection.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Artisans Section -->
-        <section class="py-32 px-6 lg:px-20 washi-texture">
-            <div class="max-w-[1440px] mx-auto">
-                <div class="text-center mb-20">
-                    <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Master Artisans</span>
-                    <h2 class="font-serif-jp text-4xl mt-6">The Keepers of Tradition</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-12">
-                    <div class="text-center">
-                        <div class="aspect-[3/4] bg-cover bg-center mb-8" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQJirqn1sJutXzDTDcFZabkQGeWPrnAN93jt0JTtx-vrWxNFdTTchwr7I-AKl-M5RjaPLtLvpLSPrZH8UqB2QJBr18JnKUX6uxn_KbP6PJHNecu7GlDXLzoVzZvSln1d2zYif08K8HKAvGtdyAxnKVyk1A9TTPEfYBVWzfW1uMxvzlFOkVogj9JYe3rJbQKFpApiIlUruInLRnHyJg338sfNtiYEEArsIE9VVxIzjAjsWV-mcZVSVeu7GlDXLzoVzZvSln1d2zYif08K8HKAvGtdyAxnKVyk1A9TTPEfYBVWzfW1uMxvzlFOkVogj9JYe3rJbQKFpApiIlUruInLRnHyJg338sfNtiYEEArsIE9VVxIzjAjsWV-mcZVSVeu');"></div>
-                        <h3 class="font-serif-jp text-lg mb-2">Masahiro Kousei</h3>
-                        <p class="text-accent-gold text-xs tracking-widest mb-4 uppercase">5th Generation Master</p>
-                        <p class="text-sumi/60 font-serif-jp text-sm">Living National Treasure, specializing in Urushi lacquerware and tea ceremony implements.</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="aspect-[3/4] bg-cover bg-center mb-8" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-ZCaH5U6OgcgaWg4zcjsWt-SNCMgaq8sB5jS_btADv4Wk-F51NQTLUpOuIvHP6RmiyRYEhHVc3gVIUF7sAbb-TtxhigWVHhKPhegWrbqNwXDgcy-6IOAPOHeOTs7VKvAXZvFPPUQ9ytffmFZhS9HglvvOWhb9rd6wqlOSGFWgDRDyVibjU0kEB8fff0kS1fhGCNGAtGZjpDPlIT_TK-WJoODlTWYrjc2I1AIf6hAIfDnu2U3kqkyr87cmT59msGKz1YotyeLR0ro');"></div>
-                        <h3 class="font-serif-jp text-lg mb-2">Yuki Tanaka</h3>
-                        <p class="text-accent-gold text-xs tracking-widest mb-4 uppercase">Ceramics Master</p>
-                        <p class="text-sumi/60 font-serif-jp text-sm">30 years of experience in traditional kiln firing and contemporary glaze techniques.</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="aspect-[3/4] bg-cover bg-center mb-8" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoY85uATe0RK0pVLV5J_Fe1XTgCYmKLkc3sR6saX-BJb-gk9rbYxfcYc3M07FBsg0rbK4jrNZWFwHS_wSSP7iLUc6BvAA2sL7bkgKVSW72yBZ9oo1G4ofl8wXCVNeBUt43z8gSC_RoxNS24yqHDiTHf5PNZmf8yzCn7xMP251m9N1zN2znDmFO40IW3i8N9shL0TIhRwbva0c0NvFCM2XLh-wxFh4mIr8TFDTP4NE2uqU7G-LPoULR7_y0ryRxoupi6GVNwBQX4F4');"></div>
-                        <h3 class="font-serif-jp text-lg mb-2">Keiko Yamamoto</h3>
-                        <p class="text-accent-gold text-xs tracking-widest mb-4 uppercase">Textile Artist</p>
-                        <p class="text-sumi/60 font-serif-jp text-sm">Master of natural indigo dyeing and traditional Japanese weaving techniques.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-32 px-6 lg:px-20 bg-sumi">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="font-serif-jp text-5xl lg:text-6xl leading-tight mb-8 text-white">Begin your <span class="italic">journey.</span></h2>
-                <p class="text-white/70 text-xl mb-12 max-w-2xl mx-auto font-serif-jp">
-                    Every great piece begins with a conversation. Share your vision with us.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="contact.html" class="bg-primary text-white px-12 py-4 rounded-none text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
-                        Book a Consultation
-                    </a>
-                    <a href="service.html" class="border border-primary/30 text-white px-12 py-4 rounded-none text-xs tracking-[0.2em] uppercase hover:bg-primary/10 transition-colors">
-                        Explore Collection
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-background-light border-t border-primary/10 py-20 px-6 lg:px-20">
-        <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-4 gap-16">
-            <div class="lg:col-span-1 space-y-8">
-                <div class="flex items-center gap-2">
-                    <div class="size-6 text-primary">
-                        <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
-                        </svg>
-                    </div>
-                    <h2 class="font-serif-jp text-lg font-bold tracking-widest uppercase">Kousei</h2>
-                </div>
-                <p class="text-sm leading-relaxed text-sumi/60">
-                    Kyoto Studio<br/>
-                    Higashiyama District, 401<br/>
-                    Japan
-                </p>
-            </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Explore</h5>
-                <ul class="space-y-4 text-sm font-serif-jp tracking-widest">
-                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Our Heritage</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Master Artisans</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="service.html">Private Viewings</a></li>
-                </ul>
-            </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Contact</h5>
-                <ul class="space-y-4 text-sm font-serif-jp tracking-widest">
-                    <li><a class="hover:text-accent-gold transition-colors" href="contact.html">General Inquiry</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="contact.html">Press & Media</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Care Guide</a></li>
-                </ul>
-            </div>
-            <div class="space-y-8">
-                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Newsletter</h5>
-                <div class="relative border-b border-primary pb-2 flex items-center justify-between">
-                    <input class="bg-transparent border-none text-sm font-serif-jp tracking-widest focus:ring-0 w-full placeholder:text-sumi/30" placeholder="Email Address" type="email"/>
-                    <button class="material-symbols-outlined text-sm">arrow_forward</button>
-                </div>
-                <div class="flex gap-6">
-                    <a class="text-sumi/60 hover:text-sumi transition-colors text-xs tracking-[0.2em] uppercase" href="#">Instagram</a>
-                    <a class="text-sumi/60 hover:text-sumi transition-colors text-xs tracking-[0.2em] uppercase" href="#">Pinterest</a>
-                </div>
-            </div>
+        <p class="text-xs font-bold text-primary/60 uppercase tracking-widest">© 2024 VIVID IMPACT STUDIO. ALL RIGHTS RESERVED.</p>
+        <div class="flex gap-6 items-center">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">London / New York / Tokyo</p>
         </div>
-        <div class="max-w-[1440px] mx-auto mt-20 pt-10 border-t border-primary/5 flex flex-col lg:flex-row justify-between items-center gap-6">
-            <span class="text-[10px] tracking-[0.2em] text-sumi/40 uppercase">© 2024 Kousei Artisan Collective. All Rights Reserved.</span>
-            <span class="text-[10px] tracking-[0.2em] text-sumi/40 uppercase font-serif-jp">伝統と革新の調和</span>
-        </div>
-    </footer>
+    </div>
+</footer>
+</div>
 
-    <script>
-        function toggleKouseiMenu() {
-            const menu = document.getElementById('kousei-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.kousei-toggle');
-
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<script src="../../../assets/js/template-common.js" defer></script>
+<script>
+function toggleVMenu() {
+    const menu = document.getElementById('v-mobile-menu');
+    const backdrop = document.querySelector('.v-backdrop');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+    }
+}
+</script>
 </body>
 </html>

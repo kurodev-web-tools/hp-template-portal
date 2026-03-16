@@ -3,486 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - Clean & Trust Medical Center</title>
+    <title>Services | Minimal Architecture</title>
 
     <link rel="canonical" href="https://example.com/templates/business/m/service.html">
-    <meta name="description" content="Clean & Trust Medical Center の専門的な医療サービス。一般検診から専門治療まで、包括的なケアを提供します。">
-    <meta property="og:title" content="Our Services - Clean & Trust Medical Center">
-    <meta property="og:description" content="最先端の医療技術と思いやりのあるケア">
+    <meta name="description" content="Minimal Architecture のサービスとスタジオ情報">
+    <meta property="og:title" content="Services | Minimal Architecture">
+    <meta property="og:description" content="建築デザイン、インテリア設計、マスタープランニング">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/m/service.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalOrganization",
-        "name": "Clean & Trust Medical Center",
-        "description": "高度な医療技術と思いやりのあるケアを提供する医療センター",
-        "medicalSpecialty": "GeneralPractice"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Public Sans', 'Noto Sans JP', sans-serif; }
-        .medical-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border: 1px solid rgba(19, 236, 91, 0.2); transition: all 0.3s ease; }
-        .medical-card:hover { transform: translateY(-4px); box-shadow: 0 4px 20px rgba(19, 236, 91, 0.15); }
-        .medical-hero { background: linear-gradient(135deg, rgba(19, 236, 91, 0.1) 0%, rgba(13, 27, 18, 0.95) 100%); }
-        .medical-btn { background: #13ec5b; color: #0d1b12; font-weight: 700; transition: all 0.2s ease; }
-        .medical-btn:hover { background: #0fc94d; transform: scale(1.02); }
-        .medical-backdrop { background-color: rgba(16, 34, 22, 0.5); backdrop-filter: blur(4px); }
-        .medical-mobile-menu { transition: transform 0.3s ease; }
-        .medical-mobile-menu.active { transform: translateX(0); }
-        .medical-mobile-menu.inactive { transform: translateX(-100%); }
-        .medical-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .medical-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .medical-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .medical-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+        .fine-line {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="text-secondary antialiased">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-6 py-8 md:px-12 flex items-center justify-between border-b border-white/10">
+    <div class="flex items-center gap-2">
+        <a href="index.html" class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-12">
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="index.html">Projects</a>
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="about.html">Philosophy</a>
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="service.html">Studio</a>
+        <a class="text-[10px] font-medium uppercase tracking-[0.3em] hover:opacity-50 transition-opacity text-white" href="contact.html">Contact</a>
+    </nav>
+    <div class="flex gap-4">
+        <button class="flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">
+            <span class="material-symbols-outlined text-sm text-white">search</span>
+        </button>
+        <button class="md:hidden flex items-center justify-center size-8 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all min-toggle" onclick="toggleMinimalMenu()">
+            <span class="material-symbols-outlined text-sm text-white">menu</span>
+        </button>
+    </div>
+</header>
 
-    <div class="medical-backdrop fixed inset-0 z-[9998] xl:hidden hidden"></div>
+<!-- Mobile Menu -->
+<div class="fixed inset-0 z-[9998] hidden backdrop-blur-md" onclick="toggleMinimalMenu()"></div>
+<nav id="min-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-white/10 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-xs font-black tracking-[0.4em] uppercase text-white">Minimal</span>
+            <button class="text-white hover:opacity-50" onclick="toggleMinimalMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-8 flex-1">
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="index.html">Projects</a>
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="about.html">Philosophy</a>
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="service.html">Studio</a>
+            <a class="text-sm font-medium uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors" href="contact.html">Contact</a>
+        </div>
+    </div>
+</nav>
 
-    <button class="medical-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleMedicalMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
+<!-- Hero Section -->
+<section class="relative h-[60vh] w-full flex items-center justify-center p-6 md:p-12 bg-zinc-900">
+    <div class="relative z-10 flex flex-col items-center text-center">
+        <div class="h-16 w-[1px] bg-white/50 mb-8"></div>
+        <h1 class="text-white text-[10px] font-light tracking-[0.8em] uppercase mb-4">What We Do</h1>
+        <h2 class="text-white text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">Services</h2>
+    </div>
+</section>
 
-    <aside id="medical-mobile-menu" class="medical-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
-        <div class="flex items-center gap-3">
-            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <span class="material-symbols-outlined text-3xl">local_hospital</span>
+<!-- Services Grid -->
+<section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col mb-24">
+            <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-4">01 — Expertise</span>
+            <div class="fine-line w-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- Service 1 -->
+            <div class="group">
+                <div class="aspect-[4/5] bg-zinc-800 overflow-hidden mb-8">
+                    <img alt="Architectural design" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80">
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-widest mb-4">Architectural Design</h3>
+                <p class="text-sm font-light leading-relaxed opacity-60">
+                    Full-service architectural design from concept through construction administration. Residential, commercial, and cultural projects.
+                </p>
             </div>
+            <!-- Service 2 -->
+            <div class="group md:mt-12">
+                <div class="aspect-[4/5] bg-zinc-800 overflow-hidden mb-8">
+                    <img alt="Interior design" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80">
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-widest mb-4">Interior Architecture</h3>
+                <p class="text-sm font-light leading-relaxed opacity-60">
+                    Interior spaces designed with the same rigor and restraint as our exteriors. Material selection, lighting, and custom furnishings.
+                </p>
+            </div>
+            <!-- Service 3 -->
+            <div class="group">
+                <div class="aspect-[4/5] bg-zinc-800 overflow-hidden mb-8">
+                    <img alt="Urban planning" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80">
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-widest mb-4">Master Planning</h3>
+                <p class="text-sm font-light leading-relaxed opacity-60">
+                    Large-scale urban and campus planning. Strategic vision for mixed-use developments and institutional projects.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Studio Section -->
+<section class="py-32 px-6 md:px-12 bg-zinc-100 dark:bg-zinc-900/30">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-24">
+            <span class="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/30 dark:text-white/20 mb-4 block">The Studio</span>
+            <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tight">How We Work</h3>
+        </div>
+        <div class="space-y-24">
+            <!-- Phase 1 -->
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/2">
+                    <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 mb-4 block">Phase 01</span>
+                    <h4 class="text-2xl font-bold uppercase tracking-widest mb-6">Discovery</h4>
+                    <p class="text-sm font-light leading-relaxed opacity-60">
+                        Every project begins with deep listening. We study the site, the context, and most importantly, the unspoken needs of those who will inhabit the space.
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 aspect-square bg-zinc-800 overflow-hidden">
+                    <img alt="Studio meeting" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80">
+                </div>
+            </div>
+            <!-- Phase 2 -->
+            <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+                <div class="w-full md:w-1/2">
+                    <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 mb-4 block">Phase 02</span>
+                    <h4 class="text-2xl font-bold uppercase tracking-widest mb-6">Distillation</h4>
+                    <p class="text-sm font-light leading-relaxed opacity-60">
+                        Through iterative sketching and model-making, we reduce the program to its essential elements. What remains is architecture that cannot be otherwise.
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 aspect-square bg-zinc-800 overflow-hidden">
+                    <img alt="Architectural model" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80">
+                </div>
+            </div>
+            <!-- Phase 3 -->
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/2">
+                    <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 mb-4 block">Phase 03</span>
+                    <h4 class="text-2xl font-bold uppercase tracking-widest mb-6">Realization</h4>
+                    <p class="text-sm font-light leading-relaxed opacity-60">
+                        Construction administration ensures every detail is executed with precision. We work closely with builders to maintain the integrity of the design vision.
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 aspect-square bg-zinc-800 overflow-hidden">
+                    <img alt="Construction site" class="w-full h-full object-cover grayscale" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="py-32 px-6 md:px-12 bg-background-light dark:bg-background-dark">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-end mb-16">
             <div>
-                <p class="text-lg font-bold">Clean & Trust</p>
-                <p class="text-xs uppercase tracking-widest text-primary/80">Medical Center</p>
+                <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-primary/40 dark:text-white/40 mb-4 block">Selected Work</span>
+                <h3 class="text-3xl font-black uppercase tracking-tight">Recent Projects</h3>
+            </div>
+            <a href="index.html" class="text-[10px] font-light uppercase tracking-widest italic hover:opacity-50 transition-opacity">View All</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-zinc-800 overflow-hidden mb-6">
+                    <img alt="Project image" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80">
+                </div>
+                <h4 class="text-lg font-bold uppercase tracking-widest mb-2">Void House</h4>
+                <p class="text-[10px] uppercase tracking-widest opacity-50">Kyoto, 2023</p>
+            </div>
+            <div class="group cursor-pointer md:mt-24">
+                <div class="aspect-[4/5] bg-zinc-800 overflow-hidden mb-6">
+                    <img alt="Project image" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1570554882308-1897a39e794d?w=800&q=80">
+                </div>
+                <h4 class="text-lg font-bold uppercase tracking-widest mb-2">Monolith Museum</h4>
+                <p class="text-[10px] uppercase tracking-widest opacity-50">Berlin, 2022</p>
             </div>
         </div>
-        <nav class="mt-10 flex flex-col gap-2">
-            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
-            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
-            <a href="service.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Service</a>
-            <a href="contact.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Contact</a>
-        </nav>
-    </aside>
+    </div>
+</section>
 
-    <header class="fixed top-0 z-50 flex items-center justify-between border-b border-primary/10 bg-background-light/95 backdrop-blur-sm px-6 py-4 lg:px-20">
-        <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <span class="material-symbols-outlined text-3xl">local_hospital</span>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight text-secondary">Clean & Trust</h1>
+<!-- Footer -->
+<footer class="mt-auto border-t border-white/5 bg-background-light dark:bg-background-dark py-20 px-6 md:px-12">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+        <div class="flex flex-col">
+            <h2 class="text-xl font-black tracking-[0.3em] uppercase mb-8">Minimal</h2>
+            <p class="text-[10px] uppercase tracking-widest leading-loose opacity-60 max-w-xs">
+                A design collective focused on the intersection of light, form, and functionality.
+            </p>
         </div>
-        <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
-            <div class="flex items-center gap-8">
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="index.html">Home</a>
-                <a class="text-sm font-medium text-primary" href="service.html">Treatments</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">Our Experts</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">About Us</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="contact.html">Contact</a>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
+            <div class="flex flex-col gap-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Contact</span>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">hello@minimal.com</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">+44 (0) 20 7946 0123</a>
             </div>
-            <button class="h-10 px-6 rounded-lg bg-primary text-secondary text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm">
-                Book Consultation
-            </button>
-        </nav>
-        <div class="md:hidden">
-            <button class="text-secondary" onclick="toggleMedicalMenu()">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-        </div>
-    </header>
-
-    <main class="flex-1 mt-20">
-        <!-- Page Hero -->
-        <section class="relative py-20 lg:py-32 bg-secondary overflow-hidden">
-            <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQXuz8bN3oKfz6rXcDvYdXN5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5Y9X5l5');"></div>
-            <div class="absolute inset-0 z-10 bg-gradient-to-b from-secondary/80 to-secondary"></div>
-            <div class="relative z-20 px-4 lg:px-20">
-                <div class="max-w-4xl">
-                    <span class="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-2 text-sm font-bold uppercase tracking-wide text-primary border border-primary/20 backdrop-blur-md mb-6">
-                        <span class="material-symbols-outlined text-sm">medical_services</span>
-                        Our Services
-                    </span>
-                    <h1 class="text-4xl lg:text-5xl font-black text-white mb-6">
-                        Comprehensive Care<br/> for Every Need
-                    </h1>
-                    <p class="text-lg text-gray-300 max-w-2xl">
-                        From routine checkups to advanced surgical procedures, our state-of-the-art facilities and expert specialists are here to serve your health needs.
-                    </p>
-                </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Social</span>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Behance</a>
             </div>
-        </section>
-
-        <!-- Services Grid -->
-        <section class="py-20 bg-background-off">
-            <div class="px-4 lg:px-20">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Cardiology -->
-                    <div class="medical-card rounded-xl bg-white p-8">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
-                            <span class="material-symbols-outlined text-4xl">cardiology</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-secondary mb-3">Cardiology</h3>
-                        <p class="text-sm text-secondary/60 mb-6">
-                            Comprehensive heart care including diagnostics, treatment, and rehabilitation. Our cardiology team uses cutting-edge technology to diagnose and treat cardiovascular conditions.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Heart Health Screening
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                ECG & Echocardiography
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Cardiac Rehabilitation
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Interventional Procedures
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                            Learn More
-                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-
-                    <!-- Neurology -->
-                    <div class="medical-card rounded-xl bg-white p-8">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
-                            <span class="material-symbols-outlined text-4xl">neurology</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-secondary mb-3">Neurology</h3>
-                        <p class="text-sm text-secondary/60 mb-6">
-                            Advanced neurological care for conditions affecting the brain, spine, and nervous system. Our specialists provide diagnosis and treatment for a wide range of neurological disorders.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Brain Imaging
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Epilepsy Management
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Stroke Care
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Movement Disorders
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                            Learn More
-                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-
-                    <!-- Pediatrics -->
-                    <div class="medical-card rounded-xl bg-white p-8">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
-                            <span class="material-symbols-outlined text-4xl">child_care</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-secondary mb-3">Pediatrics</h3>
-                        <p class="text-sm text-secondary/60 mb-6">
-                            Gentle, specialized care for infants, children, and adolescents. Our pediatric team is trained to handle the unique medical needs of young patients with compassion.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Well-Child Visits
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Vaccinations
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Pediatric Surgery
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Developmental Assessments
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                            Learn More
-                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-
-                    <!-- Dental Care -->
-                    <div class="medical-card rounded-xl bg-white p-8">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
-                            <span class="material-symbols-outlined text-4xl">dentistry</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-secondary mb-3">Dental Care</h3>
-                        <p class="text-sm text-secondary/60 mb-6">
-                            Complete oral health services from routine cleanings to complex restorative procedures. Our dental team combines art and science for beautiful, healthy smiles.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                General Dentistry
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Cosmetic Dentistry
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Oral Surgery
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Orthodontics
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                            Learn More
-                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-
-                    <!-- Orthopedics -->
-                    <div class="medical-card rounded-xl bg-white p-8">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
-                            <span class="material-symbols-outlined text-4xl">orthopedics</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-secondary mb-3">Orthopedics</h3>
-                        <p class="text-sm text-secondary/60 mb-6">
-                            Expert care for bones, joints, muscles, and ligaments. From sports injuries to joint replacement, our orthopedic specialists help you move without pain.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Sports Medicine
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Joint Replacement
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Physical Therapy
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Fracture Care
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                            Learn More
-                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-
-                    <!-- Emergency Care -->
-                    <div class="medical-card rounded-xl bg-white p-8">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6">
-                            <span class="material-symbols-outlined text-4xl">emergency</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-secondary mb-3">Emergency Care</h3>
-                        <p class="text-sm text-secondary/60 mb-6">
-                            24/7 emergency medical services for life-threatening conditions and urgent care needs. Our ER team is ready to provide immediate, life-saving treatment.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                24/7 Availability
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Trauma Care
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Critical Care
-                            </li>
-                            <li class="flex items-center gap-2 text-sm text-secondary/70">
-                                <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                Ambulance Services
-                            </li>
-                        </ul>
-                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                            Learn More
-                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technology Section -->
-        <section class="py-20 bg-white">
-            <div class="px-4 lg:px-20">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <h2 class="text-3xl font-bold text-secondary mb-6">Advanced Medical Technology</h2>
-                        <p class="text-lg text-secondary/70 mb-6">
-                            We invest in the latest medical technology to ensure accurate diagnoses and effective treatments. Our state-of-the-art facilities include:
-                        </p>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-4">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                    <span class="material-symbols-outlined">radar</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-secondary">Advanced Imaging</h4>
-                                    <p class="text-sm text-secondary/60">MRI, CT, and 3D ultrasound systems for precise diagnostics</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                    <span class="material-symbols-outlined">biotech</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-secondary">Robotic Surgery</h4>
-                                    <p class="text-sm text-secondary/60">Minimally invasive procedures with enhanced precision</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary flex-shrink-0">
-                                    <span class="material-symbols-outlined">monitoring</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-secondary">Digital Health Records</h4>
-                                    <p class="text-sm text-secondary/60">Seamless coordination and patient data security</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-1 lg:order-2 relative h-[400px] rounded-2xl overflow-hidden">
-                        <img alt="Advanced medical technology equipment" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpfqqtg4VDaRSGFJG0zlenjdpAwprzsJ5o7CL4Rxf1qFvB7E6Y6TzQ8JJV5LQO5NJtrj1ZNgO04L0fOe6LYRtGQj9BUWkuV574xuTaAgoYCxEfTOGf14bfDkdSF7dkK4lMNJIswpz9Yv4GVwVsd8Fub7z3ZIF_qZIkzmTLwm0yrP1GZI1sq2gYw4n2n2-I-uhMvTdMmAG0XuKfUC7L-EW0EK65OFFx6ALvvxp7RTV40Rcysf8A2SnZgz7YYJ95scceUWRbfzZ90vA"/>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-20 bg-background-off">
-            <div class="px-4 lg:px-20">
-                <div class="rounded-2xl bg-primary p-8 lg:p-12 text-center">
-                    <h2 class="text-2xl lg:text-3xl font-bold text-secondary mb-4">Need to Schedule an Appointment?</h2>
-                    <p class="text-secondary/80 mb-8 max-w-2xl mx-auto">
-                        Our team is ready to provide you with the best medical care. Contact us today to book your consultation.
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="contact.html" class="h-12 px-8 rounded-lg bg-secondary text-primary font-bold hover:bg-secondary/90 transition-colors">
-                            Book Appointment
-                        </a>
-                        <a href="tel:+15551234567" class="h-12 px-8 rounded-lg bg-white/20 text-secondary font-bold hover:bg-white/30 transition-colors backdrop-blur-sm inline-flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">phone</span>
-                            Call Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-background-off pt-16 pb-8 border-t border-primary/20">
-        <div class="px-4 lg:px-20">
-            <div class="grid grid-cols-1 gap-12 md:grid-cols-4 mb-12">
-                <div class="md:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-secondary">
-                            <span class="material-symbols-outlined text-xl">local_hospital</span>
-                        </div>
-                        <span class="text-lg font-bold text-secondary">Clean &amp; Trust</span>
-                    </div>
-                    <p class="text-sm text-secondary/60 leading-relaxed mb-6">
-                        Providing world-class healthcare with a focus on patient comfort, safety, and advanced medical technology.
-                    </p>
-                    <div class="flex gap-4">
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">share</span></a>
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Departments</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Cardiology</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Neurology</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Pediatrics</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Orthopedics</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">Dental Care</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Quick Links</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="index.html">Home</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="about.html">Our Doctors</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Appointment</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="#">Blog</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Contact Us</h4>
-                    <ul class="flex flex-col gap-4">
-                        <li class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-primary mt-0.5 text-lg">location_on</span>
-                            <span class="text-sm text-secondary/60">123 Health Avenue, Medical District, New York, NY 10001</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary text-lg">phone</span>
-                            <span class="text-sm text-secondary/60">+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary text-lg">mail</span>
-                            <span class="text-sm text-secondary/60">support@cleanandtrust.com</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-primary/20 pt-8 text-center md:flex md:justify-between md:text-left">
-                <p class="text-xs text-secondary/40">© 2023 Clean &amp; Trust Medical Center. All rights reserved.</p>
-                <div class="mt-4 flex justify-center gap-6 md:mt-0">
-                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">Privacy Policy</a>
-                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">Terms of Service</a>
-                </div>
+            <div class="flex flex-col gap-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest mb-2">Legal</span>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+                <a class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
             </div>
         </div>
-    </footer>
+    </div>
+    <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-[10px] uppercase tracking-[0.4em] opacity-30">© 2024 Minimal Architecture &amp; Design</p>
+        <div class="flex gap-8">
+            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">London</span>
+            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">Tokyo</span>
+            <span class="text-[10px] uppercase tracking-[0.2em] opacity-30">New York</span>
+        </div>
+    </div>
+</footer>
+</div>
 
-    <script>
-        function toggleMedicalMenu() {
-            const menu = document.getElementById('medical-mobile-menu');
-            const backdrop = document.querySelector('.medical-backdrop');
-            const toggle = document.querySelector('.medical-toggle');
-
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<script>
+function toggleMinimalMenu() {
+    const menu = document.getElementById('min-mobile-menu');
+    const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
+    const toggle = document.querySelector('.min-toggle');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+        toggle.classList.add('active');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+        toggle.classList.remove('active');
+    }
+}
+</script>
 </body>
 </html>

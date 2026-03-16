@@ -1,386 +1,302 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Metro Pulse | Neon Night Culture</title>
-
-    <link rel="canonical" href="https://example.com/templates/business/z/contact.html">
-    <meta name="description" content="Metro Pulse へのお問い合わせ。イベント出演、コラボレーション、メンバーシップ。">
-    <meta property="og:title" content="Contact | Metro Pulse">
-    <meta property="og:description" content="Metro Pulse へのお問い合わせ。">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:url" content="https://example.com/templates/business/z/contact.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EntertainmentBusiness",
-        "name": "Metro Pulse",
-        "description": "Urban underground culture platform",
-        "url": "https://example.com/templates/business/z/contact.html",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "pulse@metro pulse.tokyo"
-        }
-    }
-    </script>
-
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Connect | ZEN_GARDEN - Request Your Invitation</title>
+    <meta content="Begin your mindful leadership journey. Contact ZEN_GARDEN to request a private consultation." name="description">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
-        .neon-glow-pink { box-shadow: 0 0 15px rgba(249, 31, 158, 0.4); }
-        .neon-glow-cyan { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); }
-        .text-glow { text-shadow: 0 0 10px rgba(249, 31, 158, 0.8), 0 0 20px rgba(249, 31, 158, 0.4); }
-        .metro-mobile-menu { transition: transform 0.3s ease; }
-        .metro-mobile-menu.active { transform: translateX(0); }
-        .metro-mobile-menu.inactive { transform: translateX(-100%); }
-        .metro-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .metro-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .metro-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .metro-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-        .contact-input {
-            @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all;
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#768a66",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191b17",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"],
+                        "jp": ["Noto Sans JP", "sans-serif"]
+                    },
+                },
+            },
         }
-        .contact-label {
-            @apply text-[10px] font-bold uppercase tracking-widest opacity-60 mb-2;
+    </script>
+    <style>
+        body {
+            font-family: 'Newsreader', serif;
+        }
+        .font-jp {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .ma-space {
+            padding-top: 15vh;
+            padding-bottom: 15vh;
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary/30">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(10, 5, 8, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="metro-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleMetroMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
-    <aside id="metro-mobile-menu" class="metro-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-500">
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-10 py-6 flex items-center justify-between">
         <div class="flex items-center gap-3">
-            <div class="size-6 text-primary">
-                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
-                </svg>
-            </div>
-            <h1 class="text-2xl font-black tracking-tighter uppercase italic text-slate-100">Metro Pulse</h1>
+            <span class="material-symbols-outlined text-primary text-3xl">filter_vintage</span>
+            <h2 class="text-xl font-light tracking-[0.2em] uppercase">Zen_Garden</h2>
         </div>
-        <nav class="mt-10 flex flex-col gap-2">
-            <a href="index.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
-            <a href="service.html" class="rounded-xl px-4 py-3 hover:bg-white/5">Events</a>
-            <a href="about.html" class="rounded-xl px-4 py-3 hover:bg-white/5">About</a>
-            <a href="contact.html" class="rounded-xl px-4 py-3 bg-primary/10 text-primary">Contact</a>
+        <nav class="hidden md:flex items-center gap-12 text-sm font-medium tracking-widest uppercase opacity-70">
+            <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="hover:text-primary transition-colors" href="about.html">Philosophy</a>
+            <a class="hover:text-primary transition-colors" href="service.html">Services</a>
+            <a class="text-primary transition-colors" href="contact.html">Connect</a>
         </nav>
-    </aside>
+        <button class="bg-primary text-white px-8 py-2 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-primary/90 transition-all">
+            Inquire
+        </button>
+    </div>
+</header>
 
-    <header class="fixed top-0 z-50 w-full border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-4">
-        <div class="flex items-center justify-between max-w-[1440px] mx-auto">
-            <div class="flex items-center gap-12">
-                <div class="flex items-center gap-3">
-                    <div class="size-6 text-primary">
-                        <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
-                        </svg>
+<main class="w-full">
+    <!-- Hero Section -->
+    <section class="relative h-[80vh] w-full flex items-center justify-center overflow-hidden bg-background-light dark:bg-background-dark">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img alt="Serene zen garden water feature" class="w-full h-full object-cover grayscale" src="https://placehold.co/1920x1080/768a66/f7f7f7?text=Connect">
+        </div>
+        <div class="relative z-10 text-center space-y-6 max-w-3xl px-10">
+            <h1 class="text-5xl md:text-7xl font-extralight tracking-tight">
+                Connect
+            </h1>
+            <p class="text-lg md:text-xl font-light italic opacity-60 max-w-xl mx-auto">
+                The journey begins with a single breath.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="ma-space bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Form -->
+                <div>
+                    <h2 class="text-2xl font-light mb-8">Request an Invitation</h2>
+                    <p class="text-lg opacity-70 mb-10 leading-relaxed">
+                        We welcome your inquiry with gratitude. Please share what calls you to this practice, and we will respond with care.
+                    </p>
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none" placeholder="">
+                            </div>
+                            <div>
+                                <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none" placeholder="">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none" placeholder="">
+                        </div>
+                        <div>
+                            <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">Organization</label>
+                            <input type="text" class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none" placeholder="">
+                        </div>
+                        <div>
+                            <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">Role</label>
+                            <input type="text" class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none" placeholder="">
+                        </div>
+                        <div>
+                            <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">What brings you to ZEN_GARDEN?</label>
+                            <textarea rows="5" class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none resize-none" placeholder="Share your intentions..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm uppercase tracking-widest opacity-60 mb-3">Interest</label>
+                            <select class="w-full px-4 py-3 bg-transparent border border-primary/20 focus:border-primary transition-colors outline-none">
+                                <option value="">Select an option</option>
+                                <option value="retreat">Executive Retreat</option>
+                                <option value="team">Team Alignment</option>
+                                <option value="consulting">Organizational Consulting</option>
+                                <option value="coaching">Individual Coaching</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-4 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-primary/90 transition-all">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+                <!-- Contact Info -->
+                <div class="space-y-12">
+                    <div>
+                        <h3 class="text-xl font-light mb-6">Sanctuaries</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary opacity-60">location_on</span>
+                                <div>
+                                    <p class="font-medium tracking-wide mb-1">Kyoto (Headquarters)</p>
+                                    <p class="text-sm opacity-60 leading-relaxed">
+                                        Higashiyama District<br>
+                                        Kyoto, 605-0000<br>
+                                        Japan
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary opacity-60">location_on</span>
+                                <div>
+                                    <p class="font-medium tracking-wide mb-1">Zurich</p>
+                                    <p class="text-sm opacity-60 leading-relaxed">
+                                        Bahnhofstrasse 1<br>
+                                        8001 Zürich<br>
+                                        Switzerland
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary opacity-60">location_on</span>
+                                <div>
+                                    <p class="font-medium tracking-wide mb-1">San Francisco</p>
+                                    <p class="text-sm opacity-60 leading-relaxed">
+                                        Pacific Heights<br>
+                                        San Francisco, CA 94115<br>
+                                        United States
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary opacity-60">location_on</span>
+                                <div>
+                                    <p class="font-medium tracking-wide mb-1">New York</p>
+                                    <p class="text-sm opacity-60 leading-relaxed">
+                                        Tribeca<br>
+                                        New York, NY 10013<br>
+                                        United States
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="text-xl font-black tracking-tighter uppercase italic">Metro Pulse</h2>
+                    <div class="border-t border-primary/10 pt-10">
+                        <h3 class="text-xl font-light mb-6">Direct Contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined text-primary opacity-60">mail</span>
+                                <a href="mailto:inquiry@zengarden.com" class="hover:text-primary transition-colors">inquiry@zengarden.com</a>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined text-primary opacity-60">call</span>
+                                <a href="tel:+81751234567" class="hover:text-primary transition-colors">+81 75 123 4567</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t border-primary/10 pt-10">
+                        <h3 class="text-xl font-light mb-6">Response Time</h3>
+                        <p class="text-lg opacity-70 leading-relaxed">
+                            We respond to all inquiries within 48 hours with thoughtful consideration. Each request receives personal attention from our team.
+                        </p>
+                    </div>
                 </div>
-                <nav class="hidden lg:flex items-center gap-10">
-                    <a class="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" href="service.html">Events</a>
-                    <a class="text-sm font-bold tracking-widest uppercase hover:text-cyan-neon transition-colors" href="service.html">Projects</a>
-                    <a class="text-sm font-bold tracking-widest uppercase hover:text-purple-neon transition-colors" href="about.html">Artists</a>
-                    <a class="text-sm font-bold tracking-widest uppercase hover:text-white transition-colors" href="about.html">Pulse Lab</a>
-                </nav>
-            </div>
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex bg-white/5 border border-white/10 rounded-lg px-4 py-1.5 items-center gap-3">
-                    <span class="material-symbols-outlined text-sm text-slate-400">search</span>
-                    <input class="bg-transparent border-none focus:ring-0 text-sm w-32 placeholder:text-slate-500" placeholder="Find the vibe..." type="text"/>
-                </div>
-                <a href="contact.html" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-lg font-black text-xs uppercase tracking-widest transition-all neon-glow-pink">
-                    Join the Pulse
-                </a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="relative h-[40vh] flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-primary/20 to-background-dark"></div>
-            <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 2px 2px, rgba(249,31,158,0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
-            <div class="relative z-10 text-center px-4">
-                <div class="inline-block px-4 py-1 bg-primary/20 border border-primary/50 text-primary rounded-full text-[10px] font-black tracking-[0.3em] uppercase mb-6">
-                    Get in Touch
-                </div>
-                <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter text-white mb-4">
-                    CONNECT <span class="text-primary text-glow">WITH US</span>
-                </h1>
-                <div class="h-1 w-24 bg-primary mx-auto"></div>
+    <!-- FAQ Section -->
+    <section class="py-32 bg-background-light dark:bg-background-dark border-y border-primary/5">
+        <div class="max-w-4xl mx-auto px-10">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase tracking-[0.4em] font-bold text-primary mb-4">Inquiries</h2>
+                <h3 class="text-3xl font-light">Common Questions</h3>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="py-24 px-6 md:px-20">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    <!-- Contact Form -->
-                    <div>
-                        <h2 class="text-primary font-black uppercase tracking-widest text-sm mb-8">Send a Signal</h2>
-                        <form class="space-y-6">
-                            <div>
-                                <label class="contact-label" for="name">Identifier</label>
-                                <input class="contact-input" id="name" name="name" type="text" placeholder="Your name or alias"/>
-                            </div>
-                            <div>
-                                <label class="contact-label" for="email">Comm Channel</label>
-                                <input class="contact-input" id="email" name="email" type="email" placeholder="your@email.com"/>
-                            </div>
-                            <div>
-                                <label class="contact-label" for="type">Signal Type</label>
-                                <select class="contact-input" id="type" name="type">
-                                    <option value="">Select inquiry type...</option>
-                                    <option value="booking">Artist Booking</option>
-                                    <option value="collab">Collaboration</option>
-                                    <option value="membership">Membership Inquiry</option>
-                                    <option value="press">Press & Media</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="contact-label" for="message">Transmission</label>
-                                <textarea class="contact-input min-h-[150px] resize-y" id="message" name="message" rows="5" placeholder="Your message..."></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-primary text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest neon-glow-pink hover:scale-105 transition-transform">
-                                Transmit
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="space-y-12">
-                        <div>
-                            <h2 class="text-cyan-neon font-black uppercase tracking-widest text-sm mb-8">Frequency</h2>
-                            <div class="space-y-6">
-                                <div class="flex gap-4 items-start">
-                                    <span class="material-symbols-outlined text-3xl text-primary flex-shrink-0">mail</span>
-                                    <div>
-                                        <h3 class="font-bold text-xs uppercase mb-1">Digital Mail</h3>
-                                        <p class="text-slate-400 text-sm">pulse@metropulse.tokyo</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4 items-start">
-                                    <span class="material-symbols-outlined text-3xl text-cyan-neon flex-shrink-0">phone</span>
-                                    <div>
-                                        <h3 class="font-bold text-xs uppercase mb-1">Voice Line</h3>
-                                        <p class="text-slate-400 text-sm">+81 (0)3-5555-0199</p>
-                                        <p class="text-slate-500 text-xs mt-1">Mon-Fri, 2 PM - 10 PM JST</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4 items-start">
-                                    <span class="material-symbols-outlined text-3xl text-purple-neon flex-shrink-0">location_on</span>
-                                    <div>
-                                        <h3 class="font-bold text-xs uppercase mb-1">Physical Location</h3>
-                                        <p class="text-slate-400 text-sm">
-                                            3-14-8 Shibuya, B2F<br/>
-                                            Tokyo 150-0001, Japan
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Social Links -->
-                        <div class="border-t border-white/10 pt-8">
-                            <h3 class="font-bold text-xs uppercase mb-6">Social Frequencies</h3>
-                            <div class="flex flex-wrap gap-4">
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-primary transition-colors">
-                                    <span class="material-symbols-outlined text-sm">brand_family</span>
-                                    <span class="text-xs uppercase font-bold">Instagram</span>
-                                </a>
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-cyan-neon transition-colors">
-                                    <span class="material-symbols-outlined text-sm">share</span>
-                                    <span class="text-xs uppercase font-bold">Twitter</span>
-                                </a>
-                                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:border-purple-neon transition-colors">
-                                    <span class="material-symbols-outlined text-sm">podcasts</span>
-                                    <span class="text-xs uppercase font-bold">SoundCloud</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Office Hours -->
-                        <div class="border border-white/10 rounded-2xl p-6 bg-white/5">
-                            <h3 class="font-bold text-xs uppercase mb-4">Operating Hours</h3>
-                            <div class="space-y-2 text-sm">
-                                <div class="flex justify-between">
-                                    <span class="text-slate-400">Mon - Thu</span>
-                                    <span>2 PM - 10 PM</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-slate-400">Fri - Sat</span>
-                                    <span>2 PM - 2 AM</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-slate-400">Sun</span>
-                                    <span>2 PM - 8 PM</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-24 px-6 md:px-20 bg-white/5">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-center text-3xl md:text-4xl font-black italic tracking-tighter mb-12">
-                    FREQUENT <span class="text-primary">QUERIES</span>
-                </h2>
-                <div class="space-y-4">
-                    <details class="group border border-white/10 rounded-xl bg-background-dark/50">
-                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold uppercase text-sm">
-                            How do I book artists for events?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                        </summary>
-                        <div class="px-6 pb-6 text-slate-400 text-sm leading-relaxed">
-                            Submit a booking inquiry through this form with your event details, budget range, and preferred dates. Our artist relations team responds within 48 hours with availability and rates.
-                        </div>
-                    </details>
-                    <details class="group border border-white/10 rounded-xl bg-background-dark/50">
-                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold uppercase text-sm">
-                            Can I volunteer at events?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                        </summary>
-                        <div class="px-6 pb-6 text-slate-400 text-sm leading-relaxed">
-                            Yes! We have a volunteer program for dedicated community members. Volunteers receive free entry to events in exchange for assistance with setup, guest management, or breakdown.
-                        </div>
-                    </details>
-                    <details class="group border border-white/10 rounded-xl bg-background-dark/50">
-                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold uppercase text-sm">
-                            How do I become a member?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                        </summary>
-                        <div class="px-6 pb-6 text-slate-400 text-sm leading-relaxed">
-                            Membership is currently invite-only with quarterly opening periods. Join our newsletter to be notified when applications open. Priority goes to active community participants and event attendees.
-                        </div>
-                    </details>
-                    <details class="group border border-white/10 rounded-xl bg-background-dark/50">
-                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold uppercase text-sm">
-                            Do you accept demo submissions?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                        </summary>
-                        <div class="px-6 pb-6 text-slate-400 text-sm leading-relaxed">
-                            Yes, we accept demos every first Monday of the month. Send a private SoundCloud or Dropbox link with 3-5 tracks. We respond to all submissions within 2 weeks.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-32 px-6 md:px-20 text-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-background-dark to-primary/10"></div>
-            <div class="relative z-10">
-                <h2 class="text-4xl md:text-6xl font-black italic tracking-tighter mb-8">
-                    JOIN THE <span class="text-primary text-glow">MIDNIGHT</span> MOVEMENT
-                </h2>
-                <p class="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
-                    Be part of the urban revolution. Get exclusive access to events, artist collaborations, and early-bird tickets.
-                </p>
-                <a href="contact.html" class="inline-block bg-primary text-white px-12 py-5 rounded-xl font-black uppercase tracking-widest neon-glow-pink hover:scale-105 transition-transform">
-                    Become a Member
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-background-dark pt-32 pb-10 px-6 md:px-20 border-t border-white/5">
-        <div class="max-w-[1440px] mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
-                <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="size-6 text-primary">
-                            <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
-                            </svg>
-                        </div>
-                        <h2 class="text-2xl font-black tracking-tighter uppercase italic">Metro Pulse</h2>
-                    </div>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        Pioneering the midnight urban aesthetic since 2024. Your guide to the pulse of the city.
+            <div class="space-y-8">
+                <!-- FAQ 1 -->
+                <div class="border-b border-primary/10 pb-8">
+                    <h4 class="text-lg font-medium mb-4">What is the typical investment for an executive retreat?</h4>
+                    <p class="opacity-70 leading-relaxed">
+                        Our residential retreats begin at $35,000 for a 5-day immersion at our Kyoto sanctuary. Custom programs and extended stays are available upon consultation.
                     </p>
                 </div>
-                <div>
-                    <h5 class="text-white font-black uppercase text-xs tracking-[0.2em] mb-8">Navigation</h5>
-                    <ul class="space-y-4 text-slate-400 text-sm font-medium">
-                        <li><a class="hover:text-primary transition-colors" href="service.html">Events Calendar</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="service.html">Lab Projects</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="about.html">Artist Directory</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="service.html">Venues</a></li>
-                    </ul>
+                <!-- FAQ 2 -->
+                <div class="border-b border-primary/10 pb-8">
+                    <h4 class="text-lg font-medium mb-4">Do you offer virtual programs?</h4>
+                    <p class="opacity-70 leading-relaxed">
+                        While we believe in the transformative power of physical presence at our sanctuaries, we do offer follow-up virtual coaching sessions for retreat alumni.
+                    </p>
                 </div>
-                <div>
-                    <h5 class="text-white font-black uppercase text-xs tracking-[0.2em] mb-8">Resources</h5>
-                    <ul class="space-y-4 text-slate-400 text-sm font-medium">
-                        <li><a class="hover:text-cyan-neon transition-colors" href="about.html">Pulse API</a></li>
-                        <li><a class="hover:text-cyan-neon transition-colors" href="about.html">Media Kit</a></li>
-                        <li><a class="hover:text-cyan-neon transition-colors" href="about.html">Partnerships</a></li>
-                        <li><a class="hover:text-cyan-neon transition-colors" href="#">Legal</a></li>
-                    </ul>
+                <!-- FAQ 3 -->
+                <div class="border-b border-primary/10 pb-8">
+                    <h4 class="text-lg font-medium mb-4">Is ZEN_GARDEN affiliated with any religion?</h4>
+                    <p class="opacity-70 leading-relaxed">
+                        No. While our practice draws wisdom from Zen Buddhism and other contemplative traditions, we welcome leaders of all backgrounds. Our approach is secular and inclusive.
+                    </p>
                 </div>
-                <div>
-                    <h5 class="text-white font-black uppercase text-xs tracking-[0.2em] mb-8">Newsletter</h5>
-                    <p class="text-slate-500 text-xs mb-6">Stay ahead of the rhythm. Weekly drops in your inbox.</p>
-                    <div class="flex gap-2">
-                        <input class="bg-white/5 border-white/10 rounded-lg text-sm flex-grow focus:ring-primary focus:border-primary" placeholder="Pulse Email" type="email"/>
-                        <button class="bg-primary text-white p-2 rounded-lg hover:neon-glow-pink">
-                            <span class="material-symbols-outlined">send</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
-                <p class="text-slate-600 text-[10px] uppercase font-bold tracking-widest">© 2024 Metro Pulse Media Group. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a class="text-slate-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">brand_family</span></a>
-                    <a class="text-slate-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
-                    <a class="text-slate-400 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">podcasts</span></a>
+                <!-- FAQ 4 -->
+                <div class="border-b border-primary/10 pb-8">
+                    <h4 class="text-lg font-medium mb-4">What can I expect during my first visit?</h4>
+                    <p class="opacity-70 leading-relaxed">
+                        Begin with silence. Your initial consultation — whether virtual or in-person — starts with a guided meditation, followed by deep listening. We seek to understand your unique situation before proposing any path forward.
+                    </p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        function toggleMetroMenu() {
-            const menu = document.getElementById('metro-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.metro-toggle');
+    <!-- Map Section -->
+    <section class="w-full h-96 bg-primary/5 overflow-hidden">
+        <div class="w-full h-full relative">
+            <img alt="World map showing sanctuary locations" class="w-full h-full object-cover grayscale opacity-30" src="https://placehold.co/1920x720/768a66/f7f7f7?text=Global+Sanctuaries+Map">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-background-light/90 dark:bg-background-dark/90 px-12 py-6 rounded-lg shadow-sm border border-primary/10 text-center">
+                    <p class="text-xs uppercase tracking-widest font-bold text-primary mb-2">Four Sanctuaries</p>
+                    <p class="text-sm opacity-60 tracking-wider">Kyoto · Zurich · San Francisco · New York</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+    <!-- Closing CTA -->
+    <section class="ma-space bg-background-light dark:bg-background-dark text-center">
+        <div class="max-w-2xl mx-auto px-10 space-y-8">
+            <div class="w-px h-16 bg-primary/20 mx-auto"></div>
+            <h2 class="text-3xl font-light">In Stillness, We Await You</h2>
+            <a href="contact.html" class="inline-block bg-primary text-white px-12 py-3 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-primary/90 transition-all">
+                Begin Your Journey
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark py-20 border-t border-primary/5">
+    <div class="max-w-7xl mx-auto px-10">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="flex items-center gap-3 opacity-50">
+                <span class="material-symbols-outlined text-primary text-2xl">filter_vintage</span>
+                <h2 class="text-lg font-light tracking-[0.2em] uppercase">Zen_Garden</h2>
+            </div>
+            <div class="flex gap-12 text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">
+                <a class="hover:text-primary transition-colors" href="about.html">Philosophy</a>
+                <a class="hover:text-primary transition-colors" href="service.html">Services</a>
+                <a class="hover:text-primary transition-colors" href="#">Journal</a>
+                <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+            </div>
+            <div class="flex gap-6 opacity-40">
+                <a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">share</span></a>
+                <a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-xl">mail</span></a>
+            </div>
+        </div>
+        <div class="mt-20 text-center opacity-30">
+            <p class="text-[10px] tracking-widest uppercase">© 2024 Zen Garden Sanctuary. All things in balance.</p>
+        </div>
+    </div>
+</footer>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

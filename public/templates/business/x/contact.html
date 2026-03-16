@@ -3,380 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | SYSTYX CORE | Systemic Infrastructure</title>
+    <title>XTREME_SNAP - Contact</title>
 
     <link rel="canonical" href="https://example.com/templates/business/x/contact.html">
-    <meta name="description" content="SYSTYX CORE へのお問い合わせ。デプロイの相談、エンタープライス営業、技術サポート。">
-    <meta property="og:title" content="Contact | SYSTYX CORE">
-    <meta property="og:description" content="SYSTYX CORE へのお問い合わせ。">
+    <meta name="description" content="XTREME_SNAP - お問い合わせ・イベント情報">
+    <meta property="og:title" content="XTREME SNAP | Contact">
+    <meta property="og:description" content="Join the Revolution">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/x/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "SYSTYX CORE",
-        "description": "Systemic infrastructure for enterprise scale",
-        "applicationCategory": "BusinessApplication",
-        "url": "https://example.com/templates/business/x/contact.html",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "deploy@systyx.core",
-            "contactType": "sales"
-        }
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
-        .systyx-mobile-menu { transition: transform 0.3s ease; }
-        .systyx-mobile-menu.active { transform: translateX(0); }
-        .systyx-mobile-menu.inactive { transform: translateX(-100%); }
-        .systyx-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .systyx-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .systyx-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .systyx-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-        .contact-input {
-            @apply w-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-mono;
-        }
-        .contact-label {
-            @apply block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2;
-        }
+        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
+        .skew-slant { transform: skewX(-6deg); }
+        .skew-slant-reverse { transform: skewX(6deg); }
+        .text-stroke { -webkit-text-stroke: 1px rgba(226, 244, 37, 0.5); color: transparent; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(16, 25, 34, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="systyx-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded border border-primary/20 bg-background-dark/85 text-white shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleSystyxMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-
-    <aside id="systyx-mobile-menu" class="systyx-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-white/10 bg-slate-950/96 p-6 text-white shadow-2xl">
-        <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-3xl text-primary">terminal</span>
-            <h1 class="text-sm font-black leading-tight tracking-tighter uppercase text-slate-100">SYSTYX CORE</h1>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Navigation -->
+<header class="fixed top-0 w-full z-50 bg-background-dark/90 backdrop-blur-md border-b border-primary/20 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+                <h2 class="text-slate-100 text-2xl font-black tracking-tighter italic">XTREME_SNAP</h2>
+            </div>
+            <nav class="hidden md:flex items-center gap-6">
+                <a class="text-slate-100 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest" href="index.html">Athletes</a>
+                <a class="text-slate-100 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest" href="service.html">Gear</a>
+                <a class="text-slate-100 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest" href="about.html">Energy</a>
+                <a class="text-primary transition-colors text-sm font-bold uppercase tracking-widest" href="contact.html">Events</a>
+            </nav>
         </div>
-        <nav class="mt-10 flex flex-col gap-2">
-            <a href="index.html" class="rounded px-4 py-3 hover:bg-white/5 text-[11px] font-bold uppercase tracking-wider">Home</a>
-            <a href="about.html" class="rounded px-4 py-3 hover:bg-white/5 text-[11px] font-bold uppercase tracking-wider">About</a>
-            <a href="service.html" class="rounded px-4 py-3 hover:bg-white/5 text-[11px] font-bold uppercase tracking-wider">Services</a>
-            <a href="contact.html" class="rounded px-4 py-3 bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider">Contact</a>
-        </nav>
-    </aside>
-
-    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-2">
-        <div class="flex items-center justify-between mx-auto max-w-[1440px]">
-            <div class="flex items-center gap-6">
-                <div class="flex items-center gap-2 text-primary">
-                    <span class="material-symbols-outlined text-3xl">terminal</span>
-                    <h2 class="text-slate-900 dark:text-slate-100 text-sm font-black leading-tight tracking-tighter uppercase">SYSTYX CORE</h2>
-                </div>
-                <nav class="hidden md:flex items-center gap-6 border-l border-slate-200 dark:border-slate-800 pl-6">
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Nodes</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Mesh API</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Registry</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="about.html">Analytics</a>
-                </nav>
+        <div class="flex items-center gap-4">
+            <div class="hidden lg:flex items-center bg-white/5 border border-white/10 rounded px-3 py-1">
+                <span class="material-symbols-outlined text-primary/60 text-xl">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-xs font-bold text-white placeholder:text-white/30 w-32" placeholder="SEARCH" type="text">
             </div>
-            <div class="flex items-center gap-4">
-                <div class="relative hidden sm:block">
-                    <span class="material-symbols-outlined absolute left-2 top-1.5 text-slate-500 text-sm">search</span>
-                    <input class="w-48 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-[11px] py-1.5 pl-8 pr-2 focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-slate-500" placeholder="SEARCH SYSTEM..." type="text"/>
-                </div>
-                <a href="contact.html" class="bg-primary text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded hover:bg-blue-600 transition-colors">
-                    Deploy Instance
-                </a>
-                <div class="size-8 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700"></div>
-            </div>
+            <button class="bg-primary hover:bg-white text-background-dark font-black px-6 py-2 skew-slant transition-all">
+                <span class="inline-block skew-slant-reverse text-sm uppercase">Join Now</span>
+            </button>
         </div>
-    </header>
+        <button class="md:hidden text-white" onclick="toggleXMenu()">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
+</header>
 
-    <main class="flex-1 w-full max-w-[1440px] mx-auto px-6 py-8">
-        <!-- Hero Section -->
-        <section class="border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-8 lg:p-12 mb-8">
-            <div class="max-w-4xl">
-                <div class="inline-flex items-center gap-2 px-2 py-1 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-bold uppercase tracking-widest mb-6">
-                    Initialize Contact
-                </div>
-                <h1 class="text-slate-900 dark:text-slate-100 text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight mb-6">
-                    DEPLOY YOUR INFRASTRUCTURE.
-                </h1>
-                <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed max-w-2xl">
-                    Ready to initialize SYSTYX CORE? Contact our team for deployment planning, enterprise pricing, or technical consultation.
-                </p>
+<!-- Mobile Menu -->
+<div class="x-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleXMenu()"></div>
+<nav id="x-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-primary/20 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+                <span class="text-2xl font-black tracking-tighter italic text-white">XTREME_SNAP</span>
             </div>
-        </section>
+            <button class="text-white/50 hover:text-white" onclick="toggleXMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-6 flex-1">
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="index.html" onclick="toggleXMenu()">Athletes</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="service.html" onclick="toggleXMenu()">Gear</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="about.html" onclick="toggleXMenu()">Energy</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-primary" href="contact.html" onclick="toggleXMenu()">Events</a>
+        </div>
+        <button class="w-full bg-primary text-background-dark px-8 py-4 font-black uppercase tracking-widest skew-slant hover:bg-white transition-colors">
+            <span class="inline-block skew-slant-reverse">Join Now</span>
+        </button>
+    </div>
+</nav>
 
-        <!-- Contact Form & Info -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[50vh] flex flex-col justify-center items-center pt-20 px-4 bg-background-dark">
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-primary rounded-full blur-[150px] opacity-30"></div>
+    </div>
+    <div class="relative z-10 text-center">
+        <span class="inline-block bg-primary text-background-dark px-4 py-2 font-bold text-xs uppercase tracking-widest mb-6 skew-slant">
+            <span class="inline-block skew-slant-reverse">GET IN TOUCH</span>
+        </span>
+        <h1 class="text-6xl md:text-9xl font-black leading-[0.8] tracking-tighter uppercase text-white mb-8 skew-slant">
+            JOIN THE <span class="text-primary italic">REVOLUTION</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-400 uppercase tracking-widest font-light">
+            READY TO BREAK LIMITS?
+        </p>
+    </div>
+</section>
+
+<!-- Contact Form & Info -->
+<section class="py-24 px-6 md:px-12 bg-background-dark border-t border-primary/20">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16">
             <!-- Contact Form -->
-            <div class="border border-slate-200 dark:border-slate-800 p-8 bg-background-light dark:bg-background-dark">
-                <h2 class="font-black uppercase text-sm mb-6">Deployment Inquiry</h2>
+            <div>
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="material-symbols-outlined text-primary text-2xl">send</span>
+                    <h2 class="text-2xl font-black italic text-white">SEND MESSAGE</h2>
+                </div>
                 <form class="space-y-6">
-                    <div>
-                        <label class="contact-label" for="name">IDENTIFIER</label>
-                        <input class="contact-input" id="name" name="name" type="text" placeholder="Full Name"/>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Name *</label>
+                            <input type="text" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" placeholder="YOUR NAME">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Email *</label>
+                            <input type="email" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" placeholder="YOUR@EMAIL.COM">
+                        </div>
                     </div>
                     <div>
-                        <label class="contact-label" for="email">COMM CHANNEL</label>
-                        <input class="contact-input" id="email" name="email" type="email" placeholder="email@domain.com"/>
-                    </div>
-                    <div>
-                        <label class="contact-label" for="company">ORGANIZATION</label>
-                        <input class="contact-input" id="company" name="company" type="text" placeholder="Company / Institution"/>
-                    </div>
-                    <div>
-                        <label class="contact-label" for="type">DEPLOYMENT TYPE</label>
-                        <select class="contact-input" id="type" name="type">
-                            <option value="">Select deployment tier...</option>
-                            <option value="community">Community Node (Free)</option>
-                            <option value="enterprise">Enterprise Mesh ($2,400/mo)</option>
-                            <option value="global">Global Fabric (Custom)</option>
-                            <option value="onprem">On-Premise Installation</option>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Subject *</label>
+                        <select class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors">
+                            <option value="">SELECT SUBJECT</option>
+                            <option value="sponsorship">Sponsorship Inquiry</option>
+                            <option value="events">Event Participation</option>
+                            <option value="gear">Gear Support</option>
+                            <option value="press">Press/Media</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                     <div>
-                        <label class="contact-label" for="message">PAYLOAD</label>
-                        <textarea class="contact-input min-h-[150px] resize-y" id="message" name="message" rows="5" placeholder="Describe your infrastructure requirements..."></textarea>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Sport</label>
+                        <select class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors">
+                            <option value="">SELECT SPORT</option>
+                            <option value="motocross">Motocross</option>
+                            <option value="bmx">BMX</option>
+                            <option value="snowboard">Snowboard</option>
+                            <option value="parkour">Parkour</option>
+                            <option value="skateboard">Skateboard</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
-                    <button type="submit" class="w-full bg-primary text-white text-[11px] font-bold uppercase py-4 rounded hover:bg-blue-600 transition-colors">
-                        Transmit Inquiry
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Message *</label>
+                        <textarea rows="5" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors" placeholder="TELL US ABOUT YOUR PROJECT..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-background-dark py-4 font-black uppercase tracking-widest hover:bg-white transition-colors skew-slant">
+                        <span class="inline-block skew-slant-reverse">SEND MESSAGE</span>
                     </button>
                 </form>
             </div>
-
             <!-- Contact Info -->
             <div class="space-y-8">
                 <div>
-                    <h2 class="font-black uppercase text-sm mb-6">System Endpoints</h2>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 items-start">
-                            <span class="material-symbols-outlined text-3xl text-primary flex-shrink-0">mail</span>
-                            <div>
-                                <h3 class="font-bold text-xs uppercase mb-1">Electronic Mail</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm font-mono">deploy@systyx.core</p>
-                                <p class="text-slate-500 text-[11px] mt-1">General inquiries &amp; deployment requests</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-start">
-                            <span class="material-symbols-outlined text-3xl text-primary flex-shrink-0">phone</span>
-                            <div>
-                                <h3 class="font-bold text-xs uppercase mb-1">Voice Channel</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm font-mono">+1 (415) 555-0142</p>
-                                <p class="text-slate-500 text-[11px] mt-1">Mon-Fri, 9AM-6PM PST</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-start">
-                            <span class="material-symbols-outlined text-3xl text-primary flex-shrink-0">location_on</span>
-                            <div>
-                                <h3 class="font-bold text-xs uppercase mb-1">Physical Node</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm">548 Market Street, Suite 89200<br/>San Francisco, CA 94104</p>
-                                <p class="text-slate-500 text-[11px] mt-1">United States</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-start">
-                            <span class="material-symbols-outlined text-3xl text-primary flex-shrink-0">schedule</span>
-                            <div>
-                                <h3 class="font-bold text-xs uppercase mb-1">Support Window</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm">Enterprise: 24/7/365</p>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm">Community: Business Hours PST</p>
-                            </div>
-                        </div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+                        <h2 class="text-2xl font-black italic text-white">HEADQUARTERS</h2>
+                    </div>
+                    <div class="border border-primary/30 bg-background-dark/50 p-6">
+                        <h3 class="text-sm font-bold text-primary uppercase tracking-widest mb-2">TOKYO</h3>
+                        <p class="text-slate-400 text-sm">Shibuya-ku, Tokyo<br>Japan</p>
                     </div>
                 </div>
-
-                <!-- Regional Nodes -->
-                <div class="border-t border-slate-200 dark:border-slate-800 pt-8">
-                    <h3 class="font-bold text-xs uppercase mb-4">Regional Sales Nodes</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800">
-                            <span class="font-mono text-[11px]">EMEA (London)</span>
-                            <span class="text-slate-500 font-mono text-[11px]">emea@systyx.core</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800">
-                            <span class="font-mono text-[11px]">APAC (Singapore)</span>
-                            <span class="text-slate-500 font-mono text-[11px]">apac@systyx.core</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-800">
-                            <span class="font-mono text-[11px]">LATAM (São Paulo)</span>
-                            <span class="text-slate-500 font-mono text-[11px]">latam@systyx.core</span>
-                        </div>
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl">email</span>
+                        <h2 class="text-2xl font-black italic text-white">DIRECT CONTACT</h2>
                     </div>
-                </div>
-
-                <!-- Status Indicators -->
-                <div class="border border-slate-200 dark:border-slate-800 p-4 bg-slate-50 dark:bg-slate-900/50">
-                    <h3 class="font-bold text-xs uppercase mb-4">System Status</h3>
                     <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-[11px] text-slate-500">API Gateway</span>
-                            <span class="text-[11px] text-green-500 flex items-center gap-2">
-                                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                                OPERATIONAL
-                            </span>
+                        <div class="flex items-center justify-between border border-primary/30 bg-background-dark/50 p-4">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">General</span>
+                            <a href="mailto:hello@xtremesnap.co" class="text-sm font-bold text-primary hover:text-white transition-colors">hello@xtremesnap.co</a>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[11px] text-slate-500">Mesh Network</span>
-                            <span class="text-[11px] text-green-500 flex items-center gap-2">
-                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-                                99.9999% UPTIME
-                            </span>
+                        <div class="flex items-center justify-between border border-primary/30 bg-background-dark/50 p-4">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Sponsorship</span>
+                            <a href="mailto:sponsor@xtremesnap.co" class="text-sm font-bold text-primary hover:text-white transition-colors">sponsor@xtremesnap.co</a>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[11px] text-slate-500">Support Queue</span>
-                            <span class="text-[11px] text-yellow-500 flex items-center gap-2">
-                                <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                                ~15 MIN RESPONSE
-                            </span>
+                        <div class="flex items-center justify-between border border-primary/30 bg-background-dark/50 p-4">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Support</span>
+                            <a href="mailto:support@xtremesnap.co" class="text-sm font-bold text-primary hover:text-white transition-colors">support@xtremesnap.co</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl">calendar_month</span>
+                        <h2 class="text-2xl font-black italic text-white">UPCOMING EVENTS</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border border-primary/30 bg-background-dark/50 p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-bold text-white uppercase">X-GAMES TOKYO</h3>
+                                <span class="text-[10px] bg-primary text-background-dark px-2 py-1 font-black uppercase">JUN 15</span>
+                            </div>
+                            <p class="text-xs text-slate-400">Ariake Arena, Tokyo</p>
+                        </div>
+                        <div class="border border-primary/30 bg-background-dark/50 p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-bold text-white uppercase">NEON NIGHT RIDE</h3>
+                                <span class="text-[10px] bg-primary text-background-dark px-2 py-1 font-black uppercase">JUL 22</span>
+                            </div>
+                            <p class="text-xs text-slate-400">Shuto Expressway (Closed Course)</p>
+                        </div>
+                        <div class="border border-primary/30 bg-background-dark/50 p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-bold text-white uppercase">FROST BITE SNOW</h3>
+                                <span class="text-[10px] bg-primary text-background-dark px-2 py-1 font-black uppercase">AUG 5</span>
+                            </div>
+                            <p class="text-xs text-slate-400">Niseko, Hokkaido</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- FAQ Section -->
-        <section class="border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-8 mb-12">
-            <h2 class="font-black uppercase text-sm mb-8">Frequently Queried Parameters</h2>
-            <div class="space-y-4">
-                <details class="group border border-slate-200 dark:border-slate-800 rounded bg-background-light dark:bg-background-dark">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-xs uppercase">
-                        What is the deployment timeline?
-                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                    </summary>
-                    <div class="px-4 pb-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Community nodes deploy instantly via self-service portal. Enterprise mesh deployments typically complete within 5-7 business days including architecture review. Global fabric installations require 2-4 weeks for custom region provisioning.
-                    </div>
-                </details>
-                <details class="group border border-slate-200 dark:border-slate-800 rounded bg-background-light dark:bg-background-dark">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-xs uppercase">
-                        Can I migrate from existing infrastructure?
-                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                    </summary>
-                    <div class="px-4 pb-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Yes. We provide migration tooling for Kubernetes, Docker Swarm, and VM-based deployments. Our engineering team conducts a comprehensive assessment before migration to ensure zero-downtime transition.
-                    </div>
-                </details>
-                <details class="group border border-slate-200 dark:border-slate-800 rounded bg-background-light dark:bg-background-dark">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-xs uppercase">
-                        Is compliance certification available?
-                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                    </summary>
-                    <div class="px-4 pb-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        SYSTYX CORE maintains SOC 2 Type II, ISO 27001, HIPAA, and GDPR compliance. Financial services customers benefit from our PCI DSS Level 1 certification. Custom compliance documentation available for enterprise customers.
-                    </div>
-                </details>
-                <details class="group border border-slate-200 dark:border-slate-800 rounded bg-background-light dark:bg-background-dark">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-xs uppercase">
-                        What support channels are available?
-                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-                    </summary>
-                    <div class="px-4 pb-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Community tier: GitHub Issues, community forums, documentation. Enterprise tier: 24/7 Slack channel, email support, phone escalation. Global Fabric: Dedicated Slack channel with named engineers, quarterly architecture reviews, on-site support option.
-                    </div>
-                </details>
+<!-- Sponsorship Tiers -->
+<section class="py-24 px-6 md:px-12 bg-primary">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-background-dark mb-4 skew-slant">
+                SPONSORSHIP <span class="text-white italic">LEVELS</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Rider -->
+            <div class="bg-background-dark p-10 border border-white/10">
+                <h3 class="text-2xl font-black uppercase text-white mb-2">RIDER</h3>
+                <p class="text-xs text-primary uppercase tracking-widest mb-6">ENTRY LEVEL</p>
+                <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        15% Gear Discount
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Monthly Energy Pack
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Team Jersey
+                    </li>
+                </ul>
+                <button class="w-full border-2 border-primary text-primary py-4 font-black uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all skew-slant">
+                    <span class="inline-block skew-slant-reverse">Apply Now</span>
+                </button>
             </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="border border-slate-200 dark:border-slate-800 bg-primary/5 dark:bg-primary/10 p-12 text-center">
-            <h2 class="text-3xl font-black uppercase tracking-tight mb-4">Ready to Execute</h2>
-            <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed max-w-2xl mx-auto mb-8">
-                Initialize your SYSTYX CORE deployment today. Our engineering team is standing by.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#" class="bg-primary text-white text-[12px] font-bold uppercase px-8 py-4 rounded">Deploy Community Node</a>
-                <a href="about.html" class="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-800 text-[12px] font-bold uppercase px-8 py-4 rounded">Schedule Demo</a>
+            <!-- Pro -->
+            <div class="bg-background-dark p-10 border-2 border-primary relative">
+                <div class="absolute top-0 right-0 bg-white text-background-dark text-[10px] font-black uppercase tracking-widest px-4 py-1">Popular</div>
+                <h3 class="text-2xl font-black uppercase text-white mb-2">PRO</h3>
+                <p class="text-xs text-primary uppercase tracking-widest mb-6">COMPETITION LEVEL</p>
+                <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Everything in Rider
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        30% Gear Discount
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Travel Support
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Event Priority Entry
+                    </li>
+                </ul>
+                <button class="w-full bg-primary text-background-dark py-4 font-black uppercase tracking-widest hover:bg-white transition-all skew-slant">
+                    <span class="inline-block skew-slant-reverse">Apply Now</span>
+                </button>
             </div>
-        </section>
-    </main>
+            <!-- Elite -->
+            <div class="bg-background-dark p-10 border border-white/10">
+                <h3 class="text-2xl font-black uppercase text-white mb-2">ELITE</h3>
+                <p class="text-xs text-primary uppercase tracking-widest mb-6">WORLD CLASS</p>
+                <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Everything in Pro
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Full Equipment Sponsorship
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Salary + Bonuses
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-lg">check</span>
+                        Media Appearances
+                    </li>
+                </ul>
+                <button class="w-full border-2 border-primary text-primary py-4 font-black uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all skew-slant">
+                    <span class="inline-block skew-slant-reverse">Contact Us</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="w-full border-t border-slate-200 dark:border-slate-800 py-12 px-6 bg-slate-50 dark:bg-slate-950/30 mt-auto">
-        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-8">
-            <div class="lg:col-span-2 space-y-4">
-                <div class="flex items-center gap-2 text-primary opacity-50 grayscale">
-                    <span class="material-symbols-outlined text-2xl">terminal</span>
-                    <h2 class="text-slate-900 dark:text-slate-100 text-xs font-black uppercase tracking-tighter">SYSTYX CORE</h2>
+<!-- FAQ Section -->
+<section class="py-24 px-6 md:px-12 bg-background-dark border-t border-primary/20">
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4 skew-slant">
+                FAQ
+            </h2>
+        </div>
+        <div class="space-y-4">
+            <div class="bg-white/5 border border-white/10 p-6">
+                <h4 class="text-sm font-bold uppercase text-white mb-3">Q: スポンサーシップの応募条件は？</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">A: 18 歳以上、競技会への参加実績、SNS での活動実績が必要です。応募フォームから実績视频と SNS フォロワー数を送信してください。</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 p-6">
+                <h4 class="text-sm font-bold uppercase text-white mb-3">Q: イベントへの参加方法は？</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">A: 各イベントページの登録フォームからお申し込み可能です。XTREME_SNAP メンバーは優先エントリーと参加費割引があります。</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 p-6">
+                <h4 class="text-sm font-bold uppercase text-white mb-3">Q: 製品の返品は可能？</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">A: 未開封の製品に限り、收货後 14 日以内の返品を承ります。カスタム製品とエネルギー飲料の開封後は返品不可。</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 p-6">
+                <h4 class="text-sm font-bold uppercase text-white mb-3">Q: 国際配送は対応？</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">A: はい、世界中に配送しています。送料と関税はお客様負担です。配送方法は checkout 時に選択可能です。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-40 bg-primary relative overflow-hidden flex flex-col items-center justify-center text-background-dark">
+    <div class="text-center px-4">
+        <h2 class="text-7xl md:text-[10vw] font-black leading-none uppercase tracking-tighter mb-12 skew-slant">
+            DON'T WAIT.<br/><span class="text-white italic">BREAK.</span>
+        </h2>
+        <div class="group relative inline-block">
+            <button class="bg-background-dark text-primary text-3xl md:text-5xl font-black uppercase px-12 py-8 skew-slant hover:bg-white transition-colors relative z-10">
+                <span class="inline-block skew-slant-reverse">Join The Movement</span>
+            </button>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-white/10 pt-20 pb-10">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 mb-8">
+                    <span class="material-symbols-outlined text-primary text-4xl">bolt</span>
+                    <h2 class="text-slate-100 text-3xl font-black tracking-tighter italic">XTREME_SNAP</h2>
                 </div>
-                <p class="text-[11px] text-slate-500 leading-relaxed uppercase font-medium">
-                    The systemic foundation for the modern digital stack. Reliable, deterministic, and infinitely scalable infrastructure.
+                <p class="text-white/60 max-w-md uppercase text-sm font-bold leading-relaxed mb-8">
+                    We push the boundaries of human potential. Through high-performance gear and extreme energy, we fuel the next generation of risk-takers.
                 </p>
+                <div class="flex gap-6">
+                    <a class="text-primary hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+                    <a class="text-primary hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+                    <a class="text-primary hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+                </div>
             </div>
-            <div class="space-y-3">
-                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Resources</h4>
-                <nav class="flex flex-col gap-2">
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Documentation</a>
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="service.html">API Reference</a>
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">System Status</a>
-                </nav>
+            <div>
+                <h4 class="text-white font-black uppercase mb-8 tracking-widest">Navigation</h4>
+                <ul class="flex flex-col gap-4 text-white/60 font-bold uppercase text-xs">
+                    <li><a class="hover:text-primary transition-colors" href="index.html">The Athletes</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="service.html">Gear Store</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="about.html">Extreme Events</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="contact.html">Energy Science</a></li>
+                </ul>
             </div>
-            <div class="space-y-3">
-                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Network</h4>
-                <nav class="flex flex-col gap-2">
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="service.html">Node Registry</a>
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="service.html">Mesh Explorer</a>
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Core Protocols</a>
-                </nav>
-            </div>
-            <div class="space-y-3">
-                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Entity</h4>
-                <nav class="flex flex-col gap-2">
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">About System</a>
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Compliance</a>
-                    <a class="text-[11px] text-slate-500 hover:text-primary uppercase font-bold" href="about.html">Security Ops</a>
-                </nav>
-            </div>
-            <div class="space-y-3">
-                <h4 class="text-[10px] font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest border-b border-slate-200 dark:border-slate-800 pb-1">Terminal</h4>
-                <div class="flex gap-2">
-                    <div class="size-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
-                    <div class="size-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
-                    <div class="size-6 bg-slate-200 dark:bg-slate-800 rounded"></div>
+            <div>
+                <h4 class="text-white font-black uppercase mb-8 tracking-widest">Join the Surge</h4>
+                <div class="flex border-b border-primary py-2">
+                    <input class="bg-transparent border-none focus:ring-0 text-white placeholder:text-white/20 uppercase font-black flex-1" placeholder="YOUR EMAIL" type="email">
+                    <button class="material-symbols-outlined text-primary">arrow_forward</button>
                 </div>
             </div>
         </div>
-        <div class="max-w-[1440px] mx-auto mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-[9px] font-mono text-slate-500 uppercase">© 2024 SYSTYX CORE SYSTEMIC. ALL PROTOCOLS RESERVED.</p>
-            <div class="flex gap-6">
-                <span class="text-[9px] font-mono text-primary uppercase animate-pulse">SYSTEM_UPTIME: 100.00%</span>
-                <span class="text-[9px] font-mono text-slate-500 uppercase">LATENCY_CORE: 0.12ms</span>
+        <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-4">
+            <p class="text-white/20 text-[10px] font-black uppercase tracking-[0.5em]">© 2024 XTREME_SNAP. ALL LIMITS DEFIED.</p>
+            <div class="flex gap-8 text-white/20 text-[10px] font-black uppercase tracking-[0.2em]">
+                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+</div>
 
-    <script>
-        function toggleSystyxMenu() {
-            const menu = document.getElementById('systyx-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.systyx-toggle');
-
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<script src="../../../assets/js/template-common.js" defer></script>
+<script>
+function toggleXMenu() {
+    const menu = document.getElementById('x-mobile-menu');
+    const backdrop = document.querySelector('.x-backdrop');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+    }
+}
+</script>
 </body>
 </html>

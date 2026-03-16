@@ -3,393 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Kousei | Inquiry</title>
+    <title>VIVID IMPACT - Contact</title>
 
     <link rel="canonical" href="https://example.com/templates/business/v/contact.html">
-    <meta name="description" content="Kousei へのお問い合わせ。京都スタジオでのプライベート viewing、カスタム commission、一般のお問い合わせはコチラから。">
-    <meta property="og:title" content="Contact - Kousei | Inquiry">
-    <meta property="og:description" content="Kousei へのお問い合わせ - 京都スタジオでのお問い合わせ">
+    <meta name="description" content="VIVID IMPACT - プロジェクトのご相談">
+    <meta property="og:title" content="VIVID IMPACT | Contact">
+    <meta property="og:description" content="Ready to be heard? Let's talk.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/v/contact.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "Contact Kousei",
-        "description": "お問い合わせフォーム"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&family=Manrope:wght@300;400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/tailwind-input.css">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Manrope', 'Noto Serif JP', serif; }
-        .washi-texture {
-            background-color: #F9F8F4;
-            background-image: url('https://www.transparenttextures.com/patterns/shattered-island.png');
-        }
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-        }
-        .writing-spacing {
-            letter-spacing: 0.5em;
-        }
-        .kousei-mobile-menu { transition: transform 0.3s ease; }
-        .kousei-mobile-menu.active { transform: translateX(0); }
-        .kousei-mobile-menu.inactive { transform: translateX(-100%); }
-        .kousei-toggle .bar { display: block; width: 18px; height: 2px; background: currentColor; margin: 4px 0; transition: all 0.3s; }
-        .kousei-toggle.active .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .kousei-toggle.active .bar:nth-child(2) { opacity: 0; }
-        .kousei-toggle.active .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-        .contact-input {
-            width: 100%;
-            padding: 14px 0;
-            border: none;
-            border-bottom: 1px solid rgba(183, 134, 11, 0.3);
-            background: transparent;
-            color: inherit;
-            font-size: 15px;
-            font-family: inherit;
-            transition: all 0.3s;
-        }
-        .contact-input:focus {
-            outline: none;
-            border-bottom-color: #b7860b;
-        }
-        .contact-input::placeholder {
-            color: #94a3b8;
+        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
+        .text-stroke {
+            -webkit-text-stroke: 1px #facc15;
+            color: transparent;
         }
     </style>
 </head>
-<body class="bg-background-light text-sumi font-display selection:bg-accent-gold/30">
-
-    <div class="fixed inset-0 z-[9998] xl:hidden hidden" style="background-color: rgba(18, 18, 18, 0.5); backdrop-filter: blur(4px);"></div>
-
-    <button class="kousei-toggle fixed right-4 top-4 z-[10001] flex h-12 w-12 items-center justify-center rounded border border-primary/20 bg-background-light/85 text-primary shadow-xl backdrop-blur xl:hidden" type="button" aria-label="メニューを開く" onclick="toggleKouseiMenu()">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Navigation -->
+<header class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 md:px-12 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+        <div class="size-8 bg-accent text-background-dark flex items-center justify-center rounded-sm">
+            <span class="material-symbols-outlined font-bold text-background-dark">bolt</span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-black tracking-tighter text-white">VIVID_IMPACT</h2>
+    </div>
+    <nav class="hidden md:flex gap-12 items-center">
+        <a class="text-white hover:text-accent font-bold uppercase tracking-widest text-xs transition-colors" href="index.html">Work</a>
+        <a class="text-white hover:text-accent font-bold uppercase tracking-widest text-xs transition-colors" href="service.html">Services</a>
+        <a class="text-white hover:text-accent font-bold uppercase tracking-widest text-xs transition-colors" href="about.html">Manifesto</a>
+        <a class="bg-accent text-background-dark px-6 py-2 rounded-full font-black text-sm uppercase tracking-tighter hover:scale-105 transition-transform" href="contact.html">
+            Start Project
+        </a>
+    </nav>
+    <button class="md:hidden text-white v-mobile-toggle" onclick="toggleVMenu()">
+        <span class="material-symbols-outlined">menu</span>
     </button>
+</header>
 
-    <aside id="kousei-mobile-menu" class="kousei-mobile-menu inactive fixed inset-y-0 left-0 z-[10000] w-[18rem] border-r border-primary/10 bg-background-light p-6 text-primary shadow-2xl">
-        <div class="flex items-center gap-2">
-            <div class="size-8 text-primary">
-                <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
-                    <path d="M24 8V40M8 24H40" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1"></path>
-                </svg>
-            </div>
-            <h1 class="font-serif-jp text-xl font-bold tracking-[0.2em] uppercase">Kousei</h1>
+<!-- Mobile Menu -->
+<div class="v-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleVMenu()"></div>
+<nav id="v-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-primary/30 p-8 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-xl font-black tracking-tighter text-white">VIVID_IMPACT</span>
+            <button class="text-white hover:opacity-50" onclick="toggleVMenu()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
         </div>
-        <nav class="mt-10 flex flex-col gap-2 font-serif-jp text-sm tracking-widest">
-            <a href="index.html" class="rounded px-4 py-3 hover:bg-primary/5">Home</a>
-            <a href="about.html" class="rounded px-4 py-3 hover:bg-primary/5">Heritage</a>
-            <a href="service.html" class="rounded px-4 py-3 hover:bg-primary/5">Collection</a>
-            <a href="contact.html" class="rounded px-4 py-3 bg-primary/5 text-primary">Contact</a>
-        </nav>
-    </aside>
+        <div class="flex flex-col gap-6 flex-1">
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-accent transition-colors" href="index.html" onclick="toggleVMenu()">Work</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-accent transition-colors" href="service.html" onclick="toggleVMenu()">Services</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-accent transition-colors" href="about.html" onclick="toggleVMenu()">Manifesto</a>
+            <a class="text-sm font-bold uppercase tracking-widest text-white hover:text-accent transition-colors" href="contact.html" onclick="toggleVMenu()">Contact</a>
+        </div>
+        <button class="w-full bg-accent text-background-dark px-6 py-4 rounded-full font-black uppercase tracking-tighter hover:scale-105 transition-transform">
+            Start Project
+        </button>
+    </div>
+</nav>
 
-    <header class="fixed top-0 z-50 w-full bg-background-light/80 backdrop-blur-sm border-b border-primary/5 px-6 lg:px-20 py-6">
-        <nav class="flex items-center justify-between max-w-[1440px] mx-auto">
-            <div class="flex items-center gap-2">
-                <div class="size-8 text-primary">
-                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
-                        <path d="M24 8V40M8 24H40" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1"></path>
-                    </svg>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[50vh] flex flex-col justify-center items-center pt-20 px-4 bg-background-dark">
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-20 -right-40 w-[600px] h-[600px] bg-accent rounded-full blur-[150px] opacity-30"></div>
+    </div>
+    <div class="relative z-10 text-center">
+        <span class="inline-block bg-primary text-white px-4 py-2 font-bold text-xs uppercase tracking-widest mb-6">GET IN TOUCH</span>
+        <h1 class="text-6xl md:text-9xl font-black leading-[0.8] tracking-tighter uppercase text-white mb-8">
+            LET'S <span class="text-accent">TALK</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-400 uppercase tracking-widest font-light">
+            READY TO BE HEARD?
+        </p>
+    </div>
+</section>
+
+<!-- Contact Form & Info -->
+<section class="py-24 px-6 md:px-12 bg-background-dark border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16">
+            <!-- Contact Form -->
+            <div>
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="material-symbols-outlined text-accent text-2xl">send</span>
+                    <h2 class="text-2xl font-black italic text-white">SEND MESSAGE</h2>
                 </div>
-                <h1 class="font-serif-jp text-xl font-bold tracking-[0.2em] uppercase">Kousei</h1>
-            </div>
-            <div class="hidden lg:flex items-center gap-12 font-serif-jp text-sm tracking-widest uppercase">
-                <a class="hover:text-accent-gold transition-colors" href="about.html">Heritage</a>
-                <a class="hover:text-accent-gold transition-colors" href="about.html">Artisans</a>
-                <a class="hover:text-accent-gold transition-colors" href="service.html">Collection</a>
-                <a class="hover:text-accent-gold transition-colors" href="about.html">Journal</a>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="text-sm font-medium tracking-widest border-b border-primary pb-1">JP / EN</button>
-                <a href="contact.html" class="bg-primary text-white px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
-                    Inquiry
-                </a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section class="relative min-h-[40vh] flex items-center px-6 lg:px-20 bg-sumi overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent"></div>
-            </div>
-            <div class="max-w-[1440px] mx-auto w-full relative z-10">
-                <div class="flex flex-col gap-6">
-                    <span class="text-accent-gold text-xs tracking-[0.5em] uppercase">Get In Touch</span>
-                    <h1 class="font-serif-jp text-5xl lg:text-6xl leading-tight text-white">
-                        Begin the <span class="italic">Conversation</span>
-                    </h1>
-                    <div class="w-px h-16 bg-accent-gold opacity-50"></div>
-                    <p class="text-white/70 font-serif-jp text-lg max-w-2xl">
-                        We invite you to share your vision. Our team will respond within 48 hours.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section class="py-32 px-6 lg:px-20 washi-texture">
-            <div class="max-w-[1440px] mx-auto">
-                <div class="grid lg:grid-cols-2 gap-20">
-                    <!-- Contact Form -->
+                <form class="space-y-6">
                     <div>
-                        <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Inquiry</span>
-                        <h2 class="font-serif-jp text-3xl mt-4 mb-10">Send Us a Message</h2>
-                        <form class="space-y-8">
-                            <div class="grid md:grid-cols-2 gap-8">
-                                <div>
-                                    <label class="block text-xs tracking-widest text-sumi/50 mb-3 uppercase">First Name</label>
-                                    <input type="text" class="contact-input" placeholder="John"/>
-                                </div>
-                                <div>
-                                    <label class="block text-xs tracking-widest text-sumi/50 mb-3 uppercase">Last Name</label>
-                                    <input type="text" class="contact-input" placeholder="Doe"/>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs tracking-widest text-sumi/50 mb-3 uppercase">Email Address</label>
-                                <input type="email" class="contact-input" placeholder="john@example.com"/>
-                            </div>
-                            <div>
-                                <label class="block text-xs tracking-widest text-sumi/50 mb-3 uppercase">Phone Number</label>
-                                <input type="tel" class="contact-input" placeholder="+81 00 0000 0000"/>
-                            </div>
-                            <div>
-                                <label class="block text-xs tracking-widest text-sumi/50 mb-3 uppercase">Interest</label>
-                                <select class="contact-input">
-                                    <option value="">Select an option...</option>
-                                    <option value="ceramics">Ceramics</option>
-                                    <option value="tea-ware">Tea Ware</option>
-                                    <option value="textiles">Textiles</option>
-                                    <option value="lacquerware">Lacquerware</option>
-                                    <option value="commission">Custom Commission</option>
-                                    <option value="viewing">Private Viewing</option>
-                                    <option value="other">Other Inquiry</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs tracking-widest text-sumi/50 mb-3 uppercase">Message</label>
-                                <textarea class="contact-input" rows="5" placeholder="Tell us about your interest..."></textarea>
-                            </div>
-                            <div class="pt-4">
-                                <button type="submit" class="bg-primary text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
-                                    Send Message
-                                </button>
-                            </div>
-                        </form>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Name *</label>
+                        <input type="text" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="YOUR NAME">
                     </div>
-
-                    <!-- Contact Info -->
-                    <div class="flex flex-col justify-center space-y-12">
-                        <div>
-                            <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Kyoto Studio</span>
-                            <div class="mt-6 space-y-4">
-                                <p class="text-sumi/80 font-serif-jp leading-relaxed">
-                                    Higashiyama District, 401<br/>
-                                    Kyoto, Japan
-                                </p>
-                                <a href="tel:+81751234567" class="block text-lg font-serif-jp hover:text-primary transition-colors">
-                                    +81 75 123 4567
-                                </a>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Email</span>
-                            <div class="mt-6 space-y-4">
-                                <a href="mailto:studio@kousei.jp" class="block text-lg font-serif-jp hover:text-primary transition-colors">
-                                    studio@kousei.jp
-                                </a>
-                                <p class="text-sumi/60 font-serif-jp text-sm leading-relaxed">
-                                    Available Monday through Friday, 10AM - 5PM JST
-                                </p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Private Viewings</span>
-                            <div class="mt-6 space-y-4">
-                                <p class="text-sumi/80 font-serif-jp leading-relaxed">
-                                    By appointment only. Our concierge team will arrange a private consultation at our Kyoto studio or your preferred location.
-                                </p>
-                                <a href="tel:+81751234567" class="inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase font-bold text-primary hover:gap-4 transition-all">
-                                    Schedule Visit <span class="material-symbols-outlined">arrow_forward</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="pt-8">
-                            <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Follow Kousei</span>
-                            <div class="mt-6 flex gap-6">
-                                <a href="#" class="w-10 h-10 border border-primary/30 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-                                    <span class="material-symbols-outlined text-sm">photo_camera</span>
-                                </a>
-                                <a href="#" class="w-10 h-10 border border-primary/30 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-                                    <span class="material-symbols-outlined text-sm">pinboard</span>
-                                </a>
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Email *</label>
+                        <input type="email" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="YOUR@EMAIL.COM">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-32 px-6 lg:px-20 bg-white">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-accent-gold text-xs tracking-[0.4em] uppercase">Inquiries</span>
-                    <h2 class="font-serif-jp text-4xl mt-6">Common Questions</h2>
-                </div>
-                <div class="space-y-6">
-                    <details class="group border-b border-primary/20 pb-6">
-                        <summary class="flex items-center justify-between cursor-pointer list-none">
-                            <h3 class="font-serif-jp text-lg text-sumi">What is the typical timeline for a custom commission?</h3>
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <div class="mt-4 text-sumi/60 font-serif-jp leading-relaxed">
-                            Custom commissions typically require 3 to 6 months, depending on complexity and the artisan's schedule. Lacquerware pieces may require additional time for proper curing.
-                        </div>
-                    </details>
-                    <details class="group border-b border-primary/20 pb-6">
-                        <summary class="flex items-center justify-between cursor-pointer list-none">
-                            <h3 class="font-serif-jp text-lg text-sumi">Do you ship internationally?</h3>
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <div class="mt-4 text-sumi/60 font-serif-jp leading-relaxed">
-                            Yes, we offer insured international shipping with white-glove delivery service. Our logistics team handles all customs documentation and ensures safe arrival.
-                        </div>
-                    </details>
-                    <details class="group border-b border-primary/20 pb-6">
-                        <summary class="flex items-center justify-between cursor-pointer list-none">
-                            <h3 class="font-serif-jp text-lg text-sumi">Can I visit the Kyoto studio?</h3>
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <div class="mt-4 text-sumi/60 font-serif-jp leading-relaxed">
-                            Studio visits are by appointment only. We offer private viewings with our master artisans for serious collectors and commission inquiries.
-                        </div>
-                    </details>
-                    <details class="group border-b border-primary/20 pb-6">
-                        <summary class="flex items-center justify-between cursor-pointer list-none">
-                            <h3 class="font-serif-jp text-lg text-sumi">How do I care for urushi lacquerware?</h3>
-                            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
-                        </summary>
-                        <div class="mt-4 text-sumi/60 font-serif-jp leading-relaxed">
-                            Urushi pieces should be wiped clean with a soft, dry cloth. Avoid prolonged exposure to direct sunlight and extreme temperatures. With proper care, lacquerware can last for generations.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-32 px-6 lg:px-20 bg-sumi">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="font-serif-jp text-5xl lg:text-6xl leading-tight mb-8 text-white">Your vision <span class="italic">awaits.</span></h2>
-                <p class="text-white/70 text-xl mb-12 max-w-2xl mx-auto font-serif-jp">
-                    Let us transform your aspirations into tangible beauty.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="tel:+81751234567" class="bg-primary text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-accent-gold transition-colors">
-                        Call Now
-                    </a>
-                    <a href="service.html" class="border border-primary/30 text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-primary/10 transition-colors">
-                        Explore Collection
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-background-light border-t border-primary/10 py-20 px-6 lg:px-20">
-        <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-4 gap-16">
-            <div class="lg:col-span-1 space-y-8">
-                <div class="flex items-center gap-2">
-                    <div class="size-6 text-primary">
-                        <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <rect height="24" stroke="currentColor" stroke-width="1.5" width="24" x="12" y="12"></rect>
-                        </svg>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Company</label>
+                        <input type="text" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="YOUR COMPANY">
                     </div>
-                    <h2 class="font-serif-jp text-lg font-bold tracking-widest uppercase">Kousei</h2>
-                </div>
-                <p class="text-sm leading-relaxed text-sumi/60">
-                    Kyoto Studio<br/>
-                    Higashiyama District, 401<br/>
-                    Japan
-                </p>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Project Type</label>
+                        <select class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-accent focus:outline-none transition-colors">
+                            <option value="">SELECT TYPE</option>
+                            <option value="branding">Brand Identity</option>
+                            <option value="motion">Motion Graphics</option>
+                            <option value="digital">Digital Strategy</option>
+                            <option value="ux">Immersive UX</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Budget</label>
+                        <select class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-accent focus:outline-none transition-colors">
+                            <option value="">SELECT BUDGET</option>
+                            <option value="starter">¥500K - ¥1M</option>
+                            <option value="pro">¥1M - ¥3M</option>
+                            <option value="enterprise">¥3M+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Message *</label>
+                        <textarea rows="5" class="w-full bg-background-dark/50 border-2 border-primary/30 text-white px-4 py-3 text-sm focus:border-accent focus:outline-none transition-colors" placeholder="TELL US ABOUT YOUR PROJECT..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-accent text-background-dark py-4 font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">send</span>
+                        SEND MESSAGE
+                    </button>
+                </form>
             </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Explore</h5>
-                <ul class="space-y-4 text-sm font-serif-jp tracking-widest">
-                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Our Heritage</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Master Artisans</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="service.html">Private Viewings</a></li>
-                </ul>
-            </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Contact</h5>
-                <ul class="space-y-4 text-sm font-serif-jp tracking-widest">
-                    <li><a class="hover:text-accent-gold transition-colors" href="contact.html">General Inquiry</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="contact.html">Press & Media</a></li>
-                    <li><a class="hover:text-accent-gold transition-colors" href="about.html">Care Guide</a></li>
-                </ul>
-            </div>
+            <!-- Contact Info -->
             <div class="space-y-8">
-                <h5 class="text-[10px] tracking-[0.4em] uppercase text-sumi/40 font-bold">Newsletter</h5>
-                <div class="relative border-b border-primary pb-2 flex items-center justify-between">
-                    <input class="bg-transparent border-none text-sm font-serif-jp tracking-widest focus:ring-0 w-full placeholder:text-sumi/30" placeholder="Email Address" type="email"/>
-                    <button class="material-symbols-outlined text-sm">arrow_forward</button>
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-accent text-2xl">location_on</span>
+                        <h2 class="text-2xl font-black italic text-white">STUDIOS</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border border-primary/30 bg-background-dark/50 p-6">
+                            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-2">TOKYO</h3>
+                            <p class="text-slate-400 text-sm">Shibuya-ku, Tokyo<br>Japan</p>
+                        </div>
+                        <div class="border border-primary/30 bg-background-dark/50 p-6">
+                            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-2">NEW YORK</h3>
+                            <p class="text-slate-400 text-sm">Brooklyn, NY<br>USA</p>
+                        </div>
+                        <div class="border border-primary/30 bg-background-dark/50 p-6">
+                            <h3 class="text-sm font-bold text-accent uppercase tracking-widest mb-2">LONDON</h3>
+                            <p class="text-slate-400 text-sm">Shoreditch, London<br>UK</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex gap-6">
-                    <a class="text-sumi/60 hover:text-sumi transition-colors text-xs tracking-[0.2em] uppercase" href="#">Instagram</a>
-                    <a class="text-sumi/60 hover:text-sumi transition-colors text-xs tracking-[0.2em] uppercase" href="#">Pinterest</a>
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-accent text-2xl">email</span>
+                        <h2 class="text-2xl font-black italic text-white">DIRECT CONTACT</h2>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between border border-primary/30 bg-background-dark/50 p-4">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">General Inquiries</span>
+                            <a href="mailto:hello@vividimpact.studio" class="text-sm font-bold text-accent hover:text-white transition-colors">hello@vividimpact.studio</a>
+                        </div>
+                        <div class="flex items-center justify-between border border-primary/30 bg-background-dark/50 p-4">
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Press</span>
+                            <a href="mailto:press@vividimpact.studio" class="text-sm font-bold text-accent hover:text-white transition-colors">press@vividimpact.studio</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-accent text-2xl">schedule</span>
+                        <h2 class="text-2xl font-black italic text-white">RESPONSE TIME</h2>
+                    </div>
+                    <div class="border border-primary/30 bg-background-dark/50 p-6">
+                        <p class="text-slate-400 text-sm mb-4">
+                            通常、2-3 営業日以内に返信いたします。
+                            緊急の場合は、その旨を明記してください。
+                        </p>
+                        <div class="flex gap-6">
+                            <div>
+                                <p class="text-3xl font-black text-accent">48h</p>
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Avg Response</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-black text-accent">100%</p>
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Reply Rate</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="max-w-[1440px] mx-auto mt-20 pt-10 border-t border-primary/5 flex flex-col lg:flex-row justify-between items-center gap-6">
-            <span class="text-[10px] tracking-[0.2em] text-sumi/40 uppercase">© 2024 Kousei Artisan Collective. All Rights Reserved.</span>
-            <span class="text-[10px] tracking-[0.2em] text-sumi/40 uppercase font-serif-jp">伝統と革新の調和</span>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-24 px-6 md:px-12 bg-primary border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4">
+                COMMON <span class="text-accent italic">QUESTIONS</span>
+            </h2>
         </div>
-    </footer>
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="bg-background-dark/20 p-6 border border-white/10">
+                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: プロジェクトの開始から完了までどのくらいかかりますか？</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">A: プロジェクトの規模によりますが、ブランディングで 4-8 週間、フルサービスで 8-16 週間が目安です。</p>
+            </div>
+            <div class="bg-background-dark/20 p-6 border border-white/10">
+                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: リモートでも作業可能ですか？</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">A: はい、東京・ニューヨーク・ロンドンの各スタジオからリモートで対応可能です。</p>
+            </div>
+            <div class="bg-background-dark/20 p-6 border border-white/10">
+                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: 支払い条件を教えてください</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">A: 50% 前金、50% 納品後が標準です。大規模プロジェクトは分割払いも可能です。</p>
+            </div>
+            <div class="bg-background-dark/20 p-6 border border-white/10">
+                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: 修正は何回まで可能ですか？</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">A: 各フェーズで 2-3 ラウンドの修正を含んでいます。追加修正は別途見積もりとなります。</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script>
-        function toggleKouseiMenu() {
-            const menu = document.getElementById('kousei-mobile-menu');
-            const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-            const toggle = document.querySelector('.kousei-toggle');
+<!-- CTA Section -->
+<section class="py-40 bg-accent relative overflow-hidden flex flex-col items-center justify-center text-background-dark border-t border-primary/30">
+    <div class="text-center px-4">
+        <h2 class="text-7xl md:text-[10vw] font-black leading-none uppercase tracking-tighter mb-12">
+            DON'T BE A<br/>STRANGER
+        </h2>
+        <div class="group relative inline-block">
+            <button class="bg-background-dark text-accent text-3xl md:text-5xl font-black uppercase px-12 py-8 rounded-none hover:translate-x-4 hover:-translate-y-4 transition-transform relative z-10">
+                Say Hello
+            </button>
+            <div class="absolute inset-0 bg-primary translate-x-2 translate-y-2"></div>
+        </div>
+    </div>
+    <div class="mt-24 flex gap-8 md:gap-24 uppercase font-black text-sm tracking-widest border-t-2 border-background-dark pt-12">
+        <a class="hover:text-primary transition-colors" href="#">Instagram</a>
+        <a class="hover:text-primary transition-colors" href="#">Twitter (X)</a>
+        <a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+        <a class="hover:text-primary transition-colors" href="#">Behance</a>
+    </div>
+</section>
+</main>
 
-            if (menu.classList.contains('inactive')) {
-                menu.classList.remove('inactive');
-                menu.classList.add('active');
-                backdrop.classList.remove('hidden');
-                toggle.classList.add('active');
-            } else {
-                menu.classList.remove('active');
-                menu.classList.add('inactive');
-                backdrop.classList.add('hidden');
-                toggle.classList.remove('active');
-            }
-        }
-    </script>
+<!-- Footer -->
+<footer class="bg-background-dark py-12 px-6 md:px-12 border-t border-primary/30">
+    <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="flex items-center gap-2">
+            <div class="size-6 bg-accent text-background-dark flex items-center justify-center rounded-sm">
+                <span class="material-symbols-outlined text-xs font-bold text-background-dark">bolt</span>
+            </div>
+            <h2 class="text-xl font-black tracking-tighter uppercase text-white">VIVID_IMPACT</h2>
+        </div>
+        <p class="text-xs font-bold text-primary/60 uppercase tracking-widest">© 2024 VIVID IMPACT STUDIO. ALL RIGHTS RESERVED.</p>
+        <div class="flex gap-6 items-center">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">London / New York / Tokyo</p>
+        </div>
+    </div>
+</footer>
+</div>
+
+<script src="../../../assets/js/template-common.js" defer></script>
+<script>
+function toggleVMenu() {
+    const menu = document.getElementById('v-mobile-menu');
+    const backdrop = document.querySelector('.v-backdrop');
+    if (menu.classList.contains('inactive')) {
+        menu.classList.remove('inactive');
+        menu.classList.add('active');
+        backdrop.classList.remove('hidden');
+    } else {
+        menu.classList.remove('active');
+        menu.classList.add('inactive');
+        backdrop.classList.add('hidden');
+    }
+}
+</script>
 </body>
 </html>
