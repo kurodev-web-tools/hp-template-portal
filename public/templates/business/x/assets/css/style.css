@@ -298,3 +298,381 @@ img { max-width: 100%; display: block; }
   .score-team.align-right,
   .live-row span:last-child { text-align: left; }
 }
+
+.x-shell,
+.x-header,
+.x-footer,
+.x-arena,
+.x-sprint,
+.x-programs {
+  width: min(1240px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+.x-shell { min-height: 100vh; }
+.x-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  background: rgba(9, 11, 18, 0.86);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.x-brand {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.x-nav,
+.x-footer div {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.x-nav {
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.x-menu {
+  display: none;
+  min-width: 3.4rem;
+  min-height: 3rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+}
+.x-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 28;
+  background: rgba(2, 4, 8, 0.68);
+}
+.x-mobile {
+  position: fixed;
+  inset: 5.3rem 1rem auto 1rem;
+  z-index: 29;
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  background: rgba(9, 11, 18, 0.98);
+}
+.x-arena {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34rem;
+  gap: 1.25rem;
+  align-items: stretch;
+  padding: 2.5rem 0 3rem;
+}
+.x-arena-copy,
+.x-arena-board,
+.x-sprint-card,
+.x-sprint-stat,
+.x-program-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.x-arena-copy {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  border-radius: 2rem;
+  background:
+    linear-gradient(135deg, rgba(199, 255, 61, 0.1), transparent 34%),
+    radial-gradient(circle at top right, rgba(87, 213, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+}
+.x-arena-copy::after {
+  content: "";
+  position: absolute;
+  inset: auto -4rem 2rem auto;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 108, 147, 0.32), transparent 66%);
+  filter: blur(8px);
+}
+.x-arena-copy h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(4.5rem, 10vw, 8rem);
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+.x-arena-copy .lead {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+}
+.x-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+}
+.x-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.35rem;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.x-solid { background: var(--lime); color: #091009; }
+.x-line { background: transparent; color: var(--text); }
+.x-callouts {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.x-callouts article {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: rgba(5, 8, 14, 0.55);
+}
+.x-callouts span,
+.x-board-top p,
+.x-lane-grid span,
+.x-sprint-card span,
+.x-program-card span {
+  color: var(--lime);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.x-callouts strong,
+.x-sprint-stat strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2rem;
+  line-height: 0.9;
+}
+.x-callouts p,
+.x-board-top span,
+.x-lane-grid p,
+.x-sprint-header p,
+.x-sprint-card p,
+.x-sprint-stat p,
+.x-program-card p,
+.x-note {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.x-arena-board {
+  display: grid;
+  gap: 1rem;
+  padding: 1.35rem;
+  border-radius: 2rem;
+  background:
+    linear-gradient(180deg, rgba(8, 10, 16, 0.96), rgba(17, 21, 34, 0.98)),
+    linear-gradient(90deg, rgba(87, 213, 255, 0.08), rgba(255, 108, 147, 0.08));
+}
+.x-board-top,
+.x-duel,
+.x-lane-grid article {
+  border: 1px solid var(--line);
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+.x-board-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+}
+.x-board-top p { margin: 0; }
+.x-duel {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+}
+.x-team small,
+.x-score small {
+  display: block;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.x-team strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+.x-team-right { text-align: right; }
+.x-score {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+}
+.x-score span {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(4.4rem, 9vw, 6.2rem);
+  line-height: 0.82;
+  color: var(--lime);
+}
+.x-score em {
+  color: var(--cyan);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.x-lane-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+.x-lane-grid article {
+  padding: 1rem;
+}
+.x-lane-grid h2,
+.x-sprint-header h2,
+.x-sprint-card h3,
+.x-program-card h3 {
+  margin: 0.4rem 0 0.5rem;
+  font-family: "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+}
+.x-lane-grid .accent {
+  background: linear-gradient(135deg, rgba(199, 255, 61, 0.14), rgba(87, 213, 255, 0.08) 56%, rgba(255, 108, 147, 0.08));
+}
+.x-sprint,
+.x-programs {
+  padding: 0 0 3.4rem;
+}
+.x-sprint-header,
+.x-programs-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+.x-sprint-header h2,
+.x-programs-head h2 {
+  margin: 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.x-sprint-grid,
+.x-programs-grid {
+  display: grid;
+  gap: 1rem;
+}
+.x-sprint-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.x-sprint-card,
+.x-sprint-stat,
+.x-program-card {
+  padding: 1.25rem;
+  border-radius: 1.5rem;
+}
+.x-sprint-stat {
+  background: linear-gradient(180deg, rgba(199, 255, 61, 0.14), rgba(87, 213, 255, 0.08));
+}
+.x-sprint-stat small {
+  display: block;
+  color: #091009;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.x-sprint-stat strong { color: #091009; }
+.x-sprint-stat p { color: rgba(9, 16, 9, 0.86); }
+.x-ribbon {
+  display: flex;
+  gap: 2rem;
+  overflow: hidden;
+  padding: 0.8rem 0 2rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.x-ribbon p {
+  margin: 0;
+  white-space: nowrap;
+}
+.x-programs-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.x-program-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 15rem;
+}
+.x-program-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -1.8rem -2rem auto;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(87, 213, 255, 0.18), transparent 68%);
+}
+.x-note {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+}
+.x-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0 2rem;
+  color: var(--muted);
+}
+@media (max-width: 980px) {
+  .x-nav { display: none; }
+  .x-menu { display: inline-flex; }
+  .x-header,
+  .x-sprint-header,
+  .x-programs-head,
+  .x-footer,
+  .x-duel {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .x-arena,
+  .x-sprint-grid,
+  .x-programs-grid,
+  .x-callouts {
+    grid-template-columns: 1fr;
+  }
+  .x-team-right { text-align: left; }
+}
