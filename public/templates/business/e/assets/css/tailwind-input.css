@@ -125,25 +125,39 @@ textarea.eco-input {
 }
 
 .eco-mobile-toggle .bar {
-    width: 1.35rem;
+    display: block;
+    width: 1.4rem;
     height: 2px;
+    flex: 0 0 auto;
     border-radius: 9999px;
     background: #163426;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease, left 0.3s ease, top 0.3s ease;
 }
 
 .dark .eco-mobile-toggle .bar {
     background: #f8fafc;
 }
 
+.eco-mobile-toggle.active {
+    gap: 0;
+}
+
+.eco-mobile-toggle.active .bar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
 .eco-mobile-toggle.active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .eco-mobile-toggle.active .bar:nth-child(2) {
     opacity: 0;
+    transform: translate(-50%, -50%) scaleX(0);
 }
 
 .eco-mobile-toggle.active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
