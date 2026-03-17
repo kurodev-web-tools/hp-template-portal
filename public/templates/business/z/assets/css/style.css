@@ -1,38 +1,48 @@
-/* ZEN_GARDEN Silence - Custom Styles */
-
-/* Header scroll effect */
-header.scrolled {
-    @apply bg-background-light/90 dark:bg-background-dark/90 shadow-md;
+:root {
+    --bg: #fafaf9;
+    --line: #ddd4c7;
+    --text: #2f2a24;
+    --muted: #72685d;
+    --sage: #7d8a6a;
+    --earth: #b49b7a;
 }
-
-/* Form focus states */
-input:focus,
-select:focus,
-textarea:focus {
-    @apply outline-none border-primary;
-}
-
-/* Button hover effects */
-button,
-a.button {
-    @apply transition-all duration-300;
-}
-
-/* Fade-in animation */
-.fade-in {
-    @apply opacity-0 transition-opacity duration-700;
-}
-
-.fade-in.opacity-100 {
-    @apply opacity-100;
-}
-
-/* Smooth transitions */
-* {
-    @apply transition-colors duration-300;
-}
-
-/* Ma space - extra breathing room */
-.ma-space {
-    min-height: 60vh;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: "Fraunces", "Noto Sans JP", serif; background: radial-gradient(circle at top left, rgba(125, 138, 106, 0.12), transparent 22%), linear-gradient(180deg, rgba(180, 155, 122, 0.06), transparent 18%), var(--bg); color: var(--text); }
+a { color: inherit; text-decoration: none; }
+.z-shell, .z-header, .z-hero, .z-grid, .z-cards, .z-stat, .z-page, .z-footer { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; }
+.z-header { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid rgba(221, 212, 199, 0.8); background: rgba(250, 250, 249, 0.9); backdrop-filter: blur(14px); }
+.z-brand { letter-spacing: 0.14em; font-size: 1rem; }
+.z-nav, .z-footer div { display: flex; gap: 1.5rem; color: var(--muted); font-family: "Noto Sans JP", sans-serif; font-size: 0.92rem; }
+.z-menu { display: none; padding: 0.65rem 0.95rem; border: 1px solid var(--line); background: transparent; color: var(--text); font-family: "Noto Sans JP", sans-serif; }
+.z-mobile { position: fixed; top: 5rem; left: 1rem; right: 1rem; z-index: 19; display: grid; gap: 1rem; padding: 1rem; border: 1px solid var(--line); background: rgba(250, 250, 249, 0.98); font-family: "Noto Sans JP", sans-serif; }
+.z-hero, .z-grid, .z-stat, .z-contact, .z-services, .z-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.z-hero { align-items: center; min-height: calc(100vh - 5rem); padding: 4rem 0; }
+.z-copy h1, .z-page-hero h1 { margin: 0 0 1rem; font-size: clamp(3rem, 8vw, 5.8rem); line-height: 0.95; font-weight: 300; }
+.eyebrow { margin: 0 0 0.8rem; color: var(--sage); font-family: "Noto Sans JP", sans-serif; font-size: 0.8rem; letter-spacing: 0.24em; text-transform: uppercase; }
+.lead, .z-page-hero p, .z-panel p, .z-cards p, .z-services p, .z-aside p { color: var(--muted); line-height: 1.9; font-family: "Noto Sans JP", sans-serif; }
+.z-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.z-button { display: inline-flex; align-items: center; justify-content: center; min-height: 3.2rem; padding: 0 1.35rem; border-radius: 999px; border: 1px solid var(--line); font-family: "Noto Sans JP", sans-serif; }
+.z-solid { background: var(--sage); color: #fff; border-color: var(--sage); }
+.z-line { background: transparent; }
+.z-stone { display: grid; place-items: center; min-height: 24rem; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,0.7), rgba(180,155,122,0.35) 38%, rgba(125,138,106,0.1) 72%, transparent 73%); }
+.z-stone span { width: 14rem; height: 10rem; border-radius: 52% 48% 54% 46% / 43% 46% 54% 57%; background: linear-gradient(145deg, #c7b39a, #8d7b66); box-shadow: 1.5rem 1.5rem 3rem rgba(0, 0, 0, 0.08); }
+.z-quote { padding: 0 0 4rem; text-align: center; font-size: clamp(1.6rem, 4vw, 2.8rem); color: var(--sage); }
+.z-panel, .z-cards article, .z-stat-row article, .z-services article, .z-steps article, .z-form, .z-aside { border: 1px solid var(--line); border-radius: 1.5rem; background: rgba(255,255,255,0.62); padding: 1.6rem; }
+.z-scene { display: flex; align-items: end; min-height: 24rem; background: linear-gradient(180deg, transparent, rgba(250,250,249,0.86)), radial-gradient(circle at 20% 30%, rgba(125,138,106,0.22), transparent 24%), linear-gradient(135deg, rgba(180,155,122,0.14), rgba(255,255,255,0.72)); }
+.z-cards, .z-services, .z-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: 0 0 3rem; }
+.z-stat { padding: 0 0 3rem; }
+.z-stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.z-stat-row strong { display: block; font-size: clamp(2rem, 5vw, 3.1rem); color: var(--sage); font-weight: 300; }
+.z-page { padding: 2rem 0 3rem; }
+.z-page-hero { max-width: 44rem; padding: 1.5rem 0 2rem; }
+.z-contact { padding-bottom: 3rem; }
+.z-form { display: grid; gap: 0.8rem; font-family: "Noto Sans JP", sans-serif; }
+.z-form label { color: var(--muted); font-size: 0.95rem; }
+.z-form input, .z-form textarea { width: 100%; padding: 0.95rem 1rem; border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,0.85); color: var(--text); font: inherit; }
+.z-list { margin: 0; padding-left: 1.1rem; color: var(--muted); line-height: 1.8; font-family: "Noto Sans JP", sans-serif; }
+.z-footer { display: flex; justify-content: space-between; gap: 1rem; padding: 0 0 2rem; color: var(--muted); font-family: "Noto Sans JP", sans-serif; }
+.note { color: var(--muted); font-size: 0.9rem; font-family: "Noto Sans JP", sans-serif; }
+.reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) { .z-nav { display: none; } .z-menu { display: inline-flex; } .z-hero, .z-grid, .z-stat, .z-contact, .z-services, .z-steps, .z-cards, .z-stat-row, .z-footer { grid-template-columns: 1fr; display: grid; } }

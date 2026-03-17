@@ -1,340 +1,135 @@
 <!DOCTYPE html>
-<html lang="ja" class="light">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIDE_HORIZON - Panorama</title>
-
+    <title>WIDE HORIZON | 風景と滞在を設計するランドスケープリトリート</title>
+    <meta name="description" content="WIDE HORIZON は、風景設計・滞在導線・地域体験を一体で構築するランドスケープリトリートブランドです。横広感と余白を活かした上質な滞在設計を提案します。">
     <link rel="canonical" href="https://example.com/templates/business/w/index.html">
-    <meta name="description" content="WIDE_HORIZON - 究極のluxury travel experience">
-    <meta property="og:title" content="WIDE HORIZON | Panorama">
-    <meta property="og:description" content="Experience the Boundless Horizon">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="WIDE HORIZON | ランドスケープリトリート">
+    <meta property="og:description" content="風景と滞在を一体設計する、横に広がる体験設計。">
     <meta property="og:url" content="https://example.com/templates/business/w/index.html">
+    <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
+    <meta name="robots" content="index,follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/tailwind-input.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
-<div class="relative flex min-h-screen w-full flex-col">
-<!-- Navigation -->
-<header class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center bg-gradient-to-b from-black/50 to-transparent">
-    <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-3xl font-light text-white">explore</span>
-        <h1 class="text-xl font-extralight tracking-[0.2em] text-white">WIDE_HORIZON</h1>
-    </div>
-    <nav class="hidden md:flex items-center gap-12">
-        <a class="text-white/90 text-sm font-extralight tracking-widest hover:text-white transition-colors" href="index.html">DESTINATIONS</a>
-        <a class="text-white/90 text-sm font-extralight tracking-widest hover:text-white transition-colors" href="service.html">INSIGHTS</a>
-        <a class="text-white/90 text-sm font-extralight tracking-widest hover:text-white transition-colors" href="about.html">GLOBAL REACH</a>
-        <a class="text-white/90 text-sm font-extralight tracking-widest hover:text-white transition-colors" href="contact.html">EXPERIENCES</a>
-        <button class="px-8 py-2 border border-white/30 text-white text-xs font-light tracking-[0.2em] rounded-full hover:bg-white hover:text-slate-900 transition-all">
-            BOOK NOW
-        </button>
-    </nav>
-    <button class="md:hidden text-white" onclick="toggleWMenu()">
-        <span class="material-symbols-outlined">menu</span>
-    </button>
-</header>
-
-<!-- Mobile Menu -->
-<div class="w-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleWMenu()"></div>
-<nav id="w-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-white/10 p-8 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-        <div class="flex justify-between items-center mb-16">
-            <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-3xl font-light text-white">explore</span>
-                <span class="text-xl font-extralight tracking-[0.2em] text-white">WIDE_HORIZON</span>
-            </div>
-            <button class="text-white/50 hover:text-white" onclick="toggleWMenu()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col gap-6 flex-1">
-            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="index.html" onclick="toggleWMenu()">DESTINATIONS</a>
-            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="service.html" onclick="toggleWMenu()">INSIGHTS</a>
-            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="about.html" onclick="toggleWMenu()">GLOBAL REACH</a>
-            <a class="text-sm font-extralight tracking-widest text-slate-400 hover:text-white transition-colors" href="contact.html" onclick="toggleWMenu()">EXPERIENCES</a>
-        </div>
-        <button class="w-full border border-white/30 text-white px-8 py-4 text-xs font-light tracking-[0.2em] rounded-full hover:bg-white hover:text-slate-900 transition-all">
-            BOOK NOW
-        </button>
-    </div>
-</nav>
-
-<main>
-<!-- Hero Section: Full Bleed Panorama -->
-<section class="relative h-screen w-full overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('assets/generated/external-image-01.svg');">
-    </div>
-    <!-- Hero Content -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 -mt-20">
-        <h2 class="text-white text-6xl md:text-8xl font-extralight tracking-tight mb-6">
-            Panorama
-        </h2>
-        <p class="text-white/80 text-lg md:text-xl font-light tracking-[0.3em] uppercase max-w-2xl">
-            Experience the Boundless Horizon
-        </p>
-        <div class="mt-12 flex flex-col items-center gap-4">
-            <div class="w-px h-24 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
-            <span class="text-white text-[10px] tracking-[0.4em] font-light uppercase">Scroll to Explore</span>
-        </div>
-    </div>
-</section>
-
-<!-- Content Block: Airy Whites & Global Reach -->
-<section class="py-32 px-6 md:px-12 bg-white dark:bg-background-dark">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-end justify-between gap-12">
-        <div class="max-w-2xl">
-            <h3 class="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Our Presence</h3>
-            <h2 class="text-4xl md:text-6xl font-extralight text-slate-900 dark:text-white leading-tight">
-                Boundless connections <br/> across every continent.
-            </h2>
-            <p class="mt-8 text-slate-500 dark:text-slate-400 text-lg font-light leading-relaxed">
-                We bridge the gap between luxury and the wild, delivering premium travel experiences that redefine the meaning of discovery. Our network spans the globe, ensuring the horizon is never out of reach.
-            </p>
-        </div>
-        <div class="flex gap-12 pb-4">
-            <div class="text-center">
-                <span class="block text-4xl font-extralight text-primary">150+</span>
-                <span class="text-[10px] tracking-widest text-slate-400 uppercase">Countries</span>
-            </div>
-            <div class="text-center">
-                <span class="block text-4xl font-extralight text-primary">7</span>
-                <span class="text-[10px] tracking-widest text-slate-400 uppercase">Continents</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Horizontal Scrolling Section: Featured Insights -->
-<section class="py-20 bg-white dark:bg-background-dark overflow-hidden">
-    <div class="px-6 md:px-12 mb-12 flex items-center justify-between">
-        <h2 class="text-3xl font-extralight tracking-tight">Featured Insights</h2>
-        <div class="flex gap-4">
-            <button class="scroll-prev p-2 border border-slate-200 dark:border-slate-800 rounded-full hover:bg-primary hover:text-white transition-colors">
-                <span class="material-symbols-outlined">west</span>
-            </button>
-            <button class="scroll-next p-2 border border-slate-200 dark:border-slate-800 rounded-full hover:bg-primary hover:text-white transition-colors">
-                <span class="material-symbols-outlined">east</span>
-            </button>
-        </div>
-    </div>
-    <div class="flex gap-8 px-6 md:px-12 overflow-x-auto hide-scrollbar snap-x snap-mandatory" id="insights-scroll">
-        <!-- Card 1 -->
-        <div class="min-w-[70vw] md:min-w-[40vw] aspect-[16/9] relative group snap-center overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/generated/external-image-02.svg');"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div class="absolute bottom-8 left-8 text-white">
-                <p class="text-[10px] tracking-[0.3em] uppercase mb-2">Wilderness</p>
-                <h4 class="text-2xl font-light">The High Sierras</h4>
-            </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="min-w-[70vw] md:min-w-[40vw] aspect-[16/9] relative group snap-center overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/generated/external-image-03.svg');"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div class="absolute bottom-8 left-8 text-white">
-                <p class="text-[10px] tracking-[0.3em] uppercase mb-2">Paradise</p>
-                <h4 class="text-2xl font-light">Maldivian Azure</h4>
-            </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="min-w-[70vw] md:min-w-[40vw] aspect-[16/9] relative group snap-center overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('assets/generated/external-image-04.svg');"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div class="absolute bottom-8 left-8 text-white">
-                <p class="text-[10px] tracking-[0.3em] uppercase mb-2">Heritage</p>
-                <h4 class="text-2xl font-light">Italian Elegance</h4>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Content Block: Breathtaking Experiences -->
-<section class="grid grid-cols-1 md:grid-cols-2 min-h-[600px] w-full">
-    <div class="bg-primary/5 flex flex-col justify-center px-6 md:px-12 py-20">
-        <div class="max-w-md ml-auto">
-            <h3 class="text-sunset text-xs font-bold tracking-[0.3em] uppercase mb-4">Curated Journeys</h3>
-            <h2 class="text-4xl font-extralight text-slate-900 dark:text-white leading-tight mb-6">
-                Breathtaking <br/> Experiences
-            </h2>
-            <div class="space-y-8">
-                <div class="flex gap-4">
-                    <span class="material-symbols-outlined text-primary">diamond</span>
-                    <div>
-                        <h5 class="font-medium text-slate-800 dark:text-slate-200">Private Expeditions</h5>
-                        <p class="text-sm text-slate-500 font-light mt-1">Tailored routes accessible only to the few.</p>
-                    </div>
-                </div>
-                <div class="flex gap-4">
-                    <span class="material-symbols-outlined text-primary">auto_awesome</span>
-                    <div>
-                        <h5 class="font-medium text-slate-800 dark:text-slate-200">Unseen Landscapes</h5>
-                        <p class="text-sm text-slate-500 font-light mt-1">Discover hidden gems before the rest of the world.</p>
-                    </div>
-                </div>
-            </div>
-            <a href="service.html" class="mt-12 group flex items-center gap-4 text-xs font-bold tracking-[0.2em] uppercase text-primary">
-                Explore services
-                <span class="material-symbols-outlined transition-transform group-hover:translate-x-2">trending_flat</span>
-            </a>
-        </div>
-    </div>
-    <div class="bg-cover bg-center relative" style="background-image: url('assets/generated/external-image-05.svg');">
-        <div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
-    </div>
-</section>
-
-<!-- Global Grid -->
-<section class="py-32 px-6 md:px-12 bg-white dark:bg-background-dark">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl font-extralight tracking-tight mb-4">The World is Your Horizon</h2>
-            <p class="text-slate-400 font-light tracking-[0.1em]">Select a region to start your journey</p>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="#" class="aspect-square relative group overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('assets/generated/external-image-01.svg');"></div>
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-white text-xs font-light tracking-[0.4em] uppercase">Americas</span>
-                </div>
-            </a>
-            <a href="#" class="aspect-square relative group overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('assets/generated/external-image-02.svg');"></div>
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-white text-xs font-light tracking-[0.4em] uppercase">Europe</span>
-                </div>
-            </a>
-            <a href="#" class="aspect-square relative group overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('assets/generated/external-image-03.svg');"></div>
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-white text-xs font-light tracking-[0.4em] uppercase">Asia</span>
-                </div>
-            </a>
-            <a href="#" class="aspect-square relative group overflow-hidden">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('assets/generated/external-image-04.svg');"></div>
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-white text-xs font-light tracking-[0.4em] uppercase">Africa</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-40 bg-primary relative overflow-hidden flex flex-col items-center justify-center text-white">
-    <div class="text-center px-4">
-        <h2 class="text-5xl md:text-7xl font-extralight leading-none tracking-tight mb-8">
-            Ready to Explore?
-        </h2>
-        <p class="text-white/70 text-lg font-light tracking-[0.2em] uppercase mb-12">
-            Your journey begins here
-        </p>
-        <a href="contact.html" class="inline-flex items-center gap-4 bg-white text-primary px-12 py-4 text-sm font-light tracking-[0.2em] rounded-full hover:scale-105 transition-transform">
-            Start Your Journey
-            <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
-    </div>
-</section>
-</main>
-
-<!-- Footer -->
-<footer class="bg-background-dark text-white py-20 px-6 md:px-12">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
-        <div class="max-w-sm">
-            <div class="flex items-center gap-2 mb-6">
-                <span class="material-symbols-outlined text-3xl font-light">explore</span>
-                <h1 class="text-xl font-extralight tracking-[0.2em]">WIDE_HORIZON</h1>
-            </div>
-            <p class="text-slate-400 font-light text-sm leading-relaxed">
-                A global leader in bespoke travel, creating connections between the world's most breathtaking places and those who seek to see them.
-            </p>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
-            <div>
-                <h6 class="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Explore</h6>
-                <ul class="space-y-4 text-xs font-light text-slate-400">
-                    <li><a class="hover:text-white transition-colors" href="index.html">Destinations</a></li>
-                    <li><a class="hover:text-white transition-colors" href="service.html">Experiences</a></li>
-                    <li><a class="hover:text-white transition-colors" href="about.html">Insights</a></li>
-                </ul>
-            </div>
-            <div>
-                <h6 class="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Enterprise</h6>
-                <ul class="space-y-4 text-xs font-light text-slate-400">
-                    <li><a class="hover:text-white transition-colors" href="about.html">Our Reach</a></li>
-                    <li><a class="hover:text-white transition-colors" href="#">Partnerships</a></li>
-                    <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h6 class="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Social</h6>
-                <div class="flex gap-4">
-                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer">public</span>
-                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer">camera</span>
-                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer">send</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-        <p class="text-[10px] tracking-widest text-slate-500 uppercase">© 2024 WIDE_HORIZON Enterprises. All rights reserved.</p>
-        <div class="flex gap-8 text-[10px] tracking-widest text-slate-500 uppercase">
-            <a class="hover:text-white" href="#">Privacy</a>
-            <a class="hover:text-white" href="#">Terms</a>
-            <a class="hover:text-white" href="#">Cookies</a>
-        </div>
-    </div>
-</footer>
-</div>
-
-<script src="../../../assets/js/template-common.js" defer></script>
-<script>
-function toggleWMenu() {
-    const menu = document.getElementById('w-mobile-menu');
-    const backdrop = document.querySelector('.w-backdrop');
-    if (menu.classList.contains('inactive')) {
-        menu.classList.remove('inactive');
-        menu.classList.add('active');
-        backdrop.classList.remove('hidden');
-    } else {
-        menu.classList.remove('active');
-        menu.classList.add('inactive');
-        backdrop.classList.add('hidden');
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WIDE HORIZON",
+      "url": "https://example.com/templates/business/w/index.html",
+      "description": "風景設計・滞在導線・地域体験を統合するランドスケープリトリートブランド",
+      "telephone": "+81-3-5555-0180",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP",
+        "addressLocality": "長野県北安曇郡"
+      }
     }
-}
-
-// Horizontal scroll buttons
-document.querySelector('.scroll-prev')?.addEventListener('click', () => {
-    const container = document.getElementById('insights-scroll');
-    container.scrollBy({ left: -400, behavior: 'smooth' });
-});
-
-document.querySelector('.scroll-next')?.addEventListener('click', () => {
-    const container = document.getElementById('insights-scroll');
-    container.scrollBy({ left: 400, behavior: 'smooth' });
-});
-</script>
+    </script>
+</head>
+<body class="tw-bg-stone-950 tw-text-stone-100">
+    <div class="site-shell">
+        <header class="site-header" data-header>
+            <a class="brand" href="index.html" aria-label="WIDE HORIZON ホーム">
+                <span class="brand-mark"></span>
+                <span class="brand-text">WIDE HORIZON</span>
+            </a>
+            <nav class="desktop-nav" aria-label="主要ナビゲーション">
+                <a href="index.html">Home</a>
+                <a href="service.html">Programs</a>
+                <a href="about.html">Philosophy</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="w-mobile-menu">
+                <span></span><span></span>
+                <span class="sr-only">メニューを開く</span>
+            </button>
+        </header>
+        <div class="mobile-menu" id="w-mobile-menu" data-mobile-menu hidden>
+            <nav class="mobile-nav" aria-label="モバイルナビゲーション">
+                <a href="index.html">Home</a>
+                <a href="service.html">Programs</a>
+                <a href="about.html">Philosophy</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+        <main>
+            <section class="hero hero-panorama reveal is-visible">
+                <div class="hero-copy">
+                    <p class="eyebrow">Landscape Retreat Direction</p>
+                    <h1>横に広がる風景を、<br>滞在価値へ変える。</h1>
+                    <p class="lead">山並み、湖面、空の抜け。WIDE HORIZON は、敷地の横方向の伸びを活かしたリトリート施設・宿泊体験・地域滞在プログラムを設計します。</p>
+                    <div class="hero-actions">
+                        <a class="button button-light" href="service.html">プログラムを見る</a>
+                        <a class="button button-ghost" href="contact.html">相談を始める</a>
+                    </div>
+                </div>
+                <div class="hero-metrics">
+                    <article><span>09</span><p>展開地域</p></article>
+                    <article><span>27</span><p>設計済み滞在導線</p></article>
+                    <article><span>48h</span><p>初回構想提出目安</p></article>
+                </div>
+            </section>
+            <section class="strip-grid reveal">
+                <div>
+                    <p class="eyebrow">Wide Composition</p>
+                    <h2>風景を切り取らず、横へ使う。</h2>
+                </div>
+                <p>視線の抜け方、歩行のテンポ、窓辺の滞在時間までを、平面的な奥行きではなく横方向の連なりとして再設計します。ロビー、ラウンジ、客室、屋外導線が一枚の風景としてつながる構成です。</p>
+            </section>
+            <section class="panels reveal">
+                <article class="panel panel-image horizon-one">
+                    <div><p class="eyebrow">Arrival</p><h3>到着直後に景色を開く。</h3></div>
+                </article>
+                <article class="panel">
+                    <p class="eyebrow">Sequence</p>
+                    <h3>水平線のような導線設計</h3>
+                    <p>チェックインから客室、食事、サウナ、屋外体験までを切れ目なく並べ、滞在体験を “風景の連続” として設計します。</p>
+                    <ul class="feature-list">
+                        <li>視線の抜けを優先したゾーニング</li>
+                        <li>混雑時間を避ける分散オペレーション</li>
+                        <li>屋外アクティビティと客室動線の統合</li>
+                    </ul>
+                </article>
+            </section>
+            <section class="stat-band reveal">
+                <div>
+                    <p class="eyebrow">Indicative Metrics</p>
+                    <h2>数値で見る、滞在設計の再現性。</h2>
+                </div>
+                <div class="stat-cards">
+                    <article><strong>34%</strong><span>平均回遊時間の改善例</span></article>
+                    <article><strong>2.1x</strong><span>共有空間の滞在密度差分例</span></article>
+                    <article><strong>91%</strong><span>景観導線満足度ヒアリング例</span></article>
+                </div>
+                <p class="note">※ 掲載数値はすべてサンプルです。実案件では立地条件・季節変動・運営体制に応じて個別に再設計します。</p>
+            </section>
+            <section class="cards reveal">
+                <article class="card"><p class="eyebrow">Stay Design</p><h3>宿泊体験の再編集</h3><p>客室の視界、バルコニーの余白、朝夕の光の入り方を前提に、滞在プログラム全体を再構成します。</p></article>
+                <article class="card"><p class="eyebrow">Local Program</p><h3>地域資源の編集</h3><p>農園、湖畔、トレイル、温浴施設を “分断された点” ではなく、一本の体験導線として接続します。</p></article>
+                <article class="card"><p class="eyebrow">Operator Support</p><h3>運営の水平連携</h3><p>清掃・送迎・飲食・アクティビティ案内を同じ導線設計の中に置き、現場負荷を下げます。</p></article>
+            </section>
+            <section class="cta reveal">
+                <div>
+                    <p class="eyebrow">Next Horizon</p>
+                    <h2>余白のある施設ほど、体験設計の差が出ます。</h2>
+                    <p>既存施設の刷新でも、新規開発の初期構想でも対応します。まずは敷地条件と理想の滞在イメージを共有してください。</p>
+                </div>
+                <a class="button button-light" href="contact.html">無料相談を予約する</a>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <div><a class="brand footer-brand" href="index.html">WIDE HORIZON</a><p>風景設計・滞在導線・地域体験の統合ディレクション。</p></div>
+            <div class="footer-links"><a href="about.html">会社情報</a><a href="service.html">プログラム</a><a href="contact.html">お問い合わせ</a></div>
+        </footer>
+    </div>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

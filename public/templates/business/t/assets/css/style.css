@@ -1,0 +1,173 @@
+:root {
+    --t-bg: #0d1117;
+    --t-surface: #161d26;
+    --t-surface-strong: #1f2833;
+    --t-border: #3a4655;
+    --t-line: rgba(143, 213, 255, 0.18);
+    --t-text: #e8edf2;
+    --t-muted: #99a6b5;
+    --t-accent: #8fd5ff;
+    --t-warn: #f2c572;
+    --t-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: "IBM Plex Sans JP", "Inter", sans-serif;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 28%),
+        linear-gradient(135deg, #0d1117 0%, #121821 55%, #0b0f14 100%);
+    color: var(--t-text);
+    min-height: 100vh;
+}
+
+a { color: inherit; }
+
+.t-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(var(--t-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--t-line) 1px, transparent 1px);
+    background-size: 84px 84px;
+    opacity: 0.12;
+}
+
+.t-panel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid var(--t-border);
+    box-shadow: var(--t-shadow);
+}
+
+.t-block {
+    border: 1px solid var(--t-border);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+        var(--t-surface);
+}
+
+.t-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--t-accent);
+}
+
+.t-kicker::before {
+    content: "";
+    width: 2.4rem;
+    height: 1px;
+    background: var(--t-accent);
+}
+
+.t-number-note {
+    border-left: 3px solid var(--t-accent);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--t-muted);
+}
+
+.t-rect-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0 1.4rem;
+    border: 1px solid var(--t-border);
+    background: var(--t-surface-strong);
+    color: var(--t-text);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.t-rect-button:hover,
+.t-rect-button:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--t-accent);
+    background: #243241;
+}
+
+.t-rect-button--accent {
+    background: var(--t-accent);
+    color: #091018;
+    border-color: var(--t-accent);
+}
+
+.t-rect-button--accent:hover,
+.t-rect-button--accent:focus-visible {
+    background: #b2e5ff;
+}
+
+.t-mobile-menu,
+.t-mobile-backdrop {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.t-mobile-menu { transform: translateX(100%); }
+body.menu-open .t-mobile-backdrop { opacity: 1; pointer-events: auto; }
+body.menu-open .t-mobile-menu { opacity: 1; pointer-events: auto; transform: translateX(0); }
+
+.t-form-field label {
+    display: block;
+    margin-bottom: 0.55rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--t-muted);
+}
+
+.t-form-field input,
+.t-form-field textarea,
+.t-form-field select {
+    width: 100%;
+    border: 1px solid var(--t-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--t-text);
+    padding: 0.95rem 1rem;
+    border-radius: 0;
+    font: inherit;
+}
+
+.t-form-field textarea { min-height: 9rem; resize: vertical; }
+.t-form-field input:focus,
+.t-form-field textarea:focus,
+.t-form-field select:focus { outline: 2px solid transparent; border-color: var(--t-accent); }
+
+.t-hero-grid { position: relative; }
+.t-hero-grid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent, rgba(13, 17, 23, 0.55) 70%, rgba(13, 17, 23, 0.9));
+    pointer-events: none;
+}
+
+.t-signal { position: relative; overflow: hidden; }
+.t-signal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(143, 213, 255, 0.14), transparent);
+    transform: translateX(-100%);
+    animation: t-signal 4.6s linear infinite;
+}
+
+@keyframes t-signal { to { transform: translateX(100%); } }
+
+@media (max-width: 767px) {
+    .t-shell::before { background-size: 48px 48px; }
+}

@@ -1,0 +1,535 @@
+:root {
+    --q-bg: #0a0f14;
+    --q-surface: rgba(16, 23, 31, 0.92);
+    --q-surface-strong: #111a24;
+    --q-line: rgba(131, 150, 170, 0.22);
+    --q-line-strong: rgba(131, 150, 170, 0.4);
+    --q-text: #e7edf5;
+    --q-muted: #91a0b3;
+    --q-accent: #f2a65a;
+    --q-accent-soft: rgba(242, 166, 90, 0.18);
+    --q-panel: linear-gradient(180deg, rgba(20, 30, 41, 0.95), rgba(10, 15, 20, 0.98));
+    --q-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    --q-radius: 1.25rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: var(--q-text);
+    font-family: "IBM Plex Sans JP", "Inter", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(242, 166, 90, 0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(91, 110, 135, 0.16), transparent 28%),
+        linear-gradient(180deg, #060a0f 0%, #0a0f14 100%);
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.q-grid {
+    position: relative;
+}
+
+.q-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to right, rgba(131, 150, 170, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(131, 150, 170, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+}
+
+.q-panel {
+    background: var(--q-panel);
+    border: 1px solid var(--q-line);
+    border-radius: var(--q-radius);
+    box-shadow: var(--q-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.q-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 30%);
+    pointer-events: none;
+}
+
+.q-section-label {
+    color: var(--q-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+}
+
+.q-kicker-line {
+    width: 3.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--q-accent), transparent);
+}
+
+.q-hero-word {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(242, 166, 90, 0.84);
+}
+
+.q-metal-text {
+    background: linear-gradient(180deg, #f8f6f2 0%, #b4bec9 45%, #738295 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.q-scan-lines {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 16%, transparent 84%, rgba(255, 255, 255, 0.03)),
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 7px);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.q-frame {
+    position: relative;
+}
+
+.q-frame::before,
+.q-frame::after {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-color: var(--q-accent);
+    opacity: 0.8;
+}
+
+.q-frame::before {
+    top: -0.7rem;
+    left: -0.7rem;
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+
+.q-frame::after {
+    right: -0.7rem;
+    bottom: -0.7rem;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.q-stat-card,
+.q-card,
+.q-process-step,
+.q-table-wrap,
+.q-contact-card,
+.q-form-shell {
+    background: rgba(11, 16, 22, 0.78);
+    border: 1px solid var(--q-line);
+    border-radius: 1rem;
+    position: relative;
+}
+
+.q-card::before,
+.q-process-step::before,
+.q-contact-card::before,
+.q-form-shell::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    pointer-events: none;
+}
+
+.q-data-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--q-line-strong);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #d7dee8;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.q-data-badge::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--q-accent);
+    box-shadow: 0 0 0.7rem var(--q-accent);
+}
+
+.q-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+}
+
+.q-metric-value {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(2rem, 4vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.q-metric-unit {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--q-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
+
+.q-note {
+    border-left: 2px solid var(--q-accent);
+    padding-left: 1rem;
+    color: #c0cad6;
+}
+
+.q-line-run {
+    position: relative;
+    overflow: hidden;
+}
+
+.q-line-run::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -35%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(242, 166, 90, 0.28), transparent);
+    animation: q-line-scan 4.8s linear infinite;
+}
+
+.q-process-step[data-visible="true"] .q-process-index,
+.q-card[data-visible="true"] .q-process-index {
+    color: var(--q-accent);
+    border-color: rgba(242, 166, 90, 0.55);
+}
+
+.q-process-index {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--q-line-strong);
+    font-family: "IBM Plex Mono", monospace;
+    color: #d3dbe6;
+}
+
+.q-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.q-table th,
+.q-table td {
+    padding: 1rem 1.1rem;
+    border-bottom: 1px solid rgba(131, 150, 170, 0.14);
+    text-align: left;
+}
+
+.q-table th {
+    color: var(--q-accent);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+.q-table td {
+    color: #d6dde7;
+    font-size: 0.95rem;
+}
+
+.q-table tbody tr:hover {
+    background: rgba(242, 166, 90, 0.04);
+}
+
+.q-chip {
+    display: inline-flex;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(242, 166, 90, 0.28);
+    background: rgba(242, 166, 90, 0.08);
+    color: #f4c28f;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.q-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        border-color 0.4s ease,
+        background-color 0.4s ease;
+}
+
+.q-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.q-header {
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.q-header.is-scrolled {
+    background: rgba(10, 15, 20, 0.92);
+    border-color: rgba(242, 166, 90, 0.16);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.q-mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+}
+
+.q-mobile-menu.is-open {
+    transform: translateX(0);
+}
+
+.q-menu-backdrop {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+}
+
+.q-menu-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.q-nav-link[aria-current="page"],
+.q-mobile-link[aria-current="page"] {
+    color: var(--q-accent);
+}
+
+.q-nav-link[aria-current="page"]::after {
+    width: 100%;
+}
+
+.q-nav-link {
+    position: relative;
+}
+
+.q-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.45rem;
+    width: 0;
+    height: 1px;
+    background: var(--q-accent);
+    transition: width 0.25s ease;
+}
+
+.q-nav-link:hover::after {
+    width: 100%;
+}
+
+.q-form-shell input,
+.q-form-shell select,
+.q-form-shell textarea {
+    width: 100%;
+    border: 1px solid var(--q-line);
+    border-radius: 0.8rem;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--q-text);
+    padding: 0.9rem 1rem;
+    font: inherit;
+}
+
+.q-form-shell input:focus,
+.q-form-shell select:focus,
+.q-form-shell textarea:focus {
+    outline: none;
+    border-color: rgba(242, 166, 90, 0.72);
+    box-shadow: 0 0 0 3px rgba(242, 166, 90, 0.12);
+}
+
+.q-form-shell label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.78rem;
+    color: #cad5e2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.q-form-shell .q-required {
+    color: var(--q-accent);
+}
+
+.q-form-message {
+    min-height: 1.5rem;
+    font-size: 0.88rem;
+    color: #cfd8e3;
+}
+
+.q-form-message.is-error {
+    color: #ffb6b6;
+}
+
+.q-form-message.is-success {
+    color: #a8e3c2;
+}
+
+.q-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    padding: 0.95rem 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.q-button:hover {
+    transform: translateY(-1px);
+}
+
+.q-button-primary {
+    background: linear-gradient(135deg, #f2a65a, #f4bf82);
+    color: #10151d;
+}
+
+.q-button-secondary {
+    border-color: var(--q-line-strong);
+    color: var(--q-text);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.q-hero-diagram {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(242, 166, 90, 0.28);
+    background:
+        radial-gradient(circle at center, rgba(242, 166, 90, 0.08), transparent 35%),
+        radial-gradient(circle at center, transparent 52%, rgba(131, 150, 170, 0.14) 52%, transparent 54%),
+        radial-gradient(circle at center, transparent 68%, rgba(131, 150, 170, 0.14) 68%, transparent 70%);
+    position: relative;
+}
+
+.q-hero-diagram::before,
+.q-hero-diagram::after {
+    content: "";
+    position: absolute;
+    inset: 14%;
+    border-radius: 50%;
+    border: 1px dashed rgba(131, 150, 170, 0.3);
+}
+
+.q-hero-diagram::after {
+    inset: 30%;
+    border-style: solid;
+}
+
+.q-hero-diagram-mark {
+    position: absolute;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(242, 166, 90, 0.38);
+    color: var(--q-accent);
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.q-note-bar {
+    border: 1px solid rgba(242, 166, 90, 0.18);
+    background: rgba(242, 166, 90, 0.05);
+    color: #e4cbaf;
+    border-radius: 0.9rem;
+}
+
+.q-footer-meta {
+    color: #8b9aad;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+@keyframes q-line-scan {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(420%);
+    }
+}
+
+@media (max-width: 767px) {
+    .q-grid::before {
+        background-size: 18px 18px;
+    }
+
+    .q-table {
+        min-width: 560px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .q-reveal,
+    .q-mobile-menu,
+    .q-menu-backdrop,
+    .q-header,
+    .q-nav-link::after,
+    .q-button,
+    .q-line-run::after {
+        transition: none;
+        animation: none;
+    }
+}

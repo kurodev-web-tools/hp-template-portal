@@ -1,449 +1,124 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRUST GUARD - Infrastructure & Command</title>
-
+    <title>TRUST GUARD | 設計思想と運用アプローチ</title>
+    <meta name="description" content="TRUST GUARD の設計思想、支援体制、プロジェクト進行、数値の扱い方を紹介します。">
     <link rel="canonical" href="https://example.com/templates/business/t/about.html">
-    <meta name="description" content="TRUST GUARD - 司令塔とインフラストラクチャ">
-    <meta property="og:title" content="TRUST GUARD | Infrastructure & Command">
-    <meta property="og:description" content="元軍関係サイバーセキュリティ専門家と最先端のグローバルインフラストラクチャ">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="TRUST GUARD | 設計思想と運用アプローチ">
+    <meta property="og:description" content="堅牢さを保ちながら、現場で回る設計へ落とし込むセキュリティ支援の進め方。">
     <meta property="og:url" content="https://example.com/templates/business/t/about.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
+    <meta name="robots" content="index,follow">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "TRUST GUARD Approach",
+      "url": "https://example.com/templates/business/t/about.html",
+      "description": "TRUST GUARD の運用設計アプローチを紹介するページ"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/tailwind-input.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=Inter:wght@500;600;700;800&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
-        .scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
-            background-size: 100% 4px;
-        }
-        .grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, #274b20 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-        .radar-pulse {
-            animation: radar-pulse 2s ease-out infinite;
-        }
-        @keyframes radar-pulse {
-            0% { opacity: 1; transform: scale(0.8); }
-            100% { opacity: 0; transform: scale(2); }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-background-dark overflow-x-hidden">
-<div class="relative flex min-h-screen w-full flex-col">
-<!-- Navigation -->
-<header class="sticky top-0 z-50 w-full border-b-2 border-border-dark bg-background-dark/95 backdrop-blur">
-    <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="flex items-center gap-12">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-3xl">shield_with_heart</span>
-                <h2 class="text-xl font-bold tracking-tighter uppercase text-white">TRUST_GUARD</h2>
-            </div>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="index.html">Solutions</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="service.html">Threat Intel</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-white" href="about.html">Infrastructure</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="contact.html">Compliance</a>
+<body>
+<div class="t-shell relative min-h-screen overflow-x-hidden">
+    <header class="sticky top-0 z-40 border-b border-[#3a4655] bg-[rgba(13,17,23,0.92)] backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+            <a class="flex items-center gap-3 no-underline" href="index.html">
+                <span class="material-symbols-outlined text-3xl text-[#8fd5ff]">shield_locked</span>
+                <div>
+                    <div class="text-sm font-semibold uppercase tracking-[0.28em] text-[#8fd5ff]">Trust Guard</div>
+                    <div class="text-lg font-extrabold tracking-tight text-white">Operational Stability</div>
+                </div>
+            </a>
+            <nav class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 lg:flex">
+                <a href="index.html">Home</a>
+                <a href="service.html">Services</a>
+                <a class="text-white" href="about.html">Approach</a>
+                <a href="contact.html">Contact</a>
             </nav>
+            <button class="inline-flex h-12 w-12 items-center justify-center border border-[#3a4655] bg-[#161d26] text-white lg:hidden" type="button" aria-label="メニューを開く" aria-controls="t-mobile-menu" aria-expanded="false" data-menu-button><span class="material-symbols-outlined">menu</span></button>
         </div>
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex bg-surface-dark border border-border-dark px-4 py-2 items-center gap-3">
-                <span class="material-symbols-outlined text-primary size-5">search</span>
-                <input class="bg-transparent border-none focus:ring-0 text-xs tracking-widest uppercase placeholder:text-primary/40 w-40 text-white" placeholder="SYSTEM_QUERY" type="text"/>
+    </header>
+    <div class="t-mobile-backdrop fixed inset-0 z-40 bg-[rgba(6,9,12,0.74)]" data-menu-backdrop></div>
+    <aside id="t-mobile-menu" class="t-mobile-menu fixed right-0 top-0 z-50 flex h-full w-[min(24rem,88vw)] flex-col gap-8 border-l border-[#3a4655] bg-[#0f141b] p-6" data-mobile-menu>
+        <div class="flex items-center justify-between"><div class="text-lg font-bold text-white">TRUST GUARD</div><button class="inline-flex h-11 w-11 items-center justify-center border border-[#3a4655] text-white" type="button" aria-label="メニューを閉じる" data-menu-close><span class="material-symbols-outlined">close</span></button></div>
+        <nav class="flex flex-col gap-4 text-base font-semibold text-slate-200"><a href="index.html">Home</a><a href="service.html">Services</a><a href="about.html">Approach</a><a href="contact.html">Contact</a></nav>
+    </aside>
+    <main>
+        <section class="border-b border-[#3a4655]">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+                <span class="t-kicker">Approach</span>
+                <h1 class="mt-6 max-w-4xl text-5xl font-black tracking-[-0.05em] text-white lg:text-7xl">堅牢さを、継続できる単位に分解する。</h1>
+                <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">TRUST GUARD は、派手な言葉よりも運用上の明確さを優先します。誰が、何を、どの順番で、どこまで判断するか。そこが曖昧なままツールを増やしても、現場の安定にはつながりません。</p>
             </div>
-            <button class="bg-primary text-background-dark px-6 py-2 text-sm font-bold uppercase tracking-tighter hover:bg-white transition-all">
-                SECURE NETWORK
-            </button>
-            <button class="lg:hidden text-white t-mobile-toggle" onclick="toggleTMenu()">
-                <span class="material-symbols-outlined text-2xl">menu</span>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- Mobile Menu -->
-<div class="t-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleTMenu()"></div>
-<nav id="t-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l-2 border-primary p-8 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-        <div class="flex justify-between items-center mb-16">
-            <span class="text-xl font-bold tracking-widest uppercase text-white">TRUST_GUARD</span>
-            <button class="text-white hover:opacity-50" onclick="toggleTMenu()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col gap-6 flex-1">
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="index.html" onclick="toggleTMenu()">Solutions</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="service.html" onclick="toggleTMenu()">Threat Intel</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-white hover:text-primary transition-colors" href="about.html" onclick="toggleTMenu()">Infrastructure</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="contact.html" onclick="toggleTMenu()">Compliance</a>
-        </div>
-        <button class="w-full bg-primary text-background-dark px-6 py-4 text-sm font-bold uppercase tracking-tighter hover:bg-white transition-all">
-            SECURE NETWORK
-        </button>
-    </div>
-</nav>
-
-<main>
-<!-- Hero Section -->
-<section class="relative min-h-[60vh] flex flex-col items-center justify-center border-b-2 border-border-dark grid-bg overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background-dark/90"></div>
-    <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-    <div class="relative z-10 text-center px-4">
-        <div class="mb-6 flex justify-center">
-            <div class="relative">
-                <div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
-                <div class="relative size-32 bg-surface-dark border-2 border-primary/50 flex items-center justify-center rounded-lg">
-                    <span class="material-symbols-outlined text-6xl text-primary">radar</span>
-                </div>
+        </section>
+        <section class="border-b border-[#3a4655] bg-[#111821]">
+            <div class="mx-auto grid max-w-7xl gap-6 px-5 py-16 lg:grid-cols-3 lg:px-8">
+                <article class="t-panel p-6">
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Phase 1</p>
+                    <h2 class="mt-4 text-2xl font-bold text-white">現状把握</h2>
+                    <p class="mt-4 text-sm leading-7 text-slate-400">構成図、アカウント棚卸し、委託範囲、監査要件を確認し、運用責任の境界を明文化します。</p>
+                </article>
+                <article class="t-panel p-6">
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Phase 2</p>
+                    <h2 class="mt-4 text-2xl font-bold text-white">整流設計</h2>
+                    <p class="mt-4 text-sm leading-7 text-slate-400">通知条件、権限、例外フロー、経営報告ラインを矩形的に整理し、判断負荷を下げます。</p>
+                </article>
+                <article class="t-panel p-6">
+                    <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Phase 3</p>
+                    <h2 class="mt-4 text-2xl font-bold text-white">演習と更新</h2>
+                    <p class="mt-4 text-sm leading-7 text-slate-400">机上演習、ルール更新、手順差分の記録まで回して、仕組みが陳腐化しない状態を維持します。</p>
+                </article>
             </div>
-        </div>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase mb-6 text-white">
-            COMMAND <span class="text-primary">CENTER</span>
-        </h1>
-        <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto uppercase tracking-widest font-light leading-relaxed">
-            元軍関係サイバーセキュリティ専門家とグローバルインフラストラクチャ
-        </p>
-    </div>
-</section>
-
-<!-- Mission Statement -->
-<section class="border-b-2 border-border-dark py-24 px-6 bg-surface-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="material-symbols-outlined text-primary text-3xl">globe</span>
-                    <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Global Operations</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-8 tracking-tighter text-white leading-tight">
-                    Defending the <span class="text-primary">Digital Frontier</span>
-                </h2>
-                <p class="text-slate-300 text-base leading-relaxed mb-6 uppercase tracking-wide">
-                    TRUST GUARD は 2010 年、NATO サイバー防衛部隊の元メンバーによって設立されました。
-                </p>
-                <p class="text-slate-400 text-sm leading-relaxed mb-8 uppercase tracking-wider">
-                    軍事レベルの脅威インテリジェンスと自動応答プロトコルを民間セクターに提供。
-                    50 カ国以上、10,000 社以上の企業ネットワークを保護し続けています。
-                </p>
-                <div class="flex gap-4">
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary text-xl">verified</span>
-                        <span class="text-xs font-bold text-slate-300 uppercase tracking-widest">ISO 27001</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary text-xl">verified</span>
-                        <span class="text-xs font-bold text-slate-300 uppercase tracking-widest">SOC 2 Type II</span>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="border-2 border-border-dark bg-background-dark p-8 relative overflow-hidden">
-                    <div class="scanline absolute inset-0 opacity-20"></div>
-                    <div class="absolute top-4 right-4 flex items-center gap-2">
-                        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                        <span class="text-[10px] text-primary uppercase tracking-widest">LIVE</span>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="border border-border-dark p-4 bg-surface-dark/50">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-2">public</span>
-                            <p class="text-2xl font-bold text-white">50+</p>
-                            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Countries</p>
-                        </div>
-                        <div class="border border-border-dark p-4 bg-surface-dark/50">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-2">business</span>
-                            <p class="text-2xl font-bold text-white">10K+</p>
-                            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Enterprise</p>
-                        </div>
-                        <div class="border border-border-dark p-4 bg-surface-dark/50">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-2">security</span>
-                            <p class="text-2xl font-bold text-white">0</p>
-                            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Breaches</p>
-                        </div>
-                        <div class="border border-border-dark p-4 bg-surface-dark/50">
-                            <span class="material-symbols-outlined text-primary text-3xl mb-2">group</span>
-                            <p class="text-2xl font-bold text-white">500+</p>
-                            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Experts</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Command Team -->
-<section class="py-24 px-6 border-b-2 border-border-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">military_tech</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Leadership</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Command <span class="text-primary">Officers</span>
-            </h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Officer 1 -->
-            <div class="border-2 border-border-dark bg-surface-dark p-8 group hover:border-primary transition-colors">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="size-16 border-2 border-primary bg-background-dark flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">person</span>
-                    </div>
+        </section>
+        <section class="border-b border-[#3a4655]">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+                <div class="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
                     <div>
-                        <h3 class="text-lg font-bold uppercase tracking-tight text-white">James Sterling</h3>
-                        <p class="text-xs text-primary uppercase tracking-widest">CEO / Founder</p>
+                        <span class="t-kicker">Principles</span>
+                        <h2 class="mt-4 text-3xl font-black tracking-[-0.04em] text-white lg:text-5xl">私たちが避けること</h2>
+                    </div>
+                    <div class="grid gap-5 md:grid-cols-2">
+                        <div class="t-block p-6">
+                            <h3 class="text-xl font-bold text-white">完全防御の断定</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-400">脅威は変化するため、「絶対安全」は掲げません。代わりに、変化に追随できる体制を設計します。</p>
+                        </div>
+                        <div class="t-block p-6">
+                            <h3 class="text-xl font-bold text-white">属人的な初動依存</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-400">特定個人の経験頼みではなく、交代可能な判断導線と記録の整備を優先します。</p>
+                        </div>
+                        <div class="t-block p-6">
+                            <h3 class="text-xl font-bold text-white">監視件数だけの評価</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-400">対応品質が見えない数値は過信しません。判断時間や再発防止率を重視します。</p>
+                        </div>
+                        <div class="t-block p-6">
+                            <h3 class="text-xl font-bold text-white">文書と実装の分離</h3>
+                            <p class="mt-3 text-sm leading-7 text-slate-400">規程だけ更新して設定が追随しない状態を防ぐため、両方を同時に扱います。</p>
+                        </div>
                     </div>
                 </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-4">
-                    元 NATO サイバー防衛司令官。15 年の軍事サイバーセキュリティ経験。
-                </p>
-                <div class="flex gap-2">
-                    <span class="px-2 py-1 bg-border-dark text-[10px] text-slate-400 uppercase tracking-widest">Ex-NSA</span>
-                    <span class="px-2 py-1 bg-border-dark text-[10px] text-slate-400 uppercase tracking-widest">CISSP</span>
-                </div>
+                <div class="t-number-note mt-10 px-4 py-4 text-sm leading-7">事例に記載する件数・削減率・対応時間は、顧客環境に合わせた仮置き値として調整してください。デモ公開時は必ず実データに差し替える前提です。</div>
             </div>
-            <!-- Officer 2 -->
-            <div class="border-2 border-border-dark bg-surface-dark p-8 group hover:border-primary transition-colors">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="size-16 border-2 border-primary bg-background-dark flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">person</span>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold uppercase tracking-tight text-white">Sarah Chen</h3>
-                        <p class="text-xs text-primary uppercase tracking-widest">CTO</p>
-                    </div>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-4">
-                    元米軍情報部サイバー analyst。AI 駆動型脅威検知のパイオニア。
-                </p>
-                <div class="flex gap-2">
-                    <span class="px-2 py-1 bg-border-dark text-[10px] text-slate-400 uppercase tracking-widest">Ex-MI6</span>
-                    <span class="px-2 py-1 bg-border-dark text-[10px] text-slate-400 uppercase tracking-widest">PhD AI</span>
-                </div>
+        </section>
+        <section class="px-5 py-16 lg:px-8">
+            <div class="mx-auto max-w-5xl t-panel p-8 lg:p-12">
+                <span class="t-kicker">Team Rhythm</span>
+                <h2 class="mt-4 text-3xl font-black tracking-[-0.04em] text-white lg:text-5xl">週次で見る、月次で整える、四半期で見直す。</h2>
+                <p class="mt-5 text-base leading-8 text-slate-300">継続しやすい cadence を持たないセキュリティ施策は定着しません。TRUST GUARD はレビュー周期まで含めて設計します。</p>
             </div>
-            <!-- Officer 3 -->
-            <div class="border-2 border-border-dark bg-surface-dark p-8 group hover:border-primary transition-colors">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="size-16 border-2 border-primary bg-background-dark flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-3xl">person</span>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold uppercase tracking-tight text-white">Marcus Webb</h3>
-                        <p class="text-xs text-primary uppercase tracking-widest">COO</p>
-                    </div>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-4">
-                    元特殊部隊通信プロトコル専門家。危機管理のスペシャリスト。
-                </p>
-                <div class="flex gap-2">
-                    <span class="px-2 py-1 bg-border-dark text-[10px] text-slate-400 uppercase tracking-widest">Ex-SAS</span>
-                    <span class="px-2 py-1 bg-border-dark text-[10px] text-slate-400 uppercase tracking-widest">PMP</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Infrastructure Map -->
-<section class="py-24 px-6 bg-surface-dark border-b-2 border-border-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">dns</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Global Network</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Infrastructure <span class="text-primary">Grid</span>
-            </h2>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="border border-border-dark bg-background-dark p-6 text-center group hover:border-primary transition-colors">
-                <div class="flex justify-center mb-4">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-primary/20 blur-lg rounded-full radar-pulse"></div>
-                        <span class="material-symbols-outlined text-primary text-4xl relative">location_on</span>
-                    </div>
-                </div>
-                <h3 class="text-sm font-bold uppercase tracking-widest text-white mb-2">Tokyo</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">APAC HQ</p>
-                <div class="mt-4 flex justify-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                </div>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-6 text-center group hover:border-primary transition-colors">
-                <div class="flex justify-center mb-4">
-                    <div class="relative">
-                        <span class="material-symbols-outlined text-slate-600 text-4xl">location_on</span>
-                    </div>
-                </div>
-                <h3 class="text-sm font-bold uppercase tracking-widest text-white mb-2">London</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">EMEA HQ</p>
-                <div class="mt-4 flex justify-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
-                </div>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-6 text-center group hover:border-primary transition-colors">
-                <div class="flex justify-center mb-4">
-                    <div class="relative">
-                        <span class="material-symbols-outlined text-slate-600 text-4xl">location_on</span>
-                    </div>
-                </div>
-                <h3 class="text-sm font-bold uppercase tracking-widest text-white mb-2">New York</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Americas HQ</p>
-                <div class="mt-4 flex justify-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                </div>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-6 text-center group hover:border-primary transition-colors">
-                <div class="flex justify-center mb-4">
-                    <div class="relative">
-                        <span class="material-symbols-outlined text-slate-600 text-4xl">location_on</span>
-                    </div>
-                </div>
-                <h3 class="text-sm font-bold uppercase tracking-widest text-white mb-2">Sydney</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Pacific Node</p>
-                <div class="mt-4 flex justify-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
-                    <span class="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
-                </div>
-            </div>
-        </div>
-        <div class="mt-12 border border-border-dark bg-background-dark p-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <p class="text-3xl font-bold text-primary mb-2">12</p>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Data Centers</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold text-primary mb-2">99.99%</p>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Uptime SLA</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold text-primary mb-2">&lt;50ms</p>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Global Latency</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-bold text-primary mb-2">24/7</p>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">SOC Monitoring</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Certifications -->
-<section class="py-24 px-6 border-b-2 border-border-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">badge</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Compliance</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Certified <span class="text-primary">Security</span>
-            </h2>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="border-2 border-border-dark bg-surface-dark p-8 text-center hover:border-primary transition-colors">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4">verified</span>
-                <h3 class="text-lg font-bold uppercase tracking-tight text-white mb-2">ISO 27001</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Information Security</p>
-            </div>
-            <div class="border-2 border-border-dark bg-surface-dark p-8 text-center hover:border-primary transition-colors">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4">verified</span>
-                <h3 class="text-lg font-bold uppercase tracking-tight text-white mb-2">SOC 2 Type II</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Service Organization</p>
-            </div>
-            <div class="border-2 border-border-dark bg-surface-dark p-8 text-center hover:border-primary transition-colors">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4">verified</span>
-                <h3 class="text-lg font-bold uppercase tracking-tight text-white mb-2">GDPR</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Data Protection</p>
-            </div>
-            <div class="border-2 border-border-dark bg-surface-dark p-8 text-center hover:border-primary transition-colors">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4">verified</span>
-                <h3 class="text-lg font-bold uppercase tracking-tight text-white mb-2">HIPAA</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest">Healthcare Data</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="border-t-2 border-border-dark py-24 px-6 bg-background-dark">
-    <div class="max-w-[1440px] mx-auto text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.5em] text-slate-500 mb-12">Join the secure network</p>
-        <div class="bg-surface-dark border-4 border-border-dark p-16 max-w-4xl mx-auto relative overflow-hidden">
-            <div class="absolute inset-0 scanline opacity-10"></div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter text-white">Ready to fortify your defenses?</h2>
-            <p class="text-slate-400 mb-10 text-lg uppercase tracking-widest relative z-10">軍事レベルのセキュリティを今すぐ導入。</p>
-            <button class="bg-primary text-background-dark px-16 py-6 text-xl font-black uppercase tracking-widest hover:scale-105 transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)]">
-                Request Assessment
-            </button>
-        </div>
-    </div>
-</section>
-</main>
-
-<!-- Footer -->
-<footer class="bg-background-dark border-t-2 border-border-dark py-12 px-6">
-    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary text-2xl">shield_with_heart</span>
-            <span class="text-sm font-bold tracking-widest uppercase text-slate-400">TRUST_GUARD © 2024</span>
-        </div>
-        <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">
-            <a class="hover:text-primary transition-colors" href="#">Privacy_Protocol</a>
-            <a class="hover:text-primary transition-colors" href="#">Service_Agreement</a>
-            <a class="hover:text-primary transition-colors" href="#">Compliance_Logs</a>
-        </div>
-        <div class="flex gap-4">
-            <div class="size-8 border border-border-dark flex items-center justify-center hover:border-primary cursor-pointer text-slate-500 hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-sm">share</span>
-            </div>
-            <div class="size-8 border border-border-dark flex items-center justify-center hover:border-primary cursor-pointer text-slate-500 hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-sm">terminal</span>
-            </div>
-        </div>
-    </div>
-</footer>
+        </section>
+    </main>
+    <footer class="border-t border-[#3a4655] bg-[#0c1015]"><div class="mx-auto max-w-7xl px-5 py-10 text-sm text-slate-400 lg:px-8">© 2026 TRUST GUARD</div></footer>
 </div>
-
-<script src="../../../assets/js/template-common.js" defer></script>
-<script>
-function toggleTMenu() {
-    const toggle = document.querySelector('.t-mobile-toggle');
-    const menu = document.querySelector('#t-mobile-menu');
-    const backdrop = document.querySelector('.t-backdrop');
-    if (!menu || !backdrop) return;
-    const isOpen = !menu.classList.contains('active');
-    toggle?.classList.toggle('active', isOpen);
-    menu.classList.toggle('active', isOpen);
-    backdrop.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-</script>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

@@ -1,391 +1,92 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRUST GUARD - Compliance & Contact</title>
-
+    <title>TRUST GUARD | お問い合わせ</title>
+    <meta name="description" content="TRUST GUARD への相談フォーム。現状の課題、体制、希望スケジュールを共有できます。">
     <link rel="canonical" href="https://example.com/templates/business/t/contact.html">
-    <meta name="description" content="TRUST GUARD - コンプライアンスとお問い合わせ">
-    <meta property="og:title" content="TRUST GUARD | Compliance & Contact">
-    <meta property="og:description" content="セキュリティ監査、コンプライアンス証明書、緊急連絡先">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="TRUST GUARD | お問い合わせ">
+    <meta property="og:description" content="課題の整理段階から相談できるセキュリティ運用設計の問い合わせページ。">
     <meta property="og:url" content="https://example.com/templates/business/t/contact.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
+    <meta name="robots" content="index,follow">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "TRUST GUARD Contact",
+      "url": "https://example.com/templates/business/t/contact.html"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/tailwind-input.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=Inter:wght@500;600;700;800&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
-        .scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
-            background-size: 100% 4px;
-        }
-        .grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, #274b20 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-background-dark overflow-x-hidden">
-<div class="relative flex min-h-screen w-full flex-col">
-<!-- Navigation -->
-<header class="sticky top-0 z-50 w-full border-b-2 border-border-dark bg-background-dark/95 backdrop-blur">
-    <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="flex items-center gap-12">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-3xl">shield_with_heart</span>
-                <h2 class="text-xl font-bold tracking-tighter uppercase text-white">TRUST_GUARD</h2>
-            </div>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="index.html">Solutions</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="service.html">Threat Intel</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="about.html">Infrastructure</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-white" href="contact.html">Compliance</a>
-            </nav>
+<body>
+<div class="t-shell relative min-h-screen overflow-x-hidden">
+    <header class="sticky top-0 z-40 border-b border-[#3a4655] bg-[rgba(13,17,23,0.92)] backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+            <a class="flex items-center gap-3 no-underline" href="index.html"><span class="material-symbols-outlined text-3xl text-[#8fd5ff]">shield_locked</span><div><div class="text-sm font-semibold uppercase tracking-[0.28em] text-[#8fd5ff]">Trust Guard</div><div class="text-lg font-extrabold tracking-tight text-white">Operational Stability</div></div></a>
+            <nav class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 lg:flex"><a href="index.html">Home</a><a href="service.html">Services</a><a href="about.html">Approach</a><a class="text-white" href="contact.html">Contact</a></nav>
+            <button class="inline-flex h-12 w-12 items-center justify-center border border-[#3a4655] bg-[#161d26] text-white lg:hidden" type="button" aria-label="メニューを開く" aria-controls="t-mobile-menu" aria-expanded="false" data-menu-button><span class="material-symbols-outlined">menu</span></button>
         </div>
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex bg-surface-dark border border-border-dark px-4 py-2 items-center gap-3">
-                <span class="material-symbols-outlined text-primary size-5">search</span>
-                <input class="bg-transparent border-none focus:ring-0 text-xs tracking-widest uppercase placeholder:text-primary/40 w-40 text-white" placeholder="SYSTEM_QUERY" type="text"/>
-            </div>
-            <button class="bg-primary text-background-dark px-6 py-2 text-sm font-bold uppercase tracking-tighter hover:bg-white transition-all">
-                SECURE NETWORK
-            </button>
-            <button class="lg:hidden text-white t-mobile-toggle" onclick="toggleTMenu()">
-                <span class="material-symbols-outlined text-2xl">menu</span>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- Mobile Menu -->
-<div class="t-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleTMenu()"></div>
-<nav id="t-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l-2 border-primary p-8 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-        <div class="flex justify-between items-center mb-16">
-            <span class="text-xl font-bold tracking-widest uppercase text-white">TRUST_GUARD</span>
-            <button class="text-white hover:opacity-50" onclick="toggleTMenu()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col gap-6 flex-1">
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="index.html" onclick="toggleTMenu()">Solutions</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="service.html" onclick="toggleTMenu()">Threat Intel</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="about.html" onclick="toggleTMenu()">Infrastructure</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-white hover:text-primary transition-colors" href="contact.html" onclick="toggleTMenu()">Compliance</a>
-        </div>
-        <button class="w-full bg-primary text-background-dark px-6 py-4 text-sm font-bold uppercase tracking-tighter hover:bg-white transition-all">
-            SECURE NETWORK
-        </button>
-    </div>
-</nav>
-
-<main>
-<!-- Hero Section -->
-<section class="relative min-h-[40vh] flex flex-col items-center justify-center border-b-2 border-border-dark grid-bg overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background-dark/90"></div>
-    <div class="relative z-10 text-center px-4">
-        <div class="mb-6 flex justify-center">
-            <div class="relative">
-                <div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
-                <div class="relative size-20 bg-surface-dark border-2 border-primary/50 flex items-center justify-center rounded-lg">
-                    <span class="material-symbols-outlined text-4xl text-primary">assignment</span>
-                </div>
-            </div>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6 text-white">
-            Compliance <span class="text-primary">HUB</span>
-        </h1>
-        <p class="text-base text-slate-400 uppercase tracking-widest font-light">
-            証明書ダウンロードとセキュア連絡
-        </p>
-    </div>
-</section>
-
-<!-- Emergency Contact Banner -->
-<section class="border-b-2 border-border-dark bg-alert-red/10 py-8 px-6">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-4">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-alert-red/30 blur-lg rounded-full animate-pulse"></div>
-                    <span class="material-symbols-outlined text-alert-red text-4xl relative">emergency</span>
-                </div>
+    </header>
+    <div class="t-mobile-backdrop fixed inset-0 z-40 bg-[rgba(6,9,12,0.74)]" data-menu-backdrop></div>
+    <aside id="t-mobile-menu" class="t-mobile-menu fixed right-0 top-0 z-50 flex h-full w-[min(24rem,88vw)] flex-col gap-8 border-l border-[#3a4655] bg-[#0f141b] p-6" data-mobile-menu>
+        <div class="flex items-center justify-between"><div class="text-lg font-bold text-white">TRUST GUARD</div><button class="inline-flex h-11 w-11 items-center justify-center border border-[#3a4655] text-white" type="button" aria-label="メニューを閉じる" data-menu-close><span class="material-symbols-outlined">close</span></button></div>
+        <nav class="flex flex-col gap-4 text-base font-semibold text-slate-200"><a href="index.html">Home</a><a href="service.html">Services</a><a href="about.html">Approach</a><a href="contact.html">Contact</a></nav>
+    </aside>
+    <main>
+        <section class="border-b border-[#3a4655]">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:grid lg:grid-cols-[0.88fr_1.12fr] lg:gap-10 lg:px-8 lg:py-24">
                 <div>
-                    <p class="text-xs font-bold text-alert-red uppercase tracking-[0.3em] mb-1">24/7 Emergency Response</p>
-                    <p class="text-lg font-bold text-white">INCIDENT HOTLINE: <a href="tel:+1-800-TRUST-911" class="text-primary hover:text-white">+1-800-TRUST-911</a></p>
+                    <span class="t-kicker">Contact</span>
+                    <h1 class="mt-6 text-5xl font-black tracking-[-0.05em] text-white lg:text-7xl">状況が曖昧でも、現場の情報から整理します。</h1>
+                    <p class="mt-6 text-lg leading-8 text-slate-300">導入済みのツール一覧がなくても構いません。困っている場面、監査で指摘された項目、通知が多すぎる時間帯など、現場の断片情報から整理を始めます。</p>
+                    <div class="t-number-note mt-8 px-4 py-4 text-sm leading-7">回答時間、導入期間、改善幅などの数値は公開時に運用実態へ差し替える想定です。デモでは説明用の仮値を使用してください。</div>
                 </div>
-            </div>
-            <div class="flex gap-4">
-                <div class="text-center">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Response Time</p>
-                    <p class="text-xl font-bold text-white">&lt;15 min</p>
-                </div>
-                <div class="w-px bg-border-dark"></div>
-                <div class="text-center">
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Resolution</p>
-                    <p class="text-xl font-bold text-white">&lt;4 hrs</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Form & Info -->
-<section class="py-24 px-6 border-b-2 border-border-dark bg-surface-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <!-- Contact Form -->
-            <div>
-                <div class="flex items-center gap-3 mb-8">
-                    <span class="material-symbols-outlined text-primary text-2xl">send</span>
-                    <h2 class="text-2xl font-bold uppercase tracking-tighter text-white">Secure Message</h2>
-                </div>
-                <form class="space-y-6">
-                    <div>
-                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Full Name *</label>
-                        <input type="text" class="w-full bg-background-dark border-2 border-border-dark text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors uppercase tracking-wider" placeholder="JOHN DOE">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Work Email *</label>
-                        <input type="email" class="w-full bg-background-dark border-2 border-border-dark text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors uppercase tracking-wider" placeholder="john@company.com">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Company</label>
-                        <input type="text" class="w-full bg-background-dark border-2 border-border-dark text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors uppercase tracking-wider" placeholder="ACME CORP">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Subject *</label>
-                        <select class="w-full bg-background-dark border-2 border-border-dark text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors uppercase tracking-wider">
-                            <option value="">SELECT INQUIRY TYPE</option>
-                            <option value="sales">Sales Inquiry</option>
-                            <option value="support">Technical Support</option>
-                            <option value="incident">Security Incident</option>
-                            <option value="compliance">Compliance Request</option>
-                            <option value="partnership">Partnership</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Message *</label>
-                        <textarea rows="5" class="w-full bg-background-dark border-2 border-border-dark text-white px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors uppercase tracking-wider" placeholder="ENTER SECURE MESSAGE..."></textarea>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <input type="checkbox" id="nda" class="mt-1 w-4 h-4 accent-primary">
-                        <label for="nda" class="text-[10px] text-slate-400 uppercase tracking-wider">
-                            I agree to the Non-Disclosure Agreement. All communications will be encrypted and confidential.
-                        </label>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-background-dark py-4 font-bold uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined text-lg">lock</span>
-                        Transmit Secure
-                    </button>
-                </form>
-            </div>
-            <!-- Contact Info -->
-            <div class="space-y-8">
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
-                        <h2 class="text-2xl font-bold uppercase tracking-tighter text-white">Regional HQ</h2>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="border border-border-dark bg-background-dark p-4 flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl">location_on</span>
-                            <div>
-                                <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">APAC Command</p>
-                                <p class="text-sm text-slate-300">Tokyo Midtown, 9F<br>9-7-1 Akasaka, Minato-ku<br>Tokyo 107-6209, Japan</p>
+                <div class="t-panel mt-10 p-6 lg:mt-0 lg:p-8">
+                    <form class="grid gap-5">
+                        <div class="t-form-field">
+                            <label for="t-company">会社名</label>
+                            <input id="t-company" name="company" type="text" placeholder="例: Sample Holdings">
+                        </div>
+                        <div class="grid gap-5 md:grid-cols-2">
+                            <div class="t-form-field">
+                                <label for="t-name">担当者名</label>
+                                <input id="t-name" name="name" type="text" placeholder="例: 山田 花子">
+                            </div>
+                            <div class="t-form-field">
+                                <label for="t-email">メールアドレス</label>
+                                <input id="t-email" name="email" type="email" placeholder="security@example.com">
                             </div>
                         </div>
-                        <div class="border border-border-dark bg-background-dark p-4 flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl">location_on</span>
-                            <div>
-                                <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">EMEA Command</p>
-                                <p class="text-sm text-slate-300">25 Old Broad Street<br>London EC2N 1HN<br>United Kingdom</p>
-                            </div>
+                        <div class="t-form-field">
+                            <label for="t-stage">相談したい内容</label>
+                            <select id="t-stage" name="stage">
+                                <option>現状診断をしたい</option>
+                                <option>監視運用を整えたい</option>
+                                <option>復旧演習を行いたい</option>
+                                <option>監査対応を整理したい</option>
+                            </select>
                         </div>
-                        <div class="border border-border-dark bg-background-dark p-4 flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl">location_on</span>
-                            <div>
-                                <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Americas Command</p>
-                                <p class="text-sm text-slate-300">1 World Trade Center, 84F<br>285 Fulton Street<br>New York, NY 10007, USA</p>
-                            </div>
+                        <div class="t-form-field">
+                            <label for="t-message">現在の状況</label>
+                            <textarea id="t-message" name="message" placeholder="運用上の課題、相談したい背景、対象システムなど"></textarea>
                         </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="material-symbols-outlined text-primary text-2xl">phone</span>
-                        <h2 class="text-2xl font-bold uppercase tracking-tighter text-white">Direct Lines</h2>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between border border-border-dark bg-background-dark p-4">
-                            <span class="text-xs text-slate-400 uppercase tracking-wider">Sales</span>
-                            <a href="tel:+1-800-TRUST-01" class="text-sm font-bold text-primary hover:text-white">+1-800-TRUST-01</a>
-                        </div>
-                        <div class="flex items-center justify-between border border-border-dark bg-background-dark p-4">
-                            <span class="text-xs text-slate-400 uppercase tracking-wider">Support</span>
-                            <a href="tel:+1-800-TRUST-02" class="text-sm font-bold text-primary hover:text-white">+1-800-TRUST-02</a>
-                        </div>
-                        <div class="flex items-center justify-between border border-border-dark bg-background-dark p-4">
-                            <span class="text-xs text-slate-400 uppercase tracking-wider">Emergency</span>
-                            <a href="tel:+1-800-TRUST-911" class="text-sm font-bold text-alert-red hover:text-white">+1-800-TRUST-911</a>
-                        </div>
-                    </div>
+                        <button class="t-rect-button t-rect-button--accent" type="submit">内容を送信</button>
+                    </form>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Compliance Documents -->
-<section class="py-24 px-6 border-b-2 border-border-dark bg-background-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">description</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Documentation</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Compliance <span class="text-primary">Certificates</span>
-            </h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="border-2 border-border-dark bg-surface-dark p-6 text-center hover:border-primary transition-colors group cursor-pointer">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4 group-hover:scale-110 transition-transform">file_present</span>
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-2">ISO 27001</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-4">Information Security</p>
-                <span class="text-[10px] text-primary uppercase tracking-widest flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-sm">download</span>
-                    Download PDF
-                </span>
-            </div>
-            <div class="border-2 border-border-dark bg-surface-dark p-6 text-center hover:border-primary transition-colors group cursor-pointer">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4 group-hover:scale-110 transition-transform">file_present</span>
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-2">SOC 2 Type II</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-4">Service Organization</p>
-                <span class="text-[10px] text-primary uppercase tracking-widest flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-sm">download</span>
-                    Download PDF
-                </span>
-            </div>
-            <div class="border-2 border-border-dark bg-surface-dark p-6 text-center hover:border-primary transition-colors group cursor-pointer">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4 group-hover:scale-110 transition-transform">file_present</span>
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-2">GDPR</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-4">Data Protection</p>
-                <span class="text-[10px] text-primary uppercase tracking-widest flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-sm">download</span>
-                    Download PDF
-                </span>
-            </div>
-            <div class="border-2 border-border-dark bg-surface-dark p-6 text-center hover:border-primary transition-colors group cursor-pointer">
-                <span class="material-symbols-outlined text-primary text-5xl mb-4 group-hover:scale-110 transition-transform">file_present</span>
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-2">HIPAA</h3>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-4">Healthcare Data</p>
-                <span class="text-[10px] text-primary uppercase tracking-widest flex items-center justify-center gap-1">
-                    <span class="material-symbols-outlined text-sm">download</span>
-                    Download PDF
-                </span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Section -->
-<section class="py-24 px-6 border-b-2 border-border-dark bg-surface-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">help</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Support</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Common <span class="text-primary">Queries</span>
-            </h2>
-        </div>
-        <div class="max-w-3xl mx-auto space-y-4">
-            <div class="border border-border-dark bg-background-dark p-6">
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: How quickly can deployment begin?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">A: Base defense tier can be activated within 24 hours. Pro security typically requires 3-5 business days for full integration. Elite guard custom timeline based on infrastructure complexity.</p>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-6">
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: What happens during a security incident?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">A: Our SOC team is alerted within seconds. Automated containment protocols activate immediately to isolate affected systems. You'll receive real-time updates via your preferred channel.</p>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-6">
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: Can I get compliance reports for auditors?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">A: Yes. Generate SOC 2, ISO 27001, GDPR compliance reports on-demand. All reports include detailed audit trails and can be exported in multiple formats.</p>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-6">
-                <h3 class="text-sm font-bold uppercase tracking-tight text-white mb-3">Q: Is on-premise deployment available?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">A: Elite guard tier includes air-gapped on-premise options. Contact our team for custom enterprise requirements.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="border-t-2 border-border-dark py-24 px-6 bg-background-dark">
-    <div class="max-w-[1440px] mx-auto text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.5em] text-slate-500 mb-12">Secure communications encrypted end-to-end</p>
-        <div class="bg-surface-dark border-4 border-border-dark p-16 max-w-4xl mx-auto relative overflow-hidden">
-            <div class="absolute inset-0 scanline opacity-10"></div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter text-white">Ready to secure your network?</h2>
-            <p class="text-slate-400 mb-10 text-lg uppercase tracking-widest relative z-10">軍事レベルのセキュリティを今すぐ。</p>
-            <button class="bg-primary text-background-dark px-16 py-6 text-xl font-black uppercase tracking-widest hover:scale-105 transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)]">
-                Initialize Protocol
-            </button>
-        </div>
-    </div>
-</section>
-</main>
-
-<!-- Footer -->
-<footer class="bg-background-dark border-t-2 border-border-dark py-12 px-6">
-    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary text-2xl">shield_with_heart</span>
-            <span class="text-sm font-bold tracking-widest uppercase text-slate-400">TRUST_GUARD © 2024</span>
-        </div>
-        <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">
-            <a class="hover:text-primary transition-colors" href="#">Privacy_Protocol</a>
-            <a class="hover:text-primary transition-colors" href="#">Service_Agreement</a>
-            <a class="hover:text-primary transition-colors" href="#">Compliance_Logs</a>
-        </div>
-        <div class="flex gap-4">
-            <div class="size-8 border border-border-dark flex items-center justify-center hover:border-primary cursor-pointer text-slate-500 hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-sm">share</span>
-            </div>
-            <div class="size-8 border border-border-dark flex items-center justify-center hover:border-primary cursor-pointer text-slate-500 hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-sm">terminal</span>
-            </div>
-        </div>
-    </div>
-</footer>
+        </section>
+    </main>
+    <footer class="border-t border-[#3a4655] bg-[#0c1015]"><div class="mx-auto max-w-7xl px-5 py-10 text-sm text-slate-400 lg:px-8">© 2026 TRUST GUARD</div></footer>
 </div>
-
-<script src="../../../assets/js/template-common.js" defer></script>
-<script>
-function toggleTMenu() {
-    const toggle = document.querySelector('.t-mobile-toggle');
-    const menu = document.querySelector('#t-mobile-menu');
-    const backdrop = document.querySelector('.t-backdrop');
-    if (!menu || !backdrop) return;
-    const isOpen = !menu.classList.contains('active');
-    toggle?.classList.toggle('active', isOpen);
-    menu.classList.toggle('active', isOpen);
-    backdrop.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-</script>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

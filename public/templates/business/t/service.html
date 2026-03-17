@@ -1,586 +1,116 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRUST GUARD - Threat Intelligence Services</title>
-
+    <title>TRUST GUARD | 支援メニュー</title>
+    <meta name="description" content="TRUST GUARD のアセスメント、運用整備、復旧演習、監査連携の各支援メニュー。">
     <link rel="canonical" href="https://example.com/templates/business/t/service.html">
-    <meta name="description" content="TRUST GUARD - 脅威インテリジェンスとセキュリティサービス">
-    <meta property="og:title" content="TRUST GUARD | Threat Intelligence Services">
-    <meta property="og:description" content="24/7 脅威監視、インシデント対応、脆弱性管理、コンプライアンス監査">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="TRUST GUARD | 支援メニュー">
+    <meta property="og:description" content="現状把握から復旧演習まで、必要な層だけ選べるセキュリティ支援構成。">
     <meta property="og:url" content="https://example.com/templates/business/t/service.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
+    <meta name="robots" content="index,follow">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "TRUST GUARD Services",
+      "provider": { "@type": "Organization", "name": "TRUST GUARD" },
+      "url": "https://example.com/templates/business/t/service.html"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/tailwind-input.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=Inter:wght@500;600;700;800&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; }
-        .scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
-            background-size: 100% 4px;
-        }
-        .grid-bg {
-            background-image: radial-gradient(circle at 1px 1px, #274b20 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-background-dark overflow-x-hidden">
-<div class="relative flex min-h-screen w-full flex-col">
-<!-- Navigation -->
-<header class="sticky top-0 z-50 w-full border-b-2 border-border-dark bg-background-dark/95 backdrop-blur">
-    <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="flex items-center gap-12">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-3xl">shield_with_heart</span>
-                <h2 class="text-xl font-bold tracking-tighter uppercase text-white">TRUST_GUARD</h2>
+<body>
+<div class="t-shell relative min-h-screen overflow-x-hidden">
+    <header class="sticky top-0 z-40 border-b border-[#3a4655] bg-[rgba(13,17,23,0.92)] backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+            <a class="flex items-center gap-3 no-underline" href="index.html"><span class="material-symbols-outlined text-3xl text-[#8fd5ff]">shield_locked</span><div><div class="text-sm font-semibold uppercase tracking-[0.28em] text-[#8fd5ff]">Trust Guard</div><div class="text-lg font-extrabold tracking-tight text-white">Operational Stability</div></div></a>
+            <nav class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.12em] text-slate-300 lg:flex"><a href="index.html">Home</a><a class="text-white" href="service.html">Services</a><a href="about.html">Approach</a><a href="contact.html">Contact</a></nav>
+            <button class="inline-flex h-12 w-12 items-center justify-center border border-[#3a4655] bg-[#161d26] text-white lg:hidden" type="button" aria-label="メニューを開く" aria-controls="t-mobile-menu" aria-expanded="false" data-menu-button><span class="material-symbols-outlined">menu</span></button>
+        </div>
+    </header>
+    <div class="t-mobile-backdrop fixed inset-0 z-40 bg-[rgba(6,9,12,0.74)]" data-menu-backdrop></div>
+    <aside id="t-mobile-menu" class="t-mobile-menu fixed right-0 top-0 z-50 flex h-full w-[min(24rem,88vw)] flex-col gap-8 border-l border-[#3a4655] bg-[#0f141b] p-6" data-mobile-menu>
+        <div class="flex items-center justify-between"><div class="text-lg font-bold text-white">TRUST GUARD</div><button class="inline-flex h-11 w-11 items-center justify-center border border-[#3a4655] text-white" type="button" aria-label="メニューを閉じる" data-menu-close><span class="material-symbols-outlined">close</span></button></div>
+        <nav class="flex flex-col gap-4 text-base font-semibold text-slate-200"><a href="index.html">Home</a><a href="service.html">Services</a><a href="about.html">Approach</a><a href="contact.html">Contact</a></nav>
+    </aside>
+    <main>
+        <section class="border-b border-[#3a4655]">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+                <span class="t-kicker">Services</span>
+                <h1 class="mt-6 text-5xl font-black tracking-[-0.05em] text-white lg:text-7xl">重ねる順番まで設計する、4 つの支援レイヤー。</h1>
+                <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">部分導入にも対応できるよう、支援をレイヤー化しています。監視ツール選定だけ、復旧演習だけ、といった限定的な依頼にも適用可能です。</p>
             </div>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="index.html">Solutions</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-white" href="service.html">Threat Intel</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="about.html">Infrastructure</a>
-                <a class="text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors text-slate-300" href="contact.html">Compliance</a>
-            </nav>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex bg-surface-dark border border-border-dark px-4 py-2 items-center gap-3">
-                <span class="material-symbols-outlined text-primary size-5">search</span>
-                <input class="bg-transparent border-none focus:ring-0 text-xs tracking-widest uppercase placeholder:text-primary/40 w-40 text-white" placeholder="SYSTEM_QUERY" type="text"/>
-            </div>
-            <button class="bg-primary text-background-dark px-6 py-2 text-sm font-bold uppercase tracking-tighter hover:bg-white transition-all">
-                SECURE NETWORK
-            </button>
-            <button class="lg:hidden text-white t-mobile-toggle" onclick="toggleTMenu()">
-                <span class="material-symbols-outlined text-2xl">menu</span>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- Mobile Menu -->
-<div class="t-backdrop fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleTMenu()"></div>
-<nav id="t-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l-2 border-primary p-8 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-        <div class="flex justify-between items-center mb-16">
-            <span class="text-xl font-bold tracking-widest uppercase text-white">TRUST_GUARD</span>
-            <button class="text-white hover:opacity-50" onclick="toggleTMenu()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col gap-6 flex-1">
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="index.html" onclick="toggleTMenu()">Solutions</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-white hover:text-primary transition-colors" href="service.html" onclick="toggleTMenu()">Threat Intel</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="about.html" onclick="toggleTMenu()">Infrastructure</a>
-            <a class="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="contact.html" onclick="toggleTMenu()">Compliance</a>
-        </div>
-        <button class="w-full bg-primary text-background-dark px-6 py-4 text-sm font-bold uppercase tracking-tighter hover:bg-white transition-all">
-            SECURE NETWORK
-        </button>
-    </div>
-</nav>
-
-<main>
-<!-- Hero Section -->
-<section class="relative min-h-[50vh] flex flex-col items-center justify-center border-b-2 border-border-dark grid-bg overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background-dark/90"></div>
-    <div class="relative z-10 text-center px-4">
-        <div class="mb-6 flex justify-center">
-            <div class="relative">
-                <div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
-                <div class="relative size-24 bg-surface-dark border-2 border-primary/50 flex items-center justify-center rounded-lg">
-                    <span class="material-symbols-outlined text-5xl text-primary">threat_intelligence</span>
+        </section>
+        <section class="border-b border-[#3a4655] bg-[#111821]">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+                <div class="grid gap-6 lg:grid-cols-2">
+                    <article class="t-panel p-7">
+                        <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Layer 01</p>
+                        <h2 class="mt-4 text-3xl font-bold text-white">現状診断と優先順位付け</h2>
+                        <p class="mt-4 text-sm leading-7 text-slate-400">ネットワーク、SaaS、権限設計、委託境界を確認し、3 か月以内に手を打つべき項目を優先順で整理します。</p>
+                    </article>
+                    <article class="t-panel p-7">
+                        <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Layer 02</p>
+                        <h2 class="mt-4 text-3xl font-bold text-white">監視と通知の整流</h2>
+                        <p class="mt-4 text-sm leading-7 text-slate-400">通知条件、担当者、時間外対応ルールを整え、見逃しと通知疲れを同時に減らします。</p>
+                    </article>
+                    <article class="t-panel p-7">
+                        <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Layer 03</p>
+                        <h2 class="mt-4 text-3xl font-bold text-white">復旧手順と演習</h2>
+                        <p class="mt-4 text-sm leading-7 text-slate-400">緊急遮断、代替運用、報告テンプレートを整備し、机上演習で初動のばらつきを圧縮します。</p>
+                    </article>
+                    <article class="t-panel p-7">
+                        <p class="text-sm font-bold uppercase tracking-[0.18em] text-[#8fd5ff]">Layer 04</p>
+                        <h2 class="mt-4 text-3xl font-bold text-white">監査・経営報告連携</h2>
+                        <p class="mt-4 text-sm leading-7 text-slate-400">内部監査や取締役会向けに、運用ログと統制文書の接続を明確化します。</p>
+                    </article>
                 </div>
+                <div class="t-number-note mt-10 px-4 py-4 text-sm leading-7">プラン名、費用、期間はデモ用の仮置きです。公開前に実際の価格体系・契約条件へ差し替えてください。</div>
             </div>
-        </div>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase mb-6 text-white">
-            Threat <span class="text-primary">INTELLIGENCE</span>
-        </h1>
-        <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto uppercase tracking-widest font-light leading-relaxed">
-            24/7 脅威監視と自動インシデント対応
-        </p>
-    </div>
-</section>
-
-<!-- Services Grid -->
-<section class="py-24 px-6 border-b-2 border-border-dark bg-surface-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Service 1 -->
-            <div class="border-2 border-border-dark bg-background-dark p-10 group hover:border-primary transition-colors">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary text-4xl">visibility</span>
-                        <div>
-                            <h3 class="text-xl font-bold uppercase tracking-tight text-white">Threat Monitoring</h3>
-                            <p class="text-[10px] text-primary uppercase tracking-widest">24/7 Active Surveillance</p>
-                        </div>
+        </section>
+        <section class="border-b border-[#3a4655]">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+                <div class="grid gap-6 lg:grid-cols-3">
+                    <div class="t-block p-6">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#f2c572]">Sprint</p>
+                        <h3 class="mt-4 text-2xl font-bold text-white">2-3 週間</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-400">緊急度が高い課題の棚卸しと初手の打ち手を出す短期支援。</p>
                     </div>
-                    <span class="material-symbols-outlined text-primary text-3xl group-hover:rotate-45 transition-transform">north_east</span>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-6">
-                    機械学習と行動分析により、未知の脅威も検知。ゼロデイ攻撃からランサムウェアまで、
-                    全ての異常をリアルタイムで捕捉します。
-                </p>
-                <ul class="space-y-2 mb-6">
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Behavioral Analysis
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Zero-Day Detection
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Dark Web Scanning
-                    </li>
-                </ul>
-                <div class="h-1 bg-border-dark w-full">
-                    <div class="h-full bg-primary w-full"></div>
-                </div>
-            </div>
-            <!-- Service 2 -->
-            <div class="border-2 border-border-dark bg-background-dark p-10 group hover:border-primary transition-colors">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary text-4xl">emergency_share</span>
-                        <div>
-                            <h3 class="text-xl font-bold uppercase tracking-tight text-white">Incident Response</h3>
-                            <p class="text-[10px] text-primary uppercase tracking-widest">Rapid Containment</p>
-                        </div>
+                    <div class="t-block p-6">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#f2c572]">Build</p>
+                        <h3 class="mt-4 text-2xl font-bold text-white">1-2 か月</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-400">通知・権限・手順書まで含め、現場運用へ定着させる設計フェーズ。</p>
                     </div>
-                    <span class="material-symbols-outlined text-primary text-3xl group-hover:rotate-45 transition-transform">north_east</span>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-6">
-                    侵害発生から数分以内に自動封じ込め。フォレンジック分析と復旧プロトコルで、
-                    被害を最小限に抑えます。
-                </p>
-                <ul class="space-y-2 mb-6">
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Auto Containment
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Forensic Analysis
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Recovery Protocol
-                    </li>
-                </ul>
-                <div class="h-1 bg-border-dark w-full">
-                    <div class="h-full bg-primary w-full"></div>
-                </div>
-            </div>
-            <!-- Service 3 -->
-            <div class="border-2 border-border-dark bg-background-dark p-10 group hover:border-primary transition-colors">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary text-4xl">bug_report</span>
-                        <div>
-                            <h3 class="text-xl font-bold uppercase tracking-tight text-white">Vulnerability Mgmt</h3>
-                            <p class="text-[10px] text-primary uppercase tracking-widest">Continuous Scanning</p>
-                        </div>
-                    </div>
-                    <span class="material-symbols-outlined text-primary text-3xl group-hover:rotate-45 transition-transform">north_east</span>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-6">
-                    毎週自動スキャンで脆弱性を発見。優先度評価と修正ガイダンスで、
-                    攻撃者が悪用する前に塞ぎます。
-                </p>
-                <ul class="space-y-2 mb-6">
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Weekly Auto-Scans
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Risk Prioritization
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Patch Verification
-                    </li>
-                </ul>
-                <div class="h-1 bg-border-dark w-full">
-                    <div class="h-full bg-primary w-5/6"></div>
-                </div>
-            </div>
-            <!-- Service 4 -->
-            <div class="border-2 border-border-dark bg-background-dark p-10 group hover:border-primary transition-colors">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary text-4xl">assignment</span>
-                        <div>
-                            <h3 class="text-xl font-bold uppercase tracking-tight text-white">Compliance Audit</h3>
-                            <p class="text-[10px] text-primary uppercase tracking-widest">Regulatory Ready</p>
-                        </div>
-                    </div>
-                    <span class="material-symbols-outlined text-primary text-3xl group-hover:rotate-45 transition-transform">north_east</span>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed uppercase tracking-wider mb-6">
-                    ISO 27001、SOC 2、GDPR などのコンプライアンス要件を自動監査。
-                    証明書類とレポートを即時生成。
-                </p>
-                <ul class="space-y-2 mb-6">
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Auto Compliance Check
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Audit Trail Logging
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Report Generation
-                    </li>
-                </ul>
-                <div class="h-1 bg-border-dark w-full">
-                    <div class="h-full bg-primary w-4/6"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Threat Map Section -->
-<section class="py-24 px-6 border-b-2 border-border-dark bg-background-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">public</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Live Data</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Global <span class="text-primary">Threat Map</span>
-            </h2>
-        </div>
-        <div class="border-2 border-border-dark bg-surface-dark p-8 relative overflow-hidden">
-            <div class="scanline absolute inset-0 opacity-20"></div>
-            <div class="absolute top-4 right-4 flex items-center gap-2">
-                <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                <span class="text-[10px] text-primary uppercase tracking-widest">LIVE FEED</span>
-            </div>
-            <!-- Simulated threat map visualization -->
-            <div class="relative h-96 flex items-center justify-center">
-                <div class="absolute inset-0 grid-bg opacity-30"></div>
-                <div class="relative z-10 grid grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <div class="relative">
-                                <div class="absolute inset-0 bg-alert-red/30 blur-lg rounded-full animate-pulse"></div>
-                                <span class="material-symbols-outlined text-alert-red text-4xl relative">warning</span>
-                            </div>
-                        </div>
-                        <p class="text-3xl font-bold text-white mb-1">1,247</p>
-                        <p class="text-[10px] text-slate-500 uppercase tracking-widest">Attacks Blocked</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <div class="relative">
-                                <span class="material-symbols-outlined text-primary text-4xl">radar</span>
-                            </div>
-                        </div>
-                        <p class="text-3xl font-bold text-white mb-1">892</p>
-                        <p class="text-[10px] text-slate-500 uppercase tracking-widest">Active Scans</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="flex justify-center mb-4">
-                            <div class="relative">
-                                <span class="material-symbols-outlined text-primary text-4xl">security</span>
-                            </div>
-                        </div>
-                        <p class="text-3xl font-bold text-white mb-1">0</p>
-                        <p class="text-[10px] text-slate-500 uppercase tracking-widest">Breaches</p>
+                    <div class="t-block p-6">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#f2c572]">Retainer</p>
+                        <h3 class="mt-4 text-2xl font-bold text-white">月次伴走</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-400">レビュー、演習、統制更新の cadence を継続して回す支援体制。</p>
                     </div>
                 </div>
-                <!-- Decorative elements -->
-                <div class="absolute top-10 left-10 border border-border-dark p-3 bg-background-dark/80">
-                    <p class="text-[10px] text-primary uppercase tracking-widest mb-1">Last Attack</p>
-                    <p class="text-xs text-white font-bold">DDoS - BLOCKED</p>
+            </div>
+        </section>
+        <section class="px-5 py-16 lg:px-8">
+            <div class="mx-auto max-w-5xl t-panel p-8 lg:p-12">
+                <span class="t-kicker">Next Step</span>
+                <h2 class="mt-4 text-3xl font-black tracking-[-0.04em] text-white lg:text-5xl">必要な層だけ選びたい場合も、まずは相談から。</h2>
+                <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                    <a class="t-rect-button t-rect-button--accent" href="contact.html">相談フォームへ</a>
+                    <a class="t-rect-button" href="about.html">設計思想を見る</a>
                 </div>
-                <div class="absolute bottom-10 right-10 border border-border-dark p-3 bg-background-dark/80">
-                    <p class="text-[10px] text-primary uppercase tracking-widest mb-1">Threat Level</p>
-                    <p class="text-xs text-primary font-bold">ELEVATED</p>
-                </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Infrastructure Specs -->
-<section class="py-24 px-6 border-b-2 border-border-dark bg-surface-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-4">
-                <span class="material-symbols-outlined text-primary text-2xl">dns</span>
-                <span class="text-xs font-bold text-primary uppercase tracking-[0.3em]">Technology</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
-                Infrastructure <span class="text-primary">Specs</span>
-            </h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="border border-border-dark bg-background-dark p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="material-symbols-outlined text-primary text-3xl">cloud</span>
-                    <h3 class="text-lg font-bold uppercase tracking-tight text-white">Cloud Native</h3>
-                </div>
-                <ul class="space-y-3">
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Multi-Region Redundancy
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Auto-Scaling Architecture
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        99.99% Uptime SLA
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Global CDN Distribution
-                    </li>
-                </ul>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-                    <h3 class="text-lg font-bold uppercase tracking-tight text-white">AI Engine</h3>
-                </div>
-                <ul class="space-y-3">
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Neural Network Analysis
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Predictive Threat Modeling
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Auto-Learning Patterns
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        False Positive Rate &lt;0.1%
-                    </li>
-                </ul>
-            </div>
-            <div class="border border-border-dark bg-background-dark p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <span class="material-symbols-outlined text-primary text-3xl">encryption</span>
-                    <h3 class="text-lg font-bold uppercase tracking-tight text-white">Encryption</h3>
-                </div>
-                <ul class="space-y-3">
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        AES-256 Encryption
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Quantum-Resistant Ready
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        Zero-Knowledge Architecture
-                    </li>
-                    <li class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-sm">check_small</span>
-                        End-to-End TLS 1.3
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Pricing -->
-<section class="py-24 px-6 bg-background-dark border-b-2 border-border-dark">
-    <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white mb-4">
-                Service <span class="text-primary">Tiers</span>
-            </h2>
-            <p class="text-slate-400 uppercase tracking-widest text-sm">Choose your defense level</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Tier 1 -->
-            <div class="border-2 border-border-dark bg-surface-dark p-10">
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-2">Base_Defense</h3>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-6">Essential Protection</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">$499</span>
-                        <span class="text-sm text-slate-500 uppercase tracking-widest">/month</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        24/7 Monitoring
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Weekly Scans
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Email Alerts
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        5 Endpoints
-                    </li>
-                </ul>
-                <button class="w-full border-2 border-primary text-primary py-4 font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all">
-                    Deploy Base
-                </button>
-            </div>
-            <!-- Tier 2 -->
-            <div class="border-4 border-primary bg-background-dark p-10 relative shadow-[0_0_40px_rgba(56,255,20,0.1)]">
-                <div class="absolute top-0 right-0 bg-primary text-background-dark px-4 py-1 text-xs font-bold uppercase tracking-widest">Popular</div>
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-2">Pro_Security</h3>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-6">Advanced Defense</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">$1,299</span>
-                        <span class="text-sm text-slate-500 uppercase tracking-widest">/month</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Everything in Base
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Real-time Response
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Daily Scans
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        25 Endpoints
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Compliance Reports
-                    </li>
-                </ul>
-                <button class="w-full bg-primary text-background-dark py-4 font-bold uppercase tracking-widest hover:bg-white transition-all">
-                    Deploy Pro
-                </button>
-            </div>
-            <!-- Tier 3 -->
-            <div class="border-2 border-border-dark bg-surface-dark p-10">
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold uppercase tracking-tight text-white mb-2">Elite_Guard</h3>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-6">Maximum Security</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">Custom</span>
-                    </div>
-                </div>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Everything in Pro
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Dedicated SOC Team
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Hourly Scans
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        Unlimited Endpoints
-                    </li>
-                    <li class="flex items-center gap-3 text-xs text-slate-300 uppercase tracking-wider">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-                        On-Premise Option
-                    </li>
-                </ul>
-                <button class="w-full border-2 border-primary text-primary py-4 font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all">
-                    Contact Sales
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="border-t-2 border-border-dark py-24 px-6 bg-background-dark">
-    <div class="max-w-[1440px] mx-auto text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.5em] text-slate-500 mb-12">Military-grade protection available now</p>
-        <div class="bg-surface-dark border-4 border-border-dark p-16 max-w-4xl mx-auto relative overflow-hidden">
-            <div class="absolute inset-0 scanline opacity-10"></div>
-            <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter text-white">Ready to neutralize threats?</h2>
-            <p class="text-slate-400 mb-10 text-lg uppercase tracking-widest relative z-10">今すぐあなたのネットワークを保護。</p>
-            <button class="bg-primary text-background-dark px-16 py-6 text-xl font-black uppercase tracking-widest hover:scale-105 transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)]">
-                Initialize Security
-            </button>
-        </div>
-    </div>
-</section>
-</main>
-
-<!-- Footer -->
-<footer class="bg-background-dark border-t-2 border-border-dark py-12 px-6">
-    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary text-2xl">shield_with_heart</span>
-            <span class="text-sm font-bold tracking-widest uppercase text-slate-400">TRUST_GUARD © 2024</span>
-        </div>
-        <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">
-            <a class="hover:text-primary transition-colors" href="#">Privacy_Protocol</a>
-            <a class="hover:text-primary transition-colors" href="#">Service_Agreement</a>
-            <a class="hover:text-primary transition-colors" href="#">Compliance_Logs</a>
-        </div>
-        <div class="flex gap-4">
-            <div class="size-8 border border-border-dark flex items-center justify-center hover:border-primary cursor-pointer text-slate-500 hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-sm">share</span>
-            </div>
-            <div class="size-8 border border-border-dark flex items-center justify-center hover:border-primary cursor-pointer text-slate-500 hover:text-primary transition-all">
-                <span class="material-symbols-outlined text-sm">terminal</span>
-            </div>
-        </div>
-    </div>
-</footer>
+        </section>
+    </main>
+    <footer class="border-t border-[#3a4655] bg-[#0c1015]"><div class="mx-auto max-w-7xl px-5 py-10 text-sm text-slate-400 lg:px-8">© 2026 TRUST GUARD</div></footer>
 </div>
-
-<script src="../../../assets/js/template-common.js" defer></script>
-<script>
-function toggleTMenu() {
-    const toggle = document.querySelector('.t-mobile-toggle');
-    const menu = document.querySelector('#t-mobile-menu');
-    const backdrop = document.querySelector('.t-backdrop');
-    if (!menu || !backdrop) return;
-    const isOpen = !menu.classList.contains('active');
-    toggle?.classList.toggle('active', isOpen);
-    menu.classList.toggle('active', isOpen);
-    backdrop.classList.toggle('active', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-</script>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

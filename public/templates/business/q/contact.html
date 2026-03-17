@@ -1,377 +1,250 @@
 <!DOCTYPE html>
-<html lang="ja" class="dark">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | QUALITY FIRST</title>
-
+    <title>Contact | QUALITY FIRST の図面相談・試作相談</title>
+    <meta name="description" content="QUALITY FIRST の contact ページ。図面相談、試作相談、確認したい品質観点を送るためのフォームと導線を用意しています。">
     <link rel="canonical" href="https://example.com/templates/business/q/contact.html">
-    <meta name="description" content="QUALITY FIRST へのお問い合わせ - 見積もり依頼、技術相談">
-    <meta property="og:title" content="Contact | QUALITY FIRST">
-    <meta property="og:description" content="精密加工のプロジェクトをご相談ください">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Contact | QUALITY FIRST">
+    <meta property="og:description" content="図面相談と試作相談の導線を備えた contact ページ。">
     <meta property="og:url" content="https://example.com/templates/business/q/contact.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="robots" content="index, follow">
-
+    <meta name="robots" content="index,follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/tailwind-input.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;500;700" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
-        .blueprint-grid {
-            background-size: 40px 40px;
-            background-image: radial-gradient(circle, #3d3124 1px, transparent 1px);
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "QUALITY FIRST Contact",
+            "url": "https://example.com/templates/business/q/contact.html",
+            "description": "図面相談、試作相談、工程相談の導線を持つ contact ページです。"
         }
-        .technical-border {
-            border-left: 1px solid #ff8c00;
-            padding-left: 1rem;
-        }
-    </style>
+    </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
-<div class="relative flex min-h-screen w-full flex-col">
-<!-- Navigation -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-blueprint-line px-10 py-4 bg-background-dark/95 backdrop-blur-sm sticky top-0 z-50">
-    <div class="flex items-center gap-8">
-        <div class="flex items-center gap-3 text-primary">
-            <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
-            <h2 class="text-slate-100 text-xl font-black leading-tight tracking-tighter uppercase">QUALITY_FIRST</h2>
-        </div>
-        <nav class="hidden md:flex items-center gap-8">
-            <a class="text-slate-300 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="index.html">Capabilities</a>
-            <a class="text-slate-300 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="service.html">Standards</a>
-            <a class="text-slate-300 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="about.html">Global</a>
-            <a class="text-slate-300 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="contact.html">Certifications</a>
-        </nav>
-    </div>
-    <div class="flex items-center gap-6">
-        <div class="hidden lg:flex items-center bg-background-dark border border-blueprint-line px-3 py-1.5">
-            <span class="material-symbols-outlined text-primary text-sm mr-2">search</span>
-            <input class="bg-transparent border-none focus:ring-0 text-sm text-slate-300 placeholder:text-slate-600 w-40" placeholder="Part Number..."/>
-        </div>
-        <button class="bg-primary hover:bg-primary/90 text-background-dark px-5 py-2 text-xs font-black uppercase tracking-tighter transition-all">
-            Contact Engineering
-        </button>
-        <button class="md:hidden text-slate-100" onclick="toggleQualityMenu()">
-            <span class="material-symbols-outlined text-2xl">menu</span>
-        </button>
-    </div>
-</header>
-
-<!-- Mobile Menu -->
-<div class="fixed inset-0 z-[9998] hidden backdrop-blur-md bg-black/80" onclick="toggleQualityMenu()"></div>
-<nav id="quality-mobile-menu" class="inactive fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[9999] bg-background-dark border-l border-blueprint-line p-8 transform translate-x-full transition-transform duration-300">
-    <div class="flex flex-col h-full">
-        <div class="flex justify-between items-center mb-16">
-            <span class="text-xl font-black tracking-tighter uppercase text-slate-100">QUALITY_FIRST</span>
-            <button class="text-slate-100 hover:opacity-50" onclick="toggleQualityMenu()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col gap-8 flex-1">
-            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="index.html" onclick="toggleQualityMenu()">Capabilities</a>
-            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="service.html" onclick="toggleQualityMenu()">Standards</a>
-            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="about.html" onclick="toggleQualityMenu()">Global</a>
-            <a class="text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-colors" href="contact.html" onclick="toggleQualityMenu()">Certifications</a>
-        </div>
-        <div class="mt-auto">
-            <button class="w-full bg-primary text-background-dark px-6 py-4 text-xs font-black uppercase tracking-tighter transition-all">
-                Contact Engineering
-            </button>
-        </div>
-    </div>
-</nav>
-
-<main class="flex-1">
-<!-- Hero Section -->
-<section class="relative h-[50vh] flex items-center justify-center overflow-hidden border-b border-blueprint-line bg-background-dark">
-    <div class="absolute inset-0 blueprint-grid opacity-20"></div>
-    <div class="container mx-auto px-10 relative z-10 text-center">
-        <div class="flex items-center justify-center gap-4 text-primary mb-6">
-            <div class="h-[1px] w-12 bg-primary"></div>
-            <span class="text-xs font-bold tracking-[0.3em] uppercase">Get In Touch</span>
-            <div class="h-[1px] w-12 bg-primary"></div>
-        </div>
-        <h1 class="text-slate-100 text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase">
-            CONTACT <span class="text-primary">ENGINEERING</span>
-        </h1>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto mt-6 font-light">
-            技術図面と仕様を送信してください。24 時間以内に見積もりを返信します。
-        </p>
-    </div>
-</section>
-
-<!-- Contact Form Section -->
-<section class="py-24 bg-background-dark">
-    <div class="container mx-auto px-10">
-        <div class="grid lg:grid-cols-2 gap-16">
-            <!-- Contact Form -->
-            <div>
-                <div class="flex items-center gap-4 text-primary mb-8">
-                    <div class="h-[1px] w-8 bg-primary"></div>
-                    <span class="text-xs font-bold uppercase tracking-widest">01 — Request For Quote</span>
-                </div>
-                <h2 class="text-3xl font-black uppercase mb-8 text-slate-100">Submit Your <span class="text-primary">Project</span></h2>
-                <form class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Name</label>
-                            <input type="text" class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm" placeholder="Your name">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Company</label>
-                            <input type="text" class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm" placeholder="Company name">
-                        </div>
-                    </div>
+<body data-page="contact">
+    <div class="relative min-h-screen">
+        <div class="q-menu-backdrop fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" data-menu-backdrop data-menu-close></div>
+        <header class="q-header sticky top-0 z-50 border-b border-white/10 bg-[#0a0f14]/80 backdrop-blur" data-header>
+            <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 md:px-8">
+                <a href="index.html" class="flex items-center gap-3 no-underline">
+                    <span class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(242,166,90,0.35)] bg-[rgba(242,166,90,0.08)] text-[var(--q-accent)]"><span class="material-symbols-outlined">precision_manufacturing</span></span>
                     <div>
-                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Email</label>
-                        <input type="email" class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm" placeholder="business@company.com">
+                        <p class="font-mono text-[0.72rem] uppercase tracking-[0.28em] text-[var(--q-muted)]">Template Q</p>
+                        <p class="text-sm font-semibold tracking-[0.2em] text-white md:text-base">QUALITY FIRST</p>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Phone</label>
-                            <input type="tel" class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm" placeholder="+81 (0) 0000-0000">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Industry</label>
-                            <select class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm">
-                                <option value="">Select an industry</option>
-                                <option value="aerospace">Aerospace</option>
-                                <option value="medical">Medical</option>
-                                <option value="defense">Defense</option>
-                                <option value="automotive">Automotive</option>
-                                <option value="industrial">Industrial</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Project Type</label>
-                        <select class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm">
-                            <option value="">Select a service</option>
-                            <option value="5axis">5-Axis CNC Milling</option>
-                            <option value="swiss">Swiss Turning</option>
-                            <option value="edm">EDM Machining</option>
-                            <option value="additive">Additive Manufacturing</option>
-                            <option value="assembly">Assembly</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Quantity</label>
-                        <select class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm">
-                            <option value="">Select quantity range</option>
-                            <option value="prototype">Prototype (1-10 pcs)</option>
-                            <option value="small">Small Batch (10-100 pcs)</option>
-                            <option value="medium">Medium Run (100-1000 pcs)</option>
-                            <option value="large">Production (1000+ pcs)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">Message / Specifications</label>
-                        <textarea rows="5" class="w-full bg-background-dark/50 border border-blueprint-line px-4 py-3 focus:outline-none focus:border-primary transition-colors text-slate-100 text-sm resize-none" placeholder="Material, tolerances, surface finish requirements..."></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-widest mb-2 text-slate-400">File Upload (STEP, IGES, PDF)</label>
-                        <div class="border-2 border-dashed border-blueprint-line p-8 text-center hover:border-primary transition-colors cursor-pointer">
-                            <span class="material-symbols-outlined text-primary text-4xl mb-2">upload_file</span>
-                            <p class="text-slate-400 text-xs">Drag & drop files or click to browse</p>
-                            <p class="text-slate-500 text-[10px] mt-2">Max file size: 50MB</p>
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-background-dark py-4 text-sm font-black uppercase tracking-widest hover:bg-primary/90 transition-colors">
-                        Submit RFQ
-                    </button>
-                </form>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="flex flex-col justify-center space-y-8">
-                <div class="border border-blueprint-line bg-background-dark/50 p-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-primary/20 rounded flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-3xl">factory</span>
-                        </div>
-                        <div>
-                            <h3 class="text-slate-100 font-black uppercase text-sm tracking-widest">Tokyo Headquarters</h3>
-                            <p class="text-slate-400 text-xs mt-1">Main Manufacturing Facility</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        1-2-3 Ota-ku<br>
-                        Tokyo 144-0051<br>
-                        Japan
-                    </p>
-                </div>
-
-                <div class="border border-blueprint-line bg-background-dark/50 p-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-primary/20 rounded flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-3xl">mail</span>
-                        </div>
-                        <div>
-                            <h3 class="text-slate-100 font-black uppercase text-sm tracking-widest">Contact</h3>
-                            <p class="text-slate-400 text-xs mt-1">Sales & Engineering</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        <a href="mailto:rfq@qualityfirst.co.jp" class="hover:text-primary transition-colors">rfq@qualityfirst.co.jp</a><br>
-                        <a href="tel:+81312345678" class="hover:text-primary transition-colors">+81 (0) 3-1234-5678</a>
-                    </p>
-                </div>
-
-                <div class="border border-blueprint-line bg-background-dark/50 p-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-primary/20 rounded flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
-                        </div>
-                        <div>
-                            <h3 class="text-slate-100 font-black uppercase text-sm tracking-widest">Business Hours</h3>
-                            <p class="text-slate-400 text-xs mt-1">JST (GMT+9)</p>
-                        </div>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Monday — Friday<br>
-                        8:00 — 17:00 JST<br>
-                        <span class="text-slate-500 text-xs">24/7 Emergency Support Available</span>
-                    </p>
-                </div>
-
-                <div class="border border-blueprint-line bg-background-dark/50 p-8">
-                    <h3 class="text-slate-100 font-black uppercase text-sm tracking-widest mb-4">Global Facilities</h3>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-center justify-between">
-                            <span class="text-slate-400">Chicago, USA</span>
-                            <span class="text-primary text-xs font-mono">+1 (312) 555-0100</span>
-                        </li>
-                        <li class="flex items-center justify-between">
-                            <span class="text-slate-400">Munich, Germany</span>
-                            <span class="text-primary text-xs font-mono">+49 89 555 0100</span>
-                        </li>
-                        <li class="flex items-center justify-between">
-                            <span class="text-slate-400">Singapore</span>
-                            <span class="text-primary text-xs font-mono">+65 6555 0100</span>
-                        </li>
-                    </ul>
+                </a>
+                <nav class="hidden items-center gap-8 md:flex">
+                    <a href="index.html" class="q-nav-link text-sm uppercase tracking-[0.18em] text-slate-200 no-underline" data-nav-link data-page="index">Index</a>
+                    <a href="about.html" class="q-nav-link text-sm uppercase tracking-[0.18em] text-slate-200 no-underline" data-nav-link data-page="about">About</a>
+                    <a href="service.html" class="q-nav-link text-sm uppercase tracking-[0.18em] text-slate-200 no-underline" data-nav-link data-page="service">Service</a>
+                    <a href="contact.html" class="q-nav-link text-sm uppercase tracking-[0.18em] text-slate-200 no-underline" data-nav-link data-page="contact">Contact</a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <a href="#contact-form" class="q-button q-button-primary hidden text-xs no-underline md:inline-flex">フォームへ</a>
+                    <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden" data-menu-button aria-label="メニューを開く"><span class="material-symbols-outlined">menu</span></button>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+            <nav class="q-mobile-menu fixed right-0 top-0 z-50 flex h-full w-[min(84vw,360px)] flex-col border-l border-white/10 bg-[#0d141b] p-6 md:hidden" data-mobile-menu aria-hidden="true">
+                <div class="mb-10 flex items-center justify-between">
+                    <p class="text-sm font-semibold uppercase tracking-[0.24em] text-white">QUALITY FIRST</p>
+                    <button type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white" data-menu-close aria-label="メニューを閉じる"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <div class="flex flex-1 flex-col gap-5">
+                    <a href="index.html" class="q-mobile-link text-lg uppercase tracking-[0.18em] no-underline" data-mobile-link data-page="index">Index</a>
+                    <a href="about.html" class="q-mobile-link text-lg uppercase tracking-[0.18em] no-underline" data-mobile-link data-page="about">About</a>
+                    <a href="service.html" class="q-mobile-link text-lg uppercase tracking-[0.18em] no-underline" data-mobile-link data-page="service">Service</a>
+                    <a href="contact.html" class="q-mobile-link text-lg uppercase tracking-[0.18em] no-underline" data-mobile-link data-page="contact">Contact</a>
+                </div>
+                <a href="#contact-form" class="q-button q-button-primary mt-8 text-xs no-underline">図面相談へ</a>
+            </nav>
+        </header>
 
-<!-- FAQ Section -->
-<section class="py-24 bg-background-dark blueprint-grid border-t border-blueprint-line">
-    <div class="container mx-auto px-10">
-        <div class="text-center mb-16 space-y-4">
-            <h3 class="text-primary text-xs font-black uppercase tracking-[0.4em]">Section 02 // FAQ</h3>
-            <h2 class="text-slate-100 text-4xl font-black uppercase tracking-tighter">Common <span class="text-primary">Questions</span></h2>
-        </div>
-        <div class="max-w-4xl mx-auto space-y-4">
-            <div class="border border-blueprint-line bg-background-dark/50 p-6">
-                <h3 class="text-slate-100 font-bold uppercase mb-3 text-sm tracking-widest">What file formats do you accept for RFQ?</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">
-                    3D CAD: STEP (.stp), IGES (.igs), SLDPRT (SolidWorks), PRT (NX/Creo). 2D drawings: PDF (ISO 2768 tolerancing preferred), DWG.
-                </p>
-            </div>
-            <div class="border border-blueprint-line bg-background-dark/50 p-6">
-                <h3 class="text-slate-100 font-bold uppercase mb-3 text-sm tracking-widest">What is your typical lead time?</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">
-                    プロトタイプ：3-5 営業日、小ロット：1-2 週間、量産：2-4 週間。緊急対応も可能ですのでご相談ください。
-                </p>
-            </div>
-            <div class="border border-blueprint-line bg-background-dark/50 p-6">
-                <h3 class="text-slate-100 font-bold uppercase mb-3 text-sm tracking-widest">Do you provide material certificates?</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">
-                    はい。すべての部品に材料試験証明書（Mill Cert）を添付します。航空宇宙用途には AS9102 FAI レポートも利用可能です。
-                </p>
-            </div>
-            <div class="border border-blueprint-line bg-background-dark/50 p-6">
-                <h3 class="text-slate-100 font-bold uppercase mb-3 text-sm tracking-widest">What are your payment terms?</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">
-                    標準条件は T/T ネット 30 日。初回取引は前金 50%、残金は出荷前払い。確立された顧客向けにネット 60 日、90 日も相談可能です。
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-</main>
+        <main>
+            <section class="q-grid border-b border-white/10">
+                <div class="mx-auto max-w-7xl px-5 py-18 md:px-8 md:py-22">
+                    <div class="max-w-4xl">
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="q-kicker-line"></div>
+                            <p class="q-section-label m-0">Contact / Drawing Consultation</p>
+                        </div>
+                        <h1 class="text-5xl font-semibold uppercase tracking-[-0.06em] text-white md:text-7xl">
+                            Start
+                            <span class="q-hero-word block py-2">with</span>
+                            <span class="q-metal-text block">Your Drawing</span>
+                        </h1>
+                        <p class="mt-8 max-w-3xl text-base leading-8 text-slate-300 md:text-lg">図面相談、試作相談、量産前の工程確認を受ける導線です。どの品質観点を先に確認したいかまで送れる構成にしています。</p>
+                    </div>
+                </div>
+            </section>
 
-<!-- Footer -->
-<footer class="bg-background-dark border-t-4 border-primary pt-16 pb-8 px-10">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-        <div class="space-y-6">
-            <div class="flex items-center gap-3 text-primary">
-                <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
-                <h2 class="text-slate-100 text-xl font-black leading-tight tracking-tighter uppercase">QUALITY_FIRST</h2>
-            </div>
-            <p class="text-slate-500 text-xs leading-relaxed uppercase tracking-tighter">
-                世界で最も要求の厳しい産業向けに設計された精密加工。サブミクロン部品から大規模航空宇宙組立品まで。
-            </p>
-            <div class="flex gap-4">
-                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
-                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
-                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">call</span></a>
-            </div>
-        </div>
-        <div>
-            <h4 class="text-slate-100 font-black uppercase text-xs tracking-[0.3em] mb-6">Technical Resources</h4>
-            <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <li><a class="hover:text-primary transition-colors" href="#">Material Safety Data</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">CAD/CAM Integration</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Tolerancing Guide</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Quality Manual</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="text-slate-100 font-black uppercase text-xs tracking-[0.3em] mb-6">Capabilities</h4>
-            <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <li><a class="hover:text-primary transition-colors" href="#">5-Axis Milling</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Swiss Turning</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">EDM Machining</a></li>
-                <li><a class="hover:text-primary transition-colors" href="#">Additive Mfg</a></li>
-            </ul>
-        </div>
-        <div class="bg-blueprint-line/20 p-6 border border-blueprint-line">
-            <h4 class="text-primary font-black uppercase text-xs tracking-[0.3em] mb-4">Industrial Inquiries</h4>
-            <p class="text-slate-300 text-xs mb-4 uppercase leading-tight font-bold">見積もり依頼 (RFQ) と技術図面を送信してください。</p>
-            <button class="w-full bg-primary text-background-dark py-3 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white transition-colors">
-                Upload Blueprints
-            </button>
-        </div>
-    </div>
-    <div class="border-t border-blueprint-line pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-slate-600 text-[10px] font-mono uppercase">© 2024 QUALITY_FIRST PRECISION MANUFACTURING CORP. ALL RIGHTS RESERVED.</p>
-        <div class="flex gap-8 text-[10px] font-mono uppercase text-slate-600">
-            <a class="hover:text-primary" href="#">Legal Compliance</a>
-            <a class="hover:text-primary" href="#">ITAR Policies</a>
-            <a class="hover:text-primary" href="#">Privacy Protocol</a>
-        </div>
-    </div>
-</footer>
-</div>
+            <section id="contact-form" class="border-b border-white/10">
+                <div class="mx-auto grid max-w-7xl gap-8 px-5 py-16 md:px-8 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
+                    <div class="q-form-shell q-reveal p-6 md:p-8">
+                        <div class="mb-8">
+                            <p class="q-section-label">Section 01 / Inquiry Form</p>
+                            <h2 class="mt-3 text-3xl font-semibold uppercase tracking-[-0.05em] text-white">図面・試作相談フォーム</h2>
+                            <p class="mt-4 text-sm leading-7 text-slate-300">送信先は未接続のデモです。公開前に送信先、連絡先、選択肢、数値を実データへ差し替えてください。</p>
+                        </div>
+                        <form class="space-y-6" data-contact-form novalidate>
+                            <div class="grid gap-6 md:grid-cols-2">
+                                <div>
+                                    <label for="name">ご担当者名 <span class="q-required">*</span></label>
+                                    <input id="name" name="name" type="text" required>
+                                </div>
+                                <div>
+                                    <label for="company">会社名 <span class="q-required">*</span></label>
+                                    <input id="company" name="company" type="text" required>
+                                </div>
+                            </div>
+                            <div class="grid gap-6 md:grid-cols-2">
+                                <div>
+                                    <label for="email">メールアドレス <span class="q-required">*</span></label>
+                                    <input id="email" name="email" type="email" required>
+                                </div>
+                                <div>
+                                    <label for="phone">電話番号</label>
+                                    <input id="phone" name="phone" type="tel">
+                                </div>
+                            </div>
+                            <div class="grid gap-6 md:grid-cols-2">
+                                <div>
+                                    <label for="inquiry-type">相談種別 <span class="q-required">*</span></label>
+                                    <select id="inquiry-type" name="inquiry-type" required>
+                                        <option value="">選択してください</option>
+                                        <option value="drawing">図面相談</option>
+                                        <option value="prototype">試作相談</option>
+                                        <option value="process">工程相談</option>
+                                        <option value="material">材質相談</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="material">想定材質</label>
+                                    <select id="material" name="material">
+                                        <option value="">選択してください</option>
+                                        <option value="aluminum">アルミ系</option>
+                                        <option value="stainless">ステンレス系</option>
+                                        <option value="steel">鋼材系</option>
+                                        <option value="resin">樹脂系</option>
+                                        <option value="other">未定 / その他</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid gap-6 md:grid-cols-2">
+                                <div>
+                                    <label for="lot">想定ロット</label>
+                                    <select id="lot" name="lot">
+                                        <option value="">選択してください</option>
+                                        <option value="1-5">1-5 個</option>
+                                        <option value="6-30">6-30 個</option>
+                                        <option value="31-200">31-200 個</option>
+                                        <option value="201+">201 個以上</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="schedule">希望時期</label>
+                                    <input id="schedule" name="schedule" type="text" placeholder="例: 4 月前半に試作確認">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="message">確認したい内容 <span class="q-required">*</span></label>
+                                <textarea id="message" name="message" rows="6" required placeholder="重点寸法、気になる工程、試作で見たい点など"></textarea>
+                            </div>
+                            <div>
+                                <label for="drawing-note">図面ファイル注記</label>
+                                <textarea id="drawing-note" name="drawing-note" rows="3" placeholder="実装時にアップロード機能を接続する場合の注意点や、ファイル形式メモを記載"></textarea>
+                            </div>
+                            <div class="q-form-message" data-form-message aria-live="polite"></div>
+                            <button type="submit" class="q-button q-button-primary w-full text-xs">送信デモを表示</button>
+                        </form>
+                    </div>
 
-<script>
-function toggleQualityMenu() {
-    const menu = document.getElementById('quality-mobile-menu');
-    const backdrop = document.querySelector('.fixed.inset-0.z-\\[9998\\]');
-    if (menu.classList.contains('inactive')) {
-        menu.classList.remove('inactive');
-        menu.classList.add('active');
-        backdrop.classList.remove('hidden');
-    } else {
-        menu.classList.remove('active');
-        menu.classList.add('inactive');
-        backdrop.classList.add('hidden');
-    }
-}
-</script>
+                    <div class="grid gap-6">
+                        <article class="q-contact-card q-reveal p-6">
+                            <p class="q-section-label">Section 02 / Consultation Flow</p>
+                            <h3 class="mt-4 text-2xl font-semibold uppercase tracking-[-0.03em] text-white">相談の進め方</h3>
+                            <div class="mt-6 space-y-4">
+                                <div class="rounded-2xl border border-white/8 px-4 py-4">
+                                    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--q-muted)]">01</p>
+                                    <p class="mt-2 text-sm text-slate-200">図面や要件をもとに、重点寸法と工程懸念を整理</p>
+                                </div>
+                                <div class="rounded-2xl border border-white/8 px-4 py-4">
+                                    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--q-muted)]">02</p>
+                                    <p class="mt-2 text-sm text-slate-200">試作か量産前検討かに応じて確認範囲を調整</p>
+                                </div>
+                                <div class="rounded-2xl border border-white/8 px-4 py-4">
+                                    <p class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--q-muted)]">03</p>
+                                    <p class="mt-2 text-sm text-slate-200">必要に応じて材質・工程の代替案も共有</p>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="q-contact-card q-reveal p-6">
+                            <p class="q-section-label">Section 03 / Information</p>
+                            <h3 class="mt-4 text-2xl font-semibold uppercase tracking-[-0.03em] text-white">連絡情報の表示例</h3>
+                            <div class="mt-6 space-y-3 text-sm leading-7 text-slate-300">
+                                <p>メール: info@example.com</p>
+                                <p>電話: 03-0000-0000</p>
+                                <p>受付時間: 平日 9:00-18:00</p>
+                            </div>
+                            <p class="q-note mt-6 text-sm leading-7 text-slate-300">上記はダミーです。公開前に実運用の窓口へ差し替えてください。</p>
+                        </article>
+                        <article class="q-contact-card q-reveal p-6">
+                            <p class="q-section-label">Section 04 / Numeric Note</p>
+                            <h3 class="mt-4 text-2xl font-semibold uppercase tracking-[-0.03em] text-white">数値差し替え注記</h3>
+                            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                                <div class="q-stat-card p-4">
+                                    <p class="font-mono text-xs uppercase tracking-[0.24em] text-[var(--q-muted)]">Reply Window</p>
+                                    <div class="q-metric mt-3">
+                                        <span class="q-metric-value" data-counter="24">0</span>
+                                        <span class="q-metric-unit">hours model</span>
+                                    </div>
+                                </div>
+                                <div class="q-stat-card p-4">
+                                    <p class="font-mono text-xs uppercase tracking-[0.24em] text-[var(--q-muted)]">File Formats</p>
+                                    <div class="q-metric mt-3">
+                                        <span class="q-metric-value" data-counter="4">0</span>
+                                        <span class="q-metric-unit">sample</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-[rgba(242,166,90,0.16)] bg-[#091018]">
+            <div class="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[1.3fr_0.7fr_0.8fr] md:px-8">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-[0.26em] text-[var(--q-muted)]">Quality First</p>
+                    <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300">図面相談・試作相談用の contact ページです。フォーム送信はデモ実装のため、接続先設定が別途必要です。</p>
+                </div>
+                <div>
+                    <p class="q-footer-meta">Pages</p>
+                    <div class="mt-4 flex flex-col gap-3 text-sm text-slate-300">
+                        <a href="index.html" class="no-underline hover:text-[var(--q-accent)]">Index</a>
+                        <a href="about.html" class="no-underline hover:text-[var(--q-accent)]">About</a>
+                        <a href="service.html" class="no-underline hover:text-[var(--q-accent)]">Service</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="q-footer-meta">Template Note</p>
+                    <p class="mt-4 text-sm leading-7 text-slate-300">返信時間、添付形式、窓口情報は参考値です。公開前に必ず実際の運用値へ差し替えてください。</p>
+                </div>
+            </div>
+            <div class="border-t border-white/8 px-5 py-5 text-center font-mono text-xs uppercase tracking-[0.24em] text-[var(--q-muted)] md:px-8">
+                © <span data-current-year></span> Quality First Template Q
+            </div>
+        </footer>
+    </div>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

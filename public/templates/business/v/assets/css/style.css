@@ -1,0 +1,53 @@
+:root {
+    --v-bg: #0f1014;
+    --v-surface: #161922;
+    --v-panel: #1f2330;
+    --v-text: #f6f3ee;
+    --v-muted: #b4bac9;
+    --v-primary: #ff4d32;
+    --v-accent: #ffe54a;
+    --v-line: rgba(255,255,255,0.16);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: "Archivo Black", "Noto Sans JP", sans-serif;
+    background: radial-gradient(circle at top left, rgba(255, 77, 50, 0.16), transparent 24%), radial-gradient(circle at bottom right, rgba(255, 229, 74, 0.14), transparent 22%), #0f1014;
+    color: var(--v-text);
+}
+a { color: inherit; }
+.v-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent 0 8%, rgba(255,255,255,0.04) 8% 8.4%, transparent 8.4% 16.6%, rgba(255,255,255,0.04) 16.6% 17%, transparent 17% 100%);
+    opacity: 0.45;
+}
+.v-kicker { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--v-accent); }
+.v-panel { background: rgba(22, 25, 34, 0.88); border: 1px solid var(--v-line); }
+.v-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.35rem;
+    padding: 0 1.5rem;
+    background: var(--v-accent);
+    color: #111;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: transform 0.2s ease;
+}
+.v-button:hover, .v-button:focus-visible { transform: translate(6px, -6px); }
+.v-button--ghost { background: transparent; color: var(--v-text); border: 1px solid var(--v-line); }
+.v-mobile-menu, .v-mobile-backdrop { opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
+.v-mobile-menu { transform: translateX(100%); }
+body.menu-open .v-mobile-backdrop { opacity: 1; pointer-events: auto; }
+body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: translateX(0); }
+.v-form-field label { display: block; margin-bottom: 0.55rem; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--v-muted); }
+.v-form-field input, .v-form-field textarea, .v-form-field select { width: 100%; background: #131621; border: 1px solid var(--v-line); color: var(--v-text); padding: 0.95rem 1rem; font: inherit; }
+.v-form-field textarea { min-height: 9rem; resize: vertical; }
+.v-form-field input:focus, .v-form-field textarea:focus, .v-form-field select:focus { outline: 2px solid transparent; border-color: var(--v-accent); }
+.v-number-note { border-left: 4px solid var(--v-primary); background: rgba(255,255,255,0.04); color: var(--v-muted); }
