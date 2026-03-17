@@ -4,8 +4,13 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initDynamicMobileMenu();
     initParallax();
     initScrollSpy();
+});
+
+window.addEventListener('load', () => {
+    cleanupDynamicInjectedMobileMenu();
 });
 
 function initParallax() {
@@ -56,11 +61,12 @@ function initScrollSpy() {
 }
 
 
-function initMobileMenu() {
-    const toggle = document.querySelector('.mobile-menu-toggle');
+function initDynamicMobileMenu() {
+    const toggle = document.querySelector('.mobile-menu-toggle[aria-controls="dynamic-mobile-menu"]');
     const menu = document.querySelector('header nav');
-    const backdrop = document.querySelector('.mobile-menu-backdrop');
+    const backdrop = document.querySelector('#dynamic-mobile-backdrop');
     const links = document.querySelectorAll('header nav a[href]');
+    cleanupDynamicInjectedMobileMenu();
 
     const closeMenu = () => {
         if (!toggle || !menu || !backdrop) return;
@@ -92,4 +98,9 @@ function initMobileMenu() {
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) closeMenu();
     });
+}
+
+function cleanupDynamicInjectedMobileMenu() {
+    document.querySelectorAll('.mobile-menu-toggle:not([aria-controls="dynamic-mobile-menu"])').forEach((el) => el.remove());
+    document.querySelectorAll('.mobile-menu-backdrop:not(#dynamic-mobile-backdrop)').forEach((el) => el.remove());
 }
