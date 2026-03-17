@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!menu) return;
     menu.hidden = !isOpen;
     backdrop && (backdrop.hidden = !isOpen);
-    body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) { body.style.overflow = "hidden"; } else { body.style.overflow = ""; }
     menu.setAttribute("aria-hidden", String(!isOpen));
     buttons.forEach((button) => button.setAttribute("aria-expanded", String(isOpen)));
   };
