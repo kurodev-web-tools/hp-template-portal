@@ -3,18 +3,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.querySelector("[data-menu-button]");
     const menu = document.querySelector("[data-mobile-menu]");
     const backdrop = document.querySelector("[data-menu-backdrop]");
-    const closeMenu = () => {
-        body.classList.remove("menu-open");
-        menuButton?.setAttribute("aria-expanded", "false");
+    const closeButton = document.querySelector("[data-menu-close]");
+    const menuLinks = document.querySelectorAll("[data-mobile-menu] a[href]");
+
+    const setMenuState = (isOpen) => {
+        body.classList.toggle("menu-open", isOpen);
+        if (isOpen) {
+            body.style.overflow = "hidden";
+        } else {
+            body.style.overflow = "";
+        }
+        menuButton?.setAttribute("aria-expanded", String(isOpen));
+        closeButton?.setAttribute("aria-expanded", String(isOpen));
+        menu?.setAttribute("aria-hidden", String(!isOpen));
+        if (backdrop) {
+            backdrop.hidden = !isOpen;
+        }
     };
-    const openMenu = () => {
-        body.classList.add("menu-open");
-        menuButton?.setAttribute("aria-expanded", "true");
-    };
-    menuButton?.addEventListener("click", () => body.classList.contains("menu-open") ? closeMenu() : openMenu());
-    backdrop?.addEventListener("click", closeMenu);
-    menu?.querySelector("[data-menu-close]")?.addEventListener("click", closeMenu);
-    menu?.querySelectorAll("a[href]").forEach((link) => link.addEventListener("click", closeMenu));
-    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
-    window.addEventListener("resize", () => { if (window.innerWidth >= 1024) closeMenu(); });
+
+    menuButton?.addEventListener("click", () => setMenuState(!(menuButton.getAttribute("aria-expanded") === "true")));
+    closeButton?.addEventListener("click", () => setMenuState(false));
+    backdrop?.addEventListener("click", () => setMenuState(false));
+    menuLinks.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") setMenuState(false); });
+    window.addEventListener("resize", () => { if (window.innerWidth >= 1024) setMenuState(false); });
+
+    setMenuState(false);
 });

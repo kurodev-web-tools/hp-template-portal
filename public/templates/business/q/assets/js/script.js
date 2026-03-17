@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuCloseButtons = document.querySelectorAll("[data-menu-close]");
     const navLinks = document.querySelectorAll("[data-nav-link]");
     const mobileLinks = document.querySelectorAll("[data-mobile-link]");
+    const menuLinks = document.querySelectorAll("[data-mobile-menu] a[href]");
     const counters = document.querySelectorAll("[data-counter]");
     const revealItems = document.querySelectorAll(".q-reveal");
     const currentPage = body.dataset.page;
@@ -57,6 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         link.addEventListener("click", () => setMenuState(false));
     });
+
+    menuLinks.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
 
     yearTargets.forEach((target) => {
         target.textContent = String(new Date().getFullYear());

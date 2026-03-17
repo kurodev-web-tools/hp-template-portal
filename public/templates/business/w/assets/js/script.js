@@ -1,20 +1,39 @@
-const wMenuButton = document.querySelector("[data-menu-toggle]");
-const wMobileMenu = document.querySelector("[data-mobile-menu]");
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const buttons = document.querySelectorAll("[data-menu-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+  const backdrop = document.querySelector("[data-menu-backdrop]");
+  const links = document.querySelectorAll("[data-mobile-menu] a[href]");
 
-if (wMenuButton && wMobileMenu) {
-  wMenuButton.addEventListener("click", () => {
-    const isOpen = wMenuButton.getAttribute("aria-expanded") === "true";
-    wMenuButton.setAttribute("aria-expanded", String(!isOpen));
-    wMobileMenu.hidden = isOpen;
+  const setMenuState = (isOpen) => {
+    if (!menu) return;
+    menu.hidden = !isOpen;
+    backdrop && (backdrop.hidden = !isOpen);
+    body.style.overflow = isOpen ? "hidden" : "";
+    menu.setAttribute("aria-hidden", String(!isOpen));
+    buttons.forEach((button) => button.setAttribute("aria-expanded", String(isOpen)));
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => setMenuState(button.getAttribute("aria-expanded") !== "true"));
   });
-}
 
-const wObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("is-visible");
-    }
+  backdrop?.addEventListener("click", () => setMenuState(false));
+  links.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuState(false);
   });
-}, { threshold: 0.2 });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) setMenuState(false);
+  });
 
-document.querySelectorAll(".reveal").forEach((element) => wObserver.observe(element));
+  setMenuState(false);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("is-visible");
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+});
