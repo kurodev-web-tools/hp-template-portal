@@ -81,15 +81,15 @@ body {
 
 .future-hero-backdrop {
     background:
-        radial-gradient(circle at top center, rgba(0, 255, 255, 0.08), transparent 32rem),
-        radial-gradient(circle at 80% 20%, rgba(188, 19, 254, 0.05), transparent 26rem),
+        radial-gradient(circle at top center, rgba(0, 255, 255, 0.08), transparent 30rem),
+        radial-gradient(circle at 78% 18%, rgba(80, 140, 255, 0.035), transparent 24rem),
         linear-gradient(180deg, rgba(245, 248, 248, 0.96) 0%, rgba(245, 248, 248, 0.88) 48%, rgba(245, 248, 248, 0.94) 100%);
 }
 
 .dark .future-hero-backdrop {
     background:
-        radial-gradient(circle at top center, rgba(0, 255, 255, 0.16), transparent 32rem),
-        radial-gradient(circle at 80% 20%, rgba(188, 19, 254, 0.12), transparent 26rem),
+        radial-gradient(circle at top center, rgba(0, 255, 255, 0.14), transparent 30rem),
+        radial-gradient(circle at 78% 18%, rgba(88, 126, 255, 0.08), transparent 24rem),
         linear-gradient(180deg, rgba(6, 11, 20, 0.82) 0%, rgba(6, 11, 20, 0.58) 48%, rgba(6, 11, 20, 0.86) 100%);
 }
 
@@ -162,6 +162,86 @@ body {
 
 .future-mobile-toggle.active .bar:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
+}
+
+.future-traffic-chart {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.65rem;
+    position: relative;
+    padding-top: 0.4rem;
+}
+
+.future-traffic-chart::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0.25rem;
+    background:
+        linear-gradient(rgba(0, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 100% 25%, calc(100% / 6) 100%;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.18);
+    pointer-events: none;
+}
+
+.future-traffic-bar {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    padding-inline: 0.1rem;
+}
+
+.future-traffic-fill {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: var(--traffic-height);
+    min-height: 18%;
+    border-radius: 0.2rem 0.2rem 0 0;
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.12));
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 255, 0.2) inset,
+        0 0 18px rgba(0, 255, 255, 0.08);
+}
+
+.future-traffic-fill::before {
+    content: "";
+    position: absolute;
+    inset: 0.35rem 0.3rem auto;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    opacity: 0.5;
+}
+
+.future-traffic-fill::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -2px;
+    height: 2px;
+    background: rgba(126, 246, 255, 0.95);
+    box-shadow: 0 0 14px rgba(0, 255, 255, 0.65);
+}
+
+.future-traffic-bar.is-active .future-traffic-fill {
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.92), rgba(0, 255, 255, 0.24));
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 255, 0.28) inset,
+        0 0 24px rgba(0, 255, 255, 0.22);
+}
+
+.future-traffic-bar.is-secondary .future-traffic-fill {
+    background: linear-gradient(180deg, rgba(103, 232, 249, 0.9), rgba(56, 189, 248, 0.22));
+}
+
+.future-traffic-bar.is-alert .future-traffic-fill {
+    background: linear-gradient(180deg, rgba(191, 247, 255, 0.95), rgba(56, 189, 248, 0.3));
+    box-shadow:
+        0 0 0 1px rgba(125, 211, 252, 0.28) inset,
+        0 0 20px rgba(56, 189, 248, 0.16);
 }
 
 @keyframes pulse-flow {
