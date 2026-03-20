@@ -59,7 +59,7 @@
         .k-menu-backdrop.active {
             opacity: 1 !important;
             visibility: visible !important;
-            background-color: rgba(13, 27, 18, 0.6) !important;
+            background-color: rgba(23, 21, 19, 0.62) !important;
             backdrop-filter: blur(4px) !important;
         }
 
@@ -70,11 +70,37 @@
 
         /* Form Styles */
         .k-form-field {
-            @apply w-full px-4 py-3 bg-white dark:bg-background-dark/50 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-primary dark:focus:ring-primary focus:border-transparent transition-all text-sm;
+            width: 100%;
+            display: block;
+            padding: 0.95rem 1rem;
+            background: rgba(255, 252, 246, 0.92);
+            border: 1px solid rgba(123, 101, 74, 0.18);
+            border-radius: 0.75rem;
+            color: #2a2520;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .k-form-field::placeholder {
+            color: #8d8579;
+        }
+
+        .dark .k-form-field {
+            background: rgba(32, 28, 25, 0.82);
+            border-color: rgba(175, 148, 79, 0.18);
+            color: #f3eee6;
         }
 
         .k-form-field:focus {
             outline: none;
+            border-color: rgba(175, 148, 79, 0.62);
+            box-shadow: 0 0 0 3px rgba(175, 148, 79, 0.16);
+            background: rgba(255, 252, 246, 1);
+        }
+
+        .dark .k-form-field:focus {
+            background: rgba(36, 32, 29, 0.96);
         }
     </style>
 </head>
@@ -140,7 +166,10 @@
                 <div class="max-w-4xl">
                     <span class="text-accent dark:text-primary text-sm font-bold uppercase tracking-[0.3em]">Contact & Access</span>
                     <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-                        研究相談も、<br/>協業の打診も、ここから。
+                        <span class="block md:hidden">研究相談も、</span>
+                        <span class="block md:hidden">協業の打診も、</span>
+                        <span class="block md:hidden">ここから。</span>
+                        <span class="hidden md:inline">研究相談も、<br/>協業の打診も、ここから。</span>
                     </h1>
                     <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
                         共同研究、公開講座、アーカイブ整備、取材依頼に関する相談を受け付けています。背景と目的に応じて、担当チームへおつなぎします。
@@ -152,7 +181,7 @@
         <!-- Contact Form Section -->
         <section class="py-12 md:py-16 bg-slate-50 dark:bg-background-dark/30 border-y border-slate-200 dark:border-slate-800">
             <div class="container mx-auto px-6 lg:px-12">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div class="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-8 md:gap-12 items-start">
                     <!-- Contact Info -->
                     <div class="space-y-8">
                         <div>
@@ -193,33 +222,35 @@
                     </div>
 
                     <!-- Contact Form -->
-                    <form class="bg-white dark:bg-background-dark p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 space-y-4" action="#" method="post" data-demo-form>
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">お名前 <span class="text-accent">*</span></label>
-                            <input type="text" id="name" name="name" required class="k-form-field" placeholder="山田 太郎">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">メールアドレス <span class="text-accent">*</span></label>
-                            <input type="email" id="email" name="email" required class="k-form-field" placeholder="yamada@example.com">
-                        </div>
-                        <div>
-                            <label for="organization" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">所属機関（任意）</label>
-                            <input type="text" id="organization" name="organization" class="k-form-field" placeholder="○○大学 研究所">
-                        </div>
-                        <div>
-                            <label for="topic" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">ご相談内容 <span class="text-accent">*</span></label>
-                            <select id="topic" name="topic" required class="k-form-field">
-                                <option value="">選択してください</option>
-                                <option value="research">研究支援について</option>
-                                <option value="archive">アーカイブ整備について</option>
-                                <option value="program">公開講座・イベントについて</option>
-                                <option value="media">取材・広報について</option>
-                                <option value="other">その他</option>
-                            </select>
+                    <form class="bg-white dark:bg-background-dark p-7 md:p-10 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-5" action="#" method="post" data-demo-form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">お名前 <span class="text-accent">*</span></label>
+                                <input type="text" id="name" name="name" required class="k-form-field" placeholder="山田 太郎">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">メールアドレス <span class="text-accent">*</span></label>
+                                <input type="email" id="email" name="email" required class="k-form-field" placeholder="yamada@example.com">
+                            </div>
+                            <div>
+                                <label for="organization" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">所属機関（任意）</label>
+                                <input type="text" id="organization" name="organization" class="k-form-field" placeholder="○○大学 研究所">
+                            </div>
+                            <div>
+                                <label for="topic" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">ご相談内容 <span class="text-accent">*</span></label>
+                                <select id="topic" name="topic" required class="k-form-field">
+                                    <option value="">選択してください</option>
+                                    <option value="research">研究支援について</option>
+                                    <option value="archive">アーカイブ整備について</option>
+                                    <option value="program">公開講座・イベントについて</option>
+                                    <option value="media">取材・広報について</option>
+                                    <option value="other">その他</option>
+                                </select>
+                            </div>
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">ご相談内容の詳細 <span class="text-accent">*</span></label>
-                            <textarea id="message" name="message" rows="5" required class="k-form-field min-h-[160px]" placeholder="ご質問・ご相談の内容、背景、目的などをお書きください..."></textarea>
+                            <textarea id="message" name="message" rows="6" required class="k-form-field min-h-[190px]" placeholder="ご質問・ご相談の内容、背景、目的などをお書きください..."></textarea>
                         </div>
                         <button type="submit" class="w-full bg-primary text-background-dark px-6 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
                             送信する
@@ -280,31 +311,28 @@
         <!-- Map Section -->
         <section class="py-12 md:py-16 bg-slate-50 dark:bg-background-dark/30 border-y border-slate-200 dark:border-slate-800">
             <div class="container mx-auto px-6 lg:px-12">
-                <div class="aspect-video w-full bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden flex items-center justify-center">
-                    <div class="text-center p-8">
-                        <span class="material-symbols-outlined text-6xl text-slate-400 mb-4">map</span>
-                        <p class="text-slate-500 dark:text-slate-400">地図画像はここに挿入されます</p>
-                        <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">Google Maps などの埋め込みコードを配置</p>
-                    </div>
+                <div class="aspect-video w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-800">
+                    <img src="assets/images/w_map.png" alt="Knowledge Plaza 周辺地図" class="h-full w-full object-cover">
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
         <section class="py-16 md:py-20 bg-background-dark text-white relative overflow-hidden">
-            <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]"></div>
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,27,24,0.96),rgba(23,21,19,1))]"></div>
+            <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[420px] h-[420px] bg-primary/6 rounded-full blur-[120px]"></div>
             <div class="container mx-auto px-6 lg:px-12 text-center relative z-10 max-w-3xl">
                 <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-                    <span class="text-primary">知的探求</span>を、共に。
+                    <span class="text-[rgba(196,173,118,0.9)]">知的探求</span>を、共に。
                 </h2>
                 <p class="text-slate-400 mb-8">
                     メンバーシップ、研究協力、プログラム参加など、さまざまな形でご参画いただけます。
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="about.html" class="bg-primary text-background-dark px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    <a href="about.html" class="bg-primary/90 text-background-dark px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest shadow-lg shadow-black/15 hover:opacity-90 transition-opacity">
                         理念を知る
                     </a>
-                    <a href="service.html" class="border border-white/20 hover:bg-white/5 px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest transition-colors">
+                    <a href="service.html" class="border border-[rgba(196,173,118,0.22)] bg-white/[0.02] hover:bg-white/[0.05] px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest transition-colors">
                         研究支援を見る
                     </a>
                 </div>
@@ -315,8 +343,8 @@
     <!-- Footer -->
     <footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
         <div class="container mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
-                <div class="space-y-4 md:space-y-6">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+                <div class="col-span-2 lg:col-span-1 space-y-4 md:space-y-6">
                     <div class="flex items-center gap-3">
                         <span class="material-symbols-outlined text-accent dark:text-primary text-3xl">account_balance</span>
                         <h4 class="font-serif font-bold text-lg">Knowledge Plaza</h4>
@@ -344,7 +372,7 @@
                         <li><a class="hover:text-accent dark:hover:text-primary transition-colors" href="#">オープンアクセス誌</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="col-span-2 lg:col-span-1">
                     <h5 class="font-bold text-xs uppercase tracking-widest mb-6">お問い合わせ</h5>
                     <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                         <li class="flex items-start gap-3">
