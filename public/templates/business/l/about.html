@@ -47,6 +47,15 @@
         .l-menu-backdrop.active { opacity: 1 !important; visibility: visible !important; background-color: rgba(2, 6, 23, 0.8) !important; backdrop-filter: blur(4px) !important; }
         .l-mobile-menu.active { opacity: 1 !important; visibility: visible !important; }
         .l-grid-bg { background-image: radial-gradient(circle at 1px 1px, rgba(13, 127, 242, 0.15) 1px, transparent 0); background-size: 32px 32px; }
+        .l-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .l-reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .l-tech-panel { position: relative; overflow: hidden; }
+        .l-tech-panel::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(13, 127, 242, 0.08); opacity: 0.7; pointer-events: none; animation: l-panel-breathe 5.6s ease-in-out infinite; }
+        @keyframes l-panel-breathe { 0%, 100% { opacity: 0.42; } 50% { opacity: 0.82; } }
+        @media (prefers-reduced-motion: reduce) {
+            .l-reveal { opacity: 1; transform: none; transition: none; }
+            .l-tech-panel::after { animation: none; }
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased custom-menu-only">
@@ -98,18 +107,18 @@
 
     <main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-6 py-8">
         <!-- Page Hero -->
-        <section class="py-8 md:py-12 mb-8">
+        <section class="py-8 md:py-12 mb-8 l-reveal">
             <span class="text-[10px] font-bold uppercase text-primary tracking-[0.3em]">About Logical</span>
             <h1 class="text-2xl md:text-3xl lg:text-4xl font-black mt-2 mb-4">
                 Core Mesh Logic.
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
-                分散ノード、自己修復ルーティング、量子耐性暗号。私たちが目指すのは、デジタルスタックの新たな基盤。確率的で、拡張可能で、そして堅牢なインフラストラクチャ。
+                分散ノード、自己修復ルーティング、量子耐性暗号。私たちが目指すのは、デジタルスタックの新たな基盤。<br class="hidden xl:block">確率的で、拡張可能で、そして堅牢なインフラストラクチャ。
             </p>
         </section>
 
         <!-- Architecture Diagram -->
-        <section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6 md:p-8">
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6 md:p-8 l-reveal">
             <div class="col-span-12 md:col-span-5">
                 <h2 class="text-xl md:text-2xl font-black uppercase tracking-tighter mb-6">3 つのコア。</h2>
                 <div class="space-y-4">
@@ -151,7 +160,7 @@
         </section>
 
         <!-- Specification Table -->
-        <section class="mb-12">
+        <section class="mb-12 l-reveal">
             <div class="flex items-center gap-4 mb-6">
                 <h2 class="text-lg md:text-xl font-black uppercase tracking-tight">System Specification</h2>
                 <div class="h-px flex-1 bg-slate-200 dark:bg-slate-800"></div>
@@ -198,7 +207,7 @@
         </section>
 
         <!-- Security & Compliance -->
-        <section class="py-8 md:py-12 border-t border-slate-200 dark:border-slate-800">
+        <section class="py-8 md:py-12 border-t border-slate-200 dark:border-slate-800 l-reveal">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded">
                     <span class="material-symbols-outlined text-4xl text-primary mb-4">security</span>
@@ -240,9 +249,9 @@
         </section>
 
         <!-- CTA -->
-        <section class="py-8 md:py-12 bg-slate-900 text-white relative overflow-hidden mt-8">
+        <section class="py-8 md:py-12 bg-slate-900 text-white relative overflow-hidden mt-8 l-tech-panel l-reveal border border-slate-800 rounded">
             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#0d7ff2 1px, transparent 1px); background-size: 24px 24px;"></div>
-            <div class="relative z-10 max-w-2xl">
+            <div class="relative z-10 max-w-2xl text-left">
                 <h2 class="text-xl md:text-2xl font-black mb-4">
                     仕様を、さらに深く。
                 </h2>
@@ -259,10 +268,13 @@
     <!-- Footer -->
     <footer class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark py-8">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-2 text-primary">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 border border-slate-200 dark:border-slate-800 rounded px-4 py-4">
+                <div class="flex items-center gap-3 text-primary">
                     <span class="material-symbols-outlined text-2xl">terminal</span>
-                    <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                        <span class="text-[10px] uppercase tracking-[0.22em] text-slate-500">Core Stable</span>
+                    </div>
                 </div>
                 <p class="text-[10px] text-slate-500 uppercase tracking-wider">© 2026 Logical Systems. All Rights Reserved.</p>
                 <div class="flex gap-4 text-[10px] text-slate-500 uppercase">
@@ -324,6 +336,17 @@
                 bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
             }
         });
+
+        const lObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    lObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('.l-reveal').forEach((el) => lObserver.observe(el));
     </script>
     <script src="assets/js/script.js" defer></script>
 </body>

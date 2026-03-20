@@ -54,6 +54,15 @@
             border-color: #0d7ff2;
             box-shadow: 0 0 0 3px rgba(13, 127, 242, 0.15);
         }
+        .l-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .l-reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .l-tech-panel { position: relative; overflow: hidden; }
+        .l-tech-panel::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(13, 127, 242, 0.08); opacity: 0.7; pointer-events: none; animation: l-panel-breathe 5.6s ease-in-out infinite; }
+        @keyframes l-panel-breathe { 0%, 100% { opacity: 0.42; } 50% { opacity: 0.82; } }
+        @media (prefers-reduced-motion: reduce) {
+            .l-reveal { opacity: 1; transform: none; transition: none; }
+            .l-tech-panel::after { animation: none; }
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased custom-menu-only">
@@ -101,19 +110,19 @@
     </header>
 
     <main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-6 py-8">
-        <section class="py-8 md:py-12 mb-8">
+        <section class="py-8 md:py-12 mb-8 l-reveal">
             <span class="text-[10px] font-bold uppercase text-primary tracking-[0.3em]">Contact</span>
             <h1 class="text-2xl md:text-3xl lg:text-4xl font-black mt-2 mb-4">
                 GET IN TOUCH.
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
-                技術相談・デプロイ依頼・運用見積もりなど、お気軽にお問い合わせください。24 時間以内に担当者よりご連絡いたします。
+                技術相談・デプロイ依頼・運用見積もりなど、お気軽にお問い合わせください。<br class="hidden xl:block">24 時間以内に担当者よりご連絡いたします。
             </p>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 items-stretch">
             <div class="lg:col-span-2">
-                <form id="form-section" class="contact-form space-y-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-6">
+                <form id="form-section" class="contact-form space-y-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded p-6 h-full flex flex-col l-reveal">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-xs font-bold uppercase text-slate-500 mb-2">お名前 <span class="text-primary">*</span></label>
@@ -150,9 +159,9 @@
                         </select>
                     </div>
 
-                    <div>
+                    <div class="flex-1 flex flex-col">
                         <label for="message" class="block text-xs font-bold uppercase text-slate-500 mb-2">詳細 <span class="text-primary">*</span></label>
-                        <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm resize-none" placeholder="現在の課題、ご希望の納期、ご予算感などをお聞かせください..."></textarea>
+                        <textarea id="message" name="message" rows="6" required class="w-full flex-1 min-h-[220px] lg:min-h-[280px] px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm resize-none" placeholder="現在の課題、ご希望の納期、ご予算感などをお聞かせください..."></textarea>
                     </div>
 
                     <div class="flex items-start gap-3">
@@ -162,15 +171,15 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-primary text-white text-sm font-bold uppercase px-6 py-4 rounded hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full mt-auto bg-primary text-white text-sm font-bold uppercase px-6 py-4 rounded hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
                         <span>送信する</span>
                         <span class="material-symbols-outlined text-lg">send</span>
                     </button>
                 </form>
             </div>
 
-            <div class="space-y-6">
-                <div class="p-6 bg-slate-900 text-white rounded border border-slate-800">
+            <div class="space-y-6 h-full l-reveal">
+                <div class="p-6 bg-slate-900 text-white rounded border border-slate-800 l-tech-panel">
                     <h3 class="font-bold text-lg mb-4 uppercase flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">support_agent</span>
                         技術サポート
@@ -229,8 +238,8 @@
             </div>
         </div>
 
-        <section class="py-8 md:py-12 bg-slate-100 dark:bg-slate-900 rounded">
-            <div class="text-center max-w-2xl mx-auto">
+        <section class="py-8 md:py-12 bg-slate-100 dark:bg-slate-900 rounded l-reveal border border-slate-200 dark:border-slate-800">
+            <div class="text-left max-w-2xl mx-auto">
                 <h2 class="text-xl font-black mb-4">よくあるご質問</h2>
                 <div class="space-y-4 text-left">
                     <details class="group bg-white dark:bg-slate-800 rounded p-4 border border-slate-200 dark:border-slate-700">
@@ -267,10 +276,13 @@
 
     <footer class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark py-8">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-2 text-primary">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 border border-slate-200 dark:border-slate-800 rounded px-4 py-4">
+                <div class="flex items-center gap-3 text-primary">
                     <span class="material-symbols-outlined text-2xl">terminal</span>
-                    <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                        <span class="text-[10px] uppercase tracking-[0.22em] text-slate-500">Core Stable</span>
+                    </div>
                 </div>
                 <p class="text-[10px] text-slate-500 uppercase tracking-wider">© 2026 Logical Systems. All Rights Reserved.</p>
                 <div class="flex gap-4 text-[10px] text-slate-500 uppercase">
@@ -332,6 +344,17 @@
                 bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
             }
         });
+
+        const lObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    lObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('.l-reveal').forEach((el) => lObserver.observe(el));
     </script>
     <script src="assets/js/script.js" defer></script>
 </body>
