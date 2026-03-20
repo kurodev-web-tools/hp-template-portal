@@ -54,15 +54,21 @@ body.metro-shell {
 }
 
 .metro-panel {
-    background: linear-gradient(180deg, rgba(20, 10, 30, 0.88), rgba(9, 3, 13, 0.88));
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(20, 10, 30, 0.98), rgba(9, 3, 13, 0.98));
     border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(14px);
+    transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
 }
 
 .metro-panel-soft {
-    background: rgba(255, 255, 255, 0.04);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: rgba(18, 8, 26, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
+    transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
 }
 
 .metro-glow-pink {
@@ -126,11 +132,12 @@ body.metro-shell {
 }
 
 .metro-mobile-menu {
-    transition: transform 0.3s ease;
+    transition: translate 0.3s ease, transform 0.3s ease;
 }
 
 .metro-mobile-menu.active {
-    transform: translateX(0);
+    translate: 0 0;
+    transform: none;
 }
 
 .metro-mobile-menu.hidden,
@@ -197,9 +204,14 @@ body.metro-shell {
 }
 
 .metro-mesh {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     background-image:
         linear-gradient(135deg, rgba(255, 47, 146, 0.18), transparent 42%),
         linear-gradient(315deg, rgba(34, 240, 255, 0.16), transparent 40%);
+    background-color: rgba(13, 8, 21, 0.97);
+    transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
 }
 
 .metro-divider {
@@ -225,3 +237,51 @@ body.metro-shell {
         transform: none;
     }
 }
+
+
+
+
+.metro-mobile-menu {
+    background: rgba(10, 4, 15, 0.98);
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.42);
+}
+
+.metro-mobile-menu a,
+.metro-mobile-menu button,
+.metro-mobile-menu span {
+    text-shadow: none;
+}
+
+@media (max-width: 767px) {
+    .metro-mobile-menu {
+        width: min(84vw, 22rem);
+        padding: 1.75rem;
+    }
+
+    .metro-header {
+        padding-inline: 1.75rem;
+    }
+
+    body.theme-business.metro-shell main > section {
+        padding-left: 1.75rem !important;
+        padding-right: 1.75rem !important;
+    }
+
+    body.theme-business.metro-shell footer {
+        padding-left: 1.75rem !important;
+        padding-right: 1.75rem !important;
+    }
+
+    .metro-shell main > section > div,
+    .metro-shell footer > div,
+    .metro-shell header > div {
+        max-width: none;
+    }
+
+    .metro-panel,
+    .metro-panel-soft,
+    .metro-mesh {
+        border-radius: 1.5rem;
+    }
+}
+
