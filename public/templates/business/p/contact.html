@@ -28,10 +28,96 @@
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <style>
+        @media (max-width: 767px) {
+            body.pop-shell .pop-header,
+            body.pop-shell footer {
+                padding-inline: 1.9rem;
+            }
+
+            body.theme-business.pop-shell section.p-mobile-gutter {
+                padding-left: 1.9rem !important;
+                padding-right: 1.9rem !important;
+            }
+
+            .pop-mobile-menu {
+                top: 6.2rem;
+                right: 1rem;
+                left: 1rem;
+                width: auto;
+                max-width: none;
+                height: auto;
+                max-height: calc(100dvh - 6.75rem);
+                overflow-y: auto;
+                padding: 1.4rem;
+                border-width: 3px;
+                border-radius: 1.75rem;
+                transform: translateY(-0.75rem) scale(0.98);
+            }
+
+            .pop-mobile-menu.active {
+                transform: translateY(0) scale(1);
+            }
+
+            .pop-mobile-menu .text-2xl {
+                font-size: 1.45rem;
+            }
+
+            .pop-mobile-menu .flex-1 {
+                gap: 1.2rem;
+                font-size: 1.45rem;
+            }
+
+            .pop-border {
+                border-width: 3px;
+            }
+
+            .pop-shadow {
+                box-shadow: 6px 6px 0 #121212;
+            }
+
+            .p-contact-hero-title {
+                font-size: 3.25rem;
+                letter-spacing: -0.06em;
+            }
+
+            .p-contact-hero-body {
+                margin-top: 1.35rem;
+                font-size: 1.02rem;
+                line-height: 1.7;
+            }
+
+            .p-contact-ask-card {
+                padding: 1.2rem;
+            }
+
+            .p-contact-ask-card h2 {
+                margin-top: 1rem;
+                font-size: 2rem;
+            }
+
+            .p-contact-ask-card p {
+                margin-top: 0.8rem;
+                font-size: 0.98rem;
+                line-height: 1.65;
+            }
+
+            .p-footer-main {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .p-footer-center {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.5rem;
+            }
+        }
+    </style>
 </head>
-<body class="theme-business pop-shell bg-background-light text-slate-900 font-display antialiased overflow-x-hidden">
+<body class="custom-menu-only theme-business pop-shell bg-background-light text-slate-900 font-display antialiased overflow-x-hidden">
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-<header class="pop-header sticky top-0 z-50 border-b-4 border-black bg-background-light/90 px-5 py-4 backdrop-blur-md md:px-8">
+<header class="pop-header sticky top-0 z-50 border-b-4 border-black bg-background-light/90 px-6 py-4 backdrop-blur-md md:px-8">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
         <a href="index.html" class="flex items-center gap-3 text-black"><span class="inline-flex size-12 items-center justify-center rounded-full bg-accent-yellow pop-border pop-shadow"><span class="material-symbols-outlined">bolt</span></span><span class="text-2xl font-bold italic tracking-tight">POP_SPARK</span></a>
         <nav class="hidden items-center gap-8 md:flex"><a class="pop-nav-link text-base font-bold" href="index.html">Vibes</a><a class="pop-nav-link text-base font-bold" href="service.html">Spark</a><a class="pop-nav-link text-base font-bold" href="about.html">Boom!</a><a class="pop-nav-link active text-base font-bold underline decoration-4 decoration-accent-blue underline-offset-4" href="contact.html">Shop</a></nav>
@@ -39,21 +125,21 @@
     </div>
 </header>
 <div id="pop-menu-backdrop" class="pop-menu-backdrop fixed inset-0 z-[9998] hidden bg-black/55 backdrop-blur-sm"></div>
-<nav id="pop-mobile-menu" class="pop-mobile-menu fixed right-0 top-0 z-[9999] hidden h-full w-[82vw] max-w-sm translate-x-full bg-white p-8 pop-border border-r-0 border-b-0 border-t-0" aria-hidden="true" inert>
+<nav id="pop-mobile-menu" class="pop-mobile-menu fixed right-0 top-0 z-[9999] hidden h-full w-[82vw] max-w-sm bg-white p-8 pop-border border-r-0 border-b-0 border-t-0" aria-hidden="true" inert>
     <div class="flex h-full flex-col"><div class="mb-12 flex items-center justify-between"><span class="text-2xl font-bold italic">POP_SPARK</span><button type="button" class="text-black" data-pop-menu-toggle aria-controls="pop-mobile-menu" aria-expanded="false" aria-label="メニューを閉じる"><span class="material-symbols-outlined">close</span></button></div><div class="flex flex-1 flex-col gap-7 text-2xl font-bold"><a href="index.html">Vibes</a><a href="service.html">Spark</a><a href="about.html">Boom!</a><a href="contact.html" aria-current="page">Shop</a></div><a href="#pop-contact-form" class="mt-auto inline-flex items-center justify-center rounded-full bg-accent-blue px-5 py-3 text-sm font-bold uppercase tracking-[0.22em] text-white pop-border pop-shadow">Let's Talk</a></div>
 </nav>
 <main>
-<section class="px-5 py-16 md:px-8 md:py-22">
-    <div class="mx-auto max-w-7xl pop-reveal"><div class="pop-badge bg-white">Get in touch</div><h1 class="mt-6 text-6xl font-bold uppercase leading-none tracking-[-0.07em] md:text-8xl">Let's make some <span class="text-primary italic">noise</span></h1><p class="mt-6 max-w-3xl text-lg font-bold leading-8">キャンペーン相談、ポップアップ相談、SNS 用クリエイティブ制作などを想定した問い合わせページです。軽快さを保ちつつ、送信仕様は安全なプレースホルダに留めています。</p></div>
+<section class="p-mobile-gutter px-6 py-16 md:px-8 md:py-22">
+    <div class="mx-auto max-w-7xl pop-reveal"><div class="pop-badge bg-white">Get in touch</div><h1 class="p-contact-hero-title mt-6 text-6xl font-bold uppercase leading-none tracking-[-0.07em] md:text-8xl">Let's make some <span class="text-primary italic">noise</span></h1><p class="p-contact-hero-body mt-6 max-w-3xl text-lg font-bold leading-8">キャンペーン相談、ポップアップ相談、SNS 用クリエイティブ制作などを想定した問い合わせページです。軽快さを保ちつつ、送信仕様は安全なプレースホルダに留めています。</p></div>
 </section>
-<section class="mx-auto max-w-7xl px-5 py-10 md:px-8">
+<section class="p-mobile-gutter mx-auto max-w-7xl px-6 py-10 md:px-8">
     <div class="grid gap-6 md:grid-cols-3">
-        <article class="bg-accent-yellow p-5 pop-border pop-shadow pop-reveal"><p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Ask 01</p><h2 class="mt-6 text-3xl font-bold">Launch</h2><p class="mt-4 text-base font-bold leading-8">新商品や新サービスの告知設計について相談したい。</p></article>
-        <article class="bg-primary p-5 text-white pop-border pop-shadow pop-reveal md:-translate-y-6"><p class="text-xs font-bold uppercase tracking-[0.2em]">Ask 02</p><h2 class="mt-6 text-3xl font-bold">Pop-up</h2><p class="mt-4 text-base font-bold leading-8">店頭イベント、期間限定企画、展示会の見せ方を相談したい。</p></article>
-        <article class="bg-accent-blue p-5 text-white pop-border pop-shadow pop-reveal"><p class="text-xs font-bold uppercase tracking-[0.2em]">Ask 03</p><h2 class="mt-6 text-3xl font-bold">Social</h2><p class="mt-4 text-base font-bold leading-8">SNS 連動のビジュアルや動画制作をまとめて相談したい。</p></article>
+        <article class="p-contact-ask-card bg-accent-yellow p-5 pop-border pop-shadow pop-reveal"><p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Ask 01</p><h2 class="mt-6 text-3xl font-bold">Launch</h2><p class="mt-4 text-base font-bold leading-8">新商品や新サービスの告知設計について相談したい。</p></article>
+        <article class="p-contact-ask-card bg-primary p-5 text-white pop-border pop-shadow pop-reveal md:-translate-y-6"><p class="text-xs font-bold uppercase tracking-[0.2em]">Ask 02</p><h2 class="mt-6 text-3xl font-bold">Pop-up</h2><p class="mt-4 text-base font-bold leading-8">店頭イベント、期間限定企画、展示会の見せ方を相談したい。</p></article>
+        <article class="p-contact-ask-card bg-accent-blue p-5 text-white pop-border pop-shadow pop-reveal"><p class="text-xs font-bold uppercase tracking-[0.2em]">Ask 03</p><h2 class="mt-6 text-3xl font-bold">Social</h2><p class="mt-4 text-base font-bold leading-8">SNS 連動のビジュアルや動画制作をまとめて相談したい。</p></article>
     </div>
 </section>
-<section class="border-y-4 border-black bg-white px-5 py-16 md:px-8">
+<section class="p-mobile-gutter border-y-4 border-black bg-white px-6 py-16 md:px-8">
     <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.85fr]">
         <div class="pop-reveal">
             <div class="pop-badge bg-accent-mint/40">Inquiry form</div>
@@ -78,9 +164,9 @@
     </div>
 </section>
 </main>
-<footer class="mt-auto border-t-8 border-black bg-primary px-5 pb-10 pt-16 md:px-8">
+<footer class="mt-auto border-t-8 border-black bg-primary px-6 pb-10 pt-16 md:px-8">
     <!-- Replace footer company label, email, phone number, city names, and social links before publishing. -->
-    <div class="mx-auto max-w-7xl"><div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]"><div><h2 class="text-5xl font-bold italic text-white">POP_SPARK</h2><p class="mt-5 max-w-sm text-lg font-bold leading-8 text-white/92">ポップな販促の相談窓口として使えるテンプレート問い合わせページです。</p></div><div><p class="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Pages</p><div class="mt-4 flex flex-col gap-3 text-lg font-bold text-white"><a href="index.html">Vibes</a><a href="service.html">Spark</a><a href="about.html">Boom!</a><a href="contact.html">Shop</a></div></div><div><p class="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Contact</p><div class="mt-4 flex flex-col gap-3 text-lg font-bold text-white"><a href="mailto:hello@popspark.example">hello@popspark.example</a><a href="tel:+81312345678">+81 3-1234-5678</a><span>Harajuku / Tokyo</span></div></div><div><p class="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Social</p><div class="mt-4 flex flex-col gap-3 text-lg font-bold text-white"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div></div></div><div class="mt-12 flex flex-col gap-4 border-t-4 border-black pt-8 md:flex-row md:items-center md:justify-between"><p class="font-bold text-white">&copy; 2026 POP_SPARK. STAY LOUD.</p><div class="bg-black px-5 py-2 text-sm font-bold uppercase tracking-[0.22em] text-white pop-border">Made with pure energy</div></div></div>
+    <div class="mx-auto max-w-7xl"><div class="p-footer-main grid gap-12 lg:grid-cols-[1.15fr_1.2fr_0.8fr]"><div><h2 class="text-5xl font-bold italic text-white">POP_SPARK</h2><p class="mt-5 max-w-sm text-lg font-bold leading-8 text-white/92">ポップな販促の相談窓口として使えるテンプレート問い合わせページです。</p></div><div class="p-footer-center"><div><p class="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Pages</p><div class="mt-4 flex flex-col gap-3 text-lg font-bold text-white"><a href="index.html">Vibes</a><a href="service.html">Spark</a><a href="about.html">Boom!</a><a href="contact.html">Shop</a></div></div><div><p class="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Contact</p><div class="mt-4 flex flex-col gap-3 text-lg font-bold text-white"><a href="mailto:hello@popspark.example">hello@popspark.example</a><a href="tel:+81312345678">+81 3-1234-5678</a><span>Harajuku / Tokyo</span></div></div></div><div><p class="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Social</p><div class="mt-4 flex flex-col gap-3 text-lg font-bold text-white"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div></div></div><div class="mt-12 flex flex-col gap-4 border-t-4 border-black pt-8 md:flex-row md:items-center md:justify-between"><p class="font-bold text-white">&copy; 2026 POP_SPARK. STAY LOUD.</p><div class="bg-black px-5 py-2 text-sm font-bold uppercase tracking-[0.22em] text-white pop-border">Made with pure energy</div></div></div>
 </footer>
 </div>
 <script src="assets/js/script.js"></script>
