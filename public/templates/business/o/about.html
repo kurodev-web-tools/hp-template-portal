@@ -25,25 +25,43 @@
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
     <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        html { scroll-behavior: smooth; overflow-x: clip; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; overflow-x: clip; }
         .organic-blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         .organic-panel { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(54, 226, 140, 0.1); }
         .dark .organic-panel { background: rgba(17, 33, 25, 0.6); border: 1px solid rgba(54, 226, 140, 0.15); }
+        .o-menu-backdrop.active { opacity: 1; visibility: visible; }
+        .o-mobile-menu { transform: translateY(-1rem) scale(0.98); pointer-events: none; }
+        .o-mobile-menu.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); pointer-events: auto; }
+        .o-mobile-toggle {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(54, 226, 140, 0.18);
+            box-shadow: 0 18px 36px rgba(17, 33, 25, 0.12);
+        }
+        .o-mobile-toggle .bar { transform-origin: center; }
+        .o-mobile-toggle.active { background: rgba(54, 226, 140, 0.18); }
+        .o-mobile-toggle.active .bar { background: #112119; }
+        @media (max-width: 767px) {
+            header { padding-inline: 1rem; }
+            .o-mobile-toggle { width: 3rem; height: 3rem; }
+            .o-mobile-menu { top: 6.35rem; inset-inline: 1rem; }
+            .o-about-philosophy { font-size: 2.15rem; line-height: 1.08; letter-spacing: -0.05em; }
+            .o-about-philosophy .o-break-line { display: block; white-space: nowrap; }
+            .o-about-values { font-size: 2.3rem; line-height: 1.08; letter-spacing: -0.05em; }
+            .o-about-values .o-break-line { display: block; white-space: nowrap; }
+            .o-footer-tagline { max-width: 16rem; margin-inline: auto; }
+            .o-footer-tagline .o-break-line { display: block; white-space: nowrap; }
+            .o-footer-meta { text-align: center; }
+            .o-footer-legal { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<body class="custom-menu-only bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
 
     <div class="fixed inset-0 z-0 pointer-events-none">
         <div class="organic-blob absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px]"></div>
         <div class="organic-blob absolute bottom-[5%] right-[-5%] w-[50vw] h-[50vw] bg-primary/5 blur-[120px]"></div>
     </div>
-
-    <button aria-controls="o-mobile-menu" class="o-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 organic-panel flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleOMenu()" aria-label="メニューを開く" aria-expanded="false">
-        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
-        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
-        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
-    </button>
 
     <div class="o-menu-backdrop fixed inset-0 z-[9998] bg-black/35 backdrop-blur-sm opacity-0 invisible transition-all duration-500"></div>
 
@@ -56,8 +74,8 @@
         </ul>
     </div>
 
-    <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:px-20">
-        <nav class="organic-panel mx-auto flex max-w-7xl items-center justify-between rounded-full px-6 py-3">
+    <header class="fixed top-0 left-0 right-0 z-[10001] px-6 py-4 lg:px-20">
+        <nav class="organic-panel relative mx-auto flex max-w-7xl items-center justify-between rounded-full px-6 py-3 pr-18 md:pr-6">
             <a href="index.html" class="flex items-center gap-3">
                 <span class="organic-blob flex h-10 w-10 items-center justify-center bg-primary text-background-dark">
                     <span class="material-symbols-outlined">spa</span>
@@ -72,10 +90,15 @@
             </div>
             <div class="flex items-center gap-4">
                 <a href="contact.html" class="bg-primary text-background-dark text-sm font-bold px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-primary/20 transition-all hidden sm:block">Book Now</a>
-                <button class="md:hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleOMenu()">
+                <button class="hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleOMenu()">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
+            <button aria-controls="o-mobile-menu" class="o-mobile-toggle absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 flex-col items-center justify-center gap-0.5 rounded-full md:hidden" onclick="toggleOMenu()" aria-label="メニューを開く" aria-expanded="false" type="button">
+                <span class="bar block h-0.5 w-5 bg-primary transition-all duration-400"></span>
+                <span class="bar block h-0.5 w-5 bg-primary transition-all duration-400"></span>
+                <span class="bar block h-0.5 w-5 bg-primary transition-all duration-400"></span>
+            </button>
         </nav>
     </header>
 
@@ -108,14 +131,15 @@
                 <div class="grid gap-12 lg:grid-cols-2 items-center">
                     <div class="relative">
                         <div class="organic-blob absolute -top-10 -left-10 w-64 h-64 bg-primary/10 blur-3xl"></div>
-                        <img class="rounded-[2rem] w-full aspect-[4/5] object-cover relative z-10" src="assets/generated/wellness-card.svg" alt="Natural wellness"/>
+                        <img class="rounded-[2rem] w-full aspect-[4/5] object-cover relative z-10" src="assets/images/premium_organic_wellness_202603202342 (9).png" alt="Natural wellness"/>
                     </div>
                     <div class="space-y-8">
                         <div>
                             <p class="text-sm font-bold uppercase tracking-[0.3em] text-primary">Our Philosophy</p>
-                            <h2 class="mt-5 text-3xl font-black">
-                                <span class="ib">整えるとは、</span>
-                                <span class="ib">頑張ることではなく戻ること。</span>
+                            <h2 class="o-about-philosophy mt-5 text-3xl font-black">
+                                <span class="o-break-line">整えるとは、</span>
+                                <span class="o-break-line">頑張ることではなく</span>
+                                <span class="o-break-line">戻ること。</span>
                             </h2>
                         </div>
                         <p class="text-base leading-8 text-slate-600 dark:text-slate-300">
@@ -143,7 +167,10 @@
             <div class="mx-auto max-w-7xl">
                 <div class="text-center mb-16">
                     <p class="text-sm font-bold uppercase tracking-[0.3em] text-primary">Our Values</p>
-                    <h2 class="mt-5 text-3xl font-black">Breathe が大切にすること</h2>
+                    <h2 class="o-about-values mt-5 text-3xl font-black">
+                        <span class="o-break-line">Breatheが</span>
+                        <span class="o-break-line">大切にすること</span>
+                    </h2>
                 </div>
                 <div class="grid gap-6 md:grid-cols-3">
                     <article class="organic-panel rounded-[2rem] p-8 text-center">
@@ -218,15 +245,19 @@
     </main>
 
     <footer class="bg-slate-100 dark:bg-background-dark py-20 px-6 lg:px-20 border-t border-primary/10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="space-y-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1.2fr_1fr]">
+            <div class="o-footer-meta space-y-6">
                 <div class="flex items-center gap-3">
                     <span class="organic-blob flex h-10 w-10 items-center justify-center bg-primary text-background-dark">
                         <span class="material-symbols-outlined text-background-dark text-xl">spa</span>
                     </span>
                     <h2 class="text-xl font-black tracking-tighter">BREATHE</h2>
                 </div>
-                <p class="text-slate-500 dark:text-slate-400">モダンなウェルネスと自然の純粋さを調和させる。<br/>オーガニックな動きを体験しよう。</p>
+                <p class="o-footer-tagline text-slate-500 dark:text-slate-400">
+                    <span class="o-break-line">モダンなウェルネスと</span>
+                    <span class="o-break-line">自然の純粋さを調和させる。</span>
+                    <span class="o-break-line">オーガニックな動きを体験しよう。</span>
+                </p>
                 <div class="flex gap-4">
                     <a class="size-10 bg-white dark:bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-colors hover:text-background-dark" href="#">
                         <span class="material-symbols-outlined text-sm">public</span>
@@ -236,23 +267,25 @@
                     </a>
                 </div>
             </div>
-            <div class="space-y-6">
-                <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Discover</h4>
-                <ul class="space-y-4 text-sm">
-                    <li><a class="hover:text-primary transition-colors" href="about.html">Our Philosophy</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="service.html">Organic Methods</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="about.html">Instructor Team</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="service.html">Sustainability</a></li>
-                </ul>
-            </div>
-            <div class="space-y-6">
-                <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Experience</h4>
-                <ul class="space-y-4 text-sm">
-                    <li><a class="hover:text-primary transition-colors" href="service.html">Yoga Flow</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="service.html">Meditation</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="service.html">Retreats</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="contact.html">Organic Shop</a></li>
-                </ul>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="space-y-6">
+                    <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Discover</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Our Philosophy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Organic Methods</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Instructor Team</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Experience</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Yoga Flow</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Meditation</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Retreats</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Organic Shop</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="space-y-6">
                 <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Newsletter</h4>
@@ -265,7 +298,7 @@
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto pt-16 mt-16 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
+        <div class="o-footer-legal max-w-7xl mx-auto pt-16 mt-16 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
             <p>© 2024 BREATHE Wellness. All rights reserved.</p>
             <div class="flex gap-8">
                 <a class="hover:text-primary" href="contact.html">Privacy Policy</a>
@@ -277,6 +310,30 @@
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
     <script>
+        function resetOMenuBars(bars) {
+            bars.forEach((bar) => {
+                bar.style.position = '';
+                bar.style.left = '';
+                bar.style.top = '';
+                bar.style.width = '';
+                bar.style.marginTop = '';
+                bar.style.transform = '';
+                bar.style.opacity = '';
+            });
+        }
+        function setOMenuBarsActive(bars) {
+            bars.forEach((bar) => {
+                bar.style.position = 'absolute';
+                bar.style.left = '50%';
+                bar.style.top = '50%';
+                bar.style.width = '1.15rem';
+                bar.style.marginTop = '0';
+            });
+            bars[0].style.transform = 'translate(-50%, -50%) rotate(45deg)';
+            bars[1].style.transform = 'translate(-50%, -50%) scaleX(0)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+        }
         function toggleOMenu() {
             const toggle = document.querySelector('.o-mobile-toggle');
             const menu = document.querySelector('#o-mobile-menu');
@@ -294,13 +351,8 @@
                 if (isOpen) { setTimeout(() => { item.classList.remove('opacity-0', 'translate-y-5'); }, index * 50); }
                 else { item.classList.add('opacity-0', 'translate-y-5'); }
             });
-            if (isOpen) {
-                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                bars[1].style.opacity = '0';
-                bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
-            }
+            if (isOpen) setOMenuBarsActive(bars);
+            else resetOMenuBars(bars);
         }
         document.querySelectorAll('#o-mobile-menu a[href]').forEach(link => {
             link.addEventListener('click', () => {
@@ -310,7 +362,7 @@
                 const bars = toggle.querySelectorAll('.bar');
                 menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
                 toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
-                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+                resetOMenuBars(bars);
             });
         });
         document.addEventListener('keydown', (e) => {
@@ -321,8 +373,12 @@
                 const bars = toggle.querySelectorAll('.bar');
                 menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
                 toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
-                bars[0].style.transform = ''; bars[1].style.opacity = ''; bars[2].style.transform = '';
+                resetOMenuBars(bars);
             }
+        });
+        document.querySelector('.o-menu-backdrop')?.addEventListener('click', () => {
+            const menu = document.querySelector('#o-mobile-menu');
+            if (menu?.classList.contains('active')) toggleOMenu();
         });
     </script>
     <script src="assets/js/script.js" defer></script>
