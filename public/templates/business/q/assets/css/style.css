@@ -105,15 +105,6 @@ img {
     color: transparent;
 }
 
-.q-scan-lines {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 16%, transparent 84%, rgba(255, 255, 255, 0.03)),
-        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 7px);
-    opacity: 0.35;
-    pointer-events: none;
-}
 
 .q-frame {
     position: relative;
@@ -155,6 +146,12 @@ img {
     position: relative;
 }
 
+.q-stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .q-card::before,
 .q-process-step::before,
 .q-contact-card::before,
@@ -192,15 +189,17 @@ img {
 
 .q-metric {
     display: flex;
-    align-items: baseline;
+    align-items: flex-end;
     gap: 0.35rem;
+    min-height: 4.2rem;
 }
 
 .q-metric-value {
     font-family: "IBM Plex Mono", monospace;
     font-size: clamp(2rem, 4vw, 3.75rem);
     font-weight: 700;
-    line-height: 1;
+    line-height: 0.88;
+    font-variant-numeric: tabular-nums;
 }
 
 .q-metric-unit {
@@ -209,6 +208,8 @@ img {
     color: var(--q-muted);
     text-transform: uppercase;
     letter-spacing: 0.16em;
+    line-height: 1;
+    padding-bottom: 0.38rem;
 }
 
 .q-note {
@@ -219,18 +220,6 @@ img {
 
 .q-line-run {
     position: relative;
-    overflow: hidden;
-}
-
-.q-line-run::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -35%;
-    width: 30%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(242, 166, 90, 0.28), transparent);
-    animation: q-line-scan 4.8s linear infinite;
 }
 
 .q-process-step[data-visible="true"] .q-process-index,
@@ -278,6 +267,36 @@ img {
 
 .q-table tbody tr:hover {
     background: rgba(242, 166, 90, 0.04);
+}
+
+.q-table-wrap {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(242, 166, 90, 0.72) rgba(255, 255, 255, 0.06);
+}
+
+.q-table-wrap::-webkit-scrollbar {
+    height: 0.8rem;
+}
+
+.q-table-wrap::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+    border: 1px solid rgba(131, 150, 170, 0.14);
+}
+
+.q-table-wrap::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(242, 166, 90, 0.88), rgba(244, 191, 130, 0.7));
+    border-radius: 999px;
+    border: 2px solid rgba(11, 16, 22, 0.75);
+    box-shadow: 0 0 1rem rgba(242, 166, 90, 0.18);
+}
+
+.q-table-wrap::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, rgba(244, 191, 130, 0.96), rgba(242, 166, 90, 0.82));
+}
+
+.q-table-wrap::-webkit-scrollbar-corner {
+    background: transparent;
 }
 
 .q-chip {
@@ -440,6 +459,10 @@ img {
     color: #10151d;
 }
 
+.q-header-cta {
+    white-space: nowrap;
+}
+
 .q-button-secondary {
     border-color: var(--q-line-strong);
     color: var(--q-text);
@@ -491,6 +514,11 @@ img {
     border-radius: 0.9rem;
 }
 
+.q-form-title-main,
+.q-form-title-sub {
+    display: inline;
+}
+
 .q-footer-meta {
     color: #8b9aad;
     font-size: 0.74rem;
@@ -498,14 +526,6 @@ img {
     letter-spacing: 0.18em;
 }
 
-@keyframes q-line-scan {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(420%);
-    }
-}
 
 @media (max-width: 767px) {
     .q-grid::before {
@@ -514,6 +534,18 @@ img {
 
     .q-table {
         min-width: 560px;
+    }
+
+    .q-form-title-main,
+    .q-form-title-sub {
+        display: block;
+    }
+}
+
+@media (max-width: 920px) {
+    .q-header-cta {
+        padding-inline: 1.05rem;
+        letter-spacing: 0.08em;
     }
 }
 
@@ -527,9 +559,7 @@ img {
     .q-menu-backdrop,
     .q-header,
     .q-nav-link::after,
-    .q-button,
-    .q-line-run::after {
+    .q-button {
         transition: none;
-        animation: none;
     }
 }
