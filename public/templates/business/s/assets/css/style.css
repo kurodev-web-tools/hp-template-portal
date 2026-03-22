@@ -8,7 +8,7 @@
 }
 body { min-height: 100vh; overflow-x: hidden; }
 .saas-shell { position: relative; min-height: 100vh; background: radial-gradient(circle at top, rgba(78, 161, 255, 0.18), transparent 24rem), linear-gradient(180deg, #06101d 0%, #08111f 44%, #0b1628 100%); }
-.saas-shell::before { content: ""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(78,161,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(78,161,255,0.08) 1px, transparent 1px); background-size: 36px 36px; mask-image: radial-gradient(circle at center, black 55%, transparent 90%); opacity: 0.42; }
+.saas-shell::before { content: ""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(78,161,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(78,161,255,0.08) 1px, transparent 1px); background-size: 36px 36px; mask-image: radial-gradient(circle at center, black 55%, transparent 90%); opacity: 0.42; animation: saas-grid-drift 34s linear infinite; }
 .saas-header { background: rgba(8, 17, 31, 0.78); border-bottom: 1px solid rgba(78, 161, 255, 0.14); backdrop-filter: blur(18px); }
 .saas-pill { display: inline-flex; align-items: center; gap: 0.65rem; border: 1px solid rgba(78, 161, 255, 0.2); background: rgba(78, 161, 255, 0.08); padding: 0.45rem 0.9rem; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--saas-cyan); }
 .saas-nav-link { color: rgba(239, 246, 255, 0.66); transition: color 0.25s ease; }
@@ -19,22 +19,95 @@ body { min-height: 100vh; overflow-x: hidden; }
 .saas-backdrop.is-open { opacity: 1; visibility: visible; }
 .saas-display { font-family: "Space Grotesk", "Noto Sans JP", sans-serif; }
 .saas-dashboard { position: relative; overflow: hidden; border: 1px solid rgba(124, 236, 255, 0.14); background: linear-gradient(180deg, rgba(18, 33, 59, 0.96), rgba(8, 17, 31, 0.96)), linear-gradient(90deg, rgba(124, 236, 255, 0.08), transparent); box-shadow: var(--saas-shadow); }
-.saas-dashboard::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(78, 161, 255, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(78, 161, 255, 0.09) 1px, transparent 1px); background-size: 22px 22px; opacity: 0.34; }
+.saas-dashboard::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(78, 161, 255, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(78, 161, 255, 0.09) 1px, transparent 1px); background-size: 22px 22px; opacity: 0.34; animation: saas-grid-drift 28s linear infinite reverse; }
 .saas-dashboard > * { position: relative; z-index: 1; }
-.saas-kpi strong { display: block; font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1; color: var(--saas-cyan); }
-.saas-kpi span { display: block; margin-top: 0.7rem; font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(239, 246, 255, 0.62); }
-.saas-card { border: 1px solid rgba(78, 161, 255, 0.12); background: rgba(9, 19, 36, 0.86); transition: transform 0.25s ease, border-color 0.25s ease; }
+.saas-kpi-grid { display: grid; gap: 1rem; align-items: end; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.saas-kpi { min-width: 0; }
+.saas-kpi strong { display: block; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 0.92; color: var(--saas-cyan); }
+.saas-kpi span { display: block; margin-top: 0.7rem; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(239, 246, 255, 0.62); line-height: 1.45; }
+.saas-card { border: 1px solid rgba(78, 161, 255, 0.12); background: rgba(9, 19, 36, 0.86); transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
 .saas-card:hover { transform: translateY(-3px); border-color: rgba(124, 236, 255, 0.26); }
 .saas-progress { height: 0.5rem; overflow: hidden; background: rgba(255, 255, 255, 0.08); }
-.saas-progress > span { display: block; height: 100%; background: linear-gradient(90deg, var(--saas-primary), var(--saas-cyan)); }
+.saas-progress > span { display: block; height: 100%; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, var(--saas-primary), var(--saas-cyan)); transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--reveal-delay, 0ms) + 120ms); }
 .saas-form-field { width: 100%; border: 1px solid rgba(78, 161, 255, 0.16); background: rgba(15, 27, 47, 0.92); color: var(--saas-text); padding: 1rem 1.05rem; }
 .saas-form-field:focus { outline: none; border-color: rgba(124, 236, 255, 0.6); box-shadow: 0 0 0 4px rgba(124, 236, 255, 0.1); }
-.saas-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.95rem 1.4rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.18em; transition: transform 0.25s ease; }
+.saas-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.95rem 1.4rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.18em; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
 .saas-button:hover { transform: translateY(-2px); }
 .saas-button--primary { background: linear-gradient(90deg, var(--saas-primary), var(--saas-cyan)); color: #03101f; }
 .saas-button--ghost { border: 1px solid rgba(124, 236, 255, 0.24); color: var(--saas-text); background: rgba(255, 255, 255, 0.02); }
-.saas-hero-home, .saas-hero-about, .saas-hero-service, .saas-hero-contact { background: radial-gradient(circle at top, rgba(78, 161, 255, 0.18), transparent 20rem), linear-gradient(135deg, rgba(7, 14, 28, 0.86), rgba(8, 17, 31, 0.96)); }
+.saas-button--ghost:hover, .saas-card:hover { box-shadow: 0 0 0 1px rgba(124, 236, 255, 0.12), 0 18px 40px rgba(10, 25, 48, 0.3); }
+.saas-hero-home, .saas-hero-about, .saas-hero-service, .saas-hero-contact { position: relative; overflow: hidden; background: radial-gradient(circle at top, rgba(78, 161, 255, 0.18), transparent 20rem), linear-gradient(135deg, rgba(7, 14, 28, 0.86), rgba(8, 17, 31, 0.96)); }
+.saas-hero-home::after, .saas-hero-about::after, .saas-hero-service::after, .saas-hero-contact::after { content: ""; position: absolute; inset: -10% -20%; pointer-events: none; background: radial-gradient(circle at 20% 20%, rgba(124, 236, 255, 0.11), transparent 18rem), radial-gradient(circle at 80% 30%, rgba(78, 161, 255, 0.12), transparent 20rem); opacity: 0.7; animation: saas-orb-drift 22s ease-in-out infinite alternate; }
+.saas-principles .saas-card p { font-size: 0.95rem; line-height: 1.85; }
+[data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--reveal-delay, 0ms); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal].is-visible .saas-progress > span,
+.saas-progress.is-visible > span { transform: scaleX(1); }
 
 .saas-progress-72 { width: 72%; }
 .saas-progress-56 { width: 56%; }
 .saas-progress-38 { width: 38%; }
+
+@keyframes saas-grid-drift {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 36px 18px, 18px 36px; }
+}
+
+@keyframes saas-orb-drift {
+    from { transform: translate3d(-1.5%, 0, 0); }
+    to { transform: translate3d(1.5%, 2%, 0); }
+}
+
+@media (max-width: 767.98px) {
+    .saas-header-cta { display: none !important; }
+    .saas-mobile-menu { gap: 2rem; padding: 1.75rem; }
+    .saas-mobile-menu .saas-button { width: 100%; justify-content: center; }
+    .saas-pill { padding: 0.4rem 0.78rem; font-size: 0.68rem; letter-spacing: 0.16em; }
+    .saas-hero-home,
+    .saas-hero-about,
+    .saas-hero-service,
+    .saas-hero-contact { padding-top: 7rem !important; padding-bottom: 3.75rem !important; }
+    .saas-hero-home h1,
+    .saas-hero-about h1,
+    .saas-hero-service h1,
+    .saas-hero-contact h1 { font-size: clamp(2.6rem, 12vw, 3.35rem) !important; }
+    .saas-hero-about h1 { font-size: clamp(1.98rem, 9.2vw, 2.56rem) !important; }
+    .saas-hero-service h1 { font-size: clamp(2.28rem, 10.4vw, 2.9rem) !important; }
+    .saas-hero-contact h1 { font-size: clamp(1.94rem, 8.9vw, 2.48rem) !important; }
+    .saas-hero-home + section h2.saas-display { font-size: clamp(1.86rem, 8.5vw, 2.34rem) !important; }
+    .saas-hero-home p,
+    .saas-hero-about p,
+    .saas-hero-service p,
+    .saas-hero-contact p { max-width: 100% !important; font-size: 0.95rem !important; line-height: 1.9 !important; }
+    .saas-button { width: 100%; justify-content: center; padding: 0.9rem 1.15rem; font-size: 0.76rem; }
+    .saas-dashboard { padding: 1.15rem !important; }
+    .saas-kpi-grid { gap: 0.85rem; }
+    .saas-kpi strong { font-size: clamp(1.72rem, 9vw, 2.35rem); }
+    .saas-kpi span { margin-top: 0.45rem; font-size: 0.64rem; letter-spacing: 0.15em; }
+    .saas-card,
+    .saas-panel { padding: 1.25rem !important; }
+    .saas-card h2,
+    .saas-card h3 { line-height: 1.15; }
+    .saas-hero-home .saas-card h2 { font-size: 1.55rem !important; }
+    .saas-hero-home + section .saas-card h3 { font-size: 1.55rem !important; }
+    .saas-hero-home + section + section .saas-panel h3 { font-size: 1.5rem !important; }
+    .saas-principles .saas-card h2 { font-size: 1.5rem !important; }
+    .saas-hero-service + section .saas-card h2,
+    .saas-hero-service + section + section .saas-card h3,
+    .saas-hero-contact + section .saas-card h2 { font-size: 1.56rem !important; }
+    .saas-card p,
+    .saas-panel p,
+    .saas-panel li { font-size: 0.94rem !important; line-height: 1.8 !important; }
+    .saas-principles .saas-card p { font-size: 0.92rem !important; line-height: 1.75 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .saas-shell::before,
+    .saas-dashboard::before,
+    .saas-hero-home::after,
+    .saas-hero-about::after,
+    .saas-hero-service::after,
+    .saas-hero-contact::after { animation: none !important; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .saas-progress > span { transform: scaleX(1) !important; transition: none !important; }
+}
