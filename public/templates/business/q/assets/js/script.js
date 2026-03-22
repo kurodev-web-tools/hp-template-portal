@@ -125,10 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            formMessage.textContent = "送信デモを表示しました。実装時は送信先と数値を本番値へ差し替えてください。";
+            formMessage.textContent = "相談内容を受け付けました。担当窓口で確認後、必要事項を整理してご案内します。";
             formMessage.classList.add("is-success");
             formMessage.classList.remove("is-error");
             form.reset();
         });
     }
 });
+
