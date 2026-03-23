@@ -391,7 +391,15 @@ section { overflow: hidden; }
   .quad-header { padding: 4rem 2rem 2rem; }
   .section-pad { padding: 5rem 0; }
 }
-/* Mobile-only line break utility */
+/* Values grid (About page) */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+@media (max-width: 900px) {
+  .values-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
 .br-mobile, .sp-break { display: none; }
 
 @media (max-width: 600px) {
@@ -411,6 +419,8 @@ section { overflow: hidden; }
     background: linear-gradient(to top, rgba(8,14,20,0.97) 0%, rgba(8,14,20,0.7) 40%, transparent 70%);
   }
   .snap-card-body { padding: 1.5rem; }
-  .snap-card-title { font-size: 1.3rem; }
-  .snap-card-desc { display: none; }
+  /* Issue 1 (round2): snap-card-title smaller so 2nd card fits 1 line */
+  .snap-card-title { font-size: 1.1rem; }
+  /* page-hero-title 1 line on mobile */
+  .page-hero-title { font-size: 1.6rem; }
 }
