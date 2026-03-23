@@ -33,4 +33,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     setMenuState(false);
+
+    // Fade-up Observer
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    });
+
+    document.querySelectorAll('.t-fade-up').forEach((el) => {
+        fadeObserver.observe(el);
+    });
 });

@@ -52,7 +52,7 @@ body.menu-open { overflow: hidden; }
     padding: 0.35rem 0.75rem;
     background: var(--u-paper);
     color: var(--u-ink);
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -136,7 +136,7 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 }
 
 .u-masthead {
-    font-size: clamp(4.4rem, 12vw, 10rem);
+    font-size: clamp(3.6rem, 9.5vw, 9rem);
     line-height: 0.84;
     letter-spacing: -0.08em;
     text-transform: uppercase;
@@ -149,6 +149,62 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 }
 
 .u-editorial-grid > * { min-width: 0; }
+
+.u-page-title {
+    font-size: 2.625rem;
+    line-height: 0.92;
+    letter-spacing: -0.06em;
+}
+
+.u-section-title {
+    font-size: 1.875rem;
+    line-height: 1.2;
+}
+
+.u-card-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+.u-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.35;
+}
+
+.u-body-copy {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.u-card-copy {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
+.u-fine-copy {
+    font-size: 0.75rem;
+    line-height: 1.333;
+}
+
+.u-footer-copy {
+    font-size: 0.75rem;
+    line-height: 1.333;
+}
+
+.u-footer-grid {
+    display: grid;
+}
+
+.u-media-frame {
+    aspect-ratio: 16 / 10;
+}
+
+.u-media-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .u-link-button {
     display: inline-flex;
@@ -182,10 +238,14 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
 }
 
+.u-list-card h1,
+.u-list-card h2,
 .u-list-card h3,
 .u-list-card p,
 .u-list-card li,
-.u-list-card label { font-family: "Noto Sans JP", sans-serif; }
+.u-list-card label,
+.u-list-card ol,
+.u-list-card ul { font-family: "Noto Sans JP", sans-serif; }
 
 .u-list-card li + li { margin-top: 0.65rem; }
 
@@ -230,8 +290,39 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 .u-form-message.is-success { color: var(--u-accent-2); }
 .u-form-message.is-error { color: #ff9aa4; }
 
-@media (max-width: 767px) {
+@media (min-width: 1024px) {
+    .u-page-title { font-size: 4.5rem; }
+    .u-section-title { font-size: 2.25rem; line-height: 1.15; }
+    .u-card-title { font-size: 1.875rem; line-height: 1.2; }
+    .u-subtitle { font-size: 1.5rem; line-height: 1.25; }
+    .u-body-copy { line-height: 2; }
+    .u-footer-copy { font-size: 0.875rem; line-height: 1.4; }
+    .u-footer-grid { grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.7fr) auto; }
+}
+
+@media (max-width: 1023px) {
     .u-paper-card--tilt-left,
     .u-paper-card--tilt-right { transform: none; }
-    .u-shell::before { background-size: 28px 28px; }
 }
+
+@media (max-width: 767px) {
+    .u-shell::before { background-size: 28px 28px; }
+    .u-kicker,
+    .u-tape { font-size: 0.68rem; }
+    .u-masthead {
+        font-size: clamp(2.8rem, 17vw, 4.6rem);
+        line-height: 0.9;
+    }
+    .u-list-card,
+    .u-paper-card,
+    .u-poster {
+        box-shadow: 8px 8px 0 rgba(0,0,0,0.28);
+    }
+    .u-list-card + .u-list-card,
+    .u-paper-card + .u-list-card,
+    .u-list-card + .u-paper-card,
+    .u-poster + .u-paper-card {
+        margin-top: 0.25rem;
+    }
+}
+

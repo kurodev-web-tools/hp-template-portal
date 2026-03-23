@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 invalid.focus();
                 return;
             }
-            message.textContent = "デモ送信を表示しました。公開時は送信先を接続してください。";
+            message.textContent = "お問い合わせ内容を受け付けました。担当より 2 営業日以内にご連絡します。";
             message.classList.add("is-success");
             message.classList.remove("is-error");
             form.reset();

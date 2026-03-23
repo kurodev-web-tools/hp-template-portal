@@ -42,6 +42,12 @@ a { color: inherit; }
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
     border: 1px solid var(--t-border);
     box-shadow: var(--t-shadow);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.t-panel:hover {
+    border-color: rgba(143, 213, 255, 0.4);
+    transform: translateY(-2px);
 }
 
 .t-block {
@@ -49,6 +55,12 @@ a { color: inherit; }
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
         var(--t-surface);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.t-block:hover {
+    border-color: rgba(143, 213, 255, 0.25);
+    transform: translateY(-1px);
 }
 
 .t-kicker {
@@ -60,6 +72,8 @@ a { color: inherit; }
     font-size: 0.72rem;
     font-weight: 700;
     color: var(--t-accent);
+    word-break: break-all;
+    max-width: 100%;
 }
 
 .t-kicker::before {
@@ -67,6 +81,7 @@ a { color: inherit; }
     width: 2.4rem;
     height: 1px;
     background: var(--t-accent);
+    flex-shrink: 0;
 }
 
 .t-number-note {
@@ -113,12 +128,22 @@ a { color: inherit; }
 .t-mobile-backdrop {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .t-mobile-menu { transform: translateX(100%); }
 body.menu-open .t-mobile-backdrop { opacity: 1; pointer-events: auto; }
 body.menu-open .t-mobile-menu { opacity: 1; pointer-events: auto; transform: translateX(0); }
+
+.t-fade-up {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.t-fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .t-form-field label {
     display: block;
@@ -140,12 +165,88 @@ body.menu-open .t-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     padding: 0.95rem 1rem;
     border-radius: 0;
     font: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-form-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238fd5ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.25rem center;
+    background-size: 1.25rem;
+    padding-right: 3.5rem;
+    cursor: pointer;
+}
+
+.t-form-field select option {
+    background-color: var(--t-surface-strong);
+    color: var(--t-text);
 }
 
 .t-form-field textarea { min-height: 9rem; resize: vertical; }
+
 .t-form-field input:focus,
 .t-form-field textarea:focus,
-.t-form-field select:focus { outline: 2px solid transparent; border-color: var(--t-accent); }
+.t-form-field select:focus {
+    outline: none;
+    border-color: var(--t-accent);
+    background: rgba(143, 213, 255, 0.04);
+    box-shadow: 0 0 0 2px rgba(143, 213, 255, 0.15);
+}
+
+.t-display-title {
+    max-width: 13ch;
+    text-wrap: balance;
+    line-height: 0.96;
+}
+
+.t-display-title--wide { max-width: 13ch; }
+.t-display-title--hero { max-width: 18ch; }
+
+.t-page-title {
+    max-width: none;
+    text-wrap: balance;
+    line-height: 1;
+}
+
+.t-page-title--compact { max-width: none; }
+.t-page-title--approach { max-width: none; }
+.t-page-title--service { max-width: none; }
+.t-page-title--contact { max-width: 13ch; }
+
+.t-section-title {
+    max-width: 16ch;
+    text-wrap: balance;
+    line-height: 1.04;
+}
+
+.t-section-title--wide { max-width: 20ch; }
+.t-section-title--cta { max-width: 26ch; }
+.t-section-title--full { max-width: none; }
+.t-card-title { line-height: 1.08; }
+
+.t-hero-body,
+.t-balance-copy {
+    text-wrap: balance;
+}
+
+.t-hero-aside {
+    max-width: 31rem;
+    margin-left: auto;
+}
+
+.t-index-hero-grid,
+.t-index-hero-copy,
+.t-index-hero-title,
+.t-index-hero-body,
+.t-index-hero-aside {
+    position: relative;
+}
+
+.t-compact-card {
+    min-height: 0;
+}
 
 .t-hero-grid { position: relative; }
 .t-hero-grid::after {
@@ -163,13 +264,93 @@ body.menu-open .t-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     inset: 0;
     background: linear-gradient(90deg, transparent, rgba(143, 213, 255, 0.14), transparent);
     transform: translateX(-100%);
-    animation: t-signal 4.6s linear infinite;
+    opacity: 0;
 }
 
-@keyframes t-signal { to { transform: translateX(100%); } }
+@media (min-width: 64rem) {
+    .t-index-hero-grid {
+        grid-template-columns: minmax(0, 1.04fr) minmax(20rem, 0.96fr);
+        align-items: start;
+        column-gap: 4rem;
+    }
+
+    .t-index-hero-copy {
+        max-width: 36rem;
+        padding-top: 1.5rem;
+    }
+
+    .t-index-hero-title {
+        max-width: 5.8ch;
+        font-size: 4.25rem;
+    }
+
+    .t-index-hero-body {
+        max-width: 34rem;
+        font-size: 1.25rem;
+    }
+
+    .t-index-hero-aside {
+        align-self: start;
+        margin-top: 1.25rem;
+    }
+}
+
+@media (min-width: 80rem) {
+    .t-index-hero-grid {
+        grid-template-columns: minmax(0, 1.02fr) minmax(22rem, 0.98fr);
+    }
+
+    .t-index-hero-title {
+        font-size: 4.55rem;
+    }
+}
 
 @media (max-width: 767px) {
     .t-shell::before { background-size: 48px 48px; }
+    .t-index-hero-title {
+        font-size: 2.625rem;
+        line-height: 0.98;
+    }
+
+    .t-page-title {
+        font-size: 2.375rem;
+        line-height: 0.98;
+    }
+
+    .t-page-title--service {
+        font-size: 2.25rem;
+    }
+
+    .t-page-title--contact {
+        font-size: 2.0625rem;
+        line-height: 1;
+    }
+
+    .t-section-title {
+        font-size: 1.625rem;
+        line-height: 1.08;
+    }
+
+    .t-card-title {
+        font-size: 1.5rem;
+        line-height: 1.12;
+    }
+
+    .t-display-title,
+    .t-display-title--wide,
+    .t-display-title--hero,
+    .t-page-title,
+    .t-page-title--compact,
+    .t-page-title--contact,
+    .t-section-title,
+    .t-section-title--wide,
+    .t-section-title--cta,
+    .t-section-title--full {
+        max-width: none;
+        text-wrap: pretty;
+    }
+
+    .t-hero-aside { max-width: none; }
 }
 
 body.menu-open { overflow: hidden; }
