@@ -13,7 +13,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: "Inter", "Noto Sans JP", sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   color: var(--text);
   background: radial-gradient(circle at top right, rgba(87, 213, 255, 0.14), transparent 22%), radial-gradient(circle at bottom left, rgba(255, 108, 147, 0.1), transparent 20%), linear-gradient(180deg, #0b0f18 0%, #090b12 100%);
 }
@@ -109,7 +109,11 @@ img { max-width: 100%; display: block; }
 .tier-card p,
 .contact-panel p,
 .contact-panel li,
-.contact-form label { color: var(--muted); line-height: 1.7; }
+.contact-form label,
+.x-sprint-card p,
+.x-program-card p,
+.x-note,
+.note-copy { color: var(--muted); line-height: 1.7; }
 .score-hero {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -133,6 +137,7 @@ img { max-width: 100%; display: block; }
   gap: 1rem;
   margin-top: 1.5rem;
 }
+.compact-row { margin-top: 1.2rem; }
 .button-primary,
 .button-secondary {
   display: inline-flex;
@@ -268,6 +273,13 @@ img { max-width: 100%; display: block; }
 }
 .contact-panel ul { margin: 1rem 0; padding-left: 1.2rem; }
 .contact-form { display: grid; gap: 0.8rem; }
+.required {
+  margin-left: 0.35rem;
+  color: var(--lime);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -280,7 +292,65 @@ img { max-width: 100%; display: block; }
 }
 .site-footer { padding: 0 0 2rem; color: var(--muted); }
 .footer-inner { justify-content: space-between; }
-.note { color: #a8a8b4; font-size: 0.9rem; }
+.site-footer-rich {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.footer-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(160px, 0.7fr) auto;
+  gap: 1.4rem;
+  align-items: start;
+  padding: 2rem 0 1.4rem;
+}
+.footer-brand-block strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.footer-brand-block p { margin: 0; }
+.footer-label { margin-bottom: 0.5rem; }
+.footer-nav {
+  display: grid;
+  gap: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.footer-cta {
+  display: flex;
+  justify-content: flex-end;
+}
+.footer-base {
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+.footer-base p { margin: 0; }
+.note { color: #a8a8b4; font-size: 0.95rem; }
+.wide-panel { display: block; }
+.bracket-card ul,
+.tier-card ul,
+.x-sprint-card ul,
+.x-program-card ul {
+  margin: 0.9rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.detailed-grid,
+.detailed-grid-three { align-items: stretch; }
+.x-client-grid,
+.x-highlight-grid,
+.x-flow-grid {
+  display: grid;
+  gap: 1rem;
+}
+.x-client-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.x-flow-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.note-copy { margin-top: 0.9rem; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 @media (max-width: 900px) {
@@ -292,11 +362,16 @@ img { max-width: 100%; display: block; }
   .x-tiers,
   .x-contact,
   .footer-inner,
+  .footer-stack,
   .score-top,
   .score-body,
-  .live-row { grid-template-columns: 1fr; display: grid; }
+  .live-row,
+  .x-client-grid,
+  .x-flow-grid,
+  .detailed-grid-three { grid-template-columns: 1fr; display: grid; }
   .score-team.align-right,
   .live-row span:last-child { text-align: left; }
+  .footer-cta { justify-content: flex-start; }
 }
 
 .x-shell,
@@ -657,6 +732,38 @@ img { max-width: 100%; display: block; }
   padding: 0 0 2rem;
   color: var(--muted);
 }
+.x-footer-rich {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(160px, 0.7fr) auto;
+  gap: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.x-footer-brand strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.x-footer-brand p { margin: 0; color: var(--muted); line-height: 1.7; }
+.x-footer-nav {
+  display: grid;
+  gap: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.x-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.x-footer-base {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+  color: var(--muted);
+}
 @media (max-width: 980px) {
   .x-nav { display: none; }
   .x-menu { display: inline-flex; }
@@ -664,6 +771,7 @@ img { max-width: 100%; display: block; }
   .x-sprint-header,
   .x-programs-head,
   .x-footer,
+  .x-footer-rich,
   .x-duel {
     display: grid;
     grid-template-columns: 1fr;
@@ -671,8 +779,11 @@ img { max-width: 100%; display: block; }
   .x-arena,
   .x-sprint-grid,
   .x-programs-grid,
-  .x-callouts {
+  .x-callouts,
+  .x-client-grid,
+  .x-flow-grid {
     grid-template-columns: 1fr;
   }
   .x-team-right { text-align: left; }
+  .x-footer-actions { justify-content: flex-start; }
 }

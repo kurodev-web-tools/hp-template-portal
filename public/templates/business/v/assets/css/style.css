@@ -23,6 +23,11 @@ body {
 a { color: inherit; }
 body.menu-open { overflow: hidden; }
 
+::selection {
+    background: var(--v-accent);
+    color: #111;
+}
+
 .v-shell::before {
     content: "";
     position: fixed;
@@ -31,6 +36,22 @@ body.menu-open { overflow: hidden; }
     opacity: 0.22;
     background:
         linear-gradient(90deg, transparent 0 9%, rgba(255,255,255,0.06) 9% 9.4%, transparent 9.4% 33%, rgba(255,255,255,0.06) 33% 33.4%, transparent 33.4% 66%, rgba(255,255,255,0.06) 66% 66.4%, transparent 66.4% 100%);
+}
+
+.v-shell::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    animation: v-noise-shift 0.2s steps(2) infinite;
+}
+
+@keyframes v-noise-shift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-5%, -5%); }
 }
 
 .v-kicker {
@@ -88,6 +109,12 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     height: 150px;
     border-radius: 999px;
     background: radial-gradient(circle, rgba(255,83,50,0.18), transparent 70%);
+    animation: v-glow-pulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes v-glow-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); }
 }
 
 .v-poster--accent {
@@ -178,11 +205,18 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     letter-spacing: 0.08em;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .v-button:hover,
-.v-button:focus-visible { transform: translate(6px, -6px); }
+.v-button:focus-visible { 
+    transform: translate(6px, -6px); 
+    box-shadow: -6px 6px 0 var(--v-primary);
+}
 .v-button--ghost { background: transparent; color: var(--v-text); border-color: var(--v-line); }
+.v-button--ghost:hover,
+.v-button--ghost:focus-visible { 
+    box-shadow: -6px 6px 0 var(--v-accent);
+}
 
 .v-list-card,
 .v-panel {
@@ -254,8 +288,29 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 .v-form-message.is-success { color: var(--v-accent-2); }
 .v-form-message.is-error { color: #ffb1a4; }
 
+/* Reveal Animations */
+.v-poster,
+.v-stackline,
+.v-page-title,
+.v-section-title,
+.v-manifesto-line {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Stagger for grid siblings */
+.v-poster:nth-child(2) { transition-delay: 0.1s; }
+.v-poster:nth-child(3) { transition-delay: 0.2s; }
+.v-poster:nth-child(4) { transition-delay: 0.3s; }
+
 @media (min-width: 1024px) {
-    .v-page-title { font-size: 4rem; }
+    .v-page-title { font-size: clamp(2.5rem, 5.5vw, 4rem); }
     .v-section-title { font-size: 2.25rem; }
     .v-card-title { font-size: 1.75rem; }
     .v-subtitle { font-size: 1.5rem; }
@@ -271,8 +326,8 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
         line-height: 0.9;
     }
     .v-page-title {
-        font-size: 2.625rem;
-        line-height: 0.98;
+        font-size: clamp(1.875rem, 7vw, 2.625rem);
+        line-height: 1.1;
     }
     .v-section-title { font-size: 1.875rem; }
     .v-card-title { font-size: 1.5rem; }

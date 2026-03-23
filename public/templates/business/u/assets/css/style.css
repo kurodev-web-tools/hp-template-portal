@@ -26,6 +26,35 @@ a { color: inherit; }
 img { display: block; max-width: 100%; }
 body.menu-open { overflow: hidden; }
 
+/* Film Grain Noise Background */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    animation: u-grain 8s steps(10) infinite;
+    mix-blend-mode: overlay;
+}
+
+@keyframes u-grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+}
+
 .u-shell::before {
     content: "";
     position: fixed;
@@ -130,6 +159,45 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     background: radial-gradient(circle, rgba(255,122,0,0.25), transparent 70%);
 }
 
+/* Scroll Stamp Animation */
+.u-paper-card, .u-poster, .u-list-card {
+    opacity: 0;
+    transform: scale(1.05) translateY(20px);
+}
+
+.u-paper-card.is-stamped, .u-poster.is-stamped, .u-list-card.is-stamped {
+    animation: u-stamp-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes u-stamp-in {
+    0% {
+        opacity: 0;
+        transform: scale(1.08) translateY(30px) rotate(2deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
+    }
+}
+
+.u-paper-card--tilt-left.is-stamped {
+    animation: u-stamp-in-left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes u-stamp-in-left {
+    0% { opacity: 0; transform: scale(1.08) translateY(30px) rotate(0deg); }
+    100% { opacity: 1; transform: scale(1) translateY(0) rotate(-2.4deg); }
+}
+
+.u-paper-card--tilt-right.is-stamped {
+    animation: u-stamp-in-right 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes u-stamp-in-right {
+    0% { opacity: 0; transform: scale(1.08) translateY(30px) rotate(0deg); }
+    100% { opacity: 1; transform: scale(1) translateY(0) rotate(2.6deg); }
+}
+
 .u-cutline {
     border-top: 4px dashed rgba(255,255,255,0.2);
     border-bottom: 4px dashed rgba(255,255,255,0.2);
@@ -219,12 +287,36 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    box-shadow: 6px 6px 0 var(--u-ink);
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .u-link-button:hover,
-.u-link-button:focus-visible { transform: translate(5px, -5px); }
-.u-link-button--ghost { background: transparent; color: var(--u-text); border-color: var(--u-line); }
+.u-link-button:focus-visible { 
+    transform: translate(2px, 2px); 
+    box-shadow: 4px 4px 0 var(--u-ink);
+}
+
+.u-link-button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0 var(--u-ink);
+}
+
+.u-link-button--ghost { 
+    background: transparent; 
+    color: var(--u-ink); 
+    border-color: var(--u-ink); 
+    box-shadow: 6px 6px 0 var(--u-ink);
+}
+
+.u-link-button--ghost:hover,
+.u-link-button--ghost:focus-visible {
+    box-shadow: 4px 4px 0 var(--u-ink);
+}
+
+.u-link-button--ghost:active {
+    box-shadow: 0px 0px 0 var(--u-ink);
+}
 
 .u-note {
     border-left: 4px solid var(--u-accent);

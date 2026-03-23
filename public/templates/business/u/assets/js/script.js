@@ -55,5 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Scroll Stamp Animation Observer
+    const stampElements = document.querySelectorAll('.u-paper-card, .u-poster, .u-list-card');
+    const stampObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-stamped');
+                stampObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    stampElements.forEach(el => {
+        // Only observe elements not already in viewport on load to prevent jarring load flash
+        if (el.getBoundingClientRect().top > window.innerHeight) {
+            stampObserver.observe(el);
+        } else {
+            el.classList.add('is-stamped');
+        }
+    });
+
     setMenuState(false);
 });

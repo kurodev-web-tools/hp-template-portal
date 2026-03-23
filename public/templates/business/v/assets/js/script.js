@@ -55,5 +55,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Intersection Observer for Scroll Reveals
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-revealed");
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll(".v-poster, .v-stackline, .v-page-title, .v-section-title, .v-manifesto-line");
+    revealElements.forEach(el => revealObserver.observe(el));
+
     setMenuState(false);
 });
