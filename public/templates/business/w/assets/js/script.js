@@ -1,39 +1,39 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
-  const buttons = document.querySelectorAll("[data-menu-toggle]");
-  const menu = document.querySelector("[data-mobile-menu]");
-  const backdrop = document.querySelector("[data-menu-backdrop]");
-  const links = document.querySelectorAll("[data-mobile-menu] a[href]");
-
-  const setMenuState = (isOpen) => {
-    if (!menu) return;
-    menu.hidden = !isOpen;
-    backdrop && (backdrop.hidden = !isOpen);
-    if (isOpen) { body.style.overflow = "hidden"; } else { body.style.overflow = ""; }
-    menu.setAttribute("aria-hidden", String(!isOpen));
-    buttons.forEach((button) => button.setAttribute("aria-expanded", String(isOpen)));
+// Template W — Wide Horizon Panorama
+// === NAV SCROLL HANDLER ===
+const nav = document.querySelector('.site-nav');
+if (nav) {
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
   };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => setMenuState(button.getAttribute("aria-expanded") !== "true"));
-  });
+// === MOBILE MENU ===
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const menuClose = document.querySelector('.mobile-menu-close');
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+  if (menuClose) menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+}
 
-  backdrop?.addEventListener("click", () => setMenuState(false));
-  links.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenuState(false);
-  });
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 1024) setMenuState(false);
-  });
+// === REVEAL ANIMATIONS ===
+const revealEls = document.querySelectorAll('.reveal');
+if (revealEls.length) {
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  revealEls.forEach(el => observer.observe(el));
+}
 
-  setMenuState(false);
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("is-visible");
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-});
+// === SNAP GALLERY BUTTONS ===
+const gallery = document.querySelector('.snap-gallery');
+const btnPrev = document.querySelector('[data-gallery-prev]');
+const btnNext = document.querySelector('[data-gallery-next]');
+if (gallery && btnNext) {
+  const scrollAmount = () => gallery.querySelector('.snap-card')?.offsetWidth + 24 || 400;
+  btnNext.addEventListener('click', () => gallery.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+  if (btnPrev) btnPrev.addEventListener('click', () => gallery.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+}

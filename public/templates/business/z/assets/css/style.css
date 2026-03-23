@@ -7,46 +7,299 @@
     --z-sage: #7a8770;
     --z-stone: #b89f82;
 }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; font-family: "Cormorant Garamond", "Noto Sans JP", serif; background: linear-gradient(180deg, rgba(122,135,112,0.08), transparent 18%), var(--z-bg); color: var(--z-ink); }
+body {
+    margin: 0;
+    font-family: "Cormorant Garamond", "Noto Sans JP", serif;
+    background: linear-gradient(180deg, rgba(122,135,112,0.08), transparent 18%), var(--z-bg);
+    color: var(--z-ink);
+}
+
 a { color: inherit; text-decoration: none; }
-.z-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid rgba(225,216,202,0.9); background: rgba(251,250,246,0.92); backdrop-filter: blur(14px); }
-.z-header-inner, .z-chapter, .z-footer-inner { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
-.z-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; }
-.z-brand { letter-spacing: 0.16em; font-size: 1rem; }
-.z-nav { display: flex; gap: 1.5rem; font-family: "Noto Sans JP", sans-serif; color: var(--z-muted); font-size: 0.92rem; }
-.z-menu { display: none; padding: 0.65rem 0.95rem; border: 1px solid var(--z-line); background: transparent; font-family: "Noto Sans JP", sans-serif; }
-.z-mobile-backdrop { position: fixed; inset: 0; background: rgba(40,30,20,0.18); z-index: 20; }
-.z-mobile { position: fixed; top: 4.5rem; left: 1rem; right: 1rem; z-index: 21; display: grid; gap: 1rem; padding: 1rem; border: 1px solid var(--z-line); background: rgba(255,253,248,0.98); font-family: "Noto Sans JP", sans-serif; }
+
+.z-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    border-bottom: 1px solid rgba(225,216,202,0.9);
+    background: rgba(251,250,246,0.92);
+    backdrop-filter: blur(14px);
+}
+
+.z-header-inner,
+.z-chapter,
+.z-footer-inner {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+.z-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.z-brand {
+    letter-spacing: 0.16em;
+    font-size: 1rem;
+}
+
+.z-nav {
+    display: flex;
+    gap: 1.5rem;
+    font-family: "Noto Sans JP", sans-serif;
+    color: var(--z-muted);
+    font-size: 0.92rem;
+}
+
+.z-menu {
+    display: none;
+    padding: 0.65rem 0.95rem;
+    border: 1px solid var(--z-line);
+    background: transparent;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+.z-mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(40,30,20,0.18);
+    z-index: 20;
+}
+
+.z-mobile {
+    position: fixed;
+    top: 4.5rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 21;
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--z-line);
+    background: rgba(255,253,248,0.98);
+    font-family: "Noto Sans JP", sans-serif;
+}
+
 .z-shell { min-height: 100vh; }
 .z-main { display: grid; gap: 0; }
+
 .z-chapter { padding: 7rem 0; }
 .z-chapter + .z-chapter { border-top: 1px solid var(--z-line); }
 .z-hero { min-height: calc(100vh - 4.5rem); display: grid; align-content: center; }
-.z-kicker { margin: 0 0 1rem; font-family: "Noto Sans JP", sans-serif; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--z-sage); }
-.z-hero h1, .z-chapter h2 { margin: 0; font-weight: 400; line-height: 0.94; letter-spacing: -0.04em; }
+
+.z-kicker {
+    margin: 0 0 1rem;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--z-sage);
+}
+
+.z-kicker-block { margin-top: 0.55rem; }
+.z-page-title { margin: 0; font-size: clamp(3.2rem, 8vw, 5.8rem); font-weight: 400; line-height: 0.94; letter-spacing: -0.04em; }
+.z-hero h1,
+.z-chapter h2 {
+    margin: 0;
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+}
+
 .z-hero h1 { font-size: clamp(3.4rem, 10vw, 7.6rem); max-width: 8em; }
 .z-chapter h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); }
-.z-hero p, .z-chapter p, .z-list, .z-form label { font-family: "Noto Sans JP", sans-serif; color: var(--z-muted); line-height: 1.95; }
+.z-card-title { font-size: clamp(2rem, 4vw, 3rem); }
+.z-flow-item h3,
+.z-detail-card h3 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.z-hero p,
+.z-chapter p,
+.z-list,
+.z-form label {
+    font-family: "Noto Sans JP", sans-serif;
+    color: var(--z-muted);
+    line-height: 1.95;
+}
+
 .z-hero p { max-width: 38rem; margin-top: 1.5rem; }
-.z-actions { display: flex; gap: 1rem; margin-top: 2rem; }
-.z-button { display: inline-flex; align-items: center; justify-content: center; min-height: 3.2rem; padding: 0 1.35rem; border-radius: 999px; border: 1px solid var(--z-line); font-family: "Noto Sans JP", sans-serif; }
-.z-button--solid { background: var(--z-sage); border-color: var(--z-sage); color: #fff; }
-.z-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-.z-quiet-block { min-height: 20rem; padding-top: 2rem; }
+.z-actions { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+.z-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.2rem;
+    padding: 0 1.35rem;
+    border-radius: 999px;
+    border: 1px solid var(--z-line);
+    font-family: "Noto Sans JP", sans-serif;
+    background: transparent;
+}
+
+.z-button--solid {
+    background: var(--z-sage);
+    border-color: var(--z-sage);
+    color: #fff;
+}
+
+.z-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.z-layout-tight { grid-template-columns: 0.7fr 1.3fr; }
 .z-divider { width: 5rem; height: 1px; background: var(--z-stone); margin: 2rem 0; }
+.z-panel { max-width: 42rem; }
+.z-quiet-block { min-height: 20rem; padding-top: 2rem; }
+.z-number-note {
+    margin-top: 2rem;
+    border-left: 3px solid var(--z-stone);
+    padding-left: 1rem;
+    font-family: "Noto Sans JP", sans-serif;
+    color: var(--z-muted);
+}
+
+.z-flow-list,
+.z-practice-grid,
+.z-detail-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.z-flow-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.z-practice-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.z-detail-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.z-detail-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.z-flow-item,
+.z-detail-card {
+    padding: 2rem;
+    border: 1px solid var(--z-line);
+    background: rgba(255, 253, 248, 0.72);
+}
+
+.z-soft-section {
+    background: linear-gradient(180deg, rgba(122,135,112,0.06), rgba(255,253,248,0.12));
+}
+
 .z-list { margin: 0; padding-left: 1.2rem; }
-.z-panel { max-width: 34rem; }
-.z-number-note { margin-top: 2rem; border-left: 3px solid var(--z-stone); padding-left: 1rem; font-family: "Noto Sans JP", sans-serif; color: var(--z-muted); }
+.z-meta-list {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+    padding-left: 1.2rem;
+}
+
+.z-meta-list strong {
+    display: inline-block;
+    min-width: 6.8rem;
+    color: var(--z-ink);
+    font-weight: 500;
+}
+
 .z-form { max-width: 32rem; display: grid; gap: 0.9rem; }
-.z-form input, .z-form textarea, .z-form select { width: 100%; padding: 0.95rem 1rem; border: 1px solid var(--z-line); background: var(--z-paper); color: var(--z-ink); font: inherit; }
+.z-form input,
+.z-form textarea,
+.z-form select {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid var(--z-line);
+    background: var(--z-paper);
+    color: var(--z-ink);
+    font: inherit;
+}
 .z-form textarea { min-height: 9rem; resize: vertical; }
+
 .z-footer { border-top: 1px solid var(--z-line); }
-.z-footer-inner { display: flex; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2.2rem; font-family: "Noto Sans JP", sans-serif; color: var(--z-muted); font-size: 0.92rem; }
+.z-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 0 2.2rem;
+    font-family: "Noto Sans JP", sans-serif;
+    color: var(--z-muted);
+    font-size: 0.92rem;
+}
+
+.z-footer-rich { background: rgba(255,253,248,0.82); }
+.z-footer-inner-rich {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.8fr) auto;
+    grid-template-areas:
+        "brand nav cta"
+        "base base base";
+    gap: 2rem 3rem;
+    padding: 2.5rem 0 1.6rem;
+}
+
+.z-footer-brand { grid-area: brand; max-width: 30rem; }
+.z-footer-brand strong {
+    display: block;
+    margin-bottom: 1rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--z-ink);
+    letter-spacing: 0.04em;
+}
+
+.z-footer-brand p:last-child { margin: 0; }
+.z-footer-nav {
+    grid-area: nav;
+    display: grid;
+    gap: 0.8rem;
+    align-content: start;
+    font-size: 0.95rem;
+}
+
+.z-footer-cta { grid-area: cta; display: flex; justify-content: flex-end; align-items: start; }
+.z-footer-base {
+    grid-area: base;
+    padding-top: 1rem;
+    border-top: 1px solid var(--z-line);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 @media (max-width: 920px) {
     .z-nav { display: none; }
     .z-menu { display: inline-flex; }
-    .z-layout, .z-footer-inner { grid-template-columns: 1fr; display: grid; }
+    .z-layout,
+    .z-footer-inner,
+    .z-footer-inner-rich,
+    .z-flow-list,
+    .z-practice-grid,
+    .z-detail-grid,
+    .z-detail-grid-two {
+        grid-template-columns: 1fr;
+        display: grid;
+    }
+
+    .z-footer-inner-rich {
+        grid-template-areas:
+            "brand"
+            "nav"
+            "cta"
+            "base";
+    }
+
+    .z-footer-cta { justify-content: flex-start; }
     .z-chapter { padding: 4.5rem 0; }
+    .z-page-title { font-size: clamp(2.6rem, 12vw, 4rem); }
+    .z-flow-item,
+    .z-detail-card { padding: 1.5rem; }
 }

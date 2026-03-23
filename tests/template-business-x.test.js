@@ -15,34 +15,38 @@ const run = (name, fn) => {
   }
 };
 
-run('index page includes richer business sections and no template notes', () => {
+run('index page reflects the renewed xtreme visual system and no template notes', () => {
   const html = readTemplate('index.html');
-  assert.match(html, /導入の流れ/);
-  assert.match(html, /代表サービス/);
-  assert.match(html, /対象クライアント/);
+  assert.match(html, /BREAK[\s\S]*LIMITS/i);
+  assert.match(html, /Performance Snapshot/);
+  assert.match(html, /Services/);
+  assert.match(html, /Team Drivers/);
+  assert.match(html, /X-Film/);
   assert.doesNotMatch(html, /モック用|編集してください|仮置き|Template/);
 });
 
-run('service page includes deliverables and first-step guidance', () => {
+run('service page matches the renewed offer-driven format', () => {
   const html = readTemplate('service.html');
-  assert.match(html, /主な成果物/);
-  assert.match(html, /向いている相談/);
-  assert.match(html, /進行フロー/);
-  assert.match(html, /初回相談/);
+  assert.match(html, /Offer Stack/);
+  assert.match(html, /Launch Shock/);
+  assert.match(html, /Delivery Matrix/);
+  assert.match(html, /Activation Flow/);
+  assert.match(html, /Get the Format/);
 });
 
-run('about page includes judgement, fit, and team stance', () => {
+run('about page includes doctrine, field notes, and team language', () => {
   const html = readTemplate('about.html');
-  assert.match(html, /判断基準/);
-  assert.match(html, /向いている案件/);
-  assert.match(html, /チームスタンス/);
+  assert.match(html, /Brand Doctrine/);
+  assert.match(html, /Core Principles/);
+  assert.match(html, /Field Notes/);
+  assert.match(html, /Team Drivers/);
 });
 
-run('contact page includes trust guidance and required fields', () => {
+run('contact page includes signal desk guidance and required fields', () => {
   const html = readTemplate('contact.html');
-  assert.match(html, /相談できる内容/);
-  assert.match(html, /返信目安/);
-  assert.match(html, /初回相談の流れ/);
+  assert.match(html, /Signal Desk/);
+  assert.match(html, /Response Timing/);
+  assert.match(html, /Project Signals/);
   assert.match(html, /required/);
   assert.doesNotMatch(html, /仮置き|Template/);
 });
@@ -52,8 +56,8 @@ run('shared footer includes repeat navigation and CTA', () => {
     const html = readTemplate(file);
     assert.match(html, /action brand studio/);
     assert.match(html, /Home/);
-    assert.match(html, /Programs|Format/);
-    assert.match(html, /Crew|About/);
-    assert.match(html, /Entry|Contact/);
+    assert.match(html, /Format/);
+    assert.match(html, /About/);
+    assert.match(html, /Contact/);
   }
 });
