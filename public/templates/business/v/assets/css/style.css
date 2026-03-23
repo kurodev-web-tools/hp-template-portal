@@ -35,7 +35,7 @@ body.menu-open { overflow: hidden; }
 
 .v-kicker {
     display: inline-block;
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--v-accent);
@@ -94,7 +94,6 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     background: linear-gradient(180deg, #ffe24a, #f8b93d);
     color: #111;
 }
-
 .v-poster--accent::after {
     background: radial-gradient(circle, rgba(17,17,17,0.14), transparent 70%);
 }
@@ -105,17 +104,65 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 }
 
 .v-stackline {
-    font-size: clamp(4.2rem, 11vw, 10rem);
+    font-size: clamp(3.6rem, 9.5vw, 9rem);
     line-height: 0.86;
     letter-spacing: -0.08em;
     text-transform: uppercase;
 }
 
+.v-page-title {
+    font-size: 2.75rem;
+    line-height: 0.94;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+}
+
+.v-section-title {
+    font-size: 1.875rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
 .v-manifesto-line {
-    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-size: clamp(1.75rem, 3.8vw, 3.5rem);
     line-height: 0.92;
     text-transform: uppercase;
     letter-spacing: -0.05em;
+}
+
+.v-card-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.v-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.v-body-copy {
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.v-card-copy {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
+.v-fine-copy {
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+.v-footer-copy {
+    font-size: 0.75rem;
+    line-height: 1.4;
 }
 
 .v-button {
@@ -130,27 +177,49 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     text-transform: uppercase;
     letter-spacing: 0.08em;
     text-decoration: none;
+    border: 1px solid transparent;
     transition: transform 0.2s ease;
 }
 .v-button:hover,
 .v-button:focus-visible { transform: translate(6px, -6px); }
-.v-button--ghost { background: transparent; color: var(--v-text); border: 1px solid var(--v-line); }
+.v-button--ghost { background: transparent; color: var(--v-text); border-color: var(--v-line); }
 
-.v-note {
-    border-left: 4px solid var(--v-primary);
-    background: rgba(255,255,255,0.04);
-    color: var(--v-muted);
-}
-
-.v-list-card {
+.v-list-card,
+.v-panel {
     background: rgba(17,20,28,0.92);
     border: 1px solid var(--v-line);
 }
 
+.v-list-card h1,
+.v-list-card h2,
 .v-list-card h3,
 .v-list-card p,
 .v-list-card li,
-.v-list-card label { font-family: "Noto Sans JP", sans-serif; }
+.v-list-card label,
+.v-list-card ol,
+.v-list-card ul,
+.v-panel h1,
+.v-panel h2,
+.v-panel h3,
+.v-panel p,
+.v-panel li,
+.v-panel label,
+.v-panel ol,
+.v-panel ul,
+.v-panel input,
+.v-panel textarea,
+.v-panel select { font-family: "Noto Sans JP", sans-serif; }
+
+.v-list-card li + li { margin-top: 0.65rem; }
+
+.v-number-note {
+    border-left: 4px solid var(--v-primary);
+    background: rgba(255,255,255,0.04);
+}
+
+.v-footer-grid {
+    display: grid;
+}
 
 .v-form-field label {
     display: block;
@@ -170,6 +239,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     color: var(--v-text);
     padding: 0.95rem 1rem;
     font: inherit;
+    font-family: "Noto Sans JP", sans-serif;
 }
 .v-form-field textarea { min-height: 9rem; resize: vertical; }
 .v-form-field input:focus,
@@ -183,3 +253,31 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 }
 .v-form-message.is-success { color: var(--v-accent-2); }
 .v-form-message.is-error { color: #ffb1a4; }
+
+@media (min-width: 1024px) {
+    .v-page-title { font-size: 4rem; }
+    .v-section-title { font-size: 2.25rem; }
+    .v-card-title { font-size: 1.75rem; }
+    .v-subtitle { font-size: 1.5rem; }
+    .v-body-copy { line-height: 2; }
+    .v-footer-copy { font-size: 0.875rem; }
+    .v-footer-grid { grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.7fr) auto; }
+}
+
+@media (max-width: 767px) {
+    .v-kicker { font-size: 0.68rem; }
+    .v-stackline {
+        font-size: clamp(3rem, 15.5vw, 4rem);
+        line-height: 0.9;
+    }
+    .v-page-title {
+        font-size: 2.625rem;
+        line-height: 0.98;
+    }
+    .v-section-title { font-size: 1.875rem; }
+    .v-card-title { font-size: 1.5rem; }
+    .v-manifesto-line { font-size: 1.875rem; }
+    .v-body-copy { line-height: 1.75; }
+    .v-card-copy { line-height: 1.6; }
+    .v-footer-copy { font-size: 0.75rem; }
+}
