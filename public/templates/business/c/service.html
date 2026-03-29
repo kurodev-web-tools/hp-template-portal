@@ -1,404 +1,132 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>診療案内 | Clean &amp; Trust Medical</title>
-    
-    <link rel="canonical" href="https://example.com/templates/business/c/service.html"><meta name="description" content="症状やお悩みに合わせた診療メニューをご案内します。健康診断から専門診療まで、幅広い医療サービスに対応しています。">
+    <title>診療案内 | 青葉内科循環器クリニック</title>
+    <link rel="canonical" href="https://aoba-clinic.example.jp/services">
+    <meta name="description" content="青葉内科循環器クリニックの診療案内です。総合内科、循環器内科、発熱外来、健康診断・予防接種の対象症状、検査内容、受診方法をご紹介します。">
     <meta name="theme-color" content="#0ea5e9">
-    <meta property="og:title" content="診療案内 | Clean &amp; Trust Medical">
-    <meta property="og:description" content="健康診断から専門診療まで、症状に合わせた診療メニューをご案内します。">
+    <meta property="og:title" content="診療案内 | 青葉内科循環器クリニック">
+    <meta property="og:description" content="対象症状、主な検査、予約の目安が分かる診療案内ページです。">
     <meta property="og:type" content="website">
-    
-    <meta property="og:locale" content="ja_JP"><meta property="og:image" content="assets/images/og-image.jpg">
-    <meta property="og:url" content="https://example.com/templates/business/c/service.html">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:image" content="assets/images/c-clinic-interior.png">
+    <meta property="og:url" content="https://aoba-clinic.example.jp/services">
     <meta name="twitter:card" content="summary_large_image">
-
-    
-    <meta name="robots" content="index, follow"><!-- JSON-LD Structured Data -->
+    <meta name="robots" content="index, follow">
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalOrganization",
-        "name": "Clean & Trust Medical",
-        "description": "高度な医療技術と寄り添うケア。健康診断、予防接種、皮膚科に対応。",
-        "url": "https://example.com/templates/business/c/service.html",
-        "logo": "assets/images/c-hero-clinic.png"
-    }
+    {"@context":"https://schema.org","@type":"MedicalClinic","name":"青葉内科循環器クリニック","url":"https://aoba-clinic.example.jp/services","medicalSpecialty":["InternalMedicine","Cardiovascular"]}
     </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <style>
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .clean-menu-backdrop.active {
-            opacity: 1 !important;
-            visibility: visible !important;
-            background-color: rgba(15, 23, 42, 0.5) !important;
-            backdrop-filter: blur(4px) !important;
-        }
-
-        .clean-mobile-menu.active {
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
+        html { scroll-behavior: smooth; }
+        .clean-menu-backdrop.active { opacity: 1 !important; visibility: visible !important; background-color: rgba(15, 23, 42, 0.5) !important; backdrop-filter: blur(4px) !important; }
+        .clean-mobile-menu.active { opacity: 1 !important; visibility: visible !important; }
+        .heading-balance { text-wrap: balance; }
+        .body-pretty { text-wrap: pretty; }
+        @supports (word-break: auto-phrase) { .phrase-wrap { word-break: auto-phrase; } }
     </style>
 </head>
-
 <body class="bg-background-light text-secondary font-display antialiased custom-menu-only">
-
-    <!-- Mobile Menu Toggle -->
-    <button aria-controls="clean-mobile-menu" class="clean-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-primary flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleCleanMenu()" aria-label="メニューを開く" aria-expanded="false">
-        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
-        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
-        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
-    </button>
-
+    <button aria-controls="clean-mobile-menu" class="clean-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-primary flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleCleanMenu()" aria-label="メニューを開く" aria-expanded="false"><span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span><span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span><span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span></button>
     <div class="clean-menu-backdrop fixed inset-0 z-[9998] bg-secondary/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
-
-    <!-- Mobile Menu Panel -->
     <div id="clean-mobile-menu" class="clean-mobile-menu fixed inset-0 z-[9999] bg-background-light flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
         <ul class="list-none text-center p-0 m-0">
-            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">ホーム</a></li>
-            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">医院紹介</a></li>
-            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">診療案内</a></li>
-            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-primary font-bold uppercase tracking-widest mt-4">お問い合わせ</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold tracking-widest border-b border-transparent hover:border-primary transition-colors">ホーム</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold tracking-widest border-b border-transparent hover:border-primary transition-colors">医院紹介</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold tracking-widest border-b border-transparent hover:border-primary transition-colors">診療案内</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-primary font-bold tracking-widest mt-4">受診案内</a></li>
         </ul>
     </div>
-
-    <!-- Header -->
     <header class="sticky top-0 z-50 flex items-center justify-between border-b border-accent bg-background-light/95 backdrop-blur-sm px-6 py-4 lg:px-20">
-        <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <span class="material-symbols-outlined text-3xl">local_hospital</span>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight text-secondary">Clean & Trust</h1>
-        </div>
+        <div class="flex items-center gap-3"><div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-3xl">local_hospital</span></div><div><p class="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">内科・循環器内科</p><h1 class="text-xl font-bold tracking-tight text-secondary">青葉内科循環器クリニック</h1></div></div>
         <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
-            <div class="flex items-center gap-8">
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="index.html">ホーム</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">医院紹介</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="service.html">診療案内</a>
-                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="contact.html">お問い合わせ</a>
-            </div>
-            <button class="h-10 px-6 rounded-lg bg-primary text-secondary text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm" onclick="location.href='contact.html'">
-                診療予約
-            </button>
+            <div class="flex items-center gap-8"><a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="index.html">ホーム</a><a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">医院紹介</a><a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="service.html">診療案内</a><a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="contact.html">受診案内</a></div>
+            <button class="h-10 px-6 rounded-lg bg-primary text-secondary text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm" onclick="location.href='contact.html'">Web予約</button>
         </nav>
-        <div class="md:hidden">
-            <button class="text-secondary" onclick="toggleCleanMenu()">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-        </div>
+        <div class="md:hidden"><button class="text-secondary" onclick="toggleCleanMenu()"><span class="material-symbols-outlined">menu</span></button></div>
     </header>
-
     <main class="flex-1">
-        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
-        <!-- Services Hero Section -->
+        <section class="px-4 pt-6 lg:px-20"><nav aria-label="パンくず" class="text-sm text-secondary/50"><ol class="flex flex-wrap items-center gap-2"><li><a class="hover:text-primary transition-colors" href="index.html">ホーム</a></li><li>/</li><li class="text-secondary">診療案内</li></ol></nav></section>
         <div class="w-full px-4 py-8 lg:px-20 lg:py-12">
             <div class="@container">
                 <div class="relative overflow-hidden rounded-3xl bg-[#e0f2fe]">
                     <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" style="background-image: url('assets/images/c-clinic-interior.png');"></div>
                     <div class="absolute inset-0 z-10 bg-gradient-to-r from-white/90 to-white/20"></div>
                     <div class="relative z-20 flex min-h-[420px] md:min-h-[460px] flex-col justify-center px-5 py-12 sm:px-8 lg:w-2/3">
-                        <span class="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary border border-primary/20 backdrop-blur-md">
-                            <span class="material-symbols-outlined text-sm">verified_user</span>
-                            診療案内
-                        </span>
-                        <h2 class="mb-6 text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-slate-900">
-                            幅広い<br class="hidden md:block"/> 診療メニュー
-                        </h2>
-                        <p class="mb-8 max-w-lg text-lg leading-relaxed text-slate-600">
-                            <span class="ib">専門領域ごとの知見をつなぎ、</span><span class="ib">一人ひとりに合わせた</span><span class="ib">診療計画を組み立てます。</span>
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <button class="h-12 px-8 rounded-lg bg-primary text-secondary font-bold hover:bg-primary/90 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-primary/20" onclick="location.href='contact.html'">
-                                診療予約
-                            </button>
-                            <button class="h-12 px-8 rounded-lg bg-white/50 text-slate-900 border border-slate-200 font-bold hover:bg-white/20 transition-colors backdrop-blur-sm" onclick="location.href='contact.html'">
-                                お問い合わせ
-                            </button>
-                        </div>
+                        <span class="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary border border-primary/20"><span class="material-symbols-outlined text-sm">format_list_bulleted</span>診療案内</span>
+                        <h2 class="heading-balance mb-6 text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-slate-900">症状と生活背景の両方から、<br class="hidden md:block">無理のない診療計画をご提案します。</h2>
+                        <p class="body-pretty phrase-wrap mb-8 max-w-2xl text-lg leading-relaxed text-slate-600">当院では、一般内科の初期対応に加えて、循環器疾患の継続管理や健診後フォローにも注力しています。必要な検査を院内で行い、より詳しい治療が必要な場合は連携医療機関へおつなぎします。</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Treatments Section -->
-        <section class="bg-background-off py-16 md:py-32">
+        <section class="bg-background-off py-16 md:py-24">
             <div class="px-4 lg:px-20">
-                <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div class="max-w-2xl">
-                        <h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">診療案内</h3>
-                        <h2 class="text-3xl font-bold text-secondary sm:text-4xl">症状に合わせた専門ケア</h2>
-                        <p class="mt-4 text-lg text-secondary/70">
-                            健康診断から専門外来まで、症状やライフステージに応じた診療を幅広くご用意しています。
-                        </p>
-                    </div>
-                    <a class="group flex items-center gap-2 font-bold text-primary hover:text-primary/80" href="contact.html">
-                        ご相談はこちら
-                        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
-                    </a>
+                <div class="grid gap-6 lg:grid-cols-2">
+                    <article class="rounded-3xl border border-accent bg-white p-8 shadow-sm"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-3xl">stethoscope</span><h3 class="text-2xl font-bold text-secondary">総合内科</h3></div><p class="body-pretty phrase-wrap mt-4 text-sm leading-7 text-secondary/70">風邪、咳、のどの痛み、腹痛、頭痛、倦怠感など幅広い症状に対応します。必要に応じて血液検査や迅速検査を行い、当日の治療方針をご説明します。</p><dl class="mt-6 space-y-3 text-sm text-secondary/70"><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な症状</dt><dd>発熱、咳、胃腸症状、花粉症、体調不良全般</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な検査</dt><dd>血液検査、尿検査、迅速感染症検査</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">予約目安</dt><dd>予約優先、空き状況により当日受付可</dd></div></dl><a href="contact.html" class="mt-8 inline-flex items-center gap-2 font-bold text-primary">初診予約へ<span class="material-symbols-outlined text-base">arrow_forward</span></a></article>
+                    <article class="rounded-3xl border border-accent bg-white p-8 shadow-sm"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-3xl">cardiology</span><h3 class="text-2xl font-bold text-secondary">循環器内科</h3></div><p class="body-pretty phrase-wrap mt-4 text-sm leading-7 text-secondary/70">高血圧、脂質異常症、動悸、胸痛、息切れ、健診異常のご相談に対応します。治療の必要性や通院間隔を、生活スタイルに合わせてご提案します。</p><dl class="mt-6 space-y-3 text-sm text-secondary/70"><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な症状</dt><dd>高血圧、動悸、胸の圧迫感、むくみ、健診心電図異常</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な検査</dt><dd>心電図、ホルター心電図、心エコー、採血</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">予約目安</dt><dd>初診はWeb予約推奨、紹介状がある方はご持参ください</dd></div></dl><a href="contact.html" class="mt-8 inline-flex items-center gap-2 font-bold text-primary">専門相談を予約<span class="material-symbols-outlined text-base">arrow_forward</span></a></article>
+                    <article class="rounded-3xl border border-accent bg-white p-8 shadow-sm"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-3xl">masks</span><h3 class="text-2xl font-bold text-secondary">発熱外来</h3></div><p class="body-pretty phrase-wrap mt-4 text-sm leading-7 text-secondary/70">発熱、咽頭痛、咳など感染症が疑われる方は、通常診療と導線を分けてご案内します。受診前にお電話またはWeb予約から症状をお知らせください。</p><dl class="mt-6 space-y-3 text-sm text-secondary/70"><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な症状</dt><dd>発熱、咽頭痛、咳、倦怠感、味覚異常</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な検査</dt><dd>抗原検査、必要時の採血、酸素飽和度測定</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">予約目安</dt><dd>来院前連絡必須、時間帯指定でご案内</dd></div></dl><a href="contact.html" class="mt-8 inline-flex items-center gap-2 font-bold text-primary">受診方法を見る<span class="material-symbols-outlined text-base">arrow_forward</span></a></article>
+                    <article class="rounded-3xl border border-accent bg-white p-8 shadow-sm"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-3xl">vaccines</span><h3 class="text-2xl font-bold text-secondary">健康診断・予防接種</h3></div><p class="body-pretty phrase-wrap mt-4 text-sm leading-7 text-secondary/70">雇入時健診、定期健診、特定健診、インフルエンザワクチンなどに対応しています。結果説明や再検査のご相談も同じ院内で完結できます。</p><dl class="mt-6 space-y-3 text-sm text-secondary/70"><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な内容</dt><dd>雇入時健診、定期健診、特定健診、各種予防接種</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">主な検査</dt><dd>採血、胸部レントゲン連携、尿検査、心電図</dd></div><div class="grid gap-1 md:grid-cols-[100px_1fr]"><dt class="font-bold text-secondary">予約目安</dt><dd>事前予約制、企業健診はお問い合わせください</dd></div></dl><a href="contact.html" class="mt-8 inline-flex items-center gap-2 font-bold text-primary">健診を予約<span class="material-symbols-outlined text-base">arrow_forward</span></a></article>
                 </div>
-                <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-                    <!-- Card 1 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">stethoscope</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">健康診断</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">定期健診と予防ケアに対応します。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">cardiology</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">循環器内科</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">心臓や血管の不調を診療します。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">child_care</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">小児科</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">お子さまの成長を支える診療です。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">dentistry</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">歯科診療</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">予防から審美まで対応します。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">neurology</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">神経内科</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">頭痛やしびれを専門的に診療します。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">orthopedics</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">整形外科</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">骨や関節の痛みを幅広く診療します。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 7 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">dermatology</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">皮膚科</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">肌トラブルや美容相談に対応します。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Card 8 -->
-                    <div class="group flex flex-col rounded-xl bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-sm border border-accent">
-                        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-secondary group-hover:bg-primary group-hover:text-secondary transition-colors">
-                            <span class="material-symbols-outlined">psychology</span>
-                        </div>
-                        <h4 class="mb-2 text-base font-bold text-secondary">メンタルケア</h4>
-                        <p class="mb-4 text-sm leading-relaxed text-secondary/70">不安やストレスの相談に応えます。</p>
-                        <div class="mt-auto">
-                            <a href="contact.html" class="text-xs font-bold uppercase tracking-wider text-primary inline-flex items-center gap-1">
-                                詳しく見る <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
+            </div>
+        </section>
+        <section class="bg-white py-16 md:py-24">
+            <div class="px-4 lg:px-20">
+                <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+                    <div class="rounded-3xl border border-accent bg-[#f8fcff] p-8"><h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">受診の目安</h3><h2 class="heading-balance text-3xl font-bold text-secondary">迷いやすいケースを、受診先ごとに整理しました</h2><ul class="mt-8 space-y-4 text-sm leading-7 text-secondary/75"><li class="flex gap-3"><span class="material-symbols-outlined text-primary">check_circle</span><span class="phrase-wrap">健診で血圧や心電図の異常を指摘された方は、循環器内科の予約がおすすめです。</span></li><li class="flex gap-3"><span class="material-symbols-outlined text-primary">check_circle</span><span class="phrase-wrap">発熱や感染症が疑われる症状の方は、一般外来ではなく発熱外来枠でご案内します。</span></li><li class="flex gap-3"><span class="material-symbols-outlined text-primary">check_circle</span><span class="phrase-wrap">複数の症状が重なっている場合も、まずは総合内科でご相談いただけます。</span></li><li class="flex gap-3"><span class="material-symbols-outlined text-primary">check_circle</span><span class="phrase-wrap">精密検査や入院が必要な際は、近隣の専門病院へ紹介状を発行します。</span></li></ul></div>
+                    <div class="rounded-3xl border border-accent bg-background-off p-8"><h3 class="text-lg font-bold text-secondary">保険診療と自費のご案内</h3><p class="body-pretty phrase-wrap mt-4 text-sm leading-7 text-secondary/70">通常の内科診療、循環器診療、再診管理は保険診療が中心です。雇入時健診や診断書、一部予防接種は自費となるため、予約時に概要をご案内します。</p><div class="mt-8 rounded-2xl bg-white p-5"><p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">ご相談先</p><p class="body-pretty phrase-wrap mt-3 text-sm leading-7 text-secondary/75">健診予約や企業向けのご相談は<br>03-1234-5678 / info@aoba-clinic.example.jp</p></div></div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
     <footer class="bg-background-off pt-16 pb-8 border-t border-accent">
         <div class="px-4 lg:px-20">
-            <div class="grid grid-cols-2 gap-8 md:gap-12 md:grid-cols-4 mb-12">
-                <div class="col-span-2 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-secondary">
-                            <span class="material-symbols-outlined text-xl">local_hospital</span>
-                        </div>
-                        <span class="text-lg font-bold text-secondary">Clean & Trust</span>
-                    </div>
-                    <p class="text-sm text-secondary/60 leading-relaxed mb-6">
-                        先進医療と丁寧な対話を両立し、安心して通える医療体験を提供します。
-                    </p>
-                    <div class="flex gap-4">
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">share</span></a>
-                        <a class="text-secondary/60 hover:text-primary" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
-                    </div>
-                </div>
-                <div class="w-full pr-4">
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Departments / 診療案内</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">循環器内科</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">神経内科</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">小児科</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">整形外科</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">歯科診療</a></li>
-                    </ul>
-                </div>
-                <div class="w-full pl-4">
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Quick Links / ご案内</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="about.html">医院紹介</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">医師紹介</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">予約案内</a></li>
-                        <li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">お問い合わせ</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-2 md:col-span-1">
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">Contact Us / お問い合わせ</h4>
-                    <ul class="flex flex-col gap-4">
-                        <li class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-primary mt-0.5 text-lg">location_on</span>
-                            <span class="text-sm text-secondary/60">123 Health Avenue, Medical District, New York, NY 10001</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary text-lg">phone</span>
-                            <span class="text-sm text-secondary/60">+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary text-lg">mail</span>
-                            <span class="text-sm text-secondary/60">support@cleanandtrust.com</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] mb-12">
+                <div><div class="flex items-center gap-2 mb-6"><div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-secondary"><span class="material-symbols-outlined text-xl">local_hospital</span></div><span class="text-lg font-bold text-secondary">青葉内科循環器クリニック</span></div><p class="body-pretty text-sm text-secondary/60 leading-relaxed mb-4">働く世代と地域のご家族に向けて、日常の不調から生活習慣病の継続管理まで相談しやすい総合内科を目指しています。</p><p class="text-sm text-secondary/60">管理者: 柴田 恒一 / 保険医療機関 / 在宅療養支援診療所連携あり</p></div>
+                <div><h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">診療メニュー</h4><ul class="flex flex-col gap-3"><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">総合内科</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">循環器内科</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">発熱外来</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">健康診断・予防接種</a></li></ul></div>
+                <div><h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">ご案内</h4><ul class="flex flex-col gap-3"><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="about.html">医院紹介</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">初診の方へ</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">アクセス</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Web予約</a></li></ul></div>
+                <div><h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">お問い合わせ</h4><ul class="flex flex-col gap-4"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary mt-0.5 text-lg">location_on</span><span class="text-sm text-secondary/60">〒100-0000 東京都千代田区青葉町1-2-3 青葉メディカルモール2F</span></li><li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">phone</span><span class="text-sm text-secondary/60">03-1234-5678</span></li><li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">mail</span><span class="text-sm text-secondary/60">info@aoba-clinic.example.jp</span></li></ul></div>
             </div>
-            <div class="border-t border-accent pt-8 text-center md:flex md:justify-between md:text-left">
-                <p class="text-xs text-secondary/40">© 2026 Clean & Trust Medical Center. All rights reserved.</p>
-                <div class="mt-4 flex justify-center gap-6 md:mt-0">
-                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">プライバシーポリシー</a>
-                    <a class="text-xs text-secondary/40 hover:text-primary" href="#">利用規約</a>
-                </div>
-            </div>
+            <div class="border-t border-accent pt-8 text-center md:flex md:justify-between md:text-left"><p class="text-xs text-secondary/40">© 2026 青葉内科循環器クリニック. All rights reserved.</p><div class="mt-4 flex justify-center gap-6 md:mt-0"><a class="text-xs text-secondary/40 hover:text-primary" href="contact.html">個人情報保護方針</a><a class="text-xs text-secondary/40 hover:text-primary" href="contact.html">受診案内</a></div></div>
         </div>
     </footer>
-
-    <!-- Template Common Scripts -->
     <div id="template-common-container"></div>
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
-
     <script>
-        // Mobile Menu Toggle Function
         function toggleCleanMenu() {
             const toggle = document.querySelector('.clean-mobile-toggle');
             const backdrop = document.querySelector('.clean-menu-backdrop');
             const menu = document.querySelector('.clean-mobile-menu');
-
             if (toggle && backdrop && menu) {
-                toggle.classList.toggle('active');
-                backdrop.classList.toggle('active');
-                menu.classList.toggle('active');
-
-                // Toggle bars animation
+                toggle.classList.toggle('active'); backdrop.classList.toggle('active'); menu.classList.toggle('active');
                 const bars = toggle.querySelectorAll('.bar');
                 if (toggle.classList.contains('active')) {
-                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-                    bars[1].style.opacity = '0';
-                    bars[1].style.transform = 'scaleX(0)';
-                    bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-                    toggle.setAttribute('aria-expanded', 'true');
-                    toggle.setAttribute('aria-label', 'メニューを閉じる');
-                    document.body.style.overflow = 'hidden';
+                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)'; bars[1].style.opacity = '0'; bars[1].style.transform = 'scaleX(0)'; bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                    toggle.setAttribute('aria-expanded', 'true'); toggle.setAttribute('aria-label', 'メニューを閉じる'); document.body.style.overflow = 'hidden';
                 } else {
-                    bars[0].style.transform = 'none';
-                    bars[1].style.opacity = '1';
-                    bars[1].style.transform = 'none';
-                    bars[2].style.transform = 'none';
-                    toggle.setAttribute('aria-expanded', 'false');
-                    toggle.setAttribute('aria-label', 'メニューを開く');
-                    document.body.style.overflow = '';
+                    bars[0].style.transform = 'none'; bars[1].style.opacity = '1'; bars[1].style.transform = 'none'; bars[2].style.transform = 'none';
+                    toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'メニューを開く'); document.body.style.overflow = '';
                 }
-
-                // Menu items animation
                 const items = menu.querySelectorAll('li');
                 items.forEach((item, index) => {
-                    if (toggle.classList.contains('active')) {
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, index * 50);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                    }
+                    if (toggle.classList.contains('active')) setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, index * 50);
+                    else { item.style.opacity = '0'; item.style.transform = 'translateY(20px)'; }
                 });
             }
         }
-
-        // Close menu on backdrop click
         document.querySelector('.clean-menu-backdrop')?.addEventListener('click', toggleCleanMenu);
-
-        // Close menu on link click
-        document.querySelectorAll('.clean-mobile-menu a').forEach(link => {
-            link.addEventListener('click', toggleCleanMenu);
-        });
-
-        // Close menu on Escape key
+        document.querySelectorAll('.clean-mobile-menu a').forEach(link => { link.addEventListener('click', toggleCleanMenu); });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const toggle = document.querySelector('.clean-mobile-toggle');
-                if (toggle && toggle.classList.contains('active')) {
-                    toggleCleanMenu();
-                }
+                if (toggle && toggle.classList.contains('active')) toggleCleanMenu();
             }
         });
     </script>
 </body>
-
 </html>
-
-
-
-
