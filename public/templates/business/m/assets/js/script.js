@@ -98,7 +98,7 @@
     if (demoForm && formNote) {
         demoForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            formNote.textContent = 'Template form submitted locally. Replace action, method, and handler before production use.';
+            formNote.textContent = 'デモフォームとしてローカル送信を止めています。実運用では 送信先と送信処理を差し替えてください。';
         });
     }
 

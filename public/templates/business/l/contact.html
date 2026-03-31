@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Logical Systems - 技術相談・デプロイ依頼</title>
+    <title>Contact | Logical Systems - 導入相談</title>
 
     <link rel="canonical" href="https://example.com/templates/business/l/contact.html">
-    <meta name="description" content="Logical Systems へのお問い合わせ。デプロイ設計、運用監視、セキュリティ強化など、技術課題についてご相談ください。">
-    <meta property="og:title" content="Contact | Logical Systems">
-    <meta property="og:description" content="技術相談・デプロイ依頼のお問い合わせフォーム">
+    <meta name="description" content="Logical Systems へのお問い合わせ。導入相談、連携設計、運用改善など、業務基盤に関するご相談を受け付けています。">
+    <meta property="og:title" content="Contact | Logical Systems - 導入相談">
+    <meta property="og:description" content="導入相談、連携設計、運用改善など、業務基盤に関するご相談を受け付けています。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:url" content="https://example.com/templates/business/l/contact.html">
@@ -20,12 +20,12 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Logical Systems",
-        "description": "低遅延・高可用性の B2B システム基盤を提供。",
+        "description": "導入相談、連携設計、運用改善など、業務基盤に関するご相談を受け付けています。",
         "url": "https://example.com/templates/business/l/contact.html",
-        "logo": "assets/generated/external-image-01.svg",
         "contactPoint": {
             "@type": "ContactPoint",
-            "contactType": "technical support",
+            "contactType": "customer service",
+            "telephone": "+81-3-1234-5678",
             "availableLanguage": "Japanese"
         }
     }
@@ -44,6 +44,8 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
+        h1, h2, h3, h4 { text-wrap: balance; }
+        p, li, summary, label, option { text-wrap: pretty; }
         .l-menu-backdrop.active { opacity: 1 !important; visibility: visible !important; background-color: rgba(2, 6, 23, 0.8) !important; backdrop-filter: blur(4px) !important; }
         .l-mobile-menu.active { opacity: 1 !important; visibility: visible !important; }
         .contact-form input, .contact-form textarea, .contact-form select {
@@ -113,10 +115,10 @@
         <section class="py-8 md:py-12 mb-8 l-reveal">
             <span class="text-[10px] font-bold uppercase text-primary tracking-[0.3em]">Contact</span>
             <h1 class="text-2xl md:text-3xl lg:text-4xl font-black mt-2 mb-4">
-                GET IN TOUCH.
+                まずは、今の状況を聞かせてください。
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
-                技術相談・デプロイ依頼・運用見積もりなど、お気軽にお問い合わせください。<br class="hidden xl:block">24 時間以内に担当者よりご連絡いたします。
+                導入前の相談、既存システムとの連携、運用の見直しまでまとめて受け付けています。<br class="hidden xl:block">ご返信は原則 1 営業日以内を目安にしています。
             </p>
         </section>
 
@@ -145,29 +147,40 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label for="service-type" class="block text-xs font-bold uppercase text-slate-500 mb-2">ご相談内容 <span class="text-primary">*</span></label>
-                        <select id="service-type" name="service_type" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm">
-                            <option value="">選択してください</option>
-                            <option value="deployment">デプロイ設計・構築</option>
-                            <option value="integration">API 連携・システム統合</option>
-                            <option value="monitoring">監視・運用委託</option>
-                            <option value="security">セキュリティ診断・強化</option>
-                            <option value="performance">パフォーマンスチューニング</option>
-                            <option value="support">24/7 サポート契約</option>
-                            <option value="other">その他</option>
-                        </select>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="service-type" class="block text-xs font-bold uppercase text-slate-500 mb-2">ご相談内容 <span class="text-primary">*</span></label>
+                            <select id="service-type" name="service_type" required class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm">
+                                <option value="">選択してください</option>
+                                <option value="planning">導入前の整理</option>
+                                <option value="integration">API 連携・システム統合</option>
+                                <option value="operations">運用設計・保守体制</option>
+                                <option value="security">セキュリティ・権限設計</option>
+                                <option value="performance">性能改善・ボトルネック解消</option>
+                                <option value="support">継続支援・改善提案</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timeline" class="block text-xs font-bold uppercase text-slate-500 mb-2">導入予定時期</label>
+                            <select id="timeline" name="timeline" class="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm">
+                                <option value="">選択してください</option>
+                                <option value="immediate">できるだけ早く</option>
+                                <option value="1-3m">1〜3 か月以内</option>
+                                <option value="3-6m">3〜6 か月以内</option>
+                                <option value="planning">まずは情報収集中</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="flex-1 flex flex-col">
                         <label for="message" class="block text-xs font-bold uppercase text-slate-500 mb-2">詳細 <span class="text-primary">*</span></label>
-                        <textarea id="message" name="message" rows="6" required class="w-full flex-1 min-h-[220px] lg:min-h-[280px] px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm resize-none" placeholder="現在の課題、ご希望の納期、ご予算感などをお聞かせください..."></textarea>
+                        <textarea id="message" name="message" rows="6" required class="w-full flex-1 min-h-[220px] lg:min-h-[280px] px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-sm resize-none" placeholder="今の運用、連携先、困っていること、相談したい範囲を簡単にお書きください。"></textarea>
                     </div>
 
                     <div class="flex items-start gap-3">
                         <input type="checkbox" id="privacy" name="privacy" required class="mt-1 w-4 h-4 accent-primary">
                         <label for="privacy" class="text-xs text-slate-500">
-                            <a href="#" class="text-primary hover:underline">プライバシーポリシー</a>に同意し、個人情報の取得・利用に同意します <span class="text-primary">*</span>
+                            <a href="../../../privacy.html" class="text-primary hover:underline">プライバシーポリシー</a>に同意し、個人情報の取得・利用に同意します <span class="text-primary">*</span>
                         </label>
                     </div>
 
@@ -182,28 +195,28 @@
                 <div class="p-6 bg-slate-900 text-white rounded border border-slate-800 l-tech-panel">
                     <h3 class="font-bold text-lg mb-4 uppercase flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">support_agent</span>
-                        技術サポート
+                        お問い合わせ窓口
                     </h3>
                     <div class="space-y-4 text-sm text-slate-300">
                         <div class="flex items-start gap-3">
                             <span class="material-symbols-outlined text-primary text-sm mt-0.5">mail</span>
                             <div>
                                 <span class="block font-bold text-white">Email</span>
-                                <a href="mailto:support@logical-systems.example" class="hover:text-primary transition-colors">support@logical-systems.example</a>
+                                <a href="mailto:contact@logical-systems.co.jp" class="hover:text-primary transition-colors">contact@logical-systems.co.jp</a>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
                             <span class="material-symbols-outlined text-primary text-sm mt-0.5">phone</span>
                             <div>
-                                <span class="block font-bold text-white">Phone (24/7)</span>
-                                <a href="tel:0120123456" class="hover:text-primary transition-colors">0120-123-456</a>
+                                <span class="block font-bold text-white">Phone</span>
+                                <a href="tel:0312345678" class="hover:text-primary transition-colors">03-1234-5678</a>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
                             <span class="material-symbols-outlined text-primary text-sm mt-0.5">chat</span>
                             <div>
                                 <span class="block font-bold text-white">Live Chat</span>
-                                <span class="text-xs text-slate-400">営業時間：9:00-18:00 (JST)</span>
+                                <span class="text-xs text-slate-400">受付時間：9:00-18:00 (JST)</span>
                             </div>
                         </div>
                     </div>
@@ -228,11 +241,11 @@
                 <div class="p-6 bg-primary/10 border border-primary/30 rounded">
                     <h3 class="font-bold text-sm mb-2 uppercase text-primary">緊急対応について</h3>
                     <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
-                        本番環境の障害など、緊急の対応が必要な場合は 24/7 サポート窓口へご連絡ください。
+                        本番環境の障害など、緊急対応が必要な場合は通常窓口へお電話ください。
                     </p>
-                    <a href="tel:0120123456" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                    <a href="tel:0312345678" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
                         <span class="material-symbols-outlined text-sm">emergency</span>
-                        緊急ダイヤル：0120-123-456
+                        代表番号：03-1234-5678
                     </a>
                 </div>
             </div>
@@ -286,9 +299,9 @@
                 </div>
                 <p class="text-[10px] text-slate-500 uppercase tracking-wider">© 2026 Logical Systems. All Rights Reserved.</p>
                 <div class="flex gap-4 text-[10px] text-slate-500 uppercase">
-                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-primary transition-colors">Terms</a>
-                    <a href="#" class="hover:text-primary transition-colors">API</a>
+                    <a href="../../../privacy.html" class="hover:text-primary transition-colors">Privacy</a>
+                    <a href="../../../terms.html" class="hover:text-primary transition-colors">Terms</a>
+                    <a href="service.html" class="hover:text-primary transition-colors">API</a>
                 </div>
             </div>
         </div>
@@ -356,6 +369,5 @@
 
         document.querySelectorAll('.l-reveal').forEach((el) => lObserver.observe(el));
     </script>
-    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

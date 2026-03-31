@@ -87,10 +87,11 @@ body {
     color: #111111;
 }
 
-
 .min-scroll-x {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 1rem;
 }
 
 .min-scroll-x::-webkit-scrollbar {
@@ -115,10 +116,40 @@ body {
     transition: filter 0.7s ease, transform 0.7s ease;
 }
 
+.min-work-card-media {
+    aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 768px) {
+    .min-work-card-media {
+        aspect-ratio: auto;
+        height: 540px;
+    }
+}
+
+.min-scroll-item {
+    scroll-snap-align: start;
+}
+
+.wrap-balance {
+    text-wrap: balance;
+}
+
+.wrap-pretty {
+    text-wrap: pretty;
+}
+
+@supports (word-break: auto-phrase) {
+    .word-phrase {
+        word-break: auto-phrase;
+    }
+}
+
 .group:hover .min-work-image,
 .group:focus-within .min-work-image {
     filter: grayscale(0.65) saturate(0.55) contrast(1.04);
 }
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

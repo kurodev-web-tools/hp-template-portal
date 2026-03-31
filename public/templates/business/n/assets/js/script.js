@@ -107,7 +107,7 @@
     if (demoForm && formNote) {
         demoForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            formNote.textContent = 'Template form submitted locally. Replace action, method, and handler before production use.';
+            formNote.textContent = 'Demo inquiry captured locally. Replace action, method, and handler before production use.';
         });
     }
 
@@ -129,3 +129,4 @@
     syncHeader();
     setMenuState(false);
 }());
+
