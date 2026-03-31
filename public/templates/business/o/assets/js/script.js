@@ -134,4 +134,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.organic-panel, .reveal-up').forEach(el => {
         observer.observe(el);
     });
+
+    document.querySelectorAll('form[data-demo-form="true"]').forEach((form) => {
+        const submitButton = form.querySelector('[data-demo-submit]');
+        const status = form.querySelector('[data-demo-status]');
+
+        if (!submitButton) return;
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.textContent = '送信済み';
+
+            if (status) {
+                status.textContent = 'お問い合わせを受け付けました。1営業日以内にご連絡します。';
+            }
+
+            window.setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = '送信する';
+            }, 2500);
+        });
+    });
 });

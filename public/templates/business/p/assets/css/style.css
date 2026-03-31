@@ -118,17 +118,167 @@ body.pop-shell {
     transform: translateY(-1px);
 }
 
+.p-balance {
+    text-wrap: balance;
+}
+
+.p-pretty {
+    text-wrap: pretty;
+}
+
+.p-phrase {
+    word-break: auto-phrase;
+}
+
+.p-we-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.p-we-card-media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    min-height: 0;
+}
+
+.p-we-card-image {
+    transition: transform 0.55s ease, filter 0.55s ease;
+}
+
+.p-we-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.12) 55%, rgba(0, 0, 0, 0));
+    opacity: 0.92;
+    transition: opacity 0.35s ease;
+}
+
+.p-we-card-copy {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.25rem;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.p-we-card-content {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.p-we-card:hover .p-we-card-overlay,
+.p-we-card:hover .p-we-card-copy {
+    opacity: 0;
+    transform: translateY(0.7rem) rotate(-1.5deg) scale(0.95);
+}
+
+.p-we-card:hover .p-we-card-image {
+    filter: saturate(1.05) contrast(1.02);
+}
+
+@media (hover: none) {
+    .p-we-card:hover .p-we-card-overlay,
+    .p-we-card:hover .p-we-card-copy {
+        opacity: 1;
+        transform: none;
+    }
+
+    .p-we-card:hover .p-we-card-image {
+        filter: none;
+    }
+}
+
+@media (min-width: 1280px) {
+    .p-we-card-media {
+        aspect-ratio: 3 / 4;
+        min-height: 0;
+    }
+}
+
+.p-we-carousel {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.p-we-carousel > .p-we-card {
+    scroll-snap-align: start;
+}
+
+@media (max-width: 767px) {
+    .p-we-carousel {
+        display: flex;
+        align-items: flex-start;
+        overflow-x: auto;
+        gap: 0;
+        margin-inline: -1.5rem;
+        padding: 0.4rem 1.25rem 1rem;
+        scroll-padding-inline: 1.25rem 18vw;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        touch-action: pan-x;
+    }
+
+    .p-we-carousel::after {
+        content: '';
+        flex: 0 0 22vw;
+    }
+
+    .p-we-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .p-we-carousel > .p-we-card {
+        flex: 0 0 76vw;
+        width: 76vw;
+        position: relative;
+        z-index: 1;
+    }
+
+    .p-we-carousel > .p-we-card + .p-we-card {
+        margin-left: -64vw;
+    }
+
+    .p-we-carousel > .p-we-card:nth-child(1) {
+        z-index: 4;
+        transform: translateY(0) rotate(-4deg) scale(0.98);
+    }
+
+    .p-we-carousel > .p-we-card:nth-child(2) {
+        z-index: 3;
+        transform: translateY(0.7rem) rotate(-1.5deg) scale(0.95);
+    }
+
+    .p-we-carousel > .p-we-card:nth-child(3) {
+        z-index: 2;
+        transform: translateY(1.35rem) rotate(1.5deg) scale(0.92);
+    }
+
+    .p-we-carousel > .p-we-card:nth-child(4) {
+        z-index: 1;
+        transform: translateY(2rem) rotate(4deg) scale(0.89);
+    }
+
+    .p-we-carousel > .p-we-card.is-active {
+        z-index: 10;
+        opacity: 1;
+        filter: none;
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
 .pop-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
     border: 4px solid #121212;
     border-radius: 9999px;
-    padding: 0.55rem 0.95rem;
-    font-size: 0.75rem;
+    padding: 0.42rem 0.8rem;
+    font-size: 0.68rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
 }
 
 .pop-form-field {
