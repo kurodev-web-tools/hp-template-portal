@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("[data-contact-form]");
     const formMessage = document.querySelector("[data-form-message]");
     const yearTargets = document.querySelectorAll("[data-current-year]");
+    const contactJumpLinks = document.querySelectorAll('a[href="#contact-form"]');
 
     const setMenuState = (isOpen) => {
         if (!menu || !backdrop) {
@@ -60,6 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     menuLinks.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
+
+    if (currentPage === "contact") {
+        contactJumpLinks.forEach((link) => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                setMenuState(false);
+
+                const target = document.querySelector("#contact-form .q-form-shell .q-section-label") || document.querySelector("[data-contact-form]");
+                if (!target) {
+                    return;
+                }
+
+                window.requestAnimationFrame(() => {
+                    const headerOffset = header ? header.getBoundingClientRect().height : 88;
+                    const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset - 24);
+                    window.scrollTo({ top, behavior: "auto" });
+                });
+            });
+        });
+    }
 
     yearTargets.forEach((target) => {
         target.textContent = String(new Date().getFullYear());
