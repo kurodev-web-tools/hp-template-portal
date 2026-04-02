@@ -9,8 +9,11 @@
     --v-accent: #ffe24a;
     --v-accent-2: #8ce7ff;
 }
+
 * { box-sizing: border-box; }
+
 html { scroll-behavior: smooth; }
+
 body {
     margin: 0;
     background:
@@ -20,6 +23,7 @@ body {
     color: var(--v-text);
     font-family: "Archivo Black", "Noto Sans JP", sans-serif;
 }
+
 a { color: inherit; }
 body.menu-open { overflow: hidden; }
 
@@ -63,9 +67,14 @@ body.menu-open { overflow: hidden; }
 }
 
 .v-nav-link,
-.v-mobile-link { text-decoration: none; }
+.v-mobile-link {
+    text-decoration: none;
+}
+
 .v-nav-link[aria-current="page"],
-.v-mobile-link[aria-current="page"] { color: var(--v-accent); }
+.v-mobile-link[aria-current="page"] {
+    color: var(--v-accent);
+}
 
 .v-mobile-menu,
 .v-mobile-backdrop {
@@ -73,23 +82,39 @@ body.menu-open { overflow: hidden; }
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
+
 .v-mobile-menu { transform: translateX(100%); }
-body.menu-open .v-mobile-backdrop { opacity: 1; pointer-events: auto; }
-body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: translateX(0); }
+
+body.menu-open .v-mobile-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.menu-open .v-mobile-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
 
 .v-poster-grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 1rem;
 }
+
 .v-poster-grid > * { min-width: 0; }
+
+.v-poster,
+.v-list-card,
+.v-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--v-line);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.24);
+}
 
 .v-poster {
     background: linear-gradient(180deg, rgba(20,23,32,0.96), rgba(11,13,19,0.98));
-    border: 1px solid var(--v-line);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.24);
 }
 
 .v-poster::before {
@@ -121,6 +146,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     background: linear-gradient(180deg, #ffe24a, #f8b93d);
     color: #111;
 }
+
 .v-poster--accent::after {
     background: radial-gradient(circle, rgba(17,17,17,0.14), transparent 70%);
 }
@@ -135,6 +161,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     line-height: 0.86;
     letter-spacing: -0.08em;
     text-transform: uppercase;
+    text-wrap: balance;
 }
 
 .v-page-title {
@@ -142,6 +169,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     line-height: 0.94;
     letter-spacing: -0.06em;
     text-transform: uppercase;
+    text-wrap: balance;
 }
 
 .v-section-title {
@@ -149,6 +177,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     line-height: 1.05;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+    text-wrap: balance;
 }
 
 .v-manifesto-line {
@@ -156,6 +185,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     line-height: 0.92;
     text-transform: uppercase;
     letter-spacing: -0.05em;
+    text-wrap: balance;
 }
 
 .v-card-title {
@@ -163,6 +193,7 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     line-height: 1.2;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+    text-wrap: balance;
 }
 
 .v-subtitle {
@@ -170,21 +201,25 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     line-height: 1.25;
     letter-spacing: -0.03em;
     text-transform: uppercase;
+    text-wrap: balance;
 }
 
 .v-body-copy {
     font-size: 1rem;
-    line-height: 1.85;
+    line-height: 1.9;
+    text-wrap: pretty;
 }
 
 .v-card-copy {
     font-size: 0.9375rem;
-    line-height: 1.7;
+    line-height: 1.72;
+    text-wrap: pretty;
 }
 
 .v-fine-copy {
     font-size: 0.75rem;
-    line-height: 1.45;
+    line-height: 1.5;
+    text-wrap: pretty;
 }
 
 .v-footer-copy {
@@ -205,23 +240,29 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     letter-spacing: 0.08em;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
+
 .v-button:hover,
-.v-button:focus-visible { 
-    transform: translate(6px, -6px); 
+.v-button:focus-visible {
+    transform: translate(6px, -6px);
     box-shadow: -6px 6px 0 var(--v-primary);
 }
-.v-button--ghost { background: transparent; color: var(--v-text); border-color: var(--v-line); }
+
+.v-button--ghost {
+    background: transparent;
+    color: var(--v-text);
+    border-color: var(--v-line);
+}
+
 .v-button--ghost:hover,
-.v-button--ghost:focus-visible { 
+.v-button--ghost:focus-visible {
     box-shadow: -6px 6px 0 var(--v-accent);
 }
 
 .v-list-card,
 .v-panel {
     background: rgba(17,20,28,0.92);
-    border: 1px solid var(--v-line);
 }
 
 .v-list-card h1,
@@ -242,13 +283,78 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 .v-panel ul,
 .v-panel input,
 .v-panel textarea,
-.v-panel select { font-family: "Noto Sans JP", sans-serif; }
+.v-panel select {
+    font-family: "Noto Sans JP", sans-serif;
+}
 
-.v-list-card li + li { margin-top: 0.65rem; }
+.v-detail-grid {
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.v-detail-card,
+.v-pill-card,
+.v-number-note,
+.v-sample-card,
+.v-contact-success {
+    border: 1px solid var(--v-line);
+    background: rgba(255,255,255,0.04);
+}
+
+.v-detail-card {
+    padding: 1rem;
+}
+
+.v-signal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+    color: var(--v-muted);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+}
+
+.v-signal-list li {
+    padding-left: 1rem;
+    position: relative;
+}
+
+.v-signal-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: var(--v-accent);
+}
+
+.v-sample-card {
+    padding: 1.15rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.v-sample-card:hover,
+.v-sample-card:focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(255,226,74,0.5);
+}
+
+.v-pill-card {
+    padding: 1rem 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+}
 
 .v-number-note {
     border-left: 4px solid var(--v-primary);
-    background: rgba(255,255,255,0.04);
+    padding: 0.95rem 1rem;
 }
 
 .v-footer-grid {
@@ -275,25 +381,35 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     font: inherit;
     font-family: "Noto Sans JP", sans-serif;
 }
-.v-form-field textarea { min-height: 9rem; resize: vertical; }
+
+.v-form-field textarea {
+    min-height: 9rem;
+    resize: vertical;
+    word-break: auto-phrase;
+}
+
 .v-form-field input:focus,
 .v-form-field textarea:focus,
-.v-form-field select:focus { outline: none; border-color: var(--v-accent); }
-
-.v-form-message {
-    min-height: 1.4rem;
-    font-size: 0.9rem;
-    color: var(--v-muted);
+.v-form-field select:focus {
+    outline: none;
+    border-color: var(--v-accent);
 }
-.v-form-message.is-success { color: var(--v-accent-2); }
-.v-form-message.is-error { color: #ffb1a4; }
 
-/* Reveal Animations */
+.v-contact-success {
+    padding: 1.25rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
 .v-poster,
 .v-stackline,
 .v-page-title,
 .v-section-title,
-.v-manifesto-line {
+.v-manifesto-line,
+.v-sample-card,
+.v-detail-card {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -304,7 +420,6 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     transform: translateY(0) !important;
 }
 
-/* Stagger for grid siblings */
 .v-poster:nth-child(2) { transition-delay: 0.1s; }
 .v-poster:nth-child(3) { transition-delay: 0.2s; }
 .v-poster:nth-child(4) { transition-delay: 0.3s; }
@@ -333,6 +448,6 @@ body.menu-open .v-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     .v-card-title { font-size: 1.5rem; }
     .v-manifesto-line { font-size: 1.875rem; }
     .v-body-copy { line-height: 1.75; }
-    .v-card-copy { line-height: 1.6; }
+    .v-card-copy { line-height: 1.62; }
     .v-footer-copy { font-size: 0.75rem; }
 }

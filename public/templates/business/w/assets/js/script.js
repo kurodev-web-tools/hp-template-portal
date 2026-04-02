@@ -1,4 +1,4 @@
-// Template W — Wide Horizon Panorama
+// Wide Horizon Panorama interactions
 
 // === NAV SCROLL HANDLER ===
 const nav = document.querySelector('.site-nav');
@@ -66,4 +66,16 @@ if (counters.length) {
     { threshold: 0.6 }
   );
   counters.forEach(el => countObserver.observe(el));
+}
+
+// === STATIC CONTACT COMPLETION ===
+const contactForm = document.querySelector('[data-contact-form]');
+const contactSuccess = document.querySelector('[data-contact-success]');
+if (contactForm && contactSuccess) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    contactForm.classList.add('is-hidden');
+    contactSuccess.classList.remove('is-hidden');
+    contactForm.reset();
+  });
 }

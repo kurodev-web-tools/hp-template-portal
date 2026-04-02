@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 invalid.focus();
                 return;
             }
-            message.textContent = "お問い合わせ内容を受け付けました。担当より 2 営業日以内にご連絡します。";
+            message.textContent = "お問い合わせを受け付けました。担当デスクより 2 営業日以内にご連絡します。";
             message.classList.add("is-success");
             message.classList.remove("is-error");
             form.reset();
