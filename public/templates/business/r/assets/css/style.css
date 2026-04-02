@@ -36,6 +36,39 @@ body { min-height: 100vh; overflow-x: hidden; }
 .royal-button--primary { background: var(--royal-gold); color: var(--royal-ink); }
 .royal-button--ghost { color: var(--royal-ivory); background: transparent; }
 .royal-cta { background: linear-gradient(120deg, rgba(66, 32, 42, 0.9), rgba(15, 16, 22, 0.96)), radial-gradient(circle at top right, rgba(207, 171, 103, 0.16), transparent 18rem); }
+.royal-display,
+.royal-frame h2,
+.royal-frame h3,
+.royal-panel h2,
+.royal-panel h3,
+.royal-card h2,
+.royal-card h3,
+.royal-cta h2 {
+    text-wrap: balance;
+}
+.royal-frame p,
+.royal-panel p,
+.royal-card p,
+.royal-cta p,
+.royal-number-note {
+    text-wrap: pretty;
+}
+.royal-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(247, 240, 225, 0.56);
+}
+.royal-breadcrumb a { color: rgba(247, 240, 225, 0.72); }
+.royal-breadcrumb span { color: rgba(247, 240, 225, 0.38); }
+.royal-hero-home-title {
+    text-wrap: normal;
+    word-break: keep-all;
+}
 
 @media (max-width: 767.98px) {
     .royal-header > div { padding: 0.85rem 1rem; gap: 0.75rem; }
@@ -72,9 +105,14 @@ body { min-height: 100vh; overflow-x: hidden; }
     .royal-card h3 { font-size: 1.68rem !important; line-height: 1.1; }
     .royal-hero-home + section .royal-card h3 { font-size: 1.38rem !important; line-height: 1.08; }
     .royal-card p { line-height: 1.8 !important; }
+    .royal-index-intro-title { font-size: clamp(1.6rem, 6.8vw, 1.9rem) !important; line-height: 1.04; text-wrap: normal; word-break: keep-all; }
+    .royal-index-card-title { font-size: clamp(1.18rem, 5.4vw, 1.32rem) !important; line-height: 1.1; text-wrap: normal; word-break: keep-all; }
+    .royal-index-timeline-title { font-size: clamp(1.12rem, 5vw, 1.26rem) !important; line-height: 1.08; text-wrap: normal; word-break: keep-all; }
+    .royal-index-setup-title { font-size: clamp(1.42rem, 6.2vw, 1.68rem) !important; line-height: 1.05; text-wrap: normal; word-break: keep-all; }
     .royal-panel h2.royal-display,
     .royal-card h2.royal-display { font-size: 2rem !important; line-height: 1.08; }
-    .royal-hero-service + section .royal-card h2 { font-size: 1.52rem !important; line-height: 1.1; }
+    .royal-hero-home + section h2.royal-display { font-size: 1.84rem !important; line-height: 1.06; }
+    .royal-hero-service + section .royal-card h2 { font-size: 1.32rem !important; line-height: 1.08; }
     .royal-hero-about + section .royal-card h2 { font-size: 1.44rem !important; line-height: 1.12; }
     .royal-cta { padding: 1.5rem !important; }
     .royal-cta h2 { font-size: 1.92rem !important; line-height: 1.02; }
@@ -87,13 +125,92 @@ body { min-height: 100vh; overflow-x: hidden; }
 }
 
 
+.royal-hero-home-layout {
+    display: grid;
+    gap: 2.5rem;
+}
 
+.royal-hero-home-layout > :first-child {
+    min-width: 0;
+}
 
+.royal-about-hero-layout {
+    display: grid;
+    gap: 2rem;
+}
 
+.royal-about-hero-layout > :first-child {
+    min-width: 0;
+}
 
+.royal-about-flow {
+    display: grid;
+    gap: 1rem;
+}
 
+.royal-about-flow-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(207, 171, 103, 0.16);
+}
 
+.royal-about-flow-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+}
 
+.royal-about-flow-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(207, 171, 103, 0.22);
+    color: var(--royal-gold);
+    font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.12em;
+}
 
+.royal-about-flow-title {
+    color: var(--royal-ivory);
+    font-size: 0.88rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.royal-about-title {
+    text-wrap: normal;
+    word-break: keep-all;
+    font-size: clamp(2rem, 8.6vw, 2.25rem);
+    line-height: 0.95;
+}
+
+.royal-about-flow-headline {
+    font-size: clamp(1.8rem, 7.6vw, 2.2rem);
+    line-height: 0.98;
+}
+
+@media (min-width: 768px) {
+    .royal-hero-home-layout {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        align-items: stretch;
+    }
+
+    .royal-about-hero-layout {
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+        align-items: start;
+    }
+
+    .royal-about-title {
+        font-size: clamp(3.15rem, 4.5vw, 4.15rem);
+    }
+
+    .royal-about-flow-headline {
+        font-size: clamp(2rem, 2.8vw, 2.6rem);
+    }
+}
 
 

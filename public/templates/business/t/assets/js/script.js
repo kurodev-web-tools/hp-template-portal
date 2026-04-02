@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menuButton?.setAttribute("aria-expanded", String(isOpen));
         closeButton?.setAttribute("aria-expanded", String(isOpen));
         menu?.setAttribute("aria-hidden", String(!isOpen));
+        menu?.toggleAttribute("inert", !isOpen);
         if (backdrop) {
             backdrop.hidden = !isOpen;
         }
