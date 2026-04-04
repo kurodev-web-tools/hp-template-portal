@@ -61,20 +61,32 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-stamped');
+                entry.target.style.willChange = "auto";
                 stampObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.12,
+        rootMargin: '0px 0px -32px 0px'
     });
 
-    stampElements.forEach(el => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    stampElements.forEach((el) => {
+        if (reduceMotion) {
+            el.classList.add("is-stamped");
+            el.style.willChange = "auto";
+            return;
+        }
+
         // Only observe elements not already in viewport on load to prevent jarring load flash
-        if (el.getBoundingClientRect().top > window.innerHeight) {
+        if (el.getBoundingClientRect().top > window.innerHeight + 24) {
             stampObserver.observe(el);
         } else {
-            el.classList.add('is-stamped');
+            requestAnimationFrame(() => {
+                el.classList.add("is-stamped");
+                el.style.willChange = "auto";
+            });
         }
     });
 

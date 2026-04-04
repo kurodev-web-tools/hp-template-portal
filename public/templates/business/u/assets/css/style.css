@@ -38,29 +38,14 @@ body.menu-open { overflow: hidden; }
 body::after {
     content: "";
     position: fixed;
-    inset: -50%;
-    width: 200%;
-    height: 200%;
+    inset: 0;
     pointer-events: none;
-    z-index: 9999;
-    opacity: 0.04;
+    z-index: 2;
+    opacity: 0.028;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    animation: u-grain 8s steps(10) infinite;
+    background-size: 180px 180px;
     mix-blend-mode: overlay;
-}
-
-@keyframes u-grain {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -10%); }
-    20% { transform: translate(-15%, 5%); }
-    30% { transform: translate(7%, -25%); }
-    40% { transform: translate(-5%, 25%); }
-    50% { transform: translate(-15%, 10%); }
-    60% { transform: translate(15%, 0%); }
-    70% { transform: translate(0%, 15%); }
-    80% { transform: translate(3%, 35%); }
-    90% { transform: translate(-10%, 10%); }
 }
 
 .u-shell::before {
@@ -68,20 +53,22 @@ body::after {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    opacity: 0.16;
+    z-index: 1;
+    opacity: 0.1;
     background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+        linear-gradient(rgba(255,255,255,0.038) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.032) 1px, transparent 1px),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 4px);
+    background-size: 40px 40px, 40px 40px, auto;
 }
 
 .u-shell::after {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
     pointer-events: none;
-    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 4px);
-    opacity: 0.08;
+    background: radial-gradient(circle at top right, rgba(239, 122, 34, 0.08), transparent 28%);
+    opacity: 0.7;
 }
 
 .u-kicker {
@@ -170,40 +157,41 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 /* Scroll Stamp Animation */
 .u-paper-card, .u-poster, .u-list-card {
     opacity: 0;
-    transform: scale(1.05) translateY(20px);
+    transform: translateY(16px);
+    will-change: transform, opacity;
 }
 
 .u-paper-card.is-stamped, .u-poster.is-stamped, .u-list-card.is-stamped {
-    animation: u-stamp-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: u-stamp-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes u-stamp-in {
     0% {
         opacity: 0;
-        transform: scale(1.08) translateY(30px) rotate(2deg);
+        transform: translateY(20px);
     }
     100% {
         opacity: 1;
-        transform: scale(1) translateY(0) rotate(0deg);
+        transform: translateY(0);
     }
 }
 
 .u-paper-card--tilt-left.is-stamped {
-    animation: u-stamp-in-left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: u-stamp-in-left 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes u-stamp-in-left {
-    0% { opacity: 0; transform: scale(1.08) translateY(30px) rotate(0deg); }
-    100% { opacity: 1; transform: scale(1) translateY(0) rotate(-2.4deg); }
+    0% { opacity: 0; transform: translateY(20px) rotate(-0.6deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(-2.4deg); }
 }
 
 .u-paper-card--tilt-right.is-stamped {
-    animation: u-stamp-in-right 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: u-stamp-in-right 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes u-stamp-in-right {
-    0% { opacity: 0; transform: scale(1.08) translateY(30px) rotate(0deg); }
-    100% { opacity: 1; transform: scale(1) translateY(0) rotate(2.6deg); }
+    0% { opacity: 0; transform: translateY(20px) rotate(0.6deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(2.6deg); }
 }
 
 .u-cutline {
@@ -326,6 +314,26 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     box-shadow: 0px 0px 0 var(--u-ink);
 }
 
+.u-list-card .u-link-button--ghost,
+.u-poster .u-link-button--ghost {
+    background: rgba(255,255,255,0.02);
+    color: var(--u-text);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.45);
+}
+
+.u-list-card .u-link-button--ghost:hover,
+.u-list-card .u-link-button--ghost:focus-visible,
+.u-poster .u-link-button--ghost:hover,
+.u-poster .u-link-button--ghost:focus-visible {
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+}
+
+.u-list-card .u-link-button--ghost:active,
+.u-poster .u-link-button--ghost:active {
+    box-shadow: 0 0 0 rgba(0,0,0,0.45);
+}
+
 .u-note {
     border-left: 4px solid var(--u-accent);
     background: rgba(17,17,17,0.06);
@@ -396,12 +404,36 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
 .u-form-message.is-success { color: var(--u-accent-2); }
 .u-form-message.is-error { color: #ff9aa4; }
 
+.u-contact-info-grid {
+    align-items: start;
+}
+
 footer p,
 footer a {
     word-break: auto-phrase;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    body::after,
+    .u-shell::before,
+    .u-shell::after {
+        opacity: 0.04;
+    }
+    .u-paper-card,
+    .u-poster,
+    .u-list-card {
+        opacity: 1;
+        transform: none;
+        animation: none !important;
+        will-change: auto;
+    }
+}
+
 @media (min-width: 1024px) {
+    .u-contact-info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .u-page-title { font-size: 4.5rem; }
     .u-section-title { font-size: 2.25rem; line-height: 1.15; }
     .u-card-title { font-size: 1.875rem; line-height: 1.2; }
@@ -420,6 +452,11 @@ footer a {
     .u-shell::before { background-size: 28px 28px; }
     .u-kicker,
     .u-tape { font-size: 0.68rem; }
+    .u-section-title--compact {
+        font-size: 2rem;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+    }
     .u-masthead {
         font-size: clamp(2.8rem, 17vw, 4.6rem);
         line-height: 0.9;

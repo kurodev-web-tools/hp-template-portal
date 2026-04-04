@@ -8,6 +8,7 @@
     --v-primary: #ff5332;
     --v-accent: #ffe24a;
     --v-accent-2: #8ce7ff;
+    --v-display-font: "Archivo Black", "Noto Sans JP", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -21,7 +22,7 @@ body {
         radial-gradient(circle at bottom right, rgba(255,226,74,0.12), transparent 24%),
         linear-gradient(180deg, #11131a 0%, #090b10 100%);
     color: var(--v-text);
-    font-family: "Archivo Black", "Noto Sans JP", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
 }
 
 a { color: inherit; }
@@ -34,28 +35,16 @@ body.menu-open { overflow: hidden; }
 
 .v-shell::before {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.22;
+    opacity: 0.08;
     background:
-        linear-gradient(90deg, transparent 0 9%, rgba(255,255,255,0.06) 9% 9.4%, transparent 9.4% 33%, rgba(255,255,255,0.06) 33% 33.4%, transparent 33.4% 66%, rgba(255,255,255,0.06) 66% 66.4%, transparent 66.4% 100%);
+        linear-gradient(90deg, transparent 0 10%, rgba(255,255,255,0.04) 10% 10.3%, transparent 10.3% 33.2%, rgba(255,255,255,0.04) 33.2% 33.5%, transparent 33.5% 66.5%, rgba(255,255,255,0.04) 66.5% 66.8%, transparent 66.8% 100%);
 }
 
 .v-shell::after {
-    content: "";
-    position: fixed;
-    inset: -50%;
-    pointer-events: none;
-    z-index: 9999;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    animation: v-noise-shift 0.2s steps(2) infinite;
-}
-
-@keyframes v-noise-shift {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-5%, -5%); }
+    content: none;
 }
 
 .v-kicker {
@@ -80,7 +69,7 @@ body.menu-open { overflow: hidden; }
 .v-mobile-backdrop {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .v-mobile-menu { transform: translateX(100%); }
@@ -110,7 +99,7 @@ body.menu-open .v-mobile-menu {
     position: relative;
     overflow: hidden;
     border: 1px solid var(--v-line);
-    box-shadow: 0 18px 50px rgba(0,0,0,0.24);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
 }
 
 .v-poster {
@@ -130,16 +119,10 @@ body.menu-open .v-mobile-menu {
     position: absolute;
     right: -5%;
     top: -5%;
-    width: 150px;
-    height: 150px;
+    width: 128px;
+    height: 128px;
     border-radius: 999px;
-    background: radial-gradient(circle, rgba(255,83,50,0.18), transparent 70%);
-    animation: v-glow-pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes v-glow-pulse {
-    0%, 100% { opacity: 0.5; transform: scale(0.9); }
-    50% { opacity: 1; transform: scale(1.15); }
+    background: radial-gradient(circle, rgba(255,83,50,0.12), transparent 72%);
 }
 
 .v-poster--accent {
@@ -157,49 +140,55 @@ body.menu-open .v-mobile-menu {
 }
 
 .v-stackline {
+    font-family: var(--v-display-font);
     font-size: clamp(3.6rem, 9.5vw, 9rem);
-    line-height: 0.86;
-    letter-spacing: -0.08em;
+    line-height: 0.88;
+    letter-spacing: -0.05em;
     text-transform: uppercase;
     text-wrap: balance;
 }
 
 .v-page-title {
+    font-family: var(--v-display-font);
     font-size: 2.75rem;
     line-height: 0.94;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.045em;
     text-transform: uppercase;
     text-wrap: balance;
 }
 
 .v-section-title {
+    font-family: var(--v-display-font);
     font-size: 1.875rem;
     line-height: 1.05;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
     text-wrap: balance;
 }
 
 .v-manifesto-line {
+    font-family: var(--v-display-font);
     font-size: clamp(1.75rem, 3.8vw, 3.5rem);
     line-height: 0.92;
     text-transform: uppercase;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.035em;
     text-wrap: balance;
 }
 
 .v-card-title {
+    font-family: var(--v-display-font);
     font-size: 1.5rem;
     line-height: 1.2;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
     text-wrap: balance;
 }
 
 .v-subtitle {
+    font-family: var(--v-display-font);
     font-size: 1.25rem;
     line-height: 1.25;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     text-wrap: balance;
 }
@@ -240,13 +229,13 @@ body.menu-open .v-mobile-menu {
     letter-spacing: 0.08em;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
 }
 
 .v-button:hover,
 .v-button:focus-visible {
-    transform: translate(6px, -6px);
-    box-shadow: -6px 6px 0 var(--v-primary);
+    transform: translate(3px, -3px);
+    box-shadow: -3px 3px 0 var(--v-primary);
 }
 
 .v-button--ghost {
@@ -257,7 +246,7 @@ body.menu-open .v-mobile-menu {
 
 .v-button--ghost:hover,
 .v-button--ghost:focus-visible {
-    box-shadow: -6px 6px 0 var(--v-accent);
+    box-shadow: -3px 3px 0 var(--v-accent);
 }
 
 .v-list-card,
@@ -291,6 +280,17 @@ body.menu-open .v-mobile-menu {
     display: grid;
     gap: 0.9rem;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.v-rule-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.v-rule-item {
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.16);
 }
 
 .v-detail-card,
@@ -336,17 +336,39 @@ body.menu-open .v-mobile-menu {
 
 .v-sample-card {
     padding: 1.15rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.18s ease, border-color 0.18s ease;
 }
 
 .v-sample-card:hover,
 .v-sample-card:focus-within {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: rgba(255,226,74,0.5);
+}
+
+.v-plain-block {
+    border-top: 1px solid rgba(255,255,255,0.16);
+    background: transparent;
+}
+
+.v-plain-stack {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.v-rule-panel {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.16);
+}
+
+.sticky.top-0 {
+    background-color: rgba(15,16,20,0.98) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
 }
 
 .v-pill-card {
     padding: 1rem 1.1rem;
+    background: transparent;
     font-size: 0.95rem;
     line-height: 1.65;
     text-wrap: pretty;
@@ -354,7 +376,34 @@ body.menu-open .v-mobile-menu {
 
 .v-number-note {
     border-left: 4px solid var(--v-primary);
+    background: rgba(255,255,255,0.02);
     padding: 0.95rem 1rem;
+}
+
+.v-service-toggle {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    text-align: left;
+    cursor: default;
+}
+
+.v-service-toggle-icon {
+    display: none;
+    font-size: 1.35rem;
+    line-height: 1;
+    color: var(--v-accent);
+    transition: transform 0.18s ease;
+}
+
+.v-service-toggle[aria-expanded="true"] .v-service-toggle-icon {
+    transform: rotate(45deg);
 }
 
 .v-footer-grid {
@@ -399,7 +448,11 @@ body.menu-open .v-mobile-menu {
     padding: 1.25rem;
 }
 
-.hidden {
+.v-contact-lead .v-page-title {
+    max-width: 13ch;
+}
+
+.v-hidden {
     display: none !important;
 }
 
@@ -413,6 +466,16 @@ body.menu-open .v-mobile-menu {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+main > section:first-of-type .v-poster,
+main > section:first-of-type .v-stackline,
+main > section:first-of-type .v-page-title,
+main > section:first-of-type .v-section-title,
+main > section:first-of-type .v-manifesto-line,
+main > section:first-of-type .v-detail-card {
+    opacity: 1;
+    transform: none;
 }
 
 .is-revealed {
@@ -450,4 +513,48 @@ body.menu-open .v-mobile-menu {
     .v-body-copy { line-height: 1.75; }
     .v-card-copy { line-height: 1.62; }
     .v-footer-copy { font-size: 0.75rem; }
+
+    .v-service-card {
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+    }
+
+    .v-service-toggle {
+        cursor: pointer;
+    }
+
+    .v-service-toggle-icon {
+        display: inline-flex;
+        margin-top: 0.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .v-shell::after,
+    .v-poster::after {
+        animation: none;
+    }
+
+    .v-button,
+    .v-sample-card,
+    .v-mobile-menu,
+    .v-mobile-backdrop,
+    .v-poster,
+    .v-stackline,
+    .v-page-title,
+    .v-section-title,
+    .v-manifesto-line,
+    .v-detail-card {
+        transition: none;
+    }
+
+    .v-button:hover,
+    .v-button:focus-visible,
+    .v-sample-card:hover,
+    .v-sample-card:focus-within {
+        transform: none;
+        box-shadow: none;
+    }
 }
