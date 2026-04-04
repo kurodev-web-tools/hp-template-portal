@@ -24,6 +24,9 @@ run('index page includes case studies, trust signals, and cleaned metadata', () 
   assert.match(html, /id="cases"/);
   assert.match(html, /導入事例/);
   assert.match(html, /<h2 class="section-title section-title-sm case-section-title">導入事例<\/h2>/);
+  assert.match(html, /<div class="feature-grid target-facilities-grid">/);
+  assert.match(html, /<div class="trust-strip trust-strip-light reveal">/);
+  assert.match(html, /<article class="trust-item trust-item-light">/);
   assert.match(html, /<p class="section-lead section-lead-desktop">相談背景、整えた導線、公開後の変化を短くまとめています。<br>施設名は掲載用の仮称です。<\/p>/);
   assert.match(html, /<p class="section-lead section-lead-mobile">相談背景、整えた導線、公開後の変化を短くまとめています。施設名は掲載用の仮称です。<\/p>/);
   assert.match(html, /<div class="footer-brand">[\s\S]*<p>宿泊施設の景観導線を、到着前の期待から<br>現地の余韻まで一連の体験として整える<br>landscape stay studio です。<\/p>/);
@@ -81,6 +84,10 @@ run('target facilities section on index locks the heading to two lines on deskto
   assert.match(css, /\.facility-title-line\s*\{[\s\S]*display:\s*block;/);
   assert.match(css, /\.facility-title-line-mobile\s*\{\s*display:\s*none;\s*\}/);
   assert.match(css, /\.facility-title-line-desktop\s*\{\s*display:\s*block;\s*\}/);
+  assert.match(css, /\.target-facilities-grid\s*\{[\s\S]*gap:\s*0;[\s\S]*border-top:\s*1px solid var\(--line\);/);
+  assert.match(css, /\.target-facility-item\s*\{[\s\S]*border:\s*0;[\s\S]*border-radius:\s*0;[\s\S]*box-shadow:\s*none;[\s\S]*background:\s*transparent;[\s\S]*padding:\s*1\.75rem 1\.75rem 1\.9rem;[\s\S]*border-bottom:\s*1px solid var\(--line\);/);
+  assert.match(css, /\.target-facility-item:nth-child\(odd\)\s*\{[\s\S]*padding-right:\s*2\.5rem;[\s\S]*padding-left:\s*1\.75rem;/);
+  assert.match(css, /@media \(max-width:\s*1100px\)\s*\{[\s\S]*\.target-facility-item,\s*[\s\S]*\.target-facility-item:nth-child\(odd\),\s*[\s\S]*\.target-facility-item:nth-child\(even\)\s*\{\s*padding:\s*1\.5rem 1\.25rem;\s*\}/);
   assert.match(css, /\.section-lead-mobile\s*\{\s*display:\s*none;\s*\}/);
   assert.match(css, /\.section-lead-desktop\s*\{\s*display:\s*block;\s*\}/);
 });
@@ -185,6 +192,7 @@ run('about page includes team structure, judgement criteria, and fit guidance', 
   assert.match(html, /<section class="section-cta about-cta">[\s\S]*<h2 class="section-title white cta-title about-cta-title">[\s\S]*<span class="about-cta-line-desktop">今ある景観のどこが<\/span>[\s\S]*<span class="about-cta-line-desktop">伝わっていないかを整理します。<\/span>[\s\S]*<span class="about-cta-line-mobile">まずは、<\/span>[\s\S]*<span class="about-cta-line-mobile">今ある景観の<\/span>[\s\S]*<span class="about-cta-line-mobile">どこが伝わって<\/span>[\s\S]*<span class="about-cta-line-mobile">いないかを整理します。<\/span>[\s\S]*<\/h2>/);
   assert.match(html, /<div class="feature-grid team-structure-grid">/);
   assert.match(html, /<div class="timeline working-principle-timeline">/);
+  assert.match(html, /<article class="timeline-item working-principle-item reveal">/);
   assert.match(html, /<p class="section-lead white cta-lead">運営視点の悩みから入っても構いません。<br>現地写真やサイト URL があれば、初回相談の精度を上げられます。<\/p>/);
   assert.match(css, /\.about-stance-title\s*\{[\s\S]*width:\s*fit-content;[\s\S]*max-width:\s*none;[\s\S]*font-size:\s*clamp\(1\.65rem,\s*2\.25vw,\s*2\.35rem\);[\s\S]*line-height:\s*1\.16;[\s\S]*text-wrap:\s*normal;/);
   assert.match(css, /\.about-stance-title-line\s*\{\s*display:\s*block;/);
@@ -194,14 +202,16 @@ run('about page includes team structure, judgement criteria, and fit guidance', 
   assert.match(css, /\.about-cta-line-mobile\s*\{\s*display:\s*none;\s*\}/);
   assert.match(css, /\.about-cta-line-desktop\s*\{\s*display:\s*block;\s*\}/);
   assert.match(css, /\.team-structure-grid\s*\{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);/);
-  assert.match(css, /\.working-principle-timeline > :last-child\s*\{[\s\S]*grid-column:\s*1 \/ -1;[\s\S]*max-width:\s*min\(32rem,\s*100%\);[\s\S]*justify-self:\s*center;/);
+  assert.match(css, /\.working-principle-timeline\s*\{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);[\s\S]*gap:\s*2rem;/);
+  assert.match(css, /\.working-principle-item\s*\{[\s\S]*border:\s*0;[\s\S]*border-radius:\s*0;[\s\S]*box-shadow:\s*none;[\s\S]*background:\s*transparent;/);
+  assert.match(css, /\.working-principle-item::before\s*\{[\s\S]*width:\s*1px;[\s\S]*background:\s*var\(--line\);/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.about-cta \.container\s*\{\s*padding:\s*0 1\.05rem;/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.about-cta-title\s*\{[\s\S]*width:\s*100%;[\s\S]*max-width:\s*none;[\s\S]*margin-left:\s*auto;[\s\S]*margin-right:\s*auto;[\s\S]*font-size:\s*clamp\(1\.4rem,\s*5\.05vw,\s*1\.82rem\);[\s\S]*line-height:\s*1\.14;/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.team-structure-grid\s*\{\s*grid-template-columns:\s*1fr;\s*\}/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.about-stance-title-line-desktop\s*\{\s*display:\s*none;\s*\}[\s\S]*\.about-stance-title-line-mobile\s*\{\s*display:\s*block;\s*\}/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.about-cta-line-desktop\s*\{\s*display:\s*none;\s*\}[\s\S]*\.about-cta-line-mobile\s*\{\s*display:\s*block;\s*\}/);
   assert.match(css, /@media \(max-width:\s*1100px\)\s*\{[\s\S]*\.team-structure-grid\s*\{\s*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);\s*\}/);
-  assert.match(css, /@media \(max-width:\s*1100px\)\s*\{[\s\S]*\.working-principle-timeline > :last-child\s*\{[\s\S]*grid-column:\s*auto;[\s\S]*max-width:\s*none;[\s\S]*justify-self:\s*stretch;/);
+  assert.match(css, /@media \(max-width:\s*1100px\)\s*\{[\s\S]*\.working-principle-timeline\s*\{[\s\S]*grid-template-columns:\s*1fr;[\s\S]*gap:\s*1\.5rem;/);
   assert.match(html, /チーム体制/);
   assert.match(html, /判断基準/);
   assert.match(html, /向いている案件/);
@@ -227,6 +237,8 @@ run('shared styles include case-study and form-success sections with wrap polish
   assert.match(css, /\.case-studies\s*\{/);
   assert.match(css, /\.case-card\s*\{/);
   assert.match(css, /\.trust-strip\s*\{/);
+  assert.match(css, /\.trust-strip-light\s*\{[\s\S]*border-top:\s*1px solid var\(--line\);[\s\S]*border-bottom:\s*1px solid var\(--line\);/);
+  assert.match(css, /\.trust-item-light \+ \.trust-item-light\s*\{[\s\S]*border-left:\s*1px solid var\(--line\);/);
   assert.match(css, /\.contact-success\s*\{/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.footer-inner\s*\{[\s\S]*display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\);/);
   assert.match(css, /@media \(max-width:\s*600px\)\s*\{[\s\S]*\.footer-brand\s*\{[\s\S]*grid-column:\s*1 \/ -1;[\s\S]*max-width:\s*none;/);
