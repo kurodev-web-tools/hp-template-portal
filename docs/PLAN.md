@@ -1,37 +1,42 @@
-# セキュリティオーケストレーション・レポート
+# HP-Portal Plan
 
-## 🎼 Orchestration Report
+## Purpose
+- この文書は HP-Portal の中長期計画、背景、運用方針をまとめる補助文書とする
+- 日々の進行管理や直近タスクはルートの `task.md` を正本として扱う
 
-### Task
-現状のセキュリティ強度を多方面から調べてみて
+## Current State
+- business テンプレートのリニューアルとサムネイル更新は完了済み
+- 公開ポータルのサムネイル参照は `public/assets/images/thumbnails/*_v2` に統一済み
+- `public` 配下の不要アーカイブ、旧サムネイル、レガシースクリプトの整理を段階的に実施済み
+- `.gitignore` と運用ルールを見直し、`task.md` を日常運用の正本として扱う方針に統一済み
 
-### Mode
-[plan]
+## Ongoing Themes
 
-### Agents Invoked (MINIMUM 3)
-| #   | Agent                 | Focus Area                            | Status |
-| --- | --------------------- | ------------------------------------- | ------ |
-| 1   | `project-planner`     | タスク分析とプラン作成                | ✅      |
-| 2   | `security-auditor`    | 依存関係の静的解析（`pnpm audit`）    | ✅      |
-| 3   | `frontend-specialist` | XSSなどフロントエンドの潜在リスク調査 | ✅      |
-| 4   | `backend-specialist`  | APIエンドポイントの脆弱性調査         | ✅      |
+### 1. Public Asset Hygiene
+- 公開に不要なアーカイブ、バックアップ、設計メモ、生成物を継続的に整理する
+- `public/templates` 配下に公開不要ファイルを残さない
+- サムネイル、画像、テンプレート資産の保存先ルールを維持する
 
-### Verification Scripts Executed
-- [x] `pnpm audit` → Fail (3 moderate vulnerabilities found: `undici`, `ajv` など)
-- [x] Codebase `grep` & Manual Review → Complete
+### 2. Template Quality
+- business / lp / portfolio / streamer の各テンプレートで公開品質を維持する
+- レイアウト崩れ、モバイル表示、文言品質、リンク整合性を継続確認する
+- 更新後に必要なサムネイル再生成と一覧確認を運用に組み込む
 
-### Key Findings
-1. **[security-auditor]**: `pnpm audit` にて3件の中規模（moderate）な脆弱性が検出されました。`pnpm update` または overrides による依存関係の修正が必要です。
-2. **[frontend-specialist]**: `public/` 以下のJavaScript (`list.js`, 各種テンプレートの `script.js`) において、数十箇所の `innerHTML` の使用が確認されました。現状は静的な文字列やテンプレートリテラルによるものが多いですが、将来的な DOM-based XSS のリスクを抱えています。安全なDOM操作(`textContent`等)へのリファクタリングが推奨されます。
-3. **[backend-specialist]**: バックエンドAPI (`functions/api/`) に重大なリスクとバグが潜んでいます。
-   - `checkout.js`: `successUrl` および `cancelUrl` のドメイン検証を行っていないため、攻撃者が任意の外部URLを指定してユーザーを誘導する**オープンリダイレクト（Open Redirect）脆弱性**のリスクがあります。また、`context.request.json()` を複数回読み取ろうとしているため（38行目・43行目）、Cloudflare Workers環境においては「Body has already been used」という**実行時エラーが発生して処理が止まるバグ**があります。
-   - `submit-form.js`: 入力値のサニタイズ処理が独自の簡易文字列置換(`sanitizeHtml`)に留まっており、エッジケースをすり抜ける可能性があります。またスパム防止策がハニーポットのみで、APIレベルの**レート制限（Rate Limiting）**が欠如しているため、悪意ある大量リクエストによるDoS攻撃に弱いです。
+### 3. Script And Tooling Hygiene
+- 再利用価値の低い one-off スクリプトは溜め込まず整理する
+- 継続運用するスクリプトだけを残し、用途が分かる状態を保つ
+- 生成物、監査レポート、一時ファイルが Git に混ざらない状態を維持する
 
-### Deliverables
-- [x] PLAN.md created (本ドキュメント)
-- [ ] Code implemented (フェーズ2にて実施)
-- [ ] Tests passing (フェーズ2にて実施)
-- [ ] Scripts verified (`pnpm audit` 実行済み)
+### 4. Operational Consistency
+- `task.md` を直近の作業計画と完了報告の正本として維持する
+- `docs/AI_WORKFLOW.md` と `C:\Users\taka\.codex\AGENTS.md` の運用ルールを継続的に反映する
+- 必要に応じて `docs` を簡素化し、正本と参考資料の境界を明確にする
 
-### Summary
-セキュリティ、フロントエンド、バックエンドの各専門エージェントによる多角的な監査を実行しました。依存関係の脆弱性、フロントエンドの潜在的XSSリスクに加え、バックエンドにおけるオープンリダイレクト脆弱性と重大な実行時エラーバグが特定できました。これらの修正を行うImplementation（フェーズ2）への移行をご検討ください。
+## Near-Term Plan
+- `public/templates` 配下の補助ファイル整理を継続する
+- `scripts/` 配下の残存ツールを用途単位で見直す
+- テンプレート更新後の確認手順を最小限で再利用できる形に寄せる
+
+## Archive Note
+- 過去の監査レポートや個別検証結果は、必要なら専用の履歴文書に分離する
+- `docs/PLAN.md` 自体は単発レポート置き場ではなく、継続的な計画文書として保つ
