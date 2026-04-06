@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector("[data-menu-toggle]");
   const menu = document.querySelector("[data-mobile-menu]");
   const backdrop = document.querySelector("[data-menu-backdrop]");
-  const revealTargets = document.querySelectorAll(".z-chapter, .z-flow-item, .z-detail-card, .z-divider");
+  const revealTargets = document.querySelectorAll(".z-chapter, .z-flow-item, .z-detail-card, .z-divider, .z-image-card, .z-proof-card");
 
   const setMenu = (open) => {
     if (!menu) return;
