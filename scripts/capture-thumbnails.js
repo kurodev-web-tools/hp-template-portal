@@ -6,7 +6,11 @@ const path = require('path');
 const BASE_URL = `http://127.0.0.1:8788`;
 const PUBLIC_DIR = path.join(__dirname, '../public');
 const TEMPLATES_DIR = path.join(PUBLIC_DIR, 'templates');
-const THUMBNAILS_DIR = path.join(PUBLIC_DIR, 'assets/thumbnails');
+const THUMBNAILS_DIR = path.join(PUBLIC_DIR, 'assets/images/thumbnails');
+const CHROME_CANDIDATES = [
+    'C:/Program Files/Google/Chrome/Application/chrome.exe',
+    'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+];
 
 // コマンドライン引数からモードとカテゴリを取得
 const MODE = process.argv[2] || 'mobile'; // 'mobile' | 'desktop' | 'x-social'
@@ -21,10 +25,10 @@ const VIEWPORTS = {
 
 // カテゴリ定義
 const CATEGORIES = {
-    portfolio: { dir: 'portfolio', prefix: 'pf_' },
-    streamer: { dir: 'streamer', prefix: 'st_' },
-    business: { dir: 'business', prefix: 'bs_' },
-    lp: { dir: 'lp', prefix: 'lp_' }
+    portfolio: { dir: 'portfolio', outputDir: 'portfolio_v2', ext: 'jpg' },
+    streamer: { dir: 'streamer', outputDir: 'streamer_v2', ext: 'jpg' },
+    business: { dir: 'business', outputDir: 'business_v2', ext: 'jpg' },
+    lp: { dir: 'lp', outputDir: 'lp_v2', ext: 'jpg' }
 };
 
 function getViewport() {
@@ -54,7 +58,7 @@ async function main() {
 
     // 1. Ensure output directories exist
     categories.forEach(cat => {
-        const dir = path.join(THUMBNAILS_DIR, cat.dir);
+        const dir = path.join(THUMBNAILS_DIR, cat.outputDir);
         if (!fs.existsSync(dir)) {
             console.log(`Creating directory: ${dir}`);
             fs.mkdirSync(dir, { recursive: true });
@@ -66,7 +70,12 @@ async function main() {
     let browser;
     try {
         console.log('Launching browser...');
-        browser = await puppeteer.launch({ headless: "new" });
+        const executablePath = CHROME_CANDIDATES.find(candidate => fs.existsSync(candidate));
+        browser = await puppeteer.launch({
+            headless: "new",
+            executablePath,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
         const page = await browser.newPage();
 
         // Set viewport
@@ -99,8 +108,8 @@ async function main() {
                 if (!fs.existsSync(templateIdx)) continue;
 
                 const url = `${BASE_URL}/templates/${cat.dir}/${subdir}/`;
-                const filename = `${cat.prefix}${subdir}.webp`;
-                const outputPath = path.join(THUMBNAILS_DIR, cat.dir, filename);
+                const filename = `${subdir}.${cat.ext}`;
+                const outputPath = path.join(THUMBNAILS_DIR, cat.outputDir, filename);
 
                 console.log(`  Capturing ${cat.dir}/${subdir} => ${filename}`);
 
@@ -109,8 +118,8 @@ async function main() {
                     // Provide a delay for animations/layout shift
                     await new Promise(r => setTimeout(r, 2000));
 
-                    // Capture as WebP
-                    await page.screenshot({ path: outputPath, type: 'webp', quality: 80 });
+                    // Capture as JPEG to match current portal assets.
+                    await page.screenshot({ path: outputPath, type: 'jpeg', quality: 82 });
                 } catch (err) {
                     console.error(`  Error capturing ${url}:`, err.message);
                 }
@@ -127,4 +136,11 @@ async function main() {
     }
 }
 
-main();
+if (require.main === module) {
+    main();
+}
+
+module.exports = {
+    CATEGORIES,
+    VIEWPORTS,
+};
