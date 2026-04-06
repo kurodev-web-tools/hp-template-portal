@@ -105,6 +105,78 @@ img {
     color: transparent;
 }
 
+.q-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--q-muted);
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.q-breadcrumb a {
+    color: #d7dee8;
+    text-decoration: none;
+}
+
+.q-breadcrumb a:hover {
+    color: var(--q-accent);
+}
+
+.q-breadcrumb-sep {
+    color: rgba(145, 160, 179, 0.65);
+}
+
+.q-breadcrumb-current {
+    color: var(--q-accent);
+}
+
+.q-diagram-shell {
+    transition: transform 0.35s ease;
+    transform-origin: center;
+}
+
+.q-diagram-shell.is-zoomed {
+    transform: scale(1.08);
+}
+
+.q-diagram-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--q-line-strong);
+    background: rgba(255, 255, 255, 0.03);
+    color: #d7dee8;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.q-diagram-toggle:hover {
+    border-color: rgba(242, 166, 90, 0.52);
+    background: rgba(242, 166, 90, 0.08);
+    transform: translateY(-1px);
+}
+
+.q-diagram-toggle[aria-pressed="true"] {
+    border-color: rgba(242, 166, 90, 0.7);
+    background: rgba(242, 166, 90, 0.12);
+    color: #fff4e6;
+}
+
+.q-diagram-toggle .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+.q-diagram-toggle:focus-visible {
+    outline: 2px solid rgba(242, 166, 90, 0.7);
+    outline-offset: 2px;
+}
 
 .q-frame {
     position: relative;
@@ -526,6 +598,32 @@ img {
     letter-spacing: 0.18em;
 }
 
+h1,
+h2,
+h3,
+h4,
+.q-section-label,
+.q-footer-meta,
+.q-breadcrumb {
+    text-wrap: balance;
+}
+
+p,
+li,
+td,
+th,
+.q-note,
+.q-chip,
+.q-data-badge,
+.q-form-shell label,
+.q-button,
+.q-diagram-toggle {
+    text-wrap: pretty;
+}
+
+.q-auto-phrase {
+    word-break: auto-phrase;
+}
 
 @media (max-width: 767px) {
     .q-grid::before {
@@ -539,6 +637,10 @@ img {
     .q-form-title-main,
     .q-form-title-sub {
         display: block;
+    }
+
+    .q-diagram-shell.is-zoomed {
+        transform: scale(1.03);
     }
 }
 

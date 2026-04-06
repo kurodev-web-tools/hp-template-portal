@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileLinks = document.querySelectorAll("[data-mobile-link]");
     const menuLinks = document.querySelectorAll("[data-mobile-menu] a[href]");
     const counters = document.querySelectorAll("[data-counter]");
+    const diagramToggles = document.querySelectorAll("[data-diagram-toggle]");
     const revealItems = document.querySelectorAll(".q-reveal");
     const currentPage = body.dataset.page;
     const form = document.querySelector("[data-contact-form]");
@@ -110,6 +111,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counters.forEach((counter) => counterObserver.observe(counter));
 
+    diagramToggles.forEach((button) => {
+        const targetId = button.dataset.diagramTarget;
+        const target = targetId ? document.getElementById(targetId) : null;
+        const label = button.querySelector("[data-diagram-toggle-label]");
+
+        if (!target) {
+            return;
+        }
+
+        const syncState = () => {
+            const isZoomed = target.classList.contains("is-zoomed");
+            button.setAttribute("aria-pressed", String(isZoomed));
+
+            if (label) {
+                label.textContent = isZoomed ? "縮小表示" : "拡大表示";
+            }
+        };
+
+        button.addEventListener("click", () => {
+            target.classList.toggle("is-zoomed");
+            syncState();
+        });
+
+        syncState();
+    });
+
     if (form && formMessage) {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -132,4 +159,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
