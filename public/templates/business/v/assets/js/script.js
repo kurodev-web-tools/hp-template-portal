@@ -1,96 +1,134 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    const menuButton = document.querySelector("[data-menu-button]");
+    const menu = document.querySelector("[data-mobile-menu]");
+    const backdrop = document.querySelector("[data-menu-backdrop]");
+    const closeButton = document.querySelector("[data-menu-close]");
+    const links = document.querySelectorAll("[data-page-link]");
+    const currentPage = body.dataset.page;
+    const form = document.querySelector("[data-contact-form]");
+    const success = document.querySelector("[data-contact-success]");
+    const accordionButtons = document.querySelectorAll("[data-accordion-button]");
 
-// Global Toggle Function
-window.toggleMenu = function(event) {
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    const menu = document.querySelector('.vivid-mobile-menu');
-    const toggle = document.querySelector('.vivid-mobile-toggle');
-    
-    if (menu) {
-        menu.classList.toggle('active');
-        
-        // Scroll Lock
-        if (menu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
+    const setMenuState = (isOpen) => {
+        body.classList.toggle("menu-open", isOpen);
+        menuButton?.setAttribute("aria-expanded", String(isOpen));
+        menu?.setAttribute("aria-hidden", String(!isOpen));
+    };
+
+    menuButton?.addEventListener("click", () => setMenuState(!(menuButton.getAttribute("aria-expanded") === "true")));
+    closeButton?.addEventListener("click", () => setMenuState(false));
+    backdrop?.addEventListener("click", () => setMenuState(false));
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            setMenuState(false);
         }
+    });
 
-        // Icon Toggle
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
+    const syncAccordionState = () => {
+        const isMobile = window.innerWidth < 768;
+        accordionButtons.forEach((button, index) => {
+            const panelId = button.getAttribute("aria-controls");
+            const panel = panelId ? document.getElementById(panelId) : null;
+            if (!panel) {
+                return;
             }
+
+            if (!isMobile) {
+                button.setAttribute("aria-expanded", "true");
+                panel.classList.remove("v-hidden");
+                return;
+            }
+
+            const shouldOpen = index === 0;
+            button.setAttribute("aria-expanded", String(shouldOpen));
+            panel.classList.toggle("v-hidden", !shouldOpen);
+        });
+    };
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 1024) {
+            setMenuState(false);
         }
-    }
-};
 
-document.addEventListener('DOMContentLoaded', () => {
-    // ===== Vivid Theme Effects =====
-    if (window.PremiumEffects) {
-        // High tension reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 800 });
-
-        // Harsh tilt for blocks
-        PremiumEffects.Tilt('.block, .g-card', { max: 5, scale: 0.98, speed: 2000 });
-    }
-
-    // ===== Header Scroll Effect =====
-    const header = document.querySelector('.vivid-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('is-scrolled');
-        } else {
-            header.classList.remove('is-scrolled');
-        }
+        syncAccordionState();
     });
 
-    // ===== RGB Shift on Scroll (Wow Factor) =====
-    // Apply slight RGB shift filter or transform on scroll
-    let isScrolling;
-    window.addEventListener('scroll', () => {
-        document.body.style.textShadow = '2px 0 var(--color-magenta), -2px 0 var(--color-yellow)';
-        
-        window.clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-            document.body.style.textShadow = 'none';
-        }, 100);
+    links.forEach((link) => {
+        if (link.dataset.pageLink === currentPage) {
+            link.setAttribute("aria-current", "page");
+        }
+        link.addEventListener("click", () => setMenuState(false));
     });
 
-    // ===== Mobile Menu Logic (Robust) =====
-    const toggleBtn = document.querySelector('.vivid-mobile-toggle');
-    const menu = document.querySelector('.vivid-mobile-menu');
+    if (form && success) {
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
-    if (toggleBtn) {
-        toggleBtn.removeAttribute('onclick');
-        toggleBtn.addEventListener('click', window.toggleMenu);
+            success.classList.remove("v-hidden");
+            success.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            form.reset();
+        });
     }
 
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                document.body.style.overflow = '';
-                if (toggleBtn) {
-                    const icon = toggleBtn.querySelector('.material-icons');
-                    if (icon) icon.textContent = 'menu';
+    accordionButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            if (window.innerWidth >= 768) {
+                return;
+            }
+
+            const panelId = button.getAttribute("aria-controls");
+            const panel = panelId ? document.getElementById(panelId) : null;
+            if (!panel) {
+                return;
+            }
+
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            accordionButtons.forEach((otherButton) => {
+                const otherPanelId = otherButton.getAttribute("aria-controls");
+                const otherPanel = otherPanelId ? document.getElementById(otherPanelId) : null;
+                if (!otherPanel) {
+                    return;
                 }
+
+                const shouldOpen = otherButton === button ? !isExpanded : false;
+                otherButton.setAttribute("aria-expanded", String(shouldOpen));
+                otherPanel.classList.toggle("v-hidden", !shouldOpen);
             });
         });
-    }
+    });
 
-    // ===== Block Scroll Reveal =====
-    const blocks = document.querySelectorAll('.block');
-    window.addEventListener('scroll', () => {
-        blocks.forEach(block => {
-            const rect = block.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.8) {
-                block.style.opacity = '1';
-                block.style.transform = block.classList.contains('b-magenta') ? 'translateY(60px)' : 'translateY(0)';
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-revealed");
+                revealObserver.unobserve(entry.target);
             }
         });
-    });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll(
+        "main > section:not(:first-of-type) .v-poster, " +
+        "main > section:not(:first-of-type) .v-stackline, " +
+        "main > section:not(:first-of-type) .v-page-title, " +
+        "main > section:not(:first-of-type) .v-section-title, " +
+        "main > section:not(:first-of-type) .v-manifesto-line, " +
+        "main > section:not(:first-of-type) .v-sample-card, " +
+        "main > section:not(:first-of-type) .v-detail-card"
+    );
+    revealElements.forEach((element) => revealObserver.observe(element));
+
+    syncAccordionState();
+    setMenuState(false);
 });

@@ -1,23 +1,59 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
-const { spawn } = require('child_process');
 
 // Configuration
-const BASE_URL = `http://127.0.0.1:8789`;
-// Updated to Mobile Viewport (iPhone 12/13/14 Pro dimensions)
-const VIEWPORT = { width: 390, height: 844, isMobile: true, hasTouch: true };
+const BASE_URL = `http://127.0.0.1:8788`;
 const PUBLIC_DIR = path.join(__dirname, '../public');
 const TEMPLATES_DIR = path.join(PUBLIC_DIR, 'templates');
 const THUMBNAILS_DIR = path.join(PUBLIC_DIR, 'assets/thumbnails');
 
-const CATEGORIES = [
-    { dir: 'portfolio', prefix: 'pf_' }
-];
+// コマンドライン引数からモードとカテゴリを取得
+const MODE = process.argv[2] || 'mobile'; // 'mobile' | 'desktop' | 'x-social'
+const TARGET_CATEGORY = process.argv[3] || 'all'; // 'all' | specific category name
+
+// ビューポート定義
+const VIEWPORTS = {
+    mobile: { width: 390, height: 844, isMobile: true, hasTouch: true },
+    desktop: { width: 1920, height: 1080, isMobile: false },
+    'x-social': { width: 1200, height: 630, isMobile: false } // X 投稿用
+};
+
+// カテゴリ定義
+const CATEGORIES = {
+    portfolio: { dir: 'portfolio', prefix: 'pf_' },
+    streamer: { dir: 'streamer', prefix: 'st_' },
+    business: { dir: 'business', prefix: 'bs_' },
+    lp: { dir: 'lp', prefix: 'lp_' }
+};
+
+function getViewport() {
+    const vp = VIEWPORTS[MODE] || VIEWPORTS.mobile;
+    const modeLabel = MODE === 'mobile' ? 'Mobile' : MODE === 'desktop' ? 'Desktop' : 'X Social';
+    console.log(`Viewport Mode: ${modeLabel} (${vp.width}x${vp.height})`);
+    return vp;
+}
+
+function getTargetCategories() {
+    if (TARGET_CATEGORY === 'all') {
+        return Object.values(CATEGORIES);
+    }
+    const cat = CATEGORIES[TARGET_CATEGORY];
+    return cat ? [cat] : [];
+}
 
 async function main() {
+    const viewport = getViewport();
+    const categories = getTargetCategories();
+
+    if (categories.length === 0) {
+        console.error(`Unknown category: ${TARGET_CATEGORY}`);
+        console.error('Available categories: ' + Object.keys(CATEGORIES).join(', '));
+        process.exit(1);
+    }
+
     // 1. Ensure output directories exist
-    CATEGORIES.forEach(cat => {
+    categories.forEach(cat => {
         const dir = path.join(THUMBNAILS_DIR, cat.dir);
         if (!fs.existsSync(dir)) {
             console.log(`Creating directory: ${dir}`);
@@ -29,16 +65,22 @@ async function main() {
 
     let browser;
     try {
-        console.log('Launching browser (Mobile Mode)...');
+        console.log('Launching browser...');
         browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
 
-        // Emulate Mobile Device
-        await page.setViewport(VIEWPORT);
-        await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1');
+        // Set viewport
+        await page.setViewport(viewport);
+
+        // Set user agent
+        if (viewport.isMobile) {
+            await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1');
+        } else {
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36');
+        }
 
         // 3. Process each category
-        for (const cat of CATEGORIES) {
+        for (const cat of categories) {
             const catDir = path.join(TEMPLATES_DIR, cat.dir);
             if (!fs.existsSync(catDir)) {
                 console.warn(`Category directory not found: ${catDir}`);
@@ -64,8 +106,8 @@ async function main() {
 
                 try {
                     await page.goto(url, { waitUntil: 'networkidle0', timeout: 15000 });
-                    // Provide a delay for animations/layout shift (5s)
-                    await new Promise(r => setTimeout(r, 5000));
+                    // Provide a delay for animations/layout shift
+                    await new Promise(r => setTimeout(r, 2000));
 
                     // Capture as WebP
                     await page.screenshot({ path: outputPath, type: 'webp', quality: 80 });
@@ -75,12 +117,12 @@ async function main() {
             }
         }
 
+        console.log('Capture completed successfully!');
+
     } catch (e) {
         console.error('Fatal error:', e);
     } finally {
         if (browser) await browser.close();
-
-        // Force exit to ensure script finishes
         process.exit(0);
     }
 }

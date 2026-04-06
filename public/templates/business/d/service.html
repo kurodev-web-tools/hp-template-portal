@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Dynamic Operations</title>
+    
+    <link rel="canonical" href="https://example.com/templates/business/d/service.html"><meta name="description" content="Dynamic のサービス一覧。多拠点更新、監視、障害対応、運用標準化までを一体で支える分散運用サービス。">
+    <meta name="theme-color" content="#ff4500">
+    <meta property="og:title" content="Services - Dynamic Operations">
+    <meta property="og:description" content="多拠点更新、監視、障害対応を一体で支える分散運用サービス。">
+    <meta property="og:type" content="website">
+    
+    <meta property="og:locale" content="ja_JP"><meta property="og:image" content="assets/images/d-vehicle-facility.png">
+    <meta property="og:url" content="https://example.com/templates/business/d/service.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    
+    <meta name="robots" content="index, follow"><!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Dynamic Operations",
+        "description": "更新、監視、障害対応を一つの運用線にまとめる分散運用サービス。",
+        "url": "https://example.com/templates/business/d/service.html",
+        "logo": "assets/images/d-vehicle-facility.png"
+    }
+    </script>
+
+    <!-- Google Fonts: Orbitron + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        main,
+        section {
+            overflow-x: hidden;
+        }
+
+        .speed-bg {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 69, 0, 0.03) 2px, rgba(255, 69, 0, 0.03) 4px);
+        }
+
+        .light-speed-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-speed-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .light-speed-hover:hover::before {
+            left: 100%;
+        }
+
+        .skew-container {
+            transform: skewX(-12deg);
+        }
+
+        .skew-content {
+            display: inline-block;
+            transform: skewX(12deg);
+        }
+
+        .z-card {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .z-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .z-card:nth-child(even) {
+            transform: translateX(50px);
+        }
+
+        .z-card:nth-child(even).visible {
+            transform: translateX(0);
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .heading-balance {
+            text-wrap: balance;
+        }
+
+        .body-pretty {
+            text-wrap: pretty;
+        }
+
+        @supports (word-break: auto-phrase) {
+            .phrase-wrap {
+                word-break: auto-phrase;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                z-index: 10000 !important;
+                isolation: isolate;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            header .skew-container:first-child {
+                margin-left: 4.5rem;
+                margin-right: 4.5rem;
+                max-width: calc(100% - 9rem);
+                overflow: hidden;
+            }
+
+            header .skew-container:first-child h2 {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .skew-container,
+            .skew-content {
+                transform: none !important;
+            }
+
+            header nav {
+                --dynamic-menu-slant: 12deg;
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 10004;
+                display: none !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                width: 100vw;
+                max-width: 100vw;
+                height: 100dvh;
+                padding: 6rem 1.5rem 2rem;
+                margin: 0;
+                background:
+                    radial-gradient(circle at top right, rgba(255, 69, 0, 0.18), transparent 32%),
+                    linear-gradient(135deg, rgba(8, 8, 8, 0.98), rgba(18, 18, 18, 0.96));
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                overflow-x: hidden;
+                overflow-y: auto;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            header nav::before {
+                content: '';
+                position: absolute;
+                inset: 0 10% 0 auto;
+                width: 72%;
+                background:
+                    linear-gradient(180deg, rgba(255, 69, 0, 0.12), rgba(255, 69, 0, 0.02)),
+                    rgba(20, 20, 20, 0.92);
+                border-left: 2px solid rgba(255, 69, 0, 0.5);
+                border-right: 2px solid rgba(255, 69, 0, 0.18);
+                transform: skewX(calc(var(--dynamic-menu-slant) * -1));
+                box-shadow: 0 0 40px rgba(255, 69, 0, 0.08);
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            header nav.mobile-open {
+                display: flex !important;
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            header nav a {
+                position: relative;
+                z-index: 10005;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: min(18rem, 82vw);
+                min-height: 4.25rem;
+                padding: 1rem 1.5rem;
+                text-align: center;
+                font-size: 1.4rem;
+                color: rgba(255, 255, 255, 0.9);
+                transform: skewX(calc(var(--dynamic-menu-slant) * -1));
+                transform-origin: center;
+                pointer-events: auto;
+                touch-action: manipulation;
+                transition: color 0.2s ease, text-shadow 0.2s ease, opacity 0.2s ease;
+            }
+
+            header nav a .nav-link-label {
+                display: inline-block;
+                transform: skewX(var(--dynamic-menu-slant));
+            }
+
+            header nav a:hover,
+            header nav a:focus-visible {
+                color: #ff4500;
+                text-shadow: 0 0 18px rgba(255, 69, 0, 0.28);
+                opacity: 1;
+            }
+
+            header nav a[aria-current="page"] {
+                color: #ff4500;
+                text-shadow: 0 0 18px rgba(255, 69, 0, 0.28);
+            }
+
+            .mobile-menu-toggle {
+                background: #ff4500;
+                border: 2px solid #ff4500;
+                box-shadow: 0 0 20px rgba(255, 69, 0, 0.25);
+                z-index: 10005 !important;
+            }
+
+            .mobile-menu-toggle .bar {
+                width: 22px;
+                height: 2px;
+                margin: 2px 0;
+                background: #fff;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+
+            .mobile-menu-backdrop {
+                background: rgba(0, 0, 0, 0.55);
+            }
+
+            body.mobile-menu-active .portal-nav-back {
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+
+            .z-card,
+            .z-card.visible,
+            .z-card:nth-child(even),
+            .z-card:nth-child(even).visible {
+                width: 100%;
+                max-width: min(100%, 100vw) !important;
+                overflow-x: hidden;
+                transform: none !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        .slant-surface {
+            clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+        }
+
+        .slant-surface-soft {
+            clip-path: polygon(2.5% 0, 100% 0, 97.5% 100%, 0 100%);
+        }
+
+        .slant-media {
+            clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%);
+        }
+
+        .slant-button {
+            clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+        }
+
+        @media (max-width: 768px) {
+            .slant-surface,
+            .slant-surface-soft,
+            .slant-media,
+            .slant-button {
+                clip-path: none;
+            }
+
+            .skew-content {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-charcoal text-white font-inter antialiased overflow-x-hidden speed-bg custom-menu-only">
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between border-b-2 border-primary bg-charcoal-dark/95 backdrop-blur-sm px-6 py-4 lg:px-12">
+        <div class="flex items-center gap-3 skew-container">
+            <div class="flex h-12 w-12 items-center justify-center bg-primary skew-content">
+                <span class="material-symbols-outlined text-3xl">speed</span>
+            </div>
+            <h2 class="font-orbitron text-2xl font-black tracking-tighter uppercase skew-content text-white">DYNAMIC
+            </h2>
+        </div>
+        <nav id="dynamic-mobile-menu" class="hidden md:flex items-center gap-8">
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="index.html"><span class="nav-link-label">Home</span></a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="about.html"><span class="nav-link-label">About</span></a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                aria-current="page"
+                href="service.html"><span class="nav-link-label">Services</span></a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest font-orbitron"
+                href="contact.html"><span class="nav-link-label">Contact</span></a>
+        </nav>
+        <button
+            class="hidden md:flex cursor-pointer items-center justify-center border-2 border-primary bg-primary text-black hover:bg-transparent hover:text-primary transition-all px-8 py-3 text-sm font-black uppercase tracking-widest font-orbitron skew-container light-speed-hover"
+            onclick="location.href='contact.html'">
+            <span class="skew-content">Contact</span>
+        </button>
+            <button class="mobile-menu-toggle relative z-[10005] flex h-11 w-11 flex-col items-center justify-center gap-1 md:hidden" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="dynamic-mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+
+    <div id="dynamic-mobile-backdrop" class="mobile-menu-backdrop fixed inset-0 z-[10003] hidden md:hidden"></div>
+
+    <main class="flex-grow">
+        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
+        <!-- Hero Section -->
+        <section
+            class="relative flex items-center border-b-4 border-primary bg-charcoal-dark px-6 py-20 md:py-32 overflow-hidden skew-container">
+            <div class="absolute inset-0 z-0">
+                <img src="assets/images/d-vehicle-facility.png"
+                    alt="運用設備のイメージ" class="w-full h-full object-cover opacity-30 skew-content">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-charcoal-dark via-charcoal-dark/80 to-transparent skew-content">
+                </div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl w-full skew-content">
+                <div
+                    class="inline-flex items-center gap-2 border-2 border-primary bg-primary/20 px-4 py-2 text-xs font-black uppercase tracking-[0.3em] text-primary mb-6">
+                    <span class="h-3 w-3 bg-primary animate-pulse"></span>
+                    Service Lineup
+                </div>
+
+                <h1
+                    class="font-orbitron font-black leading-[0.85] tracking-tighter text-white text-3xl sm:text-4xl md:text-6xl lg:text-8xl uppercase max-w-none heading-balance">
+                    SERVICE<br class="hidden md:block" />
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-500 to-primary">MODULES</span>
+                </h1>
+
+                <div class="border-l-4 border-primary pl-6 my-8">
+                    <p class="max-w-2xl text-lg font-bold text-gray-300 md:text-xl leading-tight body-pretty phrase-wrap">
+                        <span class="ib">更新設計、監視、障害一次対応、標準化まで。</span><span class="ib">拠点運用に必要な実務支援を、</span><span class="ib">フェーズ別に整理して提供します。</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section class="py-16 sm:py-20 px-5 sm:px-6 lg:px-12 bg-charcoal border-t-4 border-primary">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron font-black text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-widest mb-4 heading-balance">
+                        // WHAT WE DO</h2>
+                    <p class="font-inter text-gray-400 max-w-2xl mx-auto body-pretty phrase-wrap">高負荷運用の現場で実際に使う支援内容を、導入順に並べています。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div
+                        class="z-card visible group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
+                            <img src="assets/images/d-vehicle-closeup.png"
+                                alt="更新計画のイメージ"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">settings</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">01
+                                    // Rollout Design</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Rollout Design</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6 body-pretty phrase-wrap">
+                                拠点ごとの回線、端末、作業時間帯を整理し、更新単位と切り戻し条件を事前に定義。配信事故を起こしにくい導入計画を作ります。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Site Grouping
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Rollback Policy
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Maintenance Window
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                See Scope
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
+                            <img src="assets/images/d-dashboard-scene.png"
+                                alt="監視ダッシュボード"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">air</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">02
+                                    // Monitoring Desk</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Monitoring Desk
+                            </h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6 body-pretty phrase-wrap">
+                                端末状態、更新進捗、障害アラートを単一画面に統合。オペレーターが一次判断しやすい閾値と通知線を設計します。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Unified Status View
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Alert Routing
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Shift Handover Notes
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                See Scope
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
+                            <img src="assets/images/d-dashboard-scene.png"
+                                alt="障害対応のイメージ"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">analytics</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">03
+                                    // Incident Flow</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Incident Response
+                            </h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6 body-pretty phrase-wrap">
+                                障害起点の切り分け、切り戻し、一次報告、関係者通知までをランブック化。夜間の判断負荷を下げて対応速度を揃えます。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Runbook Templates
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Escalation Matrix
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Recovery Checklist
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                See Scope
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
+                            <img src="assets/images/d-operations-facility.png"
+                                alt="運用統制のイメージ"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">tune</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">04
+                                    // Governance</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Ops Governance</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6 body-pretty phrase-wrap">
+                                監査ログ、権限設計、承認フローを整理し、拠点拡大後も管理ルールが崩れない運用土台を整えます。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Audit Trail
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Access Control
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Approval Flow
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                See Scope
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
+                            <img src="assets/images/d-vehicle-facility.png"
+                                alt="現地設備の支援イメージ"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">fireplace</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">05
+                                    // Field Support</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Field Support</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6 body-pretty phrase-wrap">
+                                拠点立ち上げや機器更改時の現地調整を支援。オペレーションセンターと現場担当の受け渡しを明確にして立ち上がりを安定させます。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Launch Checklist
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    On-site Enablement
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Handover Support
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                See Scope
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div
+                        class="z-card group relative bg-charcoal-dark border-2 border-charcoal overflow-hidden light-speed-hover slant-surface-soft">
+                        <div class="relative h-64 md:h-48 overflow-hidden slant-media">
+                            <img src="assets/images/d-dashboard-scene.png"
+                                alt="データ連携画面"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-4xl text-primary">do_not_touch</span>
+                                <span class="font-orbitron font-bold text-primary text-xs uppercase tracking-widest">06
+                                    // Data Bridge</span>
+                            </div>
+                            <h3 class="font-orbitron font-black text-2xl text-white uppercase mb-4">Data Integration</h3>
+                            <p class="font-inter text-gray-400 text-sm leading-relaxed mb-6 body-pretty phrase-wrap">
+                                監視、資産管理、チケット、告知基盤を疎結合で接続。重複入力を減らし、運用記録が追える状態を作ります。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Ticket Sync
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Asset Reference
+                                </li>
+                                <li class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider">
+                                    <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Status Broadcast
+                                </li>
+                            </ul>
+                            <button
+                                class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-black py-3 text-sm font-black uppercase tracking-widest font-orbitron transition-all light-speed-hover slant-button">
+                                See Scope
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-16 sm:py-20 px-5 sm:px-6 lg:px-12 bg-charcoal-dark border-t-4 border-primary">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-orbitron font-black text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-widest mb-4 heading-balance">
+                        // DELIVERY FLOW</h2>
+                    <p class="font-inter text-gray-400 max-w-2xl mx-auto body-pretty phrase-wrap">導入前の整理から定着化まで、実施順に進めます。</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    <!-- Step 1 -->
+                    <div class="z-card visible relative">
+                        <div class="border-2 border-primary p-4 md:p-8 h-full light-speed-hover slant-surface">
+                            <span
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-primary/20 absolute top-3 right-3 md:top-4 md:right-4">01</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">search</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Discovery</h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed body-pretty phrase-wrap">
+                                    対象拠点、運用体制、既存監視、障害時の動きを整理して現状課題を見える化します。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="z-card relative">
+                        <div
+                            class="border-2 border-charcoal p-4 md:p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            <span
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-3 right-3 md:top-4 md:right-4">02</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">engineering</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Design</h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed body-pretty phrase-wrap">
+                                    配信単位、監視項目、切り戻し条件、通知先を定義し、現場が迷わない設計に落とし込みます。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="z-card relative">
+                        <div
+                            class="border-2 border-charcoal p-4 md:p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            <span
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-3 right-3 md:top-4 md:right-4">03</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">build</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Deployment
+                                </h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed body-pretty phrase-wrap">
+                                    小さな対象から段階導入し、運用画面とアラート線を実際の当番体制に合わせて調整します。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="z-card relative">
+                        <div
+                            class="border-2 border-charcoal p-4 md:p-8 h-full light-speed-hover hover:border-primary transition-colors slant-surface">
+                            <span
+                                class="font-orbitron font-black text-2xl sm:text-4xl md:text-6xl text-charcoal-light absolute top-3 right-3 md:top-4 md:right-4">04</span>
+                            <div class="relative z-10">
+                                <span class="material-symbols-outlined text-2xl sm:text-4xl md:text-5xl text-primary mb-3 md:mb-4">flag</span>
+                                <h3 class="font-orbitron font-bold text-base md:text-xl text-white uppercase mb-2 md:mb-3">Stabilize</h3>
+                                <p class="font-inter text-gray-400 text-xs md:text-sm leading-relaxed body-pretty phrase-wrap">
+                                    導入後 30 日の運用ログを見ながら閾値と手順を調整し、標準運用として定着させます。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section
+            class="py-16 sm:py-20 px-5 sm:px-6 lg:px-12 bg-gradient-to-r from-primary via-orange-600 to-primary border-t-4 border-black">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-orbitron font-black text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-widest mb-6 heading-balance">
+                    READY TO REBUILD OPS?</h2>
+                <p class="font-inter text-white/90 text-lg mb-10 max-w-2xl mx-auto body-pretty phrase-wrap">
+                    属人化した多拠点運用を整理したいなら、まずは現状の運用フローから共有してください。
+                </p>
+                <button
+                    class="group relative inline-flex items-center justify-center bg-charcoal text-white px-6 py-3 md:px-12 md:py-6 text-lg font-black uppercase tracking-widest font-orbitron hover:bg-white hover:text-charcoal transition-all border-2 border-charcoal light-speed-hover slant-button"
+                    onclick="location.href='contact.html'">
+                    <span class="relative z-10">相談枠を予約</span>
+                    <span class="material-symbols-outlined ml-2 font-bold relative z-10">chevron_right</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-4 border-primary bg-charcoal-dark px-6 py-16 lg:px-12 text-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+            <div class="flex flex-col gap-6 max-w-sm border-r-0 md:border-r-2 border-charcoal md:pr-12">
+                <div class="flex items-center gap-3 skew-container">
+                    <div class="flex h-12 w-12 items-center justify-center bg-primary skew-content">
+                        <span class="material-symbols-outlined text-3xl">speed</span>
+                    </div>
+                    <h2 class="font-orbitron text-2xl font-black tracking-tighter uppercase skew-content text-white">
+                        DYNAMIC</h2>
+                </div>
+                <p class="font-inter text-gray-400 text-sm leading-relaxed body-pretty phrase-wrap">
+                    複数拠点の更新、監視、障害対応を一つの運用線にまとめる分散運用プラットフォーム。
+                </p>
+                <div class="flex gap-4 mt-4">
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                            class="material-symbols-outlined">mail</span></a>
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                            class="material-symbols-outlined">call</span></a>
+                    <a class="text-gray-400 hover:text-primary transition-colors" href="#"><span
+                            class="material-symbols-outlined">location_on</span></a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="font-orbitron font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">
+                        Company</h4>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="about.html">About</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="service.html">Services</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="contact.html">Contact</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="font-orbitron font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">
+                        Services</h4>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Deployment</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Monitoring</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="#">Recovery</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="font-orbitron font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">
+                        Legal</h4>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="../../../privacy.html">Privacy Policy</a>
+                    <a class="font-inter text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest"
+                        href="../../../terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto mt-16 pt-8 border-t-4 border-gray-800 text-center md:text-left text-gray-600 text-xs font-bold uppercase tracking-widest font-inter">
+            © 2026 DYNAMIC OPERATIONS. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+
+    <!-- Template Common Scripts -->
+    <div id="template-common-container"></div>
+    <script src="../../../assets/js/template-common.js" defer></script>
+
+    <script>
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.z-card').forEach(card => { cardObserver.observe(card); });
+    </script>
+</body>
+
+</html>
+

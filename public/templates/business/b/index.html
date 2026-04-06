@@ -4,208 +4,516 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bold Agency - 常識を覆す圧倒的なクリエイティブ。スピード、パワー、結果にコミットするデジタルエージェンシー。">
+    <title>Bold Corp | Brand Systems & Launch Production</title>
+    <link rel="canonical" href="https://boldcorp.studio/index.html">
+    <meta name="description" content="Bold Corp は、ブランド戦略、ビジュアル設計、撮影制作、Web 実装までを一気通貫で伴走するクリエイティブエージェンシーです。">
     <meta name="theme-color" content="#ff3c00">
-    <meta property="og:title" content="Business B - Bold Agency">
-    <meta property="og:description" content="常識を覆す圧倒的なクリエイティブ。デジタルエージェンシーテンプレート。">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Bold Corp | Brand Systems & Launch Production">
+    <meta property="og:description" content="ブランド戦略からローンチ実装までを並走する、ブルータリズム調のクリエイティブエージェンシー。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/og-image.jpg">
-    <meta property="og:url" content="">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:image" content="assets/images/b-hero-brutalist-night.png">
+    <meta property="og:url" content="https://boldcorp.studio/index.html">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Business B - Bold Template</title>
-
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Bold Agency",
-        "description": "常識を覆す圧倒的なクリエイティブ。スピード、パワー、結果にコミットするデジタルエージェンシー。",
-        "url": "",
-        "logo": ""
+        "name": "Bold Corp",
+        "description": "ブランド戦略、撮影制作、Web 実装、ローンチ支援を横断するクリエイティブエージェンシー。",
+        "url": "https://boldcorp.studio/index.html",
+        "logo": "https://boldcorp.studio/assets/generated/external-image-01.svg",
+        "sameAs": [
+            "https://www.instagram.com/",
+            "https://www.linkedin.com/",
+            "https://x.com/"
+        ]
     }
     </script>
 
-    <!-- Google Fonts: Oswald (Bold Sans) & Roboto -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Manual Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        :root {
+            --bold-marquee-speed: 30s;
+            --bold-cta-shadow: 6px 6px 0 0 #000;
+            --bold-cta-shadow-accent: 6px 6px 0 0 #f98006;
+            --bold-card-shadow: 8px 8px 0 0 #333;
+        }
 
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <link rel="stylesheet" href="assets/css/style.css">
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee var(--bold-marquee-speed) linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .bold-menu-backdrop.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-color: rgba(15, 15, 15, 0.9) !important;
+            backdrop-filter: blur(4px) !important;
+        }
+
+        .bold-mobile-menu.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        .text-pretty {
+            text-wrap: pretty;
+        }
+
+        .text-phrase {
+            word-break: auto-phrase;
+        }
+
+        .bold-cta-primary {
+            box-shadow: var(--bold-cta-shadow);
+        }
+
+        .bold-cta-secondary {
+            box-shadow: var(--bold-cta-shadow-accent);
+        }
+
+        .bold-social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border: 2px solid #333;
+            color: #9ca3af;
+            transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+        }
+
+        .bold-social-link:hover {
+            transform: translateY(-2px);
+            border-color: #ff3c00;
+            color: #ff3c00;
+            background-color: rgba(255, 60, 0, 0.08);
+        }
+    </style>
 </head>
 
-<body class="theme-business fade-in">
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased overflow-x-hidden custom-menu-only">
 
-    <!-- Custom Mobile Menu Toggle -->
-    <button class="bold-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+    <button aria-controls="bold-mobile-menu"
+        class="bold-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-primary flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden"
+        onclick="toggleBoldMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-6 h-0.5 bg-black transition-all duration-400"></span>
+        <span class="bar w-6 h-0.5 bg-black transition-all duration-400"></span>
+        <span class="bar w-6 h-0.5 bg-black transition-all duration-400"></span>
     </button>
 
-    <!-- Fullscreen Typography Menu -->
-    <div class="bold-mobile-menu">
-        <div class="menu-content">
-            <a href="#about" class="menu-link">ABOUT</a>
-            <a href="#works" class="menu-link">WORKS</a>
-            <a href="#contact" class="menu-link contact-btn">GET IN TOUCH</a>
-        </div>
+    <div
+        class="bold-menu-backdrop fixed inset-0 z-[9998] bg-black/0 backdrop-blur-none opacity-0 invisible transition-all duration-500">
     </div>
 
-    <!-- Header -->
-    <header class="bold-header">
-        <div class="logo">BOLD<span class="highlight">.</span>AGENCY</div>
-        <div class="nav">
-            <a href="#about">ABOUT</a>
-            <a href="#works">WORKS</a>
-            <a href="#contact" class="contact-btn">GET IN TOUCH</a>
+    <div id="bold-mobile-menu"
+        class="bold-mobile-menu fixed inset-0 z-[9999] bg-background-dark flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html"
+                    class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-white font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">Home</a>
+            </li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html"
+                    class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-white font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">About</a>
+            </li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html"
+                    class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-white font-bold uppercase tracking-widest border-b border-transparent hover:border-primary transition-colors">Service</a>
+            </li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html"
+                    class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-primary font-bold uppercase tracking-widest mt-4">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between border-b-2 border-primary bg-background-dark px-6 py-4 lg:px-12">
+        <div class="flex items-center gap-3 text-white">
+            <div class="flex h-10 w-10 items-center justify-center bg-primary text-black">
+                <span class="material-symbols-outlined text-3xl font-bold">bolt</span>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold tracking-tighter uppercase">BOLD CORP</h2>
+                <p class="text-[11px] uppercase tracking-[0.28em] text-gray-500">Brand Systems Studio</p>
+            </div>
         </div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest"
+                href="index.html">Home</a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest"
+                href="about.html">About</a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest"
+                href="service.html">Services</a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest"
+                href="contact.html">Contact</a>
+        </nav>
+        <button
+            class="bold-cta-primary hidden md:flex cursor-pointer items-center justify-center border-2 border-primary bg-transparent hover:bg-primary text-primary hover:text-black transition-all px-6 py-2 text-sm font-bold uppercase tracking-widest"
+            onclick="location.href='contact.html'">
+            Book Intro Call
+        </button>
+        <button class="md:hidden text-white" onclick="toggleBoldMenu()">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
     </header>
 
-    <!-- Hero -->
-    <section class="bold-hero mesh-bg-dark">
-        <div class="hero-text">
-            <h1>WE CREATE<br><span class="highlight-bg">IMPACT.</span></h1>
-            <p><span class="ib">常識を覆す、</span><span class="ib">圧倒的な</span><span class="ib">クリエイティブを。</span></p>
-        </div>
-        <div class="hero-visual">
-            <img src="images/hero.png" alt="High Contrast Abstract Architecture"
-                style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <div class="scroll-down">SCROLL</div>
-    </section>
-
-    <!-- Marquee / Ticker -->
-    <div class="marquee-wrapper">
-        <div class="marquee-strip">
-            <div class="marquee-content">
-                STRATEGY • DESIGN • DEVELOPMENT • MARKETING • BRANDING • STRATEGY • DESIGN • DEVELOPMENT •
-            </div>
-        </div>
-    </div>
-
-    <!-- Features -->
-    <section id="about" class="bold-section bg-black">
-        <div class="container">
-            <h2 class="section-title">WHY US?</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <span class="num">01</span>
-                    <h3>Speed.</h3>
-                    <p><span class="ib">ビジネスの</span><span class="ib">加速装置として、</span><span class="ib">最速の</span><span
-                            class="ib">ソリューションを</span><span class="ib">提供します。</span></p>
-                </div>
-                <div class="feature-item">
-                    <span class="num">02</span>
-                    <h3>Power.</h3>
-                    <p><span class="ib">力強い</span><span class="ib">ブランドメッセージで、</span><span class="ib">競合他社を</span><span
-                            class="ib">圧倒する</span><span class="ib">存在感を</span><span class="ib">作ります。</span></p>
-                </div>
-                <div class="feature-item">
-                    <span class="num">03</span>
-                    <h3>Result.</h3>
-                    <p><span class="ib">美しさだけでなく、</span><span class="ib">数字という</span><span class="ib">結果に</span><span
-                            class="ib">コミットする</span><span class="ib">デザインです。</span></p>
+    <main class="flex-grow">
+        <section
+            class="relative flex items-center border-b-4 border-primary bg-background-dark px-6 py-20 md:py-32 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img alt="Brutalist night architecture"
+                    class="h-full w-full object-cover opacity-28 contrast-125 grayscale"
+                    src="assets/images/b-hero-brutalist-night.png">
+                <div
+                    class="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,10,0.97)_0%,rgba(10,10,10,0.9)_44%,rgba(10,10,10,0.92)_100%)]">
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="absolute top-0 right-0 h-96 w-96 bg-primary/5 transform skew-x-12"></div>
+            <div class="absolute bottom-0 left-0 h-64 w-64 bg-primary/10 transform -skew-x-12"></div>
 
-    <!-- Works -->
-    <section id="works" class="bold-section">
-        <div class="container">
-            <h2 class="section-title">WORKS.</h2>
-            <div class="bold-works-grid">
-                <div class="work-item big premium-card-hover">
-                    <div class="img-placeholder" style="width:100%; height:400px; background:#222; color:#555">Major
-                        Project</div>
-                    <h4>REBRANDING 2024</h4>
+            <div class="relative z-10 max-w-7xl w-full">
+                <div
+                    class="inline-flex items-center gap-2 border-2 border-primary bg-primary/10 px-4 py-2 text-xs font-black uppercase tracking-[0.3em] text-primary mb-6">
+                    <span class="h-3 w-3 bg-primary"></span>
+                    Brand Systems / Tokyo
                 </div>
-                <div class="work-item premium-card-hover">
-                    <div class="img-placeholder" style="width:100%; height:300px; background:#222; color:#555">UI/UX
-                        Design</div>
-                    <h4>APP DESIGN</h4>
+
+                <h1
+                    class="text-balance font-black leading-[0.76] tracking-tighter text-white text-5xl md:text-8xl lg:text-[10.25rem] uppercase max-w-4xl">
+                    BUILD THE<br class="hidden md:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-orange-700">NEXT
+                        BOLD MOVE</span>
+                </h1>
+
+                <div class="border-l-4 border-primary pl-6 mt-8 mb-10">
+                    <p class="text-pretty text-phrase max-w-2xl text-lg font-bold text-gray-300 md:text-xl leading-tight">
+                        <span class="ib">ブランド戦略、ビジュアル設計、撮影制作、Web 実装までを一気通貫で支援し、</span><span class="ib">新規事業や刷新案件の立ち上がりを速く、強く、実装可能な形へ整えます。</span>
+                    </p>
                 </div>
-                <div class="work-item premium-card-hover">
-                    <div class="img-placeholder" style="width:100%; height:300px; background:#222; color:#555">Campaign
+
+                <div class="flex flex-col sm:flex-row gap-6 pt-8">
+                        <button
+                            class="bold-cta-primary group relative flex items-center justify-center bg-primary text-black px-6 py-3 md:px-10 md:py-5 text-base font-black uppercase tracking-widest hover:bg-white transition-colors border-4 border-primary hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]"
+                            onclick="location.href='contact.html'">
+                            Start A Project
+                            <span class="material-symbols-outlined ml-2 font-black">arrow_forward</span>
+                        </button>
+                        <button
+                            class="bold-cta-secondary flex items-center justify-center bg-transparent text-white border-4 border-border-color px-6 py-3 md:px-10 md:py-5 text-base font-black uppercase tracking-widest hover:border-primary hover:text-primary transition-colors"
+                            onclick="location.href='service.html'">
+                            View Capabilities
+                        </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-full bg-primary py-6 border-y-4 border-black">
+            <div class="marquee-container">
+                <div class="marquee-content text-black font-black text-2xl md:text-3xl uppercase tracking-widest">
+                    BRAND STRATEGY • IDENTITY SYSTEMS • CAMPAIGN LAUNCHES • WEB PRODUCTION • PHOTO / FILM • SALES ENABLEMENT •
+                    BRAND STRATEGY • IDENTITY SYSTEMS • CAMPAIGN LAUNCHES • WEB PRODUCTION • PHOTO / FILM • SALES ENABLEMENT •
+                </div>
+            </div>
+        </div>
+
+        <section class="bg-black border-y-4 border-black">
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 p-2 md:p-4 bg-black">
+                <div
+                    class="bg-primary p-6 md:p-12 col-span-2 md:col-span-1 lg:row-span-2 flex flex-col justify-end min-h-[180px] md:min-h-[320px]">
+                    <span
+                        class="font-black text-black text-[4rem] sm:text-[5.5rem] md:text-[8rem] lg:text-[10rem] leading-none tracking-tighter block mb-2">38</span>
+                    <span class="font-black text-black uppercase tracking-widest lg:text-lg">Launches In 18 Months</span>
+                </div>
+
+                <div class="bg-white p-6 md:p-12 flex flex-col justify-end min-h-[180px] md:min-h-[320px]">
+                    <span
+                        class="font-black text-black text-[2.5rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7rem] leading-none tracking-tighter block mb-1 md:mb-2">9</span>
+                    <span class="font-black text-black uppercase tracking-widest text-[10px] sm:text-xs md:text-base">Industry Verticals</span>
+                </div>
+
+                <div
+                    class="bg-[#111] p-6 md:p-12 flex flex-col justify-end relative overflow-hidden min-h-[180px] md:min-h-[320px]">
+                    <span
+                        class="font-black text-white text-[2.5rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7rem] leading-none tracking-tighter block mb-1 md:mb-2 relative z-10">72<span
+                            class="text-primary">%</span></span>
+                    <span
+                        class="font-black text-gray-400 uppercase tracking-widest text-[10px] sm:text-xs md:text-base relative z-10">Repeat Engagement Rate</span>
+                    <span
+                        class="absolute -bottom-4 -right-2 md:-bottom-8 md:-right-4 font-black text-primary/[0.05] text-[4rem] sm:text-[6rem] md:text-[12rem] leading-none select-none pointer-events-none">7</span>
+                </div>
+
+                <div
+                    class="bg-[#1a1a1a] p-6 md:p-12 md:col-span-2 col-span-2 lg:col-span-2 flex flex-col sm:flex-row sm:items-end justify-between min-h-[180px] md:min-h-[320px]">
+                    <div>
+                        <span
+                            class="font-black text-white text-[4rem] sm:text-[6rem] md:text-[7rem] lg:text-[8rem] leading-none tracking-tighter block mb-2">14</span>
+                        <span class="font-black text-white uppercase tracking-widest lg:text-lg">In-House Specialists</span>
                     </div>
-                    <h4>PROMOTION</h4>
+                    <span
+                        class="mt-8 sm:mt-0 font-black text-primary uppercase tracking-widest text-xl lg:text-3xl sm:text-right">STRATEGY / DESIGN / DEV / FILM</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 px-5 sm:px-6 lg:px-12 bg-background-dark border-t-4 border-border-color">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+                    <div class="border-l-4 border-primary pl-8">
+                        <div class="mb-8 max-w-xl border-4 border-border-color bg-black/60 p-5">
+                            <p class="text-xs font-black uppercase tracking-[0.28em] text-primary">Best Fit</p>
+                            <p class="text-pretty mt-3 text-sm font-bold leading-7 text-gray-300">新規ローンチ、採用強化、ブランド刷新、展示会前後のクリエイティブ統一が必要なチーム向け。</p>
+                        </div>
+                        <h2 class="text-primary font-black tracking-widest uppercase mb-4 text-sm">// What We Actually Build</h2>
+                        <h3 class="text-balance text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase leading-none mb-6">
+                            NOT JUST CAMPAIGNS.<br>COMPLETE RELEASE SYSTEMS.
+                        </h3>
+                        <p class="text-pretty text-gray-400 text-base font-bold leading-relaxed mb-6">
+                            Bold Corp は、見た目だけを整える制作会社ではありません。事業の立ち位置、営業導線、採用文脈、撮影素材、公開後の運用までを同じチームで設計し、ローンチ時のブレを減らします。
+                        </p>
+                        <p class="text-pretty text-gray-400 text-base font-bold leading-relaxed">
+                            企画書の言葉と公開物の表情がズレないこと、社内説明と対外発信が同じ温度でつながることを重視しています。
+                        </p>
+                    </div>
+                    <div class="grid gap-6">
+                        <article class="border-4 border-border-color bg-surface-dark p-8" style="box-shadow: var(--bold-card-shadow);">
+                            <p class="text-xs font-black uppercase tracking-[0.28em] text-primary">Deliverables</p>
+                            <ul class="text-pretty mt-6 space-y-4 text-sm font-bold leading-7 text-gray-300">
+                                <li>ブランド再定義 / ネーミング補助</li>
+                                <li>ロゴ、タイポ、トーン定義、運用ルール</li>
+                                <li>撮影ディレクション、キービジュアル、映像</li>
+                                <li>コーポレートサイト、採用サイト、営業資料</li>
+                            </ul>
+                        </article>
+                        <article class="border-4 border-border-color bg-surface-dark p-8" style="box-shadow: var(--bold-card-shadow);">
+                            <p class="text-xs font-black uppercase tracking-[0.28em] text-primary">Typical Projects</p>
+                            <ul class="text-pretty mt-6 space-y-4 text-sm font-bold leading-7 text-gray-300">
+                                <li>事業統合に伴うブランド刷新</li>
+                                <li>シリーズA前後の信頼設計</li>
+                                <li>採用広報と営業資料の同時再構築</li>
+                                <li>展示会 / 発表会向け集中ローンチ</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 border-t-4 border-border-color bg-surface-dark">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="border-l-4 border-primary pl-8">
+                        <span class="text-primary font-black tracking-widest uppercase mb-4 block text-sm">// Recent Voice</span>
+                        <div class="mb-5 flex h-14 w-14 items-center justify-center border-2 border-primary text-primary">
+                            <span class="material-symbols-outlined text-4xl">format_quote</span>
+                        </div>
+                        <h3 class="text-balance text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase leading-tight mb-8">
+                            BRAND, SALES, RECRUITING. EVERYTHING STARTED SPEAKING THE SAME LANGUAGE WITHIN ONE QUARTER.
+                        </h3>
+                        <p class="text-pretty mb-8 text-sm font-bold leading-7 text-gray-400">
+                            展示会用のビジュアルだけでなく、採用説明会の資料、営業提案書、コーポレートサイトまで一気通貫で整理してもらえたことで、社内の説明コストが大きく下がりました。
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="h-14 w-14 bg-neutral-700 overflow-hidden border-2 border-black">
+                                <img alt="Portrait of a male executive"
+                                    class="w-full h-full object-cover filter grayscale contrast-125"
+                                    src="assets/images/b-portrait-founder.png">
+                            </div>
+                            <div>
+                                <p class="text-white font-black uppercase">Shun Aizawa</p>
+                                <p class="text-gray-500 text-xs font-bold uppercase tracking-widest">VP, CRAFTGRID MOBILITY</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 md:grid-cols-2">
+                        <div
+                            class="border-4 border-border-color p-6 md:p-8 flex flex-col justify-between bg-background-dark min-h-[150px]">
+                            <span class="material-symbols-outlined text-4xl text-white">apartment</span>
+                            <div>
+                                <p class="text-xl font-black text-white uppercase">Northlane</p>
+                                <p class="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-gray-500">Industrial Tech</p>
+                            </div>
+                        </div>
+                        <div
+                            class="border-4 border-border-color p-6 md:p-8 flex flex-col justify-between bg-background-dark min-h-[150px]">
+                            <span class="material-symbols-outlined text-4xl text-white">monitoring</span>
+                            <div>
+                                <p class="text-xl font-black text-white uppercase">Signal Forge</p>
+                                <p class="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-gray-500">B2B SaaS</p>
+                            </div>
+                        </div>
+                        <div
+                            class="border-4 border-border-color p-6 md:p-8 flex flex-col justify-between bg-background-dark min-h-[150px]">
+                            <span class="material-symbols-outlined text-4xl text-white">local_shipping</span>
+                            <div>
+                                <p class="text-xl font-black text-white uppercase">Harborline</p>
+                                <p class="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-gray-500">Logistics</p>
+                            </div>
+                        </div>
+                        <div
+                            class="border-4 border-border-color p-6 md:p-8 flex flex-col justify-between bg-background-dark min-h-[150px]">
+                            <span class="material-symbols-outlined text-4xl text-white">science</span>
+                            <div>
+                                <p class="text-xl font-black text-white uppercase">Aster Lab</p>
+                                <p class="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-gray-500">Deep Tech</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t-4 border-primary bg-black px-6 py-16 lg:px-12 text-white">
+        <div class="max-w-7xl mx-auto flex flex-col gap-12 xl:flex-row xl:justify-between">
+            <div class="flex max-w-sm flex-col gap-6 xl:pr-12">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="flex h-12 w-12 items-center justify-center bg-primary text-black border-2 border-black">
+                        <span class="material-symbols-outlined text-3xl font-black">bolt</span>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black tracking-tighter uppercase">BOLD CORP</h2>
+                        <p class="text-[11px] uppercase tracking-[0.3em] text-gray-500">Brand Systems Studio</p>
+                    </div>
+                </div>
+                <p class="text-pretty text-gray-400 text-sm leading-relaxed">
+                    大胆な表現と説明可能な事業文脈を同時に設計する、東京拠点のクリエイティブパートナーです。
+                </p>
+                <div class="flex gap-3">
+                    <a class="bold-social-link" href="mailto:hello@boldcorp.studio" aria-label="メール">
+                        <span class="material-symbols-outlined">mail</span>
+                    </a>
+                    <a class="bold-social-link" href="https://www.instagram.com/" aria-label="Instagram">
+                        <span class="material-symbols-outlined">photo_camera</span>
+                    </a>
+                    <a class="bold-social-link" href="https://www.linkedin.com/" aria-label="LinkedIn">
+                        <span class="material-symbols-outlined">business_center</span>
+                    </a>
+                    <a class="bold-social-link" href="https://x.com/" aria-label="X">
+                        <span class="material-symbols-outlined">alternate_email</span>
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">Company</h4>
+                    <a class="text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest" href="about.html">About</a>
+                    <a class="text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest" href="service.html">Services</a>
+                    <a class="text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest" href="contact.html">Contact</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">Services</h4>
+                    <span class="text-gray-400 font-bold uppercase text-xs tracking-widest">Brand Strategy</span>
+                    <span class="text-gray-400 font-bold uppercase text-xs tracking-widest">Visual Identity</span>
+                    <span class="text-gray-400 font-bold uppercase text-xs tracking-widest">Launch Production</span>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">Industries</h4>
+                    <span class="text-gray-400 font-bold uppercase text-xs tracking-widest">SaaS</span>
+                    <span class="text-gray-400 font-bold uppercase text-xs tracking-widest">Mobility</span>
+                    <span class="text-gray-400 font-bold uppercase text-xs tracking-widest">Industrial Tech</span>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-black uppercase tracking-widest text-primary text-sm border-b-2 border-primary pb-2">Legal</h4>
+                    <a class="text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest" href="../../../privacy.html">Privacy Policy</a>
+                    <a class="text-gray-400 hover:text-white transition-colors font-bold uppercase text-xs tracking-widest" href="../../../terms.html">Terms of Service</a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- CTA / Contact -->
-    <section id="contact" class="bold-cta">
-        <div class="container">
-            <h2>READY TO START?</h2>
-            <a href="javascript:void(0)" class="big-button">CONTACT US <span
-                    class="material-icons">arrow_forward</span></a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bold-footer">
-        <div class="container">
-            <p>&copy; 2026 BOLD AGENCY. All Rights Reserved.</p>
+        <div
+            class="max-w-7xl mx-auto mt-16 pt-8 border-t-4 border-gray-800 text-center md:text-left text-gray-600 text-xs font-bold uppercase tracking-widest">
+            © 2026 BOLD CORPORATION. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
-    <!-- Common Script -->
+    <div id="template-common-container"></div>
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // ===== Bold Fullscreen Menu Control =====
+        function toggleBoldMenu() {
             const toggle = document.querySelector('.bold-mobile-toggle');
+            const backdrop = document.querySelector('.bold-menu-backdrop');
             const menu = document.querySelector('.bold-mobile-menu');
 
-            if (toggle && menu) {
-                function openMenu() {
-                    toggle.classList.add('active');
-                    menu.classList.add('active');
+            if (toggle && backdrop && menu) {
+                toggle.classList.toggle('active');
+                backdrop.classList.toggle('active');
+                menu.classList.toggle('active');
+
+                const bars = toggle.querySelectorAll('.bar');
+                if (toggle.classList.contains('active')) {
+                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                    bars[1].style.opacity = '0';
+                    bars[1].style.transform = 'scaleX(0)';
+                    bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
                     toggle.setAttribute('aria-expanded', 'true');
+                    toggle.setAttribute('aria-label', 'メニューを閉じる');
                     document.body.style.overflow = 'hidden';
-
-                    // Staggered animation for links
-                    const links = menu.querySelectorAll('.menu-link');
-                    links.forEach((link, i) => {
-                        setTimeout(() => link.classList.add('visible'), 100 * (i + 1));
-                    });
-                }
-
-                function closeMenu() {
-                    toggle.classList.remove('active');
-                    menu.classList.remove('active');
+                } else {
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[1].style.transform = 'none';
+                    bars[2].style.transform = 'none';
                     toggle.setAttribute('aria-expanded', 'false');
+                    toggle.setAttribute('aria-label', 'メニューを開く');
                     document.body.style.overflow = '';
-
-                    // Reset link animation
-                    menu.querySelectorAll('.menu-link').forEach(link => {
-                        link.classList.remove('visible');
-                    });
                 }
 
-                toggle.addEventListener('click', () => {
-                    toggle.classList.contains('active') ? closeMenu() : openMenu();
-                });
-
-                menu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
-                        closeMenu();
+                const items = menu.querySelectorAll('li');
+                items.forEach((item, index) => {
+                    if (toggle.classList.contains('active')) {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
                     }
                 });
+            }
+        }
+
+        document.querySelector('.bold-menu-backdrop')?.addEventListener('click', toggleBoldMenu);
+
+        document.querySelectorAll('.bold-mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleBoldMenu);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.bold-mobile-toggle');
+                if (toggle && toggle.classList.contains('active')) {
+                    toggleBoldMenu();
+                }
             }
         });
     </script>

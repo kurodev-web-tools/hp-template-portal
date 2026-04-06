@@ -1,114 +1,64 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const buttons = document.querySelectorAll("[data-menu-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+  const backdrop = document.querySelector("[data-menu-backdrop]");
+  const links = document.querySelectorAll("[data-mobile-menu] a[href]");
 
-// Global Toggle Function
-window.toggleMenu = function(event) {
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    const menu = document.querySelector('.xtreme-mobile-menu');
-    const toggle = document.querySelector('.xtreme-mobile-toggle');
-    
-    if (menu) {
-        menu.classList.toggle('active');
-        
-        // Scroll Lock
-        if (menu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+  // === MOBILE MENU ===
+  const setMenuState = (isOpen) => {
+    if (!menu) return;
+    menu.hidden = !isOpen;
+    if (backdrop) backdrop.hidden = !isOpen;
+    body.style.overflow = isOpen ? "hidden" : "";
+    menu.setAttribute("aria-hidden", String(!isOpen));
+    buttons.forEach((button) => button.setAttribute("aria-expanded", String(isOpen)));
+  };
 
-        // Icon Toggle
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => setMenuState(button.getAttribute("aria-expanded") !== "true"));
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.xtreme-snap-container');
-    const sections = document.querySelectorAll('.snap-section');
-    const navLinks = document.querySelectorAll('.nav-id');
+  backdrop?.addEventListener("click", () => setMenuState(false));
+  links.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuState(false);
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) setMenuState(false);
+  });
 
-    // ===== Snap Sync Navigation =====
-    if (container) {
-        container.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (container.scrollTop >= sectionTop - container.offsetHeight / 2) {
-                    current = section.getAttribute('id');
-                }
-            });
+  setMenuState(false);
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    }
-
-    // Scroll to section on link click (Unified)
-    const allLinks = document.querySelectorAll('.nav-id, .xtreme-mobile-menu a');
-    allLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const id = link.getAttribute('href').substring(1);
-            const target = document.getElementById(id);
-            
-            // Close menu if open
-            const menu = document.querySelector('.xtreme-mobile-menu');
-            const toggle = document.querySelector('.xtreme-mobile-toggle');
-            if(menu && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-                document.body.style.overflow = '';
-                if(toggle) {
-                    const icon = toggle.querySelector('.material-icons');
-                    if(icon) icon.textContent = 'menu';
-                }
-            }
-
-            if (target && container) {
-                container.scrollTo({
-                    top: target.offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
+  // === REVEAL ANIMATIONS ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    // ===== Header Scroll Effect =====
-    const header = document.querySelector('.xtreme-header');
-    if (container) {
-        container.addEventListener('scroll', () => {
-            if (container.scrollTop > 50) {
-                header.classList.add('is-scrolled');
-            } else {
-                header.classList.remove('is-scrolled');
-            }
-        });
-    }
+  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
-    // ===== Mobile Menu Logic (Robust) =====
-    const toggleBtn = document.querySelector('.xtreme-mobile-toggle');
-    const menu = document.querySelector('.xtreme-mobile-menu');
-
-    if (toggleBtn) {
-        toggleBtn.removeAttribute('onclick');
-        toggleBtn.addEventListener('click', window.toggleMenu);
-    }
-
-    // ===== Xtreme Theme Effects =====
-    if (window.PremiumEffects) {
-        // Harsh quick reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 800 });
-
-        // Tilt for cards
-        PremiumEffects.Tilt('.x-card', { max: 10, scale: 1.05 });
-    }
+  // === GLITCH EFFECT (Hero Title) ===
+  const glitchTitle = document.querySelector('.xr-hero h1 span');
+  if (glitchTitle) {
+    glitchTitle.classList.add('glitch-active');
+    glitchTitle.setAttribute('data-text', glitchTitle.textContent);
+    
+    // Stop persistent glitch after 3 seconds for readability
+    setTimeout(() => {
+      glitchTitle.classList.remove('glitch-active');
+    }, 4000);
+  }
+  
+  // === HEADER SCROLL ===
+  const header = document.querySelector('[data-header]');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+  }
 });

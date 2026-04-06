@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@source "../../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #19191a;
+    --color-accent-gold: #c5a059;
+    --color-background-light: #f9f8f4;
+    --color-background-dark: #121212;
+    --color-sumi: #1c1c1c;
+    --font-display: "Manrope", "Noto Sans JP", sans-serif;
+    --font-serif-jp: "Noto Serif JP", serif;
+    --shadow-wa: 0 24px 80px rgba(25, 25, 26, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+}
+
+.wa-texture {
+    background:
+        radial-gradient(circle at top left, rgba(197, 160, 89, 0.08), transparent 24rem),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(249, 248, 244, 0.96)),
+        repeating-linear-gradient(90deg, rgba(25, 25, 26, 0.018) 0 1px, transparent 1px 16px),
+        var(--color-background-light);
+}
+
+.dark .wa-texture {
+    background:
+        radial-gradient(circle at top left, rgba(197, 160, 89, 0.14), transparent 24rem),
+        linear-gradient(180deg, rgba(18, 18, 18, 0.92), rgba(18, 18, 18, 1)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 16px),
+        var(--color-background-dark);
+}
+
+.wa-panel {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(25, 25, 26, 0.08);
+    box-shadow: var(--shadow-wa);
+    backdrop-filter: blur(16px);
+}
+
+.dark .wa-panel {
+    background: rgba(28, 28, 28, 0.68);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.wa-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(25, 25, 26, 0.18), transparent);
+}
+
+.dark .wa-divider {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent);
+}
+
+.wa-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.4em;
+}
+
+.ib {
+    display: inline-block;
+}
+
+@media (max-width: 639px) {
+    .wa-mobile-copy {
+        font-size: clamp(1.76rem, 7.9vw, 1.96rem);
+        line-height: 1.22;
+        text-wrap: balance;
+    }
+
+    .wa-mobile-copy > .block {
+        display: block;
+    }
+
+    .wa-mobile-copy-tight {
+        max-width: 9.4em;
+    }
+
+    .wa-mobile-copy-wide {
+        max-width: 10.8em;
+    }
+}
+
+.wa-input {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(25, 25, 26, 0.12);
+    background: rgba(255, 255, 255, 0.84);
+    padding: 0.95rem 1rem;
+    color: var(--color-sumi);
+    outline: none;
+}
+
+.wa-input:focus {
+    border-color: rgba(197, 160, 89, 0.9);
+    box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.14);
+}
+
+.dark .wa-input {
+    background: rgba(18, 18, 18, 0.7);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f5f5f4;
+}
+
+.wa-menu-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.wa-menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wa-mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.75rem);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.wa-mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.wa-mobile-toggle .bar {
+    width: 1.3rem;
+    height: 2px;
+    border-radius: 9999px;
+    background: currentColor;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.wa-mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.wa-mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.wa-mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+header nav a[href] {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    padding: 0.55rem 0.95rem;
+    line-height: 1;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+header nav a[href]:hover {
+    background: rgba(197, 160, 89, 0.06);
+}
+
+header nav a[aria-current="page"] {
+    color: var(--color-accent-gold) !important;
+    background: rgba(197, 160, 89, 0.12);
+    border-color: rgba(197, 160, 89, 0.32);
+    box-shadow: inset 0 -1px 0 rgba(197, 160, 89, 0.6);
+}
+
+header nav a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 24%;
+    right: 24%;
+    bottom: 0.22rem;
+    height: 1px;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.9;
+}
+
+.wa-mobile-menu a[aria-current="page"] {
+    color: var(--color-accent-gold) !important;
+    background: rgba(197, 160, 89, 0.08);
+    border-color: rgba(197, 160, 89, 0.22);
+    box-shadow: inset 0 -1px 0 rgba(197, 160, 89, 0.55);
+}
+
+.wa-mobile-menu a[aria-current="page"]::after {
+    content: "";
+    display: block;
+    width: 38%;
+    height: 1px;
+    margin-top: 0.45rem;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.9;
+}

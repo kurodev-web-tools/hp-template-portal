@@ -1,124 +1,533 @@
 <!DOCTYPE html>
-<html lang="ja">
-
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logical - Systemic Dashboard</title>
-    <!-- Core Assets -->
-    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <title>Logical Systems | 業務基盤の設計・運用支援</title>
+
+    <link rel="canonical" href="https://example.com/templates/business/l/index.html">
+    <meta name="description" content="Logical Systems は、基幹業務や外部サービスを安全に接続し、運用まで見据えて設計する B2B 向けの業務基盤です。">
+    <meta property="og:title" content="Logical Systems | 業務基盤の設計・運用支援">
+    <meta property="og:description" content="基幹業務や外部サービスを安全に接続し、運用まで見据えて設計する B2B 向けの業務基盤です。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/l/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Logical Systems",
+        "description": "基幹業務や外部サービスを安全に接続し、運用まで見据えて設計する B2B 向けの業務基盤。",
+        "url": "https://example.com/templates/business/l/index.html",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "03-1234-5678",
+            "contactType": "customer service",
+            "availableLanguage": "Japanese"
+        }
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+
+    <!-- Portal Catalog Style -->
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
 
-<body class="theme-business fade-in">
-    <!-- Mobile Toggle -->
-    <button class="mobile-menu-toggle" id="menuToggle">
-        <i class="material-icons">terminal</i>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+
+        h1, h2, h3, h4 {
+            text-wrap: balance;
+        }
+
+        p, li, summary, td {
+            text-wrap: pretty;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .l-menu-backdrop.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-color: rgba(2, 6, 23, 0.8) !important;
+            backdrop-filter: blur(4px) !important;
+        }
+
+        .l-mobile-menu.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Dashboard grid background */
+        .l-grid-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(13, 127, 242, 0.15) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        /* Metric card hover effect */
+        .l-metric-card {
+            transition: all 0.2s ease;
+        }
+
+        .l-metric-card:hover {
+            transform: translateY(-2px);
+            border-color: rgb(13, 127, 242);
+        }
+
+        .l-reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .l-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .l-tech-panel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .l-tech-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(13, 127, 242, 0.08);
+            opacity: 0.7;
+            pointer-events: none;
+            animation: l-panel-breathe 5.6s ease-in-out infinite;
+        }
+
+        @keyframes l-panel-breathe {
+            0%, 100% {
+                opacity: 0.42;
+            }
+            50% {
+                opacity: 0.82;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .l-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .l-tech-panel::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased custom-menu-only">
+
+    <!-- Mobile Menu Toggle -->
+    <button aria-controls="l-mobile-menu" class="l-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-slate-900 dark:bg-slate-950 border border-slate-700 flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleLMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-primary transition-all duration-400"></span>
     </button>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <i class="material-icons logo-icon">blur_on</i>
-            <span>LOGICAL</span>
+    <div class="l-menu-backdrop fixed inset-0 z-[9998] bg-slate-900/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="l-mobile-menu" class="l-mobile-menu fixed inset-0 z-[9999] bg-slate-950 flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0 space-y-4">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">About</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">Service</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-8 font-mono text-sm text-slate-100 uppercase tracking-[0.24em] border border-transparent hover:border-primary hover:text-primary transition-all">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="container mx-auto px-4 md:px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-3xl">terminal</span>
+                        <h2 class="text-slate-900 dark:text-slate-100 text-sm font-black leading-tight tracking-tighter uppercase">Logical Systems</h2>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6 border-l border-slate-200 dark:border-slate-800 pl-6">
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="index.html">Home</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="about.html">About</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="service.html">Service</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-[11px] font-bold uppercase tracking-wider" href="contact.html">Contact</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative hidden sm:block">
+                        <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+                        <input class="w-40 md:w-48 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-[11px] py-1.5 pl-8 pr-2 focus:ring-1 focus:ring-primary focus:outline-none placeholder:text-slate-500" placeholder="SEARCH..." type="text"/>
+                    </div>
+                    <a href="contact.html" class="bg-primary text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded hover:bg-blue-600 transition-colors hidden sm:block">
+                        Deploy Instance
+                    </a>
+                    <button class="md:hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleLMenu()">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <nav class="sidebar-nav">
-            <a href="index.html" class="nav-item active">
-                <i class="material-icons">dashboard</i>
-                <span>Overview</span>
-            </a>
-            <a href="workflows.html" class="nav-item">
-                <i class="material-icons">account_tree</i>
-                <span>Workflows</span>
-            </a>
-            <a href="analysis.html" class="nav-item">
-                <i class="material-icons">insights</i>
-                <span>Analysis</span>
-            </a>
-            <div style="flex: 1;"></div>
-            <a href="settings.html" class="nav-item">
-                <i class="material-icons">settings</i>
-                <span>Settings</span>
-            </a>
-        </nav>
-    </aside>
+    </header>
 
-    <!-- Main Content -->
-    <main>
-        <header class="dashboard-header">
-            <div class="page-title">
-                <h1 class="blur-text">Logical Dashboard</h1>
-                <p>System status: <span class="text-turquoise">OPERATIONAL</span></p>
+    <main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-6 py-8">
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-1 border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-800 mb-8 overflow-hidden">
+            <div class="col-span-12 lg:col-span-7 bg-background-light dark:bg-background-dark p-6 md:p-8">
+                <div class="flex flex-col gap-6 l-reveal">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center gap-2 px-2 py-1 bg-primary/10 text-primary border border-primary/20 rounded text-[10px] font-bold uppercase tracking-widest mb-2">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            Business Platform / Reference Build
+                        </div>
+                        <h1 class="text-slate-900 dark:text-slate-100 text-3xl md:text-4xl lg:text-5xl font-black leading-[1.08] tracking-tight max-w-2xl">
+                            業務システムを安全に繋ぎ、<br/>運用し続けるための基盤。
+                        </h1>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed max-w-xl">
+                            基幹システム、SaaS、監視基盤、社内ツールをまとめて扱える構成を想定し、導入後の運用まで見据えて設計しています。要件整理、連携方式、障害時の切り分けまで一つの流れで扱えるのが特長です。
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="service.html" class="bg-primary text-white text-[12px] font-bold uppercase px-6 py-3 rounded hover:bg-blue-600 transition-colors">
+                            サービスを見る
+                        </a>
+                        <a href="contact.html" class="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-800 text-[12px] font-bold uppercase px-6 py-3 rounded hover:border-primary transition-colors">
+                            導入相談
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="border border-slate-700/70 dark:border-slate-700/70 rounded p-3 bg-slate-900/55 dark:bg-slate-900/70 backdrop-blur-sm shadow-sm">
+                            <p class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-400 tracking-wider">相談対象</p>
+                            <p class="text-sm font-bold text-slate-50 mt-1">業務連携 / 運用改善</p>
+                        </div>
+                        <div class="border border-slate-700/70 dark:border-slate-700/70 rounded p-3 bg-slate-900/55 dark:bg-slate-900/70 backdrop-blur-sm shadow-sm">
+                            <p class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-400 tracking-wider">連携先</p>
+                            <p class="text-sm font-bold text-slate-50 mt-1">SaaS / API / 基幹</p>
+                        </div>
+                        <div class="border border-slate-700/70 dark:border-slate-700/70 rounded p-3 bg-slate-900/55 dark:bg-slate-900/70 backdrop-blur-sm shadow-sm">
+                            <p class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-400 tracking-wider">導入期間</p>
+                            <p class="text-sm font-bold text-slate-50 mt-1">標準 3-6 週間</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="btn-primary">
-                <i class="material-icons">refresh</i>
-                Sync Data
-            </button>
-        </header>
-
-        <!-- Stats Grid -->
-        <section class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-label">System Load</span>
-                <div class="stat-value"><span class="count-up">34</span><span class="font-mono">%</span></div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Active Nodes</span>
-                <div class="stat-value"><span class="count-up">1280</span></div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Process Efficiency</span>
-                <div class="stat-value"><span class="count-up">99.2</span><span class="font-mono">%</span></div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Security Score</span>
-                <div class="stat-value"><span class="count-up">98</span></div>
+            <div class="col-span-12 lg:col-span-5 bg-slate-50 dark:bg-slate-900/50 p-6 flex flex-col justify-center border-l border-slate-200 dark:border-slate-800 relative overflow-hidden l-grid-bg l-tech-panel l-reveal">
+                <div class="relative z-10 space-y-4">
+                    <div class="bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded p-4 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-slate-200 dark:border-slate-800 pb-2">
+                            <span class="text-[10px] font-bold uppercase text-slate-500 tracking-tighter">導入の全体像</span>
+                            <span class="text-[10px] font-mono text-primary">FLOW-03</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="size-7 rounded bg-primary/10 text-primary border border-primary/20 flex items-center justify-center text-[10px] font-black">01</span>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100">現状整理</p>
+                                    <p class="text-[12px] text-slate-500">既存システム、連携先、運用の課題を洗い出します。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="size-7 rounded bg-primary/10 text-primary border border-primary/20 flex items-center justify-center text-[10px] font-black">02</span>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100">連携設計</p>
+                                    <p class="text-[12px] text-slate-500">API、バッチ、手動運用の切り分けを決めます。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="size-7 rounded bg-primary/10 text-primary border border-primary/20 flex items-center justify-center text-[10px] font-black">03</span>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-900 dark:text-slate-100">運用移行</p>
+                                    <p class="text-[12px] text-slate-500">監視、通知、引き継ぎ手順までまとめて整えます。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded p-3">
+                            <p class="text-[9px] uppercase font-bold text-slate-500">対象業務</p>
+                            <p class="text-base font-black text-slate-900 dark:text-slate-100">受注 / 出荷</p>
+                        </div>
+                        <div class="bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded p-3">
+                            <p class="text-[9px] uppercase font-bold text-slate-500">連携方式</p>
+                            <p class="text-base font-black text-slate-900 dark:text-slate-100">API / CSV</p>
+                        </div>
+                        <div class="bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded p-3">
+                            <p class="text-[9px] uppercase font-bold text-slate-500">運用窓口</p>
+                            <p class="text-base font-black text-slate-900 dark:text-slate-100">平日対応</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Main Insights -->
-        <div class="layout-row">
-            <div class="panel">
-                <div class="panel-header">
-                    <h2 class="panel-title">
-                        <i class="material-icons text-turquoise">terminal</i>
-                        Logic Flow Monitor
-                    </h2>
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-12">
+            <div class="l-metric-card l-reveal border border-slate-200 dark:border-slate-800 p-4 bg-background-light dark:bg-background-dark rounded">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="material-symbols-outlined text-primary text-lg md:text-xl">event_note</span>
+                    <span class="text-[10px] font-mono text-slate-500">PLAN-01</span>
                 </div>
-                <div class="flow-diagram">
-                    <div style="display: flex; gap: 40px; align-items: center;">
-                        <div class="flow-node">INPUT_STREAM</div>
-                        <i class="material-icons text-turquoise">arrow_forward</i>
-                        <div class="flow-node">PROCESS_ENGINE</div>
-                        <i class="material-icons text-turquoise">arrow_forward</i>
-                        <div class="flow-node">OUTPUT_DIST</div>
-                    </div>
-                    <!-- Lines and effects can be added with CSS/JS -->
+                <h3 class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase mb-1">標準導入</h3>
+                <p class="text-slate-500 text-[12px] mb-3 md:mb-4">小規模な連携は短期で立ち上げやすい構成です。</p>
+                <div class="pt-3 md:pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <p class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100">3-6 週間</p>
+                    <p class="text-[10px] font-bold text-primary uppercase tracking-wider">Initial Setup</p>
                 </div>
             </div>
-            <div class="panel">
-                <div class="panel-header">
-                    <h2 class="panel-title">System Logs</h2>
+
+            <div class="l-metric-card l-reveal border border-slate-200 dark:border-slate-800 p-4 bg-background-light dark:bg-background-dark rounded">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="material-symbols-outlined text-primary text-lg md:text-xl">link</span>
+                    <span class="text-[10px] font-mono text-slate-500">SYNC-02</span>
                 </div>
-                <div class="font-mono" style="font-size: 0.8rem; line-height: 1.6;">
-                    <p><span class="text-turquoise">[11:45:01]</span> NODE_01 ACTIVE</p>
-                    <p><span class="text-turquoise">[11:46:22]</span> SYNCING_RESOURCES...</p>
-                    <p><span class="text-turquoise">[11:47:15]</span> BUFFER_CLEARED</p>
-                    <p><span style="color: #fca5a5;">[11:48:02]</span> WARNING: LATENCY_DETECTED</p>
-                    <p><span class="text-turquoise">[11:48:30]</span> OPTIMIZING_FLOW...</p>
+                <h3 class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase mb-1">連携対象</h3>
+                <p class="text-slate-500 text-[12px] mb-3 md:mb-4">SaaS、基幹、BI、社内運用ツールをまとめて扱えます。</p>
+                <div class="pt-3 md:pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <p class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100">5 系統+</p>
+                    <p class="text-[10px] font-bold text-primary uppercase tracking-wider">Integration Scope</p>
+                </div>
+            </div>
+
+            <div class="l-metric-card l-reveal border border-slate-200 dark:border-slate-800 p-4 bg-background-light dark:bg-background-dark rounded">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="material-symbols-outlined text-primary text-lg md:text-xl">support_agent</span>
+                    <span class="text-[10px] font-mono text-slate-500">OPS-03</span>
+                </div>
+                <h3 class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase mb-1">運用支援</h3>
+                <p class="text-slate-500 text-[12px] mb-3 md:mb-4">監視と障害切り分けを含めた運用設計を支援します。</p>
+                <div class="pt-3 md:pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <p class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100">24/7</p>
+                    <p class="text-[10px] font-bold text-primary uppercase tracking-wider">Optional Coverage</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
+            <div class="mb-8 md:mb-12 l-reveal">
+                <span class="text-[10px] font-bold uppercase text-primary tracking-[0.3em]">Core Modules</span>
+                <h2 class="text-2xl md:text-3xl font-black mt-2 mb-4">実装前に、<br class="hidden xl:block">何を決めるかを整理する。</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-2xl">
+                    連携方式や運用負荷を曖昧にしたまま進めると、あとで手戻りが増えます。初期段階で、対象業務、接続先、責任分界を見える形にします。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded l-reveal">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-4">fact_check</span>
+                    <h3 class="font-bold text-lg mb-2">要件整理</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">現場の運用、既存システム、利用部門の期待値を一つのシートに揃えます。</p>
+                </article>
+                <article class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded l-reveal">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-4">integration_instructions</span>
+                    <h3 class="font-bold text-lg mb-2">連携実装</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">API、Webhook、CSV など業務に合う方式を選び、手戻りを減らします。</p>
+                </article>
+                <article class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded l-reveal">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-4">event_available</span>
+                    <h3 class="font-bold text-lg mb-2">運用設計</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">障害連絡、監視項目、保守窓口を決めて、引き継ぎ可能な形にします。</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-slate-900 text-white relative overflow-hidden l-tech-panel l-reveal border border-slate-800 rounded">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#0d7ff2 1px, transparent 1px); background-size: 24px 24px;"></div>
+            <div class="relative z-10 max-w-3xl text-left px-2 sm:px-4 md:px-6">
+                <h2 class="text-2xl md:text-3xl font-black mb-4">
+                    導入相談は、<span class="text-primary whitespace-nowrap">課題の整理</span>から始めます。
+                </h2>
+                <p class="text-slate-400 text-sm mb-6">
+                    見積もり前に、今の運用体制と連携先を確認できれば、実装範囲を切り分けやすくなります。まずは相談カテゴリだけでもお知らせください。
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="contact.html" class="bg-primary text-white text-[12px] font-bold uppercase px-6 py-3 rounded hover:bg-blue-600 transition-colors">
+                        お問い合わせ
+                    </a>
+                    <a href="about.html" class="bg-slate-800 text-white border border-slate-700 text-[12px] font-bold uppercase px-6 py-3 rounded hover:border-primary transition-colors">
+                        設計思想を見る
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark py-8">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 border border-slate-200 dark:border-slate-800 rounded px-4 py-4">
+                <div class="flex items-center gap-3 text-primary">
+                    <span class="material-symbols-outlined text-2xl">terminal</span>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs font-black uppercase tracking-tighter">Logical Systems</span>
+                        <span class="text-[10px] uppercase tracking-[0.22em] text-slate-500">Core Stable</span>
+                    </div>
+                </div>
+                <p class="text-[10px] text-slate-500 uppercase tracking-wider">© 2026 Logical Systems. All Rights Reserved.</p>
+                <div class="flex gap-4 text-[10px] text-slate-500 uppercase">
+                    <a href="../../../privacy.html" class="hover:text-primary transition-colors">Privacy</a>
+                    <a href="../../../terms.html" class="hover:text-primary transition-colors">Terms</a>
+                    <a href="service.html" class="hover:text-primary transition-colors">API</a>
                 </div>
             </div>
         </div>
-    </main>
+    </footer>
 
     <!-- Scripts -->
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="../../../assets/js/premium-effects.js"></script>
-    <script src="assets/js/script.js"></script>
-</body>
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
 
+    <script>
+        function toggleLMenu() {
+            const toggle = document.querySelector('.l-mobile-toggle');
+            const menu = document.querySelector('#l-mobile-menu');
+            const backdrop = document.querySelector('.l-menu-backdrop');
+            const bars = toggle.querySelectorAll('.bar');
+
+            if (!menu || !backdrop) return;
+
+            const isOpen = !menu.classList.contains('active');
+
+            toggle.classList.toggle('active', isOpen);
+            menu.classList.toggle('active', isOpen);
+            backdrop.classList.toggle('active', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+
+            const items = menu.querySelectorAll('li');
+            items.forEach((item, index) => {
+                if (isOpen) {
+                    setTimeout(() => {
+                        item.classList.remove('opacity-0', 'translate-y-5');
+                    }, index * 50);
+                } else {
+                    item.classList.add('opacity-0', 'translate-y-5');
+                }
+            });
+
+            if (isOpen) {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            }
+        }
+
+        document.querySelectorAll('#l-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                const toggle = document.querySelector('.l-mobile-toggle');
+                const menu = document.querySelector('#l-mobile-menu');
+                const backdrop = document.querySelector('.l-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.l-mobile-toggle');
+                const menu = document.querySelector('#l-mobile-menu');
+                const backdrop = document.querySelector('.l-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            }
+        });
+
+        const lObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    lObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('.l-reveal').forEach((el) => lObserver.observe(el));
+
+        const trafficRoot = document.querySelector('[data-live-traffic]');
+        const trafficClock = document.querySelector('[data-live-clock]');
+
+        if (trafficRoot) {
+            const bars = Array.from(trafficRoot.children);
+            let values = [40, 65, 50, 85, 70, 60, 95, 100];
+
+            const paintTraffic = () => {
+                bars.forEach((bar, index) => {
+                    const value = values[index];
+                    bar.style.height = `${value}%`;
+                    bar.className = `w-full rounded-t-sm transition-all duration-700 ease-out ${value > 88 ? 'bg-primary/80' : value > 68 ? 'bg-primary/60' : 'bg-primary/40'}`;
+                });
+            };
+
+            const randomValue = () => {
+                const last = values[values.length - 1];
+                const next = Math.max(32, Math.min(100, last + Math.floor(Math.random() * 45) - 22));
+                return next;
+            };
+
+            const updateClock = () => {
+                if (!trafficClock) return;
+                const now = new Date();
+                const parts = [now.getHours(), now.getMinutes(), now.getSeconds()].map((part) => String(part).padStart(2, '0'));
+                trafficClock.textContent = `00:${parts.join(':')}`;
+            };
+
+            paintTraffic();
+            updateClock();
+            setInterval(() => {
+                values = [...values.slice(1), randomValue()];
+                paintTraffic();
+                updateClock();
+            }, 1400);
+        }
+    </script>
+</body>
 </html>

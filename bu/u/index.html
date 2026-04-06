@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Urban Street - 都市のノイズを熱量に変えるストリートブランド。RAW なエネルギーをそのまま着る。">
+    <meta property="og:title" content="Urban Street | RAW ENERGY / NO RULES">
+    <meta property="og:description" content="都市のノイズを熱量に変えるストリートブランド。平均に寄せるより、熱量を残す。">
+    <meta property="og:image" content="https://example.com/templates/business/u/assets/generated/external-image-01.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/u/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <title>Urban Street | RAW ENERGY / NO RULES</title>
+    <link rel="canonical" href="https://example.com/templates/business/u/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        :root {
+            --urban-primary: #f4af25;
+            --urban-neon: #ccff00;
+            --urban-asphalt: #1a1a1a;
+            --urban-concrete: #3a3a3a;
+            --urban-bg-dark: #121212;
+        }
+        body {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background-color: var(--urban-bg-dark);
+            color: #f8f7f5;
+        }
+        /* Distressed text */
+        .distressed-text {
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            position: relative;
+        }
+        .distressed-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: rgba(244, 175, 37, 0.3);
+            z-index: -1;
+            filter: blur(1px);
+        }
+        /* Tape effect */
+        .tape-effect {
+            position: relative;
+        }
+        .tape-effect::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            width: 80px;
+            height: 30px;
+            background: rgba(244, 175, 37, 0.4);
+            transform: rotate(5deg);
+            pointer-events: none;
+            backdrop-filter: blur(2px);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        /* Brutalist border */
+        .brutalist-border {
+            border: 4px solid var(--urban-concrete);
+            box-shadow: 8px 8px 0 0 var(--urban-primary);
+        }
+        /* Texture overlay */
+        .texture-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDnkMScbDJhsiW7AqapCyko042LOeoO6N_mhKFJ5D3SOnzN2jUqsHBgjp1ebOFT2pUwVw80dJFDnmvl61Q_F-LBI6JBPs5krCPLbW1JrCcEEvKRsKXaNafi46QDeJfh3eTVfy8ojcuzzodoMwQ0zNITvuZcqx_JrhTTfEONIoollv2CAwFTtCC86A5rFLrFqkBBJ_mxbvIA-YPiNrPvkRoQ7AliTm7ynHzAcVx6VbgXmPFIFK9IdtUXMcBd9gH3C7i3ACKim9ryKfs);
+        }
+        /* Nav link */
+        .urban-nav {
+            position: relative;
+        }
+        .urban-nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--urban-primary);
+            transition: width 0.2s;
+        }
+        .urban-nav:hover::after, .urban-nav.active::after {
+            width: 100%;
+        }
+        .urban-nav:hover, .urban-nav.active {
+            color: var(--urban-primary);
+        }
+        /* Buttons */
+        .btn-primary {
+            background: var(--urban-primary);
+            color: var(--urban-bg-dark);
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translate(2px, -2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background: #fff;
+            color: var(--urban-bg-dark);
+        }
+    </style>
+</head>
+<body class="selection:bg-primary selection:text-background-dark">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)]/95 backdrop-blur-md px-6 py-4 md:px-12">
+    <div class="flex items-center gap-12">
+        <a href="index.html" class="flex items-center gap-3">
+            <div class="bg-[var(--urban-primary)] p-1">
+                <span class="material-symbols-outlined text-background-dark font-bold text-3xl">bolt</span>
+            </div>
+            <h2 class="text-2xl font-black tracking-tighter italic">URBAN_STREET</h2>
+        </a>
+        <nav class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="urban-nav active text-sm font-bold tracking-widest pb-1">DROPS</a>
+            <a href="service.html" class="urban-nav text-sm font-bold tracking-widest pb-1">LOOKBOOK</a>
+            <a href="about.html" class="urban-nav text-sm font-bold tracking-widest pb-1">SHOP</a>
+            <a href="contact.html" class="urban-nav text-sm font-bold tracking-widest pb-1">ARCHIVE</a>
+        </nav>
+    </div>
+    <div class="flex items-center gap-6">
+        <div class="hidden md:flex bg-[var(--urban-concrete)]/30 items-center px-4 py-2 border border-[var(--urban-concrete)]">
+            <span class="material-symbols-outlined text-slate-400">search</span>
+            <input class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-500 w-32" placeholder="SEARCH_DATABASE" type="text"/>
+        </div>
+        <div class="flex gap-4">
+            <button class="flex items-center justify-center bg-[var(--urban-concrete)]/30 h-10 w-10 hover:bg-[var(--urban-primary)] hover:text-background-dark transition-colors">
+                <span class="material-symbols-outlined">shopping_bag</span>
+            </button>
+            <button class="flex items-center justify-center bg-[var(--urban-primary)] text-background-dark h-10 w-10">
+                <span class="material-symbols-outlined">person</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="relative w-full min-h-[85vh] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img alt="Streetwear model" class="w-full h-full object-cover grayscale contrast-125 brightness-75" src="assets/generated/external-image-01.svg">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--urban-bg-dark)] via-transparent to-[var(--urban-bg-dark)]/50"></div>
+        </div>
+        <div class="relative z-10 px-6 md:px-20 w-full">
+            <div class="max-w-4xl">
+                <span class="inline-block bg-[var(--urban-primary)] text-background-dark px-3 py-1 font-black text-xs tracking-[0.3em] mb-6">EST. 2024 / NO RULES</span>
+                <h1 class="text-7xl md:text-9xl font-black leading-[0.85] mb-8 distressed-text" data-text="RAW ENERGY">
+                    RAW<br/>
+                    <span class="text-[var(--urban-primary)] italic">ENERGY</span>
+                </h1>
+                <p class="text-lg md:text-2xl font-medium max-w-xl border-l-4 border-[var(--urban-neon)] pl-6 mb-10 text-slate-300">
+                    REBELLIOUS. AUTHENTIC. UNPOLISHED. <br/>
+                    BORN IN THE ALLEYS, BUILT FOR THE STREETS.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="btn-primary text-lg hover:translate-x-1 hover:-translate-y-1">SHOP THE DROP</button>
+                    <button class="btn-outline text-lg">VIEW LOOKBOOK</button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute right-4 bottom-20 hidden xl:block rotate-90 origin-right">
+            <p class="text-[120px] font-black opacity-10 whitespace-nowrap select-none">URBAN_STREET_CULTURE</p>
+        </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section class="py-24 px-6 md:px-20 bg-[var(--urban-asphalt)] texture-overlay">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="brutalist-border bg-[var(--urban-bg-dark)] p-8 md:p-12">
+                <h2 class="text-4xl font-black mb-8 italic underline decoration-[var(--urban-primary)] decoration-8 underline-offset-8">OUR_MANIFESTO</h2>
+                <div class="space-y-6 text-xl text-slate-300 leading-relaxed font-light">
+                    <p>We don't do seasons. We don't do trends. We capture the <span class="text-[var(--urban-primary)] font-bold">CHAOS</span> of urban existence and stitch it into every garment.</p>
+                    <p>Urban Street is a collective of builders, skaters, and misfits. Our garments are tools for the concrete jungle, built with reinforced seams and zero compromise.</p>
+                    <p class="font-black text-[var(--urban-neon)] tracking-tighter text-3xl">RECLAIM THE PAVEMENT.</p>
+                </div>
+            </div>
+            <div class="relative">
+                <img alt="Distressed clothing" class="w-full grayscale brutalist-border" src="assets/generated/external-image-02.svg">
+                <div class="absolute -bottom-8 -left-8 bg-[var(--urban-neon)] text-background-dark p-4 font-black rotate-[-3deg]">
+                    AUTHENTICITY_VERIFIED_092
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook Section -->
+    <section class="py-24 px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+                <h2 class="text-6xl font-black italic mb-4">LOOKBOOK_VOL.01</h2>
+                <p class="text-slate-400 font-bold tracking-widest uppercase">Captured on 35mm / Downtown LA</p>
+            </div>
+            <a class="text-[var(--urban-primary)] font-black border-b-4 border-[var(--urban-primary)] pb-1 hover:text-white hover:border-white" href="#">VIEW FULL GALLERY</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group relative tape-effect">
+                <div class="overflow-hidden bg-[var(--urban-concrete)]">
+                    <img alt="Concrete Jungle" class="w-full aspect-[3/4] object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" src="assets/generated/external-image-03.svg">
+                </div>
+                <div class="mt-4 flex justify-between items-start">
+                    <h3 class="text-2xl font-black italic">CONCRETE JUNGLE</h3>
+                    <span class="font-mono text-xs opacity-50">#001</span>
+                </div>
+            </div>
+            <div class="group relative mt-12 md:mt-0">
+                <div class="overflow-hidden bg-[var(--urban-concrete)]">
+                    <img alt="Asphalt Nights" class="w-full aspect-[3/4] object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" src="assets/generated/external-image-04.svg">
+                </div>
+                <div class="mt-4 flex justify-between items-start">
+                    <h3 class="text-2xl font-black italic">ASPHALT NIGHTS</h3>
+                    <span class="font-mono text-xs opacity-50">#002</span>
+                </div>
+                <div class="absolute -top-4 -right-4 bg-[var(--urban-primary)] text-background-dark px-2 py-1 text-xs font-bold rotate-12">FEATURED_KIT</div>
+            </div>
+            <div class="group relative tape-effect mt-12 md:mt-0">
+                <div class="overflow-hidden bg-[var(--urban-concrete)]">
+                    <img alt="Spray Paint Soul" class="w-full aspect-[3/4] object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" src="assets/generated/external-image-05.svg">
+                </div>
+                <div class="mt-4 flex justify-between items-start">
+                    <h3 class="text-2xl font-black italic">SPRAY PAINT SOUL</h3>
+                    <span class="font-mono text-xs opacity-50">#003</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drop Schedule -->
+    <section class="py-24 bg-[var(--urban-primary)] text-[var(--urban-bg-dark)] px-6 md:px-20">
+        <h2 class="text-6xl md:text-8xl font-black mb-16 tracking-tighter">DROP_SCHEDULE</h2>
+        <div class="space-y-0 border-y-4 border-[var(--urban-bg-dark)]">
+            <div class="flex flex-col md:flex-row justify-between items-center py-10 border-b-2 border-[var(--urban-bg-dark)] px-6 group hover:bg-[var(--urban-bg-dark)] hover:text-[var(--urban-primary)] transition-colors">
+                <div class="flex items-baseline gap-8">
+                    <span class="text-4xl font-black">24.11</span>
+                    <h3 class="text-5xl font-black italic uppercase">Cargo_V2</h3>
+                </div>
+                <div class="flex items-center gap-8 mt-4 md:mt-0">
+                    <span class="font-bold tracking-widest text-xl">LIMITED EDITION [50PCS]</span>
+                    <span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">arrow_forward</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center py-10 border-b-2 border-[var(--urban-bg-dark)] px-6 group hover:bg-[var(--urban-bg-dark)] hover:text-[var(--urban-primary)] transition-colors">
+                <div class="flex items-baseline gap-8">
+                    <span class="text-4xl font-black">02.12</span>
+                    <h3 class="text-5xl font-black italic uppercase">Cyber_Hoodie</h3>
+                </div>
+                <div class="flex items-center gap-8 mt-4 md:mt-0">
+                    <span class="font-bold tracking-widest text-xl">SOLD OUT PRE-ORDER</span>
+                    <span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">lock</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center py-10 px-6 group hover:bg-[var(--urban-bg-dark)] hover:text-[var(--urban-primary)] transition-colors">
+                <div class="flex items-baseline gap-8">
+                    <span class="text-4xl font-black">15.12</span>
+                    <h3 class="text-5xl font-black italic uppercase">Guerilla_Vest</h3>
+                </div>
+                <div class="flex items-center gap-8 mt-4 md:mt-0">
+                    <span class="font-bold tracking-widest text-xl">NOTIFY ME</span>
+                    <span class="material-symbols-outlined text-4xl group-hover:translate-x-4 transition-transform">notifications</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[var(--urban-bg-dark)] border-t-8 border-[var(--urban-concrete)] pt-20 pb-10 px-6 md:px-20">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+        <div class="col-span-1 md:col-span-2">
+            <h2 class="text-4xl font-black italic mb-6">URBAN_STREET</h2>
+            <p class="max-w-xs text-slate-500 font-medium mb-8">Defying the standard since 2024. Designed in the underground, built for the surface.</p>
+            <div class="flex gap-4">
+                <a class="w-12 h-12 flex items-center justify-center border-2 border-[var(--urban-concrete)] hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)] transition-colors" href="#">
+                    <span class="material-symbols-outlined">public</span>
+                </a>
+                <a class="w-12 h-12 flex items-center justify-center border-2 border-[var(--urban-concrete)] hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)] transition-colors" href="#">
+                    <span class="material-symbols-outlined">alternate_email</span>
+                </a>
+                <a class="w-12 h-12 flex items-center justify-center border-2 border-[var(--urban-concrete)] hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)] transition-colors" href="#">
+                    <span class="material-symbols-outlined">share</span>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h4 class="font-black text-[var(--urban-primary)] mb-6 tracking-widest uppercase">Navigation</h4>
+            <ul class="space-y-3 font-bold">
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">ALL_PRODUCTS</a></li>
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">NEW_ARRIVALS</a></li>
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">COLLABORATIONS</a></li>
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">SUSTAINABILITY</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-black text-[var(--urban-primary)] mb-6 tracking-widest uppercase">Support</h4>
+            <ul class="space-y-3 font-bold">
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">SHIPPING_INFO</a></li>
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">RETURNS_POLICY</a></li>
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">SIZE_GUIDE</a></li>
+                <li><a class="hover:text-[var(--urban-primary)]" href="#">CONTACT_US</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-[var(--urban-concrete)]/30 text-xs font-mono opacity-50">
+        <p>© 2024 URBAN_STREET_CULTURE. ALL RIGHTS RESERVED.</p>
+        <div class="flex gap-8 mt-4 md:mt-0">
+            <a href="#">PRIVACY_POLICY</a>
+            <a href="#">TERMS_OF_SERVICE</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

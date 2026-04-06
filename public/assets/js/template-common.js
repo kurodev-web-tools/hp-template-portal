@@ -50,7 +50,7 @@ function injectPortalNav() {
     nav.href = '../../../list.html?category=business';
     nav.className = 'portal-nav-back';
     nav.innerHTML = `
-        <span class="material-icons">arrow_back</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         <span class="nav-text">PORTAL</span>
     `;
 
@@ -85,8 +85,9 @@ function injectPortalNav() {
             transform: translateY(2px);
             border-color: rgba(255, 255, 255, 0.6);
         }
-        .portal-nav-back .material-icons {
-            font-size: 1.2rem;
+        .portal-nav-back svg {
+            width: 1.2rem;
+            height: 1.2rem;
         }
         @media (max-width: 768px) {
             .portal-nav-back {
@@ -96,6 +97,11 @@ function injectPortalNav() {
             }
             .portal-nav-back .nav-text {
                 display: none;
+            }
+            body.mobile-menu-active .portal-nav-back {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
             }
         }
         
@@ -169,6 +175,7 @@ function initMobileMenu() {
         const isOpen = toggle.classList.toggle('active');
         nav.classList.toggle('mobile-open');
         backdrop.classList.toggle('active');
+        document.body.classList.toggle('mobile-menu-active', isOpen);
         toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         toggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
 
@@ -180,6 +187,7 @@ function initMobileMenu() {
         toggle.classList.remove('active');
         nav.classList.remove('mobile-open');
         backdrop.classList.remove('active');
+        document.body.classList.remove('mobile-menu-active');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'メニューを開く');
         document.body.style.overflow = '';
@@ -188,9 +196,40 @@ function initMobileMenu() {
     toggle.addEventListener('click', toggleMenu);
     backdrop.addEventListener('click', closeMenu);
 
-    // Close menu on link click
-    nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
+    function navigateFromMenuLink(link) {
+        if (!link || link.dataset.navLocked === 'true') return;
+
+        const href = link.getAttribute('href');
+        const target = link.getAttribute('target');
+
+        link.dataset.navLocked = 'true';
+        window.setTimeout(() => {
+            delete link.dataset.navLocked;
+        }, 400);
+
+        closeMenu();
+
+        if (!href || href.startsWith('#')) {
+            return;
+        }
+
+        if (target === '_blank') {
+            window.open(link.href, '_blank', 'noopener,noreferrer');
+            return;
+        }
+
+        window.location.assign(link.href);
+    }
+
+    // Use delegated handlers so dynamically styled overlays still navigate reliably on touch devices.
+    ['click', 'touchend'].forEach((eventName) => {
+        nav.addEventListener(eventName, (e) => {
+            const link = e.target.closest('a[href]');
+            if (!link) return;
+
+            e.preventDefault();
+            navigateFromMenuLink(link);
+        }, { passive: false });
     });
 
     // Close on Escape key
@@ -264,7 +303,9 @@ function initStatusEngine() {
         console.log('[StatusEngine] API Key detected. Checking YouTube status...');
         checkYouTubeLiveStatus(apiKey, channelId);
     } else {
-        console.log(`[StatusEngine] Initialized in Passive Mode. Status: ${document.body.dataset.streamStatus}`);
+        if (document.body.dataset.streamStatus !== undefined) {
+            console.log(`[StatusEngine] Initialized in Passive Mode. Status: ${document.body.dataset.streamStatus}`);
+        }
     }
 }
 

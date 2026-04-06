@@ -1,153 +1,202 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Clean</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@100;300;400&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>医院紹介 | 青葉内科循環器クリニック</title>
+    <link rel="canonical" href="https://aoba-clinic.example.jp/about">
+    <meta name="description" content="青葉内科循環器クリニックの医院紹介ページです。院長紹介、診療方針、院内設備、連携体制、初診の方へのご案内を掲載しています。">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta property="og:title" content="医院紹介 | 青葉内科循環器クリニック">
+    <meta property="og:description" content="院長紹介、診療方針、院内設備、感染対策、連携体制をご案内します。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:image" content="assets/images/c-clinic-team.png">
+    <meta property="og:url" content="https://aoba-clinic.example.jp/about">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "青葉内科循環器クリニック",
+        "url": "https://aoba-clinic.example.jp/about",
+        "medicalSpecialty": ["InternalMedicine", "Cardiovascular"],
+        "telephone": "03-1234-5678",
+        "address": {
+            "@type": "PostalAddress",
+            "postalCode": "100-0000",
+            "addressCountry": "JP",
+            "addressRegion": "東京都",
+            "addressLocality": "千代田区",
+            "streetAddress": "青葉町1-2-3 青葉メディカルモール2F"
+        }
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .clean-menu-backdrop.active { opacity: 1 !important; visibility: visible !important; background-color: rgba(15, 23, 42, 0.5) !important; backdrop-filter: blur(4px) !important; }
+        .clean-mobile-menu.active { opacity: 1 !important; visibility: visible !important; }
+        .heading-balance { text-wrap: balance; }
+        .body-pretty { text-wrap: pretty; }
+        @supports (word-break: auto-phrase) { .phrase-wrap { word-break: auto-phrase; } }
+    </style>
 </head>
-
-<body class="fade-in">
-
-    <!-- Custom Mobile Menu Toggle (Direct OnClick) -->
-    <button class="clean-mobile-toggle" onclick="toggleCleanMenu()" style="z-index: 999999;" aria-label="メニューを開く">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+<body class="bg-background-light text-secondary font-display antialiased custom-menu-only">
+    <button aria-controls="clean-mobile-menu" class="clean-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-primary flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleCleanMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span><span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span><span class="bar w-6 h-0.5 bg-secondary transition-all duration-400"></span>
     </button>
-    <div class="clean-menu-backdrop" onclick="toggleCleanMenu()"></div>
-
-    <!-- Slide-up Menu Panel -->
-    <div class="clean-mobile-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html" class="btn-outline">Contact</a></li>
+    <div class="clean-menu-backdrop fixed inset-0 z-[9998] bg-secondary/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
+    <div id="clean-mobile-menu" class="clean-mobile-menu fixed inset-0 z-[9999] bg-background-light flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold tracking-widest border-b border-transparent hover:border-primary transition-colors">ホーム</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold tracking-widest border-b border-transparent hover:border-primary transition-colors">医院紹介</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-secondary font-bold tracking-widest border-b border-transparent hover:border-primary transition-colors">診療案内</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-6 sm:px-8 font-display text-xl sm:text-2xl text-primary font-bold tracking-widest mt-4">受診案内</a></li>
         </ul>
     </div>
-
-    <header class="clean-header">
-        <div class="container">
-            <div class="logo">
-                <span class="material-icons">local_hospital</span>
-                <span>Clean</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html" class="btn-outline">Contact</a></li>
-                </ul>
-            </nav>
+    <header class="sticky top-0 z-50 flex items-center justify-between border-b border-accent bg-background-light/95 backdrop-blur-sm px-6 py-4 lg:px-20">
+        <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-3xl">local_hospital</span></div>
+            <div><p class="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">内科・循環器内科</p><h1 class="text-xl font-bold tracking-tight text-secondary">青葉内科循環器クリニック</h1></div>
         </div>
+        <nav class="hidden md:flex flex-1 justify-end gap-8 items-center">
+            <div class="flex items-center gap-8">
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="index.html">ホーム</a>
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="about.html">医院紹介</a>
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="service.html">診療案内</a>
+                <a class="text-sm font-medium text-secondary hover:text-primary transition-colors" href="contact.html">受診案内</a>
+            </div>
+            <button class="h-10 px-6 rounded-lg bg-primary text-secondary text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm" onclick="location.href='contact.html'">Web予約</button>
+        </nav>
+        <div class="md:hidden"><button class="text-secondary" onclick="toggleCleanMenu()"><span class="material-symbols-outlined">menu</span></button></div>
     </header>
-
-    <div class="page-header">
-        <div class="container">
-            <h1>About Us</h1>
-            <p>私たちの想いと、クリニックの環境について。</p>
-        </div>
-    </div>
-
-    <!-- Concept Detail Section -->
-    <section class="concept-section">
-        <div class="container">
-            <div class="concept-content scroll-animate">
-                <h2>Clean & Safe Environment</h2>
-                <p>
-                    当クリニックでは、患者様が安心して治療に専念できる環境づくりを最優先に考えています。
-                    院内は常に清潔に保たれ、最新の空気清浄システムと滅菌設備を導入しています。
-                </p>
-                <p>
-                    また、プライバシーへの配慮も徹底しており、待合室から診察室まで、ストレスを感じさせない導線設計を行っています。
-                    心地よい音楽と柔らかな照明で、リラックスした時間をお過ごしいただけます。
-                </p>
-            </div>
-            <div class="concept-image scroll-animate">
-                <div class="image-placeholder"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Doctor Section -->
-    <section class="doctor-section" style="padding: 6rem 0; background: var(--color-bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Doctors</h2>
-                <p>経験豊富な専門医が、あなたの健康をサポートします。</p>
-            </div>
-            <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-                <!-- Doctor Card 1 -->
-                <div class="service-card scroll-animate" style="max-width: 300px;">
-                    <div class="image-placeholder" style="height: 200px; margin-bottom: 1.5rem; background: #ddd;">
+    <main class="flex-1">
+        <section class="px-4 pt-6 lg:px-20"><nav aria-label="パンくず" class="text-sm text-secondary/50"><ol class="flex flex-wrap items-center gap-2"><li><a class="hover:text-primary transition-colors" href="index.html">ホーム</a></li><li>/</li><li class="text-secondary">医院紹介</li></ol></nav></section>
+        <div class="w-full px-4 py-8 lg:px-20 lg:py-12">
+            <div class="@container">
+                <div class="relative overflow-hidden rounded-3xl bg-[#e0f2fe]">
+                    <div class="absolute inset-0 z-0 bg-cover bg-center opacity-45" style="background-image: url('assets/images/c-clinic-team.png');"></div>
+                    <div class="absolute inset-0 z-10 bg-gradient-to-r from-white/90 to-white/20"></div>
+                    <div class="relative z-20 flex min-h-[420px] md:min-h-[460px] flex-col justify-center px-5 py-12 sm:px-8 lg:w-2/3">
+                        <span class="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary border border-primary/20"><span class="material-symbols-outlined text-sm">medical_services</span>医院紹介</span>
+                        <h2 class="heading-balance mb-6 text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-slate-900">継続して相談できる、<br class="hidden md:block">都心のかかりつけ医へ。</h2>
+                        <p class="body-pretty phrase-wrap mb-8 max-w-2xl text-lg leading-relaxed text-slate-600">生活習慣病の長期フォローと急な体調不良のどちらにも対応できるよう、院内検査体制と丁寧な説明を重視しています。初診の方にも通院中の方にも、診療の見通しが伝わる医療を目指しています。</p>
                     </div>
-                    <h3>Dr. Sarah Smith</h3>
-                    <p style="color: var(--color-primary-clean); margin-bottom: 0.5rem;">Chief Physician</p>
-                    <p>一般内科・循環器内科専門。<br>「対話」を重視した診療を心がけています。</p>
-                </div>
-                <!-- Doctor Card 2 -->
-                <div class="service-card scroll-animate" style="max-width: 300px;">
-                    <div class="image-placeholder" style="height: 200px; margin-bottom: 1.5rem; background: #ddd;">
-                    </div>
-                    <h3>Dr. John Doe</h3>
-                    <p style="color: var(--color-primary-clean); margin-bottom: 0.5rem;">Pediatrician</p>
-                    <p>小児科専門。<br>お子様の健やかな成長を見守ります。</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <footer class="clean-footer">
-        <div class="container">
-            <p>&copy; 2026 Clean. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#">Twitter</a>
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
+        <section class="bg-white py-16 md:py-24">
+            <div class="px-4 lg:px-20">
+                <div class="grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-start">
+                    <div class="overflow-hidden rounded-3xl bg-gray-100"><img alt="院長 柴田 恒一のポートレート" class="h-full w-full object-cover" src="assets/images/c-doctor-portrait.png" /></div>
+                    <div>
+                        <p class="text-sm font-bold uppercase tracking-[0.2em] text-primary">院長紹介</p>
+                        <h2 class="heading-balance mt-3 text-3xl font-bold text-secondary sm:text-4xl">院長 柴田 恒一</h2>
+                        <p class="mt-2 text-primary font-medium">総合内科専門医 / 循環器専門医</p>
+                        <p class="body-pretty phrase-wrap mt-6 text-base leading-8 text-secondary/75">大学病院と地域中核病院で循環器診療に携わった後、健診後の再検査や高血圧・脂質異常症の継続管理をより身近に行える場として当院を開設しました。症状が落ち着いている方にも、治療が必要か迷っている方にも、検査結果の意味と次の一手を丁寧に説明することを大切にしています。</p>
+                        <div class="mt-8 grid gap-4 md:grid-cols-3">
+                            <div class="rounded-2xl border border-accent bg-background-off p-5"><h3 class="text-lg font-bold text-secondary">専門領域</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">高血圧、不整脈、胸痛評価、健診異常の二次精査</p></div>
+                            <div class="rounded-2xl border border-accent bg-background-off p-5"><h3 class="text-lg font-bold text-secondary">診療姿勢</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">検査だけで終わらせず、生活背景や通院しやすさも踏まえて方針を提案します</p></div>
+                            <div class="rounded-2xl border border-accent bg-background-off p-5"><h3 class="text-lg font-bold text-secondary">連携体制</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">専門治療が必要な場合は、近隣の総合病院・大学病院へ速やかに紹介します</p></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+        <section class="bg-[#f0f9ff] py-16 md:py-24">
+            <div class="px-4 lg:px-20">
+                <div class="mb-10 text-center"><h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">体制と設備</h3><h2 class="heading-balance text-3xl font-bold text-secondary sm:text-4xl">院内で完結しやすい診療体制を整えています</h2></div>
+                <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                    <article class="rounded-3xl bg-white p-6 shadow-sm border border-accent"><img alt="診察室で患者対応を行う院長" class="h-40 w-full rounded-2xl object-cover" src="assets/images/c-doctor-portrait-alt.png" /><h3 class="mt-5 text-lg font-bold text-secondary">循環器検査</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">12誘導心電図、ホルター心電図、心臓超音波検査を症状や健診結果に応じてご案内します。</p></article>
+                    <article class="rounded-3xl bg-white p-6 shadow-sm border border-accent"><img alt="受付スタッフが患者を案内する様子" class="h-40 w-full rounded-2xl object-cover" src="assets/images/c-staff-portrait-1.png" /><h3 class="mt-5 text-lg font-bold text-secondary">看護・受付体制</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">採血や検査説明、継続通院の相談まで、看護師と受付スタッフが連携して対応します。</p></article>
+                    <article class="rounded-3xl bg-white p-6 shadow-sm border border-accent"><img alt="院内設備のイメージ" class="h-40 w-full rounded-2xl object-cover" src="assets/images/c-clinic-interior.png" /><h3 class="mt-5 text-lg font-bold text-secondary">感染対策</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">発熱症状の方は時間帯を分けてご案内し、換気・消毒・導線分離を徹底しています。</p></article>
+                    <article class="rounded-3xl bg-white p-6 shadow-sm border border-accent"><img alt="チームで相談する医療スタッフ" class="h-40 w-full rounded-2xl object-cover" src="assets/images/c-staff-portrait-2.png" /><h3 class="mt-5 text-lg font-bold text-secondary">地域連携</h3><p class="body-pretty phrase-wrap mt-2 text-sm text-secondary/70">精密検査や入院が必要な際は、近隣の総合病院や大学病院と連携して対応します。</p></article>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white py-16 md:py-24">
+            <div class="px-4 lg:px-20">
+                <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+                    <div class="rounded-3xl border border-accent bg-background-off p-8">
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">医院情報</h3>
+                        <h2 class="heading-balance text-3xl font-bold text-secondary">診療体制と基本情報</h2>
+                        <dl class="mt-8 space-y-5 text-sm text-secondary/75">
+                            <div class="grid gap-2 border-b border-accent pb-5 md:grid-cols-[150px_1fr]"><dt class="font-bold text-secondary">院名</dt><dd>青葉内科循環器クリニック</dd></div>
+                            <div class="grid gap-2 border-b border-accent pb-5 md:grid-cols-[150px_1fr]"><dt class="font-bold text-secondary">管理者</dt><dd>柴田 恒一</dd></div>
+                            <div class="grid gap-2 border-b border-accent pb-5 md:grid-cols-[150px_1fr]"><dt class="font-bold text-secondary">標榜科目</dt><dd>内科、循環器内科、発熱外来、健康診断、各種予防接種</dd></div>
+                            <div class="grid gap-2 border-b border-accent pb-5 md:grid-cols-[150px_1fr]"><dt class="font-bold text-secondary">診療区分</dt><dd>保険診療中心、一部自費健診・予防接種あり</dd></div>
+                            <div class="grid gap-2 md:grid-cols-[150px_1fr]"><dt class="font-bold text-secondary">連携先</dt><dd>近隣総合病院、大学病院、画像検査センター</dd></div>
+                        </dl>
+                    </div>
+                    <div class="rounded-3xl border border-accent bg-[#f8fcff] p-8">
+                        <h3 class="text-lg font-bold text-secondary">スタッフ体制</h3>
+                        <ul class="mt-6 space-y-4 text-sm text-secondary/70">
+                            <li class="flex gap-3"><span class="material-symbols-outlined text-primary">groups</span><span>医師 2名体制で、一般内科と循環器相談の両方に対応</span></li>
+                            <li class="flex gap-3"><span class="material-symbols-outlined text-primary">ecg</span><span>看護師が採血、心電図、検査前後の説明を担当</span></li>
+                            <li class="flex gap-3"><span class="material-symbols-outlined text-primary">support_agent</span><span>受付スタッフが初診導線、紹介状持参、会計まで案内</span></li>
+                            <li class="flex gap-3"><span class="material-symbols-outlined text-primary">schedule</span><span>継続通院の方には検査時期と再診目安を分かりやすく共有</span></li>
+                        </ul>
+                        <div class="mt-8 rounded-2xl bg-white p-5"><p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">診療方針</p><p class="body-pretty phrase-wrap mt-3 text-sm leading-7 text-secondary/75">体調不良の受診窓口であると同時に、健診後の不安や薬の継続方針を相談しやすい医院であることを大切にしています。</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-background-off pt-16 pb-8 border-t border-accent">
+        <div class="px-4 lg:px-20">
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] mb-12">
+                <div><div class="flex items-center gap-2 mb-6"><div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-secondary"><span class="material-symbols-outlined text-xl">local_hospital</span></div><span class="text-lg font-bold text-secondary">青葉内科循環器クリニック</span></div><p class="body-pretty text-sm text-secondary/60 leading-relaxed mb-4">働く世代と地域のご家族に向けて、日常の不調から生活習慣病の継続管理まで相談しやすい総合内科を目指しています。</p><p class="text-sm text-secondary/60">管理者: 柴田 恒一 / 保険医療機関 / 在宅療養支援診療所連携あり</p></div>
+                <div><h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">診療メニュー</h4><ul class="flex flex-col gap-3"><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">総合内科</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">循環器内科</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">発熱外来</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="service.html">健康診断・予防接種</a></li></ul></div>
+                <div><h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">ご案内</h4><ul class="flex flex-col gap-3"><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="about.html">医院紹介</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">初診の方へ</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">アクセス</a></li><li><a class="text-sm text-secondary/60 hover:text-primary transition-colors" href="contact.html">Web予約</a></li></ul></div>
+                <div><h4 class="text-sm font-bold uppercase tracking-wider text-secondary mb-6">お問い合わせ</h4><ul class="flex flex-col gap-4"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary mt-0.5 text-lg">location_on</span><span class="text-sm text-secondary/60">〒100-0000 東京都千代田区青葉町1-2-3 青葉メディカルモール2F</span></li><li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">phone</span><span class="text-sm text-secondary/60">03-1234-5678</span></li><li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">mail</span><span class="text-sm text-secondary/60">info@aoba-clinic.example.jp</span></li></ul></div>
+            </div>
+            <div class="border-t border-accent pt-8 text-center md:flex md:justify-between md:text-left"><p class="text-xs text-secondary/40">© 2026 青葉内科循環器クリニック. All rights reserved.</p><div class="mt-4 flex justify-center gap-6 md:mt-0"><a class="text-xs text-secondary/40 hover:text-primary" href="contact.html">個人情報保護方針</a><a class="text-xs text-secondary/40 hover:text-primary" href="contact.html">受診案内</a></div></div>
         </div>
     </footer>
-
-    <script src="../../../assets/js/template-common.js"></script>
-    <script src="assets/js/script.js"></script>
+    <div id="template-common-container"></div>
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="../../../assets/js/premium-effects.js" defer></script>
     <script>
-        // GLOBAL FUNCTION for maximum reliability
         function toggleCleanMenu() {
             const toggle = document.querySelector('.clean-mobile-toggle');
             const backdrop = document.querySelector('.clean-menu-backdrop');
             const menu = document.querySelector('.clean-mobile-menu');
-
             if (toggle && backdrop && menu) {
                 toggle.classList.toggle('active');
                 backdrop.classList.toggle('active');
                 menu.classList.toggle('active');
-
-                // Toggle Overflow
+                const bars = toggle.querySelectorAll('.bar');
                 if (toggle.classList.contains('active')) {
+                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                    bars[1].style.opacity = '0';
+                    bars[1].style.transform = 'scaleX(0)';
+                    bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                    toggle.setAttribute('aria-expanded', 'true');
+                    toggle.setAttribute('aria-label', 'メニューを閉じる');
                     document.body.style.overflow = 'hidden';
                 } else {
-                    document.body.style.overflow = '';
+                    bars[0].style.transform = 'none'; bars[1].style.opacity = '1'; bars[1].style.transform = 'none'; bars[2].style.transform = 'none';
+                    toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'メニューを開く'); document.body.style.overflow = '';
                 }
+                const items = menu.querySelectorAll('li');
+                items.forEach((item, index) => {
+                    if (toggle.classList.contains('active')) setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, index * 50);
+                    else { item.style.opacity = '0'; item.style.transform = 'translateY(20px)'; }
+                });
             }
         }
-
-        // Close on link click
-        document.querySelectorAll('.clean-mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleCleanMenu();
-            });
+        document.querySelector('.clean-menu-backdrop')?.addEventListener('click', toggleCleanMenu);
+        document.querySelectorAll('.clean-mobile-menu a').forEach(link => { link.addEventListener('click', toggleCleanMenu); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.clean-mobile-toggle');
+                if (toggle && toggle.classList.contains('active')) toggleCleanMenu();
+            }
         });
     </script>
 </body>
-
 </html>

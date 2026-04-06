@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@source "../../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #0ea5e9;
+  --color-secondary: #0f172a;
+  --color-accent: #e0f2fe;
+  --color-background-light: #ffffff;
+  --color-background-off: #f8fafc;
+  --color-background-dark: #1e293b;
+  --font-display: "Public Sans", sans-serif;
+  --font-body: "Public Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--color-background-light);
+  color: var(--color-secondary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.clean-input {
+  @apply w-full px-4 py-3 bg-white border border-accent text-secondary placeholder-secondary/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all;
+}
+
+.clean-input:focus::placeholder {
+  color: transparent;
+}

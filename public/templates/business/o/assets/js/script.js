@@ -1,54 +1,160 @@
-
-// Custom Toggle Logic
-window.toggleMenu = function() {
-    const menu = document.querySelector('.organic-mobile-menu');
-    const toggle = document.querySelector('.organic-mobile-toggle');
-    if (menu) {
-        menu.classList.toggle('active');
-        
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = menu.classList.contains('active') ? 'close' : 'menu_open';
-            }
-        }
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Organic Theme Effects =====
-    if (window.PremiumEffects) {
-        // Soft reveal
-        PremiumEffects.BlurText('h1', { delay: 300, duration: 2500 });
+    // Force light theme
+    document.documentElement.classList.remove('dark');
+    localStorage.removeItem('template-o-theme');
 
-        // Gentle tilt for session cards
-        PremiumEffects.Tilt('.session-item', { max: 5, scale: 1.05 });
-    }
+    const mobileToggle = document.querySelector('.organic-mobile-toggle');
+    const mobileMenu = document.querySelector('.organic-mobile-menu');
+    const menuBackdrop = document.querySelector('.organic-menu-backdrop');
 
-    // ===== Mobile Menu Auto-Close =====
-    const menu = document.querySelector('.organic-mobile-menu');
-    const toggle = document.querySelector('.organic-mobile-toggle');
-    if (menu) {
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                if (toggle) {
-                     const icon = toggle.querySelector('.material-icons');
-                     if (icon) icon.textContent = 'menu_open';
-                }
-            });
+    if (mobileToggle && mobileMenu && menuBackdrop) {
+        const toggleMenu = (show) => {
+            const isExpanding = show !== undefined ? show : mobileToggle.getAttribute('aria-expanded') === 'false';
+            mobileToggle.setAttribute('aria-expanded', isExpanding);
+            mobileMenu.classList.toggle('active', isExpanding);
+            menuBackdrop.classList.toggle('active', isExpanding);
+            document.body.style.overflow = isExpanding ? 'hidden' : '';
+        };
+
+        mobileToggle.addEventListener('click', () => toggleMenu());
+        menuBackdrop.addEventListener('click', () => toggleMenu(false));
+
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
         });
     }
 
-    // ===== Floating Parallax Logic =====
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const float1 = document.querySelector('.f1');
-        const float2 = document.querySelector('.f2');
+    const oMobileToggle = document.querySelector('.o-mobile-toggle');
+    const oMobileMenu = document.querySelector('.o-mobile-menu');
+    const oMenuBackdrop = document.querySelector('.o-menu-backdrop');
 
-        if (float1 && float2) {
-            float1.style.transform = `translateY(${scrolled * 0.1}px) rotate(${scrolled * 0.02}deg)`;
-            float2.style.transform = `translateY(${scrolled * -0.05}px) rotate(${scrolled * -0.01}deg)`;
-        }
+    if (oMobileToggle && oMobileMenu && oMenuBackdrop && typeof window.toggleOMenu !== 'function') {
+        const resetBars = (bars) => {
+            bars.forEach((bar) => {
+                bar.style.position = '';
+                bar.style.left = '';
+                bar.style.top = '';
+                bar.style.width = '';
+                bar.style.marginTop = '';
+                bar.style.transform = '';
+                bar.style.opacity = '';
+            });
+        };
+
+        const setActiveBars = (bars) => {
+            bars.forEach((bar) => {
+                bar.style.position = 'absolute';
+                bar.style.left = '50%';
+                bar.style.top = '50%';
+                bar.style.width = '1.15rem';
+                bar.style.marginTop = '0';
+            });
+            bars[0].style.transform = 'translate(-50%, -50%) rotate(45deg)';
+            bars[1].style.transform = 'translate(-50%, -50%) scaleX(0)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+        };
+
+        const setMenuState = (show) => {
+            const bars = oMobileToggle.querySelectorAll('.bar');
+            oMobileToggle.classList.toggle('active', show);
+            oMobileMenu.classList.toggle('active', show);
+            oMenuBackdrop.classList.toggle('active', show);
+            oMobileToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+            document.body.style.overflow = show ? 'hidden' : '';
+
+            resetBars(bars);
+
+            if (bars.length === 3 && show) {
+                setActiveBars(bars);
+            }
+
+            oMobileMenu.querySelectorAll('li').forEach((item, index) => {
+                if (show) {
+                    setTimeout(() => {
+                        item.classList.remove('opacity-0', 'translate-y-5');
+                    }, index * 50);
+                } else {
+                    item.classList.add('opacity-0', 'translate-y-5');
+                }
+            });
+        };
+
+        window.toggleOMenu = () => {
+            setMenuState(!oMobileMenu.classList.contains('active'));
+        };
+
+        oMenuBackdrop.addEventListener('click', () => setMenuState(false));
+        oMobileMenu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => setMenuState(false));
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                setMenuState(false);
+            }
+        });
+    }
+
+    // Reset horizontal card rails on load so the first card is always shown on mobile.
+    const resetRail = (rail) => {
+        rail.scrollLeft = 0;
+        rail.scrollTo({ left: 0, top: 0, behavior: 'auto' });
+    };
+
+    document.querySelectorAll('.o-feature-grid, .o-service-cards').forEach((rail) => {
+        resetRail(rail);
+        requestAnimationFrame(() => resetRail(rail));
+        window.setTimeout(() => resetRail(rail), 120);
+    });
+
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.o-feature-grid, .o-service-cards').forEach(resetRail);
+    });
+
+    window.addEventListener('pageshow', () => {
+        document.querySelectorAll('.o-feature-grid, .o-service-cards').forEach(resetRail);
+    });
+
+    // Scroll reveal
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.organic-panel, .reveal-up').forEach(el => {
+        observer.observe(el);
+    });
+
+    document.querySelectorAll('form[data-demo-form="true"]').forEach((form) => {
+        const submitButton = form.querySelector('[data-demo-submit]');
+        const status = form.querySelector('[data-demo-status]');
+
+        if (!submitButton) return;
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.textContent = '送信済み';
+
+            if (status) {
+                status.textContent = 'お問い合わせを受け付けました。1営業日以内にご連絡します。';
+            }
+
+            window.setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = '送信する';
+            }, 2500);
+        });
     });
 });

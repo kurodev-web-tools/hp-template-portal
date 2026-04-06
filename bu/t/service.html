@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TRUST_GUARD のサービス一覧。多層防御、ゼロトラスト、24/7 監視、コンプライアンス対応。">
+    <meta property="og:title" content="Service | TRUST_GUARD">
+    <meta property="og:description" content="TRUST_GUARD のサービス一覧。多層防御、ゼロトラスト、24/7 監視。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/t/service.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <title>Service | TRUST_GUARD</title>
+    <link rel="canonical" href="https://example.com/templates/business/t/service.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        :root {
+            --trust-primary: #38ff14;
+            --trust-primary-dim: rgba(56, 255, 20, 0.2);
+            --trust-alert: #ff3b30;
+            --trust-bg: #0a0f09;
+            --trust-surface: #12230f;
+            --trust-border: #274b20;
+            --trust-text: #f1f5f9;
+            --trust-text-dim: #94a3b8;
+        }
+        .trust-theme {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background-color: var(--trust-bg);
+            color: var(--trust-text);
+        }
+        .trust-scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(56, 255, 20, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+        .trust-grid-bg {
+            background-image: radial-gradient(circle at 1px 1px, var(--trust-border) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .trust-btn-primary {
+            background: var(--trust-primary);
+            color: var(--trust-bg);
+            transition: all 0.2s ease;
+        }
+        .trust-btn-primary:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+        .trust-btn-outline {
+            background: transparent;
+            color: var(--trust-primary);
+            border: 2px solid var(--trust-primary);
+            transition: all 0.2s ease;
+        }
+        .trust-btn-outline:hover {
+            background: var(--trust-primary);
+            color: var(--trust-bg);
+        }
+        .trust-btn-outline-primary {
+            background: transparent;
+            color: var(--trust-primary);
+            border: 2px solid var(--trust-primary);
+            transition: all 0.2s ease;
+        }
+        .trust-btn-outline-primary:hover {
+            background: var(--trust-primary);
+            color: var(--trust-bg);
+        }
+        .trust-menu-backdrop { display: none; }
+        @media (max-width: 1023px) {
+            .trust-menu-backdrop { display: block; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+            .trust-menu-backdrop.active { opacity: 1; visibility: visible; }
+        }
+        .trust-mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        @media (max-width: 1023px) { .trust-mobile-menu.active { transform: translateX(0); } }
+        @media (min-width: 1024px) { .trust-mobile-menu { display: none; } }
+        .trust-mobile-toggle { display: none; }
+        @media (max-width: 1023px) {
+            .trust-mobile-toggle { display: flex; }
+            .trust-mobile-toggle .bar {
+                display: block; width: 24px; height: 2px; background: var(--trust-primary);
+                position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+                transition: all 0.3s ease;
+            }
+            .trust-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
+            .trust-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
+            .trust-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+            .trust-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .trust-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body class="trust-theme overflow-x-hidden">
+    <div class="trust-menu-backdrop" id="trustMenuBackdrop"></div>
+    <button class="trust-mobile-toggle fixed top-6 right-6 z-[100] p-2" id="trustMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="trustMobileMenu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="trust-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-xl border-2 border-[var(--trust-border)] bg-[var(--trust-surface)] p-6 shadow-2xl" id="trustMobileMenu">
+        <div class="mb-6 flex items-center gap-3">
+            <span class="material-symbols-outlined text-3xl" style="color: var(--trust-primary);">shield_with_heart</span>
+            <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a href="index.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">HOME</a>
+            <a href="about.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">ABOUT</a>
+            <a href="service.html" class="trust-nav-link active rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);">SERVICES</a>
+            <a href="contact.html" class="trust-nav-link rounded-lg px-4 py-3 text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);">CONTACT</a>
+        </nav>
+    </div>
+
+    <header class="sticky top-0 z-50 w-full border-b-2 border-[var(--trust-border)] bg-[var(--trust-bg)]/95 backdrop-blur">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[var(--trust-primary)] text-3xl">shield_with_heart</span>
+                <span class="text-xl font-bold uppercase tracking-tighter" style="color: var(--trust-primary);">TRUST_GUARD</span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-8">
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="index.html">HOME</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="about.html">ABOUT</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-primary);" href="service.html">SERVICES</a>
+                <a class="text-sm font-medium uppercase tracking-widest hover:text-[var(--trust-primary)] transition-colors" style="color: var(--trust-text-dim);" href="contact.html">CONTACT</a>
+            </nav>
+            <a href="contact.html" class="trust-btn-primary px-6 py-2 text-sm font-bold uppercase tracking-tighter">SECURE NETWORK</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative border-b-2 border-[var(--trust-border)] trust-grid-bg overflow-hidden py-20 px-6">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="inline-flex items-center gap-2 rounded border border-[var(--trust-primary)] bg-[var(--trust-primary-dim)] px-3 py-1 mb-6">
+                    <span class="material-symbols-outlined text-sm" style="color: var(--trust-primary);">shield</span>
+                    <span class="font-mono text-[10px] uppercase tracking-[0.2em]" style="color: var(--trust-primary);">PROTECTION_LAYERS</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+                    CORE <span style="color: var(--trust-primary);">SERVICES</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl uppercase tracking-widest font-light leading-relaxed mb-10" style="color: var(--trust-text-dim);">
+                    単発の製品導入ではなく、守り続けられる体制まで含めてサービスを構成。<br/>
+                    貴社の環境に最適化したセキュリティ基盤を、丸ごと提供。
+                </p>
+            </div>
+        </section>
+
+        <!-- Core Protections Grid -->
+        <section class="bg-[var(--trust-surface)] border-y-2 border-[var(--trust-border)] py-24 px-6">
+            <div class="max-w-[1440px] mx-auto">
+                <h3 class="text-3xl font-bold uppercase mb-16 text-center">Core Security Protections</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-[var(--trust-border)]">
+                    <!-- Card 1 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">terminal</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">ENDPOINT_ISOLATION</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            接続されたすべてのノードに対する、軍事レベルのハードウェア封じ込め。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-full"></div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">cloud_sync</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">CLOUD_PERIMETER</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            マルチリージョン同期冗長性を備えた、暗号化データボールト。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-3/4"></div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">hub</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">NETWORK_HARDENING</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            AI 駆動のトラフィックスクラビングとゼロトラストトンネリング。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-1/2"></div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">shield</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-alert)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-alert);">Alert</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">REALTIME_DEFENSE</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            検出された侵害試行に対する自動報復プロトコル。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-alert)] w-full"></div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">query_stats</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">DEEP_ANALYTICS</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            システム異常とパターン逸脱の鑑識レベル分析。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-2/3"></div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="border-r border-b border-[var(--trust-border)] p-10 hover:bg-[var(--trust-bg)] transition-colors group">
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" style="color: var(--trust-primary);">fingerprint</span>
+                            <span class="text-[10px] font-bold border border-[var(--trust-primary)] px-2 py-0.5 uppercase tracking-widest" style="color: var(--trust-primary);">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tight">IDENTITY_VAULT</h4>
+                        <p class="text-sm leading-relaxed uppercase tracking-wider mb-6" style="color: var(--trust-text-dim);">
+                            全ユーザーに対する生体認証および量子暗号化アクセス制御。
+                        </p>
+                        <div class="h-1 bg-[var(--trust-border)] w-full">
+                            <div class="h-full bg-[var(--trust-primary)] w-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment Options -->
+        <section class="py-24 px-6 max-w-[1440px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="border-4 border-[var(--trust-border)] p-12 bg-[var(--trust-surface)] relative">
+                    <div class="absolute top-0 right-0 bg-[var(--trust-border)] px-4 py-1 text-xs font-bold uppercase tracking-widest">Option_01</div>
+                    <h3 class="text-4xl font-black uppercase mb-6 tracking-tighter">CLOUD_NATIVE</h3>
+                    <p class="mb-8 tracking-wide" style="color: var(--trust-text-dim);">
+                        迅速な展開。スケーラブルなアーキテクチャ。<br/>
+                        TRUST_GUARD 指令センターによる 24 時間 365 日管理。
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Instant Scaling
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Zero Hardware Cost
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Global Content Delivery
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="trust-btn-outline-primary w-full py-4 font-bold uppercase tracking-widest transition-all inline-flex justify-center items-center gap-2">
+                        Configure Cloud
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="border-4 border-[var(--trust-primary)] p-12 bg-[var(--trust-bg)] relative shadow-[0_0_40px_rgba(56,255,20,0.1)]">
+                    <div class="absolute top-0 right-0 bg-[var(--trust-primary)] px-4 py-1 text-xs font-bold uppercase tracking-widest" style="color: var(--trust-bg);">Option_02</div>
+                    <h3 class="text-4xl font-black uppercase mb-6 tracking-tighter">ON_PREMISE</h3>
+                    <p class="mb-8 tracking-wide" style="color: var(--trust-text-dim);">
+                        完全なコントロール。エアギャップ機能。<br/>
+                        高セキュリティセクター向けの物理インフラ監視。
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Maximum Privacy
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Air-Gapped Ready
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-sm uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-[var(--trust-primary)] text-xl">check_circle</span>
+                            Custom Hardware Integration
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="trust-btn-primary w-full py-4 font-bold uppercase tracking-widest transition-all inline-flex justify-center items-center gap-2">
+                        Request Installation
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="border-t-2 border-[var(--trust-border)] py-24 px-6 bg-[var(--trust-bg)]">
+            <div class="max-w-[1440px] mx-auto text-center">
+                <div class="bg-[var(--trust-surface)] border-4 border-[var(--trust-border)] p-16 max-w-4xl mx-auto relative overflow-hidden">
+                    <div class="trust-scanline absolute inset-0 opacity-10"></div>
+                    <p class="font-mono text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--trust-primary);">INITIALIZE_CONTACT</p>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 relative z-10 tracking-tighter">
+                        Ready to stabilize your network?
+                    </h2>
+                    <p class="mb-10 text-lg uppercase tracking-widest relative z-10" style="color: var(--trust-text-dim);">
+                        デプロイメントは包括的なインフラストラクチャスキャンから開始。
+                    </p>
+                    <a href="contact.html" class="trust-btn-primary px-16 py-6 text-xl font-black uppercase tracking-widest transition-transform relative z-10 shadow-[0_0_30px_rgba(56,255,20,0.3)] inline-block">
+                        Secure Your Network
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[var(--trust-bg)] border-t-2 border-[var(--trust-border)] py-12 px-6">
+        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[var(--trust-primary)] text-2xl">shield_with_heart</span>
+                <span class="text-sm font-bold uppercase tracking-widest" style="color: var(--trust-text-dim);">TRUST_GUARD © 2024</span>
+            </div>
+            <div class="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em]" style="color: var(--trust-text-dim);">
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Privacy_Protocol</a>
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Service_Agreement</a>
+                <a class="hover:text-[var(--trust-primary)] transition-colors" href="#">Compliance_Logs</a>
+            </div>
+            <div class="flex gap-4">
+                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
+                    <span class="material-symbols-outlined text-sm">share</span>
+                </div>
+                <div class="size-8 border border-[var(--trust-border)] flex items-center justify-center hover:border-[var(--trust-primary)] cursor-pointer transition-all" style="color: var(--trust-text-dim);">
+                    <span class="material-symbols-outlined text-sm">terminal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('trustMobileToggle');
+            const menu = document.getElementById('trustMobileMenu');
+            const backdrop = document.getElementById('trustMenuBackdrop');
+            if (!toggle || !menu || !backdrop) return;
+            function closeMenu() {
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = menu.classList.contains('active');
+                if (isOpen) { closeMenu(); } else {
+                    menu.classList.add('active');
+                    backdrop.classList.add('active');
+                    toggle.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+            backdrop.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.trust-nav-link').forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.style.color = 'var(--trust-primary)';
+                }
+            });
+        })();
+    </script>
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

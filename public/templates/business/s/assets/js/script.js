@@ -1,149 +1,101 @@
-
-// Global Toggle Function
-window.toggleMenu = function () {
-    const sidebar = document.querySelector('.saas-sidebar');
-    const toggle = document.querySelector('.saas-mobile-toggle');
-    if (sidebar) {
-        sidebar.classList.toggle('active');
-
-        if (toggle) {
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) {
-                icon.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
-            }
-        }
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ===== Smart SaaS Theme Effects =====
-    if (window.PremiumEffects) {
-        // Crisp modern reveal
-        PremiumEffects.BlurText('h1', { delay: 100, duration: 1500 });
+    const body = document.body;
+    const toggles = document.querySelectorAll('[data-menu-toggle]');
+    const menu = document.querySelector('[data-menu-panel]');
+    const backdrop = document.querySelector('[data-menu-backdrop]');
+    const links = document.querySelectorAll('[data-menu-panel] a[href]');
+    const setOpen = (open) => {
+        if (!menu || !backdrop) return;
+        menu.classList.toggle('is-open', open);
+        backdrop.classList.toggle('is-open', open);
+        toggles.forEach((toggle) => toggle.setAttribute('aria-expanded', String(open)));
+        body.style.overflow = open ? 'hidden' : '';
+    };
+    toggles.forEach((toggle) => toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true')));
+    backdrop?.addEventListener('click', () => setOpen(false));
+    links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 768) setOpen(false); });
+    document.querySelectorAll('[data-current-year]').forEach((node) => { node.textContent = String(new Date().getFullYear()); });
 
-        // Tilt for dashboard cards
-        PremiumEffects.Tilt('.stat-card, .f-item', { max: 5, scale: 1.05 });
-    }
-
-    // ===== Sidebar Active State Sync =====
-    const sections = document.querySelectorAll('section');
-    const sideLinks = document.querySelectorAll('.sidebar-nav a');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        sideLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealNodes = Array.from(document.querySelectorAll('[data-reveal]'));
+    document.querySelectorAll('[data-reveal-group]').forEach((group) => {
+        Array.from(group.querySelectorAll('[data-reveal]')).forEach((node, index) => {
+            if (!node.style.getPropertyValue('--reveal-delay')) {
+                node.style.setProperty('--reveal-delay', `${index * 80}ms`);
             }
         });
     });
 
-    // ===== Mobile Sidebar Logic =====
-    const sidebar = document.querySelector('.saas-sidebar');
-    const toggle = document.querySelector('.saas-mobile-toggle');
+    if (prefersReducedMotion) {
+        revealNodes.forEach((node) => node.classList.add('is-visible'));
+    } else {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.18,
+            rootMargin: '0px 0px -8% 0px',
+        });
 
-    if (sidebar) {
-        sidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                sidebar.classList.remove('active');
-                if (toggle) {
-                    const icon = toggle.querySelector('.material-icons');
-                    if (icon) icon.textContent = 'menu';
-                }
+        revealNodes.forEach((node) => observer.observe(node));
+    }
+
+    document.querySelectorAll('[data-demo-form]').forEach((form) => {
+        const status = form.querySelector('[data-form-status]');
+        const fields = Array.from(form.querySelectorAll('input[required], textarea[required], select[required]'));
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        const setStatus = (kind, message) => {
+            if (!status) return;
+            status.classList.remove('is-success', 'is-error');
+            if (kind) status.classList.add(kind);
+            status.textContent = message;
+        };
+
+        const clearInvalid = (field) => {
+            field.removeAttribute('aria-invalid');
+        };
+
+        fields.forEach((field) => {
+            field.addEventListener('input', () => {
+                clearInvalid(field);
+            });
+            field.addEventListener('change', () => {
+                clearInvalid(field);
             });
         });
-    }
-});
 
-// Mobile Pricing Carousel Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const controls = document.querySelectorAll('.p-control');
-    const container = document.querySelector('.pricing-grid');
-    const cards = document.querySelectorAll('.price-card');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-    if (!container || controls.length === 0) return;
-
-    // 1. Tab Click -> Scroll
-    controls.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            // Update UI
-            controls.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Scroll
-            const card = cards[index];
-            if (card) {
-                const left = card.offsetLeft - container.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
-                container.scrollTo({
-                    left: left,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // 2. Scroll/Swipe -> Update Tab
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(cards).indexOf(entry.target);
-                if (index !== -1) {
-                    controls.forEach(b => b.classList.remove('active'));
-                    controls[index].classList.add('active');
+            let firstInvalid = null;
+            fields.forEach((field) => {
+                const value = field.value.trim();
+                const isInvalid = value.length === 0;
+                field.setAttribute('aria-invalid', String(isInvalid));
+                if (isInvalid && !firstInvalid) {
+                    firstInvalid = field;
                 }
+            });
+
+            if (firstInvalid) {
+                setStatus('is-error', '入力が不足している項目があります。必須欄を確認してください。');
+                firstInvalid.focus();
+                return;
+            }
+
+            setStatus('is-success', '送信を受け付けました。2 営業日以内を目安に確認します。');
+            form.reset();
+            fields.forEach(clearInvalid);
+
+            if (submitButton) {
+                submitButton.blur();
             }
         });
-    }, {
-        root: container,
-        threshold: 0.6
-    });
-
-    cards.forEach(card => observer.observe(card));
-});
-
-// Mobile Expandable Search Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBar = document.querySelector('.search-bar');
-    const searchIcon = searchBar ? searchBar.querySelector('.material-icons') : null;
-    const searchInput = searchBar ? searchBar.querySelector('input') : null;
-
-    if (!searchBar || !searchIcon) return;
-
-    // Inject Close Button dynamically
-    let closeBtn = document.createElement('span');
-    closeBtn.className = 'material-icons search-close';
-    closeBtn.textContent = 'close';
-    searchBar.appendChild(closeBtn);
-
-    // Expand on Click (Mobile only)
-    searchIcon.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024) {
-            e.stopPropagation();
-            searchBar.classList.add('active');
-            if (searchInput) searchInput.focus();
-        }
-    });
-
-    // Close Button Action
-    closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        searchBar.classList.remove('active');
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024 && searchBar.classList.contains('active')) {
-            if (!searchBar.contains(e.target)) {
-                searchBar.classList.remove('active');
-            }
-        }
     });
 });

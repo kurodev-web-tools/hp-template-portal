@@ -4,274 +4,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Authentic - 100年の歴史が紡ぐ確かな信頼。コンサルティング、都市計画、法務サービスを提供する伝統と革新の企業サイト。">
-    <meta name="theme-color" content="#1a365d">
-    <meta property="og:title" content="Business A - Authentic Template">
-    <meta property="og:description" content="100年の歴史が紡ぐ確かな信頼。伝統と革新の企業サイトテンプレート。">
+    <meta name="description" content="KIKYO STRATEGIC ADVISORY は、都市戦略、資産承継、ガバナンス設計を横断して支援する老舗アドバイザリーの企業サイトです。">
+    <meta name="theme-color" content="#0a192f">
+    <meta property="og:title" content="KIKYO STRATEGIC ADVISORY | 都市・資産・事業をつなぐ戦略支援">
+    <meta property="og:description" content="都市戦略、資産承継、ガバナンス設計を横断して伴走する老舗アドバイザリー。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/og-image.jpg">
-    <meta property="og:url" content="">
+    
+    <meta property="og:locale" content="ja_JP"><meta property="og:image" content="assets/images/a-hero-legacy-hall.png">
+    <meta property="og:url" content="https://kikyo-advisory.jp/">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Business A - Authentic Template</title>
+    
+    <meta name="robots" content="index, follow"><title>KIKYO STRATEGIC ADVISORY | 都市・資産・事業をつなぐ戦略支援</title>
 
-    <!-- JSON-LD Structured Data -->
+    
+    <link rel="canonical" href="https://kikyo-advisory.jp/"><!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Authentic Business Corp",
-        "description": "100年の歴史が紡ぐ確かな信頼。コンサルティング、都市計画、法務サービスを提供。",
-        "url": "",
-        "logo": "",
+        "name": "Kikyo Strategic Advisory",
+        "description": "都市戦略、資産承継、ガバナンス設計を横断して、長期視点の意思決定を支援。",
+        "url": "https://kikyo-advisory.jp/",
+        "logo": "assets/generated/external-image-01.svg",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "03-1234-5678",
+            "telephone": "03-6826-1948",
             "contactType": "customer service",
             "availableLanguage": "Japanese"
         }
     }
     </script>
 
-    <!-- Google Fonts: Serif for "Authentic" feel -->
+    <!-- Google Fonts: Playfair Display + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@300;500;700&display=swap"
-        rel="stylesheet">
-    <!-- Manual Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+
+    <!-- Portal Catalog Style -->
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .auth-menu-backdrop.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-color: rgba(10, 25, 47, 0.6) !important;
+            backdrop-filter: blur(4px) !important;
+        }
+
+        .auth-mobile-menu.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .wrap-balance {
+            text-wrap: balance;
+        }
+
+        .wrap-pretty {
+            text-wrap: pretty;
+        }
+
+        @supports (word-break: auto-phrase) {
+            .wrap-phrase {
+                word-break: auto-phrase;
+            }
+        }
+    </style>
 </head>
 
-<body class="theme-business">
+<body class="bg-neutral-50 text-neutral-900 font-sans antialiased selection:bg-gold-500 selection:text-white custom-menu-only">
 
-    <!-- Custom Mobile Menu Toggle (outside header to avoid stacking context issues) -->
-    <button class="auth-mobile-toggle" aria-label="メニューを開く" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+    <!-- Mobile Menu Toggle -->
+    <button aria-controls="auth-mobile-menu" class="auth-mobile-toggle fixed top-4 right-4 z-[10001] w-12 h-12 bg-navy-900 border-2 border-gold-500 flex flex-col justify-center items-center gap-1.5 cursor-pointer transition-all duration-400 md:hidden" onclick="toggleAuthMenu()" aria-label="メニューを開く" aria-expanded="false">
+        <span class="bar w-5 h-0.5 bg-gold-500 transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-gold-500 transition-all duration-400"></span>
+        <span class="bar w-5 h-0.5 bg-gold-500 transition-all duration-400"></span>
     </button>
-    <div class="auth-menu-backdrop"></div>
+
+    <div class="auth-menu-backdrop fixed inset-0 z-[9998] bg-navy-900/0 backdrop-blur-none opacity-0 invisible transition-all duration-500"></div>
 
     <!-- Mobile Menu Panel -->
-    <div class="auth-mobile-menu">
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#service">Service</a></li>
-            <li><a href="#works">Works</a></li>
-            <li><a href="#contact" class="btn-inquiry">Contact</a></li>
+    <div id="auth-mobile-menu" class="auth-mobile-menu fixed inset-0 z-[9999] bg-neutral-50 flex flex-col justify-center items-center opacity-0 invisible transition-opacity duration-500">
+        <ul class="list-none text-center p-0 m-0">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-navy-900 uppercase tracking-widest border-b border-transparent hover:border-gold-500 transition-colors">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-navy-900 uppercase tracking-widest border-b border-transparent hover:border-gold-500 transition-colors">About</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-navy-900 uppercase tracking-widest border-b border-transparent hover:border-gold-500 transition-colors">Service</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-4 px-6 sm:px-8 font-serif text-lg sm:text-xl text-navy-900 uppercase tracking-widest border-b border-transparent hover:border-gold-500 transition-colors mt-8 px-10 py-4 bg-navy-900 text-white">Contact</a></li>
         </ul>
     </div>
 
     <!-- Header -->
-    <header class="auth-header">
-        <div class="container">
-            <h1 class="logo">AUTHENTIC.<span class="dot"></span></h1>
-            <div class="nav">
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#service">Service</a></li>
-                    <li><a href="#works">Works</a></li>
-                    <li><a href="#contact" class="btn-inquiry">Contact</a></li>
-                </ul>
-            </div>
+    <header class="sticky top-0 z-50 flex items-center justify-between border-b border-neutral-200 bg-white/95 backdrop-blur-sm px-6 py-4 pl-24 lg:px-12 lg:pl-32">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-gold-500 text-3xl">diamond</span>
+            <h2 class="font-serif text-xl font-bold tracking-tight text-navy-900">KIKYO.</h2>
         </div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-navy-900 hover:text-gold-500 text-sm font-medium transition-colors" href="index.html">Home</a>
+            <a class="text-navy-900 hover:text-gold-500 text-sm font-medium transition-colors" href="about.html">About</a>
+            <a class="text-navy-900 hover:text-gold-500 text-sm font-medium transition-colors" href="service.html">Service</a>
+            <a class="cursor-pointer border border-navy-900 bg-transparent px-6 py-2 text-sm font-semibold text-navy-900 transition-all hover:bg-navy-900 hover:text-white" href="contact.html">Contact</a>
+        </nav>
+        <button class="md:hidden p-2 text-navy-900" onclick="toggleAuthMenu()">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
     </header>
 
-    <!-- Hero -->
-    <section class="auth-hero">
-        <div class="hero-image-box">
-            <!-- Placeholder: 1200x600 -->
-            <div class="img-placeholder" style="width: 100%; height: 100%; background: #ccc;" data-size="1920x1080">
-                1920x1080 Main Visual</div>
-        </div>
-        <div class="hero-content">
-            <h2>Trust &<br>Tradition</h2>
-            <p><span class="ib">100年の歴史が紡ぐ、</span><span class="ib">確かな信頼と</span><span class="ib">未来への革新。</span></p>
-        </div>
-    </section>
+    <main>
+        <!-- 数値は編集してください: KPI・実績・件数・割合・年数などの値は公開前に自社データへ差し替えてください。 Edit these values for your business. -->
+        <!-- Hero Section - Editorial Style -->
+        <section class="relative min-h-[72vh] md:min-h-screen bg-navy-900 overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-[linear-gradient(110deg,rgba(8,21,40,0.92)_0%,rgba(8,21,40,0.78)_38%,rgba(15,18,24,0.74)_58%,rgba(15,18,24,0.88)_100%),radial-gradient(circle_at_top_right,rgba(212,175,55,0.18),transparent_24%)] bg-cover bg-center" style="background-image: linear-gradient(110deg, rgba(8,21,40,0.82) 0%, rgba(8,21,40,0.64) 38%, rgba(15,18,24,0.56) 58%, rgba(15,18,24,0.74) 100%), radial-gradient(circle at top right, rgba(212,175,55,0.14), transparent 24%), url('assets/images/a-hero-legacy-hall.png');"></div>
+            <div class="absolute inset-y-0 right-0 hidden w-[38%] lg:block border-l border-gold-500/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))]"></div>
+            <div class="absolute right-[10%] top-[18%] hidden h-48 w-48 rounded-full border border-gold-500/10 bg-gold-500/5 lg:block"></div>
 
-    <!-- About -->
-    <section id="about" class="auth-section">
-        <div class="container two-col">
-            <div class="col-text">
-                <span class="sub-title">Who We Are</span>
-                <h3>誠実さを、「かたち」に。</h3>
-                <p>
-                    <span class="ib">私たちは創業以来、</span><span class="ib">一貫して</span><span class="ib">顧客の課題解決に</span><span
-                        class="ib">取り組んできました。</span>
-                    <span class="ib">変化の激しい</span><span class="ib">現代においてこそ、</span><span class="ib">変わらない価値を</span><span
-                        class="ib">提供し続けること。</span>
-                    <span class="ib">それが私たちの</span><span class="ib">ミッションです。</span>
-                </p>
-                <a href="#" class="btn-text">Read More <span class="material-icons">arrow_forward</span></a>
-            </div>
-            <div class="col-img">
-                <div class="img-placeholder" style="height: 400px;" data-size="600x400">600x400 Office Image</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="service" class="auth-section bg-gray">
-        <div class="container">
-            <div class="sec-head">
-                <span class="sub-title">Our Capabilities</span>
-                <h3>事業内容</h3>
-            </div>
-            <div class="service-grid">
-                <div class="service-card">
-                    <span class="material-icons icon">account_balance</span>
-                    <h4>Consulting</h4>
-                    <p><span class="ib">経営戦略から</span><span class="ib">実行支援まで、</span><span
-                            class="ib">包括的なソリューションを</span><span class="ib">提供します。</span></p>
-                </div>
-                <div class="service-card">
-                    <span class="material-icons icon">architecture</span>
-                    <h4>Planning</h4>
-                    <p><span class="ib">都市開発から</span><span class="ib">住宅設計まで、</span><span class="ib">環境と調和した</span><span
-                            class="ib">空間を創造します。</span></p>
-                </div>
-                <div class="service-card">
-                    <span class="material-icons icon">gavel</span>
-                    <h4>Legal</h4>
-                    <p><span class="ib">複雑な法規制に</span><span class="ib">対応し、</span><span class="ib">ビジネスの安定的な</span><span
-                            class="ib">成長を支えます。</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Works -->
-    <section id="works" class="auth-section">
-        <div class="container">
-            <div class="sec-head">
-                <span class="sub-title">Featured Works</span>
-                <h3>実績紹介</h3>
-            </div>
-            <div class="works-grid">
-                <div class="img-placeholder" style="height: 300px; width: 100%;" data-size="Square">Work 01</div>
-                <div class="img-placeholder" style="height: 300px; width: 100%;" data-size="Square">Work 02</div>
-                <div class="img-placeholder" style="height: 300px; width: 100%;" data-size="Square">Work 03</div>
-            </div>
-            <div style="text-align:center; margin-top:40px;">
-                <a href="#" class="btn-text">View All Works <span class="material-icons">arrow_forward</span></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="auth-section bg-gray">
-        <div class="container two-col">
-            <div class="col-text">
-                <span class="sub-title">Contact Us</span>
-                <h3>お問い合わせ</h3>
-                <p>
-                    <span class="ib">プロジェクトのご相談、</span><span class="ib">お見積りのご依頼など、</span><span
-                        class="ib">お気軽に</span><span class="ib">お問い合わせください。</span>
-                    <span class="ib">担当者より</span><span class="ib">24時間以内に</span><span class="ib">ご返信いたします。</span>
-                </p>
-                <div style="margin-top:20px; font-family: var(--font-en); font-size: 1.5rem;">
-                    03-1234-5678
-                </div>
-            </div>
-            <div class="col-img">
-                <form style="display:flex; flex-direction:column; gap:15px;">
-                    <div>
-                        <label for="contact-name" class="sr-only">お名前</label>
-                        <input type="text" id="contact-name" placeholder="Your Name"
-                            style="padding:15px; border:1px solid #ccc; width:100%;">
+            <div class="relative z-20 container mx-auto flex min-h-[72vh] items-end px-5 pb-16 pt-24 sm:px-6 md:min-h-screen lg:px-12 md:pb-24">
+                <div class="grid w-full gap-8 lg:grid-cols-[minmax(0,2fr)_320px] lg:items-end">
+                    <div class="bg-white/92 backdrop-blur-md p-8 md:p-12 lg:p-16 max-w-2xl border-l-4 border-gold-500 shadow-[0_30px_80px_rgba(0,0,0,0.22)]">
+                        <span class="text-gold-600 font-bold tracking-widest uppercase text-xs mb-4 block">Since 1924</span>
+                        <h1 class="wrap-balance font-serif text-3xl sm:text-4xl md:text-6xl text-navy-900 leading-tight mb-6">
+                            Stewarding Legacy,<br class="hidden md:block"/>
+                            <span class="italic">Structuring Next</span>
+                        </h1>
+                        <p class="wrap-pretty wrap-phrase text-neutral-700 text-sm md:text-base leading-relaxed mb-8">
+                            <span class="ib">都市・資産・事業をまたぐ論点を、</span><span class="ib">長期視点で静かに整理する。</span><br class="hidden md:block">
+                            <span class="ib">経営層の意思決定を支える</span><span class="ib">戦略アドバイザリーです。</span>
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="about.html" class="bg-navy-900 hover:bg-navy-800 text-white px-6 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide transition-colors text-center min-w-[200px]">
+                                About Kikyo
+                            </a>
+                            <a href="service.html" class="border border-navy-900 hover:bg-navy-900 hover:text-white text-navy-900 px-6 py-3 md:px-8 md:py-4 text-sm font-medium tracking-wide transition-colors text-center min-w-[200px]">
+                                Practice Areas
+                            </a>
+                        </div>
                     </div>
-                    <div>
-                        <label for="contact-email" class="sr-only">メールアドレス</label>
-                        <input type="email" id="contact-email" placeholder="Email Address"
-                            style="padding:15px; border:1px solid #ccc; width:100%;">
-                    </div>
-                    <div>
-                        <label for="contact-message" class="sr-only">メッセージ</label>
-                        <textarea id="contact-message" placeholder="Message" rows="4"
-                            style="padding:15px; border:1px solid #ccc; width:100%;"></textarea>
-                    </div>
-                    <button type="button" class="btn-inquiry" style="border:none; cursor:pointer;">Send Message</button>
-                </form>
+                    <aside class="hidden lg:grid gap-4">
+                        <article class="border border-white/10 bg-white/6 p-5 text-white backdrop-blur-sm">
+                            <p class="text-[11px] uppercase tracking-[0.28em] text-gold-400">Practice Scope</p>
+                            <strong class="mt-4 block font-serif text-3xl text-white">3</strong>
+                            <p class="mt-2 text-sm leading-7 text-neutral-300">都市戦略、資産承継、ガバナンス設計の三領域を主軸に伴走します。</p>
+                        </article>
+                        <article class="border border-gold-500/20 bg-gold-500/8 p-5 text-white">
+                            <p class="text-[11px] uppercase tracking-[0.28em] text-gold-400">Client Focus</p>
+                            <p class="mt-4 text-sm leading-7 text-neutral-300">オーナー企業、地域基盤企業、公共連携案件の上流整理を中心に支援します。</p>
+                        </article>
+                    </aside>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Stats Section - 2x2 Grid on Mobile -->
+        <section class="py-16 bg-navy-900">
+            <div class="container mx-auto px-5 sm:px-6 lg:px-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 items-center justify-items-center">
+                    <div class="text-center">
+                        <h3 class="font-serif text-4xl sm:text-5xl text-gold-500 mb-1">1924</h3>
+                        <p class="text-neutral-400 text-xs uppercase tracking-wider mb-3">Founding Year</p>
+                        <div class="h-px w-16 bg-gold-500/30 mx-auto"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-4xl sm:text-5xl text-gold-500 mb-1">3</h3>
+                        <p class="text-neutral-400 text-xs uppercase tracking-wider mb-3">Core Practices</p>
+                        <div class="h-px w-16 bg-gold-500/30 mx-auto"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-4xl sm:text-5xl text-gold-500 mb-1">2</h3>
+                        <p class="text-neutral-400 text-xs uppercase tracking-wider mb-3">Advisory Hubs</p>
+                        <div class="h-px w-16 bg-gold-500/30 mx-auto"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-serif text-4xl sm:text-5xl text-gold-500 mb-1">24h</h3>
+                        <p class="text-neutral-400 text-xs uppercase tracking-wider mb-3">Initial Reply</p>
+                        <div class="h-px w-16 bg-gold-500/30 mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section - Minimal List Menu -->
+        <section class="py-16 sm:py-20 md:py-24 bg-white px-5 sm:px-6 lg:px-12">
+            <div class="container mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-gold-500 font-bold tracking-widest uppercase text-xs mb-2 block">Expertise</span>
+                    <h2 class="wrap-balance font-serif text-2xl sm:text-3xl md:text-4xl text-navy-900 mb-4">Our Services</h2>
+                    <div class="h-0.5 w-16 bg-gold-500 mx-auto mb-6"></div>
+                    <p class="wrap-pretty wrap-phrase text-neutral-600 text-base font-light">主業を明確にしながら、複数の論点を一つの意思決定へ束ねます。</p>
+                </div>
+
+                <!-- Service List - Elegant Menu Style -->
+                <div class="max-w-4xl mx-auto">
+                    <a href="service.html" class="group flex items-center justify-between py-6 border-t border-neutral-200 hover:border-gold-500 transition-colors">
+                        <span class="font-serif text-2xl md:text-3xl text-navy-900 group-hover:text-gold-500 transition-colors">Urban Strategy Advisory</span>
+                        <span class="material-symbols-outlined text-gold-500 text-3xl transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                    </a>
+                    <a href="service.html" class="group flex items-center justify-between py-6 border-t border-neutral-200 hover:border-gold-500 transition-colors">
+                        <span class="font-serif text-2xl md:text-3xl text-navy-900 group-hover:text-gold-500 transition-colors">Asset & Succession Planning</span>
+                        <span class="material-symbols-outlined text-gold-500 text-3xl transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                    </a>
+                    <a href="service.html" class="group flex items-center justify-between py-6 border-t border-neutral-200 hover:border-gold-500 transition-colors">
+                        <span class="font-serif text-2xl md:text-3xl text-navy-900 group-hover:text-gold-500 transition-colors">Governance & Legal Structuring</span>
+                        <span class="material-symbols-outlined text-gold-500 text-3xl transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                    </a>
+                    <a href="service.html" class="group flex items-center justify-between py-6 border-t border-neutral-200 hover:border-gold-500 transition-colors">
+                        <span class="font-serif text-2xl md:text-3xl text-navy-900 group-hover:text-gold-500 transition-colors">Public-Private Coordination</span>
+                        <span class="material-symbols-outlined text-gold-500 text-3xl transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- See Practice Areas CTA -->
+                <div class="text-center mt-12">
+                    <a href="service.html" class="inline-flex items-center gap-2 text-navy-900 font-bold tracking-wide uppercase text-sm border-b-2 border-gold-500 pb-1 hover:text-gold-500 transition-colors">
+                        See Practice Areas
+                        <span class="material-symbols-outlined text-base">arrow_downward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-navy-900 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#d4af37 1px, transparent 1px); background-size: 32px 32px;"></div>
+            <div class="container mx-auto px-5 sm:px-6 lg:px-12 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+                    <div class="lg:w-1/2">
+                        <h2 class="wrap-balance font-serif text-2xl sm:text-3xl md:text-4xl text-white mb-4">Ready to shape the future together?</h2>
+                        <p class="wrap-pretty wrap-phrase text-neutral-300 text-base font-light max-w-lg">
+                            私たちの専門性とあなたのビジョンを組み合わせ、真に価値ある成果を創り出しましょう。
+                        </p>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center lg:justify-end">
+                        <a href="contact.html" class="group relative px-6 py-3 md:px-8 md:py-4 bg-gold-500 overflow-hidden min-w-[240px] text-center">
+                            <div class="absolute inset-0 w-3 bg-white transition-all duration-250 ease-out group-hover:w-full opacity-10"></div>
+                            <span class="relative text-white font-bold tracking-wide uppercase">Start A Conversation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="auth-footer">
-        <div class="container">
-            <div class="footer-logo">AUTHENTIC.</div>
-            <p>&copy; 2026 Authentic Business Corp. All Rights Reserved.</p>
+    <footer class="bg-navy-900 border-t border-navy-800 text-neutral-400 pt-10 md:pt-16 pb-6 md:pb-8 px-5 sm:px-6 lg:px-12">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-14 md:gap-10 mb-8 md:mb-12">
+                <!-- Brand -->
+                <div class="col-span-2 lg:col-span-1 flex flex-col gap-4">
+                    <div class="flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-gold-500">diamond</span>
+                        <span class="font-serif text-lg font-bold">KIKYO</span>
+                    </div>
+                    <p class="wrap-pretty wrap-phrase text-xs leading-relaxed max-w-xs">
+                        都市・資産・事業をまたぐ重要局面で、
+                        経営層の意思決定を静かに支えるアドバイザリー。
+                    </p>
+                </div>
+                <!-- Links -->
+                <div class="col-span-1">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-2 md:mb-4">Company</h4>
+                    <ul class="space-y-5 text-sm">
+                        <li><a href="about.html" class="hover:text-gold-500 transition-colors">About</a></li>
+                        <li><a href="service.html" class="hover:text-gold-500 transition-colors">Services</a></li>
+                        <li><a href="service.html#engagement-model" class="hover:text-gold-500 transition-colors">How We Work</a></li>
+                        <li><a href="contact.html" class="hover:text-gold-500 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Services -->
+                <div class="col-span-1">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-2 md:mb-4">Services</h4>
+                    <ul class="space-y-5 text-sm">
+                        <li><a href="service.html" class="hover:text-gold-500 transition-colors">Urban Strategy</a></li>
+                        <li><a href="service.html" class="hover:text-gold-500 transition-colors">Asset & Succession</a></li>
+                        <li><a href="service.html" class="hover:text-gold-500 transition-colors">Governance Design</a></li>
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div class="col-span-2 lg:col-span-1">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-4 md:mb-6">Contact</h4>
+                    <ul class="space-y-5 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-gold-500 text-base">location_on</span>
+                            <span>東京都千代田区丸の内 1-6-5</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gold-500 text-base">call</span>
+                            <span>03-6826-1948</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gold-500 text-base">mail</span>
+                            <span>contact@kikyo-advisory.jp</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-navy-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>&copy; 2026 Kikyo Strategic Advisory. All Rights Reserved.</p>
+                <div class="flex gap-4">
+                    <a href="../../../privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="../../../terms.html" class="hover:text-white transition-colors">Site Terms</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Common Script (Back Button) -->
-    <!-- Common Script (Back Button) -->
+    <!-- Template Common Scripts -->
+    <div id="template-common-container"></div>
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+
     <script>
-        // Init Premium Effects
-        document.addEventListener('DOMContentLoaded', () => {
-            // Authentic Blur Text
-            if (window.PremiumEffects) {
-                PremiumEffects.BlurText('.hero-content h2', { delay: 100, duration: 1500 });
-
-                // Add fade-up to paragraph
-                const p = document.querySelector('.hero-content p');
-                if (p) p.classList.add('animate-fade-up');
-                p.style.animationDelay = '1s'; // Wait for title
-            }
-
-            // ===== Custom Mobile Menu Control =====
+        // Mobile Menu Toggle Function
+        function toggleAuthMenu() {
             const toggle = document.querySelector('.auth-mobile-toggle');
             const backdrop = document.querySelector('.auth-menu-backdrop');
             const menu = document.querySelector('.auth-mobile-menu');
 
             if (toggle && backdrop && menu) {
-                function openMenu() {
-                    toggle.classList.add('active');
-                    backdrop.classList.add('active');
-                    menu.classList.add('active');
+                toggle.classList.toggle('active');
+                backdrop.classList.toggle('active');
+                menu.classList.toggle('active');
+
+                const bars = toggle.querySelectorAll('.bar');
+                if (toggle.classList.contains('active')) {
+                    bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                    bars[1].style.opacity = '0';
+                    bars[1].style.transform = 'scaleX(0)';
+                    bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
                     toggle.setAttribute('aria-expanded', 'true');
                     toggle.setAttribute('aria-label', 'メニューを閉じる');
                     document.body.style.overflow = 'hidden';
-                }
-
-                function closeMenu() {
-                    toggle.classList.remove('active');
-                    backdrop.classList.remove('active');
-                    menu.classList.remove('active');
+                } else {
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[1].style.transform = 'none';
+                    bars[2].style.transform = 'none';
                     toggle.setAttribute('aria-expanded', 'false');
                     toggle.setAttribute('aria-label', 'メニューを開く');
                     document.body.style.overflow = '';
                 }
 
-                toggle.addEventListener('click', () => {
+                const items = menu.querySelectorAll('li');
+                items.forEach((item, index) => {
                     if (toggle.classList.contains('active')) {
-                        closeMenu();
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 50);
                     } else {
-                        openMenu();
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
                     }
                 });
+            }
+        }
 
-                backdrop.addEventListener('click', closeMenu);
-
-                // Close on link click
-                menu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-
-                // Close on Escape
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && toggle.classList.contains('active')) {
-                        closeMenu();
-                    }
-                });
+        document.querySelector('.auth-menu-backdrop')?.addEventListener('click', toggleAuthMenu);
+        document.querySelectorAll('.auth-mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleAuthMenu);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.auth-mobile-toggle');
+                if (toggle && toggle.classList.contains('active')) {
+                    toggleAuthMenu();
+                }
             }
         });
     </script>

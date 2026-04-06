@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@source "../../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #af944f;
+    --color-accent: #6f4a3a;
+    --color-background-light: #f7f2e8;
+    --color-background-dark: #171513;
+    --font-display: "Newsreader", "Noto Serif JP", serif;
+    --font-body: "Inter", "Noto Sans JP", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background-light);
+    color: #2a2520;
+    -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+    background-color: var(--color-background-dark);
+    color: #f3eee6;
+}
+
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
+}
+
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+.k-menu-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.k-menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.k-mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.k-mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.k-mobile-toggle .bar {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.k-mobile-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.k-mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.k-mobile-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}

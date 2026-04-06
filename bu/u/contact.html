@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Urban Street へのお問い合わせ。コラボ、制作相談、ドロップ通知の登録はこちら。">
+    <meta property="og:title" content="Contact | Urban Street">
+    <meta property="og:description" content="Urban Street へのお問い合わせ。コラボ、制作相談、ドロップ通知の登録はこちら。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://example.com/templates/business/u/contact.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <title>Contact | Urban Street</title>
+    <link rel="canonical" href="https://example.com/templates/business/u/contact.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="../../../assets/css/business-base.css">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <style>
+        :root {
+            --urban-primary: #f4af25;
+            --urban-neon: #ccff00;
+            --urban-asphalt: #1a1a1a;
+            --urban-concrete: #3a3a3a;
+            --urban-bg-dark: #121212;
+            --urban-bg-light: #f8f7f5;
+        }
+        .urban-theme {
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            background-color: var(--urban-bg-dark);
+            color: #f8f7f5;
+        }
+        .urban-stencil {
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+        .urban-italic { font-style: italic; }
+        .brutalist-box {
+            border: 4px solid var(--urban-concrete);
+            box-shadow: 8px 8px 0 0 var(--urban-primary);
+            transition: all 0.2s ease;
+        }
+        .urban-theme .brutalist-box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0 0 var(--urban-primary);
+        }
+        .tape-effect {
+            position: relative;
+        }
+        .tape-effect::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 24px;
+            width: 70px;
+            height: 24px;
+            background: rgba(244, 175, 37, 0.35);
+            transform: rotate(4deg);
+            pointer-events: none;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+        .tape-effect-double::after,
+        .tape-effect-double::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 24px;
+            background: rgba(244, 175, 37, 0.35);
+            transform: rotate(4deg);
+            pointer-events: none;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+        .tape-effect-double::after {
+            top: -8px;
+            right: 24px;
+        }
+        .tape-effect-double::before {
+            top: -8px;
+            left: 24px;
+            transform: rotate(-4deg);
+        }
+        .grit-overlay::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.4;
+        }
+        @media (max-width: 768px) { .grit-overlay::before { display: none; } }
+        .urban-nav-link {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .urban-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--urban-primary);
+            transition: width 0.2s ease;
+        }
+        .urban-theme .urban-nav-link:hover::after,
+        .urban-theme .urban-nav-link.active::after { width: 100%; }
+        .urban-theme .urban-nav-link:hover,
+        .urban-theme .urban-nav-link.active { color: var(--urban-primary); }
+        .urban-menu-backdrop { display: none; }
+        @media (max-width: 1023px) {
+            .urban-menu-backdrop { display: block; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+            .urban-menu-backdrop.active { opacity: 1; visibility: visible; }
+        }
+        .urban-mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        @media (max-width: 1023px) { .urban-mobile-menu.active { transform: translateX(0); } }
+        @media (min-width: 1024px) { .urban-mobile-menu { display: none; } }
+        .urban-mobile-toggle { display: none; }
+        @media (max-width: 1023px) {
+            .urban-mobile-toggle { display: flex; }
+            .urban-mobile-toggle .bar {
+                display: block; width: 24px; height: 3px; background: var(--urban-primary);
+                position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+                transition: all 0.3s ease;
+            }
+            .urban-mobile-toggle .bar:nth-child(1) { transform: translate(-50%, -8px); }
+            .urban-mobile-toggle .bar:nth-child(3) { transform: translate(-50%, 8px); }
+            .urban-mobile-toggle.active .bar:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+            .urban-mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .urban-mobile-toggle.active .bar:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+        }
+        .urban-btn {
+            background: var(--urban-primary);
+            color: var(--urban-bg-dark);
+            border: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 6px 6px 0 0 rgba(0,0,0,0.4);
+        }
+        .urban-btn:hover {
+            transform: translate(2px, -2px);
+            box-shadow: 8px 8px 0 0 rgba(0,0,0,0.4);
+        }
+        .urban-input {
+            width: 100%;
+            background: var(--urban-bg-dark);
+            border: 3px solid var(--urban-concrete);
+            color: #f8f7f5;
+            padding: 1rem;
+            font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+            font-weight: 500;
+            transition: border-color 0.2s ease;
+        }
+        .urban-input:focus {
+            outline: none;
+            border-color: var(--urban-primary);
+        }
+        .urban-input::placeholder {
+            color: #666;
+        }
+        .info-card {
+            border: 3px solid var(--urban-concrete);
+            transition: all 0.2s ease;
+        }
+        .urban-theme .info-card:hover {
+            border-color: var(--urban-primary);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="urban-theme">
+    <div class="grit-overlay"></div>
+    <div class="urban-menu-backdrop" id="urbanMenuBackdrop"></div>
+    <button class="urban-mobile-toggle" id="urbanMobileToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="urbanMobileMenu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <div class="urban-mobile-menu fixed right-4 top-20 z-[9999] w-[calc(100%-2rem)] max-w-sm rounded-none border-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)] p-6 shadow-2xl" id="urbanMobileMenu">
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <p class="urban-stencil text-2xl" style="color: var(--urban-primary);">URBAN_STREET</p>
+                <p class="font-mono text-[10px] uppercase tracking-[0.24em]" style="color: #888;">CONTACT</p>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a href="index.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: DROPS</a>
+            <a href="about.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: MANIFESTO</a>
+            <a href="service.html" class="urban-nav-link rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: #aaa;">:: LOOKBOOK</a>
+            <a href="contact.html" class="urban-nav-link active rounded-none px-4 py-3 text-sm font-black uppercase tracking-widest" style="color: var(--urban-primary);">:: CONTACT</a>
+        </nav>
+    </div>
+    <header class="sticky top-0 z-50 border-b-4 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)]/95 px-6 py-4 backdrop-blur">
+        <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="bg-[var(--urban-primary)] p-1">
+                    <span class="material-symbols-outlined text-3xl" style="color: var(--urban-bg-dark);">bolt</span>
+                </div>
+                <div>
+                    <p class="urban-stencil text-2xl tracking-tighter">URBAN_STREET</p>
+                    <p class="font-mono text-[9px] uppercase tracking-[0.26em]" style="color: #888;">RAW ENERGY / NO RULES</p>
+                </div>
+            </a>
+            <nav class="hidden items-center gap-8 lg:flex">
+                <a href="index.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">DROPS</a>
+                <a href="about.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">MANIFESTO</a>
+                <a href="service.html" class="urban-nav-link text-sm font-bold tracking-widest pb-1">LOOKBOOK</a>
+                <a href="contact.html" class="urban-nav-link active text-sm font-bold tracking-widest pb-1">CONTACT</a>
+            </nav>
+            <div class="hidden items-center gap-4 lg:flex">
+                <a href="contact.html" class="urban-btn text-sm tracking-[0.14em]">[ CONNECT ]</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="px-6 py-20 lg:px-12 lg:py-28">
+            <div class="mx-auto max-w-[1440px]">
+                <div class="tape-effect-double">
+                    <div class="brutalist-box bg-[var(--urban-primary)] p-8 md:p-12">
+                        <p class="font-mono text-xs font-black uppercase tracking-[0.3em]">// CONNECT</p>
+                        <h1 class="mt-5 urban-stencil text-4xl font-black leading-[0.9] md:text-6xl">
+                            LINK_<span class="urban-italic" style="color: var(--urban-bg-dark);">UP</span>
+                        </h1>
+                        <p class="mt-8 max-w-3xl text-lg font-medium leading-relaxed">
+                            Collabs, shoots, events, drop alerts. Your direct line to the next street movement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="px-6 py-20 lg:px-12 lg:py-28">
+            <div class="mx-auto grid max-w-[1440px] gap-12 xl:grid-cols-[1fr_1.1fr]">
+                <!-- Info Cards -->
+                <div class="space-y-6">
+                    <p class="font-mono text-xs font-black uppercase tracking-[0.3em]" style="color: var(--urban-primary);">// CHANNELS</p>
+
+                    <article class="info-card brutalist-box bg-[var(--urban-bg-dark)] p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-[var(--urban-primary)] p-3">
+                                <span class="material-symbols-outlined text-2xl" style="color: var(--urban-bg-dark);">handshake</span>
+                            </div>
+                            <div>
+                                <p class="font-mono text-xs font-black uppercase tracking-[0.24em]" style="color: var(--urban-neon);">COLLAB</p>
+                                <h3 class="mt-2 urban-stencil text-xl font-black">Partnership Projects</h3>
+                                <p class="mt-2 text-sm leading-relaxed" style="color: #aaa;">
+                                    Joint projects with artists, brands, and local crews.
+                                    Let's create something that moves the streets.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="info-card brutalist-box bg-[var(--urban-bg-dark)] p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-[var(--urban-primary)] p-3">
+                                <span class="material-symbols-outlined text-2xl" style="color: var(--urban-bg-dark);">notifications_active</span>
+                            </div>
+                            <div>
+                                <p class="font-mono text-xs font-black uppercase tracking-[0.24em]" style="color: var(--urban-neon);">DROP NOTICE</p>
+                                <h3 class="mt-2 urban-stencil text-xl font-black">Limited Drop Alerts</h3>
+                                <p class="mt-2 text-sm leading-relaxed" style="color: #aaa;">
+                                    Limited drops and early access alerts.
+                                    First to know, first to cop.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="info-card brutalist-box bg-[var(--urban-bg-dark)] p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-[var(--urban-primary)] p-3">
+                                <span class="material-symbols-outlined text-2xl" style="color: var(--urban-bg-dark);">camera</span>
+                            </div>
+                            <div>
+                                <p class="font-mono text-xs font-black uppercase tracking-[0.24em]" style="color: var(--urban-neon);">SHOOT</p>
+                                <h3 class="mt-2 urban-stencil text-xl font-black">Visual Production</h3>
+                                <p class="mt-2 text-sm leading-relaxed" style="color: #aaa;">
+                                    Street documentation, lookbook shoots,
+                                    and visual content creation.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="tape-effect">
+                    <form data-demo-form="true" onsubmit="event.preventDefault();" method="post" action="#" class="brutalist-box bg-[var(--urban-bg-dark)] p-8">
+                        <p class="font-mono text-xs font-black uppercase tracking-[0.3em]" style="color: var(--urban-primary);">// TRANSMISSION</p>
+
+                        <div class="mt-8 space-y-5">
+                            <div>
+                                <label class="mb-2 block text-xs font-black uppercase tracking-[0.22em]" style="color: var(--urban-primary);" for="alias">Street Alias</label>
+                                <input id="alias" class="urban-input" type="text" placeholder="GHOST_PANC">
+                            </div>
+
+                            <div>
+                                <label class="mb-2 block text-xs font-black uppercase tracking-[0.22em]" style="color: var(--urban-primary);" for="type">Connection Type</label>
+                                <select id="type" class="urban-input">
+                                    <option value="">Select frequency</option>
+                                    <option value="collab">Collaboration Request</option>
+                                    <option value="drop">Drop Notification Signup</option>
+                                    <option value="shoot">Visual Production</option>
+                                    <option value="event">Event Booking</option>
+                                    <option value="other">Other Frequency</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="mb-2 block text-xs font-black uppercase tracking-[0.22em]" style="color: var(--urban-primary);" for="social">Social Handle</label>
+                                <input id="social" class="urban-input" type="text" placeholder="@urban_core">
+                            </div>
+
+                            <div>
+                                <label class="mb-2 block text-xs font-black uppercase tracking-[0.22em]" style="color: var(--urban-primary);" for="email">Email Node</label>
+                                <input id="email" class="urban-input" type="email" placeholder="alias@street.com">
+                            </div>
+
+                            <div>
+                                <label class="mb-2 block text-xs font-black uppercase tracking-[0.22em]" style="color: var(--urban-primary);" for="message">Graffiti (Message)</label>
+                                <textarea id="message" class="urban-input min-h-32 resize-y" placeholder="LEAVE YOUR MARK..."></textarea>
+                            </div>
+
+                            <button class="urban-btn w-full" type="submit">[ TRANSMIT ]</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Response Info -->
+        <section class="border-t-4 border-[var(--urban-concrete)] bg-[var(--urban-asphalt)] px-6 py-16 lg:px-12 lg:py-20">
+            <div class="mx-auto max-w-[1440px] text-center">
+                <p class="font-mono text-xs font-black uppercase tracking-[0.3em]" style="color: var(--urban-primary);">// RESPONSE TIME</p>
+                <h2 class="mt-5 urban-stencil text-3xl font-black md:text-5xl">
+                    WE_<span class="urban-italic" style="color: var(--urban-primary);">MOVE_FAST</span>
+                </h2>
+                <p class="mt-6 max-w-2xl text-base leading-relaxed" style="color: #ccc;">
+                    Street opportunities don't wait. We respond within 48 hours to all serious inquiries.
+                    If the energy matches, we'll link up and make it happen.
+                </p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined" style="color: var(--urban-neon);">schedule</span>
+                        <span class="font-mono text-sm" style="color: #aaa;">48h Response</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined" style="color: var(--urban-neon);">verified</span>
+                        <span class="font-mono text-sm" style="color: #aaa;">Street Verified</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t-8 border-[var(--urban-concrete)] bg-[var(--urban-bg-dark)] px-6 pb-10 pt-16 lg:px-12">
+        <div class="mx-auto max-w-[1440px]">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <h2 class="urban-stencil text-4xl italic">URBAN_STREET</h2>
+                    <p class="mt-6 max-w-xs font-medium text-slate-500">
+                        Defying the standard since 2024. Designed in the underground, built for the surface.
+                    </p>
+                    <div class="mt-8 flex gap-4">
+                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
+                            <span class="material-symbols-outlined">public</span>
+                        </a>
+                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
+                            <span class="material-symbols-outlined">alternate_email</span>
+                        </a>
+                        <a href="#" class="flex h-12 w-12 items-center justify-center border-2 border-[var(--urban-concrete)] transition-colors hover:border-[var(--urban-primary)] hover:text-[var(--urban-primary)]">
+                            <span class="material-symbols-outlined">share</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="mb-6 font-black tracking-widest uppercase" style="color: var(--urban-primary);">Navigation</h4>
+                    <ul class="space-y-3 font-bold">
+                        <li><a href="index.html" class="hover:text-[var(--urban-primary)]">ALL_PRODUCTS</a></li>
+                        <li><a href="about.html" class="hover:text-[var(--urban-primary)]">NEW_ARRIVALS</a></li>
+                        <li><a href="service.html" class="hover:text-[var(--urban-primary)]">COLLABORATIONS</a></li>
+                        <li><a href="contact.html" class="hover:text-[var(--urban-primary)]">SUSTAINABILITY</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-6 font-black tracking-widest uppercase" style="color: var(--urban-primary);">Support</h4>
+                    <ul class="space-y-3 font-bold">
+                        <li><a href="#" class="hover:text-[var(--urban-primary)]">SHIPPING_INFO</a></li>
+                        <li><a href="#" class="hover:text-[var(--urban-primary)]">RETURNS_POLICY</a></li>
+                        <li><a href="#" class="hover:text-[var(--urban-primary)]">SIZE_GUIDE</a></li>
+                        <li><a href="contact.html" class="hover:text-[var(--urban-primary)]">CONTACT_US</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-[var(--urban-concrete)]/30 font-mono text-xs opacity-50">
+                <p>© 2024 URBAN_STREET_CULTURE. ALL RIGHTS RESERVED.</p>
+                <div class="mt-4 flex gap-8 md:mt-0">
+                    <a href="#" class="hover:text-[var(--urban-primary)]">PRIVACY_POLICY</a>
+                    <a href="#" class="hover:text-[var(--urban-primary)]">TERMS_OF_SERVICE</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('urbanMobileToggle');
+            const menu = document.getElementById('urbanMobileMenu');
+            const backdrop = document.getElementById('urbanMenuBackdrop');
+            if (!toggle || !menu || !backdrop) return;
+            function closeMenu() {
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = menu.classList.contains('active');
+                if (isOpen) { closeMenu(); } else {
+                    menu.classList.add('active');
+                    backdrop.classList.add('active');
+                    toggle.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+            backdrop.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.urban-nav-link').forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                    link.style.color = 'var(--urban-primary)';
+                }
+            });
+        })();
+    </script>
+    <script src="../../../assets/js/template-common.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

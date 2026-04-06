@@ -1,259 +1,36 @@
-/**
- * Business Template I: Intelligent
- * Integration with Premium Effects
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // 0. Mobile Side Menu Toggle (Moved to top for priority)
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
+    const body = document.body;
+    const menuToggle = document.querySelector('.ai-mobile-toggle');
+    const menuPanel = document.querySelector('.ai-mobile-menu');
+    const backdrop = document.querySelector('.ai-menu-backdrop');
+    const menuLinks = document.querySelectorAll('.ai-mobile-menu a[href]');
 
-    if (mobileToggle && sidebar) {
-        mobileToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isOpen = document.body.classList.toggle('mobile-open');
-            mobileToggle.classList.toggle('active');
-            mobileToggle.setAttribute('aria-expanded', isOpen);
-        });
-
-        // Use Event Delegation for robustness
-        sidebar.addEventListener('click', (e) => {
-            // Find the closest anchor tag
-            const link = e.target.closest('a');
-
-            // If a link was clicked
-            if (link) {
-                // Close the menu
-                document.body.classList.remove('mobile-open');
-                mobileToggle.classList.remove('active');
-                mobileToggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = ''; // Ensure scroll is restored
-            }
-        });
-
-        // Close on outside click is handled below...
-
-        // Close on outside click (optional but good for UX)
-        document.addEventListener('click', (e) => {
-            if (document.body.classList.contains('mobile-open') &&
-                !sidebar.contains(e.target) &&
-                !mobileToggle.contains(e.target)) {
-                document.body.classList.remove('mobile-open');
-                mobileToggle.classList.remove('active');
-                mobileToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-
-    // 1. Initialize Blur Text Animation for Header
-    if (window.PremiumEffects && window.PremiumEffects.BlurText) {
-        window.PremiumEffects.BlurText('.blur-text', {
-            delay: 40,
-            duration: 1200
-        });
-    }
-
-    // 2. Custom CountUp with Comma Formatting
-    initCountUp();
-
-    // 3. Initialize Tilt Effect for Cards
-    if (window.PremiumEffects && window.PremiumEffects.Tilt) {
-        window.PremiumEffects.Tilt('.tilt-card', {
-            max: 12,
-            perspective: 800,
-            scale: 1.02
-        });
-    }
-
-    // 4. Initialize Aurora Background (Subtle)
-    if (window.PremiumEffects && window.PremiumEffects.Aurora) {
-        const bgContainer = document.querySelector('.bg-ambient');
-        if (bgContainer) {
-            window.PremiumEffects.Aurora('.bg-ambient', {
-                colors: ['#4B0082', '#00f2ff', '#7000ff'],
-                bg: 'transparent'
-            });
-        }
-    }
-
-    // 5. Initialize Globe for Network Page
-    if (window.PremiumEffects && window.PremiumEffects.Globe) {
-        const globeContainer = document.querySelector('#globe-container');
-        if (globeContainer) {
-            window.PremiumEffects.Globe('#globe-container', {
-                color: '#00f2ff',
-                size: 400
-            });
-        }
-    }
-
-    // 6. Animate Charts on Load
-    animateCharts();
-
-    // 7. Tab Switching for Analysis Charts
-    initChartTabs();
-});
-
-/**
- * Custom CountUp that properly handles commas
- */
-function initCountUp() {
-    const elements = document.querySelectorAll('.count-up');
-    const duration = 2000;
-
-    const formatNumber = (num, hasComma, suffix) => {
-        let str = hasComma ? num.toLocaleString('en-US') : num.toString();
-        return str + suffix;
+    const closeMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        menuToggle.classList.remove('active');
+        menuPanel.classList.remove('active');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'メニューを開く');
+        body.style.overflow = '';
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const originalText = el.dataset.originalValue || el.innerText;
-                el.dataset.originalValue = originalText;
+    const toggleMenu = () => {
+        if (!menuToggle || !menuPanel || !backdrop) return;
+        const isOpen = menuToggle.classList.toggle('active');
+        menuPanel.classList.toggle('active', isOpen);
+        backdrop.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+        body.style.overflow = isOpen ? 'hidden' : '';
+    };
 
-                // Extract number and suffix
-                const numMatch = originalText.match(/^([\d,]+\.?\d*)/);
-                if (!numMatch) return;
+    menuToggle?.addEventListener('click', toggleMenu);
+    backdrop?.addEventListener('click', closeMenu);
+    menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
 
-                const numStr = numMatch[1].replace(/,/g, '');
-                const target = parseFloat(numStr);
-                const suffix = originalText.replace(numMatch[1], '');
-                const hasComma = originalText.includes(',');
-                const hasDecimal = numStr.includes('.');
-
-                let start = 0;
-                const startTime = performance.now();
-
-                const animate = (currentTime) => {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-
-                    // Easing function (easeOutQuart)
-                    const eased = 1 - Math.pow(1 - progress, 4);
-                    const current = start + (target - start) * eased;
-
-                    const displayNum = hasDecimal ? current.toFixed(1) : Math.floor(current);
-                    el.innerText = formatNumber(parseFloat(displayNum), hasComma, suffix);
-
-                    if (progress < 1) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        // Animation Complete: Check thresholds for color
-                        updateStatColor(el, target);
-                    }
-                };
-
-                requestAnimationFrame(animate);
-                observer.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    elements.forEach(el => observer.observe(el));
-}
-
-/**
- * Intelligent Color Coding based on values
- */
-function updateStatColor(element, value) {
-    const card = element.closest('.stat-card');
-    if (!card) return;
-
-    // Logic based on label
-    const label = card.querySelector('.stat-label')?.innerText;
-
-    if (label === 'Efficiency') {
-        if (value >= 98) card.style.borderColor = '#00f2ff'; // Cyan (High)
-        else if (value >= 90) card.style.borderColor = '#ffa500'; // Orange (Warn)
-        else card.style.borderColor = '#ff0055'; // Red (Alert)
-    }
-
-    if (label === 'Response Time') {
-        // Lower is better
-        if (value <= 150) card.style.borderColor = '#00f2ff';
-        else if (value <= 300) card.style.borderColor = '#ffa500';
-        else card.style.borderColor = '#ff0055';
-    }
-
-    if (label === 'Security Score') {
-        if (value >= 98) card.style.borderColor = '#00f2ff';
-        else if (value >= 90) card.style.borderColor = '#ffa500';
-        else card.style.borderColor = '#ff0055';
-    }
-
-    if (label === 'Active Users') {
-        // More is better
-        if (value >= 10000) card.style.borderColor = '#00f2ff';
-        else if (value >= 5000) card.style.borderColor = '#ffa500';
-        else card.style.borderColor = '#ff0055';
-    }
-}
-
-/**
- * Animate SVG chart lines on page load
- */
-function animateCharts() {
-    // Target both path and polyline elements
-    const charts = document.querySelectorAll('.fake-chart path:first-of-type, .fake-chart polyline');
-
-    charts.forEach(el => {
-        const length = el.getTotalLength ? el.getTotalLength() : 1000;
-
-        // Set up dash array
-        el.style.strokeDasharray = length;
-        el.style.strokeDashoffset = length;
-        el.style.transition = 'none';
-
-        // Force reflow
-        el.getBoundingClientRect();
-
-        // Animate with slight delay for dramatic effect
-        setTimeout(() => {
-            el.style.transition = 'stroke-dashoffset 2s ease-out';
-            el.style.strokeDashoffset = '0';
-        }, 300);
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
     });
-}
+});
 
-/**
- * Initialize Chart Tab Switching (Daily/Weekly/Monthly)
- */
-function initChartTabs() {
-    const tabControls = document.querySelector('.tab-controls');
-    if (!tabControls) return;
-
-    const buttons = tabControls.querySelectorAll('button[data-tab]');
-    const chartLines = document.querySelectorAll('.chart-line[data-chart]');
-
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.dataset.tab;
-
-            // Update active button
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Switch chart visibility with animation
-            chartLines.forEach(line => {
-                if (line.dataset.chart === targetTab) {
-                    // Show this line with animation
-                    line.style.opacity = '1';
-                    const length = line.getTotalLength ? line.getTotalLength() : 1000;
-                    line.style.strokeDasharray = length;
-                    line.style.strokeDashoffset = length;
-                    line.style.transition = 'none';
-                    line.getBoundingClientRect();
-                    setTimeout(() => {
-                        line.style.transition = 'stroke-dashoffset 1.5s ease-out, opacity 0.3s';
-                        line.style.strokeDashoffset = '0';
-                    }, 50);
-                } else {
-                    // Hide other lines
-                    line.style.opacity = '0';
-                }
-            });
-        });
-    });
-}

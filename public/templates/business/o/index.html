@@ -1,150 +1,474 @@
 <!DOCTYPE html>
-<html lang="ja">
-
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Organic Flow - 自然の呼吸、境界のない癒やし。心と体が調和する流体デザイン。">
-    <title>ORGANIC_FLOW // BREATHE</title>
+    <title>Breathe | Organic Wellness Studio</title>
 
-    <!-- Fonts: Quicksand, Montserrat, Noto Sans JP -->
+    <link rel="canonical" href="https://breathe-wellness.jp/templates/business/o/index.html">
+    <meta name="description" content="Breathe は呼吸と自然のリズムをつなぐウェルネスブランド。ヨガ、瞑想、スパで都市生活に調和を。">
+    <meta property="og:title" content="Breathe | Organic Wellness Studio">
+    <meta property="og:description" content="Breathe は呼吸と自然のリズムをつなぐウェルネスブランド。都市で続けやすいヨガ、瞑想、スパ、リトリートを提案します。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://breathe-wellness.jp/templates/business/o/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#36e28c">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Breathe",
+        "description": "呼吸と自然のリズムをつなぐウェルネスブランド",
+        "url": "https://breathe-wellness.jp/templates/business/o/index.html",
+        "logo": "assets/generated/external-image-01.svg"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&family=Montserrat:wght@100;300&family=Noto+Sans+JP:wght@100;300&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
     <link rel="stylesheet" href="../../../assets/css/business-base.css">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        html { scroll-behavior: smooth; overflow-x: clip; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; overflow-x: clip; }
+        .organic-blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transition: all 0.5s ease; }
+        .organic-panel { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(54, 226, 140, 0.1); }
+        .dark .organic-panel { background: rgba(17, 33, 25, 0.6); border: 1px solid rgba(54, 226, 140, 0.15); }
+        .o-menu-backdrop.active { opacity: 1; visibility: visible; }
+        .o-mobile-menu { transform: translateY(-1rem) scale(0.98); pointer-events: none; }
+        .o-mobile-menu.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); pointer-events: auto; }
+        .o-mobile-toggle {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(54, 226, 140, 0.18);
+            box-shadow: 0 18px 36px rgba(17, 33, 25, 0.12);
+        }
+        .o-mobile-toggle .bar { transform-origin: center; }
+        .o-mobile-toggle.active { background: rgba(54, 226, 140, 0.18); }
+        .o-mobile-toggle.active .bar { background: #112119; }
+        .o-hero-card { min-height: 0; }
+        .o-hero-overlap { margin-top: 1rem; }
+        .o-feature-card { position: relative; }
+        .o-feature-cta {
+            transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+        }
+        @media (min-width: 1024px) {
+            .o-feature-cta {
+                opacity: 0 !important;
+                transform: translateY(0.75rem) !important;
+                pointer-events: none !important;
+            }
+            .o-feature-card:hover .o-feature-cta,
+            .o-feature-card:focus-within .o-feature-cta {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                pointer-events: auto !important;
+            }
+        }
+        @media (max-width: 767px) {
+            header { padding-inline: 1rem; }
+            .o-mobile-toggle { width: 3rem; height: 3rem; }
+            .o-mobile-menu { top: 6.35rem; inset-inline: 1rem; }
+            .o-hero-section { padding-inline: 1rem; overflow-x: clip; }
+            .o-hero-card { min-height: 32rem; aspect-ratio: auto; }
+            .o-hero-copy { max-width: none; }
+            .o-hero-title { max-width: none; font-size: 2.55rem; line-height: 0.94; }
+            .o-hero-title .o-hero-line { display: block; white-space: nowrap; }
+            .o-hero-body { margin-top: 1rem; max-width: 15.5rem; font-size: 1rem; line-height: 1.75; }
+            .o-hero-actions { margin-top: 1.5rem; max-width: 16rem; flex-direction: column; align-items: stretch; }
+            .o-hero-actions a { width: 100%; justify-content: center; }
+            .o-hero-overlap { margin-top: 1.5rem; padding-inline: 0; }
+            .o-floating-badge { right: 0; bottom: -1.5rem; width: 7.5rem; height: 7.5rem; padding: 1rem; }
+            .o-feature-heading { margin-bottom: 3.25rem; }
+            .o-feature-grid {
+                display: flex;
+                gap: 1.25rem;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                scroll-snap-type: x mandatory;
+                scroll-padding-inline: 0;
+                padding-bottom: 0.85rem;
+                -webkit-overflow-scrolling: touch;
+            }
+            .o-feature-grid::-webkit-scrollbar { height: 0.35rem; }
+            .o-feature-grid::-webkit-scrollbar-thumb { background: rgba(54, 226, 140, 0.35); border-radius: 999px; }
+            .o-feature-card {
+                flex: 0 0 82vw;
+                min-width: 82vw;
+                aspect-ratio: 4 / 5.95;
+                scroll-snap-align: start;
+            }
+            .o-feature-content {
+                inset: 0;
+                padding: 2rem 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+            .o-feature-content h3 { font-size: 2.25rem; margin-bottom: 0; }
+            .o-feature-content p { display: none; }
+            .o-feature-cta { margin-top: 0.35rem; opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+            .o-footer-tagline { max-width: 16rem; margin-inline: auto; }
+            .o-footer-tagline .o-break-line { display: block; white-space: nowrap; }
+            .o-footer-meta { text-align: center; }
+            .o-footer-legal { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
+<body class="custom-menu-only bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
 
-<body class="theme-business theme-organic custom-menu-only">
-
-    <!-- Background Blobs -->
-    <div class="blob-bg">
-        <div class="blob b1"></div>
-        <div class="blob b2"></div>
-        <div class="blob b3"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="organic-blob absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px]"></div>
+        <div class="organic-blob absolute bottom-[5%] right-[-5%] w-[50vw] h-[50vw] bg-primary/5 blur-[120px]"></div>
     </div>
 
-    <!-- Floating Top Nav -->
-    <header class="organic-header">
-        <div class="header-inner">
-            <div class="logo">
-                <span class="material-icons">spa</span>
-                <span>FLOW</span>
+    <div class="o-menu-backdrop fixed inset-0 z-[9998] bg-black/35 backdrop-blur-sm opacity-0 invisible transition-all duration-500"></div>
+
+    <div id="o-mobile-menu" class="o-mobile-menu fixed inset-x-4 top-20 z-[9999] rounded-[2rem] organic-panel shadow-2xl opacity-0 invisible transition-all duration-500 md:hidden">
+        <ul class="list-none text-center p-6 m-0 space-y-2">
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="index.html" class="block py-3 px-4 rounded-2xl text-sm font-bold hover:bg-primary/10 transition-all">Home</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="service.html" class="block py-3 px-4 rounded-2xl text-sm font-bold hover:bg-primary/10 transition-all">Programs</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="about.html" class="block py-3 px-4 rounded-2xl text-sm font-bold hover:bg-primary/10 transition-all">Philosophy</a></li>
+            <li class="opacity-0 transform translate-y-5 transition-all duration-400"><a href="contact.html" class="block py-3 px-4 rounded-2xl text-sm font-bold hover:bg-primary/10 transition-all">Contact</a></li>
+        </ul>
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-[10001] px-6 py-4 lg:px-20">
+        <nav class="organic-panel relative mx-auto flex max-w-7xl items-center justify-between rounded-full px-6 py-3 pr-18 md:pr-6">
+            <a href="index.html" class="flex items-center gap-3">
+                <span class="organic-blob flex h-10 w-10 items-center justify-center bg-primary text-background-dark">
+                    <span class="material-symbols-outlined">spa</span>
+                </span>
+                <span class="text-xl font-black tracking-tight">BREATHE</span>
+            </a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="service.html">Programs</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="about.html">Philosophy</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="contact.html">Contact</a>
             </div>
-            <div class="nav main-nav">
-                <ul>
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#about">ESSENCE</a></li>
-                    <li><a href="#sessions">SESSIONS</a></li>
-                    <li><a href="#contact" class="btn-flow">CONNECT</a></li>
-                </ul>
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="bg-primary text-background-dark text-sm font-bold px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-primary/20 transition-all hidden sm:block">Reserve Session</a>
+                <button class="hidden p-2 text-slate-900 dark:text-slate-100" onclick="toggleOMenu()">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
-        </div>
+            <button aria-controls="o-mobile-menu" class="o-mobile-toggle absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 flex-col items-center justify-center gap-0.5 rounded-full md:hidden" onclick="toggleOMenu()" aria-label="メニューを開く" aria-expanded="false" type="button">
+                <span class="bar block h-0.5 w-5 bg-primary transition-all duration-400"></span>
+                <span class="bar block h-0.5 w-5 bg-primary transition-all duration-400"></span>
+                <span class="bar block h-0.5 w-5 bg-primary transition-all duration-400"></span>
+            </button>
+        </nav>
     </header>
 
-    <div class="organic-mobile-menu">
-        <a href="#home">HOME</a>
-        <a href="#about">ESSENCE</a>
-        <a href="#sessions">SESSIONS</a>
-        <a href="#contact">CONNECT</a>
-    </div>
-
-    <main class="organic-content">
-        <!-- Hero: Depth & Float -->
-        <section id="home" class="organic-hero">
-            <div class="hero-text">
-                <h1 class="blur-text"><span class="text-group">Live in the</span> <span
-                        class="text-group"><i>Flow</i>.</span></h1>
-                <p><span class="text-group">あわただしい</span><span class="text-group">日常から離れ、</span><br
-                        class="mobile-break"><span class="text-group">内なる静寂に</span><span
-                        class="text-group">耳を傾けるひととき。</span>
-                </p>
-            </div>
-            <div class="hero-float-images">
-                <div class="floating-img f1"><img
-                        src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600"
-                        alt="Yoga"></div>
-                <div class="floating-img f2"><img
-                        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600"
-                        alt="Meditation"></div>
-            </div>
-        </section>
-
-        <!-- Essence: Boundary-less Text -->
-        <section id="about" class="organic-essence">
-            <div class="essence-wrap">
-                <div class="essence-content">
-                    <span class="label">PHILOSOPHY</span>
-                    <h2>UNGROUNDED<br>BALANCE.</h2>
-                    <p><span class="text-group">重力からも、</span><span class="text-group">固定観念からも</span><span
-                            class="text-group">自由になる。</span><br class="mobile-break"><span class="text-group">Organic
-                            Flowは、</span><span class="text-group">素材が持つ</span><span
-                            class="text-group">本来の質感を</span><span class="text-group">大切にし、</span><span
-                            class="text-group">心と体の境界が</span><span class="text-group">溶け合うような</span><span
-                            class="text-group">体験をデザインします。</span></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sessions: Floating Cards -->
-        <section id="sessions" class="organic-sessions">
-            <div class="session-label">RITUALS</div>
-            <div class="floating-sessions">
-                <div class="session-item s1">
-                    <div class="session-shape"></div>
-                    <div class="session-info">
-                        <h3>MIST_BREATH</h3>
-                        <p>朝の空気を取り込み、一日の始まりを清める。</p>
+    <main class="relative z-10 pt-24">
+        <!-- 数値は編集してください: 利用者数・満足度・年次表記などの値は公開前に実データへ差し替えてください。 -->
+        <section class="o-hero-section relative px-6 pb-18 pt-12 md:pt-18 lg:px-20">
+            <div class="relative z-10 w-full max-w-6xl mx-auto">
+                <div class="o-hero-card rounded-[2rem] overflow-hidden aspect-[16/10] lg:aspect-[21/9] relative group shadow-[0_30px_80px_rgba(17,33,25,0.22)]">
+                    <div class="absolute inset-0 bg-gradient-to-r from-background-dark/62 via-background-dark/28 to-background-dark/30 z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background-dark/40 z-10"></div>
+                    <img class="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[3s]" src="assets/images/hero-breathing-forest.png" alt="Natural forest landscape"/>
+                    <div class="absolute inset-0 z-20 flex flex-col justify-center p-6 sm:p-8 lg:p-14">
+                        <div class="o-hero-copy max-w-3xl">
+                            <div class="inline-flex items-center gap-3 rounded-full bg-white/12 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-white/90 backdrop-blur-md">
+                                <span class="h-2.5 w-2.5 rounded-full bg-primary"></span>
+                                Organic & Fluid Wellness
+                            </div>
+                            <h1 class="o-hero-title mt-6 text-white text-4xl md:text-6xl lg:text-7xl font-light italic leading-tight tracking-tight drop-shadow-sm">
+                                <span class="o-hero-line block">息を吐いて、</span>
+                                <span class="o-hero-line block whitespace-nowrap font-black not-italic text-primary">自然のリズムに<span class="hidden md:inline">整える。</span></span>
+                                <span class="o-hero-line block md:hidden font-black not-italic text-primary">整える。</span>
+                            </h1>
+                            <p class="o-hero-body wrap-pretty word-phrase mt-6 max-w-2xl text-white/88 text-base md:text-xl font-normal leading-8">
+                                朝のヨガから週末のリトリートまで、都市で続けやすいウェルネス導線をひとつの流れとして整えます。
+                            </p>
+                            <div class="o-hero-actions mt-8 flex flex-wrap gap-4">
+                                <a href="service.html" class="bg-primary text-background-dark px-8 py-4 rounded-full font-bold text-base md:text-lg hover:scale-105 transition-transform">
+                                    View Programs
+                                </a>
+                                <a href="contact.html" class="bg-white/12 backdrop-blur-md text-white border border-white/25 px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-white/20 transition-colors">
+                                    Reserve Session
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="session-item s2">
-                    <div class="session-shape"></div>
-                    <div class="session-info">
-                        <h3>EARTH_TOUCH</h3>
-                        <p>大地のエネルギーと共鳴し、根源的な力を取り戻す。</p>
+
+                <div class="o-hero-overlap relative z-30 px-2 sm:px-6">
+                    <div class="grid gap-4 md:grid-cols-3">
+                        <article class="organic-panel rounded-[1.75rem] p-5 shadow-xl">
+                            <p class="text-[11px] font-black uppercase tracking-[0.28em] text-primary">Morning Flow</p>
+                            <h2 class="mt-3 text-xl font-black">呼吸から始める 45 分</h2>
+                            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">ヨガ、呼吸法、短いクールダウンをまとめた、平日にも続けやすい導入セッション。</p>
+                        </article>
+                        <article class="organic-panel rounded-[1.75rem] p-5 shadow-xl">
+                            <p class="text-[11px] font-black uppercase tracking-[0.28em] text-primary">Weekend Retreat</p>
+                            <h2 class="mt-3 text-xl font-black">週末を整える 1 泊 2 日</h2>
+                            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">食事・瞑想・スパをまとめて体験できる、少人数のリトリートプログラム。</p>
+                        </article>
+                        <article class="organic-panel rounded-[1.75rem] p-5 shadow-xl">
+                            <p class="text-[11px] font-black uppercase tracking-[0.28em] text-primary">Quick Reserve</p>
+                            <h2 class="mt-3 text-xl font-black">予約導線を先に見る</h2>
+                            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">初回体験、リトリート相談、スパ予約を最初の画面から選べる導線に整理しています。</p>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact: Deep Softness -->
-        <section id="contact" class="organic-contact">
-            <div class="contact-card">
-                <h2>ROOTING</h2>
-                <p>静かな変容へ、最初の一歩。</p>
-                <form class="organic-form">
-                    <input type="text" placeholder="Preferred Name" required>
-                    <select class="organic-select" required>
-                        <option value="" disabled selected>Vibe Frequency</option>
-                        <option value="low">Gentle (Low)</option>
-                        <option value="mid">Balanced (Mid)</option>
-                        <option value="high">Energized (High)</option>
-                    </select>
-                    <input type="email" placeholder="Email Path" required>
-                    <textarea placeholder="Essence of message..." required></textarea>
-                    <button type="submit">BREATHE WITH US</button>
-                </form>
+        <section class="pt-20 pb-32 px-6 lg:px-20 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                    <div class="rounded-[2rem] overflow-hidden rotate-2 hover:rotate-0 transition-transform duration-700 aspect-[4/5] relative z-10">
+                        <img class="w-full h-full object-cover" src="assets/images/studio-morning-light.png" alt="Morning light through leaves"/>
+                    </div>
+                    <div class="o-floating-badge absolute -bottom-12 -right-12 w-48 h-48 bg-primary/20 rounded-full flex items-center justify-center p-8 backdrop-blur-sm border border-primary/20 z-20">
+                        <p class="text-center text-xs font-bold uppercase tracking-widest text-slate-800 dark:text-slate-100">100% Organic</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-10">
+                    <div class="space-y-4">
+                        <span class="text-primary font-bold tracking-[0.2em] uppercase text-sm">Our Essence</span>
+                        <h2 class="text-4xl md:text-6xl font-black leading-tight">
+                            自然のリズムに、<br/><span class="text-primary/60">rooted in nature.</span>
+                        </h2>
+                        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg">
+                            オーガニックな動きと fluid living のパワーを信じています。<br/>野生に見られる優しい移り変わりにインスパイアされたアプローチ。
+                        </p>
+                    </div>
+                    <div class="grid gap-6">
+                        <div class="flex gap-6 p-8 rounded-[1.5rem] bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors group">
+                            <div class="size-14 bg-primary rounded-full flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-background-dark">eco</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Organic Elements</h3>
+                                <p class="text-slate-600 dark:text-slate-400">マインドフルネスのための純粋な素材のみを厳選。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 p-8 rounded-[1.5rem] bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-primary/30 transition-colors group">
+                            <div class="size-14 bg-slate-200 dark:bg-white/10 group-hover:bg-primary rounded-full flex items-center justify-center shrink-0 transition-colors">
+                                <span class="material-symbols-outlined group-hover:text-background-dark">air</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Fluid Movement</h3>
+                                <p class="text-slate-600 dark:text-slate-400">優しい移り変わりで、身体の自然な流れを抱きしめる。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 px-6 bg-slate-100/50 dark:bg-white/5 relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-primary/5 rounded-full blur-[150px]"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="o-feature-heading flex flex-col items-center text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">Programs</h2>
+                    <div class="h-1 w-20 bg-primary rounded-full"></div>
+                </div>
+                <div class="o-feature-grid gap-10 md:grid md:grid-cols-3">
+                    <div class="o-feature-card group relative overflow-hidden rounded-[2rem] aspect-[3/4]">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/program-morning-flow.png" alt="Yoga pose"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+                        <div class="o-feature-content absolute bottom-0 left-0 right-0 p-10 flex flex-col items-center">
+                            <span class="material-symbols-outlined text-primary mb-4 text-4xl">self_improvement</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Morning Flow</h3>
+                            <p class="text-white/70 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">呼吸を整えて、一日の立ち上がりを軽くする 45 分セッション。</p>
+                            <a href="contact.html" class="o-feature-cta mt-6 bg-primary text-background-dark px-6 py-2 rounded-full font-bold text-sm">Reserve</a>
+                        </div>
+                    </div>
+                    <div class="o-feature-card group relative overflow-hidden rounded-[2rem] aspect-[3/4]">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/program-quiet-reset.png" alt="Meditation"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+                        <div class="o-feature-content absolute bottom-0 left-0 right-0 p-10 flex flex-col items-center">
+                            <span class="material-symbols-outlined text-primary mb-4 text-4xl">psychology</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Quiet Reset</h3>
+                            <p class="text-white/70 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">昼のノイズを静め、頭を休めるショートセッション。</p>
+                            <a href="contact.html" class="o-feature-cta mt-6 bg-primary text-background-dark px-6 py-2 rounded-full font-bold text-sm">Join</a>
+                        </div>
+                    </div>
+                    <div class="o-feature-card group relative overflow-hidden rounded-[2rem] aspect-[3/4]">
+                        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/program-botanical-spa.png" alt="Spa treatment"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+                        <div class="o-feature-content absolute bottom-0 left-0 right-0 p-10 flex flex-col items-center">
+                            <span class="material-symbols-outlined text-primary mb-4 text-4xl">water_drop</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Botanical Spa</h3>
+                            <p class="text-white/70 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">植物由来のオイルと圧で、深い休息へ切り替える。</p>
+                            <a href="contact.html" class="o-feature-cta mt-6 bg-primary text-background-dark px-6 py-2 rounded-full font-bold text-sm">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6">
+            <div class="max-w-5xl mx-auto rounded-[2rem] bg-primary flex flex-col items-center text-center p-12 lg:p-24 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,#fff_0%,transparent_70%)]"></div>
+                <div class="relative z-10">
+                    <h2 class="text-background-dark text-4xl md:text-6xl font-black mb-8 leading-tight">
+                        暮らしに、<br/>整う余白を。
+                    </h2>
+                    <p class="text-background-dark/80 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto">
+                        朝の 15 分、週末の 1 泊、法人向けのリカバリーまで。<br class="hidden md:block"/>続けられる整え方を一緒に設計します。
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="contact.html" class="bg-background-dark text-primary px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all">相談する</a>
+                        <a href="about.html" class="bg-transparent text-background-dark border-2 border-background-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-background-dark hover:text-primary transition-all">詳細を見る</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="organic-footer">
-        <p>&copy; 2026 ORGANIC FLOW. STAY SOFT.</p>
+    <footer class="bg-slate-100 dark:bg-background-dark py-20 px-6 lg:px-20 border-t border-primary/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1.2fr_1fr]">
+            <div class="o-footer-meta space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="organic-blob flex h-10 w-10 items-center justify-center bg-primary text-background-dark">
+                        <span class="material-symbols-outlined text-background-dark text-xl">spa</span>
+                    </span>
+                    <h2 class="text-xl font-black tracking-tighter">BREATHE</h2>
+                </div>
+                <p class="o-footer-tagline text-slate-500 dark:text-slate-400">
+                    <span class="o-break-line">都市生活に寄り添う</span>
+                    <span class="o-break-line">ウェルネスを設計する。</span>
+                    <span class="o-break-line">Breathe のプログラムを体験しよう。</span>
+                </p>
+                <div class="flex gap-4">
+                    <a class="size-10 bg-white dark:bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-colors hover:text-background-dark" href="#">
+                        <span class="material-symbols-outlined text-sm">public</span>
+                    </a>
+                    <a class="size-10 bg-white dark:bg-white/5 rounded-full flex items-center justify-center hover:bg-primary transition-colors hover:text-background-dark" href="#">
+                        <span class="material-symbols-outlined text-sm">alternate_email</span>
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="space-y-6">
+                    <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Discover</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="about.html">Philosophy</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Programs</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Contact</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Reserve Session</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Programs</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Morning Flow</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Quiet Reset</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="service.html">Weekend Retreat</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contact.html">Team Recovery</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-bold text-lg uppercase tracking-wider text-primary">Updates</h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">新しいプログラムや季節のリトリート情報を受け取る。</p>
+                <div class="relative">
+                    <input class="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full py-3 px-6 focus:outline-none focus:border-primary transition-colors" placeholder="メールアドレス" type="email"/>
+                    <button class="absolute right-2 top-1.5 size-9 bg-primary text-background-dark rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-sm">send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="o-footer-legal max-w-7xl mx-auto pt-16 mt-16 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
+            <p>© 2026 BREATHE Wellness. All rights reserved.</p>
+            <div class="flex gap-8">
+                <a class="hover:text-primary" href="contact.html">Privacy</a>
+                <a class="hover:text-primary" href="contact.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script>
+        function resetOMenuBars(bars) {
+            bars.forEach((bar) => {
+                bar.style.position = '';
+                bar.style.left = '';
+                bar.style.top = '';
+                bar.style.width = '';
+                bar.style.marginTop = '';
+                bar.style.transform = '';
+                bar.style.opacity = '';
+            });
+        }
+        function setOMenuBarsActive(bars) {
+            bars.forEach((bar) => {
+                bar.style.position = 'absolute';
+                bar.style.left = '50%';
+                bar.style.top = '50%';
+                bar.style.width = '1.15rem';
+                bar.style.marginTop = '0';
+            });
+            bars[0].style.transform = 'translate(-50%, -50%) rotate(45deg)';
+            bars[1].style.transform = 'translate(-50%, -50%) scaleX(0)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+        }
+        function toggleOMenu() {
+            const toggle = document.querySelector('.o-mobile-toggle');
+            const menu = document.querySelector('#o-mobile-menu');
+            const backdrop = document.querySelector('.o-menu-backdrop');
+            const bars = toggle.querySelectorAll('.bar');
+            if (!menu || !backdrop) return;
+            const isOpen = !menu.classList.contains('active');
+            toggle.classList.toggle('active', isOpen);
+            menu.classList.toggle('active', isOpen);
+            backdrop.classList.toggle('active', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            const items = menu.querySelectorAll('li');
+            items.forEach((item, index) => {
+                if (isOpen) { setTimeout(() => { item.classList.remove('opacity-0', 'translate-y-5'); }, index * 50); }
+                else { item.classList.add('opacity-0', 'translate-y-5'); }
+            });
+            if (isOpen) setOMenuBarsActive(bars);
+            else resetOMenuBars(bars);
+        }
+        document.querySelectorAll('#o-mobile-menu a[href]').forEach(link => {
+            link.addEventListener('click', () => {
+                const toggle = document.querySelector('.o-mobile-toggle');
+                const menu = document.querySelector('#o-mobile-menu');
+                const backdrop = document.querySelector('.o-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+                menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+                resetOMenuBars(bars);
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const toggle = document.querySelector('.o-mobile-toggle');
+                const menu = document.querySelector('#o-mobile-menu');
+                const backdrop = document.querySelector('.o-menu-backdrop');
+                const bars = toggle.querySelectorAll('.bar');
+                menu.classList.remove('active'); backdrop.classList.remove('active'); toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+                resetOMenuBars(bars);
+            }
+        });
+        document.querySelector('.o-menu-backdrop')?.addEventListener('click', () => {
+            const menu = document.querySelector('#o-mobile-menu');
+            if (menu?.classList.contains('active')) toggleOMenu();
+        });
+    </script>
     <script src="assets/js/script.js" defer></script>
-
-    <button id="organic-mobile-toggle" class="organic-mobile-toggle" onclick="toggleMenu()">
-        <span class="material-icons">menu_open</span>
-    </button>
 </body>
-
 </html>
+

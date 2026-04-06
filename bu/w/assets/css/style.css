@@ -1,0 +1,661 @@
+:root {
+    --color-bg: #0A0A0A;
+    --color-text: #FFFFFF;
+    --color-accent: #666666;
+    --font-heading: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+body.theme-wide {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: max-content;
+    min-width: 100vw;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body.theme-wide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure HTML allows horizontal overflow but hides scrollbars */
+html {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    html {
+        overflow: auto;
+    }
+
+    body.theme-wide {
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+    }
+}
+
+/* Cinema Bars */
+.cinema-bars .bar-top,
+.cinema-bars .bar-bottom {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--color-bg);
+    z-index: 1000;
+}
+
+.bar-top {
+    top: 0;
+}
+
+.bar-bottom {
+    bottom: 0;
+}
+
+/* Header */
+.wide-header {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1100;
+    transition: top 0.4s, background 0.4s;
+}
+
+.wide-header.is-scrolled {
+    top: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    font-size: 1.2rem;
+}
+
+.wide-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+
+.wide-nav a {
+    text-decoration: none;
+    color: inherit;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+
+.wide-nav a:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+/* Progress */
+.horizontal-progress {
+    position: fixed;
+    bottom: 80px;
+    left: 4rem;
+    width: 200px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1100;
+}
+
+.progress-line {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+    transition: width 0.1s linear;
+}
+
+/* Horizontal Wrapper */
+.wide-wrapper {
+    /* No width constraint to allow horizontal scroll container to expand */
+    height: 100vh;
+    overflow: visible;
+}
+
+.horizontal-scroll-container {
+    display: flex;
+    height: 100vh;
+    width: fit-content;
+}
+
+.wide-section {
+    height: 100vh;
+    flex-shrink: 0;
+    padding: 140px 10vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scene-id {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 2rem;
+    letter-spacing: 0.3em;
+}
+
+/* Section specific */
+.intro {
+    width: 150vw;
+}
+
+.intro-content {
+    width: max-content;
+    /* Fit exactly to text */
+    max-width: 80vw;
+    /* Provide more room */
+    z-index: 200;
+    /* Ensure it's definitively on top of images */
+    margin-right: 5vw;
+    flex-shrink: 0;
+}
+
+.intro-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3.8rem;
+    /* Reduced further to ensure fit */
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    /* Keep on one line as requested */
+    display: block;
+}
+
+.intro-content br {
+    display: none;
+    /* Hide the hard break to allow one-line layout */
+}
+
+.intro-content i {
+    font-weight: 400;
+    color: var(--color-accent);
+}
+
+.panorama-img {
+    flex: 1;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.panorama-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.projects {
+    width: 180vw;
+}
+
+.section-title-wrap {
+    margin-right: 12vw;
+    width: fit-content;
+    min-width: 400px;
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+.section-title-wrap h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.project-items {
+    display: flex;
+    gap: 5vw;
+}
+
+.p-item {
+    width: 40vw;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.p-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s;
+}
+
+.p-item:hover img {
+    transform: scale(1.1);
+}
+
+.p-info {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.process {
+    width: 100vw;
+    justify-content: center;
+}
+
+.process-text {
+    max-width: 1000px;
+    /* Increased for title */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.process-text h2 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    /* Slightly larger for impact */
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    /* Ensure title stays as one balanced block */
+    text-align: center;
+}
+
+.process-text p {
+    line-height: 2;
+    font-weight: 100;
+    opacity: 0.7;
+    max-width: 600px;
+    /* Keep paragraph readable */
+}
+
+.contact {
+    width: 100vw;
+    justify-content: space-between;
+}
+
+.contact-box {
+    max-width: 500px;
+}
+
+.contact-box h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.wide-form {
+    text-align: left;
+    margin-top: 3rem;
+}
+
+.wide-input-group {
+    margin-bottom: 2rem;
+}
+
+.wide-input-group label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.2em;
+}
+
+.wide-form input,
+.wide-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.wide-form textarea {
+    height: 80px;
+    resize: none;
+}
+
+.wide-form button {
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: 0.3s;
+}
+
+.wide-form button:hover {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
+
+.footer-sign {
+    writing-mode: vertical-rl;
+    opacity: 0.1;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+}
+
+/* Mobile Menu */
+.wide-mobile-toggle {
+    display: none;
+}
+
+.wide-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0A0A0A;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.wide-mobile-menu.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.menu-hint {
+    position: absolute;
+    bottom: 4rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    opacity: 0.3;
+}
+
+.wide-mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.wide-mobile-menu li {
+    margin: 3rem 0;
+    transform: translateY(20px);
+    transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.wide-mobile-menu.active li {
+    transform: translateY(0);
+}
+
+.wide-mobile-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+}
+
+/* Wow Factor: Inertia Animation */
+.horizontal-scroll-container.inertia-active {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Mobile fallback: Normal scroll */
+/* Mobile Vertical Stack Update */
+@media (max-width: 768px) {
+
+    /* Enable Horizontal Scroll with Snap */
+    body.theme-wide,
+    html {
+        overflow-y: hidden;
+        overflow-x: auto;
+        /* Revert vertical flow logic */
+    }
+
+    /* Force horizontal layout */
+    .wide-wrapper {
+        height: 100vh;
+        width: max-content;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        /* Snap enabled */
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        /* Ensure horizontal flow */
+    }
+
+    .horizontal-scroll-container {
+        display: flex;
+        width: max-content;
+        height: 100vh;
+    }
+
+    /* Reset sections to horizontal full screen */
+    .wide-section {
+        width: 100vw !important;
+        /* Force screen width for snap */
+        height: 100vh;
+        min-height: auto;
+        padding: 80px 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* Center content like Streamer W */
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: none;
+        scroll-snap-align: start;
+        /* Snap point */
+        scroll-snap-stop: always;
+        box-sizing: border-box;
+    }
+
+    .wide-header {
+        top: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 0 1.5rem;
+        height: 70px;
+    }
+
+    .wide-nav {
+        display: none;
+    }
+
+    .wide-mobile-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px !important;
+        right: 20px !important;
+        top: auto !important;
+        z-index: 9999;
+        background: rgba(10, 10, 10, 0.8);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Menu Container Fix */
+    .wide-mobile-menu {
+        width: 100%;
+        height: 100dvh;
+        max-width: 100vw;
+        overflow-x: hidden;
+        position: fixed;
+        /* Fix for horizontal scroll context */
+        left: 0;
+        top: 0;
+    }
+
+    /* SCENE 01 Mobile */
+    .intro-content {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .intro-content h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+        white-space: normal;
+        line-height: 1.1;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+    }
+
+    .intro-content br {
+        display: none;
+        /* Hide manual breaks on mobile to let flex/wrap handle it */
+    }
+
+    .panorama-img {
+        width: 100%;
+        height: 250px;
+        margin-top: 1rem;
+        flex: none;
+        /* Prevent shrink */
+    }
+
+    /* SCENE 02 Mobile */
+    .projects {
+        padding-top: 80px;
+        justify-content: flex-start;
+        /* Align top for scrollable content if needed */
+        overflow-y: auto;
+        /* Allow vertical scroll within slide if content overflows */
+    }
+
+    .section-title-wrap {
+        width: 100%;
+        min-width: 0;
+        margin-right: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .section-title-wrap h2 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        overflow-wrap: break-word;
+        /* Wrap long words only if necessary */
+        word-break: normal;
+        /* Don't force break mid-word */
+        line-height: 1.2;
+    }
+
+    .project-items {
+        flex-direction: column;
+        width: 100%;
+        gap: 2rem;
+        padding-bottom: 40px;
+        /* Space for scroll */
+    }
+
+    .p-item {
+        width: 100%;
+        height: 250px;
+        min-height: auto;
+    }
+
+    /* SCENE 03 Mobile */
+    .process {
+        align-items: center;
+        text-align: center;
+    }
+
+    .process-text {
+        max-width: 100%;
+    }
+
+    .process-text h2 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        /* Responsive sizing */
+        white-space: normal;
+        letter-spacing: 0.05em;
+        overflow-wrap: break-word;
+        word-break: normal;
+        /* Keep words intact */
+        max-width: 90vw;
+        /* Safety constraint */
+        line-height: 1.2;
+    }
+
+    /* SCENE 04 Mobile */
+    .contact-box {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-box h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 2rem;
+        letter-spacing: 0.05em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.2;
+    }
+
+    /* Footer / Sign */
+    .footer-sign {
+        writing-mode: horizontal-tb;
+        margin-top: 2rem;
+        opacity: 0.2;
+        width: 100%;
+        text-align: center;
+    }
+}

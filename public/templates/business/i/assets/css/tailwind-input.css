@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+@source "../../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #3211d4;
+    --color-accent-coral: #ff6b6b;
+    --color-accent-teal: #20c997;
+    --color-background-light: #f6f6f8;
+    --color-background-dark: #131022;
+    --color-surface-dark: #1b1630;
+    --font-display: "Inter", "Noto Sans JP", sans-serif;
+    --shadow-ai: 0 24px 72px rgba(50, 17, 212, 0.16);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-display);
+    background:
+        radial-gradient(circle at top right, rgba(50, 17, 212, 0.08), transparent 22rem),
+        radial-gradient(circle at bottom left, rgba(32, 201, 151, 0.06), transparent 20rem),
+        var(--color-background-light);
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+    background:
+        radial-gradient(circle at top right, rgba(50, 17, 212, 0.18), transparent 22rem),
+        radial-gradient(circle at bottom left, rgba(32, 201, 151, 0.12), transparent 20rem),
+        var(--color-background-dark);
+    color: #e2e8f0;
+}
+
+::selection {
+    background: rgba(50, 17, 212, 0.24);
+    color: #020617;
+}
+
+.ai-panel {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: var(--shadow-ai);
+    backdrop-filter: blur(14px);
+}
+
+.dark .ai-panel {
+    background: rgba(27, 22, 48, 0.82);
+    border-color: rgba(148, 163, 184, 0.12);
+}
+
+.ai-grid {
+    background-image: radial-gradient(circle at 2px 2px, rgba(50, 17, 212, 0.2) 1px, transparent 0);
+    background-size: 40px 40px;
+}
+
+.chart-sparkline {
+    height: 56px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.9rem;
+    background: linear-gradient(180deg, rgba(50, 17, 212, 0.03), transparent 70%);
+}
+
+.chart-sparkline svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.chart-sparkline .spark-area {
+    fill: rgba(50, 17, 212, 0.12);
+    animation: ai-fade-area 1s ease-out 0.45s both;
+}
+
+.chart-sparkline .spark-line {
+    fill: none;
+    stroke: #3211d4;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: ai-draw-path 1.45s ease-out forwards;
+}
+
+.chart-sparkline .spark-dot {
+    fill: #3211d4;
+    opacity: 0;
+    animation: ai-pop-dot 0.4s ease-out 1.3s forwards;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: end;
+    gap: 0.35rem;
+    height: 56px;
+}
+
+.chart-bars span {
+    flex: 1;
+    border-radius: 0.35rem 0.35rem 0 0;
+    background: rgba(148, 163, 184, 0.2);
+    transform-origin: bottom;
+    animation: ai-grow-bar 1.1s ease-out both;
+}
+
+.chart-bars span:nth-child(1) { height: 32%; animation-delay: 0.05s; }
+.chart-bars span:nth-child(2) { height: 46%; animation-delay: 0.12s; }
+.chart-bars span:nth-child(3) { height: 74%; animation-delay: 0.18s; background: rgba(255, 107, 107, 0.86); }
+.chart-bars span:nth-child(4) { height: 41%; animation-delay: 0.24s; }
+.chart-bars span:nth-child(5) { height: 58%; animation-delay: 0.3s; }
+
+.chart-gauge {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.chart-gauge-row {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.chart-gauge-track {
+    position: relative;
+    height: 0.55rem;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: rgba(148, 163, 184, 0.18);
+}
+
+.chart-gauge-fill {
+    transform-origin: left center;
+    transform: scaleX(0);
+    animation: ai-fill-gauge 1.25s ease-out forwards;
+    height: 100%;
+    border-radius: 9999px;
+}
+
+.chart-gauge-fill.primary {
+    width: 84%;
+    background: linear-gradient(90deg, #20c997, #39d9ad);
+}
+
+.chart-gauge-fill.secondary {
+    width: 68%;
+    background: linear-gradient(90deg, #3211d4, #5a3cff);
+    animation-delay: 0.18s;
+}
+
+.chart-gauge-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+@keyframes ai-draw-line {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes ai-draw-path {
+    from {
+        stroke-dashoffset: 320;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ai-fade-area {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ai-pop-dot {
+    from {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes ai-rise {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ai-grow-bar {
+    from {
+        transform: scaleY(0.18);
+        opacity: 0.2;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+@keyframes ai-fill-gauge {
+    from {
+        opacity: 0.35;
+        transform: scaleX(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.ai-input {
+    width: 100%;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(255, 255, 255, 0.88);
+    padding: 0.95rem 1rem;
+    color: #0f172a;
+    outline: none;
+}
+
+.ai-input:focus {
+    border-color: rgba(50, 17, 212, 0.82);
+    box-shadow: 0 0 0 4px rgba(50, 17, 212, 0.12);
+}
+
+.dark .ai-input {
+    background: rgba(15, 23, 42, 0.3);
+    color: #e2e8f0;
+}
+
+.ai-menu-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.ai-menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ai-mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-1rem);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.ai-mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ai-mobile-toggle .bar {
+    width: 1.35rem;
+    height: 2px;
+    border-radius: 9999px;
+    background: #3211d4;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dark .ai-mobile-toggle .bar {
+    background: #e2e8f0;
+}
+
+.ai-mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.ai-mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.ai-mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
