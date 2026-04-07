@@ -32,6 +32,7 @@
 - `task.md` を直近の作業計画と完了報告の正本として維持する
 - `docs/AI_WORKFLOW.md` と `C:\Users\taka\.codex\AGENTS.md` の運用ルールを継続的に反映する
 - 必要に応じて `docs` を簡素化し、正本と参考資料の境界を明確にする
+- `docs/README.md` を起点に、運用文書と reference 文書の置き場所を揃える
 
 ## Near-Term Plan
 - `public/templates` 配下の補助ファイル整理を継続する
