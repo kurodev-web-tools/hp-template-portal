@@ -26,14 +26,10 @@ This directory keeps reusable project scripts only. One-off scripts should be de
 - Used by `npm run capture:business-v2`.
 - Covered by `tests/capture-business-v2.test.js`.
 
-### `annotate-business-template-numbers.js`
-- Inserts a reminder note into business templates that contain numeric claims.
-- Keep this only while numeric-claim review remains part of the business template workflow.
-
 ### `playwright-cli.ps1`
 - Thin wrapper for running Playwright CLI through `npx`.
 - Used by `npm run playwright`.
 
 ## Retention Rule
 - Keep scripts here only if they support repeatable maintenance work.
-- If a script is used for a single cleanup or migration, remove it after the task is complete.
+- One-off cleanup or migration scripts should be removed once their edits are already reflected in tracked files.
