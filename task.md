@@ -14,6 +14,7 @@
 - [ ] `public/templates` 配下に公開不要なバックアップ、設計メモ、補助ファイルが増えていないか確認する
 - [ ] `scripts/` 配下に再利用しない one-off スクリプトが溜まっていないか確認する
 - [ ] `public/assets/images/thumbnails/*_v2` と一覧側の参照先にズレがないか確認する
+- [ ] `npm run audit:links` で template 内の相対リンク切れが増えていないか確認する
 - [ ] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する
 
 ## Next Candidate Actions
@@ -23,6 +24,7 @@
 - [ ] カテゴリ共通 `DESIGN.md` を基準に、必要なテンプレートから個別 `DESIGN.md` を追加する
 - [ ] `docs/README.md` を基準に、reference 文書の置き場所を維持しつつ必要なら再整理する
 - [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す
+- [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
 
 ## Backlog
 - [ ] テンプレート更新後の検証手順を標準化する
