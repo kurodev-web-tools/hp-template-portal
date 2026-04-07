@@ -5,7 +5,7 @@ This document tracks template pages that still use placeholder-style metadata or
 ## Current Findings
 
 ### Business templates with `.example.jp` demo domains
-- `business/c`
+- None currently tracked
 
 ### Business templates with `example.com` style canonical or OGP URLs
 - None currently tracked in the first cleanup batch
@@ -26,4 +26,4 @@ This document tracks template pages that still use placeholder-style metadata or
 
 ## Notes
 - Some templates intentionally use fictional branded domains for presentation. Those are not automatically errors.
-- The highest-priority cleanup targets are templates still using generic `example.com` or `.example.jp` URLs in metadata.
+- The next cleanup targets are placeholder contact examples only, not metadata URLs.
