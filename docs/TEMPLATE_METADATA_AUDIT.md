@@ -11,9 +11,7 @@ This document tracks template pages that still use placeholder-style metadata or
 - None currently tracked in the first cleanup batch
 
 ### Boilerplate-only placeholder metadata
-- `business/boilerplate.html`
-  - Intentional starter asset
-  - Already marked `noindex, nofollow`
+- None currently tracked
 
 ### Placeholder-style contact values inside templates
 - `example.com` / `.example.jp` style contact placeholders have been cleaned up in active templates.
@@ -26,4 +24,4 @@ This document tracks template pages that still use placeholder-style metadata or
 
 ## Notes
 - Some templates intentionally use fictional branded domains for presentation. Those are not automatically errors.
-- The remaining audit target is limited to starter-only placeholder metadata in `business/boilerplate.html`.
+- No active `example.com` style metadata remains in tracked templates or starter assets.
