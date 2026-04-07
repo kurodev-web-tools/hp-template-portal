@@ -13,6 +13,8 @@
   - サムネイル更新の最小運用手順
 - `TEMPLATE_METADATA_AUDIT.md`
   - placeholder / metadata 品質の監査メモ
+- `TEMPLATE_STATIC_AUDIT.md`
+  - 静的監査コマンドとカテゴリ別の不足傾向
 
 ## Specs
 - `ROUND_TABLE_SPEC.md`

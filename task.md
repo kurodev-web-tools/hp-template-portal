@@ -15,6 +15,7 @@
 - [ ] `scripts/` 配下に再利用しない one-off スクリプトが溜まっていないか確認する
 - [ ] `public/assets/images/thumbnails/*_v2` と一覧側の参照先にズレがないか確認する
 - [ ] `npm run audit:links` で template 内の相対リンク切れが増えていないか確認する
+- [ ] `npm run audit:metadata` で metadata / placeholder の抜けや戻りがないか確認する
 - [ ] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する
 
 ## Next Candidate Actions
@@ -25,6 +26,8 @@
 - [ ] `docs/README.md` を基準に、reference 文書の置き場所を維持しつつ必要なら再整理する
 - [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す
 - [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
+- [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
+- [ ] `docs/TEMPLATE_STATIC_AUDIT.md` を基準に、カテゴリ単位で metadata 不足を埋める順序を決める
 
 ## Backlog
 - [ ] テンプレート更新後の検証手順を標準化する

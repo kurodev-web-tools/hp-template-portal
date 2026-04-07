@@ -13,6 +13,11 @@ This directory keeps reusable project scripts only. One-off scripts should be de
 - Ignores external URLs, anchors, `mailto:`, and `tel:`.
 - Used by `npm run audit:links`.
 
+### `audit-template-metadata.js`
+- Checks template HTML files for required metadata signals such as `title`, `description`, canonical, OGP tags, `robots`, and JSON-LD `url`.
+- Also flags `example.com` / `example.jp` or `localhost` style placeholder strings.
+- Used by `npm run audit:metadata`.
+
 ### `capture-thumbnails.js`
 - Captures category thumbnails from the local Pages dev server.
 - Supports `mobile`, `desktop`, and `x-social` viewport modes.
