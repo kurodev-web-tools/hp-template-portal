@@ -4,9 +4,9 @@ This document defines the minimum reusable workflow for refreshing template thum
 
 ## Default Flow
 1. Start the local preview server.
-2. Capture only the category or template set that changed.
-3. Confirm that generated files land in the expected `*_v2` directory.
-4. Check the portal list or related references to ensure the refreshed thumbnails are the ones being served.
+2. Capture only the category or business template tags that changed.
+3. Confirm that files were written into the expected `*_v2` directory.
+4. Do one lightweight portal or template spot-check only when the visual change is meaningful.
 
 ## Common Commands
 
@@ -22,8 +22,17 @@ npm run capture:mobile
 
 ### Capture one category
 ```powershell
+npm run capture:lp
 npm run capture:portfolio
+npm run capture:portfolio-desktop
 npm run capture:streamer
+npm run capture:streamer-desktop
+```
+
+### Capture selected business templates
+```powershell
+npm run capture:business-v2 -- w
+npm run capture:business-v2 -- w x
 ```
 
 ### Capture business `v2` thumbnails
@@ -33,8 +42,13 @@ npm run capture:business-v2
 
 ## Validation Points
 - Generated files should appear under `public/assets/images/thumbnails/<category>_v2/`.
-- The updated category should still render correctly in the portal after capture.
-- Thumbnail refresh should be scoped to the changed templates when possible instead of regenerating everything.
+- Prefer checking only the files you intended to refresh instead of scanning the whole category.
+- Use a portal list or template spot-check only for categories whose composition or framing changed.
+
+## Minimal Decision Rule
+- If only `lp`, `portfolio`, or `streamer` changed, run the matching category capture command.
+- If only a few business templates changed, pass their tags to `capture:business-v2` instead of regenerating all business thumbnails.
+- Regenerate all thumbnails only when a shared capture rule, base CSS, or list presentation changed.
 
 ## Maintenance Notes
 - `capture-business-v2.js` intentionally stays separate because business thumbnails use custom clipping and per-template overrides.

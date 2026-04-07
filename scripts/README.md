@@ -11,12 +11,15 @@ This directory keeps reusable project scripts only. One-off scripts should be de
 ### `capture-thumbnails.js`
 - Captures category thumbnails from the local Pages dev server.
 - Supports `mobile`, `desktop`, and `x-social` viewport modes.
+- Supports category-scoped capture such as `lp`, `portfolio`, and `streamer`.
 - Used by:
   - `npm run capture`
   - `npm run capture:mobile`
   - `npm run capture:desktop`
   - `npm run capture:x-social`
+  - `npm run capture:lp`
   - `npm run capture:portfolio`
+  - `npm run capture:portfolio-desktop`
   - `npm run capture:streamer`
   - `npm run capture:streamer-desktop`
 
@@ -24,6 +27,7 @@ This directory keeps reusable project scripts only. One-off scripts should be de
 - Specialized thumbnail capture for `public/templates/business/*`.
 - Keeps the current `business_v2` framing and per-template clipping rules.
 - Used by `npm run capture:business-v2`.
+- Accepts business template tags through `npm run capture:business-v2 -- <tag...>`.
 - Covered by `tests/capture-business-v2.test.js`.
 
 ### `playwright-cli.ps1`

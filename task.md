@@ -19,7 +19,7 @@
 ## Next Candidate Actions
 - [ ] `public/templates` 配下の補助ファイル整理を継続する
 - [ ] 残っているスクリプトの用途を継続確認し、再利用性の薄いものが増えない状態を維持する
-- [ ] `docs/THUMBNAIL_WORKFLOW.md` を起点に、テンプレート更新時の確認手順を継続的に絞り込む
+- [ ] `docs/THUMBNAIL_WORKFLOW.md` を起点に、変更範囲だけを capture する運用へ寄せ続ける
 - [ ] カテゴリ共通 `DESIGN.md` を基準に、必要なテンプレートから個別 `DESIGN.md` を追加する
 - [ ] `docs` に退避したテンプレート設計メモを必要ならカテゴリ別・用途別に再整理する
 - [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す
