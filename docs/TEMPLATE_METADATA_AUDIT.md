@@ -16,14 +16,14 @@ This document tracks template pages that still use placeholder-style metadata or
   - Already marked `noindex, nofollow`
 
 ### Placeholder-style contact values inside templates
-- Contact forms and demo email placeholders still exist across several templates.
-- This is acceptable for template demos, but canonical URLs and structured-data URLs should be reviewed separately from form placeholder text.
+- `example.com` / `.example.jp` style contact placeholders have been cleaned up in active templates.
+- Form placeholders still exist intentionally, but they now use brand-aware or theme-aware demo values instead of raw example domains.
 
 ## Recommended Handling
 - Treat canonical URLs, `og:url`, and structured-data `url` fields as metadata quality work, not as design work.
-- Update placeholder domains only when the target publication pattern for that template is clear.
 - Keep form placeholder text unless it causes confusion in the template demo itself.
+- Prefer contextual demo addresses over `example.com` style values when a template already has a clear fictional brand or domain.
 
 ## Notes
 - Some templates intentionally use fictional branded domains for presentation. Those are not automatically errors.
-- The next cleanup targets are placeholder contact examples only, not metadata URLs.
+- The remaining audit target is limited to starter-only placeholder metadata in `business/boilerplate.html`.
