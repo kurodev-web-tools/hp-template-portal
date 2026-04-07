@@ -4,17 +4,11 @@ This document tracks template pages that still use placeholder-style metadata or
 
 ## Current Findings
 
-### Business templates with `example.com` style canonical or OGP URLs
-- `business/d`
-- `business/f`
-- `business/i`
-- `business/j`
-- `business/k`
-- `business/l`
-- `business/r`
-
 ### Business templates with `.example.jp` demo domains
 - `business/c`
+
+### Business templates with `example.com` style canonical or OGP URLs
+- None currently tracked in the first cleanup batch
 
 ### Boilerplate-only placeholder metadata
 - `business/boilerplate.html`

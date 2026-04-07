@@ -22,7 +22,7 @@
 - [ ] `docs/THUMBNAIL_WORKFLOW.md` を起点に、テンプレート更新時の確認手順を継続的に絞り込む
 - [ ] カテゴリ共通 `DESIGN.md` を基準に、必要なテンプレートから個別 `DESIGN.md` を追加する
 - [ ] `docs` に退避したテンプレート設計メモを必要ならカテゴリ別・用途別に再整理する
-- [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、`example.com` 系メタデータが残るテンプレートを順次整理する
+- [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、残る `.example.jp` 系メタデータと placeholder 文言の扱いを整理する
 
 ## Backlog
 - [ ] テンプレート更新後の検証手順を標準化する
