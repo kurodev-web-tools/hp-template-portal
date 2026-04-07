@@ -17,7 +17,7 @@
 - [ ] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する
 
 ## Next Candidate Actions
-- [ ] `public/templates` 配下の補助ファイル整理を継続する
+- [ ] `public/templates` 配下で新たに補助ファイルや未使用資産が増えていないかを継続確認する
 - [ ] 残っているスクリプトの用途を継続確認し、再利用性の薄いものが増えない状態を維持する
 - [ ] `docs/THUMBNAIL_WORKFLOW.md` を起点に、変更範囲だけを capture する運用へ寄せ続ける
 - [ ] カテゴリ共通 `DESIGN.md` を基準に、必要なテンプレートから個別 `DESIGN.md` を追加する
