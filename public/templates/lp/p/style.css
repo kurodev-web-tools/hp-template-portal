@@ -379,6 +379,50 @@ a {
     margin: 0 auto var(--space-lg);
 }
 
+.hero__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+}
+
+.hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    padding: 0.95rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.hero__cta--primary {
+    background-color: var(--color-accent);
+    color: #fff;
+}
+
+.hero__cta--primary:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.hero__cta--secondary {
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+.hero__cta--secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.hero__status {
+    margin-bottom: var(--space-md);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
 .hero__scroll {
     display: flex;
     flex-direction: column;
@@ -399,6 +443,67 @@ a {
     height: 60px;
     background: linear-gradient(to bottom, var(--color-text-muted), transparent);
     animation: scroll-line 2s ease-in-out infinite;
+}
+
+/* Offer Section */
+.offer {
+    padding: var(--space-xl) var(--space-md);
+    background-color: var(--color-surface);
+}
+
+.offer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.offer__header {
+    max-width: 720px;
+    margin-bottom: var(--space-lg);
+}
+
+.offer__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.offer__lead {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+.offer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+.offer__card {
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background-color: var(--color-bg);
+}
+
+.offer__eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-sm);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.offer__card-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.offer__copy {
+    color: var(--color-text-secondary);
 }
 
 @keyframes scroll-line {
@@ -908,6 +1013,10 @@ a {
 }
 
 @media (min-width: 768px) {
+    .offer__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     .modal__body {
         grid-template-columns: 1fr 1fr;
     }

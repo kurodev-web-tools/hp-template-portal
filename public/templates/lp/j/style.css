@@ -276,6 +276,16 @@ a {
   width: 100%;
 }
 
+/* Intro */
+.intro {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem 2rem 5rem;
+}
+
 /* Mobile Optimization for Intro Section */
 @media (max-width: 767px) {
   .intro {
@@ -420,17 +430,6 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
-
-.philosophy-item.reverse {
-  direction: rtl;
-}
-
-.philosophy-item.reverse>* {
-  direction: ltr;
-}
-
-/* Mobile Content Ordering */
-
 
 .philosophy-image {
   position: relative;
@@ -626,6 +625,88 @@ a {
   font-size: 0.9375rem;
   line-height: 2;
   color: var(--off-white-dim);
+}
+
+/* Pricing Section */
+.pricing {
+  padding: var(--space-xl) 0;
+  background: linear-gradient(180deg, rgba(136, 19, 55, 0.05) 0%, rgba(24, 24, 27, 0) 100%);
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.pricing-intro {
+  max-width: 520px;
+  margin: var(--space-sm) auto 0;
+  color: var(--off-white-dim);
+  font-size: 0.9375rem;
+  line-height: 2;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.pricing-card {
+  position: relative;
+  padding: var(--space-md);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  min-height: 100%;
+}
+
+.pricing-card--featured {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+
+.pricing-badge {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+.pricing-title {
+  font-family: var(--font-mincho);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--off-white);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+
+.pricing-card--featured .pricing-title {
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.pricing-copy {
+  color: var(--off-white-dim);
+  font-size: 0.9375rem;
+  line-height: 2;
+  margin-bottom: var(--space-sm);
+}
+
+.pricing-price {
+  font-family: var(--font-mincho);
+  font-size: 1.75rem;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.pricing-note {
+  font-size: 0.8125rem;
+  color: var(--off-white-dim);
+  letter-spacing: 0.08em;
 }
 
 /* Experience Header - Global Style (Center Aligned) */
@@ -1110,6 +1191,19 @@ a {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-lg);
     align-items: center;
+  }
+
+  .philosophy-item.reverse .philosophy-text {
+    order: 1;
+  }
+
+  .philosophy-item.reverse .philosophy-image {
+    order: 2;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
   }
 
   .gallery {

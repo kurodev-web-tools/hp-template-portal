@@ -256,6 +256,10 @@
             document.getElementById('modalYear').textContent = project.year;
             document.getElementById('modalClient').textContent = project.client;
             document.getElementById('modalRole').textContent = project.role;
+            const modalLink = modal.querySelector('.modal__link');
+            if (modalLink) {
+                modalLink.href = `mailto:hello@yukisato.design?subject=${encodeURIComponent(project.title + ' について相談したい')}`;
+            }
 
             // Show modal
             modal.classList.add('is-active');
