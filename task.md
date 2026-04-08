@@ -30,7 +30,7 @@
 - [ ] `streamer` の残る公開品質課題として、設定コメントの扱いと個別 CTA 文言の明確化を整理する
 - [ ] `lp` の残る公開品質課題として、`data-ai-type` の整理と heavy Unsplash / placeholder 依存の削減を進める
 - [ ] `portfolio` の定型 description と stock image 依存を、代表テンプレートから順に固有化する
-- [ ] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI を整理する
+- [ ] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI が戻っていないか継続確認する
 
 ## Backlog
 - [ ] テンプレート更新後の検証手順を標準化する
