@@ -17,7 +17,7 @@ npm run audit:metadata
 
 ### Metadata Audit
 - `npm run audit:metadata`
-- 現状は 38 ファイルで metadata 系の不足を検出
+- 現状は `No metadata issues found.`
 
 ## Category Summary
 
@@ -37,21 +37,14 @@ npm run audit:metadata
 - description 未設定だったテンプレートには最小限の説明文を追加済み
 
 ### Streamer
-- ほぼ全テンプレートで metadata の基本セットが未整備
-- 主な残件:
-  - `canonical`
-  - `og:title`
-  - `og:description`
-  - `og:url`
-  - `og:image`
-  - `robots`
-  - `structured-data:url`
-- 複数ページ構成のテンプレートでは `description` 欠落もある
+- `2026-04-08` 時点で、`streamer` 配下の metadata 欠落は静的監査上ゼロ
+- カテゴリ共通のデモドメイン方針で `description`、`canonical`、OGP、`robots`、JSON-LD を補完済み
+- 複数ページ構成のテンプレートにもページ単位の canonical / metadata を追加済み
 
 ## Recommended Order
-1. Streamer はカテゴリ共通の metadata 方針を決める
-2. その後にテンプレート単位で title / description / OGP 文言を整える
-3. Business / LP / Portfolio は欠落監査ではなく、文言品質とデモ妥当性の確認を行う
+1. title / description / OGP 文言の妥当性をカテゴリ単位で見直す
+2. OGP 画像の実体と metadata の整合性を確認する
+3. 欠落監査の次段として、UX / 独自性 / CTA を別モデルや目視で監査する
 
 ## Notes
 - この監査は「欠落の有無」を見るもので、文言品質やデザイン品質までは評価しない
