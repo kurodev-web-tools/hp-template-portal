@@ -27,8 +27,7 @@
 - [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す
 - [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
 - [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
-- [ ] [docs/reviews/2026-04-quality-audit/summary.md](D:\hp-portal\docs\reviews\2026-04-quality-audit\summary.md) を基準に、`streamer/e` の broken description と streamer subpage description を先に直す
-- [ ] `streamer` の `data-channel-url` 共通値と `href="#"` CTA を、テンプレートごとの仮導線へ置き換える
+- [ ] `streamer` の残る公開品質課題として、設定コメントの扱いと個別 CTA 文言の明確化を整理する
 - [ ] `lp/p` のカテゴリ方針を決め、`lp/j` の価格情報不足を補う
 - [ ] `portfolio` の定型 description と stock image 依存を、代表テンプレートから順に固有化する
 - [ ] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI を整理する
