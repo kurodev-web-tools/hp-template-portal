@@ -27,7 +27,7 @@
 - [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す
 - [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
 - [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
-- [ ] `docs/TEMPLATE_STATIC_AUDIT.md` を基準に、カテゴリ単位で metadata 不足を埋める順序を決める
+- [ ] `docs/TEMPLATE_STATIC_AUDIT.md` を基準に、LP / Portfolio / Streamer の metadata 不足を埋める順序を決める
 
 ## Backlog
 - [ ] テンプレート更新後の検証手順を標準化する
