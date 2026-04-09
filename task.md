@@ -14,9 +14,9 @@
 - [ ] `public/templates` 配下に公開不要なバックアップ、設計メモ、補助ファイルが増えていないか確認する
 - [x] `scripts/` 配下に再利用しない one-off スクリプトが溜まっていないか確認する。現状は `package.json` と運用文書から全 script の参照先が追え、one-off と判断できる残存ファイルはない
 - [x] `public/assets/images/thumbnails/*_v2` と一覧側の参照先にズレがないか確認する。`public/assets/js/data.js` の全 104 template 参照について実ファイル存在を照合し、欠落 0 件を確認した
-- [ ] `npm run audit:links` で template 内の相対リンク切れが増えていないか確認する
-- [ ] `npm run audit:metadata` で metadata / placeholder の抜けや戻りがないか確認する
-- [ ] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する
+- [x] `npm run audit:links` で template 内の相対リンク切れが増えていないか確認する。現時点では `No broken relative template links found.`
+- [x] `npm run audit:metadata` で metadata / placeholder の抜けや戻りがないか確認する。現時点では `No metadata issues found.`
+- [x] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する。現状の ignore ルールは運用に対して十分で、`docs` / `scripts` / `public` 配下にも一時ファイル混入はない
 
 ## Next Candidate Actions
 - [ ] `public/templates` 配下で新たに補助ファイルや未使用資産が増えていないかを継続確認する。現時点では `business/boilerplate.html` はスターターテンプレートとして保持し、generated 画像は参照のある `external-image-01.svg` と OGP 用 SVG を中心に残して個別判断する
