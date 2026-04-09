@@ -6,7 +6,7 @@
 - 直近の実行判断は `docs/PLAN.md` よりこの `task.md` を優先する
 
 ## Active Priorities
-- [ ] `public` / `docs` / `scripts` の棚卸しを継続し、運用に不要な資産を減らす
+- [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png` と、`business` 配下の未参照 `external-image-02.svg` 以降を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
@@ -19,11 +19,11 @@
 - [ ] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する
 
 ## Next Candidate Actions
-- [ ] `public/templates` 配下で新たに補助ファイルや未使用資産が増えていないかを継続確認する
+- [ ] `public/templates` 配下で新たに補助ファイルや未使用資産が増えていないかを継続確認する。現時点では `business/boilerplate.html` はスターターテンプレートとして保持し、generated 画像は `external-image-01.svg` を中心に参照されているため、追加分だけ個別判断する
 - [ ] 残っているスクリプトの用途を継続確認し、再利用性の薄いものが増えない状態を維持する
 - [ ] `docs/THUMBNAIL_WORKFLOW.md` を起点に、変更範囲だけを capture する運用へ寄せ続ける
 - [ ] カテゴリ共通 `DESIGN.md` を基準に、必要なテンプレートから個別 `DESIGN.md` を追加する
-- [ ] `docs/README.md` を基準に、reference 文書の置き場所を維持しつつ必要なら再整理する
+- [x] `docs/README.md` を基準に、reference 文書の置き場所を維持しつつ必要なら再整理する。現状の `docs/reviews` / `docs/reference` 配置は運用方針と整合している
 - [ ] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す
 - [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
 - [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
