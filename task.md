@@ -29,7 +29,7 @@
 - [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
 - [ ] `streamer` の残る公開品質課題として、設定コメントの扱いと個別 CTA 文言の明確化を整理する
 - [ ] `lp` の残る公開品質課題として、`data-ai-type` の整理と heavy Unsplash / placeholder 依存の削減を進める
-- [ ] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の戻りを継続確認する
+- [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [ ] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI が戻っていないか継続確認する
 
 ## Backlog
