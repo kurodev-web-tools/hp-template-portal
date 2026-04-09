@@ -371,7 +371,7 @@ const quizApp = (function () {
     }
 
     function showDetails() {
-        // Navigate to the dummy details page
+        // Navigate to the plan details page
         window.location.href = 'plan.html';
     }
 

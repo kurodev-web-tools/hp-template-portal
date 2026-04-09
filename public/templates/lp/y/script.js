@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 500);
     }
     
-    // Track scroll depth for analytics (placeholder)
+    // Track scroll depth milestones for future analytics hooks
     const scrollDepths = [25, 50, 75, 90];
     const trackedDepths = new Set();
     

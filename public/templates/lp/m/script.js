@@ -8,7 +8,7 @@
 
     // Configuration
     const CONFIG = {
-        DELAYED_CTA_TIME: 5000, // 5 seconds for demo (use 60000-120000 for production)
+        DELAYED_CTA_TIME: 5000, // Tune for the actual viewing window in production
         VIDEO_STICKY_THRESHOLD: 300,
         SPOTS_REMAINING: 12
     };
