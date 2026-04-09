@@ -9,6 +9,31 @@ npm run audit:links
 npm run audit:metadata
 ```
 
+## Default Verification Routine
+1. `task.md` で今回の変更範囲を確認する
+2. HTML / metadata / placeholder を触った場合は `npm run audit:links` と `npm run audit:metadata` を実行する
+3. `npm` wrapper で挙動が不安定な場合は `node scripts/audit-template-links.js` と `node scripts/audit-template-metadata.js` を直接実行する
+4. サムネイルや一覧データも触った場合は `docs/THUMBNAIL_WORKFLOW.md` の確認手順を追加で回す
+5. カテゴリ単位の品質修正を行った場合は、そのカテゴリ専用テストがあれば合わせて実行する
+
+## When To Run What
+- copy / placeholder / metadata の修正:
+  - `npm run audit:metadata`
+- template 内リンク、画像、相対参照の修正:
+  - `npm run audit:links`
+- カテゴリ単位の公開品質修正:
+  - `npm run audit:links`
+  - `npm run audit:metadata`
+  - 必要ならカテゴリ専用テスト
+- サムネイル更新:
+  - `docs/THUMBNAIL_WORKFLOW.md` に従って capture と最小確認を実施
+
+## Current Category-Specific Tests
+- `node tests/template-business-quality.test.js`
+- `node tests/template-lp-quality.test.js`
+- `node tests/template-portfolio-placeholder-quality.test.js`
+- `node tests/template-streamer-quality.test.js`
+
 ## Current Snapshot
 
 ### Link Audit

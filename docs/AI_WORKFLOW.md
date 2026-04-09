@@ -23,8 +23,10 @@
 ### Documentation
 - **`task.md`**: 実行中のタスク、完了状況、次アクションの正本
 - **`docs/PLAN.md`**: 中長期の計画、背景、フェーズ整理
-- **`日報/project_history.md`**: 実装履歴と変更ログ
-- **`docs/AI_WORKFLOW.md`**: AIの振る舞いに関するルール
+- **`docs/README.md`**: 運用文書と参照資料の案内板
+- **`docs/TEMPLATE_STATIC_AUDIT.md`**: テンプレート更新後の標準検証手順
+- **`docs/THUMBNAIL_WORKFLOW.md`**: サムネイル更新の最小運用
+- **`docs/TEMPLATE_METADATA_AUDIT.md`**: metadata / placeholder 文言の扱い
 
 ## 3. Coding Standards
 - **Environment**: I-M Portal Project (HP-Portal)
