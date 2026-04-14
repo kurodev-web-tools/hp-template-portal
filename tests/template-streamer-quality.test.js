@@ -58,8 +58,18 @@ run('streamer contact forms use themed but specific placeholders in reviewed pag
   const expectations = [
     {
       file: ['a', 'index.html'],
-      rejects: [/placeholder="Your Name"/, /placeholder="email@address\.com"/, /placeholder="Transmit your message\.\.\."/],
-      expects: [/placeholder="配信名 \/ Handle"/, /placeholder="contact@neon-grid\.jp"/, /placeholder="出演依頼やコラボ内容を送信してください"/],
+      rejects: [
+        /placeholder="Your Name"/,
+        /placeholder="email@address\.com"/,
+        /placeholder="Transmit your message\.\.\."/,
+        /placeholder="配信名 \/ Handle"/,
+        /placeholder="contact@neon-grid\.jp"/,
+      ],
+      expects: [
+        /placeholder="依頼名 \/ Channel \/ Crew"/,
+        /placeholder="contact@abyssal-link\.jp"/,
+        /placeholder="コラボ、出演、企画相談の潜航ログを記入してください"/,
+      ],
     },
     {
       file: ['e', 'contact.html'],

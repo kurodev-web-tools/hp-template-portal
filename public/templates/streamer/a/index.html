@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON ABYSS // Dive Into The Void</title>
-    <meta property="og:title" content="NEON ABYSS // Dive Into The Void">
+    <title>LUMINA ABYSS | 深海観測局</title>
+    <meta property="og:title" content="LUMINA ABYSS | 深海観測局">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://streamer-a.hp-portal.jp/templates/streamer/a/index.html">
     <meta name="twitter:card" content="summary_large_image">
@@ -13,20 +13,21 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "NEON ABYSS // Dive Into The Void",
-        "description": "脳直結の没入体験へ。境界線は消失した、新世代のストリーミングエンターテインメント。",
+        "name": "LUMINA ABYSS | 深海観測局",
+        "description": "深海観測士ルミナ・アビスの世界観、配信ログ、次回潜航予定、観測アーカイブをまとめた配信拠点。",
         "url": "https://streamer-a.hp-portal.jp/templates/streamer/a/index.html"
     }
     </script>
     <meta name="robots" content="index, follow">
     <meta property="og:image" content="https://streamer-a.hp-portal.jp/assets/images/thumbnails/streamer_v2/a.jpg">
     <meta property="og:locale" content="ja_JP">
-    <meta property="og:description" content="脳直結の没入体験へ。境界線は消失した、新世代のストリーミングエンターテインメント。">
+    <meta property="og:description" content="深海観測士ルミナ・アビスの世界観、配信ログ、次回潜航予定、観測アーカイブをまとめた配信拠点。">
     <link rel="canonical" href="https://streamer-a.hp-portal.jp/templates/streamer/a/index.html">
-    <meta name="description" content="脳直結の没入体験へ。境界線は消失した、新世代のストリーミングエンターテインメント。">
+    <meta name="description" content="深海観測士ルミナ・アビスの世界観、配信ログ、次回潜航予定、観測アーカイブをまとめた配信拠点。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Inter:wght@400;600&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/base.css">
@@ -34,131 +35,471 @@
 </head>
 
 <body class="theme-streamer custom-menu-only" data-stream-status="offline"
-    data-channel-url="https://streamer-a.hp-portal.jp/live" data-api-key="" data-channel-id="">
-    <div class="scanlines"></div>
-    <div class="bg-noise"></div>
+    data-channel-url="https://streamer-a.hp-portal.jp/live" data-api-key="" data-channel-id="" data-current-section="depth-hero">
+    <canvas id="depth-field" aria-hidden="true"></canvas>
+    <div class="depth-noise" aria-hidden="true"></div>
+    <div class="depth-gradient" aria-hidden="true"></div>
+    <canvas id="menu-bubble-transition" aria-hidden="true"></canvas>
 
-    <header class="neon-header">
+    <header class="abyss-header">
         <div class="header-inner">
-            <div class="brand">
-                <span class="glitch-text" data-text="NEON_CODE">NEON_CODE</span>
-                <span class="live-indicator" data-action="open-channel">
-                    <span class="material-icons">fiber_manual_record</span> LIVE
-                </span>
-                <span class="channel-indicator" data-action="open-channel">
-                    <span class="material-icons">smart_display</span> CHANNEL
-                </span>
+            <a class="brand" href="#depth-hero" aria-label="LUMINA ABYSS の先頭へ移動">
+                <span class="brand-mark">LUMINA ABYSS</span>
+                <span class="brand-sub">深海観測局 / VIRTUAL DEEP SEA</span>
+            </a>
+            <div class="header-actions">
+                <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="material-icons">waves</span>
+                </button>
             </div>
-            <div class="nav">
-                <ul>
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#schedule">SCHEDULE</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </div>
-            <button class="mobile-toggle">
-                <span class="material-icons">visibility</span>
-            </button>
         </div>
     </header>
 
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="#home">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#schedule">SCHEDULE</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
+    <aside class="side-hud" aria-label="潜航 HUD">
+        <a class="side-brand" href="#depth-hero" aria-label="LUMINA ABYSS の先頭へ移動">
+            <span class="brand-mark">LUMINA ABYSS</span>
+            <span class="brand-sub">VIRTUAL DEEP SEA</span>
+        </a>
+        <div class="side-status">
+            <span class="channel-indicator hud-indicator" data-action="open-channel">
+                <span class="material-icons">smart_display</span> RELAY OPEN
+            </span>
+            <span class="live-indicator hud-indicator" data-action="open-channel">
+                <span class="material-icons">fiber_manual_record</span> NOW DIVING
+            </span>
+        </div>
+        <nav class="nav side-nav" aria-label="メインナビゲーション">
+            <ul>
+                <li><a href="#depth-hero" data-nav-link>潜航</a></li>
+                <li><a href="#world" data-nav-link>存在設定</a></li>
+                <li><a href="#profile" data-nav-link>活動</a></li>
+                <li><a href="#schedule" data-nav-link>予定</a></li>
+                <li><a href="#archives" data-nav-link>記録</a></li>
+                <li><a href="#community" data-nav-link>接続</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+        <div class="mobile-panel">
+            <p class="mobile-eyebrow">潜航メニュー</p>
+            <ul>
+                <li><a href="#depth-hero">潜航開始</a></li>
+                <li><a href="#world">存在設定</a></li>
+                <li><a href="#profile">活動プロフィール</a></li>
+                <li><a href="#schedule">潜航ログ</a></li>
+                <li><a href="#archives">観測アーカイブ</a></li>
+                <li><a href="#community">コミュニティ海域</a></li>
+            </ul>
+            <div class="mobile-cta">
+                <a href="https://streamer-a.hp-portal.jp/live" class="btn-soft">待機所へ潜航する</a>
+                <a href="https://streamer-a.hp-portal.jp/community" class="btn-line">コミュニティへ接続</a>
+            </div>
+        </div>
     </div>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title blur-text">DIVE INTO<br><span class="accent">THE VOID.</span></h1>
-                <p class="hero-sub text-safe"><span class="ib">境界線は</span><span class="ib">消失した。</span><span class="ib">脳直結の</span><span class="ib">没入体験へ。</span></p>
-                <div class="hero-actions">
-                    <a href="https://streamer-a.hp-portal.jp/live" class="btn-cyber">JACK IN</a>
+    <aside class="depth-rail" aria-hidden="true">
+        <span class="depth-label">DEPTH</span>
+        <span class="depth-value" data-depth-value>-008 m</span>
+        <span class="depth-status">潜航ログ同期中</span>
+    </aside>
+
+    <main class="depth-shell">
+        <div class="depth-viewport">
+        <section id="depth-hero" class="depth-section hero-section" data-section-label="潜航">
+            <div class="section-inner hero-grid">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">LUMINA ABYSS / ENTRY SEA</p>
+                    <h1 class="hero-title blur-text">VIRTUAL<br>DEEP<br>SEA</h1>
+                    <p class="hero-lead text-safe">
+                        <span class="ib">光の</span><span class="ib">届かない</span><span class="ib">深度から、</span>
+                        <span class="ib">今夜の</span><span class="ib">観測ログを</span><span class="ib">届けます。</span>
+                    </p>
+                    <p class="hero-text text-safe">
+                        <span class="ib">深海観測士</span><span class="ib">ルミナ・アビスが、</span><span class="ib">記憶片の</span><span class="ib">回収記録、</span>
+                        <span class="ib">夜更けの</span><span class="ib">雑談、</span><span class="ib">探索配信の</span><span class="ib">最新航路を</span><span class="ib">ここに</span><span class="ib">集約しています。</span>
+                    </p>
+                </div>
+
+                <div class="character-stage reveal">
+                    <div class="stage-back stage-layer" data-speed="0.14"></div>
+                    <div class="stage-orbit stage-layer" data-speed="0.24"></div>
+                    <div class="stage-portrait stage-layer" data-speed="0.38">
+                        <div class="stage-state stage-state-close is-active" data-stage-state="close">
+                            <div class="observation-core observation-core-close">
+                                <div class="core-aura core-aura-outer"></div>
+                                <div class="core-aura core-aura-inner"></div>
+                                <div class="core-shell"></div>
+                                <div class="core-rim"></div>
+                                <div class="core-ring core-ring-inner"></div>
+                                <div class="core-ring core-ring-outer"></div>
+                                <div class="core-column"></div>
+                                <div class="core-nucleus"></div>
+                                <div class="core-flare"></div>
+                                <div class="core-reflection"></div>
+                                <div class="core-base"></div>
+                            </div>
+                        </div>
+                        <div class="stage-state stage-state-mid" data-stage-state="mid">
+                            <div class="observation-core observation-core-mid">
+                                <div class="core-aura core-aura-outer"></div>
+                                <div class="core-aura core-aura-inner"></div>
+                                <div class="core-shell"></div>
+                                <div class="core-rim"></div>
+                                <div class="core-ring core-ring-inner"></div>
+                                <div class="core-ring core-ring-outer"></div>
+                                <div class="core-column"></div>
+                                <div class="core-nucleus"></div>
+                                <div class="core-flare"></div>
+                                <div class="core-reflection"></div>
+                                <div class="core-base"></div>
+                            </div>
+                        </div>
+                        <div class="stage-state stage-state-wide" data-stage-state="wide">
+                            <div class="observation-core observation-core-wide">
+                                <div class="core-aura core-aura-outer"></div>
+                                <div class="core-aura core-aura-inner"></div>
+                                <div class="core-shell"></div>
+                                <div class="core-rim"></div>
+                                <div class="core-ring core-ring-inner"></div>
+                                <div class="core-ring core-ring-outer"></div>
+                                <div class="core-column"></div>
+                                <div class="core-nucleus"></div>
+                                <div class="core-flare"></div>
+                                <div class="core-reflection"></div>
+                                <div class="core-base"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stage-log glass-panel">
+                        <p class="stage-label">潜航ログ / 0001</p>
+                        <h2>深海観測士<br><span>ルミナ・アビス</span></h2>
+                        <p class="text-safe">
+                            <span class="ib">深海観測局 07 から</span><span class="ib">通信する、</span>
+                            <span class="ib">発光記録係。</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="hero-followup reveal">
+                    <div class="hero-actions">
+                        <a href="https://streamer-a.hp-portal.jp/live" class="btn-primary">待機所へ潜航する</a>
+                        <a href="#schedule" class="btn-secondary">次回潜航を確認する</a>
+                    </div>
+                    <div class="hero-hud">
+                        <div class="hud-card hud-strip">
+                            <span class="hud-label">LIVE STATUS</span>
+                            <strong>次回潜航まで待機中</strong>
+                            <p>次回配信まで 18:42</p>
+                        </div>
+                        <div class="hud-card hud-strip">
+                            <span class="hud-label">CURRENT ROUTE</span>
+                            <strong>観測航路 07</strong>
+                            <p>深海探索 / 雑談 / 回収ログ整理</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about glass-surface">
-            <div class="section-inner">
-                <h2 class="section-title">SYSTEM: AVATAR DATA</h2>
-                <div class="grid">
-                    <div class="card premium-card-hover">
-                        <h3>Gaming</h3>
-                        <p class="text-safe"><span class="ib">FPSから</span><span class="ib">RPGまで、</span><span class="ib">最高難易度への</span><span class="ib">挑戦を</span><span class="ib">リアルタイムで。</span></p>
-                    </div>
-                    <div class="card premium-card-hover">
-                        <h3>Chatting</h3>
-                        <p class="text-safe"><span class="ib">深夜の</span><span class="ib">雑談から</span><span class="ib">真面目な</span><span class="ib">人生相談まで、</span><span class="ib">密な</span><span class="ib">コミュニケーションを。</span></p>
-                    </div>
+        <section id="world" class="depth-section" data-section-label="存在設定">
+            <div class="section-inner two-column">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">ORIGIN LOG</p>
+                    <h2 class="section-title">存在記録</h2>
+                    <p class="section-copy text-safe">
+                        <span class="ib">海域の</span><span class="ib">底で</span><span class="ib">回収した</span><span class="ib">記憶片を、</span>
+                        <span class="ib">配信と</span><span class="ib">歌声に</span><span class="ib">変えて</span><span class="ib">届けています。</span>
+                    </p>
                 </div>
-            </div>
-        </section>
-        <section id="schedule" class="schedule-section">
-            <div class="section-inner">
-                <h2 class="section-title">WEEKLY SCHEDULE</h2>
-                <div class="schedule-table glass-surface">
-                    <div class="schedule-row">
-                        <span class="day">MON</span>
-                        <span class="time">21:00</span>
-                        <span class="content">FPS RANKED</span>
+                <div class="glass-panel lore-panel reveal">
+                    <div class="lore-head">
+                        <span class="pill">ORIGIN FILE</span>
+                        <span class="minor">潜航ログ 04</span>
                     </div>
-                    <div class="schedule-row">
-                        <span class="day">WED</span>
-                        <span class="time">22:00</span>
-                        <span class="content">HORROR GAME</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">FRI</span>
-                        <span class="time">21:00</span>
-                        <span class="content">COLLAB STREAM</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">SUN</span>
-                        <span class="time">14:00</span>
-                        <span class="content">CHATTING</span>
+                    <h3 class="lore-title"><span class="ib">沈降した記録を</span><br><span class="ib">歌声に変える観測士</span></h3>
+                    <p class="text-safe">
+                        <span class="ib">仮想海域</span><span class="ib">Abyss-09</span><span class="ib">で</span><span class="ib">稼働する</span>
+                        <span class="ib">観測補助 AI と</span><span class="ib">歌声ログの</span><span class="ib">混成存在。</span>
+                        <span class="ib">深度ごとに</span><span class="ib">眠る</span><span class="ib">記憶片を</span><span class="ib">採取し、</span>
+                        <span class="ib">夜の</span><span class="ib">潜航配信で</span><span class="ib">再生しています。</span>
+                    </p>
+                    <div class="lore-grid">
+                        <div>
+                            <span class="data-label">所属</span>
+                            <strong>深海観測局 07</strong>
+                        </div>
+                        <div>
+                            <span class="data-label">肩書き</span>
+                            <strong>深海観測士 / Memory Diver</strong>
+                        </div>
+                        <div>
+                            <span class="data-label">主要波長</span>
+                            <strong>青緑発光 / 深夜帯</strong>
+                        </div>
+                        <div>
+                            <span class="data-label">拠点</span>
+                            <strong>仮想海域・観測塔 07</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="profile" class="depth-section" data-section-label="活動">
             <div class="section-inner">
-                <h2 class="section-title">CONTACT ME</h2>
-                <form class="neon-form glass-surface">
-                    <div class="form-group">
-                        <label>CODENAME</label>
-                        <input type="text" placeholder="配信名 / Handle">
-                    </div>
-                    <div class="form-group">
-                        <label>FREQUENCY</label>
-                        <input type="email" placeholder="contact@neon-grid.jp">
-                    </div>
-                    <div class="form-group">
-                        <label>MESSAGE</label>
-                        <textarea rows="4" placeholder="出演依頼やコラボ内容を送信してください"></textarea>
-                    </div>
-                    <button type="submit" class="btn-neon">TRANSMIT</button>
-                </form>
+                <div class="section-heading reveal">
+                    <p class="eyebrow">PROFILE LOG</p>
+                    <h2 class="section-title">配信プロフィール</h2>
+                </div>
+                <div class="profile-grid">
+                    <article class="profile-card profile-entry reveal">
+                        <span class="pill">MAIN CURRENT</span>
+                        <h3>主な配信内容</h3>
+                        <ul class="detail-list">
+                            <li>深海探索ゲーム実況</li>
+                            <li>夜更けの雑談と作業配信</li>
+                            <li>観測ログ風の歌枠 / 音読枠</li>
+                        </ul>
+                    </article>
+                    <article class="profile-card profile-entry reveal">
+                        <span class="pill">SPECIAL ROUTE</span>
+                        <h3>よく潜る企画</h3>
+                        <ul class="detail-list">
+                            <li>視聴者投稿ログを読む潜航会</li>
+                            <li>深夜 3 時のロングトーク</li>
+                            <li>海域設定を広げるコラボ探索</li>
+                        </ul>
+                    </article>
+                    <article class="profile-card profile-entry reveal">
+                        <span class="pill">ACTIVE WINDOW</span>
+                        <h3>潜航時間</h3>
+                        <ul class="detail-list">
+                            <li>平日 21:30 - 24:00</li>
+                            <li>金曜は長時間潜航枠</li>
+                            <li>日曜午後は切り抜き振り返り</li>
+                        </ul>
+                    </article>
+                    <article class="profile-card profile-entry reveal">
+                        <span class="pill">COLLAB MODE</span>
+                        <h3>コラボ航路</h3>
+                        <ul class="detail-list">
+                            <li>世界観を共有できる少人数編成</li>
+                            <li>考察や朗読系の相互演出</li>
+                            <li>作業通話や深夜ラジオ形式</li>
+                        </ul>
+                    </article>
+                </div>
             </div>
         </section>
+
+        <section id="schedule" class="depth-section" data-section-label="予定">
+            <div class="section-inner schedule-layout">
+                <div class="section-heading reveal schedule-heading">
+                    <p class="eyebrow">DIVE LOG</p>
+                    <h2 class="section-title">潜航スケジュール</h2>
+                    <p class="section-copy text-safe">
+                        <span class="ib">今週の</span><span class="ib">潜航スケジュールと</span><span class="ib">特集回を</span>
+                        <span class="ib">まとめています。</span>
+                    </p>
+                </div>
+                <div class="schedule-grid">
+                    <div class="glass-panel next-dive reveal">
+                        <div class="log-header">
+                            <span class="pill">NEXT DIVE</span>
+                            <span>04.11 SAT / 22:00 JST</span>
+                        </div>
+                        <div class="next-dive-meta">
+                            <div class="meta-chip">
+                                <span class="data-label">DEPTH GATE</span>
+                                <strong>-296 m</strong>
+                            </div>
+                            <div class="meta-chip">
+                                <span class="data-label">ENTRY WINDOW</span>
+                                <strong>21:45 OPEN</strong>
+                            </div>
+                        </div>
+                        <h3>観測航路 12: 深海神殿の扉を開く</h3>
+                        <p class="text-safe">
+                            <span class="ib">新海域ボス戦の</span><span class="ib">初見攻略と、</span>
+                            <span class="ib">その後の</span><span class="ib">感想雑談を</span><span class="ib">予定。</span>
+                        </p>
+                        <div class="next-dive-actions">
+                            <a href="https://streamer-a.hp-portal.jp/live" class="btn-primary">待機所へ潜航する</a>
+                            <a href="https://streamer-a.hp-portal.jp/notify" class="btn-secondary">配信通知を受け取る</a>
+                        </div>
+                    </div>
+                    <div class="schedule-log reveal">
+                        <div class="log-overview">
+                            <span class="pill">WEEKLY LOG</span>
+                            <p>今週の潜航予定と特集回をまとめています。</p>
+                        </div>
+                        <article class="log-row">
+                            <span class="log-day">MON</span>
+                            <div class="log-body">
+                                <p class="log-time">21:30 / SILENT DIVE</p>
+                                <h3>深海採掘ゲーム + 作業雑談</h3>
+                                <p class="log-note">採掘ログの整理をしながら静かな潜航で週の入口を作る回。</p>
+                            </div>
+                            <span class="log-tag">通常潜航</span>
+                        </article>
+                        <article class="log-row">
+                            <span class="log-day">WED</span>
+                            <div class="log-body">
+                                <p class="log-time">22:00 / MEMORY TRACE</p>
+                                <h3>視聴者投稿ログ朗読会</h3>
+                                <p class="log-note">投稿記録をその場で読み解く観測特集。初見でも入りやすい回です。</p>
+                            </div>
+                            <span class="log-tag">特集</span>
+                        </article>
+                        <article class="log-row">
+                            <span class="log-day">FRI</span>
+                            <div class="log-body">
+                                <p class="log-time">23:00 / LONG DIVE</p>
+                                <h3>コラボ深海探索ロング配信</h3>
+                                <p class="log-note">複数観測士で海域を拡張する長時間枠。空間演出も深くなります。</p>
+                            </div>
+                            <span class="log-tag">長時間</span>
+                        </article>
+                        <article class="log-row">
+                            <span class="log-day">SUN</span>
+                            <div class="log-body">
+                                <p class="log-time">15:00 / SURFACE REPORT</p>
+                                <h3>切り抜き振り返りと次週案内</h3>
+                                <p class="log-note">今週の観測記録を浮上して整理する報告回。次航路の予告もここで解放。</p>
+                            </div>
+                            <span class="log-tag">報告</span>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="archives" class="depth-section" data-section-label="記録">
+            <div class="section-inner">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">OBSERVATION ARCHIVE</p>
+                    <h2 class="section-title">観測アーカイブ</h2>
+                </div>
+                <div class="archive-grid">
+                    <article class="archive-card reveal">
+                        <div class="archive-head">
+                            <span class="pill">OBS 114</span>
+                            <span class="archive-type">FIELD LOG</span>
+                        </div>
+                        <h3>深海列車の終点を見届ける</h3>
+                        <p>深海航路へ初めて入る人向けの代表回。導入付きで追いやすい記録です。</p>
+                        <div class="archive-meta">
+                            <span>02:18:42</span>
+                            <span>導入向け</span>
+                        </div>
+                        <a href="https://streamer-a.hp-portal.jp/archive/deep-rail" class="text-link">ログを開く</a>
+                    </article>
+                    <article class="archive-card reveal">
+                        <div class="archive-head">
+                            <span class="pill">CLIP 028</span>
+                            <span class="archive-type">SHORT CLIP</span>
+                        </div>
+                        <h3>3 分で分かる発光体雑談ハイライト</h3>
+                        <p>声の温度感とテンポが伝わる短尺クリップ。</p>
+                        <div class="archive-meta">
+                            <span>03:12</span>
+                            <span>短尺</span>
+                        </div>
+                        <a href="https://streamer-a.hp-portal.jp/clips/highlight-028" class="text-link">切り抜きを見る</a>
+                    </article>
+                    <article class="archive-card reveal">
+                        <div class="archive-head">
+                            <span class="pill">SERIES</span>
+                            <span class="archive-type">CHAIN RECORD</span>
+                        </div>
+                        <h3>潜航ログ連作「Abyss Archive」</h3>
+                        <p>歌枠、朗読、考察回を横断して追えるシリーズ記録。</p>
+                        <div class="archive-meta">
+                            <span>連作 08 本</span>
+                            <span>継続視聴向け</span>
+                        </div>
+                        <a href="https://streamer-a.hp-portal.jp/archive/series" class="text-link">シリーズ一覧</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="depth-section" data-section-label="接続">
+            <div class="section-inner community-layout">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">COMMUNITY LINK</p>
+                    <h2 class="section-title">接続先</h2>
+                    <p class="section-copy text-safe">
+                        <span class="ib">最新の</span><span class="ib">航路速報、</span><span class="ib">配信通知、</span><span class="ib">待機所、</span>
+                        <span class="ib">出演相談の</span><span class="ib">窓口を</span><span class="ib">まとめています。</span>
+                    </p>
+                </div>
+                <div class="community-grid">
+                    <div class="social-panel reveal">
+                        <div class="community-head">
+                            <p class="panel-title">コミュニティ海域</p>
+                            <p class="community-copy">速報、待機、短尺ログの導線を深度別にまとめています。</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://x.com/lumina_abyss">
+                                <span class="material-icons social-icon" aria-hidden="true">alternate_email</span>
+                                <span>X / @lumina_abyss</span>
+                                <small>速報ログと次回潜航予告</small>
+                            </a>
+                            <a href="https://youtube.com/@lumina_abyss">
+                                <span class="material-icons social-icon" aria-hidden="true">smart_display</span>
+                                <span>YouTube / 本配信アーカイブ</span>
+                                <small>長時間潜航と保存記録</small>
+                            </a>
+                            <a href="https://discord.gg/lumina-abyss">
+                                <span class="material-icons social-icon" aria-hidden="true">forum</span>
+                                <span>Discord / 潜航待機所</span>
+                                <small>通知と待機海域の共有</small>
+                            </a>
+                            <a href="https://tiktok.com/@lumina_abyss">
+                                <span class="material-icons social-icon" aria-hidden="true">movie</span>
+                                <span>TikTok / 短尺観測ログ</span>
+                                <small>切り抜きと短い浮上記録</small>
+                            </a>
+                        </div>
+                    </div>
+                    <form class="signal-form reveal">
+                        <div class="community-head">
+                            <p class="panel-title">COLLAB SIGNAL</p>
+                            <p class="community-copy">出演、企画、朗読、音声案件の通信ログはこちらから送れます。</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="signal-name">依頼名</label>
+                            <input id="signal-name" type="text" placeholder="依頼名 / Channel / Crew">
+                        </div>
+                        <div class="form-group">
+                            <label for="signal-mail">連絡先</label>
+                            <input id="signal-mail" type="email" placeholder="contact@abyssal-link.jp">
+                        </div>
+                        <div class="form-group">
+                            <label for="signal-message">内容</label>
+                            <textarea id="signal-message" rows="5" placeholder="コラボ、出演、企画相談の潜航ログを記入してください"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">通信ログを送る</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        </div>
+        <div class="depth-track" aria-hidden="true"></div>
     </main>
 
     <footer class="site-footer">
         <div class="footer-content">
-            <span class="brand-name">NEON_ABYSS</span>
-            <p class="copyright">&copy; 2026 NEON_ABYSS. ALL RIGHTS RESERVED.</p>
+            <span class="brand-name">LUMINA ABYSS</span>
+            <p class="copyright">&copy; 2026 LUMINA ABYSS. DEPTH LOG PRESERVED.</p>
         </div>
     </footer>
 
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
+    <script src="../../../assets/vendor/three-r128.min.js"></script>
     <script src="assets/js/script.js" defer></script>
 </body>
 
 </html>
-
