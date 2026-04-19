@@ -34,10 +34,16 @@
 - 必要に応じて `docs` を簡素化し、正本と参考資料の境界を明確にする
 - `docs/README.md` を起点に、運用文書と reference 文書の置き場所を揃える
 
+### 5. Streamer Next.js Foundation
+- `streamer` の新規テーマ群は、React + Next.js の共通基盤を先に固定してから個別設計に入る
+- `docs/TEMPLATE_DESIGN_SPEC_COMMON.md` を共通設計の正本として扱う
+- 3D はテーマの核に必要な場合だけ採用し、モバイルと reduced motion の代替を必ず持たせる
+
 ## Near-Term Plan
 - `public/templates` 配下の補助ファイル整理を継続する
 - `scripts/` 配下の残存ツールを用途単位で見直す
 - テンプレート更新後の確認手順を最小限で再利用できる形に寄せる
+- streamer 新テーマ群は共通基盤を固めてから、各テーマの詳細設計へ展開する
 
 ## Archive Note
 - 過去の監査レポートや個別検証結果は、必要なら専用の履歴文書に分離する

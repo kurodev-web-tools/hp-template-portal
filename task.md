@@ -19,6 +19,13 @@
 - [x] `.gitignore` が一時ファイル、生成物、ローカルメモを正しく吸収できているか確認する。現状の ignore ルールは運用に対して十分で、`docs` / `scripts` / `public` 配下にも一時ファイル混入はない
 
 ## Next Candidate Actions
+- [x] streamer 新テーマの共通基盤を `docs/TEMPLATE_DESIGN_SPEC_COMMON.md` と `docs/TECH_STACK.md` に固定した。詳細設計テンプレートと共通骨格、3D / フォールバック / 検証ルールを整理済み
+- [x] streamer の残りテーマ詳細設計に、`LP single page` / `LP + subpages` / `side panel` / `top fixed` / `world-in-UI` の判断を横展開した
+- [x] `E: Echo` と `O: Overload` の `LP + subpages` で、トップの役割と下層ページの役割分担を明文化した
+- [x] `K / Q / S / U / W / X / P` の `world-in-UI` 系で、トップの役割と導線の意味づけを補強した
+- [x] `A / D / F` の `LP single page` 系で、トップの役割と SP の可読性優先を明文化した
+- [x] `B / C / I` の演出強め `LP single page` 系で、トップの役割と画面内導線を明文化した
+- [x] `G / H / J / K / L / M / N / R / T / V / Y / Z` の `LP single page` / `world-in-UI` 系で、トップの役割を追加して見出し粒度を揃えた
 - [ ] `public/templates` 配下で新たに補助ファイルや未使用資産が増えていないかを継続確認する。現時点では `business/boilerplate.html` はスターターテンプレートとして保持し、generated 画像は参照のある `external-image-01.svg` と OGP 用 SVG を中心に残して個別判断する
 - [x] 残っているスクリプトの用途を継続確認し、再利用性の薄いものが増えない状態を維持する。`scripts/README.md`、`package.json`、関連運用文書の参照は整合しており、現状の残存 script は保守対象として妥当
 - [x] `docs/THUMBNAIL_WORKFLOW.md` を起点に、変更範囲だけを capture する運用へ寄せ続ける。カテゴリ別 command、business の tag 指定、preview 不安定時の file fallback、capture 後の最小確認手順を文書へ反映した

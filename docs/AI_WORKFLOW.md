@@ -18,6 +18,14 @@
 ### Initialization & Template Usage
 - プロジェクト初期化機能によって `task.md` テンプレートが作成された場合、AIは初期化後の最初の対話または作業フェーズにおいて、**このファイルを具体的な開発タスクで埋める責任**を持ちます。
 
+### Template Renewal Flow
+- テンプレート renewal は、テンプレートごとに worktree を分けて進めます。
+- renewal の作業開始時は、Codex が worktree 作成から実装までを進め、ユーザーは最終的な `push` / `PR` を担当します。
+- renewal は 1 タスクごとに確認し、意味のある単位でコミットします。
+- タスク粒度の基準は `Phase 1: 骨組みのみ`、`Phase 2: 内容追加`、`Phase 3: 動き追加`、`Phase 4: モバイル最適化`、`Phase 5: 仕上げ` とします。
+- renewal の作業開始時は、必要に応じてモックアップ、参考画像、設計書を先に確認し、その内容に合わせてタスクを分解します。
+- AI へ作業を依頼するときは、`task.md` に加えて対象テンプレートの設計書や作業中の worktree パスを明示すると、文脈の取り違えが起きにくくなります。
+
 ## 2. Context Optimization Strategy
 
 ### Documentation
@@ -27,6 +35,7 @@
 - **`docs/TEMPLATE_STATIC_AUDIT.md`**: テンプレート更新後の標準検証手順
 - **`docs/THUMBNAIL_WORKFLOW.md`**: サムネイル更新の最小運用
 - **`docs/TEMPLATE_METADATA_AUDIT.md`**: metadata / placeholder 文言の扱い
+- **`docs/reference/<category>/<template>-renewal-design.md`**: renewal の実装判断に使う個別設計書
 
 ## 3. Coding Standards
 - **Environment**: I-M Portal Project (HP-Portal)

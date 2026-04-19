@@ -9,6 +9,10 @@
   - `PLAN.md`
 - AI の基本運用ルールを確認する:
   - `AI_WORKFLOW.md`
+- テンプレート renewal の依頼テンプレを見る:
+  - `TEMPLATE_RENEWAL_WORKFLOW.md`
+- ストリーマー新テーマの共通設計を見る:
+  - `TEMPLATE_DESIGN_SPEC_COMMON.md`
 - テンプレート更新後の検証手順を見る:
   - `TEMPLATE_STATIC_AUDIT.md`
 - サムネイル更新手順を見る:
@@ -23,6 +27,10 @@
   - 中長期の方針、背景、整理済みテーマ
 - `AI_WORKFLOW.md`
   - AI 運用上の前提と `task.md` 優先ルール
+- `TEMPLATE_RENEWAL_WORKFLOW.md`
+  - renewal 開始時のコピペ用テンプレート
+- `TEMPLATE_DESIGN_SPEC_COMMON.md`
+  - streamer 新テーマの共通基盤と詳細設計テンプレート
 - `THUMBNAIL_WORKFLOW.md`
   - サムネイル更新の最小運用手順
 - `TEMPLATE_METADATA_AUDIT.md`
