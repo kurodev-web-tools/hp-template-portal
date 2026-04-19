@@ -26,6 +26,7 @@
 - [x] `A / D / F` の `LP single page` 系で、トップの役割と SP の可読性優先を明文化した
 - [x] `B / C / I` の演出強め `LP single page` 系で、トップの役割と画面内導線を明文化した
 - [x] `G / H / J / K / L / M / N / R / T / V / Y / Z` の `LP single page` / `world-in-UI` 系で、トップの役割を追加して見出し粒度を揃えた
+- [x] `streamer_next` のための予約領域を `public/assets/js/data.js` と `public/assets/images/thumbnails/streamer_next/` に準備した。表示接続は次の branch で行う
 - [ ] `public/templates` 配下で新たに補助ファイルや未使用資産が増えていないかを継続確認する。現時点では `business/boilerplate.html` はスターターテンプレートとして保持し、generated 画像は参照のある `external-image-01.svg` と OGP 用 SVG を中心に残して個別判断する
 - [x] 残っているスクリプトの用途を継続確認し、再利用性の薄いものが増えない状態を維持する。`scripts/README.md`、`package.json`、関連運用文書の参照は整合しており、現状の残存 script は保守対象として妥当
 - [x] `docs/THUMBNAIL_WORKFLOW.md` を起点に、変更範囲だけを capture する運用へ寄せ続ける。カテゴリ別 command、business の tag 指定、preview 不安定時の file fallback、capture 後の最小確認手順を文書へ反映した

@@ -997,6 +997,37 @@ const PORTAL_DATA = {
                 themeLabel: 'Zen'
             }
         ]
+    },
+    draftTemplates: {
+        streamer: [
+            {
+                id: 'st_next_a', name: 'Next A', tag: 'A2', path: 'templates/streamer_next/a',
+                description: '次世代ストリーマー向けの試作枠。既存 A-Z の公開世代とは分けて確認するための仮データです。',
+                features: ['Next', 'Preview', 'Stream'],
+                colors: ['#00f2ff', '#7000ff', '#05050a'],
+                image: 'assets/images/thumbnails/streamer_next/a.jpg',
+                bgPosition: 'center 40%',
+                themeLabel: 'Next A'
+            },
+            {
+                id: 'st_next_b', name: 'Next B', tag: 'B2', path: 'templates/streamer_next/b',
+                description: '次世代ストリーマー向けの試作枠。既存 B の renewal と混ざらないように分離した仮データです。',
+                features: ['Next', 'Preview', 'Stream'],
+                colors: ['#d4af37', '#8a6d3b', '#121212'],
+                image: 'assets/images/thumbnails/streamer_next/b.jpg',
+                bgPosition: 'center 30%',
+                themeLabel: 'Next B'
+            },
+            {
+                id: 'st_next_c', name: 'Next C', tag: 'C2', path: 'templates/streamer_next/c',
+                description: '次世代ストリーマー向けの試作枠。既存 C の renewal と混在させずに確認するための仮データです。',
+                features: ['Next', 'Preview', 'Stream'],
+                colors: ['#ffd6ff', '#e7ffff', '#c8b6ff'],
+                image: 'assets/images/thumbnails/streamer_next/c.jpg',
+                bgPosition: 'center 30%',
+                themeLabel: 'Next C'
+            }
+        ]
     }
 };
 
