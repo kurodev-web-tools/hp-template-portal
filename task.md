@@ -7,6 +7,7 @@
 
 ## Active Priorities
 - [ ] 2026-05-03 の受注導線監査を起点に、`list.html` の template modal から `plans.html` / `order-premium.html` へ template id を渡す導線、トップの実数表示、料金/プラン名の整理を優先改善する。詳細は `docs/reviews/PORTAL_CONVERSION_AUDIT_2026-05-03.md`
+- [x] Business S: Smart SaaS の Phase 1 構造/CTA導線を `codex/business-s-smart-saas` で更新した。`public/templates/business/s/` の Hero、About、Service、Contact に `plans.html?template=business-s&plan=standard` への制作相談導線、SaaS向け実サイト寄りコピー、問い合わせしやすい相談フォーム文脈を反映済み。motion / 3D / 粒子 / heavy canvas の新規追加はなし
 - [x] 104テンプレート分のリニューアル詳細mdを `docs/template-renewal-details/` にカテゴリ別かつ `full-renewal` / `partial-renewal` / `polish` 別で作成した。各テンプレートの実装前設計入力として、構成、デザイン、CTA、モック画像方針に加え、リニューアル深度、演出レベル、ページモデル、PCヘッダー位置、FV設計、セクション別計画、避ける表現、実装フェーズまで確認できる
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
@@ -38,6 +39,7 @@
 - [x] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す。`example.com` 系の metadata 戻りはなく、残る `data-demo-*` は意図的な demo hook、generated SVG の `Local placeholder image` はローカル生成資産として扱う方針を明記した
 - [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
 - [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
+- [ ] Business template improvement の次候補は実装順に従い `Business T: Trust Guard`。詳細mdは `docs/template-renewal-details/business/partial-renewal/t-trust-guard.md` を起点にする
 - [x] `streamer` の残る公開品質課題として、設定コメントの除去と個別 CTA / contact 文言の明確化を反映した
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
