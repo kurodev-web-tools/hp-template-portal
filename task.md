@@ -42,6 +42,7 @@
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [x] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI について主要な戻り確認を実施した
+- [x] Business R: Royal Legacy の Phase 1 polish を実施した。既存のクラシックな構造を維持しつつ、老舗企業・文化ブランド向けの実サイト寄りコピー、header / hero / contact / mobile menu の制作相談導線、`plans.html?template=business-r&plan=standard` への CTA を追加した。次の実装順は Business Z: Zen Garden
 
 ## Backlog
 - [x] テンプレート更新後の検証手順を標準化する。`docs/TEMPLATE_STATIC_AUDIT.md` に default verification routine、監査コマンドの使い分け、カテゴリ別テストの入口を追記した
