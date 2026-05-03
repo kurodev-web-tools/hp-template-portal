@@ -30,26 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === "Escape") setMenuState(false);
     });
     window.addEventListener("resize", () => {
-        if (window.innerWidth >= 1024) setMenuState(false);
+        if (window.innerWidth >= 1280) setMenuState(false);
     });
 
     setMenuState(false);
 
-    // Fade-up Observer
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                fadeObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    });
-
-    document.querySelectorAll('.t-fade-up').forEach((el) => {
-        fadeObserver.observe(el);
-    });
 });
