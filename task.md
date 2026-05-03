@@ -6,6 +6,7 @@
 - 直近の実行判断は `docs/PLAN.md` よりこの `task.md` を優先する
 
 ## Active Priorities
+- [x] Business K: Knowledge の Phase 1 polish を実施した。`docs/template-renewal-details/business/polish/k-knowledge.md` に合わせ、既存の知的信頼感を維持しながら Hero / header / contact / footer の CTA を `plans.html?template=business-k&plan=standard` へつなぎ、未完成に見える検索・`#` 導線を実ページへの相談導線へ整理した
 - [ ] 2026-05-03 の受注導線監査を起点に、`list.html` の template modal から `plans.html` / `order-premium.html` へ template id を渡す導線、トップの実数表示、料金/プラン名の整理を優先改善する。詳細は `docs/reviews/PORTAL_CONVERSION_AUDIT_2026-05-03.md`
 - [x] 104テンプレート分のリニューアル詳細mdを `docs/template-renewal-details/` にカテゴリ別かつ `full-renewal` / `partial-renewal` / `polish` 別で作成した。各テンプレートの実装前設計入力として、構成、デザイン、CTA、モック画像方針に加え、リニューアル深度、演出レベル、ページモデル、PCヘッダー位置、FV設計、セクション別計画、避ける表現、実装フェーズまで確認できる
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
@@ -42,6 +43,7 @@
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [x] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI について主要な戻り確認を実施した
+- [ ] 次の business 改善候補は実装順に従い `S: Smart SaaS`。詳細 md は `docs/template-renewal-details/business/partial-renewal/s-smart-saas.md`
 
 ## Backlog
 - [x] テンプレート更新後の検証手順を標準化する。`docs/TEMPLATE_STATIC_AUDIT.md` に default verification routine、監査コマンドの使い分け、カテゴリ別テストの入口を追記した
