@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 深度メーター型ナビ、青/ピンクのネオン、配信状態カード。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 深海のコックピットとして構成する。左に深度メーター型nav、中央に沈むようなHero、右にソナー型Live / Next Stream、下部にFollow / Contact dockを置く。
+- Header: full-width top navを避け、深度メーターや潜水艇HUDにナビを埋め込む。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は中央の水圧レイヤー内に置き、短い一言はソナー波形や深度ラベルに沿わせる。
+- Visual hook: 深度メーター、ソナー円、青/ピンクのネオン、水圧の暗さ。右カード積みではなく、潜水艇UIとして見せる。
+- Primary actions: Live通知、Schedule、Follow、Contactを4つ以内に整理する。Contactは下部dockの業務連絡として分離する。
+
+## Layout Signature
+- Archetype: deep-sea neon sonar cockpit
+- Density: medium density with a vertical depth hierarchy.
+- Information placement: left vertical depth meter/nav, center submerged hero identity, right sonar Live/Next Stream beacon, bottom dock for Follow and Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: CSS grid with a depth rail, radial sonar rings, static abyss background, and compact dock panels.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Abyss Neon".
 Audience: 深海サイバー配信者.
 Visual direction: 深度メーター型ナビ、青/ピンクのネオン、配信状態カード.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 深海の水圧計、ソナー円、潜水艇コンソール、青/ピンクのネオン。情報は深度UIとビーコンとして配置する。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Abyss Neon layout signature exactly. Make the first viewport feel like a deep-sea neon sonar cockpit, not a standard two-column streamer dashboard. Use a left vertical depth meter/nav, a central submerged hero identity, a right sonar Live/Next Stream beacon, and a bottom dock for Follow and Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No generic hero-left/cards-right layout, no light top navigation bar, no repeated right-side card stack, no unrelated cyberpunk city poster.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

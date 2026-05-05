@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 壁面グラフィティ、イベント告知、太いCTA。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: ストリート壁面のposter collageとして構成する。上部にwall-tag header、中央にmural hero、破れたposterにLive / Schedule、stickerでFollow、右下にbooking/contact posterを置く。
+- Header: 通常ナビではなく、タグ/ステッカー/ポスター見出しとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は大きなグラフィティタグとして置き、活動内容は貼り紙に分散する。
+- Visual hook: 落書き、ステッカー、ポスター、都市の壁。雑多でもCTAは読めるようにする。
+- Primary actions: Live、Schedule、Follow、Booking/Contactを整理する。Contactは出演/案件ポスターとして分離する。
+
+## Layout Signature
+- Archetype: urban wall poster collage
+- Density: high density with street-layer hierarchy.
+- Information placement: wall-tag header, center mural hero, torn-poster Live/Schedule, sticker Follow icons, lower-right booking/contact poster.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: poster collage grid, sticker CTAs, wall texture, torn paper panels, and readable labels.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Urban Graffiti".
 Audience: ストリート/ラップ/カルチャー系.
 Visual direction: 壁面グラフィティ、イベント告知、太いCTA.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: ストリート壁面、ステッカー、ポスター、落書きタグ、イベント告知。情報は貼り紙/ステッカーとして配置する。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Urban Graffiti layout signature exactly. Make the first viewport an urban wall poster collage with tag header, mural hero, torn-poster Live/Schedule, sticker Follow icons, and booking/contact poster.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No polished corporate grid, no fantasy UI, no pastel prism panels, no identical right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

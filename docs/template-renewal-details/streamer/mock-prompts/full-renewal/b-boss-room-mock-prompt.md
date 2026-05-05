@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはside railまたはworld-in-UI header。SPはtop compact header + sticky CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 玉座/ステータスUI、重厚な暗金、HPバー型セクション。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 画面全体を「ボス部屋の管理UI」として扱う。左端に紋章付きside rail、中央に玉座とキャラクター、下部にBoss Status / HP bar、右端にNext Raid / Schedule / Contractを縦ではなく玉座UIの一部として差し込む。
+- Header: PCはfull-width top navを避け、左side rail + 玉座内のworld-in-UI labelにする。SPはtop compact header + sticky CTA。
+- Hero copy: キャラ名は玉座下または中央下に大きく置き、配信ジャンルと短い一言はステータスUIの近くに置く。
+- Visual hook: 玉座、紋章、HPバー、討伐予定、契約書風Contact。右カラムカード積みではなく、支配者のステータス画面として見せる。
+- Primary actions: Live通知、Schedule、Follow、Contactを4つ以内に整理する。Contactはファン導線とは別の「契約/依頼」ブロックとして赤金系で分離する。
+
+## Layout Signature
+- Archetype: asymmetric boss-control room
+- Density: high density, but the hierarchy is throne -> boss name -> next stream -> contact.
+- Information placement: side rail for navigation, lower-left for status/Follow, mid-right for Next Raid/Schedule, lower-right for Contract/Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: CSS grid, side rail, bordered panels, HP bars, and static throne background layers.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: 玉座/ステータスUI、重厚な暗金、HPバー型セク
 Imagery direction: 玉座、HPバー、ステータスカード、暗金の重厚感。ファン向け導線と案件導線を明確に分離。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Boss Room layout signature exactly. Make the first viewport feel like an asymmetric boss-control room, not a generic streamer dashboard. Use a left side rail with crest/navigation, a central throne and boss identity, a lower-left Boss Status / HP bar area, a mid-right Next Raid or Next Stream command panel, and a lower-right Contract / Contact block. Keep Follow near the status area, not grouped with Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No generic top navigation with identical right-side stacked cards, no light top header, no balanced two-column card grid, no pastel floating cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

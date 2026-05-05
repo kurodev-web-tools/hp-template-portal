@@ -11,6 +11,8 @@
 - [x] 104テンプレート分のリニューアル詳細mdを `docs/template-renewal-details/` にカテゴリ別かつ `full-renewal` / `partial-renewal` / `polish` 別で作成した。各テンプレートの実装前設計入力として、構成、デザイン、CTA、モック画像方針に加え、リニューアル深度、演出レベル、ページモデル、PCヘッダー位置、FV設計、セクション別計画、避ける表現、実装フェーズまで確認できる
 - [x] Business D: Dynamic の Phase 1 polish として、`public/templates/business/d` の制作相談 CTA を `plans.html?template=business-d&plan=standard` へ整理し、未接続リンクとスクロール reveal / parallax フックを外して static structure + CTA 導線に寄せた
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
+- [x] streamer B/C/I の試作結果を受け、`scripts/generate-streamer-mock-prompts.mjs` と `mock-prompts/` 全26件に Layout Signature を追加した。各テーマで archetype、ヘッダー位置、情報配置、密度、実装ヒント、避ける共通レイアウトを明文化し、右カード積み/hero-left/cards-right に戻りにくい生成入力へ更新した
+- [x] streamer 26件の first viewport mock画像を更新済み Layout Signature プロンプトから `docs/template-renewal-details/streamer/mockup-image/` に `*-layout-v2.png` として保存した。保存先は `full-renewal` / `partial-renewal` / `polish` の分類を維持し、各画像の存在と寸法取得を確認済み
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
 - [x] Business B: Bold の Phase 1 polish として、Hero の制作相談CTA、実績導線、CTA strip、SP固定CTA、下層ページ共通の `plans.html?template=business-b&plan=standard` 導線を追加した。詳細入力は `docs/template-renewal-details/business/polish/b-bold.md`

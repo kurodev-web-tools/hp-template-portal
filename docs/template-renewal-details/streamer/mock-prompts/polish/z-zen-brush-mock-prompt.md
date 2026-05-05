@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 筆跡、余白、静かなCTA。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 禅の掛け軸/筆跡として構成する。最小限のink nav、大きなbrush hero、小さなnext stream seal、左下にschedule scroll、右下にquiet contact sealを置く。
+- Header: 通常navを避け、墨の小さな印や縦書きラベルとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は大きな筆文字/余白の主役として置き、説明は極力短くする。
+- Visual hook: 筆跡、余白、和紙、印章。Cとは違う静かな余白で、装飾密度を上げない。
+- Primary actions: Live、Schedule、Follow、Contactを整理する。Contactは控えめな印章/問い合わせ札として分離する。
+
+## Layout Signature
+- Archetype: zen brush scroll composition
+- Density: low density with strong negative space.
+- Information placement: minimal top/side ink nav, large brush hero, small next stream seal, lower-left schedule scroll, lower-right quiet contact seal.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: ink brush background, scroll-like panels, seal CTAs, static texture, and restrained typography.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: 筆跡、余白、静かなCTA.
 Imagery direction: 筆跡、余白、和紙に近い静かな背景、落ち着いた配信予定カード。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Zen Brush layout signature exactly. Make the first viewport a zen brush scroll composition with minimal ink nav, large brush hero, next stream seal, schedule scroll, and quiet contact seal.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No dense dashboard, no cyber HUD, no idol ticket strip, no repeated right-side cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

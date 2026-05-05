@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはside railまたはworld-in-UI header。SPはtop compact header + sticky CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 任務ブリーフィング、暗いUI、最小演出。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 潜入任務のdossierとして構成する。左にmission nav、中央にmasked hero/dossier、右にencrypted schedule、下部にsecure drop Contactを置く。
+- Header: top navではなく、ミッション番号/暗号タブとして扱う。SPはtop compact header + sticky CTA。
+- Hero copy: キャラ名はコードネームとして置き、活動内容はmission objectiveに分ける。
+- Visual hook: ステルスHUD、暗号、潜入マップ。情報は暗く絞るがCTAは明確にする。
+- Primary actions: Start Mission、Schedule、Follow、Secure Contactを整理する。Contactは安全な投函口として分離する。
+
+## Layout Signature
+- Archetype: stealth mission dossier
+- Density: medium density with dark tactical focus.
+- Information placement: left mission nav, center masked hero/dossier, right encrypted schedule, bottom secure drop Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: tactical grid, dossier cards, map overlays, dark panels, and high-contrast CTA.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Rogue Stealth".
 Audience: ステルス/スパイ系.
 Visual direction: 任務ブリーフィング、暗いUI、最小演出.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 潜入マップ、暗号化されたミッションカード、暗い影、ステルスHUD。Contactはsecure dropとして分離する。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Rogue Stealth layout signature exactly. Make the first viewport a stealth mission dossier with mission nav, masked hero dossier, encrypted schedule, and secure drop Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No boss throne layout, no bright idol signage, no pastel prism panels, no repeated right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

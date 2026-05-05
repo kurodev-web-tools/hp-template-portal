@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: ステージ照明、ライブ日程、ファン導線。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 画面を「ライブ会場の興行ページ」として組む。上部はチケットカウンター/会場看板風header、中央奥にステージと performer silhouette、下部に横長のticket stripとしてLive / Fan Club / Goodsを並べ、右側にNext Liveの大きなタイムテーブルを置く。
+- Header: PCはtop fixed headerでもよいが、通常の白いナビバーではなく、会場サイン/チケットカウンター風にする。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名はステージ看板または光るマーキーとして見せ、配信ジャンルと一言はチケット半券やリボン状ラベルに置く。
+- Visual hook: ステージ照明、客席のペンライト、ライブ日程、Fan Club / Goods導線。Cの透明余白ではなく、イベント告知として明るく商業的にする。
+- Primary actions: Live視聴、Next Live、Fan Club、Goods、Contactを整理する。Contactは黒/濃色のBackstage Inquiryブロックとして、ファン向け購入導線と分ける。
+
+## Layout Signature
+- Archetype: idol live venue and ticket strip
+- Density: medium-high density, event-like, with clear commercial paths.
+- Information placement: top venue-sign header, center stage/performer, right large Next Live timetable, bottom horizontal ticket strip for Live / Fan Club / Goods, Backstage Contact as a separate dark block.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: header marquee, stage background image, ticket-strip CTA row, timetable card, goods/fanclub panels, and a separated contact block.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: ステージ照明、ライブ日程、ファン導線.
 Imagery direction: ステージ照明、ピンク/白のスポットライト、ファンライト、配信予定カード。きらめきはHero周辺に限定。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Idol Stage layout signature exactly. Make the first viewport feel like a live venue event page, not a generic streamer dashboard. Use a venue-sign or ticket-counter style top header, a central stage and performer silhouette, a large right-side Next Live timetable, a bottom horizontal ticket strip for Live / Fan Club / Goods, and a separate dark Backstage Contact block for business inquiries.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No airy crystal layout, no boss status UI, no identical right-side stacked card layout, no generic concert poster without UI.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

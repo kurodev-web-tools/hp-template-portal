@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: ドットUI、セーブスロット、カセット風カード。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: レトロゲームのsave-select画面として構成する。上部にpixel title bar、中央にcharacter/save-slot hero、左にcommand menu、右にnext stage/schedule、下部にcartridge Contactを置く。
+- Header: 通常ナビではなく、ゲームのコマンドメニューとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名はセーブデータ名として置き、活動内容はステータス/ステージ名にする。
+- Visual hook: ドットUI、カセット、セーブスロット、8-bit frame。本文は読みやすい通常フォントも併用する。
+- Primary actions: Continue Live、Stage Schedule、Follow、Contactを整理する。Contactはカセット/説明書の相談欄として分離する。
+
+## Layout Signature
+- Archetype: retro game save-select screen
+- Density: medium density with playful clear choices.
+- Information placement: top pixel title bar, center character/save-slot hero, left menu commands, right next stage/schedule, bottom cartridge Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: pixel frames, save slots, command menu, readable mixed typography, and low-cost CSS blocks.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: ドットUI、セーブスロット、カセット風カード
 Imagery direction: ドットUI、セーブスロット、カセット風カード、8-bit frame。本文は読みやすい通常フォントも併用。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Pixel Retro layout signature exactly. Make the first viewport a retro game save-select screen with pixel title bar, command menu, save-slot hero, next stage schedule, and cartridge Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No modern glass dashboard, no idol stage, no unreadable pixel paragraphs, no identical right-side cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

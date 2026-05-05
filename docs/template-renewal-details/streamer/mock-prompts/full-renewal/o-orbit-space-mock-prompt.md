@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 軌道ナビ、星図、ミッションカード。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 宇宙ミッション管制として構成する。中央にplanet/avatar orbit、円形nav、右にmission schedule、左にtelemetry/live status、下部にground control Contactを置く。
+- Header: top navではなく、軌道リングやmission tabsとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名はミッション名/コールサインとして置き、配信予定はmission timelineにする。
+- Visual hook: 星図、軌道線、深い宇宙、ミッションカード。情報は放射状に整理する。
+- Primary actions: Launch Live、Schedule、Follow、Ground Contactを整理する。Contactは管制通信として分離する。
+
+## Layout Signature
+- Archetype: orbital mission control
+- Density: medium density with radial orbit hierarchy.
+- Information placement: center planet/avatar orbit, circular nav, right mission schedule, left telemetry/live status, bottom contact as ground control channel.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: radial layout, orbit lines, telemetry panels, static starfield, and readable mission cards.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: 軌道ナビ、星図、ミッションカード.
 Imagery direction: 星図、軌道線、ミッションカード、深い宇宙背景。情報カードは高コントラストにする。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Orbit Space layout signature exactly. Make the first viewport orbital mission control with a central orbit hero, circular navigation, telemetry/live status, mission schedule, and ground-control Contact channel.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No rectangular dashboard grid, no fantasy throne, no pastel prism layout, no identical right-side stacked cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

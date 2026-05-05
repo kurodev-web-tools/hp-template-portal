@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: ネオン街、イベント告知、音楽感。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: ネオン街の看板通りとして構成する。上部にclub sign nav、中央にstreet hero、右にevent board schedule、下部にflyer/sticker型Follow / Contactを置く。
+- Header: 通常ナビではなく、店舗看板や路地サインとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は大きなネオンサインとして置き、配信ジャンルはイベント告知ポスターに寄せる。
+- Visual hook: 夜景、ネオン看板、イベントフライヤー。情報は街のサインボードとして分散する。
+- Primary actions: Enter Live、Schedule、Follow、Contactを整理する。Contactは出演/案件相談ポスターとして分離する。
+
+## Layout Signature
+- Archetype: neon nightlife sign street
+- Density: medium-high density with street signage.
+- Information placement: top club sign/nav, center street hero, right event board schedule, bottom flyer stickers for Follow/Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: signboard nav, poster/flyer CTA blocks, dark street background, and readable neon panels.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Neon Night".
 Audience: 夜遊び/クラブ配信者.
 Visual direction: ネオン街、イベント告知、音楽感.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 夜景、クラブの看板、路地サイン、イベントフライヤー。配信予定は街のサインボードとして扱う。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Neon Night layout signature exactly. Make the first viewport a neon nightlife sign street with club-sign navigation, central street hero, event board schedule, and flyer/sticker Follow/Contact blocks.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No generic cyber grid, no clean two-column dashboard, no idol stage ticket strip, no identical right card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

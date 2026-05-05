@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: ガラスカード、淡いプリズム、柔らかい光。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 中央に淡いシルエット/ロゴ/音波を置き、情報は右カラムに積まず、プリズム片のような浮遊パネルとして画面四隅と中景に分散する。余白を大きく取り、Cは3案の中で最も低密度にする。
+- Header: PCは薄いtop fixed headerまたは右上の小さなfloating nav。太い白いナビバーは避ける。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は左上から中央寄りに静かに置き、歌枠/癒し/透明感の短い一言を音波や光の線と並べる。
+- Visual hook: プリズムの反射面、音波、淡い光、浮遊するSong Archive。カードは「面」ではなく、透明な結晶片に情報が乗っている印象にする。
+- Primary actions: Live / Song Archive / Follow / Contactを4つ以内に整理する。Contactは右下に小さく静かな相談導線として置き、ファン導線より目立たせすぎない。
+
+## Layout Signature
+- Archetype: airy floating prism hub
+- Density: low density with generous negative space and soft rhythm.
+- Information placement: hero identity upper-left to center, Next Stream as a floating prism near center-right, Song Archive as a waveform panel near lower-left or lower-center, Follow as small icon crystals, Contact as a quiet lower-right glass chip.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: absolute-positioned glass panels, CSS gradients, static prism layers, and accessible text blocks.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: ガラスカード、淡いプリズム、柔らかい光.
 Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Crystal Prism layout signature exactly. Make the first viewport an airy floating prism hub, not a standard two-column dashboard. Use a soft central silhouette or prism logo, large negative space, floating glass-shard panels around the composition, a subtle Next Stream panel, a Song Archive waveform panel, small Follow icon crystals, and a quiet lower-right Business / Contact glass chip.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No dense dashboard layout, no heavy white navigation bar, no symmetrical two-column split, no identical right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

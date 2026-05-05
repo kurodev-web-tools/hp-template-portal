@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: チャート、免責、情報整理。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 配信成長analytics boardとして構成する。上部にKPI ticker、中央にgrowth chart hero、左にaudience/follow、右にnext stream funnel、下部にsponsor/contact report cardを置く。
+- Header: 通常navではなく、KPI tickerや分析タブとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は成長レポートの主題として置き、活動内容は指標カードに分ける。
+- Visual hook: チャート、KPI、分析パネル。数字やグラフは装飾ではなく導線として使う。
+- Primary actions: Watch Live、Schedule、Follow、Sponsor Contactを整理する。Contactは案件レポート/媒体資料風に分離する。
+
+## Layout Signature
+- Archetype: creator growth analytics board
+- Density: medium-high density with chart hierarchy.
+- Information placement: top KPI ticker, center growth chart hero, left audience/follow panel, right next stream funnel, bottom sponsor/contact report card.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: KPI ticker, line chart hero, metric cards, funnel card, and sponsor report CTA.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Yield Chart".
 Audience: 投資/分析配信者.
 Visual direction: チャート、免責、情報整理.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 配信成長チャート、分析パネル、KPIカード、スポンサー向け資料感。ファン導線と案件導線を分ける。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Yield Chart layout signature exactly. Make the first viewport a creator growth analytics board with KPI ticker, growth chart hero, audience/follow panel, next stream funnel, and sponsor/contact report card.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No fantasy UI, no idol stage, no generic business SaaS page, no repeated right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

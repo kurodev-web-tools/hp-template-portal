@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはside railまたはworld-in-UI header。SPはtop compact header + sticky CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 紋章、任務リスト、品のある金属感。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 騎士団の作戦卓として構成する。左にshield rail、中央に誓約/紋章Hero、右にexpedition schedule、下部にaudience hall Contactを置く。
+- Header: side railまたはworld-in-UIの紋章ナビにし、通常top navは避ける。SPはtop compact header + sticky CTA。
+- Hero copy: キャラ名は誓約書/紋章の中心に置き、配信予定は遠征予定として見せる。
+- Visual hook: 盾、旗、羊皮紙、作戦卓。過度なファンタジー装飾よりUIの読みやすさを優先する。
+- Primary actions: Pledge Live、Schedule、Follow、Audience/Contactを整理する。Contactは謁見/依頼として分離する。
+
+## Layout Signature
+- Archetype: knight order command table
+- Density: medium density with formal hierarchy.
+- Information placement: left shield/nav, center oath/hero crest, right expedition schedule, bottom audience hall Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: shield rail, parchment cards, crest hero, expedition rows, and formal CTA blocks.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Knight Honor".
 Audience: 騎士/ファンタジー系.
 Visual direction: 紋章、任務リスト、品のある金属感.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 騎士団の誓約書、盾、紋章、作戦卓。配信予定は遠征予定、Contactは謁見/依頼として扱う。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Knight Honor layout signature exactly. Make the first viewport a knight order command table with shield navigation, crest hero, expedition schedule, and an audience/Contact block.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No boss throne layout, no idol stage, no pastel prism panels, no identical card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

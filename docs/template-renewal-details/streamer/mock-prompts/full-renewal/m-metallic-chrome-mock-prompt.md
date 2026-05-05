@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: クローム反射、雑誌的Hero、UIは整理。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: クロームのショールームとして構成する。中央にchrome hero pedestal、左にspec/nav strip、右にLive demo / Schedule display、下部にpolished contact dockを置く。
+- Header: 通常top navよりも展示ラベル/スペックバーとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は金属ロゴ/展示名として置き、活動内容はspec labelに分ける。
+- Visual hook: 反射する金属、展示台、製品発表感。カードを並べすぎず、面の美しさを優先する。
+- Primary actions: Watch Demo、Schedule、Follow、Contactを整理する。Contactはshowroom inquiryとして分離する。
+
+## Layout Signature
+- Archetype: chrome showroom command display
+- Density: medium density with product-showcase clarity.
+- Information placement: center chrome hero pedestal, left spec/navigation strip, right live demo/schedule display, bottom polished contact dock.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: reflective panels, pedestal layout, spec strips, demo card, and restrained gradients.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Metallic Chrome".
 Audience: 近未来/ファッション系.
 Visual direction: クローム反射、雑誌的Hero、UIは整理.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: クロームのショールーム、反射する金属パネル、センター展示台、プロダクト発表風の情報配置。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Metallic Chrome layout signature exactly. Make the first viewport a chrome showroom command display with a central hero pedestal, spec/navigation strip, live demo/schedule display, and polished contact dock.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No fantasy UI, no pastel prism layout, no generic corporate SaaS dashboard, no repeated right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

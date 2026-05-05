@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはside railまたはworld-in-UI header。SPはtop compact header + sticky CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: クエストログを情報設計に使う。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 冒険者ギルドのquest boardとして構成する。左にquest category tabs、中央にactive quest/hero parchment、右にparty schedule、下部にguild contact noticeを置く。
+- Header: side railまたは掲示板のタブとして扱い、通常top navは避ける。SPはtop compact header + sticky CTA。
+- Hero copy: キャラ名はactive questの依頼主/冒険者名として置き、次回配信は受注中クエストとして見せる。
+- Visual hook: 羊皮紙、地図、依頼票、パーティ募集。Boss Roomの玉座/HPバーとは明確に分ける。
+- Primary actions: Accept Live、Schedule、Join Community、Contactを整理する。Contactはギルド依頼票として分離する。
+
+## Layout Signature
+- Archetype: adventurer quest board
+- Density: medium density with parchment hierarchy.
+- Information placement: left quest category tabs, center active quest/hero parchment, right party schedule, bottom guild contact notice.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: quest board grid, parchment cards, category tabs, active quest highlight, and guild notice CTA.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Quest Log".
 Audience: RPG/企画配信者.
 Visual direction: クエストログを情報設計に使う.
-Imagery direction: 玉座、HPバー、ステータスカード、暗金の重厚感。ファン向け導線と案件導線を明確に分離。
+Imagery direction: 羊皮紙のクエストログ、掲示板、地図、依頼票、パーティ募集。次回配信はactive questとして扱う。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Quest Log layout signature exactly. Make the first viewport an adventurer quest board with quest category tabs, active quest parchment hero, party schedule, and guild contact notice.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No boss throne, no HP boss status UI, no modern right card stack, no generic fantasy poster without website UI.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

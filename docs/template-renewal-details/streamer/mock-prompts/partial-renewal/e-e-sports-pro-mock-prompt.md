@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 大会UI、白青、成績カード。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: eスポーツ大会配信のbroadcast roomとして構成する。上部にscoreboard header、中央にmatch/map hero、左にroster/platform、右にNext Match bracket、下部にsponsor/contact stripを置く。
+- Header: 通常ナビではなく、試合スコアボードや大会HUDとして見せる。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名はチームタグ/プレイヤーカードとして置き、配信ジャンルはmatch labelで示す。
+- Visual hook: スコア、ブラケット、キルログ風Schedule。ただし文字は壊さず読みやすくする。
+- Primary actions: Watch Live、Schedule、Follow、Scrim/Contactを整理する。企業/案件導線はsponsor/contactとして分離する。
+
+## Layout Signature
+- Archetype: e-sports broadcast match room
+- Density: high density, broadcast-like, with clear match hierarchy.
+- Information placement: top scoreboard header, center match/map hero, left roster/platform panel, right Next Match bracket, bottom sponsor/contact strip.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: scoreboard header, bracket grid, stat cards, platform buttons, and separated sponsor/contact area.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "E-Sports Pro".
 Audience: 競技系配信者/チーム.
 Visual direction: 大会UI、白青、成績カード.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 大会配信HUD、スコアボード、ブラケット、チームカード、マッチ開始パネル。案件導線はscrim/contactとして分ける。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the E-Sports Pro layout signature exactly. Make the first viewport feel like an e-sports broadcast match room with a top scoreboard, center match hero, right bracket/Next Match panel, left roster/platform panel, and bottom sponsor/contact strip.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No fantasy RPG layout, no pastel floating cards, no generic streamer profile dashboard, no identical right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

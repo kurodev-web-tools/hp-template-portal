@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 端末UI、コード断片、可読性重視。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 論理回路のoperations boardとして構成する。上部にcompact command bar、中央にnode graph hero、左にbuild queue、右にLive / Schedule verification、下部にAPI-like Contactを置く。
+- Header: 通常ナビよりもcommand barやノードラベルとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名はプロジェクト名/関数名のように置き、活動内容は検証ログに分ける。
+- Visual hook: 回路、ノード、検証パネル。冷静な技術感を出し、派手なネオンに寄せすぎない。
+- Primary actions: Run Live、Schedule、Follow、Contact APIを整理する。Contactは問い合わせendpointとして分離する。
+
+## Layout Signature
+- Archetype: logic circuit operations board
+- Density: medium-high density with analytic structure.
+- Information placement: top compact command bar, center node graph hero, left build queue, right live/schedule verification panel, bottom API-like contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: node graph, circuit lines, command bar, verification cards, and structured labels.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Tech Logic".
 Audience: 論理/開発/ガジェット系.
 Visual direction: 端末UI、コード断片、可読性重視.
-Imagery direction: HUD、scan line、端末UI、ネオンアクセント。グリッチはHeroの装飾に限定し、文字を壊さない。
+Imagery direction: 論理回路、ノード図、検証パネル、開発者向けダッシュボード。配信予定はbuild queueとして扱う。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Tech Logic layout signature exactly. Make the first viewport a logic circuit operations board with command bar, node graph hero, build queue, verification schedule, and API-like Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No generic cyber city, no idol stage, no fantasy parchment, no repeated right-side cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

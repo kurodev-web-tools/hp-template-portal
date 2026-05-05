@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: ラウンジ席、セットリスト、レコード風カード。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 夜のjazz loungeの予約メニューとして構成する。左に縦型lounge menu、中央にstage/record-cover hero、右にTonight set list / Next Stream、下部にreservation Contactを置く。
+- Header: top navではなく、クラブのメニュー表や席札として扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名はレコードジャケット/ネオンサイン風に置き、活動ジャンルはset listに近い粒度で見せる。
+- Visual hook: 暖色照明、レコード、カウンター、スモーキーな余白。派手なカード密度を避ける。
+- Primary actions: Tonight Live、Schedule、Follow、Reservation/Contactを整理する。Contactは予約/出演相談として分離する。
+
+## Layout Signature
+- Archetype: night jazz lounge reservation menu
+- Density: medium-low density with premium spacing.
+- Information placement: left vertical lounge menu/nav, center stage or record-cover hero, right Tonight set list/Next Stream, bottom reservation-style Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: split lounge menu, album-cover hero, set-list card, warm panels, and low-motion lighting.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Jazz Lounge".
 Audience: 音楽/夜配信者.
 Visual direction: ラウンジ席、セットリスト、レコード風カード.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 夜のラウンジ、ステージ、レコード、予約メニュー、落ち着いた金色アクセント。配信予定は公演表として扱う。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Jazz Lounge layout signature exactly. Make the first viewport a night jazz lounge reservation menu with a vertical lounge menu, record-cover hero, Tonight set list/Next Stream panel, and reservation-style Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No idol ticket strip, no cyber HUD, no generic two-column dashboard, no bright corporate header.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

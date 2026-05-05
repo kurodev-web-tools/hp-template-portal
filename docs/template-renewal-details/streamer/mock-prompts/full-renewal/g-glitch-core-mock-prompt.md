@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: グリッチはHero中心、カードは読みやすく。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 壊れた配信zine/ブラウザ断片として構成する。上部にfragmented ticker、中央にbroken hero、斜めにLive / Clip / Schedule shard、下部に安定したContact panelを置く。
+- Header: 通常ナビではなく、欠けたtickerや断片化したタブとして扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は大胆にずらして置くが、読める輪郭を残す。本文やCTAは壊さない。
+- Visual hook: グリッチ、断片、色ズレ、ノイズ。情報配置そのものを斜め/ずらしで差別化する。
+- Primary actions: Live、Clip、Schedule、Contactを整理する。Contactはノイズの少ない安定パネルとして分離する。
+
+## Layout Signature
+- Archetype: broken glitch zine interface
+- Density: medium-high density with intentional offset panels.
+- Information placement: fragmented top ticker, center broken hero identity, diagonal Live/Clip/Schedule shards, lower contact as stable rescue panel.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: offset CSS panels, clipped shapes, static glitch accents, and stable readable text blocks.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: グリッチはHero中心、カードは読みやすく.
 Imagery direction: HUD、scan line、端末UI、ネオンアクセント。グリッチはHeroの装飾に限定し、文字を壊さない。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Glitch Core layout signature exactly. Make the first viewport a broken glitch zine interface with fragmented ticker nav, offset hero identity, diagonal Live/Clip/Schedule shards, and a stable Contact panel.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No clean symmetric dashboard, no normal top nav, no unreadable broken CTA text, no identical right-side card stack.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

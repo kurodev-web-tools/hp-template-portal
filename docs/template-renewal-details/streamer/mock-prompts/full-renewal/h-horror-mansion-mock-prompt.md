@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはside railまたはworld-in-UI header。SPはtop compact header + sticky CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 館内マップ、蝋燭、暗いが読めるコントラスト。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 洋館の招待状/見取り図として構成する。左にmansion floor map nav、中央に廊下/肖像画Hero、右にcandlelit Next Stream、下部にsealed Contact letterを置く。
+- Header: side railまたは館内案内板にし、明るいtop navは避ける。SPはtop compact header + sticky CTA。
+- Hero copy: キャラ名は肖像画や招待状の題字として置き、配信予定は部屋番号/開演時間のように見せる。
+- Visual hook: 暗い館内、窓明かり、赤いLive badge、読める範囲の霧。怖さより導線の可読性を優先する。
+- Primary actions: Enter Live、Schedule、Follow、Contactを整理する。Contactは封蝋付き依頼状として分離する。
+
+## Layout Signature
+- Archetype: haunted mansion invitation map
+- Density: medium density with suspenseful spacing.
+- Information placement: left mansion floor map/nav, center hallway/portrait hero, right candlelit Next Stream invitation, bottom sealed Contact letter.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: floorplan nav, portrait frame, candlelit panels, invitation card, and restrained mist.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -139,7 +145,7 @@ Visual direction: 館内マップ、蝋燭、暗いが読めるコントラス�
 Imagery direction: 暗い館内、窓の薄明かり、赤いLive badge、読める範囲の霧。怖さより配信導線の可読性を優先。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Horror Mansion layout signature exactly. Make the first viewport a haunted mansion invitation map with floorplan side navigation, central hallway/portrait hero, candlelit Next Stream invitation, and sealed Contact letter.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No generic horror poster without UI, no bright top header, no boss throne layout, no identical right-side cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 

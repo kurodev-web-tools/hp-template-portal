@@ -86,12 +86,18 @@ components:
 - キャラ名は大きく、配信日時とCTAはUIとして読みやすくする。装飾フォントを本文に使わない。
 
 ## Layout
-- PC composition: 左または中央にキャラクター/世界観の主役、反対側に「次回配信」「最新アーカイブ」「SNS」「案件相談」をまとめる。
-- Header: PCはtop fixed header。SPはtop compact header + bottom CTA。
-- Hero copy: キャラ名、配信ジャンル、初見向けの一言、活動プラットフォームを1画面内に入れる。
-- Visual hook: 暗い端末UI、ノイズ、アクセスログ風ナビ。ただしCTAと配信予定の可読性を最優先にする。
-- Primary actions: Live / Schedule / Follow / Contact を4つ以内に整理する。
-- SP order: キャラ名、Live状態、次回配信、SNS、案件相談の順に出す。
+- PC composition: 匿名端末の侵入ログとして構成する。上部にcommand prompt nav、左にaccess log、中央にghost identity、右にencrypted Live / Schedule terminal、下部にsecure channelを置く。
+- Header: 通常のtop navではなく、CLI入力欄やアクセスログの行として扱う。SPはtop compact header + bottom CTA。
+- Hero copy: キャラ名は端末の大きな識別子として置き、活動内容は短いログ行に分解する。
+- Visual hook: 暗い端末UI、ノイズ、アクセスログ、匿名性ガイド。情報はカードではなくterminal windowsとして見せる。
+- Primary actions: Live通知、Schedule、Follow、Contactを4つ以内に整理する。Contactはsecure channelとして分離する。
+
+## Layout Signature
+- Archetype: anonymous terminal breach console
+- Density: medium-high density with strong terminal hierarchy.
+- Information placement: top command prompt/nav, left access log timeline, center ghost identity glitch silhouette, right encrypted Live/Schedule terminal, bottom secure channel for Follow/Contact.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, or identical right-side stacked cards.
+- Implementation hint: terminal panels, monospace labels, scanline overlays, static noise texture, and accessible high-contrast text.
 
 ## Elevation & Depth
 - 背景は最大3レイヤーまで。主役ビジュアル、UIカード、CTAが重ならないようにする。
@@ -136,10 +142,10 @@ Create a high-fidelity first viewport website mockup for a Japanese streamer / V
 Theme: "Digital Ghost".
 Audience: 匿名/ミステリアス系配信者.
 Visual direction: 暗い端末UI、ノイズ、アクセスログ風ナビ.
-Imagery direction: キャラクター立ち絵がなくても成立するよう、ロゴ、シルエット、配信UI、背景レイヤーで世界観を作る。
+Imagery direction: 暗い端末UI、アクセスログ、匿名プロフィール、幽霊のようなシルエット。情報はログ/端末ウィンドウとして配置する。
 
 Canvas: desktop first viewport, 16:9, 1440x900, no browser chrome, no device frame.
-Composition: use the Layout section above exactly. The mock must include a compact header, hero title area, live/status card, next schedule card, SNS/follow actions, and business contact action in the first viewport.
+Composition: use the Digital Ghost layout signature exactly. Make the first viewport an anonymous terminal breach console, not a generic cyber dashboard. Use a command prompt nav, access log timeline, central ghost identity, encrypted Live/Schedule terminal, and a bottom secure channel for Follow/Contact.
 Text: keep text short and legible. Use labels such as "LIVE", "Schedule", "Follow", "Contact", "Next Stream", and a short Japanese streamer name. Do not fill the design with long unreadable paragraphs.
 Style: polished production website mock, not a landing page explanation, not a generic gaming poster. The result should feel like a template that an IRIAMライバー or VTuber could immediately imagine using.
 CTA: show one primary CTA and two to three secondary actions. Business contact must be visually separate from fan/community actions.
@@ -150,6 +156,7 @@ Accessibility: high contrast for schedule and CTA text. Avoid hiding text behind
 - No poster-only composition.
 - No unreadable tiny paragraphs.
 - No excessive glitch, particles, smoke, blur, or neon bloom over CTA text.
+- No generic cyber city poster, no bright top navigation bar, no clean corporate dashboard, no repeated right-side cards.
 - No browser chrome, phone frame, watermark, social media screenshot, or app store badge.
 - No unrelated corporate business site tone.
 
