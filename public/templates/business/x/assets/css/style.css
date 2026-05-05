@@ -351,8 +351,8 @@ img { max-width: 100%; display: block; }
 .x-client-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .x-flow-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .note-copy { margin-top: 0.9rem; }
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal,
+.reveal.is-visible { opacity: 1; transform: none; transition: none; }
 @media (max-width: 900px) {
   .main-nav { display: none; }
   .menu-toggle { display: inline-block; }
@@ -891,11 +891,14 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .xr-join {
   min-height: 2.65rem;
-  padding: 0 1rem;
+  max-width: 100%;
+  padding: 0.45rem 1rem;
   background: #e2f425;
   color: #1a1b0d;
   transform: skewX(-10deg);
@@ -1034,7 +1037,6 @@ img { max-width: 100%; display: block; }
   padding: 0 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
-  transition: color 0.3s, transform 0.2s;
   z-index: 1;
 }
 
@@ -1043,18 +1045,17 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background: white;
-  transform: translateX(-101%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: none;
   z-index: -1;
+  opacity: 0;
 }
 
 .xr-button:hover::before {
-  transform: translateX(0);
+  opacity: 1;
 }
 
 .xr-button:hover {
   color: #191a0b !important;
-  transform: skewX(-10deg) translateY(-2px);
 }
 
 .xr-button-solid {
@@ -1065,7 +1066,6 @@ img { max-width: 100%; display: block; }
 }
 
 .xr-button-solid:hover {
-  transform: skewX(-10deg) translateY(-2px);
   background: #f0ff4d;
 }
 
@@ -1080,49 +1080,6 @@ img { max-width: 100%; display: block; }
   transform: skewX(-10deg);
 }
 
-@keyframes marquee {
-  0%   { transform: translateY(-50%) rotate(90deg) translateX(0); }
-  100% { transform: translateY(-50%) rotate(90deg) translateX(-50%); }
-}
-
-@keyframes glitch {
-  0%   { clip: rect(44px, 9999px, 56px, 0); transform: skew(0.85deg); }
-  5%   { clip: rect(12px, 9999px, 85px, 0); transform: skew(0.35deg); }
-  10%  { clip: rect(78px, 9999px, 15px, 0); transform: skew(0.12deg); }
-  15%  { clip: rect(23px, 9999px, 67px, 0); transform: skew(0.75deg); }
-  20%  { clip: rect(0, 0, 0, 0); transform: skew(0deg); }
-  100% { clip: rect(0, 0, 0, 0); transform: skew(0deg); }
-}
-
-.glitch-active {
-  position: relative;
-  display: inline-block;
-}
-
-.glitch-active::before,
-.glitch-active::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #202111;
-  clip: rect(0, 0, 0, 0);
-}
-
-.glitch-active::before {
-  left: 2px;
-  text-shadow: -2px 0 #ff00c1;
-  animation: glitch 2s infinite linear alternate-reverse;
-}
-
-.glitch-active::after {
-  left: -2px;
-  text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
-  animation: glitch 3s infinite linear alternate-reverse;
-}
-
 .xr-hero-rail {
   position: absolute;
   right: -15rem;
@@ -1135,7 +1092,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.05em;
   transform: translateY(-50%) rotate(90deg);
   white-space: nowrap;
-  animation: marquee 30s linear infinite;
   pointer-events: none;
 }
 
@@ -1300,12 +1256,10 @@ img { max-width: 100%; display: block; }
   padding: 1.2rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 .xr-service-card:hover {
   border-color: rgba(226, 244, 37, 0.45);
-  transform: translateY(-4px);
 }
 
 .xr-info-grid {
@@ -1475,12 +1429,10 @@ img { max-width: 100%; display: block; }
 
 .xr-team-card img {
   filter: grayscale(1);
-  transition: filter 0.6s ease, transform 0.6s ease;
 }
 
 .xr-team-card:hover img {
   filter: grayscale(0);
-  transform: scale(1.05);
 }
 
 .xr-team-card > div {
@@ -1553,11 +1505,6 @@ img { max-width: 100%; display: block; }
   color: #191a0b;
 }
 
-@keyframes ctaMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.33%); }
-}
-
 .xr-cta-backdrop {
   position: absolute;
   inset: 0;
@@ -1570,7 +1517,6 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
   overflow: hidden;
   white-space: nowrap;
-  animation: ctaMarquee 40s linear infinite;
 }
 
 .xr-cta h2 {

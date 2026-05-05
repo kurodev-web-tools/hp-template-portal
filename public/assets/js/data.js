@@ -257,8 +257,8 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_x', name: 'Business X', tag: 'X', path: 'templates/business/x',
-                description: '極限のボルテージを全画面スナップで表現。エクストリームスポーツや熱狂的なプロジェクトに。',
-                features: ['Snap Scroll', 'Action', 'Xtreme'],
+                description: 'スポーツイベントやアクション系ブランドの熱量を保ちながら、参加予約とスポンサー相談へつなぐ実務型デザイン。',
+                features: ['Event Launch', 'Sponsor CTA', 'Xtreme'],
                 colors: ['#ff0000', '#000000', '#ffffff'],
                 image: 'assets/images/thumbnails/business_v2/x.jpg',
                 bgPosition: 'center 40%', // [Adjust] Vertical position: 0% (Top) - 100% (Bottom)

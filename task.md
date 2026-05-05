@@ -11,6 +11,7 @@
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
+- [x] Business X: Xtreme Snap の Phase 1 改善として、スポーツイベント / アクション系ブランド向けの実在感、参加予約 / スポンサー相談のCTA導線、`plans.html?template=business-x&plan=standard` への制作相談導線、既存 motion hook の静的化を反映した
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
