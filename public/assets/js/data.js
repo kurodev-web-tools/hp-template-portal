@@ -113,7 +113,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_h', name: 'Business H', tag: 'H', path: 'templates/business/h',
-                description: '圧倒的な高級感と静寂を演出するラグジュアリーデザイン。ホテルや高級ブランドに。',
+                description: 'ホテルや高級サービス向けに、上質な印象と予約・資料請求・制作相談の導線を両立するデザイン。',
                 features: ['Luxury', 'Hotel', 'Premium'],
                 colors: ['#d4af37', '#1a1a1a', '#ffffff'],
                 image: 'assets/images/thumbnails/business_v2/h.jpg',
@@ -122,7 +122,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_i', name: 'Business I', tag: 'I', path: 'templates/business/i',
-                description: '信頼と知性を象徴するインテリジェント・デザイン。分析ツールやダッシュボードに最適です。',
+                description: '分析ツール、監視SaaS、データ活用企業向けに、判断支援と制作相談導線を前面に出したインテリジェント・デザイン。',
                 features: ['Monitoring', 'Intelligent', 'Dashboard'],
                 colors: ['#0a192f', '#64ffda', '#ccd6f6'],
                 image: 'assets/images/thumbnails/business_v2/i.jpg',
@@ -248,7 +248,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_w', name: 'Business W', tag: 'W', path: 'templates/business/w',
-                description: 'パノラマ的な広がりを見せる横スクロール・デザイン。写真・建築・風景を愛するブランドに。',
+                description: '横長の景観体験を活かし、宿泊施設や建築・写真ギャラリーの相談導線まで整理するコーポレートテンプレート。',
                 features: ['Horizontal Scroll', 'Panorama', 'Minimal'],
                 colors: ['#ffffff', '#000000', '#f0f0f0'],
                 image: 'assets/images/thumbnails/business_v2/w.jpg',
@@ -275,7 +275,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_z', name: 'Business Z', tag: 'Z', path: 'templates/business/z',
-                description: '究極の静寂と和の精神を形にした禅デザイン。茶室・スパ・哲学的なブランドに。',
+                description: '余白と静けさを保ちながら予約・アクセス・制作相談へ導く禅デザイン。茶室、スパ、和ブランドに。',
                 features: ['Zen', 'Vertical', 'Silence'],
                 colors: ['#ffffff', '#1a1a1a', '#f5f5f5'],
                 image: 'assets/images/thumbnails/business_v2/z.jpg',
