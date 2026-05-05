@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop?.addEventListener('click', () => setOpen(false));
     links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
-    window.addEventListener('resize', () => { if (window.innerWidth >= 768) setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setOpen(false); });
     document.querySelectorAll('[data-current-year]').forEach((node) => { node.textContent = String(new Date().getFullYear()); });
 });

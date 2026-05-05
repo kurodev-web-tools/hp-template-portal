@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            setStatus('is-success', '送信を受け付けました。2 営業日以内を目安に確認します。');
+            setStatus('is-success', '制作相談を受け付けました。2 営業日以内を目安に確認します。');
             form.reset();
             fields.forEach(clearInvalid);
 
