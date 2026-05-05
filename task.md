@@ -31,6 +31,10 @@
 - [x] Business G: Global の Phase 1 partial renewal を実施し、物流・商社・越境EC向けの対応地域確認、輸送相談、`plans.html?template=business-g&plan=standard` への制作相談CTAを補強した
 - [x] `business/h` High-end の Phase 1 として、ホテル・高級サービス向けの実サイト寄りコピー、信頼材料、予約 / 資料請求 / 制作相談 CTA を `plans.html?template=business-h&plan=standard` に接続した
 - [x] Business J: Modern は Phase 1 として、旅館・茶寮・和ブランド・文化施設向けの実サイト寄りコピー、`plans.html?template=business-j&plan=standard` への制作相談CTA、SPメニュー/ヘッダー/末尾固定CTAの導線を追加した。motion、3D、粒子、重いcanvasは追加していない
+- [x] `business/q` Quality First の Phase 1 改善として、静的な品質証明・仕様確認の見せ方を保ったまま、`plans.html?template=business-q&plan=standard` への制作相談導線、見積もり/カタログ請求を含む問い合わせ入口、reveal/counter 系の動的演出削除を反映した
+- [x] `business/i` Intelligent の Phase 1 改善として、分析ツール / 監視SaaS / データ活用企業向けの相談導線を `plans.html?template=business-i&plan=standard` に接続し、Hero、各ページ header、contact 周辺、一覧 description を実サイト寄りに補強した
+- [x] `business/v` Vivid Impact の Phase 1 改善を実施した。既存の強い配色と実サイト寄りの制作スタジオ構成を維持しつつ、全ページに `plans.html?template=business-v&plan=standard` への制作相談 CTA を追加し、Phase 1 制約に合わせて reveal / IntersectionObserver 系の演出を外した
+- [x] Business E: Eco の Phase 1 改善として、食品・日用品・小売向けの実在感を残したまま、全ページに `plans.html?template=business-e&plan=standard` への「このテンプレートで制作相談」導線を追加し、過度な hover 移動・画像拡大・広範囲 blur を抑えた
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
