@@ -248,7 +248,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_w', name: 'Business W', tag: 'W', path: 'templates/business/w',
-                description: 'パノラマ的な広がりを見せる横スクロール・デザイン。写真・建築・風景を愛するブランドに。',
+                description: '横長の景観体験を活かし、宿泊施設や建築・写真ギャラリーの相談導線まで整理するコーポレートテンプレート。',
                 features: ['Horizontal Scroll', 'Panorama', 'Minimal'],
                 colors: ['#ffffff', '#000000', '#f0f0f0'],
                 image: 'assets/images/thumbnails/business_v2/w.jpg',
