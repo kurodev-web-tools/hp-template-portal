@@ -113,7 +113,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_h', name: 'Business H', tag: 'H', path: 'templates/business/h',
-                description: '圧倒的な高級感と静寂を演出するラグジュアリーデザイン。ホテルや高級ブランドに。',
+                description: 'ホテルや高級サービス向けに、上質な印象と予約・資料請求・制作相談の導線を両立するデザイン。',
                 features: ['Luxury', 'Hotel', 'Premium'],
                 colors: ['#d4af37', '#1a1a1a', '#ffffff'],
                 image: 'assets/images/thumbnails/business_v2/h.jpg',

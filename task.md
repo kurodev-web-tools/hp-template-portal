@@ -42,6 +42,7 @@
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [x] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI について主要な戻り確認を実施した
+- [x] `business/h` High-end の Phase 1 として、ホテル・高級サービス向けの実サイト寄りコピー、信頼材料、予約 / 資料請求 / 制作相談 CTA を `plans.html?template=business-h&plan=standard` に接続した
 
 ## Backlog
 - [x] テンプレート更新後の検証手順を標準化する。`docs/TEMPLATE_STATIC_AUDIT.md` に default verification routine、監査コマンドの使い分け、カテゴリ別テストの入口を追記した
