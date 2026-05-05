@@ -122,7 +122,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_i', name: 'Business I', tag: 'I', path: 'templates/business/i',
-                description: '信頼と知性を象徴するインテリジェント・デザイン。分析ツールやダッシュボードに最適です。',
+                description: '分析ツール、監視SaaS、データ活用企業向けに、判断支援と制作相談導線を前面に出したインテリジェント・デザイン。',
                 features: ['Monitoring', 'Intelligent', 'Dashboard'],
                 colors: ['#0a192f', '#64ffda', '#ccd6f6'],
                 image: 'assets/images/thumbnails/business_v2/i.jpg',
