@@ -18,6 +18,7 @@
 - [x] Business K: Knowledge の Phase 1 polish を実施した。`docs/template-renewal-details/business/polish/k-knowledge.md` に合わせ、既存の知的信頼感を維持しながら Hero / header / contact / footer の CTA を `plans.html?template=business-k&plan=standard` へつなぎ、未完成に見える検索・`#` 導線を実ページへの相談導線へ整理した
 - [x] Business S: Smart SaaS の Phase 1 構造/CTA導線を `codex/business-s-smart-saas` で更新した。`public/templates/business/s/` の Hero、About、Service、Contact に `plans.html?template=business-s&plan=standard` への制作相談導線、SaaS向け実サイト寄りコピー、問い合わせしやすい相談フォーム文脈を反映済み。motion / 3D / 粒子 / heavy canvas の新規追加はなし
 - [x] Business T: Trust Guard の Phase 1 partial renewal を専用 worktree / branch で実施した。構造と CTA 導線に絞り、Trust Guard の堅牢な印象を残しながら、Hero / mobile menu / 下層ページ / contact に `plans.html?template=business-t&plan=standard` への「このテンプレートで制作相談」導線を追加した。motion / 3D / 粒子 / 重い canvas は追加せず、既存の fade-up 表示処理も静的化した
+- [x] Business A: Authentic の Phase 1 として、`docs/template-renewal-details/business/partial-renewal/a-authentic.md` を基準に構造と CTA 導線のみを整理した。`public/templates/business/a` の header / mobile menu / hero / 中盤 CTA / contact form に、初回相談、資料請求、顧問相談、`plans.html?template=business-a&plan=standard` への制作相談導線を追加し、演出追加は行っていない
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
