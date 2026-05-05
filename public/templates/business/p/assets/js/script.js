@@ -5,7 +5,6 @@
     const header = document.querySelector('.pop-header');
     const contactForm = document.querySelector('[data-contact-form]');
     const formNote = document.getElementById('pop-form-note');
-    const reveals = document.querySelectorAll('.pop-reveal');
     const weCarousel = document.querySelector('.p-we-carousel');
     const weCards = weCarousel ? Array.from(weCarousel.querySelectorAll('.p-we-card')) : [];
     let weCarouselRaf = 0;
@@ -77,14 +76,8 @@
         menu.setAttribute('inert', '');
         toggles.forEach(function (toggle) { toggle.setAttribute('aria-expanded', 'false'); });
         document.body.classList.remove('overflow-hidden');
-        window.setTimeout(finishClose, 300);
+        finishClose();
         if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
-    }
-
-    function watchReveal(entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) entry.target.classList.add('is-visible');
-        });
     }
 
     toggles.forEach(function (toggle) {
@@ -133,13 +126,6 @@
         weCarousel.addEventListener('scroll', scheduleWeCarouselSync, { passive: true });
         window.addEventListener('resize', scheduleWeCarouselSync, { passive: true });
         window.addEventListener('orientationchange', scheduleWeCarouselSync, { passive: true });
-    }
-
-    if ('IntersectionObserver' in window && reveals.length) {
-        const observer = new IntersectionObserver(watchReveal, { threshold: 0.15, rootMargin: '0px 0px -32px 0px' });
-        reveals.forEach(function (element) { observer.observe(element); });
-    } else {
-        reveals.forEach(function (element) { element.classList.add('is-visible'); });
     }
 
     window.addEventListener('scroll', syncHeader, { passive: true });
