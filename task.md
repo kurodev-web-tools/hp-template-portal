@@ -14,6 +14,7 @@
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
 - [x] Business B: Bold の Phase 1 polish として、Hero の制作相談CTA、実績導線、CTA strip、SP固定CTA、下層ページ共通の `plans.html?template=business-b&plan=standard` 導線を追加した。詳細入力は `docs/template-renewal-details/business/polish/b-bold.md`
 - [x] Business O Organic Flow の Phase 1 polish として、既存の柔らかい見た目を維持したまま、FV、ヘッダー、モバイルメニュー、各下層ページに `plans.html?template=business-o&plan=standard` への制作相談導線を追加し、抽象的なウェルネス表現をメニュー、価格、予約、相談の実サイト寄りコピーへ寄せた
+- [x] Business M: Minimal の Phase 1 polish として、既存の静かな余白と暗色構成を維持しながら、header / hero / CTA strip / mobile fixed CTA から `plans.html?template=business-m&plan=standard` へ進める導線を追加した。motion、3D、粒子、重い canvas は追加していない。`node scripts/audit-template-links.js`、`node scripts/audit-template-metadata.js`、`git diff --check` は通過済み
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
