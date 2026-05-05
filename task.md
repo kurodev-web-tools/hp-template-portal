@@ -6,7 +6,6 @@
 - 直近の実行判断は `docs/PLAN.md` よりこの `task.md` を優先する
 
 ## Active Priorities
-- [x] Business K: Knowledge の Phase 1 polish を実施した。`docs/template-renewal-details/business/polish/k-knowledge.md` に合わせ、既存の知的信頼感を維持しながら Hero / header / contact / footer の CTA を `plans.html?template=business-k&plan=standard` へつなぎ、未完成に見える検索・`#` 導線を実ページへの相談導線へ整理した
 - [ ] 2026-05-03 の受注導線監査を起点に、`list.html` の template modal から `plans.html` / `order-premium.html` へ template id を渡す導線、トップの実数表示、料金/プラン名の整理を優先改善する。詳細は `docs/reviews/PORTAL_CONVERSION_AUDIT_2026-05-03.md`
 - [x] business polish 1件目として `business/c` (Clean) を `codex-business-c-clean` worktree で改善した。医療/相談業向けの既存構成を維持し、4ページ共通で `plans.html?template=business-c&plan=standard` / `plan=light` へ戻る固定相談CTAを追加した
 - [x] 104テンプレート分のリニューアル詳細mdを `docs/template-renewal-details/` にカテゴリ別かつ `full-renewal` / `partial-renewal` / `polish` 別で作成した。各テンプレートの実装前設計入力として、構成、デザイン、CTA、モック画像方針に加え、リニューアル深度、演出レベル、ページモデル、PCヘッダー位置、FV設計、セクション別計画、避ける表現、実装フェーズまで確認できる
@@ -16,6 +15,8 @@
 - [x] Business B: Bold の Phase 1 polish として、Hero の制作相談CTA、実績導線、CTA strip、SP固定CTA、下層ページ共通の `plans.html?template=business-b&plan=standard` 導線を追加した。詳細入力は `docs/template-renewal-details/business/polish/b-bold.md`
 - [x] Business O Organic Flow の Phase 1 polish として、既存の柔らかい見た目を維持したまま、FV、ヘッダー、モバイルメニュー、各下層ページに `plans.html?template=business-o&plan=standard` への制作相談導線を追加し、抽象的なウェルネス表現をメニュー、価格、予約、相談の実サイト寄りコピーへ寄せた
 - [x] Business M: Minimal の Phase 1 polish として、既存の静かな余白と暗色構成を維持しながら、header / hero / CTA strip / mobile fixed CTA から `plans.html?template=business-m&plan=standard` へ進める導線を追加した。motion、3D、粒子、重い canvas は追加していない。`node scripts/audit-template-links.js`、`node scripts/audit-template-metadata.js`、`git diff --check` は通過済み
+- [x] Business K: Knowledge の Phase 1 polish を実施した。`docs/template-renewal-details/business/polish/k-knowledge.md` に合わせ、既存の知的信頼感を維持しながら Hero / header / contact / footer の CTA を `plans.html?template=business-k&plan=standard` へつなぎ、未完成に見える検索・`#` 導線を実ページへの相談導線へ整理した
+- [x] Business S: Smart SaaS の Phase 1 構造/CTA導線を `codex/business-s-smart-saas` で更新した。`public/templates/business/s/` の Hero、About、Service、Contact に `plans.html?template=business-s&plan=standard` への制作相談導線、SaaS向け実サイト寄りコピー、問い合わせしやすい相談フォーム文脈を反映済み。motion / 3D / 粒子 / heavy canvas の新規追加はなし
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
@@ -43,12 +44,10 @@
 - [x] `docs/TEMPLATE_METADATA_AUDIT.md` を基準に、demo placeholder 文言の品質を必要に応じて見直す。`example.com` 系の metadata 戻りはなく、残る `data-demo-*` は意図的な demo hook、generated SVG の `Local placeholder image` はローカル生成資産として扱う方針を明記した
 - [ ] template の相対リンク監査を回し、明らかな参照切れを順次解消する
 - [ ] template の metadata 監査を回し、構造的な抜けや placeholder 戻りを順次解消する
-- [ ] 次の business 改善は `business/b` (Bold) を候補にする。スタートアップ/ローンチ支援向けの実績閲覧と制作相談CTAを優先し、1テンプレート1worktreeで進める
 - [x] `streamer` の残る公開品質課題として、設定コメントの除去と個別 CTA / contact 文言の明確化を反映した
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [x] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI について主要な戻り確認を実施した
-- [ ] 次の business 改善候補は実装順に従い `S: Smart SaaS`。詳細 md は `docs/template-renewal-details/business/partial-renewal/s-smart-saas.md`
 
 ## Backlog
 - [x] テンプレート更新後の検証手順を標準化する。`docs/TEMPLATE_STATIC_AUDIT.md` に default verification routine、監査コマンドの使い分け、カテゴリ別テストの入口を追記した
