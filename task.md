@@ -13,6 +13,7 @@
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
 - [x] Business B: Bold の Phase 1 polish として、Hero の制作相談CTA、実績導線、CTA strip、SP固定CTA、下層ページ共通の `plans.html?template=business-b&plan=standard` 導線を追加した。詳細入力は `docs/template-renewal-details/business/polish/b-bold.md`
+- [x] Business O Organic Flow の Phase 1 polish として、既存の柔らかい見た目を維持したまま、FV、ヘッダー、モバイルメニュー、各下層ページに `plans.html?template=business-o&plan=standard` への制作相談導線を追加し、抽象的なウェルネス表現をメニュー、価格、予約、相談の実サイト寄りコピーへ寄せた
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
