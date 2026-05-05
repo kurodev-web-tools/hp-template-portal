@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll("[data-nav-link]");
     const mobileLinks = document.querySelectorAll("[data-mobile-link]");
     const menuLinks = document.querySelectorAll("[data-mobile-menu] a[href]");
-    const counters = document.querySelectorAll("[data-counter]");
-    const revealItems = document.querySelectorAll(".q-reveal");
     const currentPage = body.dataset.page;
     const form = document.querySelector("[data-contact-form]");
     const formMessage = document.querySelector("[data-form-message]");
@@ -86,51 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
         target.textContent = String(new Date().getFullYear());
     });
 
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-                return;
-            }
-
-            entry.target.classList.add("is-visible");
-            entry.target.setAttribute("data-visible", "true");
-            revealObserver.unobserve(entry.target);
-        });
-    }, { threshold: 0.18 });
-
-    revealItems.forEach((item) => revealObserver.observe(item));
-
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-                return;
-            }
-
-            const element = entry.target;
-            const end = Number(element.dataset.counter || "0");
-            const decimals = Number(element.dataset.decimals || "0");
-            const suffix = element.dataset.suffix || "";
-            const duration = 1200;
-            const startTime = performance.now();
-
-            const tick = (timestamp) => {
-                const progress = Math.min((timestamp - startTime) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const value = end * eased;
-                element.textContent = `${value.toFixed(decimals)}${suffix}`;
-
-                if (progress < 1) {
-                    requestAnimationFrame(tick);
-                }
-            };
-
-            requestAnimationFrame(tick);
-            counterObserver.unobserve(element);
-        });
-    }, { threshold: 0.4 });
-
-    counters.forEach((counter) => counterObserver.observe(counter));
-
     if (form && formMessage) {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -153,4 +106,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-

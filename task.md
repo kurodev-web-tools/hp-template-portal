@@ -42,6 +42,7 @@
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [x] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI について主要な戻り確認を実施した
+- [x] `business/q` Quality First の Phase 1 改善として、静的な品質証明・仕様確認の見せ方を保ったまま、`plans.html?template=business-q&plan=standard` への制作相談導線、見積もり/カタログ請求を含む問い合わせ入口、reveal/counter 系の動的演出削除を反映した
 
 ## Backlog
 - [x] テンプレート更新後の検証手順を標準化する。`docs/TEMPLATE_STATIC_AUDIT.md` に default verification routine、監査コマンドの使い分け、カテゴリ別テストの入口を追記した
