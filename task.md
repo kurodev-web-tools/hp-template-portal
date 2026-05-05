@@ -35,6 +35,9 @@
 - [x] `business/i` Intelligent の Phase 1 改善として、分析ツール / 監視SaaS / データ活用企業向けの相談導線を `plans.html?template=business-i&plan=standard` に接続し、Hero、各ページ header、contact 周辺、一覧 description を実サイト寄りに補強した
 - [x] `business/v` Vivid Impact の Phase 1 改善を実施した。既存の強い配色と実サイト寄りの制作スタジオ構成を維持しつつ、全ページに `plans.html?template=business-v&plan=standard` への制作相談 CTA を追加し、Phase 1 制約に合わせて reveal / IntersectionObserver 系の演出を外した
 - [x] Business E: Eco の Phase 1 改善として、食品・日用品・小売向けの実在感を残したまま、全ページに `plans.html?template=business-e&plan=standard` への「このテンプレートで制作相談」導線を追加し、過度な hover 移動・画像拡大・広範囲 blur を抑えた
+- [x] `business/u` Urban Street の Phase 1 改善として、plan 相談 CTA、問い合わせ導線、静的表示への整理を反映した。専用 branch / worktree / draft PR 単位で検証し、streamer には触れていない
+- [x] `business/w` Wide Horizon の Phase 1 として、宿泊施設向け景観導線サイトの実在感を保ったまま、Hero / header / 各CTAから `plans.html?template=business-w&plan=standard` へ制作相談導線を接続し、既存の自動 reveal / count-up / hero zoom を静的表示へ寄せた
+- [x] Business X: Xtreme Snap の Phase 1 改善として、スポーツイベント / アクション系ブランド向けの実在感、参加予約 / スポンサー相談のCTA導線、`plans.html?template=business-x&plan=standard` への制作相談導線、既存 motion hook の静的化を反映した
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks

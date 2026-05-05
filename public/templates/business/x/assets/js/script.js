@@ -30,30 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setMenuState(false);
 
-  // === REVEAL ANIMATIONS ===
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
-  document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-
-  // === GLITCH EFFECT (Hero Title) ===
-  const glitchTitle = document.querySelector('.xr-hero h1 span');
-  if (glitchTitle) {
-    glitchTitle.classList.add('glitch-active');
-    glitchTitle.setAttribute('data-text', glitchTitle.textContent);
-    
-    // Stop persistent glitch after 3 seconds for readability
-    setTimeout(() => {
-      glitchTitle.classList.remove('glitch-active');
-    }, 4000);
-  }
-  
   // === HEADER SCROLL ===
   const header = document.querySelector('[data-header]');
   if (header) {
