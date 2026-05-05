@@ -21,6 +21,10 @@
 - [x] Business T: Trust Guard の Phase 1 partial renewal を専用 worktree / branch で実施した。構造と CTA 導線に絞り、Trust Guard の堅牢な印象を残しながら、Hero / mobile menu / 下層ページ / contact に `plans.html?template=business-t&plan=standard` への「このテンプレートで制作相談」導線を追加した。motion / 3D / 粒子 / 重い canvas は追加せず、既存の fade-up 表示処理も静的化した
 - [x] Business A: Authentic の Phase 1 として、`docs/template-renewal-details/business/partial-renewal/a-authentic.md` を基準に構造と CTA 導線のみを整理した。`public/templates/business/a` の header / mobile menu / hero / 中盤 CTA / contact form に、初回相談、資料請求、顧問相談、`plans.html?template=business-a&plan=standard` への制作相談導線を追加し、演出追加は行っていない
 - [x] Business Z: Zen Garden の Phase 1 polish として、`docs/template-renewal-details/business/polish/z-zen-garden.md` を基準に hero の対象/価値/CTA、制作相談導線、CTA strip、footer CTA、一覧 description を更新した。motion / 3D / canvas / 粒子は追加せず、既存の scroll reveal は外して静的表示へ戻した
+- [x] Business R: Royal Legacy の Phase 1 polish を実施した。既存のクラシックな構造を維持しつつ、老舗企業・文化ブランド向けの実サイト寄りコピー、header / hero / contact / mobile menu の制作相談導線、`plans.html?template=business-r&plan=standard` への CTA を追加した
+- [x] Business P: Pop Vibrant は専用 worktree / branch で Phase 1 polish を実施し、ファミリー向け店舗・エンタメサービスの販促サイトとして CTA 導線、実サイト寄りコピー、静的構造を整理した
+- [x] Business D: Dynamic の Phase 1 polish として、`public/templates/business/d` の制作相談 CTA を `plans.html?template=business-d&plan=standard` へ整理し、未接続リンクとスクロール reveal / parallax フックを外して static structure + CTA 導線に寄せた
+- [x] Business N: Neon Night の Phase 1 polish を実施。ネオン調の印象を維持しつつ、イベント/ナイトクラブ/音楽企画向けの実サイト寄りコピー、チケット購入・席予約・出演相談の導線、`plans.html?template=business-n&plan=standard` への制作相談 CTA を強化した
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
