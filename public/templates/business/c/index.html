@@ -52,6 +52,21 @@
         .heading-balance { text-wrap: balance; }
         .body-pretty { text-wrap: pretty; }
         @supports (word-break: auto-phrase) { .phrase-wrap { word-break: auto-phrase; } }
+        body { padding-bottom: 104px; }
+        .template-consult-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000; padding: 14px 18px; background: rgba(255,255,255,0.94); border-top: 1px solid #bae6fd; box-shadow: 0 -16px 40px rgba(15,23,42,0.10); backdrop-filter: blur(14px); }
+        .template-consult-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .template-consult-copy { margin: 0; color: #475569; font-size: 13px; line-height: 1.6; }
+        .template-consult-copy strong { display: block; color: #0f172a; font-size: 14px; }
+        .template-consult-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+        .template-consult-primary, .template-consult-secondary { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; border-radius: 10px; padding: 0 18px; font-size: 13px; font-weight: 700; text-decoration: none; }
+        .template-consult-primary { background: #0ea5e9; color: #0f172a; }
+        .template-consult-secondary { border: 1px solid #bae6fd; color: #0f172a; background: #ffffff; }
+        @media (max-width: 720px) {
+            body { padding-bottom: 148px; }
+            .template-consult-inner { align-items: stretch; flex-direction: column; gap: 10px; }
+            .template-consult-actions { display: grid; grid-template-columns: 1fr 1fr; justify-content: stretch; }
+            .template-consult-primary, .template-consult-secondary { padding: 0 10px; font-size: 12px; }
+        }
     </style>
 </head>
 
@@ -208,6 +223,15 @@
         </div>
     </footer>
 
+    <aside class="template-consult-bar" aria-label="テンプレート制作相談">
+        <div class="template-consult-inner">
+            <p class="template-consult-copy"><strong>Business C Clean</strong>医療・相談業向けの予約導線を、この構成で制作相談できます。</p>
+            <div class="template-consult-actions">
+                <a class="template-consult-primary" href="../../../plans.html?template=business-c&plan=standard">このテンプレートで制作相談</a>
+                <a class="template-consult-secondary" href="../../../plans.html?template=business-c&plan=light">Lightで申し込む</a>
+            </div>
+        </div>
+    </aside>
     <div id="template-common-container"></div>
     <script src="../../../assets/js/template-common.js" defer></script>
     <script src="../../../assets/js/premium-effects.js" defer></script>
