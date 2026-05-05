@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             success.classList.remove("v-hidden");
-            success.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            success.scrollIntoView({ block: "nearest" });
             form.reset();
         });
     }
@@ -102,32 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-
-    const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.15
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("is-revealed");
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const revealElements = document.querySelectorAll(
-        "main > section:not(:first-of-type) .v-poster, " +
-        "main > section:not(:first-of-type) .v-stackline, " +
-        "main > section:not(:first-of-type) .v-page-title, " +
-        "main > section:not(:first-of-type) .v-section-title, " +
-        "main > section:not(:first-of-type) .v-manifesto-line, " +
-        "main > section:not(:first-of-type) .v-sample-card, " +
-        "main > section:not(:first-of-type) .v-detail-card"
-    );
-    revealElements.forEach((element) => revealObserver.observe(element));
 
     syncAccordionState();
     setMenuState(false);
