@@ -26,6 +26,7 @@
 - [x] Business D: Dynamic の Phase 1 polish として、`public/templates/business/d` の制作相談 CTA を `plans.html?template=business-d&plan=standard` へ整理し、未接続リンクとスクロール reveal / parallax フックを外して static structure + CTA 導線に寄せた
 - [x] Business N: Neon Night の Phase 1 polish を実施。ネオン調の印象を維持しつつ、イベント/ナイトクラブ/音楽企画向けの実サイト寄りコピー、チケット購入・席予約・出演相談の導線、`plans.html?template=business-n&plan=standard` への制作相談 CTA を強化した
 - [x] Business Y: Yield Growth の Phase 1 partial renewal として、投資・経営支援向けの plan-routed CTA、初回相談導線、静的表示方針を `public/templates/business/y` に反映した
+- [x] Business F: Future の Phase 1 改善として、AI導入・SaaS・DX支援向けの実サイト寄りコピー、`plans.html?template=business-f&plan=standard` への制作相談CTA、サービス/問い合わせ導線の具体化、装飾アニメーションの静止化を反映した
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
