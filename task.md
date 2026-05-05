@@ -62,6 +62,7 @@
 - [x] `lp` の残る公開品質課題として、`data-ai-type` の明確なズレと主要フォームの placeholder / demo 文言を整理した。heavy Unsplash 依存は継続課題として保留
 - [x] `portfolio` は description 固有化と画像差し替え完了状態を維持しつつ、CDN 依存は当面保留として placeholder 品質の主要な戻り確認を完了した
 - [x] `business` の開発用コメント、generic placeholder、`business/k` のダミー検索 UI について主要な戻り確認を実施した
+- [x] `business/i` Intelligent の Phase 1 改善として、分析ツール / 監視SaaS / データ活用企業向けの相談導線を `plans.html?template=business-i&plan=standard` に接続し、Hero、各ページ header、contact 周辺、一覧 description を実サイト寄りに補強した
 - [x] `business/q` Quality First の Phase 1 改善として、静的な品質証明・仕様確認の見せ方を保ったまま、`plans.html?template=business-q&plan=standard` への制作相談導線、見積もり/カタログ請求を含む問い合わせ入口、reveal/counter 系の動的演出削除を反映した
 - [x] `business/h` High-end の Phase 1 として、ホテル・高級サービス向けの実サイト寄りコピー、信頼材料、予約 / 資料請求 / 制作相談 CTA を `plans.html?template=business-h&plan=standard` に接続した
 - [x] Business R: Royal Legacy の Phase 1 polish を実施した。既存のクラシックな構造を維持しつつ、老舗企業・文化ブランド向けの実サイト寄りコピー、header / hero / contact / mobile menu の制作相談導線、`plans.html?template=business-r&plan=standard` への CTA を追加した
