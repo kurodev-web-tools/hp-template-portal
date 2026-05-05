@@ -275,7 +275,7 @@ const PORTAL_DATA = {
             },
             {
                 id: 'bus_z', name: 'Business Z', tag: 'Z', path: 'templates/business/z',
-                description: '究極の静寂と和の精神を形にした禅デザイン。茶室・スパ・哲学的なブランドに。',
+                description: '余白と静けさを保ちながら予約・アクセス・制作相談へ導く禅デザイン。茶室、スパ、和ブランドに。',
                 features: ['Zen', 'Vertical', 'Silence'],
                 colors: ['#ffffff', '#1a1a1a', '#f5f5f5'],
                 image: 'assets/images/thumbnails/business_v2/z.jpg',
