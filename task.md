@@ -9,6 +9,7 @@
 - [ ] 2026-05-03 の受注導線監査を起点に、`list.html` の template modal から `plans.html` / `order-premium.html` へ template id を渡す導線、トップの実数表示、料金/プラン名の整理を優先改善する。詳細は `docs/reviews/PORTAL_CONVERSION_AUDIT_2026-05-03.md`
 - [x] business polish 1件目として `business/c` (Clean) を `codex-business-c-clean` worktree で改善した。医療/相談業向けの既存構成を維持し、4ページ共通で `plans.html?template=business-c&plan=standard` / `plan=light` へ戻る固定相談CTAを追加した
 - [x] 104テンプレート分のリニューアル詳細mdを `docs/template-renewal-details/` にカテゴリ別かつ `full-renewal` / `partial-renewal` / `polish` 別で作成した。各テンプレートの実装前設計入力として、構成、デザイン、CTA、モック画像方針に加え、リニューアル深度、演出レベル、ページモデル、PCヘッダー位置、FV設計、セクション別計画、避ける表現、実装フェーズまで確認できる
+- [x] Business D: Dynamic の Phase 1 polish として、`public/templates/business/d` の制作相談 CTA を `plans.html?template=business-d&plan=standard` へ整理し、未接続リンクとスクロール reveal / parallax フックを外して static structure + CTA 導線に寄せた
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
