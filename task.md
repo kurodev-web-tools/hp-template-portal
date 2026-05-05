@@ -17,6 +17,7 @@
 - [x] Business M: Minimal の Phase 1 polish として、既存の静かな余白と暗色構成を維持しながら、header / hero / CTA strip / mobile fixed CTA から `plans.html?template=business-m&plan=standard` へ進める導線を追加した。motion、3D、粒子、重い canvas は追加していない。`node scripts/audit-template-links.js`、`node scripts/audit-template-metadata.js`、`git diff --check` は通過済み
 - [x] Business K: Knowledge の Phase 1 polish を実施した。`docs/template-renewal-details/business/polish/k-knowledge.md` に合わせ、既存の知的信頼感を維持しながら Hero / header / contact / footer の CTA を `plans.html?template=business-k&plan=standard` へつなぎ、未完成に見える検索・`#` 導線を実ページへの相談導線へ整理した
 - [x] Business S: Smart SaaS の Phase 1 構造/CTA導線を `codex/business-s-smart-saas` で更新した。`public/templates/business/s/` の Hero、About、Service、Contact に `plans.html?template=business-s&plan=standard` への制作相談導線、SaaS向け実サイト寄りコピー、問い合わせしやすい相談フォーム文脈を反映済み。motion / 3D / 粒子 / heavy canvas の新規追加はなし
+- [x] Business T: Trust Guard の Phase 1 partial renewal を専用 worktree / branch で実施した。構造と CTA 導線に絞り、Trust Guard の堅牢な印象を残しながら、Hero / mobile menu / 下層ページ / contact に `plans.html?template=business-t&plan=standard` への「このテンプレートで制作相談」導線を追加した。motion / 3D / 粒子 / 重い canvas は追加せず、既存の fade-up 表示処理も静的化した
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks
