@@ -11,6 +11,7 @@
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
+  - [x] Business N: Neon Night の Phase 1 polish を実施。ネオン調の印象を維持しつつ、イベント/ナイトクラブ/音楽企画向けの実サイト寄りコピー、チケット購入・席予約・出演相談の導線、`plans.html?template=business-n&plan=standard` への制作相談 CTA を強化した
 - [ ] テンプレート更新後のサムネイル更新と表示確認の運用を安定させる
 
 ## Routine Checks

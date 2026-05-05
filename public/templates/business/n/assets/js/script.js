@@ -3,9 +3,6 @@
     const backdrop = document.getElementById('metro-menu-backdrop');
     const toggles = document.querySelectorAll('[data-metro-menu-toggle]');
     const header = document.querySelector('.metro-header');
-    const demoForm = document.querySelector('[data-demo-form]');
-    const formNote = document.getElementById('metro-form-note');
-    const reveals = document.querySelectorAll('.metro-reveal');
     let lastTrigger = null;
 
     function syncHeader() {
@@ -57,14 +54,6 @@
         }
     }
 
-    function watchReveal(entryList) {
-        entryList.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }
-
     toggles.forEach(function (toggle) {
         toggle.addEventListener('click', function (event) {
             event.preventDefault();
@@ -104,29 +93,7 @@
         }
     });
 
-    if (demoForm && formNote) {
-        demoForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            formNote.textContent = 'Demo inquiry captured locally. Replace action, method, and handler before production use.';
-        });
-    }
-
-    if ('IntersectionObserver' in window && reveals.length) {
-        const observer = new IntersectionObserver(watchReveal, {
-            threshold: 0.18,
-            rootMargin: '0px 0px -40px 0px'
-        });
-        reveals.forEach(function (element) {
-            observer.observe(element);
-        });
-    } else {
-        reveals.forEach(function (element) {
-            element.classList.add('is-visible');
-        });
-    }
-
     window.addEventListener('scroll', syncHeader, { passive: true });
     syncHeader();
     setMenuState(false);
 }());
-
