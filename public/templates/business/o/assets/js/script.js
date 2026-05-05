@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.textContent = '送信済み';
 
             if (status) {
-                status.textContent = 'お問い合わせを受け付けました。1営業日以内にご連絡します。';
+                status.textContent = '相談内容を受け付けました。1営業日以内に制作相談の進め方をご連絡します。';
             }
 
             window.setTimeout(() => {

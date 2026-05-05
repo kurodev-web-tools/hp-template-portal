@@ -93,6 +93,18 @@ body::after {
     color: var(--u-accent);
 }
 
+.u-header-cta {
+    display: inline-flex;
+    min-height: 2.4rem;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--u-accent);
+    background: var(--u-accent);
+    color: var(--u-ink);
+    padding: 0 0.95rem;
+    text-decoration: none;
+}
+
 .u-mobile-menu,
 .u-mobile-backdrop {
     opacity: 0;
@@ -120,8 +132,8 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     pointer-events: none;
 }
 
-.u-paper-card--tilt-left { transform: rotate(-2.4deg); }
-.u-paper-card--tilt-right { transform: rotate(2.6deg); }
+.u-paper-card--tilt-left { transform: rotate(-1deg); }
+.u-paper-card--tilt-right { transform: rotate(1deg); }
 .u-paper-card--danger { background: linear-gradient(180deg, #ffeaed, #ffd0d7); }
 .u-paper-card--lime { background: linear-gradient(180deg, #effab9, #d9ef88); }
 
@@ -152,46 +164,6 @@ body.menu-open .u-mobile-menu { opacity: 1; pointer-events: auto; transform: tra
     height: 180px;
     border-radius: 999px;
     background: radial-gradient(circle, rgba(255,122,0,0.25), transparent 70%);
-}
-
-/* Scroll Stamp Animation */
-.u-paper-card, .u-poster, .u-list-card {
-    opacity: 0;
-    transform: translateY(16px);
-    will-change: transform, opacity;
-}
-
-.u-paper-card.is-stamped, .u-poster.is-stamped, .u-list-card.is-stamped {
-    animation: u-stamp-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes u-stamp-in {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.u-paper-card--tilt-left.is-stamped {
-    animation: u-stamp-in-left 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes u-stamp-in-left {
-    0% { opacity: 0; transform: translateY(20px) rotate(-0.6deg); }
-    100% { opacity: 1; transform: translateY(0) rotate(-2.4deg); }
-}
-
-.u-paper-card--tilt-right.is-stamped {
-    animation: u-stamp-in-right 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes u-stamp-in-right {
-    0% { opacity: 0; transform: translateY(20px) rotate(0.6deg); }
-    100% { opacity: 1; transform: translateY(0) rotate(2.6deg); }
 }
 
 .u-cutline {
@@ -420,14 +392,6 @@ footer a {
     .u-shell::after {
         opacity: 0.04;
     }
-    .u-paper-card,
-    .u-poster,
-    .u-list-card {
-        opacity: 1;
-        transform: none;
-        animation: none !important;
-        will-change: auto;
-    }
 }
 
 @media (min-width: 1024px) {
@@ -473,4 +437,3 @@ footer a {
         margin-top: 0.25rem;
     }
 }
-

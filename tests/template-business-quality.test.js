@@ -65,3 +65,18 @@ run('business k pages do not expose a dummy search ui', () => {
     assert.doesNotMatch(html, /search bar/i);
   }
 });
+
+run('business q keeps the phase 1 consultation route static and plan-routed', () => {
+  const planRoute = /\.\.\/\.\.\/\.\.\/plans\.html\?template=business-q&plan=standard/;
+
+  for (const file of ['index.html', 'about.html', 'service.html', 'contact.html']) {
+    const html = read('q', file);
+    assert.match(html, planRoute);
+    assert.doesNotMatch(html, /href="#"/);
+    assert.doesNotMatch(html, /data-counter=/);
+  }
+
+  const script = fs.readFileSync(path.join(ROOT, 'q', 'assets', 'js', 'script.js'), 'utf8');
+  assert.doesNotMatch(script, /IntersectionObserver/);
+  assert.doesNotMatch(script, /requestAnimationFrame\(tick\)/);
+});
