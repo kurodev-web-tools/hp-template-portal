@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeButton = document.querySelector("[data-menu-close]");
     const links = document.querySelectorAll("[data-page-link]");
     const currentPage = body.dataset.page;
-    const form = document.querySelector("[data-demo-form]");
+    const form = document.querySelector("[data-contact-form]");
     const message = document.querySelector("[data-form-message]");
 
     const setMenuState = (isOpen) => {
@@ -54,41 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
             form.reset();
         });
     }
-
-    // Scroll Stamp Animation Observer
-    const stampElements = document.querySelectorAll('.u-paper-card, .u-poster, .u-list-card');
-    const stampObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-stamped');
-                entry.target.style.willChange = "auto";
-                stampObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -32px 0px'
-    });
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    stampElements.forEach((el) => {
-        if (reduceMotion) {
-            el.classList.add("is-stamped");
-            el.style.willChange = "auto";
-            return;
-        }
-
-        // Only observe elements not already in viewport on load to prevent jarring load flash
-        if (el.getBoundingClientRect().top > window.innerHeight + 24) {
-            stampObserver.observe(el);
-        } else {
-            requestAnimationFrame(() => {
-                el.classList.add("is-stamped");
-                el.style.willChange = "auto";
-            });
-        }
-    });
 
     setMenuState(false);
 });
