@@ -77,8 +77,10 @@ run('shared layout keeps business navigation and live-feeling contact entry poin
     assert.match(html, /Services/);
     assert.match(html, /Manifesto/);
     assert.match(html, /Contact/);
-    assert.match(html, /相談する/);
+    assert.match(html, /制作相談/);
     assert.match(html, /fonts\.googleapis\.com\/css2\?family=Archivo\+Black[\s\S]*family=Noto\+Sans\+JP[\s\S]*Material\+Symbols/);
+    assert.match(html, /\.\.\/\.\.\/\.\.\/plans\.html\?template=business-v&plan=standard/);
+    assert.match(html, /このテンプレートで制作相談/);
   }
 });
 
@@ -104,13 +106,13 @@ run('shared styles include sample cards, intake form polish, and wrap tuning', (
   assert.doesNotMatch(css, /animation:\s*v-noise-shift 0\.2s steps\(2\) infinite;/);
   assert.doesNotMatch(css, /animation:\s*v-glow-pulse 6s ease-in-out infinite alternate;/);
   assert.match(css, /box-shadow:\s*0 10px 28px rgba\(0,0,0,0\.18\)/);
-  assert.match(css, /transform:\s*translate\(3px,\s*-3px\)/);
   assert.match(css, /\.sticky\.top-0\s*\{[\s\S]*backdrop-filter:\s*blur\(6px\) !important/);
-  assert.match(css, /main > section:first-of-type[\s\S]*opacity:\s*1/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
   assert.doesNotMatch(css, /\.hidden\s*\{\s*display:\s*none\s*!important;/);
   assert.match(css, /text-wrap:\s*balance/);
   assert.match(css, /text-wrap:\s*pretty/);
+  assert.doesNotMatch(css, /is-revealed/);
+  assert.doesNotMatch(css, /translateY\(30px\)/);
 });
 
 run('shared script validates expanded contact form and toggles the success state', () => {
@@ -122,7 +124,8 @@ run('shared script validates expanded contact form and toggles the success state
   assert.match(script, /window\.innerWidth < 768/);
   assert.match(script, /checkValidity\(\)/);
   assert.match(script, /classList\.remove\("v-hidden"\)/);
-  assert.match(script, /section:not\(:first-of-type\)/);
   assert.match(script, /preventDefault\(\)/);
   assert.match(script, /reset\(\)/);
+  assert.doesNotMatch(script, /IntersectionObserver/);
+  assert.doesNotMatch(script, /is-revealed/);
 });
