@@ -47,52 +47,5 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  const applyDepth = () => {
-    const items = document.querySelectorAll('[data-depth]');
-    const offset = Math.min(window.scrollY, 320);
-    items.forEach((item) => {
-      const depth = Number(item.getAttribute('data-depth') || 0);
-      item.style.transform = `translate3d(0, ${offset * depth * -1}px, 0)`;
-    });
-  };
-
-  const revealItems = document.querySelectorAll('.reveal');
-  const applyStagger = (target) => {
-    target.querySelectorAll('[data-stagger]').forEach((item) => {
-      const step = Number(item.getAttribute('data-stagger') || 0);
-      item.style.transitionDelay = `${step * 90}ms`;
-      item.classList.add('is-staggered');
-    });
-  };
-
-  if ('IntersectionObserver' in window && revealItems.length) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            applyStagger(entry.target);
-            if (entry.target.hasAttribute('data-chart')) {
-              entry.target.classList.add('is-live');
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.18 }
-    );
-
-    revealItems.forEach((item) => observer.observe(item));
-  } else {
-    revealItems.forEach((item) => {
-      item.classList.add('is-visible');
-      applyStagger(item);
-      if (item.hasAttribute('data-chart')) {
-        item.classList.add('is-live');
-      }
-    });
-  }
-
-  applyDepth();
-  window.addEventListener('scroll', applyDepth, { passive: true });
+  document.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
 })();
