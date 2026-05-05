@@ -46,7 +46,7 @@
             <a class="metro-nav-link active text-xs uppercase tracking-[0.3em] text-white" href="contact.html">Inquiry</a>
         </nav>
         <div class="flex items-center gap-3">
-            <a href="#contact-form" class="hidden rounded-full border border-primary/40 bg-primary px-5 py-2 text-[10px] font-bold uppercase tracking-[0.32em] text-white metro-glow-pink md:inline-flex">Send A Signal</a>
+            <a href="../../../plans.html?template=business-n&plan=standard" class="hidden rounded-full border border-primary/40 bg-primary px-5 py-2 text-[10px] font-bold uppercase tracking-[0.32em] text-white metro-glow-pink md:inline-flex">制作相談へ</a>
             <button type="button" class="inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white md:hidden" data-metro-menu-toggle aria-controls="metro-mobile-menu" aria-expanded="false" aria-label="メニューを開く"><span class="material-symbols-outlined">menu</span></button>
         </div>
     </div>
@@ -56,7 +56,7 @@
     <div class="flex h-full flex-col">
         <div class="mb-12 flex items-center justify-between"><span class="text-sm font-bold uppercase tracking-[0.32em] text-white">Metro Pulse</span><button type="button" class="text-white" data-metro-menu-toggle aria-controls="metro-mobile-menu" aria-expanded="false" aria-label="メニューを閉じる"><span class="material-symbols-outlined">close</span></button></div>
         <div class="flex flex-1 flex-col gap-7"><a class="text-base font-bold uppercase tracking-[0.28em] text-white/75" href="index.html">Events</a><a class="text-base font-bold uppercase tracking-[0.28em] text-cyan-neon" href="service.html">Projects</a><a class="text-base font-bold uppercase tracking-[0.28em] text-purple-neon" href="about.html">Collective</a><a class="text-base font-bold uppercase tracking-[0.28em] text-white" href="contact.html" aria-current="page">Inquiry</a></div>
-        <a href="#contact-form" class="mt-auto inline-flex items-center justify-center rounded-full border border-primary/40 bg-primary px-5 py-3 text-xs font-bold uppercase tracking-[0.3em] text-white metro-glow-pink">Send A Signal</a>
+        <a href="../../../plans.html?template=business-n&plan=standard" class="mt-auto inline-flex items-center justify-center rounded-full border border-primary/40 bg-primary px-5 py-3 text-xs font-bold uppercase tracking-[0.3em] text-white metro-glow-pink">このテンプレートで制作相談</a>
     </div>
 </nav>
 <main>
@@ -65,7 +65,7 @@
         <p class="text-[11px] font-bold uppercase tracking-[0.38em] text-primary">Pulse lab contact</p>
         <div class="mt-5 grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
             <h1 class="text-5xl font-bold uppercase italic tracking-[-0.07em] text-white md:text-7xl">Send a signal into the <span class="metro-text-glow text-purple-neon">night</span></h1>
-            <p class="text-base leading-8 text-white/65">参加、出演、協業、取材の導線を分けて、問い合わせ内容が混線しない構成にしています。実運用時は担当窓口や応答方針を差し替えてください。</p>
+            <p class="text-base leading-8 text-white/65">参加予約、出演相談、協業、取材の導線を分けて、問い合わせ内容が混線しないようにしています。開催時期や会場候補が未定でも、必要な準備から相談できます。</p>
         </div>
     </div>
 </section>
@@ -96,11 +96,13 @@
         <div class="relative z-10 metro-reveal">
             <p class="text-[11px] font-bold uppercase tracking-[0.38em] text-cyan-neon">Inquiry form</p>
             <h2 class="mt-4 text-4xl font-bold uppercase italic tracking-tight text-white md:text-6xl">Tell us what kind of night you want</h2>
-            <p class="mt-6 max-w-2xl text-sm leading-7 text-white/62">送信仕様は安全なプレースホルダに留めています。本番公開前に `action`, `method`, バリデーション、送信先ハンドラを差し替えてください。</p>
-            <form id="contact-form" class="mt-8 space-y-5" action="#" method="post" data-demo-form>
+            <p class="mt-6 max-w-2xl text-sm leading-7 text-white/62">開催予定、会場規模、必要な演出、予約方法を簡単に送るだけで、初回相談で整理すべき論点が見えます。</p>
+            <form id="contact-form" class="mt-8 space-y-5" action="../../../plans.html" method="get">
+                <input type="hidden" name="template" value="business-n">
+                <input type="hidden" name="plan" value="standard">
                 <div>
                     <label for="metro-name" class="mb-2 block text-[10px] uppercase tracking-[0.28em] text-white/50">Name</label>
-                    <input id="metro-name" name="name" type="text" class="metro-form-field" placeholder="例: AYA / Contact Lead" autocomplete="name" required>
+                    <input id="metro-name" name="name" type="text" class="metro-form-field" placeholder="例: 高橋 彩 / 企画担当" autocomplete="name" required>
                 </div>
                 <div>
                     <label for="metro-company" class="mb-2 block text-[10px] uppercase tracking-[0.28em] text-white/50">Organization</label>
@@ -113,18 +115,18 @@
                 <div>
                     <label for="metro-subject" class="mb-2 block text-[10px] uppercase tracking-[0.28em] text-white/50">Lane</label>
                     <select id="metro-subject" name="subject" class="metro-form-field" required>
-                        <option value="">Select a lane</option>
-                        <option value="attend">Join / Participate</option>
-                        <option value="perform">Perform / Exhibit</option>
-                        <option value="collab">Collaborate / Brand</option>
-                        <option value="press">Press / Media</option>
+                        <option value="">相談内容を選択</option>
+                        <option value="ticket-reservation">チケット購入 / 席予約</option>
+                        <option value="performer-entry">出演相談 / 展示提案</option>
+                        <option value="brand-collaboration">ブランド協業 / 会場連携</option>
+                        <option value="press-media">取材 / メディア掲載</option>
                     </select>
                 </div>
                 <div>
                     <label for="metro-message" class="mb-2 block text-[10px] uppercase tracking-[0.28em] text-white/50">Message</label>
-                    <textarea id="metro-message" name="message" rows="6" class="metro-form-field" placeholder="Timeline, venue, audience size, references, or inquiry details" required></textarea>
+                    <textarea id="metro-message" name="message" rows="6" class="metro-form-field" placeholder="開催時期、会場候補、想定人数、相談したい演出や予約導線をご記入ください。" required></textarea>
                 </div>
-                <button type="submit" class="inline-flex items-center justify-center rounded-full border border-primary/40 bg-primary px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-white metro-glow-pink">Transmit</button>
+                <button type="submit" class="inline-flex items-center justify-center rounded-full border border-primary/40 bg-primary px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-white metro-glow-pink">このテンプレートで制作相談</button>
                 <p id="metro-form-note" class="text-xs leading-6 text-white/60" aria-live="polite"></p>
             </form>
         </div>
@@ -134,7 +136,7 @@
                 <div class="mt-8 space-y-7 text-sm leading-7 text-white/65">
                     <div>
                         <p class="text-white">Reply window</p>
-                        <p>このテンプレートでは、初回返信を 2 営業日以内と想定しています。</p>
+                        <p>初回返信は 2 営業日以内。開催時期、会場候補、相談したい範囲を確認します。</p>
                     </div>
                     <div>
                         <p class="text-white">Base</p>
@@ -167,7 +169,7 @@
 </main>
 <footer class="mt-auto border-t border-white/5 px-7 py-16 md:px-10">
     <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-        <div><h2 class="text-xl font-bold uppercase italic tracking-[0.28em] text-white">Metro Pulse</h2><p class="mt-5 max-w-sm text-sm leading-7 text-white/58">参加、出演、協業、取材の流入を1つの雰囲気で束ねるネオンテンプレートです。</p></div>
+        <div><h2 class="text-xl font-bold uppercase italic tracking-[0.28em] text-white">Metro Pulse</h2><p class="mt-5 max-w-sm text-sm leading-7 text-white/58">参加、出演、協業、取材の流入を1つの雰囲気で束ね、制作相談へつなげるネオンサイトです。</p></div>
         <div class="grid grid-cols-2 gap-10 md:contents">
             <div><p class="text-[10px] font-bold uppercase tracking-[0.32em] text-white/45">Pages</p><div class="mt-5 flex flex-col gap-3 text-sm text-white/68"><a href="index.html">Events</a><a href="about.html">Collective</a><a href="service.html">Projects</a><a href="contact.html">Inquiry</a></div></div>
             <div><p class="text-[10px] font-bold uppercase tracking-[0.32em] text-white/45">Contact</p><div class="mt-5 flex flex-col gap-3 text-sm text-white/68"><a href="mailto:hello@metro-pulse.studio">hello@metro-pulse.studio</a><a href="tel:+81345001280">+81 3-4500-1280</a><span>Shibuya, Tokyo</span></div></div>
