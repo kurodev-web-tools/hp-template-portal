@@ -6,6 +6,9 @@
 - 直近の実行判断は `docs/PLAN.md` よりこの `task.md` を優先する
 
 ## Active Priorities
+- [ ] streamer 26件のフルリニューアルは、当面 Symphony / Linear 実行ではなく Codex app の通常作業で進める。基本単位は `1テンプレート = 1ブランチ = 1worktree = 1PR` とし、個別PRを結合用ブランチへ集約してから全体確認する
+- [ ] streamer 26件の個別実装は `docs/template-renewal-details/streamer/full-renewal-pilots/<slug>/DESIGN.md` と `IMPLEMENTATION_PLAN.md` を正本にする。`SYMPHONY_TASK.md` は実装補助メモとして参照してよいが、実行契約としては扱わない
+- [ ] streamer renewal の共有ファイル更新は個別テンプレートPRでは行わず、結合用ブランチでまとめて扱う。対象は `public/assets/js/data.js`、サムネイル、template modal / registry、`task.md`、`docs/PLAN.md`
 - [ ] 2026-05-03 の受注導線監査を起点に、`list.html` の template modal から `plans.html` / `order-premium.html` へ template id を渡す導線、トップの実数表示、料金/プラン名の整理を優先改善する。詳細は `docs/reviews/PORTAL_CONVERSION_AUDIT_2026-05-03.md`
 - [x] business polish 1件目として `business/c` (Clean) を `codex-business-c-clean` worktree で改善した。医療/相談業向けの既存構成を維持し、4ページ共通で `plans.html?template=business-c&plan=standard` / `plan=light` へ戻る固定相談CTAを追加した
 - [x] 104テンプレート分のリニューアル詳細mdを `docs/template-renewal-details/` にカテゴリ別かつ `full-renewal` / `partial-renewal` / `polish` 別で作成した。各テンプレートの実装前設計入力として、構成、デザイン、CTA、モック画像方針に加え、リニューアル深度、演出レベル、ページモデル、PCヘッダー位置、FV設計、セクション別計画、避ける表現、実装フェーズまで確認できる
@@ -13,6 +16,7 @@
 - [x] streamer 26件の first viewport mock 作成用プロンプトを `docs/template-renewal-details/streamer/mock-prompts/` に作成した。DESIGN.md 形式を参考に、design tokens、視覚方針、画像生成プロンプト、negative prompt、review checklist をテンプレートごとに確認できる
 - [x] streamer B/C/I の試作結果を受け、`scripts/generate-streamer-mock-prompts.mjs` と `mock-prompts/` 全26件に Layout Signature を追加した。各テーマで archetype、ヘッダー位置、情報配置、密度、実装ヒント、避ける共通レイアウトを明文化し、右カード積み/hero-left/cards-right に戻りにくい生成入力へ更新した
 - [x] streamer 26件の first viewport mock画像を更新済み Layout Signature プロンプトから `docs/template-renewal-details/streamer/mockup-image/` に `*-layout-v2.png` として保存した。保存先は `full-renewal` / `partial-renewal` / `polish` の分類を維持し、各画像の存在と寸法取得を確認済み
+- [x] Symphony / Linear で streamer 26件を自動実装する試行は、Windows 上の Codex app-server / MCP auth で `TokenRefreshFailed` が出るため中断した。Linear に積んだ streamer renewal issue は運用対象から外し、Codex app 実装へ戻す
 - [ ] `public` / `docs` / `scripts` の棚卸しを継続し、`docs` / `scripts` は現状維持で問題ない状態を保ちつつ、`public/templates` の補助資産と未使用ファイル候補を重点確認する。直近では `business/o` の未参照 `_contact_sheet.png`、`business` 配下の未参照 `external-image-02.svg` 以降、`business/b,d,o` の未参照 generated SVG を削除済み
 - [ ] business / lp / portfolio / streamer テンプレートの公開品質を維持する
 - [x] Business B: Bold の Phase 1 polish として、Hero の制作相談CTA、実績導線、CTA strip、SP固定CTA、下層ページ共通の `plans.html?template=business-b&plan=standard` 導線を追加した。詳細入力は `docs/template-renewal-details/business/polish/b-bold.md`
@@ -84,6 +88,10 @@
 - [x] テンプレート更新後の検証手順を標準化する。`docs/TEMPLATE_STATIC_AUDIT.md` に default verification routine、監査コマンドの使い分け、カテゴリ別テストの入口を追記した
 - [ ] サムネイル再生成ルールと保存先ルールを必要に応じて追加文書化する
 - [x] 運用ルールに合わせて `docs` の役割分担を継続的に簡素化する。`docs/README.md` に quick guide を追加し、`docs/AI_WORKFLOW.md` から関連運用文書の役割を辿れるように整理した
+
+## Archived / Deferred
+- [ ] Symphony runner の再検証は、Codex app-server の MCP/auth 失敗を切り分けられる小さい検証 issue で別途行う。streamer 26件の本実装ブロッカーにはしない
+- [ ] Linear は当面 streamer renewal の実行キューとして使わず、必要になった場合のみ進捗メモや手動タスク管理に限定する
 
 ## Update Rules
 - 大きな整理や実装が終わったら、完了内容に合わせてこのファイルを更新する

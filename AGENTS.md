@@ -4,7 +4,7 @@
 - This file defines HP-Portal-specific Codex behavior.
 - Use it together with the global Codex rules. Keep generic safety, tone, and tool rules in the global `AGENTS.md`; keep HP-Portal workflow rules here.
 - Apply these rules to template renewals, new template additions, category-level design work, portal UI changes, and related documentation.
-- Current user instructions, Linear issue context, `WORKFLOW.md` / Symphony workflow rules, and local task/spec/design documents define the active task.
+- Current user instructions and local task/spec/design documents define the active task.
 - When instructions conflict, prefer the most specific current task source and report the conflict if it changes the implementation path.
 
 ## Project Work Model
@@ -13,13 +13,6 @@
 - Preserve the template's intended identity. Do not make templates in the same category visually interchangeable unless the task explicitly requests convergence.
 - Keep changes independently reviewable. Avoid combining unrelated template, category, or infrastructure changes in one diff.
 - If category, template, scope, or acceptance criteria are missing and implementation cannot be safely bounded, state the gap and proceed only with the smallest safe unit.
-
-## Linear And Symphony Context
-- When a Linear issue is attached, use its title, description, comments, and acceptance criteria as the primary task context.
-- When Symphony or `WORKFLOW.md` is present, treat it as the workflow contract for workspace setup, status transitions, handoff states, and issue-update behavior.
-- Do not change Linear status, assignee, labels, estimates, or comments unless the user or active workflow explicitly requests it.
-- For design or renewal issues, map the issue to a specific category and template before implementation.
-- Final reports should be short enough to paste into Linear: include progress, verification, risks, and next action.
 
 ## Worktree And Branch Policy
 - Prefer one branch and one worktree per template for template renewals, new template additions, and independent category work.
@@ -32,7 +25,7 @@
 - After a worktree branch is merged and no follow-up work is expected, remove the worktree only after confirming it has no unmerged work.
 
 ## Template Renewal Workflow
-- Phase 0: Intake. Read the user request or Linear issue, relevant `task.md` / spec files, category-level `DESIGN.md`, template-level `DESIGN.md`, and existing implementation.
+- Phase 0: Intake. Read the user request, relevant `task.md` / spec files, category-level `DESIGN.md`, template-level `DESIGN.md`, and existing implementation.
 - Phase 1: Structure only. Implement layout, section order, hierarchy, and core containers. Do not add motion, decorative effects, or heavy visual polish in this phase.
 - Phase 2: Visual differentiation. Add the template's signature visual language, spacing, typography, color treatment, imagery treatment, and category-compatible atmosphere.
 - Phase 3: Interaction and responsiveness. Add motion, hover/focus states, responsive behavior, accessibility details, and edge-case handling.
@@ -67,7 +60,7 @@
 - Review `task.md` before implementation when present.
 - Update `task.md` after meaningful work only when the repository workflow expects it or the user requests it.
 - Treat `docs/PLAN.md`, implementation plans, and design docs as supporting context for longer-term structure and phased direction.
-- If Linear context, `task.md`, `docs/PLAN.md`, and `DESIGN.md` disagree, prioritize the active task's acceptance criteria and the most specific design document. Report the inconsistency.
+- If `task.md`, `docs/PLAN.md`, and `DESIGN.md` disagree, prioritize the active task's acceptance criteria and the most specific design document. Report the inconsistency.
 - Keep project history, daily logs, and implementation notes aligned only when the workflow depends on them or the user asks.
 
 ## Verification
@@ -81,5 +74,5 @@
 ## Reporting
 - Final reports should include: task type, category/template, files changed, completed phase or unit, verification performed, remaining risks, and next recommended action.
 - Keep reports concise and technical.
-- For Linear or Symphony handoff, avoid claims such as “done”, “ready to merge”, or “blocked” unless they match the active workflow state.
+- Avoid claims such as “done”, “ready to merge”, or “blocked” unless the verification and handoff state supports them.
 - Do not include long logs unless the user requests them.
