@@ -1,102 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Premium Effects
-    if (window.PremiumEffects) {
-        // Fix: Call as static method, not constructor
-        PremiumEffects.BlurText('.hero-title', {
-            delay: 40,
-            duration: 1200
-        });
-    }
+    document.body.classList.add('is-loaded');
 
-    // Mobile Menu Toggle (Neon Drawer)
-    const toggle = document.querySelector('.mobile-toggle');
-    const menu = document.querySelector('.mobile-menu');
-    const menuLinks = menu ? menu.querySelectorAll('a') : [];
+    const revealTargets = document.querySelectorAll('.reveal');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (toggle && menu) {
-        function toggleMenu(e) {
-            e.stopPropagation();
-            const isActive = menu.classList.toggle('active');
-            toggle.classList.toggle('active');
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+        revealTargets.forEach((target) => target.classList.add('is-visible'));
+    } else {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
 
-            // Icon switch
-            const icon = toggle.querySelector('.material-icons');
-            if (icon) icon.textContent = isActive ? 'close' : 'visibility';
-
-            // Body Scroll Lock
-            document.body.style.overflow = isActive ? 'hidden' : '';
-        }
-
-        toggle.addEventListener('click', toggleMenu);
-
-        // Close menu when a link is clicked
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                toggle.classList.remove('active');
-
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'visibility';
-
-                document.body.style.overflow = '';
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
             });
+        }, {
+            rootMargin: '0px 0px -10% 0px',
+            threshold: 0.12,
         });
 
-        // Close menu when clicking outside (on the backdrop if not full height)
-        // Since we are using a drawer that might not be full height, clicking the upper part (backdrop) should close it?
-        // But currently the menu is 'fixed bottom' and 'min-height: 400px'. It doesn't have a separate backdrop element in HTML.
-        // We can add a click listener to the window/body to close if clicking outside the menu, but the menu itself takes up space.
-        // Let's stick to the requested logic.
+        revealTargets.forEach((target) => revealObserver.observe(target));
     }
 
-    // Intersection Observer for fade-in elements
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    const navLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
+    const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
 
-    document.querySelectorAll('.card').forEach(card => {
-        observer.observe(card);
+    function setActiveNav(id) {
+        navLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('is-active', isActive);
+        });
+    }
+
+    if ('IntersectionObserver' in window && sections.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (visible && visible.target.id) {
+                setActiveNav(visible.target.id);
+            }
+        }, {
+            rootMargin: '-30% 0px -55% 0px',
+            threshold: [0.1, 0.3, 0.6],
+        });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+    }
+
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            const targetId = link.getAttribute('href').replace('#', '');
+            setActiveNav(targetId);
+        });
     });
 
-    // ============================================
-    // RGB GLITCH MOBILE AUTO-EFFECT
-    // ============================================
-    
-    // Mobile: Auto-trigger glitch effect at random intervals
-    if (window.innerWidth <= 768) {
-        const glitchElements = document.querySelectorAll('.glitch-hover, .btn-neon, .hero-title, .glitch-text');
-        
-        function triggerRandomGlitch() {
-            if (glitchElements.length === 0) return;
-            
-            // Pick a random element
-            const randomIndex = Math.floor(Math.random() * glitchElements.length);
-            const element = glitchElements[randomIndex];
-            
-            // Add glitch-active class
-            element.classList.add('glitch-active');
-            
-            // Ensure data-text attribute exists for pseudo-elements
-            if (!element.getAttribute('data-text')) {
-                element.setAttribute('data-text', element.textContent || '');
-            }
-            
-            // Remove after 200ms
-            setTimeout(() => {
-                element.classList.remove('glitch-active');
-            }, 200);
-            
-            // Schedule next glitch (2000ms ~ 5000ms random interval)
-            const nextInterval = Math.random() * 3000 + 2000;
-            setTimeout(triggerRandomGlitch, nextInterval);
-        }
-        
-        // Start the glitch loop after initial delay
-        setTimeout(triggerRandomGlitch, 3000);
-    }
+    setActiveNav('home');
 });
