@@ -1,114 +1,52 @@
+document.documentElement.classList.remove('no-js');
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Parallax Effect
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const bg = document.querySelector('.parallax-bg');
-        bg.style.transform = `translateY(${scrolled * 0.3}px)`;
-    });
+    document.body.classList.add('is-loaded');
 
-    // HP Bar Animation on Load
-    const hpFill = document.querySelector('.hp-fill');
-    setTimeout(() => {
-        hpFill.style.width = '85%';
-    }, 500);
+    const revealTargets = document.querySelectorAll('.panel-reveal');
+    const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Mobile Menu (Pause Screen)
-    const toggle = document.querySelector('.mobile-toggle');
-    const menu = document.querySelector('.mobile-menu');
-    const menuLinks = menu ? menu.querySelectorAll('a') : [];
+    if (motionReduced || !('IntersectionObserver' in window)) {
+        revealTargets.forEach((target) => target.classList.add('is-visible'));
+    } else {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
 
-    if (toggle && menu) {
-        toggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isActive = menu.classList.contains('active');
-
-            if (!isActive) {
-                // Open with glitch
-                menu.classList.add('animate-open');
-                // Small delay to let the glitch start before showing the menu container
-                requestAnimationFrame(() => {
-                    menu.classList.add('active');
-                });
-
-                document.body.style.overflow = 'hidden';
-                toggle.querySelector('.material-icons').textContent = 'close';
-
-                // Cleanup animation class
-                setTimeout(() => {
-                    menu.classList.remove('animate-open');
-                }, 500);
-
-            } else {
-                // Close immediately
-                menu.classList.remove('active');
-                document.body.style.overflow = '';
-                toggle.querySelector('.material-icons').textContent = 'drag_handle';
-            }
-        });
-
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                document.body.style.overflow = '';
-                const icon = toggle.querySelector('.material-icons');
-                if (icon) icon.textContent = 'drag_handle';
-            });
-        });
-    }
-
-    // Smooth reveal for sections
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('is-visible');
                 observer.unobserve(entry.target);
-            }
+            });
+        }, {
+            rootMargin: '0px 0px -8% 0px',
+            threshold: 0.08,
         });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.loot-item, .lore-text').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 1s ease-out';
-        observer.observe(el);
-    });
+        revealTargets.forEach((target) => observer.observe(target));
+    }
 
-    // ============================================
-    // BOSS AURA (Pulsing Effect)
-    // ============================================
-    
-    const heroTitle = document.querySelector('.hero-title');
-    const vignette = document.querySelector('.vignette');
-    
-    // Always apply boss-aura by default
-    if (heroTitle) {
-        heroTitle.classList.add('boss-aura');
-    }
-    
-    // PC: Enraged state on hover
-    if (window.innerWidth > 768 && heroTitle) {
-        heroTitle.addEventListener('mouseenter', () => {
-            heroTitle.classList.add('enraged');
-            if (vignette) {
-                vignette.style.animation = 'vignette-enraged 0.8s ease-in-out infinite';
+    const sections = document.querySelectorAll('section[id], article[id], main[id]');
+    const navLinks = document.querySelectorAll('.rail-nav a');
+
+    if ('IntersectionObserver' in window && navLinks.length > 0) {
+        const navObserver = new IntersectionObserver((entries) => {
+            const activeEntry = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (!activeEntry) {
+                return;
             }
+
+            const id = activeEntry.target.getAttribute('id');
+            navLinks.forEach((link) => {
+                link.classList.toggle('is-current', link.getAttribute('href') === `#${id}`);
+            });
+        }, {
+            threshold: [0.25, 0.5, 0.75],
         });
-        
-        heroTitle.addEventListener('mouseleave', () => {
-            heroTitle.classList.remove('enraged');
-            if (vignette) {
-                vignette.style.animation = '';
-            }
-        });
-    }
-    
-    // Mobile: Auto apply boss aura (slow continuous pulse)
-    if (window.innerWidth <= 768) {
-        // Boss aura is already applied above
-        // Mobile always shows the slow breathing effect
-        if (vignette && !vignette.style.animation) {
-            vignette.style.animation = 'vignette-pulse 4s ease-in-out infinite';
-        }
+
+        sections.forEach((section) => navObserver.observe(section));
     }
 });
