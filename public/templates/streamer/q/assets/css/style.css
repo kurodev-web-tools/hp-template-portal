@@ -1,874 +1,1090 @@
-/* Quest Log Custom Styles */
 :root {
-    --parchment-bg: #f3e5ab;
-    --wood-border: #8b4513;
-    --rpg-blue: #00008b;
-    --text-color: #3e2723;
+    --parchment: #f5e6be;
+    --parchment-deep: #c9a86a;
+    --parchment-light: #fff4cf;
+    --ink: #2b1d0e;
+    --leather: #5d4037;
+    --guild-green: #1f3b22;
+    --guild-green-light: #315b35;
+    --seal-red: #9a2d1f;
+    --gold: #d8a93d;
+    --text: #21150a;
+    --muted: #6b5a43;
+    --shadow: rgba(20, 11, 3, 0.42);
+    --line: rgba(43, 29, 14, 0.22);
+    --radius-sm: 2px;
+    --radius-md: 6px;
+    --radius-panel: 8px;
+    --font-display: "Noto Serif JP", Georgia, serif;
+    --font-body: "Noto Sans JP", system-ui, sans-serif;
+    --font-label: "Inter", system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'VT323', monospace;
-    overflow: hidden;
-    /* Like a game screen */
+    min-width: 320px;
     margin: 0;
-    font-size: 24px;
-}
-
-.wood-texture {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    overflow-x: hidden;
     background:
-        repeating-linear-gradient(90deg, transparent 0, transparent 50px, rgba(0, 0, 0, 0.1) 50px, rgba(0, 0, 0, 0.1) 52px),
-        linear-gradient(to bottom, #5d4037, #3e2723);
+        radial-gradient(circle at 80% 0%, rgba(216, 169, 61, 0.16), transparent 32rem),
+        radial-gradient(circle at 8% 12%, rgba(154, 45, 31, 0.16), transparent 28rem),
+        linear-gradient(135deg, #120c07 0%, #25150a 45%, #0f0905 100%);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0;
 }
 
-.quest-container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+a {
+    color: inherit;
 }
 
-/* Main Menu */
-.main-menu-panel {
-    background: var(--rpg-blue);
-    border: 4px solid #fff;
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-    z-index: 10;
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
-.game-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.8rem;
-    color: #ffd700;
-    text-shadow: 3px 3px 0 #000;
-    line-height: 1.5;
+:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
 }
 
-.hero-sub {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.7rem;
-    text-align: center;
-    color: #fff;
-    text-shadow: 2px 2px 0 #000;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-.status-container {
+.skip-link {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    text-align: right;
-    z-index: 1000;
+    left: 16px;
+    top: 12px;
+    z-index: 100;
+    transform: translateY(-140%);
+    border-radius: var(--radius-md);
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 10px 14px;
+    text-decoration: none;
 }
 
-.menu-list {
-    list-style: none;
-    padding: 0;
+.skip-link:focus {
+    transform: translateY(0);
 }
 
-.menu-list li {
-    font-size: 2rem;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: transform 0.1s;
-    position: relative;
-}
-
-.menu-list li:hover {
-    color: #ffd700;
-}
-
-.menu-list li .cursor {
-    display: none;
-    margin-right: 10px;
-}
-
-.menu-list li:hover .cursor {
-    display: inline-block;
-}
-
-/* Content Panels (Popups) */
-.content-panel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 600px;
-    background: var(--parchment-bg);
-    color: var(--text-color);
-    border: 8px solid var(--wood-border);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    z-index: 20;
-    border-radius: 4px;
-    opacity: 0;
+.quest-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
-    display: flex;
-    flex-direction: column;
-}
-
-.content-panel.active {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.content-panel.hidden {
-    display: none;
-}
-
-.panel-header {
-    background: var(--wood-border);
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.panel-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.close-btn {
-    background: #d32f2f;
-    border: 2px solid #fff;
-    color: #fff;
-    font-family: inherit;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0 10px;
-}
-
-.panel-body {
-    padding: 30px;
-    min-height: 200px;
-}
-
-/* Status Screen */
-.stats-grid {
-    display: grid;
-    gap: 10px;
-    font-size: 1.5rem;
-}
-
-.stat-row {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px dotted var(--wood-border);
-}
-
-/* Quest List */
-.quest-list {
-    list-style: none;
-    padding: 0;
-}
-
-.quest-item {
-    padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.badge {
-    font-size: 0.8rem;
-    padding: 2px 8px;
-    background: #555;
-    color: #fff;
-    border-radius: 4px;
-}
-
-.quest-item.completed .badge {
-    background: #2e7d32;
-}
-
-.quest-item.active .badge {
-    background: #1976d2;
-}
-
-.quest-item.locked {
-    color: #888;
-}
-
-/* Buttons */
-.btn-group {
-    margin-top: 30px;
-    text-align: center;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.rpg-btn {
-    display: inline-block;
-    background: var(--rpg-blue);
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 30px;
-    border: 2px solid #fff;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
-    transition: transform 0.1s;
-}
-
-.rpg-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
-}
-
-.rpg-btn.primary {
-    background: #d32f2f;
-}
-
-/* Hero Actions Container */
-.hero-actions {
-    margin: 30px 0;
-    text-align: center;
-}
-
-/* Quest CTA Button (RPG Theme) */
-.btn-quest {
-    display: inline-block;
-    padding: 16px 48px;
-    background: linear-gradient(135deg, var(--parchment-bg) 0%, #e8d4a0 100%);
-    border: 4px solid var(--wood-border);
-    color: var(--text-color);
-    font-family: 'VT323', monospace;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #5d4037, 0 8px 10px rgba(0, 0, 0, 0.5);
 }
 
-.btn-quest::before {
-    content: '';
+.quest-background::before {
+    content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
-    transform: rotate(45deg) translateY(-100%);
-    transition: transform 0.6s ease;
+    inset: 0;
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 244, 207, 0.04) 0 1px, transparent 1px 86px),
+        repeating-linear-gradient(0deg, rgba(255, 244, 207, 0.03) 0 1px, transparent 1px 72px);
+    opacity: 0.7;
 }
 
-.btn-quest:hover {
-    background: linear-gradient(135deg, #ffd700 0%, #e8d4a0 100%);
-    color: var(--wood-border);
-    box-shadow: 0 6px 0 #5d4037, 0 12px 20px rgba(0, 0, 0, 0.6);
-    transform: translateY(-2px);
+.map-line {
+    position: absolute;
+    width: 44vw;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(216, 169, 61, 0.32), transparent);
+    transform: rotate(-16deg);
 }
 
-.btn-quest:hover::before {
-    transform: rotate(45deg) translateY(100%);
+.line-a {
+    top: 18%;
+    right: -8vw;
 }
 
-.btn-quest:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #5d4037, 0 4px 5px rgba(0, 0, 0, 0.4);
+.line-b {
+    bottom: 22%;
+    left: -10vw;
+    transform: rotate(18deg);
 }
 
-@media (max-width: 768px) {
-    .hero-actions {
-        margin: 20px 0;
-    }
-
-    .btn-quest {
-        padding: 14px 36px;
-        font-size: 1.2rem;
-        min-height: 44px;
-        letter-spacing: 1px;
-    }
+.map-mark {
+    position: absolute;
+    color: rgba(245, 230, 190, 0.28);
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 8rem);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .game-title {
-        font-size: 2rem;
-    }
-
-    .menu-list li {
-        font-size: 1.5rem;
-    }
-
-    .content-panel {
-        width: 95%;
-    }
-
-    .mobile-toggle {
-        display: block;
-    }
+.mark-a {
+    top: 13%;
+    left: 35%;
 }
 
-/* Mobile Toggle - Improved hit area and visibility */
-.mobile-toggle {
+.mark-b {
+    right: 10%;
+    bottom: 10%;
+}
+
+.guild-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px clamp(16px, 3vw, 42px);
+    background: rgba(20, 11, 3, 0.9);
+    border-bottom: 1px solid rgba(245, 230, 190, 0.2);
+    color: var(--parchment);
+}
+
+.guild-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    text-decoration: none;
+}
+
+.brand-crest {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 2px solid var(--gold);
+    border-radius: var(--radius-md);
+    background: var(--guild-green);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 800;
+}
+
+.guild-brand strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    line-height: 1.1;
+}
+
+.guild-brand small {
+    display: block;
+    color: rgba(245, 230, 190, 0.72);
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.status-pill-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.status-pill {
     display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--parchment-bg);
-    border: 3px solid var(--wood-border);
-    color: var(--text-color);
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    z-index: 20002;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    border: 1px solid rgba(245, 230, 190, 0.28);
+    border-radius: var(--radius-md);
+    background: rgba(245, 230, 190, 0.08);
+    color: var(--parchment);
+    padding: 8px 12px;
+    font: 800 0.82rem/1.2 var(--font-label);
     cursor: pointer;
-    box-shadow: 0 4px 0 var(--wood-border);
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-    display: flex;
+}
+
+.status-pill .material-icons {
+    font-size: 1rem;
+}
+
+body[data-stream-status="live"] .live-indicator {
+    display: inline-flex;
+    background: var(--seal-red);
+    border-color: rgba(255, 244, 207, 0.55);
+}
+
+body[data-stream-status="offline"] .channel-indicator {
+    display: inline-flex;
+}
+
+.header-consult {
+    min-height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: var(--radius-md);
+    color: var(--gold);
+    padding: 8px 14px;
+    font: 800 0.82rem/1.45 var(--font-label);
+    text-decoration: none;
+}
+
+.quest-shell {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1.42fr) minmax(300px, 0.86fr);
+    gap: 20px;
+    width: min(1560px, 100%);
+    margin: 0 auto;
+    padding: clamp(18px, 3vw, 34px);
+}
+
+.quest-menu,
+.wood-panel,
+.parchment-panel {
+    border-radius: var(--radius-panel);
+    box-shadow: 0 20px 55px var(--shadow);
+}
+
+.quest-menu {
+    position: sticky;
+    top: 86px;
+    align-self: start;
+    display: grid;
+    gap: 12px;
+    border: 1px solid rgba(216, 169, 61, 0.36);
+    background:
+        linear-gradient(180deg, rgba(31, 59, 34, 0.94), rgba(21, 31, 20, 0.96)),
+        radial-gradient(circle at 20% 0%, rgba(216, 169, 61, 0.18), transparent 16rem);
+    color: var(--parchment);
+    padding: 18px;
+}
+
+.menu-title {
+    border: 1px solid rgba(216, 169, 61, 0.45);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    text-align: center;
+    font: 800 0.78rem/1.2 var(--font-label);
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.quest-tab {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
     align-items: center;
-    justify-content: center;
+    border: 1px solid rgba(43, 29, 14, 0.26);
+    border-radius: var(--radius-md);
+    background: var(--parchment);
+    color: var(--text);
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
 }
 
-.mobile-toggle.active {
-    background: #ffd700;
-    border-color: #fff;
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 var(--wood-border);
+.quest-tab:hover,
+.quest-tab.is-active {
+    transform: translateX(4px);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, var(--guild-green), var(--guild-green-light));
+    color: var(--parchment);
 }
 
-.mobile-toggle:active {
-    transform: translateY(4px);
-    box-shadow: none;
+.tab-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: rgba(43, 29, 14, 0.12);
+    font-size: 1.15rem;
 }
 
-/* Quest Book Menu Overlay */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 10001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s;
-    perspective: 1500px;
+.quest-tab strong,
+.quest-tab small {
+    display: block;
 }
 
-.mobile-menu.active {
-    opacity: 1;
-    visibility: visible;
+.quest-tab strong {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.25;
 }
 
-/* The Book */
-.quest-book {
-    width: 300px;
-    height: 450px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+.quest-tab small {
+    color: currentColor;
+    opacity: 0.78;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
-.mobile-menu.active .quest-book {
-    /* Slightly rotate for 3D effect */
-    transform: rotateY(-10deg) translateX(20px);
-}
-
-/* Cover & Back */
-.book-cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #5d4037;
-    border-radius: 5px 15px 15px 5px;
-    box-shadow:
-        inset 10px 0 20px rgba(0, 0, 0, 0.5),
-        5px 5px 15px rgba(0, 0, 0, 0.5);
-    transform-origin: left;
-    transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    z-index: 5;
-    /* Leather Texture */
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-}
-
-.book-cover.front {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid #3e2723;
-    border-left: 12px solid #3e2723;
-    /* Spine */
-}
-
-.book-cover.back {
-    z-index: 1;
-    background-color: #3e2723;
-    transform: translateZ(-20px);
-    /* Thickness */
-}
-
-/* Open Animation */
-.mobile-menu.active .book-cover.front {
-    transform: rotateY(-160deg);
-}
-
-.book-title {
-    font-family: 'Cinzel', serif;
-    font-size: 2rem;
-    color: #ffd700;
-    text-shadow: 1px 1px 2px #000;
-    padding: 20px;
-    border: 2px solid #ffd700;
+.rank-card {
+    border: 1px solid rgba(216, 169, 61, 0.4);
+    border-radius: var(--radius-md);
+    padding: 16px;
     background: rgba(0, 0, 0, 0.2);
 }
 
-.book-corner {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border: 4px solid #ffd700;
+.rank-card span,
+.rank-card small {
+    display: block;
+    color: rgba(245, 230, 190, 0.72);
 }
 
-.book-corner.top-left {
-    top: 20px;
-    left: 20px;
-    border-right: none;
-    border-bottom: none;
+.rank-card strong {
+    display: block;
+    margin: 6px 0;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 1;
 }
 
-.book-corner.bottom-right {
-    bottom: 20px;
-    right: 20px;
-    border-left: none;
-    border-top: none;
-}
-
-/* Inner Page */
-.book-page {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 290px;
-    height: 440px;
-    background-color: var(--parchment-bg);
-    border-radius: 2px 10px 10px 2px;
-    z-index: 3;
-    box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #4a3b2a;
-    font-family: 'Cormorant Garamond', serif;
-    /* Texture */
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.2'/%3E%3C/svg%3E");
-}
-
-.page-content-inner {
+.rank-card meter {
+    display: block;
     width: 100%;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.5s ease 0.8s;
-    /* Fade in after book opens */
+    height: 10px;
+    margin-top: 12px;
 }
 
-.mobile-menu.active .page-content-inner {
-    opacity: 1;
+.parchment-panel {
+    position: relative;
+    border: 1px solid rgba(43, 29, 14, 0.22);
+    background:
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.45), transparent 10rem),
+        linear-gradient(135deg, rgba(245, 230, 190, 0.98), rgba(228, 199, 140, 0.98));
 }
 
-.page-content-inner h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    border-bottom: 2px solid #8b4513;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    color: #8b4513;
+.parchment-panel::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    z-index: 0;
+    border: 1px dashed rgba(43, 29, 14, 0.2);
+    border-radius: var(--radius-md);
+    pointer-events: none;
 }
 
-.separator {
-    color: #8b4513;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+.active-quest {
+    min-height: 710px;
+    padding: clamp(28px, 4vw, 56px);
+    overflow: hidden;
 }
 
-.book-page ul {
-    list-style: none;
+.active-quest > * {
+    position: relative;
+    z-index: 1;
+}
+
+.quest-stamp {
+    position: absolute;
+    right: clamp(24px, 3vw, 48px);
+    top: clamp(24px, 3vw, 42px);
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: clamp(78px, 9vw, 108px);
+    aspect-ratio: 1;
+    border: 4px solid rgba(255, 244, 207, 0.42);
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 26%, #bf5a42, var(--seal-red));
+    color: var(--parchment-light);
+    box-shadow: 0 14px 24px rgba(43, 29, 14, 0.36), inset 0 0 0 2px rgba(43, 29, 14, 0.2);
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+    transform: rotate(-7deg);
+}
+
+.quest-kicker,
+.section-kicker {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font: 800 0.78rem/1.3 var(--font-label);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.active-quest h1 {
+    max-width: 12ch;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.05;
+}
+
+.quest-lead {
+    max-width: 42rem;
+    margin: 18px 0 0;
+    color: var(--text);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    font-weight: 600;
+}
+
+.quest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.quest-meta span {
+    border: 1px solid rgba(43, 29, 14, 0.2);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 244, 207, 0.48);
+    padding: 6px 10px;
+    color: var(--muted);
+    font-weight: 800;
+}
+
+.hero-board {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+    gap: clamp(18px, 3vw, 34px);
+    align-items: stretch;
+    margin-top: 28px;
+}
+
+.portrait-frame {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    border: 10px solid rgba(43, 29, 14, 0.6);
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(120deg, rgba(255, 244, 207, 0.22), transparent 34%),
+        radial-gradient(circle at 70% 30%, rgba(216, 169, 61, 0.5), transparent 9rem),
+        linear-gradient(135deg, #243625 0%, #52643c 48%, #1a241b 100%);
+    box-shadow: inset 0 0 0 1px rgba(255, 244, 207, 0.32);
+}
+
+.portrait-frame::before {
+    content: "";
+    position: absolute;
+    left: 12%;
+    bottom: -12%;
+    width: 54%;
+    height: 88%;
+    border-radius: 48% 48% 14% 14%;
+    background:
+        radial-gradient(circle at 50% 16%, #2c241c 0 8%, transparent 9%),
+        linear-gradient(160deg, #17110c, #2f4b2d 54%, #11100d);
+    box-shadow: 30px -24px 0 -16px rgba(216, 169, 61, 0.72);
+}
+
+.portrait-frame::after {
+    content: "";
+    position: absolute;
+    inset: auto 9% 10% auto;
+    width: 38%;
+    height: 34%;
+    border: 2px solid rgba(255, 244, 207, 0.42);
+    border-radius: 50%;
+    opacity: 0.55;
+    transform: rotate(-18deg);
+}
+
+.portrait-sigil {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border: 2px solid rgba(216, 169, 61, 0.76);
+    border-radius: 50%;
+    color: rgba(245, 230, 190, 0.88);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.lantern-glow {
+    position: absolute;
+    left: 13%;
+    top: 42%;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 203, 97, 0.82), rgba(245, 203, 97, 0.18) 48%, transparent 70%);
+}
+
+.quest-details {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(16px, 2vw, 28px);
+}
+
+.quest-details h2,
+.schedule-panel h2,
+.recruit-panel h2,
+.quest-board h2,
+.archive-panel h2,
+.guild-contact h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.reward-list {
+    display: grid;
+    gap: 10px;
+    margin: 18px 0 0;
     padding: 0;
-    text-align: left;
-    margin-left: 20px;
+    list-style: none;
 }
 
-.book-page li {
-    margin: 15px 0;
-    font-size: 1.4rem;
+.reward-list li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px dotted var(--line);
+    padding-bottom: 8px;
     font-weight: 700;
 }
 
-.chapter-num {
-    color: #8b4513;
-    margin-right: 10px;
-    font-family: 'Cinzel', serif;
+.reward-list span {
+    color: var(--seal-red);
 }
 
-.book-page a {
-    text-decoration: none;
-    color: #2c1810;
-    transition: color 0.3s;
-    font-family: 'Cinzel', serif;
-}
-
-.book-page a:hover {
-    color: #b8860b;
-    text-decoration: underline;
-}
-
-/* Bookmark Ribbon */
-.bookmark-ribbon {
-    position: absolute;
-    top: -10px;
-    right: 30px;
-    width: 20px;
-    height: 100px;
-    background: #800000;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-}
-
-.bookmark-ribbon::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    border-left: 10px solid #800000;
-    border-right: 10px solid #800000;
-    border-bottom: 10px solid transparent;
-}
-
-/* --- Status Engine: Dual-Status Icons Visuals --- */
-.live-indicator,
-.channel-indicator {
-    display: none;
-    font-size: 1.2rem;
-    padding: 5px 20px;
-    cursor: pointer;
-    font-family: 'VT323', monospace;
-    border: 4px solid #fff;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5);
-    background: #000;
-    transition: all 0.2s;
-}
-
-.live-indicator .material-icons,
-.channel-indicator .material-icons {
-    font-size: 20px;
-    vertical-align: -4px;
-    margin-right: 8px;
-}
-
-/* --- LIVE 状態 (炎のゆらぎ・クリティカルレッド) --- */
-body[data-stream-status="live"] .live-indicator {
-    display: inline-flex;
-    align-items: center;
-    color: #ff4444;
-    border-color: #ff4444;
-    text-shadow: 0 0 10px #ff4444;
-    animation: rpg-critical 2s infinite ease-in-out;
-}
-
-/* --- OFFLINE 状態 (宿屋の休息・セピア) --- */
-body[data-stream-status="offline"] .channel-indicator {
-    display: inline-flex;
-    align-items: center;
-    color: #f3e5ab;
-    border-color: #8b4513;
-    opacity: 0.8;
-}
-
-body[data-stream-status="offline"] .channel-indicator:hover {
-    background: #8b4513;
-    color: #fff;
-    opacity: 1;
-}
-
-@keyframes rpg-critical {
-
-    0%,
-    100% {
-        transform: scale(1);
-        filter: brightness(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-        filter: brightness(1.2);
-        box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
-    }
-}
-
-/* ============================================
-   PAGE TURN & SEAL EFFECT - Fantasy RPG Style
-   ============================================ */
-
-/* 3D Perspective Container */
-.panel-container {
-    perspective: 1500px;
-    perspective-origin: center center;
-}
-
-/* Content Panel with 3D Transform */
-.content-panel {
-    transform-style: preserve-3d;
-    transform-origin: center center;
-    transition:
-        opacity 0.3s ease,
-        transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1),
-        box-shadow 0.3s ease;
-}
-
-/* Page Turning Animation (improved with more rotation) */
-.content-panel.page-turning {
-    animation: page-turn-anim 0.7s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
-}
-
-@keyframes page-turn-anim {
-    0% {
-        transform: translate(-50%, -50%) rotateY(-110deg) rotateX(10deg);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg);
-        opacity: 1;
-    }
-}
-
-/* Panel Corner Curl Effect on Hover (PC) - MOVED TO LEFT to avoid close btn */
-.panel-corner-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    z-index: 30;
-}
-
-.panel-corner-hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 40px 0 0 40px;
-    border-color: var(--wood-border) transparent transparent transparent;
-    transition: all 0.3s ease;
-    transform-origin: top left;
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
-}
-
-.panel-corner-hover:hover::before {
-    border-width: 50px 0 0 50px;
-    filter: brightness(1.2) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.4));
-}
-
-/* Page Curl Effect - Left side curl */
-.content-panel.corner-curl {
-    transform: translate(-50%, -50%) skew(2deg, -1deg) rotateY(10deg);
-    box-shadow:
-        -10px 5px 30px rgba(0, 0, 0, 0.5),
-        inset 10px 0 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Wax Seal Styling */
-.wax-seal {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
-    border-radius: 50%;
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.4),
-        inset 0 -2px 5px rgba(0, 0, 0, 0.3),
-        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+.hero-actions {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 26px;
+}
+
+.seal-button,
+.guild-contact-button {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    flex-shrink: 0;
+    min-height: 48px;
+    border: 1px solid rgba(43, 29, 14, 0.45);
+    border-radius: var(--radius-md);
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 12px 18px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
-/* Irregular Wax Edges */
-.wax-seal::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    background: radial-gradient(circle at 40% 40%, #ff6b6b, #a61e1e);
-    border-radius: 50%;
-    z-index: -1;
-    clip-path: polygon(50% 0%, 80% 10%, 95% 30%, 100% 55%, 95% 80%, 75% 95%,
-            50% 100%, 25% 95%, 5% 80%, 0% 55%, 5% 30%, 20% 10%);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+.seal-button.primary {
+    background: var(--seal-red);
+    box-shadow: 0 8px 0 rgba(43, 29, 14, 0.2);
 }
 
-/* Wax Seal Embossed Texture */
-.wax-seal::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.5),
-        0 1px 2px rgba(0, 0, 0, 0.2);
+.seal-button:hover,
+.guild-contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 18px rgba(43, 29, 14, 0.22);
 }
 
-/* Stamp Animation for Completed Quests */
-.wax-seal.stamp-animation {
-    animation: seal-stamp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.seal-button.is-stamped {
+    animation: seal-stamp 360ms ease;
+}
+
+.text-link {
+    color: var(--ink);
+    font-weight: 800;
+}
+
+.side-stack {
+    display: grid;
+    gap: 20px;
+    align-self: start;
+}
+
+.wood-panel {
+    border: 1px solid rgba(216, 169, 61, 0.28);
+    background:
+        linear-gradient(180deg, rgba(31, 59, 34, 0.94), rgba(19, 29, 18, 0.96)),
+        repeating-linear-gradient(90deg, rgba(255, 244, 207, 0.05) 0 1px, transparent 1px 28px);
+    color: var(--parchment);
+}
+
+.schedule-panel,
+.recruit-panel,
+.quest-board,
+.archive-panel {
+    padding: clamp(18px, 2.4vw, 26px);
+}
+
+.panel-heading {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.panel-heading h2 {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--parchment);
+}
+
+.panel-heading .material-icons {
+    color: var(--gold);
+}
+
+.panel-heading a {
+    color: var(--parchment);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.schedule-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.schedule-list li {
+    display: grid;
+    grid-template-columns: minmax(126px, 0.78fr) minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    border-top: 1px solid rgba(245, 230, 190, 0.18);
+    padding: 12px 0;
+}
+
+.schedule-list time {
+    color: var(--parchment-light);
+    font-family: var(--font-label);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.schedule-list time span {
+    display: inline-block;
+    min-width: 38px;
+    margin: 0 4px;
+    border-radius: var(--radius-sm);
+    background: rgba(216, 169, 61, 0.2);
+    color: var(--gold);
+    text-align: center;
+}
+
+.schedule-list strong {
+    color: var(--parchment);
+    font-weight: 800;
+}
+
+.schedule-list em {
+    min-width: 54px;
+    border-radius: var(--radius-sm);
+    background: rgba(245, 230, 190, 0.14);
+    color: var(--parchment);
+    padding: 4px 8px;
+    font: normal 800 0.72rem/1.2 var(--font-label);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.schedule-list .is-live em {
+    background: var(--seal-red);
+}
+
+.recruit-panel p,
+.quest-board p,
+.archive-panel p {
+    color: rgba(245, 230, 190, 0.78);
+}
+
+.recruit-panel h2 {
+    color: var(--gold);
+}
+
+.party-roles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.party-roles article {
+    border: 1px solid rgba(216, 169, 61, 0.4);
+    border-radius: var(--radius-md);
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.party-roles span,
+.party-roles strong,
+.party-roles small {
+    display: block;
+}
+
+.party-roles span {
+    color: var(--gold);
+    font-size: 1.45rem;
+}
+
+.party-roles strong {
+    color: var(--parchment);
+    font-size: 0.9rem;
+}
+
+.party-roles small {
+    color: rgba(245, 230, 190, 0.7);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.social-banner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.social-banner a {
+    border-radius: var(--radius-sm);
+    background: rgba(245, 230, 190, 0.1);
+    color: var(--parchment);
+    padding: 10px 8px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+}
+
+.quest-board {
+    grid-column: 2 / 3;
+}
+
+.board-title {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 16px;
+}
+
+.board-title h2,
+.archive-panel h2 {
+    color: var(--gold);
+}
+
+.board-title p {
+    margin: 0;
+}
+
+.quest-card-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.quest-card {
+    min-height: 180px;
+    border: 1px solid rgba(43, 29, 14, 0.22);
+    border-radius: var(--radius-sm);
+    background:
+        linear-gradient(180deg, rgba(255, 244, 207, 0.95), rgba(229, 200, 139, 0.96));
+    color: var(--text);
+    padding: 18px;
+    transform-origin: top center;
+}
+
+.quest-card span {
+    color: var(--seal-red);
+    font-weight: 800;
+}
+
+.quest-card h3 {
+    margin: 10px 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.25;
+}
+
+.quest-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.archive-panel {
+    grid-column: 3 / 4;
+    display: grid;
+    gap: 16px;
+}
+
+.archive-list {
+    display: grid;
+    gap: 8px;
+}
+
+.archive-list a {
+    border: 1px solid rgba(245, 230, 190, 0.18);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    color: var(--parchment);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.guild-contact {
+    grid-column: 2 / 4;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 20px;
+    align-items: center;
+    padding: clamp(22px, 3vw, 32px);
+}
+
+.contact-banner {
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 96px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(180deg, var(--seal-red), #6d1f18);
+    color: var(--parchment);
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    box-shadow: inset 0 0 0 2px rgba(255, 244, 207, 0.16);
+}
+
+.guild-contact p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.guild-contact-button {
+    background: var(--ink);
+    color: var(--parchment);
+    white-space: nowrap;
+}
+
+.guild-contact-button .material-icons {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.reveal-panel {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms ease, transform 500ms ease;
+}
+
+body.is-ready .reveal-panel,
+.reveal-panel.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @keyframes seal-stamp {
     0% {
-        transform: scale(2) rotate(-30deg);
-        opacity: 0;
+        transform: scale(1);
     }
 
-    50% {
-        transform: scale(0.8) rotate(10deg);
+    45% {
+        transform: scale(0.94) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 1180px) {
+    .quest-shell {
+        grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    }
+
+    .side-stack,
+    .archive-panel {
+        grid-column: 2 / 3;
+    }
+
+    .quest-board,
+    .guild-contact {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 860px) {
+    .guild-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .status-pill-group {
+        grid-column: 1 / 2;
+        grid-row: 2;
+    }
+
+    .header-consult {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        align-self: center;
+    }
+
+    .quest-shell {
+        display: block;
+        padding: 14px;
+    }
+
+    .quest-menu {
+        position: static;
+        display: flex;
+        gap: 8px;
+        margin-bottom: 14px;
+        overflow-x: auto;
+        padding: 12px;
+        scrollbar-width: thin;
+    }
+
+    .menu-title,
+    .rank-card {
+        display: none;
+    }
+
+    .quest-tab {
+        grid-template-columns: 32px minmax(116px, 1fr);
+        flex: 0 0 auto;
+        padding: 10px 12px;
+    }
+
+    .tab-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .active-quest,
+    .schedule-panel,
+    .recruit-panel,
+    .quest-board,
+    .archive-panel,
+    .guild-contact {
+        margin-bottom: 14px;
+    }
+
+    .hero-board,
+    .quest-card-list {
+        grid-template-columns: 1fr;
+    }
+
+    .quest-details {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding-left: 0;
+        padding-top: 16px;
+    }
+
+    .guild-contact {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-banner {
+        width: 64px;
+        height: 76px;
+    }
+}
+
+@media (max-width: 560px) {
+    .guild-header {
+        gap: 10px;
+        padding: 10px 12px;
+    }
+
+    .brand-crest {
+        width: 36px;
+        height: 36px;
+    }
+
+    .guild-brand small {
+        display: none;
+    }
+
+    .status-pill {
+        min-height: 36px;
+        padding: 7px 10px;
+        font-size: 0.74rem;
+    }
+
+    .header-consult {
+        min-height: 36px;
+        padding: 7px 10px;
+    }
+
+    .active-quest {
+        min-height: auto;
+        padding: 74px 18px 22px;
+    }
+
+    .quest-stamp {
+        left: 18px;
+        right: auto;
+        top: 18px;
+        width: 66px;
+        font-size: 0.84rem;
+    }
+
+    .active-quest h1 {
+        max-width: 100%;
+        font-size: clamp(2.35rem, 14vw, 3.4rem);
+    }
+
+    .portrait-frame {
+        min-height: 230px;
+        border-width: 7px;
+    }
+
+    .hero-actions,
+    .panel-heading,
+    .board-title {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .seal-button,
+    .text-link,
+    .guild-contact-button {
+        width: 100%;
+    }
+
+    .schedule-list li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .schedule-list em {
+        width: fit-content;
+    }
+
+    .party-roles,
+    .social-banner {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+    }
+
+    .reveal-panel {
         opacity: 1;
+        transform: none;
     }
-
-    70% {
-        transform: scale(1.1) rotate(-5deg);
-    }
-
-    100% {
-        transform: scale(1) rotate(0deg);
-    }
-}
-
-/* Quest Item with Seal */
-.quest-item.completed {
-    position: relative;
-    overflow: visible;
-}
-
-.quest-item.completed .quest-text {
-    text-decoration: line-through;
-    opacity: 0.7;
-}
-
-/* Mobile Menu Flash Effect */
-.menu-flash {
-    animation: menu-flash-anim 0.3s steps(3);
-}
-
-@keyframes menu-flash-anim {
-
-    0%,
-    100% {
-        background-color: transparent;
-    }
-
-    50% {
-        background-color: rgba(255, 215, 0, 0.5);
-    }
-}
-
-/* Panel Header Decoration - Avoid overlap */
-.panel-header {
-    position: relative;
-    padding-left: 40px;
-    /* Space for the left corner decoration */
-}
-
-/* Ensure Close Button is always on top and clickable */
-.close-btn {
-    position: relative;
-    z-index: 40;
-    padding: 5px 15px;
-    margin-right: -10px;
-}
-
-/* Enhanced 3D Panel Shadow */
-.content-panel.active {
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(139, 69, 19, 0.4),
-        inset 0 0 40px rgba(139, 69, 19, 0.1);
-}
-
-/* Responsive Text Utilities */
-.text-safe {
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-}
-
-.ib {
-    display: inline-block;
-}
-
-/* =========================================
-   Global Text Safety (Japanese Typography)
-   ========================================= */
-/* 
-   Prevents unnatural line breaks in headers and short text boundaries (Bunsetsu).
-   "keep-all" prevents breaking CJK characters mid-word (unless prohibited).
-   "anywhere" ensures long Latin strings/URLs still break to prevent overflow.
-*/
-h1, h2, h3, h4, h5, h6,
-.section-title,
-.hero-title,
-.hero-sub,
-.nav a,
-.mobile-menu a,
-button, 
-.btn,
-[class*="btn-"] {
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-}
-
-/* For paragraph text inside cards/sections, we prefer natural reading */
-.card p, 
-.feature p,
-.about p {
-    word-break: keep-all;
-    overflow-wrap: anywhere;
 }
