@@ -115,7 +115,7 @@ a {
     right: 0;
     z-index: 20;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     gap: 24px;
     min-height: 70px;
@@ -132,7 +132,8 @@ a {
 .hero-actions,
 .panel-head,
 .platform-grid,
-.identity-status {
+.identity-status,
+.window-controls {
     display: flex;
     align-items: center;
 }
@@ -154,7 +155,7 @@ a {
 
 .command-links {
     justify-content: center;
-    gap: clamp(12px, 3vw, 48px);
+    gap: clamp(10px, 1.7vw, 30px);
 }
 
 .command-links a,
@@ -195,6 +196,54 @@ a {
     border-radius: 4px;
 }
 
+.window-controls {
+    gap: 10px;
+}
+
+.window-controls span {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    aspect-ratio: 1;
+    border: 1px solid var(--ghost-line);
+    background: rgba(0, 255, 65, 0.055);
+    box-shadow: inset 0 0 12px rgba(0, 255, 65, 0.08);
+}
+
+.window-controls span::before,
+.window-controls span::after {
+    content: "";
+    position: absolute;
+    background: var(--ghost-primary);
+}
+
+.window-controls span:first-child::before {
+    width: 12px;
+    height: 2px;
+}
+
+.window-controls span:nth-child(2)::before {
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border: 2px solid var(--ghost-primary);
+}
+
+.window-controls span:nth-child(3)::before,
+.window-controls span:nth-child(3)::after {
+    width: 15px;
+    height: 2px;
+}
+
+.window-controls span:nth-child(3)::before {
+    transform: rotate(45deg);
+}
+
+.window-controls span:nth-child(3)::after {
+    transform: rotate(-45deg);
+}
+
 main {
     width: min(var(--content-max), calc(100% - 32px));
     margin: 0 auto;
@@ -206,7 +255,7 @@ main {
     padding: 94px 0 18px;
     display: grid;
     grid-template-columns: minmax(230px, 0.72fr) minmax(420px, 1.38fr) minmax(300px, 0.95fr);
-    grid-template-rows: minmax(0, 1fr) 150px;
+    grid-template-rows: minmax(0, 1fr) 156px;
     grid-template-areas:
         "access hero signal"
         "lower lower lower";
@@ -226,6 +275,10 @@ main {
     background-size: auto, 22px 22px, 22px 22px, auto;
     box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.05), 0 0 28px rgba(0, 255, 65, 0.06);
     overflow: hidden;
+}
+
+.terminal-panel[data-active="true"] {
+    box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.08), 0 0 34px rgba(0, 255, 65, 0.12);
 }
 
 .terminal-panel > * {
@@ -295,9 +348,9 @@ main {
     flex: 1;
     display: grid;
     align-content: space-around;
-    gap: 6px;
+    gap: 2px;
     margin: 0;
-    padding: 8px 18px 6px 32px;
+    padding: 7px 18px 5px 32px;
     list-style: none;
     font-family: var(--font-code);
     color: var(--ghost-primary);
@@ -309,14 +362,14 @@ main {
     grid-template-columns: 76px 1fr;
     gap: 12px;
     font-size: clamp(0.68rem, 0.82vw, 0.78rem);
-    line-height: 1.55;
+    line-height: 1.42;
 }
 
 .log-list::before {
     content: "";
     position: absolute;
-    top: 116px;
-    bottom: 72px;
+    top: 96px;
+    bottom: 54px;
     left: 38px;
     width: 1px;
     background: linear-gradient(180deg, transparent, var(--ghost-line), transparent);
@@ -349,7 +402,7 @@ main {
     grid-template-columns: 1fr 54px;
     gap: 8px;
     align-items: end;
-    margin: 0 18px 14px;
+    margin: 0 18px 10px;
     border-top: 1px solid var(--ghost-line-soft);
 }
 
@@ -401,15 +454,15 @@ main {
 
 .ghost-field {
     position: relative;
-    width: min(38vw, 330px);
+    width: min(40vw, 390px);
     max-width: 100%;
-    margin: 8px auto -30px;
-    aspect-ratio: 1.18;
+    margin: -2px auto -26px;
+    aspect-ratio: 1.26;
 }
 
 .ghost-mark {
     position: relative;
-    width: min(100%, 310px);
+    width: min(100%, 372px);
     aspect-ratio: 1;
     margin: 0 auto;
     border: 1px solid rgba(0, 255, 65, 0.22);
@@ -419,6 +472,29 @@ main {
         repeating-linear-gradient(180deg, rgba(0, 255, 65, 0.12) 0 2px, transparent 2px 8px);
     box-shadow: inset 0 0 48px rgba(0, 255, 65, 0.12);
     opacity: 0.95;
+}
+
+.ghost-mark::before,
+.ghost-mark::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.ghost-mark::before {
+    inset: 8%;
+    border: 1px dashed rgba(0, 255, 65, 0.46);
+    filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.34));
+}
+
+.ghost-mark::after {
+    inset: 18% 6% 3%;
+    background:
+        repeating-linear-gradient(165deg, rgba(0, 255, 65, 0.11) 0 4px, transparent 4px 11px),
+        radial-gradient(ellipse at 50% 22%, transparent 0 21%, rgba(0, 255, 65, 0.08) 22% 44%, transparent 45%);
+    clip-path: polygon(50% 0, 82% 21%, 98% 62%, 82% 100%, 18% 100%, 2% 62%, 18% 21%);
+    opacity: 0.62;
 }
 
 .access-chip {
@@ -448,6 +524,29 @@ main {
     writing-mode: vertical-rl;
 }
 
+.hero-hud {
+    position: absolute;
+    left: -6%;
+    z-index: 2;
+    color: var(--ghost-primary);
+    font-family: var(--font-code);
+    font-size: clamp(0.66rem, 0.86vw, 0.82rem);
+    text-shadow: 0 0 9px rgba(0, 255, 65, 0.45);
+}
+
+.hero-hud-a { top: 31%; }
+.hero-hud-b { top: 41%; }
+.hero-hud-c { top: 51%; }
+
+.hero-hud i {
+    display: inline-block;
+    width: 44px;
+    height: 9px;
+    background: repeating-linear-gradient(90deg, var(--ghost-primary) 0 6px, transparent 6px 8px);
+    vertical-align: -1px;
+    opacity: 0.8;
+}
+
 .marker {
     position: absolute;
     z-index: 2;
@@ -461,15 +560,29 @@ main {
 .marker-a { left: 18%; top: 36%; }
 .marker-b { right: 12%; top: 42%; transform: rotate(24deg); }
 .marker-c { right: 18%; bottom: 22%; transform: rotate(180deg); }
+.marker-d { left: 23%; bottom: 18%; transform: rotate(8deg); }
 
 .data-barcode {
     position: absolute;
     right: 6%;
-    bottom: 13%;
+    bottom: 6%;
     width: 118px;
     height: 18px;
     background: repeating-linear-gradient(90deg, var(--ghost-primary) 0 2px, transparent 2px 5px, var(--ghost-primary) 5px 6px, transparent 6px 10px);
     opacity: 0.45;
+}
+
+.identity-chip {
+    position: absolute;
+    left: 31%;
+    bottom: 5%;
+    z-index: 2;
+    padding: 5px 12px;
+    border: 1px solid var(--ghost-line);
+    background: rgba(0, 20, 5, 0.78);
+    color: var(--ghost-primary);
+    font-family: var(--font-code);
+    font-size: 0.72rem;
 }
 
 .hood {
@@ -495,6 +608,19 @@ main {
     box-shadow: 0 0 28px rgba(0, 0, 0, 0.9);
 }
 
+.cloak-lines {
+    position: absolute;
+    left: 24%;
+    right: 24%;
+    bottom: 8%;
+    height: 34%;
+    background:
+        repeating-linear-gradient(168deg, rgba(0, 255, 65, 0.2) 0 2px, transparent 2px 7px),
+        repeating-linear-gradient(12deg, rgba(0, 255, 65, 0.12) 0 2px, transparent 2px 8px);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    opacity: 0.62;
+}
+
 .glitch {
     position: absolute;
     height: 8px;
@@ -514,6 +640,13 @@ main {
     right: 12%;
     top: 57%;
     background: #f38cff;
+}
+
+.glitch-c {
+    left: 26%;
+    right: 22%;
+    top: 72%;
+    height: 5px;
 }
 
 .ghost-scan {
@@ -546,7 +679,7 @@ main {
 .anonymous-hero h1 {
     margin: 0;
     color: var(--ghost-text);
-    font-size: clamp(3.5rem, 7.1vw, 6.7rem);
+    font-size: clamp(3.6rem, 7.5vw, 7.2rem);
     font-weight: 800;
     line-height: 1.02;
     text-shadow:
@@ -572,7 +705,7 @@ main {
 
 .hero-copy {
     max-width: 620px;
-    margin: 10px auto 0;
+    margin: 8px auto 0;
     color: var(--ghost-text);
     line-height: 1.8;
     font-weight: 600;
@@ -629,17 +762,17 @@ main {
 .signal-stack {
     grid-area: signal;
     display: grid;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: 0.95fr 0.95fr 0.78fr;
     gap: 12px;
     min-height: 0;
 }
 
 .live-body {
     display: grid;
-    grid-template-columns: 92px 1fr;
+    grid-template-columns: 100px 1fr;
     gap: 18px;
     align-items: center;
-    padding: 18px 22px;
+    padding: 18px 22px 16px;
 }
 
 .pixel-skull {
@@ -649,6 +782,14 @@ main {
     background: var(--ghost-primary);
     clip-path: polygon(18% 5%, 82% 5%, 100% 30%, 94% 74%, 72% 88%, 68% 100%, 56% 89%, 50% 100%, 44% 89%, 32% 100%, 28% 88%, 6% 74%, 0 30%);
     filter: drop-shadow(0 0 16px rgba(0, 255, 65, 0.55));
+}
+
+.pixel-skull::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    background: repeating-linear-gradient(180deg, rgba(0, 25, 6, 0.8) 0 2px, transparent 2px 4px);
+    mix-blend-mode: multiply;
 }
 
 .pixel-skull span {
@@ -690,7 +831,7 @@ main {
 }
 
 .next-stream {
-    padding-bottom: 14px;
+    padding-bottom: 10px;
 }
 
 .stream-time {
@@ -699,7 +840,7 @@ main {
     align-items: end;
     justify-content: start;
     gap: 18px;
-    padding: 16px 24px 0;
+    padding: 14px 24px 0;
     color: var(--ghost-primary);
     font-family: var(--font-code);
 }
@@ -714,7 +855,7 @@ main {
 .play-window {
     position: absolute;
     right: 24px;
-    bottom: 48px;
+    bottom: 42px;
     width: min(36%, 170px);
     height: 68px;
     border: 1px solid var(--ghost-line-soft);
@@ -750,7 +891,7 @@ main {
     display: grid;
     gap: 0;
     margin: 0;
-    padding: 8px 20px 10px;
+    padding: 7px 20px 8px;
     list-style: none;
 }
 
@@ -759,11 +900,11 @@ main {
     grid-template-columns: 132px 1fr auto;
     gap: 12px;
     align-items: center;
-    min-height: 34px;
+    min-height: 30px;
     border-bottom: 1px solid var(--ghost-line-soft);
     color: var(--ghost-text);
     font-family: var(--font-code);
-    font-size: 0.84rem;
+    font-size: 0.8rem;
 }
 
 .schedule-list time {
@@ -812,7 +953,7 @@ main {
 .follow-panel,
 .system-message,
 .secure-contact {
-    padding: 20px;
+    padding: 18px;
 }
 
 .profile-copy p,
@@ -885,8 +1026,8 @@ main {
 .secure-row {
     grid-area: lower;
     display: grid;
-    grid-template-columns: minmax(280px, 0.9fr) minmax(260px, 0.7fr) minmax(320px, 1.1fr);
-    gap: 20px;
+    grid-template-columns: minmax(360px, 0.94fr) minmax(290px, 0.62fr) minmax(390px, 1.05fr);
+    gap: 18px;
     padding-bottom: 80px;
 }
 
@@ -896,7 +1037,7 @@ main {
 }
 
 .breach-console > .secure-row .terminal-panel {
-    min-height: 150px;
+    min-height: 156px;
 }
 
 .platform-grid {
@@ -907,15 +1048,44 @@ main {
 }
 
 .platform-grid a {
+    position: relative;
     display: grid;
     place-items: center;
-    min-height: 60px;
+    min-height: 62px;
     border: 1px solid var(--ghost-line);
+    background:
+        linear-gradient(rgba(0, 255, 65, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.045) 1px, transparent 1px);
+    background-size: 12px 12px;
     color: var(--ghost-primary);
     font-family: var(--font-code);
     font-weight: 800;
     text-decoration: none;
     transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.platform-grid a::before,
+.platform-grid a::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-color: var(--ghost-primary);
+    opacity: 0.65;
+}
+
+.platform-grid a::before {
+    top: 7px;
+    left: 7px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+
+.platform-grid a::after {
+    right: 7px;
+    bottom: 7px;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
 }
 
 .platform-grid a span {
@@ -943,11 +1113,65 @@ main {
     font-size: 0.96rem;
 }
 
+.message-body {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 13px;
+    align-items: center;
+    margin-top: 7px;
+}
+
+.warning-mark {
+    position: relative;
+    display: block;
+    width: 42px;
+    aspect-ratio: 1;
+    border: 1px solid var(--ghost-primary);
+    clip-path: polygon(50% 0, 100% 88%, 0 88%);
+    filter: drop-shadow(0 0 13px rgba(0, 255, 65, 0.45));
+}
+
+.warning-mark::before,
+.warning-mark::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    background: var(--ghost-primary);
+    transform: translateX(-50%);
+}
+
+.warning-mark::before {
+    top: 30%;
+    width: 3px;
+    height: 28%;
+}
+
+.warning-mark::after {
+    bottom: 22%;
+    width: 5px;
+    height: 5px;
+}
+
+.terminal-strip {
+    position: absolute;
+    right: 17px;
+    bottom: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.terminal-strip span {
+    width: 7px;
+    height: 10px;
+    background: var(--ghost-primary);
+    opacity: 0.72;
+}
+
 .breach-console > .secure-row .system-message p,
 .breach-console > .secure-row .secure-contact p {
-    margin: 7px 0;
-    font-size: 0.86rem;
-    line-height: 1.55;
+    margin: 6px 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
 }
 
 .breach-console > .secure-row .secure-contact .ghost-button {
@@ -958,8 +1182,8 @@ main {
 
 .secure-contact {
     display: grid;
-    grid-template-columns: 1fr 140px;
-    gap: 20px;
+    grid-template-columns: 1fr 130px;
+    gap: 16px;
     align-items: center;
 }
 
@@ -971,8 +1195,60 @@ main {
     clip-path: polygon(50% 0, 100% 88%, 0 88%);
     background:
         radial-gradient(circle at 50% 58%, rgba(0, 255, 65, 0.9) 0 16%, transparent 17%),
+        repeating-linear-gradient(180deg, rgba(0, 255, 65, 0.12) 0 2px, transparent 2px 6px),
         linear-gradient(transparent, transparent);
     filter: drop-shadow(0 0 18px rgba(0, 255, 65, 0.55));
+}
+
+.contact-sigil::before,
+.contact-sigil::after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-color: var(--ghost-primary);
+}
+
+.contact-sigil::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.contact-sigil::after {
+    right: 0;
+    bottom: 0;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.mail-glyph {
+    position: relative;
+    width: 22px;
+    height: 15px;
+    margin-right: 10px;
+    border: 1px solid currentColor;
+}
+
+.mail-glyph::before,
+.mail-glyph::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    width: 13px;
+    height: 1px;
+    background: currentColor;
+}
+
+.mail-glyph::before {
+    left: 2px;
+    transform: rotate(32deg);
+}
+
+.mail-glyph::after {
+    right: 2px;
+    transform: rotate(-32deg);
 }
 
 .contact-sigil span {
@@ -1081,6 +1357,10 @@ main {
     animation: ghost-line-flicker 3.8s steps(2, end) infinite;
 }
 
+.js-enabled body[data-boot-state="ready"] .hero-hud {
+    animation: ghost-line-flicker 5.4s steps(2, end) infinite;
+}
+
 .js-enabled body[data-boot-state="ready"] .ghost-scan {
     animation: access-scan 3.7s linear infinite;
 }
@@ -1090,7 +1370,8 @@ main {
         grid-template-columns: 1fr auto;
     }
 
-    .command-links {
+    .command-links,
+    .window-controls {
         display: none;
     }
 
