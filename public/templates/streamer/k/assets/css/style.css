@@ -438,7 +438,7 @@ img {
 .campaign-panel {
     display: grid;
     grid-template-rows: auto auto 1fr;
-    gap: 16px;
+    gap: 12px;
     border: 0;
     box-shadow: none;
 }
@@ -588,7 +588,7 @@ img {
 
 .text-link {
     width: 100%;
-    margin-top: 14px;
+    margin-top: 10px;
     padding: 10px 14px;
     border: 1px solid rgba(197, 154, 74, 0.5);
     color: var(--kh-gold-soft);
@@ -954,6 +954,443 @@ img {
     transform: scaleX(-1) rotate(-8deg);
 }
 
+/* Mock fidelity pass: heraldic portrait, ornate frames, cloth folds, and seals. */
+.command-table {
+    grid-template-columns: minmax(250px, 300px) minmax(500px, 1fr) minmax(430px, 560px);
+    grid-template-rows: minmax(570px, auto) auto auto;
+}
+
+.order-rail,
+.knight-hero,
+.honor-panel,
+.follow-board,
+.archive-strip,
+.audience-contact {
+    border-color: rgba(214, 175, 95, 0.82);
+}
+
+.order-rail,
+.knight-hero,
+.honor-panel,
+.order-card,
+.follow-card,
+.archive-strip,
+.audience-contact {
+    position: relative;
+}
+
+.order-rail::before,
+.knight-hero::after,
+.honor-panel::before,
+.follow-board::before,
+.archive-strip::before,
+.audience-contact::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(234, 215, 166, 0.56);
+    clip-path: polygon(0 18px, 18px 18px, 18px 0, calc(100% - 18px) 0, calc(100% - 18px) 18px, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) calc(100% - 18px), calc(100% - 18px) 100%, 18px 100%, 18px calc(100% - 18px), 0 calc(100% - 18px));
+    pointer-events: none;
+    z-index: 1;
+}
+
+.honor-panel::after,
+.archive-strip::after,
+.audience-contact::after {
+    content: "";
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    width: 92px;
+    height: 92px;
+    border: 2px solid rgba(197, 154, 74, 0.16);
+    border-radius: 50%;
+    background:
+        linear-gradient(90deg, transparent 45%, rgba(197, 154, 74, 0.16) 46% 54%, transparent 55%),
+        linear-gradient(0deg, transparent 45%, rgba(197, 154, 74, 0.16) 46% 54%, transparent 55%),
+        radial-gradient(circle, rgba(197, 154, 74, 0.08), transparent 64%);
+    opacity: 0.72;
+    pointer-events: none;
+}
+
+.order-rail {
+    background:
+        linear-gradient(90deg, rgba(234, 215, 166, 0.12), transparent 9%, transparent 91%, rgba(234, 215, 166, 0.12)),
+        linear-gradient(180deg, rgba(8, 24, 48, 0.98), rgba(4, 12, 24, 0.99)),
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.28), transparent 18rem);
+}
+
+.rail-crest img {
+    width: 138px;
+    filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.42)) drop-shadow(0 0 18px rgba(234, 215, 166, 0.22));
+}
+
+.order-nav a {
+    min-height: 52px;
+    padding-left: 54px;
+    border-color: rgba(214, 175, 95, 0.62);
+    clip-path: polygon(0 50%, 16px 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 16px 100%);
+    background:
+        linear-gradient(90deg, rgba(197, 154, 74, 0.16), transparent 22%, transparent 78%, rgba(197, 154, 74, 0.14)),
+        rgba(6, 24, 51, 0.82);
+}
+
+.order-nav a::before {
+    left: 20px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(234, 215, 166, 0.72);
+    border-radius: 6px;
+    background:
+        linear-gradient(45deg, transparent 42%, var(--kh-gold-soft) 43% 57%, transparent 58%),
+        linear-gradient(-45deg, transparent 42%, var(--kh-gold-soft) 43% 57%, transparent 58%),
+        rgba(197, 154, 74, 0.16);
+    opacity: 1;
+}
+
+.rail-banner {
+    padding: 42px 18px 34px;
+    border-color: rgba(214, 175, 95, 0.74);
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 52% 100%, 0 86%);
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 22%, rgba(0, 0, 0, 0.2) 50%, transparent 78%, rgba(255, 255, 255, 0.08)),
+        linear-gradient(180deg, #0d2b58, #07162e 72%, #030712);
+}
+
+.rail-banner::before {
+    content: "";
+    position: absolute;
+    inset: 8px 14px 18px;
+    border: 1px solid rgba(234, 215, 166, 0.48);
+    clip-path: polygon(0 0, 100% 0, 100% 84%, 52% 100%, 0 84%);
+}
+
+.knight-hero {
+    min-height: 570px;
+    padding-bottom: 26px;
+    background:
+        linear-gradient(180deg, rgba(3, 12, 28, 0.08), rgba(3, 12, 28, 0.92)),
+        radial-gradient(circle at 50% 30%, rgba(234, 215, 166, 0.2), transparent 11rem),
+        radial-gradient(circle at 50% 38%, rgba(37, 99, 235, 0.38), transparent 22rem),
+        linear-gradient(145deg, #071429, #030712);
+}
+
+.knight-hero::before {
+    inset: 22px;
+    border-color: rgba(234, 215, 166, 0.48);
+    background:
+        linear-gradient(90deg, rgba(197, 154, 74, 0.16), transparent 20%, transparent 80%, rgba(197, 154, 74, 0.14)),
+        radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.08), transparent 17rem);
+}
+
+.hero-mark {
+    margin-top: 2px;
+    text-shadow: 0 0 14px rgba(234, 215, 166, 0.42);
+}
+
+.hero-portrait {
+    inset: 48px 9% 260px;
+}
+
+.hero-portrait::before {
+    content: "";
+    position: absolute;
+    width: min(30vw, 330px);
+    aspect-ratio: 0.78;
+    border: 4px solid rgba(234, 215, 166, 0.72);
+    clip-path: polygon(50% 0, 93% 18%, 91% 64%, 70% 100%, 30% 100%, 9% 64%, 7% 18%);
+    background:
+        linear-gradient(90deg, rgba(234, 215, 166, 0.22), transparent 16%, transparent 84%, rgba(234, 215, 166, 0.2)),
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.16), transparent 32%),
+        linear-gradient(180deg, rgba(6, 24, 51, 0.9), rgba(3, 10, 22, 0.95));
+    box-shadow: inset 0 0 0 9px rgba(7, 20, 41, 0.72), 0 24px 72px rgba(0, 0, 0, 0.54);
+}
+
+.hero-portrait::after {
+    content: "";
+    position: absolute;
+    width: min(27vw, 290px);
+    height: 38px;
+    bottom: 122px;
+    border: 1px solid rgba(234, 215, 166, 0.72);
+    border-radius: 999px 999px 12px 12px;
+    background:
+        linear-gradient(90deg, transparent 0 9%, rgba(255, 255, 255, 0.18) 10%, transparent 16% 84%, rgba(0, 0, 0, 0.2) 90%, transparent),
+        linear-gradient(180deg, #efe3c5, #b79a67);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+}
+
+.hero-knight {
+    position: relative;
+    z-index: 2;
+    width: min(32vw, 348px);
+    margin-top: -16px;
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.48));
+}
+
+.hero-ribbon {
+    position: absolute;
+    z-index: 4;
+    bottom: 131px;
+    padding: 4px 22px;
+    color: #172033;
+    font-family: "Inter", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.knight-silhouette {
+    display: none;
+}
+
+.hero-crest {
+    width: min(30vw, 340px);
+    opacity: 0.34;
+}
+
+.hero-flag {
+    top: 5%;
+    width: 72px;
+    transform-origin: top center;
+    filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.4));
+}
+
+.hero-flag-left {
+    left: 7%;
+    transform: rotate(-10deg);
+}
+
+.hero-flag-right {
+    right: 7%;
+    transform: scaleX(-1) rotate(-10deg);
+}
+
+.knight-hero h1 {
+    font-size: clamp(4rem, 4.9vw, 5.7rem);
+    white-space: nowrap;
+}
+
+.hero-name {
+    margin-top: 0;
+}
+
+.hero-copy {
+    max-width: 560px;
+}
+
+.live-panel {
+    min-height: 190px;
+    padding: 20px 26px;
+    border-color: rgba(143, 105, 43, 0.76);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 32%),
+        radial-gradient(circle at 86% 25%, rgba(143, 105, 43, 0.12), transparent 6rem),
+        linear-gradient(135deg, rgba(249, 242, 224, 0.98), rgba(220, 207, 179, 0.96));
+}
+
+.panel-heading img {
+    width: 54px;
+    filter: drop-shadow(0 8px 9px rgba(0, 0, 0, 0.26));
+}
+
+.panel-heading h2 {
+    font-size: clamp(1.8rem, 2.9vw, 2.55rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.live-state {
+    margin: 12px 0 2px;
+}
+
+.live-panel p:not(.live-state) {
+    margin: 0;
+}
+
+.panel-action {
+    margin-top: 14px;
+}
+
+.panel-action,
+.text-link {
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(214, 175, 95, 0.86);
+    clip-path: polygon(0 50%, 12px 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 12px 100%);
+}
+
+.panel-action::before,
+.text-link::before,
+.btn-primary::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    margin-right: 9px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    background: linear-gradient(45deg, transparent 42%, currentColor 43% 57%, transparent 58%);
+    opacity: 0.72;
+}
+
+.expedition-card,
+.schedule-card {
+    padding: 16px 20px;
+    background:
+        linear-gradient(90deg, rgba(197, 154, 74, 0.12), transparent 16%, transparent 84%, rgba(197, 154, 74, 0.1)),
+        linear-gradient(180deg, rgba(6, 24, 51, 0.98), rgba(3, 10, 22, 0.98));
+}
+
+.card-title-row {
+    border-bottom: 1px solid rgba(214, 175, 95, 0.35);
+    padding-bottom: 8px;
+}
+
+.card-title-row h2 {
+    color: var(--kh-gold);
+    font-size: clamp(1.55rem, 2.1vw, 2.25rem);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.flag-icon,
+.calendar-icon {
+    background:
+        linear-gradient(135deg, #ead7a6, #a16f2e 48%, #07162e);
+    box-shadow: 0 0 18px rgba(197, 154, 74, 0.28);
+}
+
+.expedition-body {
+    grid-template-columns: minmax(150px, 0.88fr) minmax(180px, 1fr);
+    gap: 18px;
+}
+
+.expedition-body img {
+    width: 100%;
+    min-height: 98px;
+    object-fit: cover;
+    border: 2px solid rgba(214, 175, 95, 0.86);
+    box-shadow: inset 0 0 0 5px rgba(7, 20, 41, 0.86), 0 16px 26px rgba(0, 0, 0, 0.28);
+}
+
+.expedition-body time {
+    font-size: clamp(2.2rem, 3.5vw, 3.25rem);
+    letter-spacing: 0.04em;
+}
+
+.schedule-card {
+    padding-bottom: 18px;
+}
+
+.schedule-list li {
+    grid-template-columns: 196px 1fr;
+    padding: 5px 0;
+}
+
+.schedule-list time {
+    color: #f3e2b2;
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.schedule-list li::before {
+    content: none;
+}
+
+.schedule-list time::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 18px;
+    margin-right: 7px;
+    border: 1px solid rgba(214, 175, 95, 0.42);
+    border-radius: 4px;
+    background: rgba(37, 99, 235, 0.22);
+    vertical-align: -3px;
+}
+
+.follow-board {
+    border-color: rgba(214, 175, 95, 0.72);
+    background: rgba(3, 10, 22, 0.85);
+}
+
+.order-card,
+.follow-card {
+    background:
+        linear-gradient(90deg, rgba(197, 154, 74, 0.12), transparent 18%, transparent 82%, rgba(197, 154, 74, 0.12)),
+        linear-gradient(180deg, rgba(6, 24, 51, 0.96), rgba(3, 10, 22, 0.97));
+}
+
+.order-icons span,
+.platform-grid a {
+    min-width: 64px;
+    min-height: 60px;
+    clip-path: polygon(50% 0, 100% 18%, 92% 76%, 50% 100%, 8% 76%, 0 18%);
+    border-color: rgba(214, 175, 95, 0.66);
+    background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.28), rgba(7, 20, 41, 0.9));
+}
+
+.audience-contact {
+    min-height: 156px;
+    padding: 30px 110px 30px 32px;
+    border-color: rgba(143, 105, 43, 0.72);
+    background:
+        linear-gradient(90deg, transparent 0 calc(100% - 96px), rgba(7, 20, 41, 0.9) calc(100% - 96px) calc(100% - 64px), transparent calc(100% - 64px)),
+        radial-gradient(circle at 100% 48%, rgba(7, 20, 41, 0.16), transparent 8rem),
+        linear-gradient(135deg, rgba(249, 242, 224, 0.98), rgba(220, 207, 179, 0.96));
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 22px, 100% 100%, 24px 100%, 0 calc(100% - 22px));
+}
+
+.wax-seal {
+    position: absolute;
+    right: 34px;
+    top: 50%;
+    z-index: 3;
+    width: 82px;
+    height: 82px;
+    border: 3px solid rgba(234, 215, 166, 0.32);
+    border-radius: 50%;
+    background:
+        linear-gradient(45deg, transparent 43%, rgba(234, 215, 166, 0.5) 44% 56%, transparent 57%),
+        linear-gradient(-45deg, transparent 43%, rgba(234, 215, 166, 0.5) 44% 56%, transparent 57%),
+        radial-gradient(circle at 35% 32%, rgba(255, 255, 255, 0.22), transparent 18%),
+        radial-gradient(circle, #18345f, #07162e 68%);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.36), inset 0 0 0 9px rgba(255, 255, 255, 0.04);
+    transform: translateY(-50%);
+}
+
+.wax-seal::before,
+.wax-seal::after {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: 58px;
+    width: 18px;
+    height: 72px;
+    background: #07162e;
+    border: 1px solid rgba(214, 175, 95, 0.42);
+    z-index: -1;
+}
+
+.wax-seal::after {
+    left: 42px;
+    background: #102d5f;
+}
+
+.is-loaded .hero-portrait::before {
+    animation: crest-shine 5.8s ease-in-out infinite;
+}
+
+.is-loaded .honor-panel.is-visible,
+.is-loaded .order-card.is-visible,
+.is-loaded .follow-card.is-visible,
+.is-loaded .archive-strip.is-visible,
+.is-loaded .audience-contact.is-visible {
+    transition: opacity 520ms ease, transform 520ms ease;
+}
+
 @media (max-width: 1279px) {
     .command-table {
         grid-template-columns: 220px minmax(0, 1fr);
@@ -1098,11 +1535,25 @@ img {
     }
 
     .hero-portrait {
-        inset: 88px 4% 230px;
+        inset: 82px 12% 330px;
     }
 
     .hero-flag {
-        width: 58px;
+        width: 44px;
+    }
+
+    .hero-knight {
+        width: min(54vw, 190px);
+        margin-top: 0;
+    }
+
+    .hero-portrait::before {
+        width: min(52vw, 205px);
+    }
+
+    .hero-portrait::after,
+    .hero-ribbon {
+        display: none;
     }
 
     .knight-silhouette {
@@ -1111,6 +1562,11 @@ img {
 
     .hero-name {
         letter-spacing: 0.22em;
+    }
+
+    .knight-hero h1 {
+        font-size: clamp(2.85rem, 12vw, 3.3rem);
+        white-space: nowrap;
     }
 
     .hero-actions {
