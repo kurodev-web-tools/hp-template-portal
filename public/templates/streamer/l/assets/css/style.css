@@ -7,6 +7,7 @@
     --lunar-panel: rgba(30, 27, 75, 0.72);
     --lunar-panel-strong: rgba(12, 14, 39, 0.88);
     --lunar-line: rgba(254, 243, 199, 0.32);
+    --lunar-frame: rgba(216, 180, 106, 0.72);
     --lunar-text: #fff9e8;
     --lunar-muted: #c8c0d6;
     --lunar-live: #ff6f9b;
@@ -198,11 +199,13 @@ img {
 .lunar-hero {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(220px, 280px) minmax(300px, 1fr) minmax(300px, 470px);
-    grid-template-rows: minmax(360px, 1fr) auto auto;
-    gap: 18px 28px;
+    grid-template-columns: minmax(230px, 290px) minmax(430px, 1fr) minmax(330px, 470px);
+    grid-template-rows: 46px minmax(230px, 250px) minmax(190px, 210px) minmax(120px, 146px);
+    gap: 12px 26px;
+    height: 100vh;
     min-height: 100vh;
-    padding: 92px clamp(18px, 3vw, 48px) 28px;
+    max-height: 980px;
+    padding: 88px clamp(18px, 2.8vw, 44px) 18px;
     overflow: hidden;
     isolation: isolate;
 }
@@ -221,9 +224,9 @@ img {
 
 .hero-orbit {
     position: absolute;
-    top: 138px;
-    left: 31%;
-    width: min(44vw, 700px);
+    top: 130px;
+    left: 36%;
+    width: min(48vw, 740px);
     aspect-ratio: 1;
     z-index: -1;
     border: 1px solid rgba(254, 243, 199, 0.28);
@@ -259,13 +262,50 @@ img {
     box-shadow: var(--shadow-soft);
 }
 
+.panel,
+.phase-dial {
+    position: relative;
+}
+
+.panel::before,
+.phase-dial::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    pointer-events: none;
+    border: 1px solid rgba(216, 180, 106, 0.2);
+    border-radius: inherit;
+}
+
+.panel::after,
+.phase-dial::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg, var(--lunar-frame) 0 10px, transparent 10px) top left / 22px 22px no-repeat,
+        linear-gradient(225deg, var(--lunar-frame) 0 10px, transparent 10px) top right / 22px 22px no-repeat,
+        linear-gradient(45deg, var(--lunar-frame) 0 10px, transparent 10px) bottom left / 22px 22px no-repeat,
+        linear-gradient(315deg, var(--lunar-frame) 0 10px, transparent 10px) bottom right / 22px 22px no-repeat;
+    opacity: 0.68;
+}
+
 .phase-dial {
     position: sticky;
     top: 92px;
     align-self: start;
-    grid-row: 1 / 4;
-    min-height: calc(100vh - 122px);
-    padding: 24px 18px 18px;
+    grid-column: 1;
+    grid-row: 1 / 5;
+    min-height: 0;
+    height: 100%;
+    padding: 22px 18px 16px;
+    border-radius: 10px;
+    background:
+        radial-gradient(circle at 50% 16%, rgba(254, 243, 199, 0.12), transparent 9rem),
+        linear-gradient(180deg, rgba(30, 27, 75, 0.86), rgba(8, 9, 29, 0.9));
+    overflow: hidden;
 }
 
 .eyebrow {
@@ -280,9 +320,9 @@ img {
 
 .phase-dial__ring {
     position: relative;
-    width: min(100%, 220px);
+    width: min(100%, 158px);
     aspect-ratio: 1;
-    margin: 14px auto 20px;
+    margin: 10px auto 14px;
     border: 1px solid rgba(216, 180, 106, 0.64);
     border-radius: 999px;
     background:
@@ -318,9 +358,9 @@ img {
 
 .phase-dot {
     position: absolute;
-    width: 26px;
-    height: 26px;
-    margin: -13px;
+    width: 22px;
+    height: 22px;
+    margin: -11px;
     border-radius: 50%;
     border: 1px solid rgba(254, 243, 199, 0.4);
     background: linear-gradient(90deg, #fff8dc 0 52%, rgba(16, 18, 54, 0.82) 53% 100%);
@@ -342,30 +382,41 @@ img {
 .phase-dial h2 {
     margin: 0;
     font-family: "Noto Serif JP", serif;
-    font-size: 1.45rem;
+    font-size: 1.28rem;
 }
 
 .phase-dial p:not(.eyebrow) {
-    margin: 8px 0 20px;
+    margin: 5px 0 10px;
     color: var(--lunar-muted);
-    font-size: 0.92rem;
+    font-size: 0.8rem;
 }
 
 .phase-dial__menu {
     display: grid;
-    gap: 8px;
-    padding: 16px 0 0;
+    gap: 2px;
+    padding: 9px 0 0;
     margin: 0;
     border-top: 1px solid rgba(254, 243, 199, 0.16);
     list-style: none;
 }
 
 .phase-dial__menu a {
-    display: block;
-    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 10px;
     border-radius: var(--radius-sm);
     color: rgba(255, 249, 232, 0.84);
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
     text-decoration: none;
+}
+
+.phase-dial__menu span {
+    width: 20px;
+    color: var(--lunar-cream);
+    text-align: center;
 }
 
 .phase-dial__menu a:hover,
@@ -374,19 +425,132 @@ img {
     color: var(--lunar-cream);
 }
 
+.phase-dial__star {
+    margin-top: 6px;
+    padding: 8px 10px;
+    border: 1px solid rgba(216, 180, 106, 0.45);
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 22% 38%, rgba(254, 243, 199, 0.22), transparent 2.4rem),
+        rgba(7, 8, 23, 0.42);
+}
+
+.phase-dial__star::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+    background:
+        linear-gradient(46deg, transparent 47%, rgba(254, 243, 199, 0.72) 48% 52%, transparent 53%),
+        linear-gradient(112deg, transparent 47%, rgba(254, 243, 199, 0.54) 48% 52%, transparent 53%),
+        radial-gradient(circle at 18% 68%, var(--lunar-cream) 0 2px, transparent 3px),
+        radial-gradient(circle at 72% 14%, var(--lunar-cream) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 78%, var(--lunar-cream) 0 2px, transparent 3px);
+}
+
+.phase-dial__star span,
+.phase-dial__star small {
+    display: block;
+    color: var(--lunar-muted);
+    font-size: 0.7rem;
+}
+
+.phase-dial__star strong {
+    display: block;
+    color: var(--lunar-cream);
+    font-family: "Noto Serif JP", serif;
+    font-size: 0.98rem;
+}
+
+.phase-dial__follow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.phase-dial__follow a {
+    display: grid;
+    min-height: 28px;
+    place-items: center;
+    border: 1px solid rgba(254, 243, 199, 0.28);
+    border-radius: 999px;
+    background: rgba(254, 243, 199, 0.08);
+    color: var(--lunar-cream);
+    font-family: "Inter", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.phase-strip {
+    position: relative;
+    z-index: 3;
+    grid-column: 2 / 4;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: center;
+    gap: 8px;
+    padding: 0 6px 7px;
+    border-bottom: 1px solid rgba(216, 180, 106, 0.32);
+}
+
+.phase-strip a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    color: rgba(255, 249, 232, 0.72);
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(0.68rem, 0.9vw, 0.86rem);
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.phase-strip a.is-current {
+    color: #fffefa;
+    text-shadow: 0 0 18px rgba(254, 243, 199, 0.72);
+}
+
+.phase-strip__moon {
+    position: relative;
+    width: 23px;
+    height: 23px;
+    flex: 0 0 auto;
+    border: 1px solid rgba(254, 243, 199, 0.32);
+    border-radius: 50%;
+    background: linear-gradient(90deg, #fef3c7 0 72%, rgba(10, 12, 32, 0.95) 73% 100%);
+    box-shadow: 0 0 12px rgba(254, 243, 199, 0.24);
+    animation: moonReveal 1100ms ease both;
+}
+
+.phase-strip__moon.new { background: #090b20; }
+.phase-strip__moon.crescent { background: linear-gradient(90deg, transparent 0 58%, #fef3c7 59% 100%); }
+.phase-strip__moon.quarter { background: linear-gradient(90deg, rgba(10, 12, 32, 0.95) 0 49%, #fef3c7 50% 100%); }
+.phase-strip__moon.full { background: #fef3c7; }
+.phase-strip__moon.waning { background: linear-gradient(90deg, #fef3c7 0 42%, rgba(10, 12, 32, 0.95) 43% 100%); }
+.phase-strip__moon.last { background: linear-gradient(90deg, #fef3c7 0 49%, rgba(10, 12, 32, 0.95) 50% 100%); }
+
 .lunar-hero__main {
     position: relative;
-    z-index: 2;
+    z-index: 4;
+    grid-column: 2;
+    grid-row: 2 / 4;
     align-self: center;
-    max-width: 670px;
-    padding: 34px 0 30px;
+    max-width: 560px;
+    padding: 0 0 6px;
+    margin-top: 132px;
 }
 
 .lunar-hero__main h1 {
     margin: 0;
     color: #fffefa;
     font-family: "Noto Serif JP", serif;
-    font-size: clamp(4.2rem, 8vw, 8.6rem);
+    font-size: clamp(4.2rem, 6.6vw, 6.95rem);
     font-weight: 700;
     line-height: 1.02;
     text-shadow: 0 0 22px rgba(254, 243, 199, 0.52);
@@ -395,17 +559,17 @@ img {
 }
 
 .hero-kana {
-    margin: -2px 0 18px;
+    margin: -6px 0 12px;
     color: var(--lunar-cream);
     font-family: "Noto Serif JP", serif;
-    font-size: clamp(1.35rem, 2.2vw, 2.3rem);
+    font-size: clamp(1.2rem, 1.8vw, 2rem);
 }
 
 .hero-copy {
-    max-width: 620px;
-    margin: 0 0 24px;
+    max-width: 560px;
+    margin: 0 0 16px;
     color: rgba(255, 249, 232, 0.84);
-    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    font-size: clamp(0.94rem, 1.05vw, 1.04rem);
 }
 
 .hero-actions,
@@ -452,21 +616,86 @@ img {
 }
 
 .lunar-portrait {
-    align-self: end;
+    position: relative;
+    align-self: center;
     justify-self: center;
     grid-column: 2;
-    grid-row: 1;
-    width: min(34vw, 520px);
-    min-width: 280px;
+    grid-row: 2 / 5;
+    z-index: 1;
+    width: min(33vw, 500px);
+    min-width: 360px;
     margin: 0;
-    filter: drop-shadow(0 22px 42px rgba(0, 0, 0, 0.48));
+    transform: translate(148px, 4px);
+    filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.56));
+    pointer-events: none;
+}
+
+.lunar-portrait::before,
+.lunar-portrait::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.lunar-portrait::before {
+    top: -18px;
+    left: -22px;
+    z-index: -2;
+    width: 198px;
+    height: 198px;
+    background:
+        radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 62% 52%, rgba(76, 29, 149, 0.2) 0 22px, transparent 23px),
+        radial-gradient(circle, #fff9e5 0 56%, #c7bdd8 100%);
+    box-shadow: 0 0 46px rgba(254, 243, 199, 0.52);
+    animation: moonReveal 900ms ease both;
+}
+
+.lunar-portrait::after {
+    inset: 9% 1% auto auto;
+    z-index: -1;
+    width: 79%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(216, 180, 106, 0.58);
+    box-shadow: inset 0 0 0 42px rgba(254, 243, 199, 0.018);
+    animation: orbitGlow 7s ease-in-out infinite;
+}
+
+.lunar-portrait img {
+    position: relative;
+    z-index: 1;
 }
 
 .next-stream {
     grid-column: 3;
-    grid-row: 1;
+    grid-row: 2;
+    z-index: 5;
     align-self: center;
-    padding: 26px;
+    min-height: 238px;
+    margin-top: 8px;
+    padding: 30px 152px 22px 30px;
+    border-color: rgba(216, 180, 106, 0.58);
+    border-radius: 50% / 42%;
+    background:
+        radial-gradient(circle at 76% 36%, rgba(254, 243, 199, 0.08), transparent 7rem),
+        linear-gradient(145deg, rgba(15, 18, 51, 0.9), rgba(30, 27, 75, 0.76));
+    overflow: hidden;
+}
+
+.moon-chip {
+    position: absolute;
+    top: 18px;
+    right: 82px;
+    z-index: 2;
+    padding: 5px 10px;
+    border: 1px solid rgba(216, 180, 106, 0.36);
+    border-radius: 999px;
+    color: rgba(255, 249, 232, 0.74);
+    font-family: "Inter", sans-serif;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 .live-badge {
@@ -497,7 +726,7 @@ img {
 .next-stream h2 {
     margin: 0 0 10px;
     font-family: "Inter", sans-serif;
-    font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+    font-size: clamp(2.5rem, 4.25vw, 4.35rem);
     line-height: 0.96;
 }
 
@@ -507,7 +736,7 @@ img {
 }
 
 .next-stream p {
-    margin: 0 0 18px;
+    margin: 0 0 10px;
     color: var(--lunar-muted);
 }
 
@@ -519,11 +748,56 @@ img {
     text-decoration: none;
 }
 
+.stream-preview {
+    position: absolute;
+    top: 60px;
+    right: 22px;
+    width: 126px;
+    height: 126px;
+    border: 2px solid rgba(216, 180, 106, 0.72);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 70% 24%, #fef3c7 0 10px, transparent 11px),
+        linear-gradient(125deg, rgba(68, 92, 154, 0.62), rgba(7, 8, 23, 0.95) 56%),
+        repeating-linear-gradient(90deg, transparent 0 18px, rgba(254, 243, 199, 0.12) 19px 20px);
+    box-shadow: 0 0 22px rgba(216, 180, 106, 0.18);
+}
+
+.stream-preview span {
+    position: absolute;
+    left: 38px;
+    bottom: 23px;
+    width: 54px;
+    height: 42px;
+    border-bottom: 2px solid rgba(254, 243, 199, 0.54);
+}
+
+.stream-preview span::before,
+.stream-preview span::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 14px;
+    height: 44px;
+    border: 1px solid rgba(254, 243, 199, 0.44);
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.stream-preview span::before { left: 4px; }
+.stream-preview span::after { right: 4px; }
+
 .hero-schedule {
     grid-column: 3;
-    grid-row: 2;
+    grid-row: 3;
+    z-index: 5;
     align-self: stretch;
-    padding: 20px 22px;
+    padding: 15px 22px;
+    border-color: rgba(216, 180, 106, 0.48);
+    background:
+        linear-gradient(90deg, rgba(216, 180, 106, 0.12), transparent 14%),
+        rgba(8, 10, 30, 0.82);
+    animation: scheduleFade 700ms 120ms ease both;
 }
 
 .panel-heading {
@@ -544,6 +818,12 @@ img {
     font-size: 1.45rem;
 }
 
+.panel-heading h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .mini-schedule {
     display: grid;
     gap: 0;
@@ -554,12 +834,12 @@ img {
 
 .mini-schedule li {
     display: grid;
-    grid-template-columns: minmax(128px, 0.75fr) 1fr;
-    gap: 14px;
-    padding: 9px 0;
+    grid-template-columns: minmax(122px, 0.72fr) 1fr;
+    gap: 12px;
+    padding: 6px 0;
     border-bottom: 1px solid rgba(254, 243, 199, 0.12);
     color: rgba(255, 249, 232, 0.86);
-    font-size: 0.94rem;
+    font-size: 0.9rem;
 }
 
 .mini-schedule li:last-child {
@@ -570,6 +850,26 @@ img {
     color: var(--lunar-cream);
     font-family: "Inter", sans-serif;
     font-weight: 700;
+}
+
+.mini-schedule em {
+    display: inline-block;
+    min-width: 34px;
+    margin: 0 5px;
+    padding: 1px 6px;
+    border: 1px solid rgba(158, 231, 255, 0.34);
+    border-radius: 4px;
+    color: #bcdfff;
+    font-style: normal;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.mini-schedule .is-live em {
+    border-color: rgba(255, 111, 155, 0.54);
+    color: var(--lunar-live);
 }
 
 .mini-schedule .is-live span::after {
@@ -583,24 +883,31 @@ img {
 
 .follow-panel,
 .hero-contact {
-    grid-row: 3;
-    padding: 20px 22px;
+    grid-row: 4;
+    z-index: 5;
+    padding: 16px 20px;
 }
 
 .follow-panel {
     grid-column: 2;
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 16px;
+    border-radius: 10px 36px 10px 36px;
 }
 
 .platforms {
-    margin-top: 14px;
+    margin-top: 0;
 }
 
 .platforms a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border: 1px solid rgba(254, 243, 199, 0.36);
     border-radius: 999px;
     background: rgba(7, 8, 23, 0.52);
@@ -612,11 +919,22 @@ img {
 
 .hero-contact {
     grid-column: 3;
+    align-self: stretch;
+    padding-right: 34px;
+    background:
+        radial-gradient(circle at 88% 54%, rgba(216, 180, 106, 0.18), transparent 4rem),
+        rgba(12, 14, 39, 0.84);
 }
 
 .hero-contact p {
-    margin: 10px 0 16px;
+    margin: 7px 0 10px;
     color: var(--lunar-muted);
+    font-size: 0.84rem;
+}
+
+.hero-contact .button {
+    min-height: 40px;
+    padding-block: 9px;
 }
 
 .content-band {
@@ -839,6 +1157,30 @@ img {
     }
 }
 
+@keyframes moonReveal {
+    from {
+        clip-path: inset(0 100% 0 0 round 999px);
+        opacity: 0.28;
+        filter: brightness(0.8);
+    }
+    to {
+        clip-path: inset(0 0 0 0 round 999px);
+        opacity: 1;
+        filter: brightness(1);
+    }
+}
+
+@keyframes scheduleFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 1180px) {
     .lunar-hero {
         grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
@@ -924,6 +1266,8 @@ img {
     .lunar-hero {
         display: flex;
         flex-direction: column;
+        height: auto;
+        max-height: none;
         min-height: 0;
         padding: 86px 18px 90px;
     }
@@ -937,6 +1281,10 @@ img {
         display: block;
         width: 100%;
         padding: 18px;
+    }
+
+    .phase-strip {
+        display: none;
     }
 
     .phase-dial__ring {
@@ -957,6 +1305,7 @@ img {
         order: 2;
         width: min(76vw, 420px);
         min-width: 0;
+        transform: none;
     }
 
     .next-stream {
