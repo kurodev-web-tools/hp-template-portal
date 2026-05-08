@@ -1,10 +1,13 @@
 :root {
     --j-amber: #b45309;
     --j-amber-soft: #d6a24f;
+    --j-gold-pale: #f1d091;
     --j-oxblood: #4a160f;
+    --j-wine: #6b1f18;
     --j-brown: #2d1b0d;
     --j-surface: #1a0f08;
     --j-panel: rgba(19, 12, 8, 0.92);
+    --j-paper: rgba(30, 22, 15, 0.95);
     --j-panel-soft: rgba(45, 27, 13, 0.78);
     --j-cream: #fff7e8;
     --j-muted: #c9b99d;
@@ -29,9 +32,10 @@ body.streamer-j-page {
     color: var(--j-cream);
     font-family: var(--j-sans);
     background:
-        radial-gradient(circle at 52% 12%, rgba(214, 162, 79, 0.18), transparent 28rem),
-        radial-gradient(circle at 8% 76%, rgba(74, 22, 15, 0.62), transparent 26rem),
-        linear-gradient(135deg, #080604 0%, var(--j-surface) 44%, #0f0805 100%);
+        radial-gradient(circle at 18% 48%, rgba(241, 208, 145, 0.28), transparent 10rem),
+        radial-gradient(circle at 53% 16%, rgba(214, 162, 79, 0.22), transparent 30rem),
+        radial-gradient(circle at 8% 76%, rgba(74, 22, 15, 0.68), transparent 26rem),
+        linear-gradient(135deg, #070403 0%, var(--j-surface) 44%, #0f0805 100%);
     overflow-x: hidden;
 }
 
@@ -42,6 +46,8 @@ body.streamer-j-page::before {
     z-index: -3;
     pointer-events: none;
     background:
+        linear-gradient(118deg, transparent 0 11%, rgba(83, 22, 18, 0.24) 11.2% 13%, transparent 13.2% 100%),
+        linear-gradient(90deg, rgba(73, 18, 18, 0.2), transparent 18%, transparent 82%, rgba(73, 18, 18, 0.2)),
         linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
         linear-gradient(180deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
     background-size: 72px 72px;
@@ -252,6 +258,30 @@ a {
     pointer-events: none;
 }
 
+.velvet-curtain {
+    position: absolute;
+    top: 72px;
+    bottom: 0;
+    width: 22vw;
+    opacity: 0.74;
+    background:
+        linear-gradient(90deg, rgba(255, 247, 232, 0.05), transparent 18%),
+        repeating-linear-gradient(90deg, rgba(31, 5, 7, 0.96) 0 24px, rgba(95, 21, 20, 0.72) 24px 42px, rgba(22, 5, 5, 0.96) 42px 68px);
+    filter: saturate(1.1);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 78%, transparent 100%);
+}
+
+.velvet-curtain--left {
+    left: 258px;
+    transform: skewX(-3deg);
+}
+
+.velvet-curtain--right {
+    right: 0;
+    transform: skewX(3deg);
+    opacity: 0.42;
+}
+
 .ambient-record {
     position: absolute;
     top: 15%;
@@ -288,6 +318,45 @@ a {
     background: #b45309;
 }
 
+.ambient-lamp {
+    position: absolute;
+    left: clamp(250px, 22vw, 330px);
+    bottom: 18%;
+    width: 104px;
+    height: 220px;
+    opacity: 0.78;
+    filter: drop-shadow(0 0 34px rgba(241, 208, 145, 0.42));
+}
+
+.ambient-lamp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12px;
+    width: 80px;
+    height: 54px;
+    border-radius: 48% 48% 20% 20%;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(255, 247, 232, 0.9), rgba(241, 208, 145, 0.52) 32%, rgba(91, 39, 18, 0.42) 70%),
+        linear-gradient(180deg, rgba(255, 247, 232, 0.64), rgba(106, 43, 19, 0.82));
+    box-shadow: 0 0 90px 46px rgba(214, 162, 79, 0.16), inset 0 -10px 18px rgba(63, 25, 9, 0.72);
+}
+
+.ambient-lamp::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 52px;
+    width: 4px;
+    height: 148px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(241, 208, 145, 0.72), rgba(66, 30, 12, 0.28));
+    box-shadow:
+        -22px 148px 0 0 rgba(214, 162, 79, 0.34),
+        22px 148px 0 0 rgba(214, 162, 79, 0.34),
+        0 156px 0 18px rgba(24, 12, 7, 0.9);
+}
+
 .lounge-menu,
 .record-cover,
 .tonight-card,
@@ -295,12 +364,29 @@ a {
 .follow-dock,
 .reservation-card,
 .content-section {
+    position: relative;
     border: 1px solid var(--j-line);
     border-radius: var(--j-radius);
     background:
+        repeating-linear-gradient(135deg, rgba(255, 247, 232, 0.018) 0 1px, transparent 1px 6px),
         linear-gradient(145deg, rgba(255, 255, 255, 0.05), transparent 36%),
         var(--j-panel);
     box-shadow: 0 20px 45px var(--j-shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.lounge-menu::before,
+.record-cover::after,
+.tonight-card::before,
+.schedule-board::before,
+.follow-dock::before,
+.reservation-card::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(214, 162, 79, 0.24);
+    border-radius: 4px;
+    pointer-events: none;
+    clip-path: polygon(0 0, 28px 0, 28px 1px, calc(100% - 28px) 1px, calc(100% - 28px) 0, 100% 0, 100% 28px, calc(100% - 1px) 28px, calc(100% - 1px) calc(100% - 28px), 100% calc(100% - 28px), 100% 100%, calc(100% - 28px) 100%, calc(100% - 28px) calc(100% - 1px), 28px calc(100% - 1px), 28px 100%, 0 100%, 0 calc(100% - 28px), 1px calc(100% - 28px), 1px 28px, 0 28px);
 }
 
 .lounge-menu {
@@ -308,13 +394,37 @@ a {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    padding: 22px;
+    padding: 24px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(241, 208, 145, 0.12), transparent 11rem),
+        repeating-linear-gradient(145deg, rgba(255, 247, 232, 0.022) 0 1px, transparent 1px 7px),
+        linear-gradient(180deg, rgba(22, 17, 12, 0.98), rgba(8, 6, 4, 0.94));
 }
 
 .menu-plaque {
-    padding: 20px 12px 24px;
+    position: relative;
+    padding: 20px 12px 25px;
     border-bottom: 1px solid var(--j-line);
     text-align: center;
+}
+
+.menu-plaque::before,
+.menu-plaque::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 42px;
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, var(--j-amber-soft), transparent);
+}
+
+.menu-plaque::before {
+    top: 9px;
+}
+
+.menu-plaque::after {
+    bottom: 12px;
 }
 
 .menu-plaque strong {
@@ -344,12 +454,13 @@ a {
 }
 
 .lounge-menu a {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 14px;
     min-height: 54px;
-    padding: 14px 12px;
+    padding: 14px 18px 14px 12px;
     border-bottom: 1px solid rgba(214, 162, 79, 0.18);
     color: var(--j-cream);
     font-family: var(--j-serif);
@@ -361,15 +472,55 @@ a {
 }
 
 .lounge-menu a span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    min-width: 28px;
     color: var(--j-amber-soft);
-    font-family: var(--j-sans);
-    font-size: 0.76rem;
+    font-family: var(--j-serif);
+    font-size: 1.1rem;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(214, 162, 79, 0.25);
+}
+
+.lounge-menu a::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--j-amber-soft);
+    border-right: 1px solid var(--j-amber-soft);
+    opacity: 0;
+    transform: rotate(45deg);
 }
 
 .lounge-menu a.is-current {
     border: 1px solid rgba(214, 162, 79, 0.54);
     border-radius: 6px;
-    background: linear-gradient(90deg, rgba(74, 22, 15, 0.92), rgba(126, 48, 24, 0.54));
+    background:
+        linear-gradient(90deg, rgba(255, 247, 232, 0.08), transparent 34%),
+        linear-gradient(90deg, rgba(74, 22, 15, 0.98), rgba(126, 48, 24, 0.64));
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 247, 232, 0.06),
+        0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+.lounge-menu a.is-current::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 9px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--j-gold-pale);
+    box-shadow: 0 0 14px rgba(241, 208, 145, 0.56);
+}
+
+.lounge-menu a.is-current::after {
+    opacity: 1;
 }
 
 .mood-card {
@@ -377,7 +528,9 @@ a {
     padding: 18px;
     border: 1px solid rgba(214, 162, 79, 0.25);
     border-radius: 6px;
-    background: rgba(10, 7, 5, 0.72);
+    background:
+        linear-gradient(180deg, rgba(255, 247, 232, 0.035), transparent 38%),
+        rgba(10, 7, 5, 0.82);
 }
 
 .mood-card strong {
@@ -397,7 +550,6 @@ a {
 }
 
 .record-cover {
-    position: relative;
     display: grid;
     align-content: end;
     min-height: 0;
@@ -405,8 +557,10 @@ a {
     padding: 28px;
     overflow: hidden;
     background:
+        radial-gradient(circle at 34% 34%, rgba(255, 219, 154, 0.28), transparent 13rem),
+        radial-gradient(circle at 63% 38%, rgba(111, 33, 19, 0.42), transparent 14rem),
         linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 32%),
-        radial-gradient(circle at 50% 38%, rgba(180, 83, 9, 0.22), transparent 32%),
+        repeating-linear-gradient(135deg, rgba(255, 247, 232, 0.025) 0 1px, transparent 1px 8px),
         #0b0907;
 }
 
@@ -441,32 +595,107 @@ a {
 
 .portrait-disc {
     position: absolute;
-    top: 72px;
+    top: 70px;
     left: 50%;
-    width: min(60%, 380px);
+    width: min(68%, 430px);
     aspect-ratio: 1;
     transform: translateX(-50%);
     border: 1px solid rgba(214, 162, 79, 0.58);
     border-radius: 50%;
     background:
-        radial-gradient(circle at 48% 30%, rgba(255, 247, 232, 0.16), transparent 14%),
-        radial-gradient(circle at 52% 48%, rgba(180, 83, 9, 0.24), transparent 34%),
-        linear-gradient(145deg, #120c08, #2a150d 58%, #080604);
-    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.62), 0 0 28px rgba(214, 162, 79, 0.12);
+        radial-gradient(circle at 34% 24%, rgba(255, 247, 232, 0.32), transparent 8%),
+        radial-gradient(circle at 43% 38%, rgba(241, 208, 145, 0.2), transparent 18%),
+        radial-gradient(circle at 57% 54%, rgba(180, 83, 9, 0.3), transparent 35%),
+        linear-gradient(145deg, #130c08, #31150c 58%, #080604);
+    box-shadow:
+        inset 0 0 72px rgba(0, 0, 0, 0.68),
+        0 0 34px rgba(214, 162, 79, 0.2);
+}
+
+.hero-lamp {
+    position: absolute;
+    left: 34px;
+    top: 178px;
+    z-index: 1;
+    width: 92px;
+    height: 190px;
+    opacity: 0.82;
+    filter: drop-shadow(0 0 38px rgba(241, 208, 145, 0.34));
+}
+
+.hero-lamp::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 0;
+    width: 74px;
+    height: 48px;
+    border: 1px solid rgba(241, 208, 145, 0.34);
+    border-radius: 46% 46% 22% 22%;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255, 247, 232, 0.9), rgba(241, 208, 145, 0.48) 38%, rgba(74, 22, 15, 0.55) 72%),
+        #4a160f;
+    box-shadow: 0 0 70px 28px rgba(214, 162, 79, 0.15);
+}
+
+.hero-lamp::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 48px;
+    width: 3px;
+    height: 124px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(241, 208, 145, 0.58), rgba(79, 33, 14, 0.34));
+    box-shadow: 0 132px 0 15px rgba(7, 5, 4, 0.92);
+}
+
+.portrait-disc::before {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 22%, rgba(241, 208, 145, 0.16), transparent 8%),
+        repeating-radial-gradient(circle, transparent 0 19px, rgba(241, 208, 145, 0.08) 19px 20px);
+    opacity: 0.72;
+    mix-blend-mode: screen;
+}
+
+.portrait-disc::after {
+    content: "";
+    position: absolute;
+    right: -95px;
+    top: 18%;
+    width: 210px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 0.45;
+    background:
+        radial-gradient(circle, #070707 0 22%, transparent 23%),
+        repeating-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0 1px, transparent 1px 8px),
+        #080808;
+    box-shadow: 0 0 26px rgba(0, 0, 0, 0.74);
 }
 
 .portrait-silhouette {
     position: absolute;
-    left: 50%;
-    bottom: 8%;
-    width: 48%;
-    height: 70%;
-    transform: translateX(-50%);
-    border-radius: 46% 46% 34% 34%;
+    left: 55%;
+    bottom: 7%;
+    z-index: 1;
+    width: 43%;
+    height: 74%;
+    transform: translateX(-50%) rotate(2deg);
+    border-radius: 48% 48% 28% 38%;
     background:
-        radial-gradient(circle at 52% 12%, #20100b 0 24%, transparent 25%),
-        linear-gradient(165deg, transparent 0 18%, #080604 19% 100%);
-    filter: drop-shadow(0 0 18px rgba(214, 162, 79, 0.18));
+        linear-gradient(112deg, transparent 0 62%, rgba(241, 208, 145, 0.16) 63% 64%, transparent 65%),
+        radial-gradient(ellipse at 40% 72%, rgba(241, 208, 145, 0.1) 0 22%, transparent 23%),
+        radial-gradient(ellipse at 50% 23%, rgba(201, 139, 91, 0.78) 0 13%, transparent 14%),
+        radial-gradient(ellipse at 47% 18%, rgba(15, 8, 6, 0.98) 0 27%, transparent 28%),
+        radial-gradient(ellipse at 61% 35%, rgba(8, 6, 4, 0.98) 0 30%, transparent 31%),
+        radial-gradient(ellipse at 37% 38%, rgba(8, 6, 4, 0.98) 0 28%, transparent 29%),
+        linear-gradient(165deg, transparent 0 14%, #080604 15% 100%);
+    filter: drop-shadow(0 0 20px rgba(214, 162, 79, 0.28));
 }
 
 .portrait-silhouette::before,
@@ -478,33 +707,95 @@ a {
 }
 
 .portrait-silhouette::before {
-    top: 17%;
-    left: 8%;
-    width: 82%;
+    top: 20%;
+    left: -4%;
+    width: 104%;
     height: 2px;
-    transform: rotate(-16deg);
+    transform: rotate(-19deg);
 }
 
 .portrait-silhouette::after {
-    top: 24%;
-    right: 8%;
-    width: 36%;
+    top: 30%;
+    right: -6%;
+    width: 58%;
     height: 2px;
     transform: rotate(34deg);
 }
 
+.portrait-glow {
+    position: absolute;
+    left: 19%;
+    top: 17%;
+    width: 44%;
+    height: 62%;
+    border-radius: 54% 46% 40% 44%;
+    background:
+        radial-gradient(ellipse at 50% 26%, rgba(241, 208, 145, 0.18), transparent 26%),
+        linear-gradient(160deg, rgba(255, 247, 232, 0.08), transparent 42%);
+    filter: blur(1px);
+    opacity: 0.86;
+}
+
+.portrait-ornament {
+    position: absolute;
+    right: 28%;
+    top: 18%;
+    z-index: 3;
+    width: 74px;
+    height: 86px;
+    opacity: 0.86;
+    background:
+        radial-gradient(circle at 28% 22%, rgba(241, 208, 145, 0.76) 0 5px, transparent 6px),
+        radial-gradient(circle at 48% 14%, rgba(241, 208, 145, 0.66) 0 4px, transparent 5px),
+        radial-gradient(circle at 64% 28%, rgba(241, 208, 145, 0.6) 0 4px, transparent 5px),
+        linear-gradient(126deg, transparent 0 42%, rgba(241, 208, 145, 0.34) 43% 44%, transparent 45%),
+        repeating-linear-gradient(100deg, transparent 0 9px, rgba(255, 247, 232, 0.12) 9px 10px, transparent 10px 18px);
+    border-radius: 50% 50% 42% 42%;
+    filter: drop-shadow(0 0 10px rgba(241, 208, 145, 0.32));
+}
+
+.portrait-ornament::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 16px;
+    width: 58px;
+    height: 54px;
+    border: 1px solid rgba(241, 208, 145, 0.24);
+    border-left: 0;
+    border-bottom: 0;
+    border-radius: 50%;
+    transform: rotate(-18deg);
+}
+
+.portrait-ornament::after {
+    content: "";
+    position: absolute;
+    left: -36px;
+    top: 42px;
+    width: 92px;
+    height: 120px;
+    border-left: 1px solid rgba(255, 247, 232, 0.1);
+    border-radius: 50%;
+    transform: rotate(18deg);
+}
+
 .microphone {
     position: absolute;
-    right: 18%;
-    bottom: 18%;
-    width: 42px;
-    height: 92px;
-    border-radius: 22px 22px 8px 8px;
-    border: 2px solid rgba(214, 162, 79, 0.64);
+    left: 22%;
+    bottom: 20%;
+    z-index: 2;
+    width: 50px;
+    height: 104px;
+    border-radius: 26px 26px 10px 10px;
+    border: 2px solid rgba(241, 208, 145, 0.74);
     background:
-        repeating-linear-gradient(0deg, rgba(255, 247, 232, 0.18) 0 2px, transparent 2px 8px),
+        repeating-linear-gradient(0deg, rgba(255, 247, 232, 0.22) 0 2px, transparent 2px 8px),
+        radial-gradient(circle at 50% 16%, rgba(255, 247, 232, 0.24), transparent 24%),
         #160d08;
-    box-shadow: 0 0 22px rgba(214, 162, 79, 0.24);
+    box-shadow:
+        0 0 20px rgba(241, 208, 145, 0.34),
+        inset 0 0 16px rgba(0, 0, 0, 0.78);
 }
 
 .microphone::after {
@@ -516,6 +807,19 @@ a {
     height: 58px;
     transform: translateX(-50%);
     background: rgba(214, 162, 79, 0.6);
+    box-shadow: 0 52px 0 18px rgba(9, 6, 4, 0.66);
+}
+
+.microphone::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    right: -16px;
+    bottom: -12px;
+    height: 18px;
+    border: 2px solid rgba(241, 208, 145, 0.34);
+    border-top: 0;
+    border-radius: 0 0 999px 999px;
 }
 
 .hero-copy {
@@ -618,14 +922,38 @@ a {
 .tonight-card,
 .schedule-board,
 .reservation-card {
-    padding: 12px;
+    overflow: hidden;
+    padding: 18px;
 }
 
 .tonight-card {
-    position: relative;
     background:
-        radial-gradient(circle at 86% 22%, rgba(180, 83, 9, 0.24), transparent 10rem),
-        linear-gradient(135deg, rgba(74, 22, 15, 0.82), var(--j-panel) 58%);
+        radial-gradient(circle at 86% 24%, rgba(241, 208, 145, 0.24), transparent 7rem),
+        radial-gradient(circle at 94% 75%, rgba(180, 83, 9, 0.28), transparent 5rem),
+        repeating-linear-gradient(0deg, rgba(255, 247, 232, 0.026) 0 1px, transparent 1px 30px),
+        linear-gradient(135deg, rgba(74, 22, 15, 0.9), var(--j-paper) 58%);
+}
+
+.tonight-card::after {
+    content: "";
+    position: absolute;
+    right: 30px;
+    top: 68px;
+    width: 58px;
+    height: 118px;
+    opacity: 0.72;
+    border: 2px solid rgba(241, 208, 145, 0.62);
+    border-radius: 30px 30px 10px 10px;
+    background:
+        repeating-linear-gradient(0deg, rgba(255, 247, 232, 0.2) 0 2px, transparent 2px 8px),
+        radial-gradient(circle at 50% 18%, rgba(255, 247, 232, 0.24), transparent 30%),
+        rgba(12, 8, 6, 0.86);
+    box-shadow: 0 0 30px rgba(241, 208, 145, 0.24);
+}
+
+.tonight-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .live-badge {
@@ -636,7 +964,10 @@ a {
     border: 1px solid rgba(255, 247, 232, 0.42);
     border-radius: 4px;
     color: var(--j-cream);
-    background: #7d2014;
+    background:
+        linear-gradient(180deg, rgba(255, 247, 232, 0.12), transparent 44%),
+        #7d2014;
+    box-shadow: inset 0 0 0 1px rgba(214, 162, 79, 0.24);
 }
 
 .tonight-card h2,
@@ -651,7 +982,7 @@ a {
 }
 
 .reservation-card h2 {
-    font-size: 1.8rem;
+    font-size: 1.68rem;
 }
 
 .card-lead {
@@ -668,6 +999,11 @@ a {
     color: var(--j-muted);
     font-size: 0.92rem;
     line-height: 1.35;
+}
+
+.set-list li {
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(214, 162, 79, 0.16);
 }
 
 .text-link {
@@ -696,11 +1032,35 @@ a {
     list-style: none;
 }
 
+.schedule-board {
+    background:
+        linear-gradient(90deg, rgba(214, 162, 79, 0.1), transparent 22%),
+        repeating-linear-gradient(135deg, rgba(255, 247, 232, 0.025) 0 1px, transparent 1px 9px),
+        linear-gradient(180deg, rgba(12, 8, 5, 0.96), rgba(27, 18, 11, 0.94));
+}
+
+.schedule-board .section-heading {
+    position: relative;
+    padding-left: 12px;
+}
+
+.schedule-board .section-heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 2px;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--j-amber-soft);
+    box-shadow: 0 0 16px rgba(214, 162, 79, 0.38);
+}
+
 .schedule-list li {
     display: grid;
     grid-template-columns: minmax(130px, 0.52fr) 1fr;
     gap: 16px;
-    padding: 7px 0;
+    padding: 8px 0;
     border-top: 1px solid rgba(214, 162, 79, 0.18);
 }
 
@@ -720,7 +1080,11 @@ a {
     grid-template-columns: 1fr repeat(4, minmax(56px, 76px));
     align-items: center;
     gap: 12px;
-    padding: 18px;
+    padding: 22px 18px 18px;
+    background:
+        linear-gradient(90deg, rgba(255, 247, 232, 0.04), transparent 18%, transparent 78%, rgba(214, 162, 79, 0.08)),
+        repeating-linear-gradient(135deg, rgba(255, 247, 232, 0.025) 0 1px, transparent 1px 8px),
+        rgba(14, 9, 6, 0.94);
 }
 
 .follow-dock h2 {
@@ -739,37 +1103,86 @@ a {
     color: var(--j-cream);
     font-weight: 900;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.3);
+    background:
+        linear-gradient(180deg, rgba(255, 247, 232, 0.08), transparent 45%),
+        rgba(0, 0, 0, 0.38);
+    box-shadow: inset 0 0 0 1px rgba(255, 247, 232, 0.035);
 }
 
 .reservation-card {
     grid-column: 3 / 4;
-    padding: 10px 12px;
+    padding: 17px 22px;
     background:
-        radial-gradient(circle at 88% 20%, rgba(214, 162, 79, 0.2), transparent 8rem),
-        linear-gradient(135deg, rgba(74, 22, 15, 0.9), rgba(23, 12, 7, 0.94));
+        radial-gradient(circle at 88% 28%, rgba(241, 208, 145, 0.26), transparent 7rem),
+        linear-gradient(90deg, rgba(80, 22, 17, 0.9), transparent 44%),
+        repeating-linear-gradient(135deg, rgba(255, 247, 232, 0.024) 0 1px, transparent 1px 8px),
+        linear-gradient(135deg, rgba(74, 22, 15, 0.96), rgba(23, 12, 7, 0.96));
+    box-shadow:
+        0 20px 45px var(--j-shadow),
+        inset 0 0 38px rgba(214, 162, 79, 0.06);
+}
+
+.reservation-card::after {
+    content: "";
+    position: absolute;
+    right: 24px;
+    top: 16px;
+    width: 58px;
+    height: 112px;
+    opacity: 0.74;
+    background:
+        radial-gradient(ellipse at 50% 14%, rgba(255, 247, 232, 0.88), rgba(241, 208, 145, 0.48) 30%, rgba(89, 35, 14, 0.2) 31% 42%, transparent 43%),
+        linear-gradient(90deg, transparent 48%, rgba(214, 162, 79, 0.52) 49% 52%, transparent 53%),
+        radial-gradient(ellipse at 50% 100%, rgba(9, 6, 4, 0.94) 0 36%, transparent 37%);
+    filter: drop-shadow(0 0 26px rgba(241, 208, 145, 0.32));
+}
+
+.reservation-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .reservation-card .button {
-    min-height: 40px;
+    min-height: 38px;
     padding-block: 10px;
+    min-width: min(100%, 280px);
+    justify-content: space-between;
+    background:
+        linear-gradient(180deg, rgba(255, 247, 232, 0.18), transparent 46%),
+        linear-gradient(180deg, #7e3a16, #4e180f);
+}
+
+.reservation-card .button::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
 }
 
 .reservation-number {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 5px 9px;
+    border: 1px solid rgba(214, 162, 79, 0.36);
+    border-radius: 4px;
     color: var(--j-amber-soft);
     font-family: var(--j-sans);
     font-size: 0.74rem;
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    background: rgba(8, 6, 4, 0.36);
 }
 
 .reservation-card p {
     max-width: 34rem;
-    margin: 0 0 10px;
+    margin: 0 0 9px;
     color: var(--j-muted);
-    font-size: 0.92rem;
-    line-height: 1.45;
+    font-size: 0.86rem;
+    line-height: 1.4;
 }
 
 .content-section {
@@ -902,16 +1315,51 @@ body.is-loaded .microphone {
     animation: microphone-glow 3200ms ease-in-out infinite;
 }
 
+body.is-loaded .velvet-curtain {
+    animation: curtain-fade 900ms ease both;
+}
+
+body.is-loaded .velvet-curtain--right {
+    animation-name: curtain-fade-soft;
+}
+
 body.is-loaded .reservation-card.is-visible {
     animation: reservation-reveal 520ms ease both;
 }
 
+@keyframes curtain-fade {
+    from {
+        opacity: 0;
+        filter: saturate(0.8) blur(6px);
+    }
+    to {
+        opacity: 0.74;
+        filter: saturate(1.1) blur(0);
+    }
+}
+
+@keyframes curtain-fade-soft {
+    from {
+        opacity: 0;
+        filter: saturate(0.8) blur(6px);
+    }
+    to {
+        opacity: 0.42;
+        filter: saturate(1.1) blur(0);
+    }
+}
+
 @keyframes microphone-glow {
     0%, 100% {
-        box-shadow: 0 0 16px rgba(214, 162, 79, 0.18);
+        box-shadow:
+            0 0 18px rgba(241, 208, 145, 0.28),
+            inset 0 0 16px rgba(0, 0, 0, 0.78);
     }
     50% {
-        box-shadow: 0 0 28px rgba(214, 162, 79, 0.36);
+        box-shadow:
+            0 0 36px rgba(241, 208, 145, 0.58),
+            0 0 72px rgba(180, 83, 9, 0.24),
+            inset 0 0 16px rgba(0, 0, 0, 0.78);
     }
 }
 
