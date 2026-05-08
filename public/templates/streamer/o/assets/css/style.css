@@ -65,6 +65,9 @@ a {
     z-index: -2;
     overflow: hidden;
     background:
+        radial-gradient(circle at 8% 68%, rgba(126, 171, 255, 0.22) 0 1px, transparent 2px),
+        radial-gradient(circle at 91% 57%, rgba(0, 210, 255, 0.28) 0 1px, transparent 2px),
+        radial-gradient(circle at 64% 6%, rgba(255, 255, 255, 0.72) 0 1px, transparent 2px),
         radial-gradient(circle at 51% 39%, rgba(58, 123, 213, 0.24), transparent 0 11%, transparent 31%),
         radial-gradient(circle at 23% 17%, rgba(0, 210, 255, 0.14), transparent 0 14%, transparent 32%),
         radial-gradient(circle at 72% 14%, rgba(112, 112, 255, 0.16), transparent 0 13%, transparent 36%),
@@ -237,6 +240,15 @@ a {
     display: grid;
     gap: 12px;
     align-content: stretch;
+    min-height: 0;
+}
+
+.control-column-left {
+    grid-template-rows: 220px 220px 180px;
+}
+
+.control-column-right {
+    grid-template-rows: minmax(338px, 1fr) minmax(214px, 0.64fr);
 }
 
 .mission-panel,
@@ -245,7 +257,9 @@ a {
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius);
+    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
     background:
+        linear-gradient(90deg, rgba(0, 210, 255, 0.14) 0 1px, transparent 1px calc(100% - 1px), rgba(0, 210, 255, 0.14) calc(100% - 1px)),
         linear-gradient(135deg, rgba(0, 210, 255, 0.08), transparent 32%),
         var(--surface-panel);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
@@ -262,7 +276,7 @@ a {
 }
 
 .mission-panel {
-    padding: 18px;
+    padding: 16px;
 }
 
 .panel-heading,
@@ -271,7 +285,7 @@ a {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 11px;
     color: var(--muted);
     font: 800 12px/1.2 var(--font-display);
     letter-spacing: 0.12em;
@@ -302,8 +316,21 @@ a {
 
 .panel-link {
     display: inline-flex;
-    margin-top: 12px;
+    margin-top: 7px;
     font: 800 13px/1 var(--font-display);
+}
+
+.live-panel .panel-link {
+    position: absolute;
+    right: 18px;
+    bottom: 12px;
+    z-index: 2;
+    margin-top: 0;
+    padding: 5px 8px;
+    border: 1px solid rgba(0, 210, 255, 0.22);
+    border-radius: 4px;
+    background: rgba(0, 7, 28, 0.7);
+    font-size: 11px;
 }
 
 .live-dot {
@@ -316,14 +343,53 @@ a {
 
 .video-signal {
     position: relative;
-    min-height: 132px;
+    min-height: 92px;
     border: 1px solid rgba(0, 210, 255, 0.25);
     border-radius: 6px;
     overflow: hidden;
     background:
+        radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.64) 0 1px, transparent 2px),
+        radial-gradient(circle at 18% 66%, rgba(0, 210, 255, 0.56) 0 1px, transparent 2px),
+        linear-gradient(155deg, transparent 0 45%, rgba(0, 210, 255, 0.28) 46% 50%, transparent 51%),
         radial-gradient(circle at 70% 35%, rgba(0, 210, 255, 0.24), transparent 0 20%, transparent 40%),
         linear-gradient(145deg, rgba(10, 26, 70, 0.9), rgba(0, 2, 34, 0.8)),
         repeating-linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, 0.03) 18px 19px);
+}
+
+.signal-corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: var(--warm);
+    opacity: 0.9;
+}
+
+.corner-a {
+    top: 8px;
+    left: 8px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.corner-b {
+    top: 8px;
+    right: 8px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.corner-c {
+    right: 8px;
+    bottom: 8px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.corner-d {
+    bottom: 8px;
+    left: 8px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
 }
 
 .station-silhouette {
@@ -375,14 +441,33 @@ a {
 }
 
 .current-title {
-    margin: 12px 0 0;
+    margin: 8px 0 0;
     color: var(--text);
     font-weight: 700;
 }
 
+.signal-bars {
+    height: 22px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: end;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 0 4px;
+}
+
+.signal-bars span {
+    display: block;
+    height: var(--bar);
+    min-height: 7px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(180deg, #8f61ff, var(--primary));
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.22);
+}
+
 .telemetry-list {
     display: grid;
-    gap: 10px;
+    gap: 7px;
     margin: 0;
 }
 
@@ -421,6 +506,12 @@ a {
     background: linear-gradient(90deg, var(--secondary) var(--value), rgba(255, 255, 255, 0.08) var(--value));
 }
 
+.telemetry-panel .telemetry-list dd span,
+.telemetry-panel .chip-row span,
+.live-dot {
+    animation: telemetry-pulse 2.4s ease-in-out infinite;
+}
+
 .telemetry-list strong,
 .current-mission dd {
     color: var(--text);
@@ -429,8 +520,67 @@ a {
 
 .current-mission dl {
     display: grid;
-    gap: 10px;
-    margin: 16px 0 0;
+    gap: 7px;
+    margin: 11px 0 0;
+}
+
+.chip-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.chip-row span {
+    min-height: 28px;
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(0, 210, 255, 0.24);
+    border-radius: 4px;
+    color: #b8d6ff;
+    background: rgba(2, 14, 46, 0.64);
+    font: 800 10px/1 var(--font-display);
+    letter-spacing: 0.08em;
+}
+
+.mission-radar {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    width: 88px;
+    aspect-ratio: 1;
+    border: 1px solid rgba(0, 210, 255, 0.22);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(0, 210, 255, 0.9) 0 4px, rgba(0, 210, 255, 0.2) 5px 8px, transparent 9px),
+        repeating-radial-gradient(circle, transparent 0 17px, rgba(0, 210, 255, 0.18) 18px 19px),
+        conic-gradient(from -40deg, rgba(0, 210, 255, 0.3), transparent 28%, rgba(122, 98, 255, 0.35), transparent 58%);
+}
+
+.mission-radar span {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 14px rgba(0, 210, 255, 0.7);
+}
+
+.mission-radar span:nth-child(1) {
+    top: 22px;
+    right: 26px;
+}
+
+.mission-radar span:nth-child(2) {
+    right: 18px;
+    bottom: 24px;
+    background: var(--warm);
+}
+
+.mission-radar span:nth-child(3) {
+    bottom: 32px;
+    left: 22px;
+    background: #806cff;
 }
 
 .orbit-stage {
@@ -453,9 +603,10 @@ a {
     aspect-ratio: 1;
     border-radius: 50%;
     background:
-        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.35), transparent 0 1px, transparent 2px),
-        radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.14), transparent 0 36%, transparent 62%),
-        linear-gradient(155deg, #091a48 0%, #113d82 45%, #030817 46% 100%);
+        radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.44), transparent 0 1px, transparent 2px),
+        radial-gradient(circle at 67% 44%, rgba(0, 210, 255, 0.28), transparent 0 1px, transparent 2px),
+        radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.16), transparent 0 36%, transparent 62%),
+        linear-gradient(155deg, #071f58 0%, #123f8c 45%, #030817 46% 100%);
     box-shadow: 0 0 86px rgba(0, 210, 255, 0.17);
     opacity: 0.88;
 }
@@ -489,14 +640,98 @@ a {
     opacity: 0.7;
 }
 
+.ring-dotted {
+    width: min(650px, 78%);
+    aspect-ratio: 1;
+    border-style: dotted;
+    border-color: rgba(199, 226, 255, 0.42);
+    transform: rotate(-18deg) scaleY(0.88);
+    opacity: 0.72;
+}
+
+.orbit-sweep-line {
+    position: absolute;
+    z-index: 3;
+    width: min(720px, 86%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(from 18deg, transparent 0 72%, rgba(0, 210, 255, 0.85) 76%, rgba(255, 255, 255, 0.9) 77%, transparent 81%);
+    mask: radial-gradient(circle, transparent 0 48%, #000 49% 50%, transparent 51%);
+    opacity: 0.86;
+    pointer-events: none;
+}
+
+.mission-dot {
+    position: absolute;
+    z-index: 5;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #8fdcff;
+    border: 2px solid rgba(255, 255, 255, 0.84);
+    box-shadow: 0 0 18px rgba(0, 210, 255, 0.95);
+}
+
+.dot-a {
+    top: 7%;
+    left: 49%;
+}
+
+.dot-b {
+    top: 35%;
+    right: 8.8%;
+    background: #8b72ff;
+}
+
+.dot-c {
+    bottom: 36%;
+    left: 16%;
+}
+
+.dot-d {
+    bottom: 17%;
+    right: 22%;
+    background: #ff8c4a;
+}
+
+.telemetry-label {
+    position: absolute;
+    z-index: 6;
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+    border: 1px solid rgba(0, 210, 255, 0.34);
+    border-radius: 999px;
+    background: rgba(0, 7, 28, 0.64);
+    color: #b9d7ff;
+    font: 800 10px/1 var(--font-display);
+    letter-spacing: 0.08em;
+}
+
+.label-a {
+    top: 18%;
+    left: 18%;
+}
+
+.label-b {
+    top: 22%;
+    right: 18%;
+}
+
+.label-c {
+    bottom: 28%;
+    right: 12%;
+}
+
 .planet-core {
     position: relative;
     z-index: 1;
     display: grid;
     place-items: center;
-    width: min(390px, 48%);
-    aspect-ratio: 0.72;
-    margin-top: -16px;
+    width: min(450px, 54%);
+    aspect-ratio: 0.82;
+    margin-top: -34px;
 }
 
 .planet-glow {
@@ -510,27 +745,83 @@ a {
     filter: blur(1px);
 }
 
+.planet-disc {
+    position: absolute;
+    bottom: 16%;
+    width: 116%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 58% 22%, rgba(255, 255, 255, 0.34), transparent 0 10%, transparent 22%),
+        radial-gradient(circle at 32% 46%, rgba(0, 210, 255, 0.24), transparent 0 18%, transparent 34%),
+        linear-gradient(145deg, rgba(48, 104, 190, 0.94), rgba(10, 35, 88, 0.94) 48%, rgba(0, 3, 18, 0.98) 49%);
+    box-shadow: inset -28px -28px 56px rgba(0, 0, 0, 0.34), 0 0 74px rgba(63, 125, 255, 0.28);
+}
+
+.planet-disc::after {
+    content: "";
+    position: absolute;
+    inset: 11% -16%;
+    border: 2px solid rgba(111, 182, 255, 0.48);
+    border-radius: 50%;
+    transform: rotate(-17deg) scaleY(0.22);
+    box-shadow: 0 0 18px rgba(0, 210, 255, 0.28);
+}
+
+.orbit-station {
+    position: absolute;
+    right: -4%;
+    bottom: 30%;
+    z-index: 4;
+    width: 78px;
+    height: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    background: linear-gradient(90deg, rgba(0, 210, 255, 0.24), rgba(255, 255, 255, 0.08));
+    transform: rotate(-16deg);
+    box-shadow: 0 0 18px rgba(0, 210, 255, 0.36);
+}
+
+.orbit-station::before,
+.orbit-station::after {
+    content: "";
+    position: absolute;
+    top: 9px;
+    width: 50px;
+    height: 9px;
+    background: rgba(0, 210, 255, 0.44);
+}
+
+.orbit-station::before {
+    right: 100%;
+}
+
+.orbit-station::after {
+    left: 100%;
+}
+
 .avatar-silhouette {
     position: relative;
-    width: 55%;
-    height: 84%;
-    border-radius: 44% 44% 14% 14%;
+    z-index: 5;
+    width: 56%;
+    height: 88%;
+    border-radius: 48% 48% 18% 18%;
     background:
-        radial-gradient(circle at 50% 16%, #eef5ff 0 18%, transparent 19%),
-        linear-gradient(160deg, rgba(235, 242, 255, 0.86), rgba(104, 139, 220, 0.88) 48%, rgba(18, 24, 60, 0.92) 49%);
-    box-shadow: 0 0 44px rgba(0, 210, 255, 0.26);
-    clip-path: polygon(50% 0, 76% 13%, 90% 37%, 82% 100%, 18% 100%, 10% 38%, 24% 13%);
+        radial-gradient(ellipse at 48% 28%, rgba(238, 244, 255, 0.82) 0 16%, transparent 17%),
+        linear-gradient(135deg, rgba(209, 218, 255, 0.88), rgba(137, 117, 214, 0.86) 48%, rgba(18, 24, 60, 0.92) 49%);
+    box-shadow: 0 0 54px rgba(184, 205, 255, 0.32);
+    clip-path: polygon(48% 0, 73% 11%, 94% 38%, 87% 100%, 17% 100%, 8% 40%, 25% 12%);
 }
 
 .avatar-silhouette::before,
 .avatar-silhouette::after {
     content: "";
     position: absolute;
-    top: 21%;
-    width: 46%;
-    height: 72%;
+    top: 17%;
+    width: 52%;
+    height: 78%;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: linear-gradient(180deg, rgba(235, 238, 255, 0.16), rgba(104, 93, 185, 0.08));
 }
 
 .avatar-silhouette::before {
@@ -541,6 +832,69 @@ a {
 .avatar-silhouette::after {
     right: -20%;
     transform: rotate(-14deg);
+}
+
+.portrait-hair,
+.portrait-face,
+.portrait-suit {
+    position: absolute;
+    display: block;
+}
+
+.portrait-hair {
+    z-index: 1;
+    top: 8%;
+    left: 13%;
+    width: 76%;
+    height: 76%;
+    border-radius: 50% 50% 44% 44%;
+    background:
+        linear-gradient(100deg, transparent 0 22%, rgba(255, 255, 255, 0.34) 23% 29%, transparent 30%),
+        linear-gradient(83deg, rgba(236, 241, 255, 0.9), rgba(170, 157, 232, 0.86) 54%, rgba(55, 65, 137, 0.64));
+    clip-path: polygon(42% 0, 75% 9%, 93% 38%, 78% 100%, 56% 68%, 45% 100%, 18% 90%, 8% 38%, 23% 9%);
+}
+
+.portrait-face {
+    z-index: 2;
+    top: 17%;
+    left: 37%;
+    width: 30%;
+    height: 25%;
+    border-radius: 48% 48% 46% 46%;
+    background: linear-gradient(145deg, #f6f8ff, #dce6ff 58%, #a9b8ee);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.3);
+}
+
+.portrait-face::before,
+.portrait-face::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #4d3d7a;
+}
+
+.portrait-face::before {
+    left: 31%;
+}
+
+.portrait-face::after {
+    right: 31%;
+}
+
+.portrait-suit {
+    z-index: 2;
+    right: 24%;
+    bottom: 8%;
+    left: 25%;
+    height: 55%;
+    border-radius: 42% 42% 18% 18%;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(0, 210, 255, 0.7) 0 4px, transparent 5px),
+        linear-gradient(155deg, rgba(228, 236, 255, 0.86), rgba(70, 87, 162, 0.88) 48%, rgba(9, 16, 45, 0.95) 49%);
+    clip-path: polygon(50% 0, 78% 28%, 91% 100%, 8% 100%, 22% 28%);
 }
 
 .orbit-node {
@@ -557,6 +911,31 @@ a {
     text-decoration: none;
     font: 800 12px/1 var(--font-display);
     box-shadow: inset 0 0 28px rgba(0, 210, 255, 0.12);
+}
+
+.orbit-node::before {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto 6px;
+    border: 2px solid rgba(255, 255, 255, 0.86);
+    border-radius: 50%;
+}
+
+.node-mission::before {
+    border-radius: 4px 50% 50% 50%;
+    transform: rotate(-45deg);
+    background: linear-gradient(135deg, #fff 0 32%, transparent 33%);
+}
+
+.node-schedule::before {
+    border-radius: 4px;
+    box-shadow: inset 0 7px 0 rgba(255, 255, 255, 0.24);
+}
+
+.node-contact::before {
+    border-radius: 50% 50% 6px 6px;
 }
 
 .orbit-node span {
@@ -684,7 +1063,7 @@ a {
 }
 
 .schedule-tabs button {
-    min-height: 40px;
+    min-height: 36px;
     border: 0;
     border-right: 1px solid rgba(0, 210, 255, 0.25);
     background: transparent;
@@ -706,7 +1085,7 @@ a {
 
 .mission-list {
     display: grid;
-    gap: 8px;
+    gap: 6px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -714,15 +1093,18 @@ a {
 
 .mission-list li {
     display: grid;
-    grid-template-columns: 118px 1fr auto;
+    grid-template-columns: 124px 1fr auto;
     gap: 8px;
     align-items: center;
-    min-height: 45px;
-    padding: 8px 10px;
+    min-height: 35px;
+    padding: 5px 9px;
     border: 1px solid rgba(0, 210, 255, 0.18);
     border-radius: 4px;
     color: #e4edff;
-    font-size: 13px;
+    background:
+        linear-gradient(90deg, rgba(0, 210, 255, 0.08), transparent 34%),
+        rgba(0, 7, 28, 0.42);
+    font-size: 12px;
 }
 
 .mission-list li.is-hidden {
@@ -735,8 +1117,27 @@ a {
 }
 
 .mission-list time {
+    display: grid;
+    grid-template-columns: 42px 34px 1fr;
+    align-items: center;
+    gap: 6px;
     color: #f3f8ff;
-    font: 800 13px/1 var(--font-display);
+    font: 800 12px/1 var(--font-display);
+}
+
+.mission-list time em {
+    display: inline-grid;
+    min-height: 20px;
+    place-items: center;
+    border: 1px solid rgba(0, 210, 255, 0.24);
+    border-radius: 3px;
+    color: #d6e7ff;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.mission-list time b {
+    font-size: 13px;
 }
 
 .mission-list strong {
@@ -757,15 +1158,74 @@ a {
 }
 
 .launch-card {
-    min-height: 154px;
-    padding: 20px;
+    position: relative;
+    min-height: 150px;
+    padding: 16px 18px;
     display: grid;
     align-content: end;
     border: 1px solid rgba(0, 210, 255, 0.24);
     border-radius: 6px;
+    overflow: hidden;
     background:
+        linear-gradient(170deg, transparent 0 48%, rgba(0, 210, 255, 0.12) 49% 50%, transparent 51%),
         radial-gradient(circle at 78% 26%, rgba(0, 210, 255, 0.28), transparent 0 19%, transparent 40%),
         linear-gradient(145deg, rgba(12, 36, 92, 0.95), rgba(0, 2, 34, 0.8));
+}
+
+.launch-visual {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.launch-moon {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    width: 66px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(120deg, #d9edff 0 38%, #2257a4 39% 100%);
+    box-shadow: 0 0 34px rgba(94, 169, 255, 0.44);
+}
+
+.launch-pad {
+    position: absolute;
+    right: 26px;
+    bottom: 26px;
+    width: 92px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: linear-gradient(90deg, rgba(0, 210, 255, 0.24), rgba(255, 255, 255, 0.08));
+    transform: skewX(-16deg);
+}
+
+.launch-rocket {
+    position: absolute;
+    right: 58px;
+    bottom: 50px;
+    width: 22px;
+    height: 82px;
+    border-radius: 50% 50% 10px 10px;
+    background: linear-gradient(90deg, #dfeaff, #8ab5ff 48%, #15244f 49%);
+    transform: rotate(4deg);
+}
+
+.launch-rocket::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    bottom: -36px;
+    left: 5px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(255, 125, 59, 0.8), rgba(0, 210, 255, 0));
+    filter: blur(1px);
+}
+
+.launch-copy {
+    position: relative;
+    z-index: 2;
 }
 
 .launch-card span,
@@ -781,7 +1241,7 @@ a {
 
 .launch-card strong {
     color: var(--text);
-    font-size: 48px;
+    font-size: 44px;
     line-height: 1;
 }
 
@@ -794,13 +1254,13 @@ a {
 .ground-row {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1fr 1.08fr;
+    grid-template-columns: 0.95fr 1.05fr;
     gap: 14px;
 }
 
 .ground-panel {
-    min-height: 104px;
-    padding: 20px 24px;
+    min-height: 126px;
+    padding: 18px 24px;
 }
 
 .follow-panel {
@@ -821,17 +1281,40 @@ a {
 }
 
 .social-orbits a {
-    min-height: 60px;
+    min-height: 74px;
     display: grid;
+    align-content: center;
     place-items: center;
+    gap: 5px;
     border: 1px solid rgba(0, 210, 255, 0.26);
     border-radius: 50%;
     color: var(--text);
     font: 800 11px/1 var(--font-display);
     text-decoration: none;
+    background:
+        radial-gradient(circle, rgba(0, 210, 255, 0.16), transparent 0 44%, transparent 64%),
+        rgba(0, 7, 28, 0.42);
+    box-shadow: inset 0 0 18px rgba(0, 210, 255, 0.12);
+}
+
+.social-orbits a span {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+}
+
+.social-orbits a small {
+    color: #d7e8ff;
+    font-size: 10px;
 }
 
 .contact-panel {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -839,9 +1322,56 @@ a {
 }
 
 .contact-panel h2 {
-    max-width: 590px;
-    font-size: clamp(19px, 2vw, 28px);
+    max-width: 610px;
+    padding-right: 118px;
+    font-size: clamp(19px, 1.85vw, 27px);
     line-height: 1.35;
+}
+
+.contact-dish {
+    position: absolute;
+    right: 154px;
+    bottom: 18px;
+    width: 104px;
+    height: 74px;
+    pointer-events: none;
+}
+
+.contact-dish::before {
+    content: "";
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    width: 72px;
+    height: 44px;
+    border: 2px solid rgba(120, 185, 255, 0.78);
+    border-radius: 50%;
+    transform: rotate(-27deg);
+    background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.42), rgba(0, 210, 255, 0.08) 42%, transparent 43%);
+    box-shadow: 0 0 26px rgba(0, 210, 255, 0.28);
+}
+
+.contact-dish::after {
+    content: "";
+    position: absolute;
+    right: 47px;
+    bottom: 8px;
+    width: 18px;
+    height: 54px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(159, 205, 255, 0.82), rgba(35, 78, 152, 0.94));
+    transform: rotate(12deg);
+}
+
+.contact-dish span {
+    position: absolute;
+    right: 8px;
+    bottom: 0;
+    width: 96px;
+    height: 18px;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    border-radius: 50%;
+    background: rgba(0, 7, 28, 0.82);
 }
 
 .content-section {
@@ -979,16 +1509,26 @@ body.is-ready .reveal-panel,
     transform: translateY(0);
 }
 
-body.is-ready .orbit-stage::after {
+body.is-ready .orbit-stage::after,
+body.is-ready .orbit-sweep-line {
     animation: orbit-sweep 18s linear infinite;
-}
-
-body.is-ready .live-dot {
-    animation: telemetry-pulse 1.8s ease-in-out infinite;
 }
 
 body.is-ready .ring-inner {
     animation: orbit-sweep 24s linear infinite reverse;
+}
+
+body.is-ready .mission-dot,
+body.is-ready .social-orbits a {
+    animation: telemetry-pulse 2.8s ease-in-out infinite;
+}
+
+body.is-ready .reveal-panel:nth-of-type(2n) {
+    transition-delay: 0.08s;
+}
+
+body.is-ready .reveal-panel:nth-of-type(3n) {
+    transition-delay: 0.14s;
 }
 
 @keyframes orbit-sweep {
@@ -1042,15 +1582,23 @@ body.is-ready .ring-inner {
     }
 
     .mission-shell {
-        height: calc(100svh - var(--header-height) - 24px);
+        height: auto;
         min-height: 0;
         gap: 10px;
-        grid-template-rows: minmax(0, 1fr) 96px;
+        grid-template-rows: auto 96px;
     }
 
     .control-column {
         gap: 10px;
         min-height: 0;
+    }
+
+    .control-column-left {
+        grid-template-rows: 188px 180px 142px;
+    }
+
+    .control-column-right {
+        grid-template-rows: minmax(282px, 1fr) minmax(196px, 0.72fr);
     }
 
     .mission-panel {
@@ -1068,7 +1616,16 @@ body.is-ready .ring-inner {
     }
 
     .video-signal {
-        min-height: 112px;
+        min-height: 78px;
+    }
+
+    .signal-bars {
+        height: 18px;
+        margin-top: 6px;
+    }
+
+    .live-panel .panel-link {
+        bottom: 9px;
     }
 
     .current-title {
@@ -1077,12 +1634,26 @@ body.is-ready .ring-inner {
     }
 
     .telemetry-list {
-        gap: 7px;
+        gap: 5px;
     }
 
     .current-mission dl {
-        gap: 7px;
-        margin-top: 10px;
+        gap: 5px;
+        margin-top: 8px;
+    }
+
+    .chip-row {
+        gap: 4px;
+        margin-top: 7px;
+    }
+
+    .chip-row span {
+        min-height: 22px;
+        font-size: 9px;
+    }
+
+    .mission-radar {
+        width: 70px;
     }
 
     .mission-list {

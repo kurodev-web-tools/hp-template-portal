@@ -69,8 +69,26 @@
                         <div class="video-signal" aria-label="現在の配信プレビュー">
                             <div class="station-silhouette"></div>
                             <span class="play-indicator" aria-hidden="true"></span>
+                            <span class="signal-corner corner-a" aria-hidden="true"></span>
+                            <span class="signal-corner corner-b" aria-hidden="true"></span>
+                            <span class="signal-corner corner-c" aria-hidden="true"></span>
+                            <span class="signal-corner corner-d" aria-hidden="true"></span>
                         </div>
                         <p class="current-title">ライブ配信中 / 月面歌枠と観測メモ</p>
+                        <div class="signal-bars" aria-hidden="true">
+                            <span style="--bar: 28%"></span>
+                            <span style="--bar: 52%"></span>
+                            <span style="--bar: 44%"></span>
+                            <span style="--bar: 68%"></span>
+                            <span style="--bar: 38%"></span>
+                            <span style="--bar: 82%"></span>
+                            <span style="--bar: 58%"></span>
+                            <span style="--bar: 74%"></span>
+                            <span style="--bar: 46%"></span>
+                            <span style="--bar: 88%"></span>
+                            <span style="--bar: 62%"></span>
+                            <span style="--bar: 78%"></span>
+                        </div>
                         <a class="panel-link" href="https://streamer-o.hp-portal.jp/live">配信を見る</a>
                     </article>
 
@@ -93,10 +111,19 @@
                                 <dd><span style="--value: 100%"></span><strong>100%</strong></dd>
                             </div>
                             <div>
+                                <dt>Energy</dt>
+                                <dd><span style="--value: 87%"></span><strong>87%</strong></dd>
+                            </div>
+                            <div>
                                 <dt>Comm.</dt>
                                 <dd><span style="--value: 86%"></span><strong>Online</strong></dd>
                             </div>
                         </dl>
+                        <div class="chip-row" aria-label="通信状態">
+                            <span>SYNC 04</span>
+                            <span>JST +09</span>
+                            <span>NODE A7</span>
+                        </div>
                     </article>
 
                     <article class="mission-panel current-mission reveal-panel">
@@ -114,13 +141,31 @@
                                 <dt>Target</dt>
                                 <dd>Lunar Orbit</dd>
                             </div>
+                            <div>
+                                <dt>ETA</dt>
+                                <dd>--:--:--</dd>
+                            </div>
                         </dl>
+                        <div class="mission-radar" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </article>
                 </aside>
 
                 <section class="orbit-stage" aria-labelledby="hero-title">
                     <div class="orbit-ring ring-outer" aria-hidden="true"></div>
                     <div class="orbit-ring ring-inner" aria-hidden="true"></div>
+                    <div class="orbit-ring ring-dotted" aria-hidden="true"></div>
+                    <div class="orbit-sweep-line" aria-hidden="true"></div>
+                    <span class="mission-dot dot-a" aria-hidden="true"></span>
+                    <span class="mission-dot dot-b" aria-hidden="true"></span>
+                    <span class="mission-dot dot-c" aria-hidden="true"></span>
+                    <span class="mission-dot dot-d" aria-hidden="true"></span>
+                    <span class="telemetry-label label-a" aria-hidden="true">APOGEE 408</span>
+                    <span class="telemetry-label label-b" aria-hidden="true">SIGNAL 100%</span>
+                    <span class="telemetry-label label-c" aria-hidden="true">ORBI-07</span>
                     <a class="orbit-node node-mission" href="#top"><span>Mission</span></a>
                     <a class="orbit-node node-orbit" href="#profile"><span>Orbit</span></a>
                     <a class="orbit-node node-schedule" href="#schedule"><span>Schedule</span></a>
@@ -129,7 +174,13 @@
 
                     <div class="planet-core" aria-hidden="true">
                         <div class="planet-glow"></div>
-                        <div class="avatar-silhouette"></div>
+                        <div class="planet-disc"></div>
+                        <div class="orbit-station"></div>
+                        <div class="avatar-silhouette">
+                            <span class="portrait-hair"></span>
+                            <span class="portrait-face"></span>
+                            <span class="portrait-suit"></span>
+                        </div>
                     </div>
 
                     <div class="hero-copy">
@@ -158,24 +209,34 @@
                         </div>
                         <ol class="mission-list">
                             <li data-status="upcoming">
-                                <time datetime="2026-05-23T20:00">05.23 Fri 20:00</time>
+                                <time datetime="2026-05-23T20:00"><span>05.23</span><em>Fri</em><b>20:00</b></time>
                                 <span>彗き語り / Acoustic</span>
                                 <strong>Talk</strong>
                             </li>
                             <li class="is-live" data-status="upcoming">
-                                <time datetime="2026-05-25T21:00">05.25 Sun 21:00</time>
+                                <time datetime="2026-05-25T21:00"><span>05.25</span><em>Sun</em><b>21:00</b></time>
                                 <span>歌枠 / Singing Stream</span>
                                 <strong>Live</strong>
                             </li>
                             <li data-status="upcoming">
-                                <time datetime="2026-05-27T22:00">05.27 Tue 22:00</time>
+                                <time datetime="2026-05-27T22:00"><span>05.27</span><em>Tue</em><b>22:00</b></time>
                                 <span>雑談 / Talk Stream</span>
                                 <strong>Talk</strong>
                             </li>
+                            <li data-status="upcoming">
+                                <time datetime="2026-05-29T21:30"><span>05.29</span><em>Thu</em><b>21:30</b></time>
+                                <span>宇宙ラジオ / Radio</span>
+                                <strong>Radio</strong>
+                            </li>
+                            <li data-status="upcoming">
+                                <time datetime="2026-05-31T20:30"><span>05.31</span><em>Sat</em><b>20:30</b></time>
+                                <span>ゲーム配信 / Game Stream</span>
+                                <strong>Game</strong>
+                            </li>
                             <li data-status="past">
-                                <time datetime="2026-05-18T21:30">05.18 Mon 21:30</time>
-                                <span>宇宙ラジオ / Archive</span>
-                                <strong>Past</strong>
+                                <time datetime="2026-06-01T21:00"><span>06.01</span><em>Sun</em><b>21:00</b></time>
+                                <span>Q&amp;A / Answer Stream</span>
+                                <strong>Talk</strong>
                             </li>
                         </ol>
                     </article>
@@ -183,9 +244,16 @@
                     <article class="mission-panel next-mission reveal-panel">
                         <h2>Next mission</h2>
                         <div class="launch-card">
-                            <span>05.25 Sun</span>
-                            <strong>21:00-</strong>
-                            <p>月面基地から届ける歌枠。初見歓迎、ハッシュタグは #星巡観測。</p>
+                            <div class="launch-visual" aria-hidden="true">
+                                <span class="launch-moon"></span>
+                                <span class="launch-pad"></span>
+                                <span class="launch-rocket"></span>
+                            </div>
+                            <div class="launch-copy">
+                                <span>05.25 Sun</span>
+                                <strong>21:00-</strong>
+                                <p>月面基地から届ける歌枠。初見歓迎、ハッシュタグは #星巡観測。</p>
+                            </div>
                         </div>
                         <a class="panel-link" href="#schedule">ミッション詳細を見る</a>
                     </article>
@@ -195,17 +263,20 @@
                     <article class="ground-panel follow-panel reveal-panel">
                         <h2>Follow</h2>
                         <div class="social-orbits">
-                            <a href="https://x.com/hoshimeguri_orbi">X</a>
-                            <a href="https://youtube.com/@hoshimeguri_orbi">YouTube</a>
-                            <a href="https://www.twitch.tv/hoshimeguri_orbi">Twitch</a>
-                            <a href="https://www.tiktok.com/@hoshimeguri_orbi">TikTok</a>
-                            <a href="https://discord.gg/orbit-space">Discord</a>
+                            <a href="https://x.com/hoshimeguri_orbi"><span>X</span><small>X</small></a>
+                            <a href="https://youtube.com/@hoshimeguri_orbi"><span>YT</span><small>YouTube</small></a>
+                            <a href="https://www.twitch.tv/hoshimeguri_orbi"><span>TW</span><small>Twitch</small></a>
+                            <a href="https://www.tiktok.com/@hoshimeguri_orbi"><span>TT</span><small>TikTok</small></a>
+                            <a href="https://discord.gg/orbit-space"><span>DC</span><small>Discord</small></a>
                         </div>
                     </article>
                     <article class="ground-panel contact-panel reveal-panel">
                         <div>
                             <p class="eyebrow">Ground contact / business only</p>
                             <h2>研究協力、イベント出演、企業案件のご相談</h2>
+                        </div>
+                        <div class="contact-dish" aria-hidden="true">
+                            <span></span>
                         </div>
                         <a class="primary-cta" href="../../../plans.html?template=streamer-o&amp;plan=standard">問い合わせフォームへ</a>
                     </article>
