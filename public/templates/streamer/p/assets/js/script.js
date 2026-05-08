@@ -13,4 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add(link.classList.contains('command-item') ? 'active' : 'is-current');
         });
     });
+
+    const saveSlots = document.querySelectorAll('.save-slot-card');
+    saveSlots.forEach((slot) => {
+        const selectSlot = () => {
+            saveSlots.forEach((item) => item.classList.remove('is-selected'));
+            slot.classList.add('is-selected');
+        };
+
+        slot.addEventListener('pointerenter', selectSlot);
+        slot.addEventListener('focus', selectSlot);
+    });
 });
