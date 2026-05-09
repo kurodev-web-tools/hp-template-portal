@@ -9,7 +9,9 @@
     --rogue-line: rgba(168, 150, 104, 0.36);
     --rogue-line-strong: rgba(168, 150, 104, 0.72);
     --rogue-green: #9fbd6f;
+    --rogue-green-deep: #526b34;
     --rogue-gold: #b99b5d;
+    --rogue-paper: #9a8555;
     --rogue-text: #f5f2e8;
     --rogue-muted: #a1a1aa;
     --rogue-radius-sm: 4px;
@@ -129,6 +131,7 @@ a {
     border: 1px solid var(--rogue-line-strong);
     border-radius: var(--rogue-radius-md);
     background:
+        repeating-linear-gradient(0deg, rgba(185, 155, 93, 0.035) 0 1px, transparent 1px 7px),
         linear-gradient(140deg, rgba(159, 189, 111, 0.1), transparent 32%),
         linear-gradient(180deg, rgba(20, 20, 16, 0.98), rgba(8, 8, 7, 0.96));
     box-shadow: var(--rogue-shadow);
@@ -309,6 +312,16 @@ a {
 }
 
 .top-classified span {
+    position: relative;
+    min-height: 26px;
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 10px;
+    border-left: 1px solid rgba(168, 150, 104, 0.22);
+    background: linear-gradient(90deg, rgba(159, 189, 111, 0.08), transparent 70%);
+}
+
+.top-classified span {
     min-width: 0;
     overflow-wrap: anywhere;
 }
@@ -333,10 +346,9 @@ a {
 
 .hero-dossier {
     min-height: 620px;
-    display: grid;
-    grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
-    align-items: stretch;
+    display: block;
     isolation: isolate;
+    clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px));
 }
 
 .hero-dossier::after {
@@ -345,20 +357,96 @@ a {
     inset: 0;
     z-index: -1;
     background:
-        linear-gradient(100deg, rgba(0, 0, 0, 0.56) 0 36%, transparent 64%),
+        repeating-linear-gradient(90deg, rgba(245, 242, 232, 0.025) 0 1px, transparent 1px 16px),
+        repeating-linear-gradient(0deg, rgba(159, 189, 111, 0.04) 0 1px, transparent 1px 72px),
+        linear-gradient(100deg, rgba(0, 0, 0, 0.68) 0 34%, rgba(0, 0, 0, 0.18) 58%, transparent 76%),
         radial-gradient(circle at 77% 23%, rgba(159, 189, 111, 0.16), transparent 20rem),
         url("../img/tactical-map.svg") center / cover no-repeat;
-    opacity: 0.7;
+    opacity: 0.82;
+}
+
+.document-tabs {
+    position: absolute;
+    top: 0;
+    left: 26px;
+    right: 26px;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(160px, 0.95fr) minmax(130px, 0.7fr) minmax(110px, 0.52fr);
+    align-items: start;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.document-tabs span {
+    min-height: 34px;
+    padding: 8px 12px 6px;
+    border: 1px solid rgba(168, 150, 104, 0.42);
+    border-top: 0;
+    background:
+        linear-gradient(180deg, rgba(185, 155, 93, 0.17), rgba(12, 12, 9, 0.88)),
+        rgba(9, 10, 8, 0.92);
+    color: var(--rogue-gold);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.document-tabs span:first-child {
+    color: var(--rogue-green);
+}
+
+.document-tabs span:nth-child(2) {
+    transform: translateY(8px);
+}
+
+.document-tabs span:nth-child(3) {
+    transform: translateY(16px);
 }
 
 .hero-dossier__copy {
     position: relative;
-    z-index: 1;
+    z-index: 3;
+    width: min(51%, 520px);
+    min-height: 620px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 18px;
-    padding: clamp(28px, 4vw, 60px);
+    padding: clamp(54px, 4.5vw, 72px) clamp(24px, 3.6vw, 58px) clamp(28px, 3vw, 48px);
+}
+
+.hero-dossier__copy::before,
+.hero-dossier__copy::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    border: 1px solid rgba(185, 155, 93, 0.36);
+    background:
+        repeating-linear-gradient(-8deg, rgba(0, 0, 0, 0.13) 0 3px, transparent 3px 10px),
+        linear-gradient(150deg, rgba(154, 133, 85, 0.78), rgba(70, 58, 37, 0.7));
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.34);
+    opacity: 0.62;
+}
+
+.hero-dossier__copy::before {
+    width: 96px;
+    height: 142px;
+    right: -64px;
+    bottom: 66px;
+    transform: rotate(5deg);
+    clip-path: polygon(0 0, 100% 8%, 92% 100%, 8% 92%);
+}
+
+.hero-dossier__copy::after {
+    width: 86px;
+    height: 118px;
+    left: 28px;
+    bottom: 30px;
+    transform: rotate(-9deg);
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 88%);
 }
 
 .eyebrow,
@@ -396,6 +484,22 @@ a {
     font-size: clamp(1rem, 1.1vw, 1.12rem);
     font-weight: 650;
     text-wrap: pretty;
+}
+
+.classified-stamp {
+    width: max-content;
+    max-width: 100%;
+    transform: rotate(-5deg);
+    padding: 6px 12px;
+    border: 2px solid rgba(220, 38, 38, 0.58);
+    color: #ffb3a7;
+    background: rgba(153, 27, 27, 0.13);
+    font-size: 0.8rem;
+    font-weight: 950;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+    mix-blend-mode: screen;
 }
 
 .hero-dossier__meta {
@@ -472,24 +576,35 @@ a {
 }
 
 .hero-visual {
-    position: relative;
+    position: absolute;
+    top: 46px;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 64%;
     display: grid;
     align-items: end;
-    padding: 34px;
+    padding: 26px 24px 28px 0;
     min-width: 0;
+    pointer-events: none;
 }
 
 .hero-visual__frame {
     position: relative;
-    min-height: 530px;
+    min-height: 546px;
+    height: 100%;
     display: grid;
     place-items: end center;
     border: 1px solid rgba(168, 150, 104, 0.38);
     background:
-        linear-gradient(transparent 0 92%, rgba(159, 189, 111, 0.14)),
-        radial-gradient(circle at 50% 24%, rgba(159, 189, 111, 0.16), transparent 11rem),
+        linear-gradient(90deg, transparent 0 46%, rgba(159, 189, 111, 0.08) 46% 47%, transparent 47%),
+        repeating-linear-gradient(90deg, rgba(159, 189, 111, 0.08) 0 1px, transparent 1px 82px),
+        repeating-linear-gradient(0deg, rgba(159, 189, 111, 0.055) 0 1px, transparent 1px 82px),
+        linear-gradient(transparent 0 88%, rgba(159, 189, 111, 0.16)),
+        radial-gradient(circle at 50% 24%, rgba(159, 189, 111, 0.2), transparent 13rem),
         rgba(0, 0, 0, 0.32);
     overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
 }
 
 .hero-visual__frame::before {
@@ -502,13 +617,54 @@ a {
         linear-gradient(0deg, transparent 0 47%, rgba(159, 189, 111, 0.18) 47% 47.5%, transparent 47.5%);
 }
 
+.hero-visual__frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.3), transparent 24%, transparent 74%, rgba(0, 0, 0, 0.46)),
+        repeating-linear-gradient(0deg, rgba(245, 242, 232, 0.025) 0 1px, transparent 1px 5px);
+    mix-blend-mode: screen;
+    opacity: 0.58;
+}
+
 .hero-visual__frame img {
     position: relative;
-    z-index: 1;
-    width: min(82%, 430px);
-    max-height: 520px;
+    z-index: 2;
+    width: min(94%, 540px);
+    max-height: 560px;
     object-fit: contain;
-    filter: drop-shadow(0 26px 36px rgba(0, 0, 0, 0.9));
+    transform: translateX(-3%);
+    filter:
+        drop-shadow(0 30px 42px rgba(0, 0, 0, 0.96))
+        drop-shadow(0 0 22px rgba(159, 189, 111, 0.16));
+}
+
+.shadow-layer {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.92), transparent 68%);
+    filter: blur(4px);
+}
+
+.shadow-layer--rear {
+    width: 72%;
+    height: 58%;
+    right: 8%;
+    bottom: 10%;
+    opacity: 0.78;
+}
+
+.shadow-layer--front {
+    width: 66%;
+    height: 26%;
+    right: 17%;
+    bottom: 2%;
+    opacity: 0.86;
 }
 
 .clearance-card,
@@ -541,10 +697,32 @@ a {
 
 .role-tape {
     right: 38px;
-    bottom: 72px;
+    bottom: 78px;
     transform: rotate(-9deg);
     color: var(--rogue-black);
     background: rgba(185, 155, 93, 0.78);
+}
+
+.fingerprint-card {
+    position: absolute;
+    left: 28px;
+    bottom: 26px;
+    z-index: 4;
+    width: 112px;
+    min-height: 132px;
+    display: grid;
+    align-items: end;
+    padding: 12px;
+    border: 1px solid rgba(185, 155, 93, 0.46);
+    background:
+        radial-gradient(ellipse at center, transparent 0 26%, rgba(0, 0, 0, 0.24) 27% 31%, transparent 32% 38%, rgba(0, 0, 0, 0.18) 39% 43%, transparent 44%),
+        linear-gradient(160deg, rgba(154, 133, 85, 0.76), rgba(45, 37, 24, 0.82));
+    color: rgba(5, 5, 4, 0.84);
+    font-size: 0.7rem;
+    font-weight: 950;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transform: rotate(-4deg);
 }
 
 .mission-grid {
@@ -556,7 +734,29 @@ a {
 .intel-card {
     min-height: 220px;
     padding: 26px;
-    background: linear-gradient(140deg, rgba(26, 26, 26, 0.98), rgba(7, 8, 6, 0.96));
+    background:
+        repeating-linear-gradient(0deg, rgba(185, 155, 93, 0.03) 0 1px, transparent 1px 8px),
+        linear-gradient(140deg, rgba(26, 26, 26, 0.98), rgba(7, 8, 6, 0.96));
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.intel-card::after,
+.schedule-panel::after,
+.contact-panel::after {
+    content: "CLASSIFIED";
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+    padding: 4px 8px;
+    border: 1px solid rgba(220, 38, 38, 0.42);
+    color: rgba(255, 179, 167, 0.7);
+    font-size: 0.62rem;
+    font-weight: 950;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+    transform: rotate(3deg);
 }
 
 .intel-card h2,
@@ -605,16 +805,37 @@ a {
 }
 
 .channel-list a {
+    position: relative;
     display: grid;
     place-items: center;
-    min-height: 68px;
+    min-height: 72px;
     border: 1px solid var(--rogue-line);
-    border-radius: var(--rogue-radius-md);
-    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(159, 189, 111, 0.12), transparent 50%),
+        rgba(0, 0, 0, 0.4);
     color: var(--rogue-text);
     font-size: clamp(0.78rem, 0.9vw, 0.95rem);
     font-weight: 900;
     text-decoration: none;
+    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+}
+
+.channel-list a::before {
+    content: attr(data-signal);
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    color: var(--rogue-green);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+}
+
+.channel-list a::after {
+    content: "";
+    position: absolute;
+    inset: 11px;
+    border: 1px solid rgba(159, 189, 111, 0.2);
 }
 
 .channel-list a:hover {
@@ -627,13 +848,14 @@ a {
     min-width: 0;
     display: grid;
     align-content: start;
-    gap: 20px;
+    gap: 14px;
 }
 
 .live-panel,
 .schedule-panel,
 .contact-panel {
-    padding: 20px;
+    padding: 16px;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
 }
 
 .panel-head {
@@ -641,7 +863,7 @@ a {
     justify-content: space-between;
     gap: 12px;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .live-badge {
@@ -653,7 +875,7 @@ a {
     border-radius: var(--rogue-radius-sm);
     background: rgba(153, 27, 27, 0.24);
     color: #ffb3a7;
-    font-size: 1.2rem;
+    font-size: 1.08rem;
     font-weight: 950;
     letter-spacing: 0.06em;
 }
@@ -669,13 +891,66 @@ a {
 
 .map-monitor {
     position: relative;
-    min-height: 240px;
+    min-height: 188px;
     display: grid;
     place-items: center;
     margin-bottom: 14px;
     border: 1px solid rgba(159, 189, 111, 0.22);
-    background: rgba(0, 0, 0, 0.45);
+    background:
+        radial-gradient(circle at 32% 54%, rgba(220, 38, 38, 0.14), transparent 42px),
+        rgba(0, 0, 0, 0.45);
     overflow: hidden;
+}
+
+.map-monitor::before,
+.map-monitor::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.map-monitor::before {
+    inset: 26px;
+    border: 1px solid rgba(159, 189, 111, 0.36);
+    clip-path: polygon(0 0, 18px 0, 18px 2px, 2px 2px, 2px 18px, 0 18px, 0 0, 100% 0, 100% 18px, calc(100% - 2px) 18px, calc(100% - 2px) 2px, calc(100% - 18px) 2px, calc(100% - 18px) 0, 100% 0, 100% 100%, calc(100% - 18px) 100%, calc(100% - 18px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(100% - 18px), 100% calc(100% - 18px), 100% 100%, 0 100%, 0 calc(100% - 18px), 2px calc(100% - 18px), 2px calc(100% - 2px), 18px calc(100% - 2px), 18px 100%, 0 100%);
+}
+
+.map-monitor::after {
+    right: 18px;
+    bottom: 18px;
+    width: 74px;
+    height: 28px;
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    background: rgba(153, 27, 27, 0.16);
+}
+
+.red-alert {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    padding: 5px 9px;
+    border: 1px solid rgba(220, 38, 38, 0.55);
+    background: rgba(153, 27, 27, 0.2);
+    color: #ffb3a7;
+    font-size: 0.62rem;
+    font-weight: 950;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.scan-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent 49%, rgba(159, 189, 111, 0.28) 50%, transparent 51%),
+        repeating-linear-gradient(90deg, rgba(159, 189, 111, 0.08) 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(0deg, rgba(159, 189, 111, 0.08) 0 1px, transparent 1px 40px);
+    opacity: 0.52;
+    animation: scan-grid 5.5s ease-in-out infinite;
 }
 
 .map-monitor img {
@@ -703,8 +978,8 @@ a {
 .map-monitor p {
     align-self: end;
     justify-self: start;
-    margin: 0 0 16px 16px;
-    padding: 8px 12px;
+    margin: 0 0 12px 14px;
+    padding: 7px 10px;
     border: 1px solid rgba(185, 155, 93, 0.46);
     color: var(--rogue-gold);
     font-size: 0.78rem;
@@ -714,8 +989,8 @@ a {
 }
 
 .play-target {
-    width: 78px;
-    height: 78px;
+    width: 68px;
+    height: 68px;
     display: grid;
     place-items: center;
     border: 1px solid var(--rogue-green);
@@ -741,13 +1016,29 @@ a {
 }
 
 .schedule-list li {
+    position: relative;
     display: grid;
     grid-template-columns: 145px minmax(0, 1fr) 60px;
     gap: 12px;
     align-items: center;
-    min-height: 52px;
+    min-height: 43px;
     border-top: 1px solid rgba(168, 150, 104, 0.22);
     color: rgba(245, 242, 232, 0.9);
+}
+
+.schedule-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 28px;
+    transform: translateX(-11px);
+    background: linear-gradient(var(--rogue-green), rgba(159, 189, 111, 0.12));
+    opacity: 0.7;
+}
+
+.schedule-list li:nth-child(2)::before {
+    background: linear-gradient(var(--rogue-red-soft), rgba(220, 38, 38, 0.12));
 }
 
 .schedule-list time {
@@ -774,7 +1065,7 @@ a {
 
 .schedule-link {
     display: inline-flex;
-    margin-top: 14px;
+    margin-top: 10px;
     color: var(--rogue-green);
     font-size: 0.83rem;
     font-weight: 900;
@@ -784,13 +1075,91 @@ a {
 }
 
 .contact-panel {
-    min-height: 210px;
-    display: grid;
-    gap: 18px;
+    height: 160px;
+    min-height: 160px;
+    display: block;
     align-content: center;
     background:
+        repeating-linear-gradient(90deg, rgba(185, 155, 93, 0.035) 0 1px, transparent 1px 14px),
         linear-gradient(105deg, rgba(153, 27, 27, 0.25), transparent 44%),
         linear-gradient(140deg, rgba(28, 23, 17, 0.96), rgba(8, 8, 6, 0.94));
+}
+
+.contact-panel .button {
+    position: absolute;
+    left: 16px;
+    right: 182px;
+    bottom: 4px;
+    z-index: 2;
+    width: auto;
+    min-height: 34px;
+    padding: 7px 12px;
+}
+
+.contact-panel p {
+    max-width: calc(100% - 172px);
+    max-height: 1.25em;
+    overflow: hidden;
+    margin-top: 3px;
+    font-size: 0.74rem;
+    line-height: 1.2;
+}
+
+.contact-panel h2 {
+    font-size: clamp(1.32rem, 1.55vw, 1.5rem);
+    line-height: 1;
+}
+
+.dead-drop {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    z-index: 2;
+    width: 150px;
+    min-height: 82px;
+    align-self: center;
+    display: grid;
+    place-items: center;
+    gap: 4px;
+    padding: 14px;
+    border: 1px solid rgba(185, 155, 93, 0.48);
+    background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.28), transparent 30%),
+        linear-gradient(135deg, rgba(68, 54, 32, 0.96), rgba(13, 10, 8, 0.94));
+    color: var(--rogue-gold);
+    text-align: center;
+    text-transform: uppercase;
+    clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%, 0 10px);
+    box-shadow: inset 0 -14px 0 rgba(0, 0, 0, 0.22);
+}
+
+.dead-drop::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    width: 54px;
+    height: 18px;
+    border: 3px solid rgba(185, 155, 93, 0.58);
+    border-bottom: 0;
+    border-radius: 20px 20px 0 0;
+}
+
+.dead-drop span {
+    position: relative;
+    z-index: 1;
+    padding: 4px 8px;
+    border: 1px solid rgba(220, 38, 38, 0.46);
+    color: #ffb3a7;
+    font-size: 0.62rem;
+    font-weight: 950;
+    letter-spacing: 0.12em;
+}
+
+.dead-drop strong {
+    position: relative;
+    z-index: 1;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
 }
 
 .archive-band {
@@ -863,8 +1232,14 @@ a {
     animation: dossier-scan 7s ease-in-out infinite;
 }
 
-.live-badge {
+.live-badge,
+.channel-list a:hover,
+.button--contact {
     animation: signal-pulse 2.6s ease-in-out infinite;
+}
+
+[data-reveal].is-visible {
+    animation: mission-card-reveal 620ms ease both;
 }
 
 .sticky-actions {
@@ -894,6 +1269,28 @@ a {
 
     50% {
         box-shadow: 0 0 24px rgba(220, 38, 38, 0.38);
+    }
+}
+
+@keyframes scan-grid {
+    0%, 100% {
+        opacity: 0.34;
+        transform: translateY(-2%);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: translateY(2%);
+    }
+}
+
+@keyframes mission-card-reveal {
+    0% {
+        filter: saturate(0.7) brightness(0.82);
+    }
+
+    100% {
+        filter: none;
     }
 }
 
@@ -984,12 +1381,24 @@ a {
 
     .hero-dossier {
         min-height: auto;
+        display: grid;
         grid-template-columns: minmax(0, 1fr);
     }
 
     .hero-visual {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
         order: -1;
         padding: 18px 18px 0;
+        pointer-events: auto;
+    }
+
+    .hero-dossier__copy {
+        width: 100%;
+        min-height: auto;
     }
 
     .hero-visual__frame {
@@ -1007,8 +1416,30 @@ a {
     .mission-grid,
     .right-stack,
     .archive-band,
-    .archive-list {
+    .archive-list,
+    .contact-panel {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .dead-drop,
+    .contact-panel .button {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        grid-column: auto;
+        grid-row: auto;
+        width: 100%;
+    }
+
+    .contact-panel {
+        height: auto;
+    }
+
+    .contact-panel p {
+        max-width: none;
+        font-size: 0.92rem;
+        line-height: 1.48;
     }
 
     .archive-list article {
