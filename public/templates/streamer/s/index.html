@@ -57,16 +57,18 @@
                 <small>Gear Steam VTuber</small>
             </a>
             <nav class="rail-nav">
-                <a class="active" href="index.html">Engine</a>
-                <a href="gear.html">Profile</a>
-                <a href="workshop.html">Schedule</a>
-                <a href="index.html#archive">Archive</a>
-                <a href="contact.html">Work Order</a>
+                <a class="active" href="index.html" data-icon="⌂">Engine</a>
+                <a href="gear.html" data-icon="♟">Profile</a>
+                <a href="workshop.html" data-icon="⚙">Machines</a>
+                <a href="workshop.html#schedule" data-icon="▦">Schedule</a>
+                <a href="index.html#archive" data-icon="▣">Archive</a>
+                <a href="contact.html" data-icon="✉">Work Order</a>
             </nav>
             <div class="system-status" aria-label="工房稼働状況">
                 <p>System Status</p>
                 <dl>
                     <div><dt>蒸気圧力</dt><dd>0.82 MPa</dd></div>
+                    <div class="status-meter"><dt>エネルギー</dt><dd><span></span>87%</dd></div>
                     <div><dt>稼働状態</dt><dd>Good</dd></div>
                     <div><dt>通知ベル</dt><dd>Active</dd></div>
                 </dl>
@@ -77,20 +79,36 @@
             <div class="deck-topline" aria-label="工房情報">
                 <span>Steam Time <strong>20:24</strong></span>
                 <span>Location <strong>工房・第3区画</strong></span>
+                <span class="lab-plaque"><strong>Gearworks Lab.</strong><small>Inventor's Control Panel</small></span>
                 <span>Maintenance <strong>正常稼働中</strong></span>
             </div>
 
             <div class="hero-stage">
+                <div class="workshop-backdrop" aria-hidden="true">
+                    <span class="steam-stack stack-a"></span>
+                    <span class="steam-stack stack-b"></span>
+                    <span class="blueprint-sheet"></span>
+                    <span class="bench-lamp"></span>
+                </div>
                 <div class="engine-visual" aria-hidden="true">
                     <div class="engine-core"></div>
                     <div class="engine-ring ring-one"></div>
                     <div class="engine-ring ring-two"></div>
+                    <div class="engine-bolts"></div>
                     <div class="pipe pipe-a"></div>
                     <div class="pipe pipe-b"></div>
                 </div>
                 <div class="character-plate" aria-hidden="true">
                     <div class="portrait-orbit"></div>
-                    <div class="portrait-silhouette"></div>
+                    <div class="portrait-silhouette">
+                        <span class="portrait-hair hair-left"></span>
+                        <span class="portrait-hair hair-right"></span>
+                        <span class="portrait-face"></span>
+                        <span class="portrait-goggle"></span>
+                        <span class="portrait-gear gear-a"></span>
+                        <span class="portrait-gear gear-b"></span>
+                        <span class="portrait-body"></span>
+                    </div>
                 </div>
                 <div class="hero-copy">
                     <p class="eyebrow">Inventor VTuber</p>
@@ -109,11 +127,15 @@
                 <div class="panel-heading">
                     <span class="live-dot" aria-hidden="true"></span>
                     <h2 id="live-title">Live</h2>
+                    <span class="paper-label">Now on Air</span>
                 </div>
                 <p class="live-status">モノづくり配信中</p>
-                <div class="broadcast-window">
-                    <span class="play-mark" aria-hidden="true"></span>
-                    <p>制作中: 蒸気式飛行機械</p>
+                <div class="live-layout">
+                    <div class="steam-level" aria-hidden="true"><span></span></div>
+                    <div class="broadcast-window">
+                        <span class="play-mark" aria-hidden="true"></span>
+                        <p>制作中: 蒸気式飛行機械</p>
+                    </div>
                 </div>
                 <dl class="next-stream">
                     <div>
@@ -143,34 +165,44 @@
             </section>
         </aside>
 
-        <section class="pressure-panel" aria-labelledby="pressure-title">
-            <h2 id="pressure-title">Pressure</h2>
-            <div class="gauge" aria-label="現在の蒸気圧力 0.82 MPa">
-                <span class="gauge-needle"></span>
-                <strong>0.82</strong>
-                <small>MPa</small>
-            </div>
-            <p>安定領域 Steady。通知はXとYouTubeで同時送信します。</p>
-        </section>
+        <div class="bench-bottom">
+            <section class="pressure-panel" aria-labelledby="pressure-title">
+                <h2 id="pressure-title">Pressure</h2>
+                <div class="gauge" aria-label="現在の蒸気圧力 0.82 MPa">
+                    <span class="gauge-needle"></span>
+                    <strong>0.82</strong>
+                    <small>MPa</small>
+                </div>
+                <p>安定領域 <b>Steady</b>。通知はXとYouTubeで同時送信します。</p>
+            </section>
 
-        <section class="follow-panel" aria-labelledby="follow-title">
-            <h2 id="follow-title">Follow</h2>
-            <div class="platform-grid">
-                <a href="https://x.com/gearsteam_v" target="_blank" rel="noreferrer">X</a>
-                <a href="https://www.youtube.com/@gearsteam" target="_blank" rel="noreferrer">YouTube</a>
-                <a href="https://www.twitch.tv/gearsteam" target="_blank" rel="noreferrer">Twitch</a>
-                <a href="https://www.youtube.com/@gearsteam/join" target="_blank" rel="noreferrer">Membership</a>
-            </div>
-            <a class="button secondary" href="gear.html">プロフィールを読む</a>
-        </section>
+            <section class="follow-panel" aria-labelledby="follow-title">
+                <h2 id="follow-title">Follow</h2>
+                <div class="platform-grid">
+                    <a href="https://x.com/gearsteam_v" target="_blank" rel="noreferrer">X</a>
+                    <a href="https://www.youtube.com/@gearsteam" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://www.twitch.tv/gearsteam" target="_blank" rel="noreferrer">Twitch</a>
+                    <a href="https://www.youtube.com/@gearsteam/join" target="_blank" rel="noreferrer">Membership</a>
+                </div>
+                <a class="button secondary" href="gear.html">最新の工房日誌をチェック</a>
+            </section>
+        </div>
 
         <section class="work-order-panel" id="contact" aria-labelledby="contact-title">
             <div>
                 <p class="eyebrow">Work Order</p>
                 <h2 id="contact-title">制作・出演のご相談</h2>
-                <p>コラボ、イベント出演、ナレーション、PR配信のご相談は条件を分けて確認しています。初回返信目安は3営業日です。</p>
+                <p>コラボ、イベント出演、ナレーション、PR配信のご相談を用途別に確認しています。</p>
             </div>
-            <a class="button primary" href="../../../plans.html?template=streamer-s&plan=standard">このテンプレートで制作相談</a>
+            <div class="request-slip" aria-hidden="true">
+                <span>Work Order</span>
+                <small>No. 2026-0525</small>
+                <i>Design</i>
+                <i>Assembly</i>
+                <i>Program</i>
+                <b>Request</b>
+            </div>
+            <a class="button primary" href="../../../plans.html?template=streamer-s&plan=standard">お問い合わせフォームへ</a>
         </section>
 
         <section class="archive-strip" id="archive" aria-labelledby="archive-title">
