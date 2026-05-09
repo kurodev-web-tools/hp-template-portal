@@ -122,30 +122,83 @@
                         <strong>Waiting</strong>
                         <span class="progress" style="--progress: 12%"></span>
                     </article>
+                    <article class="queue-item">
+                        <span class="queue-item__icon" aria-hidden="true">05</span>
+                        <div>
+                            <h3>Stream Packet</h3>
+                            <p>配信データと通知パッケージ</p>
+                        </div>
+                        <strong>Waiting</strong>
+                        <span class="progress" style="--progress: 8%"></span>
+                    </article>
                 </div>
 
                 <div class="terminal-log" aria-label="最新ログ">
-                    <p>[21:05:42] Core Engine compile started...</p>
-                    <p>[21:07:10] Logic Layer queued.</p>
-                    <p>[21:12:33] Tonight: React tool repair</p>
-                    <p>logic@studio:~ $</p>
+                    <div class="terminal-tabs" aria-hidden="true">
+                        <span class="is-active">TRACE</span>
+                        <span>BUILD</span>
+                        <span>NET</span>
+                    </div>
+                    <p><time>[21:05:42]</time> Core Engine compile started...</p>
+                    <p><time>[21:07:10]</time> Module dependency check... OK</p>
+                    <p><time>[21:12:33]</time> Optimizing circuits...</p>
+                    <p><time>[21:16:27]</time> Build in progress.</p>
+                    <p><code>logic@studio:~ $</code><span class="terminal-cursor"></span></p>
                 </div>
             </section>
 
             <section id="hero" class="tech-hero" aria-labelledby="hero-title">
                 <div class="node-map" aria-hidden="true">
-                    <span class="node-card node-input-a">Audio</span>
-                    <span class="node-card node-input-b">Chat</span>
-                    <span class="node-card node-core">Logic Core</span>
-                    <span class="node-card node-data">Memory</span>
-                    <span class="node-card node-process">Emotion AI</span>
-                    <span class="node-card node-output">Stream</span>
+                    <span class="node-map__scan"></span>
+                    <span class="circuit-dot dot-a"></span>
+                    <span class="circuit-dot dot-b"></span>
+                    <span class="circuit-dot dot-c"></span>
+                    <span class="circuit-dot dot-d"></span>
+                    <span class="node-card node-input-a">
+                        <small>INPUT</small>
+                        <strong>Audio</strong>
+                        <em aria-hidden="true">▥▥▥</em>
+                    </span>
+                    <span class="node-card node-input-b">
+                        <small>INPUT</small>
+                        <strong>Chat</strong>
+                        <em aria-hidden="true">&lt;/&gt;</em>
+                    </span>
+                    <span class="node-card node-core">
+                        <small>PROCESS</small>
+                        <strong>Logic Core</strong>
+                        <em aria-hidden="true">⌬</em>
+                    </span>
+                    <span class="node-card node-data">
+                        <small>DATA</small>
+                        <strong>Memory</strong>
+                        <em aria-hidden="true">▤</em>
+                    </span>
+                    <span class="node-card node-process">
+                        <small>PROCESS</small>
+                        <strong>Emotion AI</strong>
+                        <em aria-hidden="true">☺</em>
+                    </span>
+                    <span class="node-card node-output">
+                        <small>OUTPUT</small>
+                        <strong>Stream</strong>
+                        <em aria-hidden="true">▷</em>
+                    </span>
+                    <span class="connection-label label-a">audio.signal</span>
+                    <span class="connection-label label-b">chat.event</span>
+                    <span class="connection-label label-c">logic.flow</span>
+                    <span class="connection-label label-d">stream.out</span>
                     <svg class="node-lines" viewBox="0 0 760 380" role="img" aria-label="Tech Logic node graph">
-                        <path class="trace-line trace-line-a" d="M135 112 H285 V176 H360" />
-                        <path class="trace-line trace-line-b" d="M135 240 H250 V176 H360" />
-                        <path class="trace-line trace-line-c" d="M455 176 H585 V104" />
-                        <path class="trace-line trace-line-d" d="M455 176 H535 V262 H585" />
-                        <path class="trace-line trace-line-e" d="M410 218 V292 H390" />
+                        <path class="trace-line trace-line-a" d="M124 100 H262 V165 H344" />
+                        <path class="trace-line trace-line-b" d="M124 238 H230 V190 H344" />
+                        <path class="trace-line trace-line-c" d="M452 176 H548 V94 H632" />
+                        <path class="trace-line trace-line-d" d="M452 176 H522 V264 H632" />
+                        <path class="trace-line trace-line-e" d="M394 222 V288 H382" />
+                        <path class="trace-line trace-line-f" d="M164 170 H268 V126 H344" />
+                        <path class="trace-line trace-line-g" d="M452 210 H578 V230 H632" />
+                        <circle class="trace-node trace-node-a" cx="262" cy="165" r="4" />
+                        <circle class="trace-node trace-node-b" cx="548" cy="94" r="4" />
+                        <circle class="trace-node trace-node-c" cx="522" cy="264" r="4" />
                     </svg>
                 </div>
 
@@ -189,6 +242,7 @@
                         <span>ON AIR</span>
                     </div>
                     <div class="live-display" aria-hidden="true">
+                        <span class="live-display__noise"></span>
                         <strong>LIVE</strong>
                         <span>Coding Stream</span>
                     </div>
@@ -221,22 +275,22 @@
                         <span class="queue-count">3</span>
                     </div>
                     <ol class="schedule-list">
-                        <li>
+                        <li class="status-talk">
                             <time datetime="2026-05-23T20:00">05.23 FRI 20:00</time>
                             <span>雑談 / Dev Talk</span>
                             <strong>Talk</strong>
                         </li>
-                        <li>
+                        <li class="status-live">
                             <time datetime="2026-05-24T21:00">05.24 SUN 21:00</time>
                             <span>コード実装 / Coding</span>
                             <strong>Live</strong>
                         </li>
-                        <li>
+                        <li class="status-dev">
                             <time datetime="2026-05-27T22:00">05.27 WED 22:00</time>
                             <span>ゲーム制作ログ / Game Dev</span>
                             <strong>Dev</strong>
                         </li>
-                        <li>
+                        <li class="status-verify">
                             <time datetime="2026-05-29T21:30">05.29 FRI 21:30</time>
                             <span>技術検証 / Tech Verify</span>
                             <strong>Verify</strong>
@@ -266,6 +320,18 @@
                     <a href="https://streamer-t.hp-portal.jp/archives/game-dev">
                         <span>Dev</span>
                         <strong>個人ゲームの設計を整理する夜</strong>
+                    </a>
+                    <a href="https://streamer-t.hp-portal.jp/archives/audio-chain">
+                        <span>Audio</span>
+                        <strong>ノイズ対策と配信音声チェーン</strong>
+                    </a>
+                    <a href="https://streamer-t.hp-portal.jp/archives/network-map">
+                        <span>Net</span>
+                        <strong>配信ネットワークを可視化する回</strong>
+                    </a>
+                    <a href="https://streamer-t.hp-portal.jp/archives/toolbox">
+                        <span>Tools</span>
+                        <strong>開発ツール棚卸しと設定同期</strong>
                     </a>
                 </div>
             </section>
@@ -297,8 +363,11 @@
                 </div>
                 <div class="api-grid">
                     <div class="api-body">
-                        <span class="method">POST</span>
-                        <code>/api/contact</code>
+                        <div class="api-command">
+                            <span class="method">POST</span>
+                            <code>/api/contact</code>
+                            <span>v1.0.0</span>
+                        </div>
                         <pre aria-label="問い合わせ内容例">{
   "type": "business",
   "topic": "技術企画・配信コラボ",
@@ -306,6 +375,10 @@
 }</pre>
                     </div>
                     <div class="api-response">
+                        <div class="response-meter" aria-label="問い合わせステータス">
+                            <span>Response</span>
+                            <strong>202 Accepted</strong>
+                        </div>
                         <p>技術解説、ガジェット検証、開発イベント出演、コラボ配信の相談はこちらから。</p>
                         <a class="button button-secondary" href="../../../plans.html?template=streamer-t&plan=standard">お問い合わせフォームへ</a>
                     </div>
