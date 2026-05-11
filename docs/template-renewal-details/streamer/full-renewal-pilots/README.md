@@ -34,6 +34,7 @@ Expansion status:
 - `LAYOUT_MATRIX.md`: A-Z の header type / first viewport / CTA placement / convergence NG を横断固定する layout contract。
 - `ASSET_PLAN.md`: WebP / SVG / CSS / JS の分担、pilot 3件の design kit、A-Z の asset direction。
 - `IMPLEMENTATION_HANDOFF.md`: 別セッションで 1 template ずつ renewal するための branch / PR / phase / verification contract。
+- `RENEWAL_TASKS.md`: prep PR のマージ前確認、legacy reference policy、個別 template renewal queue、integration branch final checklist。
 
 Final mock 生成と実装 handoff では、`LAYOUT_MATRIX.md` を `DESIGN.md` より先に確認する。`Header position` の共通文と個別 layout 指定が衝突する場合は、`LAYOUT_MATRIX.md` と各 `DESIGN.md` の `Header:` / `Information placement:` の具体文を優先する。
 
