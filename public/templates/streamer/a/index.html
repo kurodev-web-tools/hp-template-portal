@@ -17,6 +17,7 @@
     <link rel="canonical" href="https://streamer-a.hp-portal.jp/templates/streamer/a/index.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="assets/img/abyss-texture.webp" type="image/webp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/base.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -52,19 +53,22 @@
         <section id="home" class="cockpit" aria-labelledby="hero-title">
             <nav class="depth-nav" aria-label="ページ内ナビゲーション">
                 <div class="depth-nav__panel">
-                    <p class="depth-nav__label">DEPTH</p>
-                    <p class="depth-nav__value">3268<span>M</span></p>
-                    <p class="depth-nav__state"><span class="status-dot"></span>ONLINE</p>
-                    <div class="depth-nav__signal" aria-hidden="true">
-                        <span></span><span></span><span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <img class="depth-nav__mark" src="assets/svg/depth-rail.svg" alt="" aria-hidden="true">
+                    <p class="depth-nav__label">DEPTH NAV</p>
+                    <p class="depth-nav__state">SYSTEM STATUS<br><span>NOMINAL</span></p>
+                    <div class="depth-nav__sonar" aria-hidden="true">
+                        <span></span>
                     </div>
                     <div class="depth-nav__scale" aria-hidden="true">
-                        <span style="--depth: 18%">1000M</span>
-                        <span style="--depth: 34%">3000M</span>
-                        <span style="--depth: 50%">5000M</span>
-                        <span style="--depth: 66%">7000M</span>
-                        <span style="--depth: 82%">9000M</span>
+                        <span style="--depth: 10%">0m<small>SURFACE</small></span>
+                        <span style="--depth: 28%">200m<small>TWILIGHT</small></span>
+                        <span class="is-current" style="--depth: 46%">500m<small>MIDNIGHT</small></span>
+                        <span style="--depth: 66%">1000m<small>ABYSS</small></span>
+                        <span style="--depth: 84%">4000m<small>HADAL</small></span>
+                    </div>
+                    <div class="depth-nav__max">
+                        <span>MAX DEPTH</span>
+                        <strong>11,000m</strong>
                     </div>
                     <ul class="depth-nav__links">
                         <li><a href="#home" data-nav-link>HOME</a></li>
@@ -74,7 +78,9 @@
                         <li><a href="#community" data-nav-link>COMMUNITY</a></li>
                         <li><a href="#contact" data-nav-link>CONTACT</a></li>
                     </ul>
-                    <p class="depth-nav__system">SUBMARINE SYSTEM<br>ALL SYSTEMS NORMAL</p>
+                    <div class="depth-nav__icons" aria-hidden="true">
+                        <span>~</span><span>*</span><span>⏻</span>
+                    </div>
                 </div>
             </nav>
 
@@ -85,9 +91,16 @@
                     <div class="abyss-hero__jelly abyss-hero__jelly--one"></div>
                     <div class="abyss-hero__jelly abyss-hero__jelly--two"></div>
                 </div>
-                <p class="eyebrow">VTUBER / DEEP SEA STREAMER</p>
-                <h1 id="hero-title">深海ネオン</h1>
-                <p class="abyss-hero__roman">SHINKAI NEON</p>
+                <div class="abyss-hero__crest" aria-hidden="true">
+                    <img src="assets/svg/beacon-mark.svg" alt="">
+                </div>
+                <h1 id="hero-title">ABYSS NEON</h1>
+                <p class="abyss-hero__roman">OFFICIAL STREAMER SITE</p>
+                <div class="callsign-card" aria-label="配信者コールサイン">
+                    <span>CALLSIGN</span>
+                    <strong>NEON</strong>
+                    <small>ID: AN-0721</small>
+                </div>
                 <p class="abyss-hero__lead">水圧の向こうから、歌と深夜ラジオを届ける深海サイバー配信者。初見も常連も、次の潜航予定から合流できます。</p>
                 <div class="abyss-hero__actions" aria-label="主要アクション">
                     <a class="button button--primary" href="https://www.youtube.com/@shinkaineon">配信を見る</a>
@@ -96,7 +109,10 @@
             </div>
 
             <aside class="live-beacon reveal" aria-labelledby="live-heading">
+                <p class="live-beacon__kicker">&lt;&lt; NEXT STREAM &gt;&gt;</p>
+                <p class="live-beacon__signal"><span class="status-dot"></span> LIVE TRANSMISSION</p>
                 <div class="sonar" aria-hidden="true">
+                    <img src="assets/svg/sonar-rings.svg" alt="">
                     <span class="sonar__sweep"></span>
                     <span class="sonar__axis sonar__axis--x"></span>
                     <span class="sonar__axis sonar__axis--y"></span>
@@ -105,26 +121,23 @@
                     <span class="sonar__label sonar__label--bottom">180</span>
                     <span class="sonar__label sonar__label--left">270</span>
                 </div>
-                <p class="live-beacon__signal">ON AIR</p>
-                <h2 id="live-heading">LIVE</h2>
-                <p>05.25 SUN / 21:00</p>
+                <h2 id="live-heading">STARTS IN</h2>
+                <p class="live-beacon__timer"><span>02</span><small>HRS</small><span>14</span><small>MIN</small><span>37</span><small>SEC</small></p>
+                <div class="mission-card">
+                    <img src="assets/svg/beacon-mark.svg" alt="" aria-hidden="true">
+                    <div>
+                        <span>NEXT MISSION</span>
+                        <strong>DEEP DIVE</strong>
+                    </div>
+                </div>
+                <p class="live-beacon__date">05.25 SUN 21:00 JST<br>歌枠 / Singing Stream</p>
                 <a class="button button--signal" href="https://www.twitch.tv/shinkaineon">通知を受け取る</a>
             </aside>
 
             <div class="cockpit-dock" aria-label="配信導線">
-                <article class="dock-card dock-card--schedule reveal">
-                    <div class="dock-card__head">
-                        <h2>SCHEDULE</h2>
-                        <a href="#schedule">もっと見る</a>
-                    </div>
-                    <ul class="mini-schedule">
-                        <li><time datetime="2026-05-23T20:00">05.23 FRI 20:00</time><span>雑談 / Talk Stream</span></li>
-                        <li><time datetime="2026-05-25T21:00">05.25 SUN 21:00</time><span>歌枠 / Singing Stream</span></li>
-                        <li><time datetime="2026-05-27T22:00">05.27 TUE 22:00</time><span>深海ラジオ / Radio</span></li>
-                    </ul>
-                </article>
                 <article class="dock-card dock-card--follow reveal">
-                    <h2>FOLLOW</h2>
+                    <p>FOLLOW THE SIGNAL</p>
+                    <h2>更新と配信通知</h2>
                     <div class="platform-grid" aria-label="SNSリンク">
                         <a href="https://x.com/shinkaineon">X</a>
                         <a href="https://www.youtube.com/@shinkaineon">YouTube</a>
@@ -132,8 +145,12 @@
                         <a href="https://www.tiktok.com/@shinkaineon">TikTok</a>
                     </div>
                 </article>
+                <div class="cockpit-emblem reveal" aria-hidden="true">
+                    <img src="assets/svg/beacon-mark.svg" alt="">
+                </div>
                 <article class="dock-card dock-card--contact reveal">
-                    <h2>CONTACT</h2>
+                    <p>CONTACT BEACON</p>
+                    <h2>Business & Collaboration</h2>
                     <p>歌唱案件、番組出演、タイアップ相談は内容と希望時期を添えてお送りください。</p>
                     <a class="button button--contact" href="../../../plans.html?template=streamer-a&amp;plan=standard">このテンプレートで制作相談</a>
                 </article>
