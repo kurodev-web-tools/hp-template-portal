@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const page = document.querySelector('.logic-page');
     const toggle = document.querySelector('[data-menu-toggle]');
     const drawer = document.querySelector('[data-mobile-drawer]');
-    const navLinks = Array.from(document.querySelectorAll('.logic-nav__links a'));
+    const navLinks = Array.from(document.querySelectorAll('.command-links a'));
     const drawerLinks = Array.from(document.querySelectorAll('.mobile-drawer a'));
     const sections = Array.from(document.querySelectorAll('main section[id]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (page) {
+    if (page && !reduceMotion) {
         window.requestAnimationFrame(() => page.classList.add('is-ready'));
     }
 
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
             });
         }, {
-            rootMargin: '-35% 0px -52% 0px',
+            rootMargin: '-28% 0px -58% 0px',
             threshold: [0.08, 0.25, 0.5],
         });
 
