@@ -31,6 +31,14 @@ Expansion status:
 
 - `DESIGN.md`: Google Labs の DESIGN.md 形式に寄せた design tokens + design rationale。見た目の契約書。
 - `IMPLEMENTATION_PLAN.md`: 実装順、フェーズ、検証、受け入れ条件。作業計画。
+- `LAYOUT_MATRIX.md`: A-Z の header type / first viewport / CTA placement / convergence NG を横断固定する layout contract。
+- `ASSET_PLAN.md`: WebP / SVG / CSS / JS の分担、pilot 3件の design kit、A-Z の asset direction。
+- `IMPLEMENTATION_HANDOFF.md`: 別セッションで 1 template ずつ renewal するための branch / PR / phase / verification contract。
+- `RENEWAL_TASKS.md`: prep PR のマージ前確認、legacy reference policy、個別 template renewal queue、integration branch final checklist。
+
+Final mock 生成と実装 handoff では、`LAYOUT_MATRIX.md` を `DESIGN.md` より先に確認する。`Header position` の共通文と個別 layout 指定が衝突する場合は、`LAYOUT_MATRIX.md` と各 `DESIGN.md` の `Header:` / `Information placement:` の具体文を優先する。
+
+Final mock assets are stored under `docs/template-renewal-details/streamer/mockup-image/full-renewal/` as `*-final-page-mock-v1.png`. These are full-page references; implementation should preserve the first viewport layout signature first, then use lower-page sections for semantic flow and asset direction.
 
 ## Common Technical Baseline
 
@@ -69,6 +77,8 @@ Expansion status:
 
 - 共通技術基盤は固定し、テーマごとの違いは CSS variables、component classes、template-local assets、signature motion で表現する。
 - motion policy はテンプレートごとに違ってよいが、CSS first / GSAP optional / heavy runtime forbidden の境界は維持する。
+- 最終モックは共通構造の再現ではなく、`LAYOUT_MATRIX.md` の header type / first viewport / CTA placement を満たす theme-specific mock とする。
+- 実装時の「モック再現」は pixel-perfect ではなく、layout signature、情報配置、CTA hierarchy、主要装飾の intent-perfect を基準にする。
 - 各テンプレート plan は `Modify only public/templates/streamer/<id>/**` を Scope に入れる。
 - `public/assets/js/data.js`、thumbnails、`task.md`、`docs/PLAN.md` は integration branch でまとめて更新する。
 

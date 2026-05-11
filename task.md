@@ -7,6 +7,7 @@
 
 ## Active Priorities
 - [ ] streamer 26件のフルリニューアルは、当面 Symphony / Linear 実行ではなく Codex app の通常作業で進める。基本単位は `1テンプレート = 1ブランチ = 1worktree = 1PR` とし、個別PRを結合用ブランチへ集約してから全体確認する
+- [ ] streamer full renewal の次作業は `docs/template-renewal-details/streamer/full-renewal-pilots/RENEWAL_TASKS.md` を専用 task board として使う。final page mock / layout matrix / asset plan / handoff contract を基準に、`z -> b -> q` から個別PRで進める
 - [ ] streamer 26件の個別実装は `docs/template-renewal-details/streamer/full-renewal-pilots/<slug>/DESIGN.md` と `IMPLEMENTATION_PLAN.md` を正本にする。`SYMPHONY_TASK.md` は実装補助メモとして参照してよいが、実行契約としては扱わない
 - [ ] streamer renewal の共有ファイル更新は個別テンプレートPRでは行わず、結合用ブランチでまとめて扱う。対象は `public/assets/js/data.js`、サムネイル、template modal / registry、`task.md`、`docs/PLAN.md`
 - [ ] 2026-05-03 の受注導線監査を起点に、`list.html` の template modal から `plans.html` / `order-premium.html` へ template id を渡す導線、トップの実数表示、料金/プラン名の整理を優先改善する。詳細は `docs/reviews/PORTAL_CONVERSION_AUDIT_2026-05-03.md`
