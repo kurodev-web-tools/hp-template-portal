@@ -27,38 +27,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/templates/streamer/t/assets/css/style.css">
 </head>
 
 <body class="theme-streamer custom-menu-only" data-stream-status="live" data-channel-url="https://streamer-t.hp-portal.jp/live">
     <a class="skip-link" href="#main">本文へ移動</a>
-    <div class="logic-background" aria-hidden="true">
-        <span class="logic-background__trace trace-a"></span>
-        <span class="logic-background__trace trace-b"></span>
-        <span class="logic-background__trace trace-c"></span>
-    </div>
+    <div class="logic-shell" aria-hidden="true"></div>
 
-    <header class="logic-nav" data-logic-nav>
-        <a class="logic-brand" href="#hero" aria-label="論理テック ホーム">
-            <span class="logic-brand__mark">[..]</span>
+    <header class="command-bar" data-logic-nav>
+        <a class="command-brand" href="#hero" aria-label="論理テック ホーム">
+            <img src="/templates/streamer/t/assets/svg/node-core.svg" alt="" width="36" height="36">
             <span>
-                <strong>論理テック</strong>
-                <small>Logic Tech Developer VTuber</small>
+                <strong>TECH LOGIC</strong>
+                <small>/// SYSTEM ONLINE</small>
             </span>
         </a>
-        <nav class="logic-nav__links" aria-label="主要ナビゲーション">
-            <a href="#profile">Status</a>
-            <a href="#hero">Nodes</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#community">Follow</a>
-            <a href="#contact">Contact</a>
+        <nav class="command-links" aria-label="主要ナビゲーション">
+            <a href="#hero">/home</a>
+            <a href="#profile">/build</a>
+            <a href="#schedule">/verify</a>
+            <a href="#archive">/archive</a>
+            <a href="#community">/follow</a>
+            <a href="#contact">/contact</a>
         </nav>
-        <a class="logic-nav__run" href="https://streamer-t.hp-portal.jp/live">
-            <span aria-hidden="true">&gt;_</span>
-            Run Live
-        </a>
-        <button class="logic-nav__toggle" type="button" aria-label="メニューを開く" aria-expanded="false" data-menu-toggle>
+        <div class="command-state" aria-label="システム状態">
+            <span>user: tech_logic</span>
+            <strong>online</strong>
+        </div>
+        <button class="command-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" data-menu-toggle>
             <span></span>
             <span></span>
             <span></span>
@@ -66,263 +63,213 @@
     </header>
 
     <div class="mobile-drawer" data-mobile-drawer>
-        <a href="#profile">Status</a>
-        <a href="#hero">Nodes</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#community">Follow</a>
-        <a href="#contact">Contact API</a>
+        <a href="#hero">/home</a>
+        <a href="#schedule">/verify</a>
+        <a href="#community">/follow</a>
+        <a href="#contact">/contact api</a>
+        <a href="#profile">/build queue</a>
+        <a href="#archive">/archive</a>
     </div>
 
     <main id="main" class="logic-page">
         <div class="operations-board" aria-label="Tech Logic operations board">
             <section id="profile" class="board-panel build-queue" aria-labelledby="build-title">
-                <div class="panel-heading">
-                    <span class="panel-heading__icon" aria-hidden="true">◆</span>
-                    <div>
-                        <p class="panel-kicker">Build Queue</p>
-                        <h2 id="build-title">配信モジュール</h2>
-                    </div>
-                    <span class="queue-count">5</span>
+                <div class="panel-head">
+                    <p>Build Queue</p>
+                    <h2 id="build-title">検証中の配信モジュール</h2>
+                    <span>v2.4.1</span>
                 </div>
-
-                <div class="queue-list" aria-label="活動内容">
-                    <article class="queue-item is-running">
-                        <span class="queue-item__icon" aria-hidden="true">01</span>
+                <ol class="queue-list">
+                    <li class="is-active">
+                        <span>01</span>
                         <div>
-                            <h3>Core Engine</h3>
-                            <p>実装相談とコードレビュー</p>
+                            <h3>Overclock Logic</h3>
+                            <p>コード実装と設計相談</p>
                         </div>
-                        <strong>Running</strong>
-                        <span class="progress" style="--progress: 78%"></span>
-                    </article>
-                    <article class="queue-item">
-                        <span class="queue-item__icon" aria-hidden="true">02</span>
+                        <strong>67%</strong>
+                    </li>
+                    <li>
+                        <span>02</span>
                         <div>
-                            <h3>Logic Layer</h3>
-                            <p>ゲーム制作ログと設計メモ</p>
+                            <h3>Neural Sync</h3>
+                            <p>配信画面とガジェット検証</p>
                         </div>
-                        <strong>Queued</strong>
-                        <span class="progress" style="--progress: 42%"></span>
-                    </article>
-                    <article class="queue-item">
-                        <span class="queue-item__icon" aria-hidden="true">03</span>
+                        <strong>pending</strong>
+                    </li>
+                    <li>
+                        <span>03</span>
                         <div>
-                            <h3>UI Module</h3>
-                            <p>ガジェットUIと配信画面検証</p>
+                            <h3>Stream Router</h3>
+                            <p>開発ログと参加型企画</p>
                         </div>
-                        <strong>Queued</strong>
-                        <span class="progress" style="--progress: 33%"></span>
-                    </article>
-                    <article class="queue-item">
-                        <span class="queue-item__icon" aria-hidden="true">04</span>
+                        <strong>queued</strong>
+                    </li>
+                    <li>
+                        <span>04</span>
                         <div>
-                            <h3>Audio Sync</h3>
-                            <p>音声環境とデスク構成</p>
+                            <h3>Data Bridge</h3>
+                            <p>アーカイブ整理と解説動画</p>
                         </div>
-                        <strong>Waiting</strong>
-                        <span class="progress" style="--progress: 12%"></span>
-                    </article>
-                </div>
-
-                <div class="terminal-log" aria-label="最新ログ">
-                    <p>[21:05:42] Core Engine compile started...</p>
-                    <p>[21:07:10] Logic Layer queued.</p>
-                    <p>[21:12:33] Tonight: React tool repair</p>
-                    <p>logic@studio:~ $</p>
+                        <strong>waiting</strong>
+                    </li>
+                </ol>
+                <div class="system-load" aria-label="システム負荷">
+                    <p>System Load</p>
+                    <dl>
+                        <div><dt>CPU</dt><dd>34%</dd></div>
+                        <div><dt>MEM</dt><dd>58%</dd></div>
+                        <div><dt>NET</dt><dd>22%</dd></div>
+                    </dl>
                 </div>
             </section>
 
             <section id="hero" class="tech-hero" aria-labelledby="hero-title">
-                <div class="node-map" aria-hidden="true">
-                    <span class="node-card node-input-a">Audio</span>
-                    <span class="node-card node-input-b">Chat</span>
-                    <span class="node-card node-core">Logic Core</span>
-                    <span class="node-card node-data">Memory</span>
-                    <span class="node-card node-process">Emotion AI</span>
-                    <span class="node-card node-output">Stream</span>
-                    <svg class="node-lines" viewBox="0 0 760 380" role="img" aria-label="Tech Logic node graph">
-                        <path class="trace-line trace-line-a" d="M135 112 H285 V176 H360" />
-                        <path class="trace-line trace-line-b" d="M135 240 H250 V176 H360" />
-                        <path class="trace-line trace-line-c" d="M455 176 H585 V104" />
-                        <path class="trace-line trace-line-d" d="M455 176 H535 V262 H585" />
-                        <path class="trace-line trace-line-e" d="M410 218 V292 H390" />
-                    </svg>
-                </div>
-
-                <div class="hero-copy">
-                    <p class="hero-copy__kicker">Developer / VTuber</p>
-                    <h1 id="hero-title">論理テック</h1>
-                    <p class="hero-copy__name">Ronri Tech</p>
-                    <p class="hero-copy__lead">コードでつなぐ、楽しいを最適化。開発、ガジェット、配信環境を実装ログとして共有する技術系VTuberです。</p>
-                    <div class="hero-actions" aria-label="主要アクション">
-                        <a class="button button-primary" href="https://streamer-t.hp-portal.jp/live">配信ページへ</a>
-                        <a class="button button-secondary" href="#schedule">予定を見る</a>
-                        <a class="button button-ghost" href="../../../plans.html?template=streamer-t&plan=standard">このテンプレートで相談</a>
+                <div class="hero-frame">
+                    <div class="node-graph" aria-hidden="true">
+                        <span class="graph-node node-input">Input</span>
+                        <span class="graph-node node-analyze">Analyze</span>
+                        <span class="graph-node node-process">Process</span>
+                        <span class="graph-node node-stream">Stream</span>
+                        <span class="graph-node node-output">Output</span>
+                        <span class="graph-node node-connect">Connect</span>
+                        <svg class="graph-lines" viewBox="0 0 820 460" role="img" aria-label="Tech Logic node graph">
+                            <path d="M118 120 L300 210 L410 230" />
+                            <path d="M118 315 L300 250 L410 230" />
+                            <path d="M410 230 L582 130 L706 118" />
+                            <path d="M410 230 L594 286 L706 286" />
+                            <path d="M410 230 L410 360" />
+                        </svg>
+                    </div>
+                    <div class="hero-chip">NODE GRAPH</div>
+                    <div class="hero-copy">
+                        <p>logic.build.stream.</p>
+                        <h1 id="hero-title">TECH LOGIC</h1>
+                        <p class="hero-lead">論理設計、コード検証、配信環境の実験を、視聴者と一緒にビルドするDeveloper VTuber。</p>
+                        <div class="hero-actions" aria-label="主要アクション">
+                            <a class="button button-live" href="https://streamer-t.hp-portal.jp/live">Run Live</a>
+                            <a class="button button-secondary" href="#schedule">Verify Schedule</a>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <dl class="hero-metrics" aria-label="配信ステータス">
+            <section id="schedule" class="board-panel verify-panel" aria-labelledby="schedule-title">
+                <div class="panel-head">
+                    <p>Verify Schedule</p>
+                    <h2 id="schedule-title">Upcoming Streams</h2>
+                    <span class="live-pill">live</span>
+                </div>
+                <ol class="verify-list">
+                    <li>
+                        <time datetime="2026-05-20T21:00">05.20<br>Tue 21:00</time>
+                        <div>
+                            <h3>Logic Build Live</h3>
+                            <p>// system design</p>
+                        </div>
+                        <strong>verified</strong>
+                    </li>
+                    <li>
+                        <time datetime="2026-05-22T22:00">05.22<br>Thu 22:00</time>
+                        <div>
+                            <h3>Algo Deep Dive</h3>
+                            <p>// code analysis</p>
+                        </div>
+                        <strong>queued</strong>
+                    </li>
+                    <li>
+                        <time datetime="2026-05-24T21:00">05.24<br>Sat 21:00</time>
+                        <div>
+                            <h3>Viewer Command</h3>
+                            <p>// interactive</p>
+                        </div>
+                        <strong>queued</strong>
+                    </li>
+                    <li>
+                        <time datetime="2026-05-28T22:00">05.28<br>Wed 22:00</time>
+                        <div>
+                            <h3>Optimize Night</h3>
+                            <p>// performance</p>
+                        </div>
+                        <strong>queued</strong>
+                    </li>
+                </ol>
+                <a class="panel-link" href="https://streamer-t.hp-portal.jp/schedule">View full schedule</a>
+            </section>
+
+            <section id="contact" class="api-contact" aria-labelledby="contact-title">
+                <div class="api-contact__meta">
+                    <img src="/templates/streamer/t/assets/svg/endpoint-icon.svg" alt="" width="62" height="62">
                     <div>
-                        <dt>CPU</dt>
-                        <dd>23%</dd>
+                        <p>API Contact</p>
+                        <h2 id="contact-title">POST /api/contact</h2>
+                        <span>business only endpoint</span>
                     </div>
-                    <div>
-                        <dt>MEM</dt>
-                        <dd>41%</dd>
-                    </div>
-                    <div>
-                        <dt>NET</dt>
-                        <dd>1.2Gbps</dd>
-                    </div>
-                    <div>
-                        <dt>UPTIME</dt>
-                        <dd>12D 04:15:23</dd>
-                    </div>
+                </div>
+                <dl class="endpoint-spec">
+                    <div><dt>method</dt><dd>POST</dd></div>
+                    <div><dt>content-type</dt><dd>application/json</dd></div>
+                    <div><dt>response</dt><dd>202 Accepted</dd></div>
                 </dl>
-            </section>
-
-            <aside class="right-stack" aria-label="ライブとスケジュール">
-                <section class="board-panel live-panel" aria-labelledby="live-title">
-                    <div class="live-panel__title">
-                        <span class="live-dot" aria-hidden="true"></span>
-                        <h2 id="live-title">LIVE</h2>
-                        <span>ON AIR</span>
-                    </div>
-                    <div class="live-display" aria-hidden="true">
-                        <strong>LIVE</strong>
-                        <span>Coding Stream</span>
-                    </div>
-                    <dl class="live-spec">
-                        <div>
-                            <dt>Status</dt>
-                            <dd>Live</dd>
-                        </div>
-                        <div>
-                            <dt>Quality</dt>
-                            <dd>1080p60</dd>
-                        </div>
-                        <div>
-                            <dt>Delay</dt>
-                            <dd>2.1s</dd>
-                        </div>
-                    </dl>
-                    <a class="split-cta" href="https://streamer-t.hp-portal.jp/live">
-                        <span>ただいま配信中</span>
-                        <strong>配信ページへ</strong>
-                    </a>
-                </section>
-
-                <section id="schedule" class="board-panel schedule-panel" aria-labelledby="schedule-title">
-                    <div class="panel-heading panel-heading--inline">
-                        <div>
-                            <p class="panel-kicker">Verify Queue</p>
-                            <h2 id="schedule-title">Schedule</h2>
-                        </div>
-                        <span class="queue-count">3</span>
-                    </div>
-                    <ol class="schedule-list">
-                        <li>
-                            <time datetime="2026-05-23T20:00">05.23 FRI 20:00</time>
-                            <span>雑談 / Dev Talk</span>
-                            <strong>Talk</strong>
-                        </li>
-                        <li>
-                            <time datetime="2026-05-24T21:00">05.24 SUN 21:00</time>
-                            <span>コード実装 / Coding</span>
-                            <strong>Live</strong>
-                        </li>
-                        <li>
-                            <time datetime="2026-05-27T22:00">05.27 WED 22:00</time>
-                            <span>ゲーム制作ログ / Game Dev</span>
-                            <strong>Dev</strong>
-                        </li>
-                        <li>
-                            <time datetime="2026-05-29T21:30">05.29 FRI 21:30</time>
-                            <span>技術検証 / Tech Verify</span>
-                            <strong>Verify</strong>
-                        </li>
-                    </ol>
-                    <a class="text-link" href="https://streamer-t.hp-portal.jp/schedule">すべてのスケジュールを見る</a>
-                </section>
-            </aside>
-
-            <section id="archive" class="board-panel module-panel" aria-labelledby="module-title">
-                <div class="panel-heading panel-heading--inline">
-                    <div>
-                        <p class="panel-kicker">Modules</p>
-                        <h2 id="module-title">Archive Picks</h2>
-                    </div>
-                    <span class="queue-count">6</span>
-                </div>
-                <div class="module-grid">
-                    <a href="https://streamer-t.hp-portal.jp/archives/core-engine">
-                        <span>Core</span>
-                        <strong>配信画面を半日で組み直す実装回</strong>
-                    </a>
-                    <a href="https://streamer-t.hp-portal.jp/archives/gadget-desk">
-                        <span>Device</span>
-                        <strong>ミニPCと音声IFの検証ログ</strong>
-                    </a>
-                    <a href="https://streamer-t.hp-portal.jp/archives/game-dev">
-                        <span>Dev</span>
-                        <strong>個人ゲームの設計を整理する夜</strong>
-                    </a>
-                </div>
-            </section>
-
-            <section id="community" class="board-panel follow-panel" aria-labelledby="follow-title">
-                <div class="panel-heading panel-heading--inline">
-                    <div>
-                        <p class="panel-kicker">System Follow</p>
-                        <h2 id="follow-title">Follow</h2>
-                    </div>
-                </div>
-                <div class="platforms" aria-label="SNSリンク">
-                    <a href="https://x.com/ronri_tech">X</a>
-                    <a href="https://www.youtube.com/@ronritech">YouTube</a>
-                    <a href="https://www.twitch.tv/ronritech">Twitch</a>
-                    <a href="https://discord.gg/ronritech">Discord</a>
-                    <a href="https://github.com/ronri-tech">GitHub</a>
-                </div>
-                <p>最新情報、配信メモ、検証中のコードは X と Discord に集約しています。配信タグは <strong>#論理テックログ</strong>。</p>
-            </section>
-
-            <section id="contact" class="board-panel contact-panel" aria-labelledby="contact-title">
-                <div class="panel-heading panel-heading--inline">
-                    <div>
-                        <p class="panel-kicker">Endpoint</p>
-                        <h2 id="contact-title">Contact API</h2>
-                    </div>
-                    <span class="status-code">202 Accepted</span>
-                </div>
-                <div class="api-grid">
-                    <div class="api-body">
-                        <span class="method">POST</span>
-                        <code>/api/contact</code>
-                        <pre aria-label="問い合わせ内容例">{
-  "type": "business",
-  "topic": "技術企画・配信コラボ",
-  "reply": "3営業日以内"
+                <pre aria-label="問い合わせ内容例">{
+  "name": "Your Name",
+  "type": "sponsorship | collab | media",
+  "message": "Let's build something logical."
 }</pre>
-                    </div>
-                    <div class="api-response">
-                        <p>技術解説、ガジェット検証、開発イベント出演、コラボ配信の相談はこちらから。</p>
-                        <a class="button button-secondary" href="../../../plans.html?template=streamer-t&plan=standard">お問い合わせフォームへ</a>
-                    </div>
-                </div>
+                <a class="button button-contact" href="/plans.html?template=streamer-t&plan=standard">Send Request</a>
             </section>
         </div>
+
+        <section id="archive" class="lower-panel archive-panel" aria-labelledby="archive-title">
+            <div class="panel-head">
+                <p>Build Archive</p>
+                <h2 id="archive-title">検証ログ</h2>
+                <span>// logs</span>
+            </div>
+            <div class="archive-grid">
+                <a href="https://streamer-t.hp-portal.jp/archives/neural-sync">
+                    <span>LOG #0248</span>
+                    <strong>Neural Sync</strong>
+                    <small>OBSと音声IFをまとめて再配線する回</small>
+                </a>
+                <a href="https://streamer-t.hp-portal.jp/archives/stream-router">
+                    <span>LOG #0247</span>
+                    <strong>Stream Router</strong>
+                    <small>参加型企画の導線を状態遷移で整理</small>
+                </a>
+                <a href="https://streamer-t.hp-portal.jp/archives/data-bridge">
+                    <span>LOG #0246</span>
+                    <strong>Data Bridge</strong>
+                    <small>個人開発のメモを公開ログへ変換</small>
+                </a>
+            </div>
+        </section>
+
+        <section id="community" class="lower-panel community-panel" aria-labelledby="community-title">
+            <div class="panel-head">
+                <p>Connect Endpoints</p>
+                <h2 id="community-title">Follow / Community</h2>
+                <span>// fan routes</span>
+            </div>
+            <div class="platforms" aria-label="SNSリンク">
+                <a href="https://www.twitch.tv/ronritech"><strong>Twitch</strong><span>/live streams</span></a>
+                <a href="https://www.youtube.com/@ronritech"><strong>YouTube</strong><span>/vods and clips</span></a>
+                <a href="https://x.com/ronri_tech"><strong>X</strong><span>/updates</span></a>
+                <a href="https://discord.gg/ronritech"><strong>Discord</strong><span>/community hub</span></a>
+                <a href="https://github.com/ronri-tech"><strong>GitHub</strong><span>/code projects</span></a>
+            </div>
+            <p>配信告知、検証中のコード、視聴者参加型コマンドはファン向け endpoint に集約しています。案件相談とは別導線です。</p>
+        </section>
     </main>
 
     <footer class="logic-footer">
-        <p>© 2026 Ronri Tech. System architecture v2.4.7</p>
+        <p>© 2026 Tech Logic. Build logic. Share knowledge. Stream future.</p>
         <a href="#hero">Back to node graph</a>
     </footer>
 
-    <a class="bottom-cta" href="../../../plans.html?template=streamer-t&plan=standard">このテンプレートで制作相談</a>
+    <a class="bottom-cta" href="/plans.html?template=streamer-t&plan=standard">このテンプレートで制作相談</a>
 
-    <script src="../../../assets/js/template-common.js" defer></script>
-    <script src="assets/js/script.js" defer></script>
+    <script src="/assets/js/template-common.js" defer></script>
+    <script src="/templates/streamer/t/assets/js/script.js" defer></script>
 </body>
 
 </html>
