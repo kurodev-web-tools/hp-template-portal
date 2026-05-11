@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('is-loaded');
 
     const revealTargets = document.querySelectorAll(
-        '.deck-panel, .content-band, .contact-dock, .module-card, .project-grid article, .archive-grid a, .social-links a'
+        '.deck-panel, .inquiry-dock, .content-band, .module-card, .archive-grid a, .follow-grid a'
     );
 
     revealTargets.forEach((target) => {
