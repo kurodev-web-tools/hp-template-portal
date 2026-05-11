@@ -89,6 +89,16 @@ PC は quest board grid を使う。
 
 SP は `active quest -> next stream -> party schedule -> recruitment/community -> contact` の順にする。
 
+## Layout Contract
+
+- Page model: 公式サイト型LP。トップ1ページで完結し、必要なら schedule / profile / contact を下層化できる構造にする。
+- Header type: PC は left quest category tabs / guild board nav。通常の top fixed header は使わない。SP は top compact header + bottom CTA。
+- Layout mode: activity board。PC は冒険者ギルド掲示板の中に nav / active quest / party schedule / guild contact を配置し、SP は quest の優先順に縦へ再編成する。
+- PC composition: left quest category/rank、center Active Quest parchment、right Party Schedule / recruitment、bottom board teasers / Follow / Guild Contact。
+- Information placement: left category tabs/rank, center active quest identity, right party schedule/recruitment, bottom quest teasers/follow/guild contact.
+- Avoid shared layout: do not use Boss Room command rail, throne/status language, normal top nav, or flat rectangular card grid.
+- Implementation hint: parchment hero、quest tabs、party rows、guild notice、seal CTA を別形状の component として扱う。
+
 ## Elevation & Depth
 
 羊皮紙、木板、革ベルト、封蝋は素材化する。影は紙が重なっている程度に抑え、モックの「掲示板感」を保つ。

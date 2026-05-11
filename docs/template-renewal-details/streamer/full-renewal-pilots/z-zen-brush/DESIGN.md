@@ -90,6 +90,16 @@ PC は zen brush scroll composition。
 
 SP は `name -> next stream -> schedule -> follow -> contact -> profile` の順にする。
 
+## Layout Contract
+
+- Page model: 公式サイト型LP。トップ1ページで完結し、必要なら schedule / profile / contact を下層化できる構造にする。
+- Header type: PC は left ink nav / minimal paper label。通常の top fixed header は使わない。SP は top compact header + bottom CTA。
+- Layout mode: immersive single page。PC は余白と紙面構成を主役にし、SP は Next Stream / Schedule / Follow / Contact の到達性を優先する。
+- PC composition: left ink nav、center brush/enso hero、right-top Stream Seal、lower-left Schedule Scroll、lower-right Contact Seal / Follow。
+- Information placement: left ink nav, center brush identity, right-top next stream seal, lower-left schedule scroll, lower-right contact seal/follow.
+- Avoid shared layout: do not use generic Japanese inn layout, beige-only page, normal top header, or balanced two-column card grid.
+- Implementation hint: ink nav、BrushHero、StreamSeal、ScheduleScroll、ContactSeal をそれぞれ別形状の component として扱う。
+
 ## Elevation & Depth
 
 和紙、墨飛沫、円相、巻物端、朱印は素材化する。CSS だけで無理に描かない。カードは影を薄くし、紙が重なっている程度にする。

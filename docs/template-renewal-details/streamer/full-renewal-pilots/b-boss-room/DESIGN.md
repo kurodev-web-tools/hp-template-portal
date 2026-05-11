@@ -88,6 +88,16 @@ PC は 12-column grid ではなく、モック準拠の command room layout を�
 
 SP は side rail を top compact nav に畳み、順序を `name -> live -> next stream -> follow -> contact -> schedule` に変える。
 
+## Layout Contract
+
+- Page model: 公式サイト型LP。トップ1ページで完結し、必要なら schedule / profile / contact を下層化できる構造にする。
+- Header type: PC は left side rail / command room nav。通常の top fixed header は使わない。SP は top compact header + bottom CTA。
+- Layout mode: world-in-UI。PC は boss command room の中に nav / status / schedule / contract を埋め込み、SP は情報カードへ分解する。
+- PC composition: left crest rail、center throne visual、right Next Raid / schedule、lower Boss Status / Follow / Contract。
+- Information placement: left crest/nav/challenge note, center throne identity, right live status/next raid/schedule, bottom boss status/follow/contract.
+- Avoid shared layout: do not use generic hero-left/cards-right composition, balanced two-column card grid, normal top nav, or Quest Log parchment layout.
+- Implementation hint: side rail、throne frame、HP/status bar、raid card、contract CTA を別形状の component として扱う。
+
 ## Elevation & Depth
 
 金枠、革、石、赤布の質感は CSS だけで描かず、必要な部分だけ透過 WebP / SVG frame として素材化する。カードは立体化しすぎず、線、影、背景差で奥行きを作る。
